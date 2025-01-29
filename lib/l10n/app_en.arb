@@ -1,0 +1,7 @@
+{
+    "language":"English",
+    "@language":{
+        "description":"Current language of the app"
+    },
+    "gst":"GST#"
+}
