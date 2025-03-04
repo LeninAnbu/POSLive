@@ -33,7 +33,7 @@ class SerachInwardHeaderAPi {
       //          "EXEC BZ_POS_SerachInwardHeaderAPi '${AppConstant.branch}','$fromDate','$toDate','$GitWhs'"
       //         }));
 
-      log("InwardHeaderAPi Res: " + json.decode(response.body).toString());
+      // log("InwardHeaderAPi Res: " + json.decode(response.body).toString());
       print(response.statusCode);
       if (response.statusCode == 200) {
         return OpenSalesReqHeadersModl.fromJson(

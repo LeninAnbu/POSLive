@@ -414,6 +414,7 @@ class ReportController extends ChangeNotifier {
                                                               context) *
                                                           0.25,
                                                       child: TextFormField(
+                                                        readOnly: true,
                                                         controller:
                                                             frmController[
                                                                 index],

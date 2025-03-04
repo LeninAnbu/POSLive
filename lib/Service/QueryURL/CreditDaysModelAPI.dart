@@ -19,9 +19,8 @@ class CustCreditDaysAPI {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_CustCreditDaysAPI '$cardCode'"
-                    // "select  b.ExtraDays, b.PymntGroup from OCRD a inner join OCTG b on a.GroupNum=b.GroupNum  where CardCode='$cardCode'"
+                "query": "EXEC BZ_POS_CustCreditDaysAPI '$cardCode'"
+                // "select  b.ExtraDays, b.PymntGroup from OCRD a inner join OCTG b on a.GroupNum=b.GroupNum  where CardCode='$cardCode'"
               }));
 
       // log("CashCardAccount Data::: ${json.encode({
@@ -31,7 +30,7 @@ class CustCreditDaysAPI {
       //           "select  b.ExtraDays from OCRD a inner join OCTG b on a.GroupNum=b.GroupNum  where CardCode='$cardCode'"
       //     })}");
 
-      log("CustCreditDaysAPI Acc Res: ${json.decode(response.body)}");
+      // log("CustCreditDaysAPI Acc Res: ${json.decode(response.body)}");
       if (response.statusCode == 200) {
         return CreditDaysModel.fromJson(
             json.decode(response.body) as Map<String, dynamic>,

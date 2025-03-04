@@ -31,8 +31,8 @@ class _StockInscanPageState extends State<StockInscanPage> {
     return Container(
         padding: EdgeInsets.only(
           top: widget.searchHeight * 0.02,
-          left: widget.searchWidth * 0.01,
-          right: widget.searchWidth * 0.01,
+          // left: widget.searchWidth * 0.01,
+          // right: widget.searchWidth * 0.01,
           bottom: widget.searchHeight * 0.01,
         ),
         decoration: BoxDecoration(
@@ -143,8 +143,8 @@ class _StockInscanPageState extends State<StockInscanPage> {
                                         child: Container(
                                           padding: EdgeInsets.only(
                                             top: widget.searchHeight * 0.01,
-                                            left: widget.searchHeight * 0.01,
-                                            right: widget.searchHeight * 0.01,
+                                            // left: widget.searchHeight * 0.01,
+                                            // right: widget.searchHeight * 0.01,
                                             bottom: widget.searchHeight * 0.01,
                                           ),
                                           decoration: BoxDecoration(
@@ -162,24 +162,44 @@ class _StockInscanPageState extends State<StockInscanPage> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    SizedBox(
+                                                    Container(
+                                                      // color: Colors.red,
                                                       width:
                                                           widget.searchWidth *
-                                                              0.2,
-                                                      child: Text(
-                                                        "${context.read<StockInwrdController>().stockInward[context.watch<StockInwrdController>().get_i_value].data![context.read<StockInwrdController>().batch_i!].serialbatchList![i].itemcode}",
-                                                        style: widget
-                                                            .theme
-                                                            .textTheme
-                                                            .bodyLarge,
+                                                              0.7,
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            child: Text(
+                                                              "${context.read<StockInwrdController>().stockInward[context.watch<StockInwrdController>().get_i_value].data![context.read<StockInwrdController>().batch_i!].serialbatchList![i].itemcode}",
+                                                              style: widget
+                                                                  .theme
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: widget
+                                                                    .searchWidth *
+                                                                0.57,
+                                                            child: Text(
+                                                              " - ${context.read<StockInwrdController>().stockInward[context.watch<StockInwrdController>().get_i_value].data![context.read<StockInwrdController>().batch_i!].serialbatchList![i].itemName}",
+                                                              style: widget
+                                                                  .theme
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                     Container(
+                                                      // color: Colors.red,
                                                       alignment:
                                                           Alignment.centerRight,
                                                       width:
                                                           widget.searchWidth *
-                                                              0.2,
+                                                              0.18,
                                                       child: Text(
                                                         "${context.read<StockInwrdController>().stockInward[context.watch<StockInwrdController>().get_i_value].data![context.read<StockInwrdController>().batch_i!].serialbatchList![i].serialbatch}",
                                                         style: widget

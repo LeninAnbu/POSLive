@@ -121,68 +121,86 @@ class StockInwardPageviewerLeft extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: Colors.green)),
                     child: IntrinsicHeight(
-                      child: Row(
+                      child:
+                          //  Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          SizedBox(
+                        width: stockInWidth * 0.5,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              width: stockInWidth * 0.5,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  data == null
-                                      ? const Text("")
-                                      : Text(
-                                          "${data![context.watch<StockInwrdController>().selectIndex2].itemcode}",
-                                          style: theme.textTheme.bodyLarge,
-                                        ),
-                                  data == null
-                                      ? const Text("")
-                                      : Wrap(
-                                          spacing: 10.0,
-                                          runSpacing: 10.0,
-                                          children: listContainersBatch(
-                                            context,
-                                            theme,
-                                            data![context
-                                                .watch<StockInwrdController>()
-                                                .selectIndex2],
-                                          ))
-                                ],
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: stockInWidth * 0.15,
-                              child: data == null
-                                  ? const Text("")
-                                  : Text(
-                                      "${data![context.watch<StockInwrdController>().selectIndex2].qty}",
-                                      style: theme.textTheme.bodyLarge,
-                                    ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: stockInWidth * 0.15,
-                              child: data == null
-                                  ? const Text("")
-                                  : Text(
-                                      "${data![context.watch<StockInwrdController>().selectIndex2].trans_Qty}",
-                                      style: theme.textTheme.bodyLarge,
-                                    ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: stockInWidth * 0.15,
-                              child: data == null
-                                  ? const Text("")
-                                  : Text(
-                                      "${data![context.watch<StockInwrdController>().selectIndex2].Scanned_Qty}",
-                                      style: theme.textTheme.bodyLarge,
-                                    ),
-                            ),
-                          ]),
+                            data == null
+                                ? const Text("")
+                                : Row(
+                                    children: [
+                                      Text(
+                                        "${data![context.watch<StockInwrdController>().selectIndex2].itemcode}",
+                                        style: theme.textTheme.bodyLarge,
+                                      ),
+                                      Text(
+                                        " - ${data![context.watch<StockInwrdController>().selectIndex2].dscription}",
+                                        style: theme.textTheme.bodyLarge,
+                                      ),
+                                    ],
+                                  ),
+                            data == null
+                                ? const Text("")
+                                : Row(
+                                    children: [
+                                      Container(
+                                        width: stockInWidth * 0.5,
+                                        child: Wrap(
+                                            spacing: 10.0,
+                                            runSpacing: 10.0,
+                                            children: listContainersBatch(
+                                              context,
+                                              theme,
+                                              data![context
+                                                  .watch<StockInwrdController>()
+                                                  .selectIndex2],
+                                            )),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width: stockInWidth * 0.15,
+                                        child: data == null
+                                            ? const Text("")
+                                            : Text(
+                                                "${data![context.watch<StockInwrdController>().selectIndex2].qty}",
+                                                style:
+                                                    theme.textTheme.bodyLarge,
+                                              ),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width: stockInWidth * 0.15,
+                                        child: data == null
+                                            ? const Text("")
+                                            : Text(
+                                                "${data![context.watch<StockInwrdController>().selectIndex2].trans_Qty}",
+                                                style:
+                                                    theme.textTheme.bodyLarge,
+                                              ),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width: stockInWidth * 0.15,
+                                        child: data == null
+                                            ? const Text("")
+                                            : Text(
+                                                "${data![context.watch<StockInwrdController>().selectIndex2].Scanned_Qty}",
+                                                style:
+                                                    theme.textTheme.bodyLarge,
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                          ],
+                        ),
+                      ),
+                      // ]),
                     ),
                   ),
                 ),

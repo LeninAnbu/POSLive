@@ -34,6 +34,8 @@ class SalesOrderHeaderT {
   static String city = "city";
   static String state = "state";
   static String pinno = "pinno";
+  static String tinNo = "TinNo";
+  static String vatno = "VatNo";
   static String gst = "gst";
   static String country = "country";
   static String shipaddresid = "shipaddresid";
@@ -71,6 +73,8 @@ class SalesOrderHeaderT {
 
 class SalesOrderHeaderModelDB {
   String editType;
+  String tinNo;
+  String vatno;
   String custRefNo;
   String? customerSeriesNum;
   String? billaddressid;
@@ -141,6 +145,8 @@ class SalesOrderHeaderModelDB {
   String? uReceivedTime;
   SalesOrderHeaderModelDB({
     required this.uDeviceId,
+    required this.tinNo,
+    required this.vatno,
     required this.custRefNo,
     required this.editType,
     required this.amtpaid,
@@ -214,6 +220,8 @@ class SalesOrderHeaderModelDB {
   factory SalesOrderHeaderModelDB.fromjson(Map<String, dynamic> resp) {
     return SalesOrderHeaderModelDB(
       street: resp['street'],
+      tinNo: resp['TinNo'],
+      vatno: resp['VatNo'],
       block: resp['block'],
       docentry: resp['docentry'].toString(),
       basedocentry: resp['basedocentry'].toString(),
@@ -290,6 +298,8 @@ class SalesOrderHeaderModelDB {
   Map<String, Object?> toMap() => {
         SalesOrderHeaderT.basedocentry: basedocentry,
         SalesOrderHeaderT.editType: editType,
+        SalesOrderHeaderT.tinNo: tinNo,
+        SalesOrderHeaderT.vatno: vatno,
         SalesOrderHeaderT.customerphono: customerphono,
         SalesOrderHeaderT.terminal: terminal,
         SalesOrderHeaderT.customeraccbal: customeraccbal,

@@ -196,8 +196,6 @@ class StockOutwardController extends ChangeNotifier {
   }
 
   setstatemethod() {
-    print("goToPreviousPage::" + currentPage.toString());
-
     notifyListeners();
   }
 
@@ -640,7 +638,6 @@ class StockOutwardController extends ChangeNotifier {
     List<StockOutSerialbatch>? batchlistData = [];
     List<StockOutwardList> StockOutDATA2 = [];
     StockOutward2 = [];
-    searchLoading = true;
     StOutController2[50].text = filtersearchData[index].comments.toString();
 
     sapDocentry = filtersearchData[index].docEntry.toString();

@@ -1,30 +1,38 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:posproject/Service/ReportsApi/AddressReportApi.dart';
+import 'package:posproject/Service/ReportsApi/ApprovalReqExcelApi.dart';
+import 'package:posproject/Service/ReportsApi/ApprovalReqPdfApi.dart';
 import 'package:posproject/Service/ReportsApi/CustomerApi.dart';
 import 'package:sqflite/sqflite.dart';
-
+import '../../Constant/AppConstant.dart';
 import '../../Constant/ConstantRoutes.dart';
+import '../../Constant/Screen.dart';
 import '../../DB Helper/DBOperation.dart';
 import '../../DB Helper/DBhelper.dart';
 import '../../Models/ReportsModel/AddressRepModel.dart';
 import '../../Models/ReportsModel/CustomerReportModel.dart';
+import '../../Service/ReportsApi/AgeingExcelReport.dart';
+import '../../Service/ReportsApi/AgeingPdfAPI.dart';
+import '../../Service/ReportsApi/SubGroupYTDPdf.dart';
+import '../../Service/ReportsApi/SubGruopYTDExcel.dart';
+import '../../Service/ReportsApi/customerStatementApi.dart';
 
 class CustomerController extends ChangeNotifier {
   init() {
     clearalldata();
-    // getcustomerMaster();
     callCustReportapi();
     notifyListeners();
   }
 
   List<GlobalKey<FormState>> formkey =
-      List.generate(100, (i) => GlobalKey<FormState>());
-
+      List.generate(50, (i) => GlobalKey<FormState>());
+  List<GlobalKey<FormState>> formkeyaging =
+      List.generate(50, (j) => GlobalKey<FormState>());
+  bool isScreenLoad = false;
   List<CustomerReportData>? customerReportdata = [];
   callCustReportapi() async {
     log('step1');
@@ -32,6 +40,8 @@ class CustomerController extends ChangeNotifier {
     listbool = true;
     filtercustomerList = [];
     customerReportdata = [];
+    notifyListeners();
+
     await CustomersReportApi.getGlobalData().then((value) async {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
         log('customerdata lenght::${value.customerdata!.length}');
@@ -61,6 +71,166 @@ class CustomerController extends ChangeNotifier {
     notifyListeners();
   }
 
+  String salesApiToVDate = '';
+  String apiFromDate = '';
+  String apiToDate = '';
+  nowCurrentDate() {
+    isScreenLoad = true;
+
+    final date = DateTime.parse(DateTime.now().toString());
+    salesApiToVDate =
+        "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+    log('salesApiToVDatesalesApiToVDate::$salesApiToVDate');
+  }
+
+  DateTime findPreviousYear2(DateTime dateTime) {
+    var dateTimeWithOffset = dateTime;
+
+    log('dateTimeWithOffset Firstyear::$dateTimeWithOffset');
+    return DateTime(dateTimeWithOffset.year - 1, 1);
+  }
+
+  void showSnackBar(String msg, BuildContext context) {
+    final sn = SnackBar(
+      content: Text(
+        "$msg",
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.red,
+    );
+    ScaffoldMessenger.maybeOf(context)!.showSnackBar(sn);
+  }
+
+  Future<void> callSubGroupSalesPdfApi(
+      String methodname, BuildContext context) async {
+    log('methodnamemethodname::${findPreviousYear2(DateTime.now()).toString().replaceAll('00:00:00.000', '')}:::${cusList1!.customerCode}:::$methodname');
+    SubGroupSalesPdfReportAPi.fromDate = findPreviousYear2(DateTime.now())
+        .toString()
+        .replaceAll(' 00:00:00.000', '')
+        .trim();
+
+    SubGroupSalesPdfReportAPi.toDate = salesApiToVDate;
+    SubGroupSalesPdfReportAPi.slpCode = AppConstant.slpCode;
+    SubGroupSalesPdfReportAPi.methodName = methodname;
+    SubGroupSalesPdfReportAPi.cardCode = cusList1!.customerCode;
+    // mycontroller[9].text;
+    // isFromSalesinDay = false;
+    SubGroupSalesPdfReportAPi.getGlobalData().then((value) {
+      if (value == 200) {
+        isScreenLoad = false;
+        notifyListeners();
+      } else {
+        isScreenLoad = false;
+        showSnackBar('Try again!!..', context);
+      }
+    });
+    notifyListeners();
+  }
+
+  Future<void> callSubGroupSalesExcelApi(
+      String methodname, BuildContext context) async {
+    log('methodnamemethodname::$methodname');
+    isScreenLoad = true;
+    SubGroupsSaleExcelReportAPi.fromDate = findPreviousYear2(DateTime.now())
+        .toString()
+        .replaceAll(' 00:00:00.000', '')
+        .trim();
+    SubGroupsSaleExcelReportAPi.toDate = salesApiToVDate;
+    SubGroupsSaleExcelReportAPi.slpCode = AppConstant.slpCode;
+    SubGroupsSaleExcelReportAPi.cardCode = cusList1!.customerCode;
+    //  mycontroller[9].text;
+    SubGroupsSaleExcelReportAPi.reportName = '${methodname}Excel';
+
+    SubGroupsSaleExcelReportAPi.getGlobalData().then((value) {
+      if (value == 200) {
+        isScreenLoad = false;
+        notifyListeners();
+      } else {
+        isScreenLoad = false;
+        showSnackBar('Try again!!..', context);
+      }
+      // Navigator.pop(context);
+    });
+
+    notifyListeners();
+  }
+
+  Future<void> callApprovalReqPdfApi(BuildContext context) async {
+    ApprovalReqApi.getGlobalData(cusList1!.customerCode).then((value) {
+      if (value == 200) {
+        isScreenLoad = false;
+        notifyListeners();
+      } else {
+        isScreenLoad = false;
+        showSnackBar('Try again!!..', context);
+      }
+    });
+    notifyListeners();
+  }
+
+  Future<void> callApprovalReqExcelApi(BuildContext context) async {
+    isScreenLoad = true;
+
+    ApprovalReqExcelAPi.getGlobalData(cusList1!.customerCode!).then((value) {
+      if (value == 200) {
+        isScreenLoad = false;
+        notifyListeners();
+      } else {
+        isScreenLoad = false;
+        showSnackBar('Try again!!..', context);
+      }
+      // Navigator.pop(context);
+    });
+
+    notifyListeners();
+  }
+
+  Future<void> callApi(BuildContext context) async {
+    if (formkey[0].currentState!.validate()) {
+      isScreenLoad = true;
+      //  isLoading = true;
+
+      CustomerStatementApi.getGlobalData(
+              cusList1!.customerCode, apiFromDate, apiToDate)
+          .then((value) {
+        if (value == 200) {
+          isScreenLoad = false;
+          notifyListeners();
+
+          //isLoading = false;
+        } else {
+          isScreenLoad = false;
+          //  isLoading = false;
+          showSnackBar('Try again!!..', context);
+        }
+      });
+      Get.back();
+    }
+    notifyListeners();
+  }
+
+  DateTime? currentBackPressTime;
+
+  Future<bool> onbackpress3() {
+    final now = DateTime.now();
+
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+      currentBackPressTime = now;
+
+      Get.offAllNamed<dynamic>(ConstantRoutes.customer);
+      listbool = true;
+
+      notifyListeners();
+
+      return Future.value(true);
+    } else {
+      notifyListeners();
+
+      return Future.value(false);
+    }
+  }
+
   List<AddressReportData>? addressListdata = [];
   callAddresstReportapi(String cardCode) async {
     log('step1');
@@ -68,6 +238,7 @@ class CustomerController extends ChangeNotifier {
     listbool = true;
     filtercustomerList = [];
     customerReportdata = [];
+    addressListdata = [];
     await Addressreportapi.getGlobalData(cardCode).then((value) async {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
         log('customerdata lenght::${value.customerdata!.length}');
@@ -101,6 +272,8 @@ class CustomerController extends ChangeNotifier {
   }
 
   List<TextEditingController> mycontroller =
+      List.generate(150, (i) => TextEditingController());
+  List<TextEditingController> searchmycontroller =
       List.generate(150, (i) => TextEditingController());
   PageController tappage = PageController(initialPage: 0);
   int tappageIndex = 0;
@@ -188,7 +361,7 @@ class CustomerController extends ChangeNotifier {
     if (getCustomerData.isNotEmpty) {
       for (int i = 0; i < getCustomerData.length; i++) {
         customerList.add(CustomerMasterList(
-          customerCode: getCustomerData[i]["customercode"].toString(),
+          customerCode: getCustomerData[i]["customerCode"].toString(),
           customername: getCustomerData[i]["customername"].toString(),
           balance: double.parse(getCustomerData[i]["balance"].toString()),
           points: getCustomerData[i]["points"].toString(),
@@ -313,11 +486,86 @@ class CustomerController extends ChangeNotifier {
   clearalldata() {
     //  tappage = PageController(initialPage: 0);
     tappageIndex = 0;
+    addressListdata = [];
     filtercustomerList.clear();
     listbool = false;
     customerList.clear();
+    isScreenLoad = false;
     cutomerdetail.clear();
     mycontroller[0].clear();
+    notifyListeners();
+  }
+
+  void showAgeingDate(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1980),
+      lastDate: DateTime(2050),
+    ).then((value) {
+      if (value == null) {
+        return;
+      }
+
+      searchmycontroller[3].text = value.toString();
+      var date = DateTime.parse(searchmycontroller[3].text);
+      searchmycontroller[3].text = '';
+      searchmycontroller[3].text =
+          "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year.toString().padLeft(2, '0')}";
+      apiAgeingDate =
+          "${date.year}${date.month.toString().padLeft(2, '0')}${date.day.toString().padLeft(2, '0')}";
+      log('apiAgeingDate:$apiAgeingDate');
+    });
+    notifyListeners();
+  }
+
+  String apiAgeingDate = '';
+  String apiCustCode = '';
+
+  Future<void> callAgeingApi(BuildContext context) async {
+    isScreenLoad = true;
+    log('AgeingAPi.date::$apiAgeingDate');
+    AgeingAPi.date = apiAgeingDate;
+    AgeingAPi.custCode = searchmycontroller[4].text;
+    AgeingAPi.slpCode = AppConstant.slpCode;
+
+    await AgeingAPi.getGlobalData().then((value) {
+      isScreenLoad = false;
+
+      if (value == 200) {
+        isScreenLoad = false;
+        notifyListeners();
+      } else {
+        isScreenLoad = false;
+        showSnackBar('Try again!!..', context);
+        notifyListeners();
+      }
+    });
+    Get.back();
+    isScreenLoad = false;
+    notifyListeners();
+  }
+
+  Future<void> callAgeingExcelApi(BuildContext context) async {
+    if (formkeyaging[0].currentState!.validate()) {
+      isScreenLoad = true;
+
+      AgeingExcelAPi.date = apiAgeingDate;
+      AgeingExcelAPi.slpCode = AppConstant.slpCode;
+      AgeingExcelAPi.custCode = searchmycontroller[4].text;
+      // print("SalesOnDayAPi.slpCode: " + AgeingExcelAPi.slpCode.toString());
+      // isFromSalesinDay = false;
+      await AgeingExcelAPi.getGlobalData().then((value) {
+        isScreenLoad = false;
+        notifyListeners();
+        if (value == 200) {
+        } else {
+          showSnackBar('Try again!!..', context);
+          notifyListeners();
+        }
+      });
+      Get.back();
+    }
     notifyListeners();
   }
 }

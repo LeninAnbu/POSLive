@@ -20,7 +20,8 @@ class OrderPostAPi2 {
   static String? gpApproval;
   static String? orderTime;
   static String? seriesType;
-
+static String? tinNo;
+ static String? vatNo;
   static String? custREfNo;
   static String? deviceCode;
   static String? deviceTransID;
@@ -61,6 +62,8 @@ class OrderPostAPi2 {
       "Comments": "$remarks",
       // 'Series': '$seriesType',
       "NumAtCard": "$custREfNo",
+      'U_TinNO': '$tinNo',
+      "U_VAT_NUMBER":"$vatNo",
 
       "U_OrderDate": "$orderDate",
       "U_Order_Type": "$orderType",
@@ -97,6 +100,8 @@ class OrderPostAPi2 {
         "NumAtCard": "$custREfNo",
         'U_DeviceCode': deviceCode,
         'U_DeviceTransID': deviceTransID,
+        'U_TinNO': '$tinNo',
+        "U_VAT_NUMBER":"$vatNo",
         // 'SalesPersonCode': '$slpCode',
         "U_latitude ": latitude,
         "U_longitude": longitude,
@@ -120,6 +125,8 @@ class OrderPostAPi2 {
           "DocDate": "$docDate",
           "DocDueDate": "$dueDate",
           "Comments": "$remarks",
+          'U_TinNO': '$tinNo',
+          "U_VAT_NUMBER":"$vatNo",
           // 'Series': '$seriesType',
           "U_OrderDate": "$orderDate",
           "U_Order_Type": "$orderType",
@@ -154,6 +161,7 @@ class OrderPostAPi2 {
         'U_DeviceCode': deviceCode,
         'U_DeviceTransID': deviceTransID,
         'SalesPersonCode': '$slpCode',
+        "U_VAT_NUMBER":"$vatNo",
         // 'Series':'${GetValues.seriresOrder}',
         "U_latitude ": latitude,
         "U_longitude": longitude,

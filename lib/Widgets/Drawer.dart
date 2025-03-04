@@ -646,6 +646,27 @@ class _naviDrawerState extends State<naviDrawer> {
                   ),
                 ),
               ),
+              Builder(
+                builder: (context) => ListTile(
+                  leading: Image.asset(
+                    'assets/Drawer/power-button.png',
+                    fit: BoxFit.fill,
+                    height: Screens.bodyheight(context) * 0.038,
+                    width: Screens.width(context) * 0.024,
+                  ),
+                  //   ImageIcon(
+                  //   AssetImage('assets/power-button.png'),
+                  //   size: 20,
+                  // ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Get.toNamed(ConstantRoutes.logout);
+                  },
+                  title: const Text(
+                    "Logout",
+                  ),
+                ),
+              ),
             ],
           ),
         ),

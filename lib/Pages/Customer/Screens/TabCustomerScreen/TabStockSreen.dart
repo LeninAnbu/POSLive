@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:posproject/Pages/Customer/Widget/Search.dart';
 import 'package:posproject/Pages/Customer/Widget/detailsPage.dart';
 import 'package:provider/provider.dart';
@@ -18,25 +19,29 @@ class TabCustomerScreen extends StatefulWidget {
 class _TabCustomerScreenState extends State<TabCustomerScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.grey.withOpacity(0.05),
-      ),
-      padding: EdgeInsets.only(
-          top: Screens.bodyheight(context) * 0.01,
-          bottom: Screens.bodyheight(context) * 0.01,
-          left: Screens.width(context) * 0.01,
-          right: Screens.width(context) * 0.01),
-      width: Screens.width(context),
-      height: Screens.bodyheight(context) * 0.95,
-      child: PageView(
-        scrollDirection: Axis.horizontal,
-        pageSnapping: true,
-        controller: context.read<CustomerController>().tappage,
-        //  physics: new NeverScrollableScrollPhysics(),
-        children: [
-          SingleChildScrollView(
+    final theme = Theme.of(context);
+    return Stack(children: [
+      Center(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.grey.withOpacity(0.05),
+          ),
+          padding: EdgeInsets.only(
+              top: Screens.bodyheight(context) * 0.01,
+              bottom: Screens.bodyheight(context) * 0.01,
+              left: Screens.width(context) * 0.01,
+              right: Screens.width(context) * 0.01),
+          width: Screens.width(context),
+          height: Screens.bodyheight(context) * 0.95,
+          child:
+              // PageView(
+              //   scrollDirection: Axis.vertical,
+              //   pageSnapping: true,
+              //   controller: context.read<CustomerController>().tappage,
+              //   //  physics: new NeverScrollableScrollPhysics(),
+              // children: [
+              SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -46,13 +51,30 @@ class _TabCustomerScreenState extends State<TabCustomerScreen> {
               ],
             ),
           ),
-          CustomerdetailPage(
-            searchHeight: Screens.bodyheight(context),
-            searchWidth: Screens.width(context),
-            // custMaslist:context.read<CustomerController>().cusList1,
-          )
-        ],
+          // context.read<CustomerController>().cusList1 != null
+          //     ? CustomerdetailPage(
+          //         searchHeight: Screens.bodyheight(context),
+          //         searchWidth: Screens.width(context),
+          //         // custMaslist:context.read<CustomerController>().cusList1,
+          //       )
+          //     : Container()
+          // ],
+        ),
       ),
-    );
+      Visibility(
+        visible: context.watch<CustomerController>().isScreenLoad,
+        child: Container(
+          width: Screens.width(context),
+          height: Screens.bodyheight(context) * 0.95,
+          color: Colors.white60,
+          child: Center(
+            child: SpinKitFadingCircle(
+              size: Screens.bodyheight(context) * 0.08,
+              color: theme.primaryColor,
+            ),
+          ),
+        ),
+      ),
+    ]);
   }
 }

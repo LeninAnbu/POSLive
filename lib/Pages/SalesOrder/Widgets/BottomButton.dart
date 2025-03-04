@@ -310,45 +310,55 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  // Container(
-                                  //     padding: EdgeInsets.all(
-                                  //       widget.btnheight * 0.01,
-                                  //     ),
-                                  //     child: GestureDetector(
-                                  //         onTap: () {
-                                  //           setState(() {
-                                  //             context.read<SOCon>().cancelbtn =
-                                  //                 true;
-                                  //             context
-                                  //                 .read<SOCon>()
-                                  //                 .clickacancelbtn(
-                                  //                     context, widget.theme);
-                                  //           });
-                                  //         },
-                                  //         child: Container(
-                                  //           width: widget.btnWidth * 0.2,
-                                  //           alignment: Alignment.center,
-                                  //           decoration: BoxDecoration(
-                                  //             color: Colors.grey[400],
-                                  //             borderRadius:
-                                  //                 BorderRadius.circular(5),
-                                  //           ),
-                                  //           height: widget.btnheight * 0.15,
-                                  //           child: context
-                                  //                       .watch<SOCon>()
-                                  //                       .cancelbtn ==
-                                  //                   false
-                                  //               ? Text("Cancel",
-                                  //                   textAlign: TextAlign.center,
-                                  //                   style: widget.theme
-                                  //                       .textTheme.bodySmall
-                                  //                       ?.copyWith(
-                                  //                     color: Colors.black,
-                                  //                   ))
-                                  //               : CircularProgressIndicator(
-                                  //                   color: widget
-                                  //                       .theme.primaryColor),
-                                  //         ))),
+                                  Container(
+                                      padding: EdgeInsets.all(
+                                        widget.btnheight * 0.01,
+                                      ),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              context
+                                                  .read<SOCon>()
+                                                  .onDisablebutton = true;
+                                              context
+                                                  .read<SOCon>()
+                                                  .clickacancelbtn(
+                                                      context, widget.theme);
+                                              context.read<SOCon>().setstate1();
+                                            });
+                                          },
+                                          child: Container(
+                                              width: widget.btnWidth * 0.2,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  color: widget
+                                                      .theme.primaryColor
+                                                      .withOpacity(0.1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  border: Border.all(
+                                                    color: widget
+                                                        .theme.primaryColor,
+                                                  )),
+                                              height: widget.btnheight * 0.15,
+                                              child:
+                                                  // context
+                                                  //             .watch<SOCon>()
+                                                  //             .onDisablebutton ==
+                                                  //         false
+                                                  //     ?
+                                                  Text("Cancel",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: widget.theme
+                                                          .textTheme.bodySmall
+                                                          ?.copyWith(
+                                                        color: Colors.black,
+                                                      ))
+                                              // : CircularProgressIndicator(
+                                              //     color: widget
+                                              //         .theme.primaryColor),
+                                              ))),
                                   Container(
                                       padding: EdgeInsets.all(
                                         widget.btnheight * 0.01,
@@ -392,6 +402,18 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                             setState(() {
                                               context.read<SOCon>().editqty =
                                                   false;
+                                              context
+                                                  .read<SOCon>()
+                                                  .custNameController
+                                                  .text = '';
+                                              context
+                                                  .read<SOCon>()
+                                                  .tinNoController
+                                                  .text = '';
+                                              context
+                                                  .read<SOCon>()
+                                                  .vatNoController
+                                                  .text = '';
                                               context
                                                   .read<SOCon>()
                                                   .selectedcust2 = null;
@@ -576,7 +598,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                                                 widget: forClickSQBtn(context, widget.theme),
                                                                                 callback: () async {
                                                                                   context.read<SOCon>().clearsQaqty();
-                                                                                  await context.read<SOCon>().showaopenQuotLines();
+                                                                                  await context.read<SOCon>().showopenQuotLines();
 
                                                                                   if (context.read<SOCon>().openQuotLineList!.isNotEmpty) {
                                                                                     context.read<SOCon>().loadingSqBtn = false;

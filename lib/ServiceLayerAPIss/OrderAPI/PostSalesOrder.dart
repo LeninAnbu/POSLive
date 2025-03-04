@@ -16,6 +16,8 @@ class SalesOrderPostAPi {
   static String? docDate;
   static String? dueDate;
   static String? remarks;
+  static String? tinNo;
+  static String? vatNo;
   static String? orderDate;
   static String? orderType;
   static String? gpApproval;
@@ -94,9 +96,11 @@ class SalesOrderPostAPi {
         "U_Order_Type": "$orderType",
         "U_GP_Approval": "$gpApproval",
         "U_Received_Time": "$orderTime",
+        "U_VAT_NUMBER": "$vatNo",
         "NumAtCard": "$custREfNo",
         'U_DeviceCode': deviceCode,
         'U_DeviceTransID': deviceTransID,
+        'U_TinNO': '$tinNo',
         // 'SalesPersonCode': '$slpCode',
         "U_latitude ": latitude,
         "U_longitude": longitude,
@@ -130,6 +134,9 @@ class SalesOrderPostAPi {
           "NumAtCard": "$custREfNo",
           'U_DeviceCode': deviceCode,
           'U_DeviceTransID': deviceTransID,
+
+          "U_VAT_NUMBER": "$vatNo",
+          'U_TinNO': '$tinNo',
           // 'SalesPersonCode': '$slpCode',
           "U_latitude ": latitude,
           "U_longitude": longitude,
@@ -149,6 +156,9 @@ class SalesOrderPostAPi {
             "CardName": "$cardNamePost",
             "DocumentStatus": "bost_Open",
             "DocDate": "$docDate",
+
+            "U_VAT_NUMBER": "$vatNo",
+            'U_TinNO': '$tinNo',
             "DocDueDate": "$dueDate",
             "Comments": "$remarks",
             "U_OrderDate": "$orderDate",

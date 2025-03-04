@@ -30,6 +30,7 @@ class Servicrlayerquotation {
   dynamic attachmentEntry;
   String? docCurrency;
   double? docRate;
+
   String? reference1;
   List<QuotDocumentLine>? documentLines;
 

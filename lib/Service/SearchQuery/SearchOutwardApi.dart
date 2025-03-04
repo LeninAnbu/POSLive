@@ -33,8 +33,8 @@ class SerachOutwardHeaderAPi {
       //           "select distinct T0.CardCode,T0.CardName, T0.DocEntry,T0.DocNum, T0.DocDate,T0.U_ReqWhs, T1.FromWhsCod,  T0.DocStatus from owtr t0 inner join WTR1 T1 on t0.DocEntry=t1.DocEntry where T0.U_ReqWhs ='${AppConstant.branch}' and T0.DocDate Between '$fromDate' and '$toDate' order by t0.DocNum desc"
       //     }));
 
-      log("SerachOutwardHeaderAPi Res: " +
-          json.decode(response.body).toString());
+      // log("SerachOutwardHeaderAPi Res: " +
+      //     json.decode(response.body).toString());
       print(response.statusCode);
       if (response.statusCode == 200) {
         return OpenSalesReqHeadersModl.fromJson(

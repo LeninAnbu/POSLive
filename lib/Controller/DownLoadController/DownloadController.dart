@@ -48,9 +48,13 @@ class DownLoadController extends ChangeNotifier {
     String? branch = await getBranch();
     String? terminal = await getTerminal();
     String? slpCode = await getSlpCode();
-    String? sapPassword = await getSapPassword();
+    String? sapPassword =
+        // 'ub@17';
+        await getSapPassword();
 
-    String? sapUserName = await getSapUserName();
+    String? sapUserName =
+        // 'Ubongo';
+        await getSapUserName();
     String? sapDB = await getSapDBB();
     // 'InsigniaLimited';
 

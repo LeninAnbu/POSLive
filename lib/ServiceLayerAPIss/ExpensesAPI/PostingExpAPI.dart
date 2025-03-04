@@ -12,6 +12,8 @@ class PostExpenseAPi {
   static String? docType;
 
   static String? cashAccount;
+  
+  static String? payTo;
   static String? seriesType;
   static String? reference;
   static String? remarks;
@@ -25,7 +27,7 @@ class PostExpenseAPi {
       "DocType": "$docType",
       "CashAccount": "$cashAccount",
       "JournalRemarks": "$remarks",
-      "Address": "$remarks",
+      "Address": "$payTo",
       "Remarks": "$remarks",
       // "Reference1": "$reference",
       "CashSum": "$cashSum",
@@ -56,7 +58,7 @@ class PostExpenseAPi {
                 "DocType": "$docType",
                 "CashAccount": "$cashAccount",
                 "JournalRemarks": "$remarks",
-                "Address": "$remarks",
+                "Address": "$payTo",
                 "Remarks": "$remarks",
                 // "Reference1": "$reference",
                 "CashSum": "$cashSum",
@@ -74,7 +76,7 @@ class PostExpenseAPi {
         // 'Series': '$seriesType',
         "CashAccount": "$cashAccount",
         "JournalRemarks": "$remarks",
-        "Address": "$remarks",
+        "Address": "$payTo",
         "Remarks": "$remarks",
         "CashSum": "$cashSum",
         "U_PosUserCode": UserValues.userCode,

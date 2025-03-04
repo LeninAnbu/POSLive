@@ -1,6 +1,8 @@
 class CustomerDetals {
   String? customerSeriesNo;
   String? autoId;
+  String? docStatus;
+
   String? docentry;
   String? custRefNum;
   String? taxCode;
@@ -42,6 +44,7 @@ class CustomerDetals {
   CustomerDetals(
       {this.name,
       this.custRefNum,
+      this.docStatus,
       this.customerSeriesNo,
       this.autoId,
       this.phNo,

@@ -30,6 +30,9 @@ class SalesQuotationHeaderT {
   static String premiumid = "premiumid";
   static String customertype = "customertype";
   static String taxno = "taxno";
+  static String tinNo = "TinNo";
+  static String vatno = "VatNo";
+
   static String city = "city";
   static String state = "state";
   static String pinno = "pinno";
@@ -73,6 +76,8 @@ class SalesQuotationHeaderModelDB {
   String? objname;
   String? branch;
   String? sodocno;
+  String tinNo;
+  String vatno;
   String? sodocseries;
   String? sodocseriesno;
   String? sotransdate;
@@ -131,6 +136,8 @@ class SalesQuotationHeaderModelDB {
     required this.amtpaid,
     this.billaddressid,
     required this.country,
+    required this.tinNo,
+    required this.vatno,
     required this.city,
     required this.state,
     required this.gst,
@@ -193,6 +200,8 @@ class SalesQuotationHeaderModelDB {
 
   factory SalesQuotationHeaderModelDB.fromjson(Map<String, dynamic> resp) {
     return SalesQuotationHeaderModelDB(
+        tinNo: resp['TinNo'],
+        vatno: resp['VatNo'],
         street: resp['street'],
         block: resp['block'],
         docentry: resp['docentry'].toString(),
@@ -248,15 +257,20 @@ class SalesQuotationHeaderModelDB {
         transtime: resp['transtime'],
         updatedDatetime: resp['UpdatedDatetime'],
         updateduserid: resp['updateduserid'].toString(),
-        sapDocNo: resp['sapDocNo'] == null ? null : int.parse(resp['sapDocNo'].toString()),
-        sapDocentry: resp['sapDocentry'] == null ? null : int.parse(resp['sapDocentry'].toString()),
+        sapDocNo: resp['sapDocNo'] == null
+            ? null
+            : int.parse(resp['sapDocNo'].toString()),
+        sapDocentry: resp['sapDocentry'] == null
+            ? null
+            : int.parse(resp['sapDocentry'].toString()),
         qStatus: 'Y',
         customerSeriesNum: resp['customerSeriesNum'].toString(),
-        editType: resp['editType'].isNotEmpty ? resp['editType'].toString() : '');
+        editType:
+            resp['editType'].isNotEmpty ? resp['editType'].toString() : '');
   }
 
   Map<String, Object?> toMap() => {
-    SalesQuotationHeaderT.editType:editType,
+        SalesQuotationHeaderT.editType: editType,
         SalesQuotationHeaderT.customerphono: customerphono,
         SalesQuotationHeaderT.terminal: terminal,
         SalesQuotationHeaderT.customeraccbal: customeraccbal,
@@ -269,6 +283,8 @@ class SalesQuotationHeaderModelDB {
         SalesQuotationHeaderT.city: city,
         SalesQuotationHeaderT.state: state,
         SalesQuotationHeaderT.pinno: pinno,
+        SalesQuotationHeaderT.tinNo: tinNo,
+        SalesQuotationHeaderT.vatno: vatno,
         SalesQuotationHeaderT.totalweight: totalweight,
         SalesQuotationHeaderT.totalltr: totalltr,
         SalesQuotationHeaderT.gst: gst,

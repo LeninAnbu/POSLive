@@ -15,7 +15,7 @@ class NewProductsApi {
       String branch, String terminal) async {
     try {
       final stopwatch = Stopwatch()..start();
-
+log("fff::"+"${URL.url}ProductMaster/$branch/$terminal");
       final response = await http.get(
         Uri.parse('${URL.url}ProductMaster/$branch/$terminal'),
         headers: {

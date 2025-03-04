@@ -24,7 +24,7 @@ class SalesInDayApi {
                     " [BZ_POS_CONSOLIDATED SALES IN DAY_R1] '$frmDate' , '$toDate' , '${AppConstant.branch}'"
               }));
 
-      log("AutoSelect Data Res: ${json.decode(response.body)}");
+      // log("AutoSelect Data Res: ${json.decode(response.body)}");
       print(response.statusCode);
       if (response.statusCode == 200) {
         return SalesInDay.fromJson(

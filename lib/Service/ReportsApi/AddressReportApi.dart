@@ -18,12 +18,11 @@ class Addressreportapi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_Addressreportapi '$cardCode'"
-                    // "Select B.Address [Address1],B.Address2 [Address2],B.Address3 [Address3],B.State [State code],B.Country [Country code] ,'' [Geolocation1],'' [Geolocation2],B.ZipCode [Pincode],A.CardCode [Cust code] from OCRD A inner Join CRD1 B on A.CardCode=B.CardCode WHERE A.CardCode ='$cardCode'"
+                "query": "EXEC BZ_POS_Addressreportapi '$cardCode'"
+                // "Select B.Address [Address1],B.Address2 [Address2],B.Address3 [Address3],B.State [State code],B.Country [Country code] ,'' [Geolocation1],'' [Geolocation2],B.ZipCode [Pincode],A.CardCode [Cust code] from OCRD A inner Join CRD1 B on A.CardCode=B.CardCode WHERE A.CardCode ='$cardCode'"
               }));
 
-      // log("Address Res: ${json.decode(response.body)}");
+      log("Address Res: ${json.decode(response.body)}");
       log("CustomersReport Res: ${response.statusCode}");
 
       if (response.statusCode == 200) {

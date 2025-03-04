@@ -329,6 +329,12 @@ class SearhBoxState extends State<SearhBoxSQ> {
                                           true
                                       ? null
                                       : () async {
+                                          context
+                                              .read<SalesQuotationCon>()
+                                              .loadSearch = true;
+                                          await context
+                                              .read<SalesQuotationCon>()
+                                              .setstate1();
                                           await context
                                               .read<SalesQuotationCon>()
                                               .getQuotApi(
@@ -336,6 +342,11 @@ class SearhBoxState extends State<SearhBoxSQ> {
                                                       .read<SalesQuotationCon>()
                                                       .filtersearchData[index]
                                                       .docEntry
+                                                      .toString(),
+                                                  context
+                                                      .read<SalesQuotationCon>()
+                                                      .filtersearchData[index]
+                                                      .docStatus
                                                       .toString(),
                                                   context,
                                                   widget.theme);
@@ -349,15 +360,16 @@ class SearhBoxState extends State<SearhBoxSQ> {
                                                     .toString(),
                                                 context,
                                               );
-                                          await context
-                                              .read<SalesQuotationCon>()
-                                              .soCustAddressApi(
-                                                context
-                                                    .read<SalesQuotationCon>()
-                                                    .filtersearchData[index]
-                                                    .docEntry
-                                                    .toString(),
-                                              );
+                                          // await context
+                                          //     .read<SalesQuotationCon>()
+                                          //     .soCustAddressApi(
+                                          //       context
+                                          //           .read<SalesQuotationCon>()
+                                          //           .filtersearchData[index]
+                                          //           .docEntry
+                                          //           .toString(),
+                                          //     );
+
                                           // context
                                           //     .read<SalesQuotationCon>()
                                           //     .fixDataMethod(

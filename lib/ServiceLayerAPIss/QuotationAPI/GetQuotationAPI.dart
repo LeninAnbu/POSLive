@@ -11,7 +11,7 @@ class SerlaySalesQuoAPI {
   static Future<Servicrlayerquotation> getData(String sapDocEntry) async {
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
-      log("sapDocNum sapDocNum::$sapDocEntry");
+      log("sapDocNum sapDocNum:: http://102.69.167.106:50001/b1s/v1/Quotations($sapDocEntry)");
       final response = await http.get(
         Uri.parse(
             'http://102.69.167.106:50001/b1s/v1/Quotations($sapDocEntry)'),

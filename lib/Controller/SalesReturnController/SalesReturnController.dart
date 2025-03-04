@@ -1157,10 +1157,13 @@ class SalesReturnController extends ChangeNotifier {
     notifyListeners();
   }
 
+  seststate1() {
+    notifyListeners();
+  }
+
   bool searchLoading = false;
   callGetReturnApi(
       BuildContext context, ThemeData theme, String Docentry) async {
-    searchLoading = true;
     await sapReturnLoginApi();
     // final Database db = (await DBHelper.getInstance())!;
 
@@ -3484,9 +3487,9 @@ class SalesReturnController extends ChangeNotifier {
     String docstatus,
   ) async {
     await sapReturnLoginApi();
-    await callSeriesApi(
-      context,
-    );
+    // await callSeriesApi(
+    //   context,
+    // );
     await postingreturn(
       context,
       theme,
@@ -3746,7 +3749,7 @@ class SalesReturnController extends ChangeNotifier {
                       errormsg: true,
                       widget: Center(
                           child: ContentContainer(
-                        content: 'Something went wrong',
+                        content: '${value.error!.message!.value!}',
                         theme: theme,
                       )),
                       buttonName: null,

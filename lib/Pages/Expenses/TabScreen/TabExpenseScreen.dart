@@ -655,6 +655,68 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             width:
                                                 Screens.width(context) * 0.30,
                                             child: Text(
+                                              'Pay To',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        SizedBox(
+                                          width: Screens.width(context) * 0.50,
+                                          //  height: Screens.padingHeight(context) * 0.06,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .mycontroller[21],
+                                            validator: (data) {
+                                              if (data!.isEmpty) {
+                                                return "Required*";
+                                              }
+                                              return null;
+                                            },
+                                            decoration: InputDecoration(
+                                              labelText: '',
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.03,
+                                    ),
+                                    Row(
+                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
                                               'Reference',
                                               style: theme.textTheme.bodyLarge
                                                   ?.copyWith(

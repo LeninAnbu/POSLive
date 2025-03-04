@@ -12,6 +12,9 @@ import '../../Models/ServiceLayerModel/SapSalesQuotation/SalesQuotPostModel.dart
 class SerlaySalesQuoPatchAPI {
   static String? sessionID;
   static String? cardCodePost;
+  static String? cardNamePost;
+  static String? vatNo;
+  static String? tinNo;
   static List<QuatationLines>? docLineQout;
   static String? docDate;
   static String? dueDate;
@@ -24,6 +27,9 @@ class SerlaySalesQuoPatchAPI {
     try {
       final data = json.encode({
         "CardCode": "$cardCodePost",
+        // "CardName": "$cardNamePost",
+           "U_VAT_NUMBER":"$vatNo",
+           'U_TinNO': '$tinNo',
         "DocumentStatus": "bost_Open",
         "DocDate": "$docDate",
         "DocDueDate": "$dueDate",
@@ -43,6 +49,9 @@ class SerlaySalesQuoPatchAPI {
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
+          // "CardName": "$cardNamePost",
+           "U_VAT_NUMBER":"$vatNo",
+           'U_TinNO': '$tinNo',
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
           "DocDueDate": "$dueDate",
@@ -58,6 +67,9 @@ class SerlaySalesQuoPatchAPI {
       log(
         "datatatat Patch: ${json.encode({
               "CardCode": "$cardCodePost",
+              "CardName": "$cardNamePost",
+           "U_VAT_NUMBER":"$vatNo",
+           'U_TinNO': '$tinNo',
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
               "DocDueDate": "$dueDate",
@@ -72,6 +84,7 @@ class SerlaySalesQuoPatchAPI {
 
       // ressCode = response.statusCode;
       log("SalesQuopatch stscode::${response.statusCode}");
+      log("SalesQuopatch stscode::${response.body}");
 
       if (response.statusCode >= 200 && response.statusCode <= 210) {
         return CreatePatchModel.fromJson(response.statusCode);

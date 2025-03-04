@@ -276,45 +276,51 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            // Container(
-                            //     padding: EdgeInsets.all(
-                            //       widget.btnheight * 0.01,
-                            //     ),
-                            //     child: GestureDetector(
-                            //         onTap: () {
-                            //           setState(() {
-                            //             context
-                            //                 .read<SalesQuotationCon>()
-                            //                 .cancelbtn = true;
+                            Container(
+                                padding: EdgeInsets.all(
+                                  widget.btnheight * 0.01,
+                                ),
+                                child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        // context
+                                        //     .read<SalesQuotationCon>()
+                                        //     .onDisablebutton = true;
 
-                            //             context
-                            //                 .read<SalesQuotationCon>()
-                            //                 .clickacancelbtn(
-                            //                     context, widget.theme);
-                            //           });
-                            //         },
-                            //         child: Container(
-                            //           width: widget.btnWidth * 0.2,
-                            //           alignment: Alignment.center,
-                            //           decoration: BoxDecoration(
-                            //             color: Colors.grey[400],
-                            //             borderRadius: BorderRadius.circular(5),
-                            //           ),
-                            //           height: widget.btnheight * 0.15,
-                            //           child: context
-                            //                       .watch<SalesQuotationCon>()
-                            //                       .cancelbtn ==
-                            //                   false
-                            //               ? Text("Cancel",
-                            //                   textAlign: TextAlign.center,
-                            //                   style: widget
-                            //                       .theme.textTheme.bodySmall
-                            //                       ?.copyWith(
-                            //                     color: Colors.black,
-                            //                   ))
-                            //               : CircularProgressIndicator(
-                            //                   color: widget.theme.primaryColor),
-                            //         ))),
+                                        context
+                                            .read<SalesQuotationCon>()
+                                            .clickacancelbtn(
+                                                context, widget.theme);
+                                      });
+                                    },
+                                    child: Container(
+                                        width: widget.btnWidth * 0.2,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                            color: widget.theme.primaryColor
+                                                .withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                              color: widget.theme.primaryColor,
+                                            )),
+                                        height: widget.btnheight * 0.15,
+                                        child:
+                                            // context
+                                            //             .watch<SalesQuotationCon>()
+                                            //             .cancelbtn ==
+                                            //         false
+                                            //     ?
+                                            Text("Cancel",
+                                                textAlign: TextAlign.center,
+                                                style: widget
+                                                    .theme.textTheme.bodySmall
+                                                    ?.copyWith(
+                                                  color: Colors.black,
+                                                ))
+                                        // : CircularProgressIndicator(
+                                        // color: widget.theme.primaryColor),
+                                        ))),
                             Container(
                                 padding: EdgeInsets.all(
                                   widget.btnheight * 0.01,
@@ -358,6 +364,18 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                                         context
                                             .read<SalesQuotationCon>()
                                             .selectedcust2 = null;
+                                        context
+                                            .read<SalesQuotationCon>()
+                                            .custNameController
+                                            .text = '';
+                                        context
+                                            .read<SalesQuotationCon>()
+                                            .tinNoController
+                                            .text = '';
+                                        context
+                                            .read<SalesQuotationCon>()
+                                            .vatNoController
+                                            .text = '';
                                         context
                                             .read<SalesQuotationCon>()
                                             .selectedcust25 = null;

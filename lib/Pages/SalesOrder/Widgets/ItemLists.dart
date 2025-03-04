@@ -826,20 +826,27 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                             ),
                                                           ),
                                                     context
-                                                                .watch<SOCon>()
-                                                                .userTypes ==
-                                                            'corporate'
+                                                                    .watch<
+                                                                        SOCon>()
+                                                                    .userTypes ==
+                                                                'corporate' ||
+                                                            context.watch<SOCon>().userTypes ==
+                                                                'retail'
                                                         ? Container(
-                                                            width: widget.searchWidth *
-                                                                0.15,
-                                                            height: widget
-                                                                    .searchHeight *
-                                                                0.07,
-                                                            alignment: Alignment
-                                                                .center,
-                                                            padding: EdgeInsets.symmetric(
-                                                                horizontal:
-                                                                    widget.searchWidth *
+                                                            width:
+                                                                widget.searchWidth *
+                                                                    0.13,
+                                                            height:
+                                                                widget
+                                                                        .searchHeight *
+                                                                    0.07,
+                                                            alignment:
+                                                                Alignment
+                                                                    .center,
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal: widget
+                                                                            .searchWidth *
                                                                         0.005),
                                                             child:
                                                                 TextFormField(
@@ -953,9 +960,9 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                               ),
                                                             ))
                                                         : Container(
-                                                            width: widget
-                                                                    .searchWidth *
-                                                                0.08,
+                                                            width:
+                                                                widget.searchWidth *
+                                                                    0.08,
                                                             height: widget
                                                                     .searchHeight *
                                                                 0.07,
@@ -966,21 +973,29 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                     Container(
                                                         width:
                                                             widget.searchWidth *
-                                                                0.17,
+                                                                0.16,
                                                         height: widget
                                                                 .searchHeight *
                                                             0.07,
                                                         alignment: Alignment
                                                             .centerRight,
                                                         child: Text(context
-                                                            .read<SOCon>()
-                                                            .config
-                                                            .splitValues(
-                                                                "${context.watch<SOCon>().getScanneditemData[index].priceAftDiscVal}"))),
+                                                                    .watch<
+                                                                        SOCon>()
+                                                                    .getScanneditemData[
+                                                                        index]
+                                                                    .priceAftDiscVal !=
+                                                                null
+                                                            ? context
+                                                                .read<SOCon>()
+                                                                .config
+                                                                .splitValues(
+                                                                    "${context.watch<SOCon>().getScanneditemData[index].priceAftDiscVal}")
+                                                            : '')),
                                                     Container(
                                                       width:
                                                           widget.searchWidth *
-                                                              0.19,
+                                                              0.17,
                                                       alignment:
                                                           Alignment.centerRight,
                                                       child: Text(
@@ -1004,9 +1019,9 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                           Row(
                                             children: [
                                               Container(
+                                                // color: Colors.green,
                                                 alignment: Alignment.centerLeft,
-                                                width:
-                                                    widget.searchWidth * 0.65,
+                                                width: widget.searchWidth * 0.6,
                                                 child: Text(
                                                   " ${context.watch<SOCon>().getScanneditemData[index].itemName}",
                                                   style: theme
@@ -1015,8 +1030,9 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                 ),
                                               ),
                                               Container(
+                                                // color: Colors.red,
                                                 width:
-                                                    widget.searchWidth * 0.14,
+                                                    widget.searchWidth * 0.16,
                                                 alignment:
                                                     Alignment.centerRight,
                                                 child: Text(
@@ -1026,8 +1042,28 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                     index]
                                                                 .taxRate ==
                                                             null
-                                                        ? '00'
-                                                        : 'Tax : ${context.watch<SOCon>().getScanneditemData[index].taxRate!.toStringAsFixed(2)} %',
+                                                        ? 'Tax : 00'
+                                                        : 'Tax : ${context.watch<SOCon>().getScanneditemData[index].taxRate!.toStringAsFixed(2)}%',
+                                                    style: theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
+                                                            color:
+                                                                Colors.black)),
+                                              ),
+                                              Container(
+                                                // color: Colors.green,
+                                                width: widget.searchWidth * 0.2,
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: Text(
+                                                    context
+                                                                .watch<SOCon>()
+                                                                .getScanneditemData[
+                                                                    index]
+                                                                .inStockQty ==
+                                                            null
+                                                        ? 'Instock : 00'
+                                                        : 'Instock :  ${context.read<SOCon>().getScanneditemData[index].inStockQty}',
                                                     style: theme
                                                         .textTheme.bodyMedium
                                                         ?.copyWith(

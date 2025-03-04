@@ -390,6 +390,12 @@ class SearhBoxState extends State<SearhBox> {
                                             true
                                         ? null
                                         : () async {
+                                            context
+                                                .read<PosController>()
+                                                .loadSearch = true;
+                                            await context
+                                                .read<PosController>()
+                                                .setstate1();
                                             await context
                                                 .read<PosController>()
                                                 .getInvoiceApi(
@@ -400,15 +406,15 @@ class SearhBoxState extends State<SearhBox> {
                                                         .toString(),
                                                     context,
                                                     widget.theme);
-                                            await context
-                                                .read<PosController>()
-                                                .invCustAddressApi(
-                                                  context
-                                                      .read<PosController>()
-                                                      .filtersearchData[index]
-                                                      .docEntry
-                                                      .toString(),
-                                                );
+                                            // await context
+                                            //     .read<PosController>()
+                                            //     .invCustAddressApi(
+                                            //       context
+                                            //           .read<PosController>()
+                                            //           .filtersearchData[index]
+                                            //           .docEntry
+                                            //           .toString(),
+                                            // );
                                           },
                                     child: Container(
                                       padding: EdgeInsets.only(

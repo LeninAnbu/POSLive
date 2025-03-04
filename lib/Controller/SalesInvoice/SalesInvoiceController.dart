@@ -47,6 +47,7 @@ import '../../Models/QueryUrlModel/CompanyTinVatModel.dart';
 import '../../Models/QueryUrlModel/FetchFromPdaModel.dart';
 import '../../Models/QueryUrlModel/InvCustomerAddModel.dart';
 import '../../Models/QueryUrlModel/NewCashAccount.dart';
+import '../../Models/QueryUrlModel/OnhandModel.dart';
 import '../../Models/QueryUrlModel/SalesOrderQueryModel/OpenSalesOrderHeader_Model.dart';
 import '../../Models/QueryUrlModel/SalesOrderQueryModel/OpenSalesOrderLineModel.dart';
 import '../../Models/SchemeOrderModel/SchemeOrderModel.dart';
@@ -69,6 +70,7 @@ import '../../Service/QueryURL/CreditDaysModelAPI.dart';
 import '../../Service/QueryURL/CreditLimitModeAPI.dart';
 import '../../Service/QueryURL/FetchbatchPDAapi.dart';
 import '../../Service/QueryURL/InvCustomerAddApi.dart';
+import '../../Service/QueryURL/OnHandApi.dart';
 import '../../Service/QueryURL/OpenSalesOrderHeaderApi.dart';
 import '../../Service/QueryURL/OpenSalesOrderLineApi.dart';
 import '../../Service/SearchQuery/SearchInvHeaderApi.dart';
@@ -903,6 +905,8 @@ class PosController extends ChangeNotifier {
         docentry: docEntryCreated.toString(),
         objname: '',
         objtype: '',
+        tinNo: tinNoController.text,
+        vatNo: vatNoController.text,
         amtpaid: totalPayment != null
             ? getSumTotalPaid().toString().replaceAll(',', '')
             : null,
@@ -1121,6 +1125,10 @@ class PosController extends ChangeNotifier {
       cashpayment = null;
       cqpayment = null;
       transpayment = null;
+      tinNoController.text = '';
+      custNameController.text = '';
+
+      vatNoController.text = '';
       chqnum = null;
       transrefff = null;
       injectToDb();
@@ -1151,6 +1159,9 @@ class PosController extends ChangeNotifier {
               radius: 5)
           .then((value) {
         ondDisablebutton = false;
+        custNameController.text = '';
+        tinNoController.text = '';
+        vatNoController.text = '';
         notifyListeners();
       });
     }
@@ -1180,7 +1191,7 @@ class PosController extends ChangeNotifier {
   mapItemCodeWiseSoItemData(int index) {
     soFilterScanItem = [];
     double qty2 = 0;
-    log('soScanItemsoScanItem length::${soScanItem.length}');
+    // log('soScanItemsoScanItem length::${soScanItem.length}');
     for (var i = 0; i < soScanItem.length; i++) {
       if (openOrdLineList![index].itemCode == soScanItem[i].itemCode &&
           openOrdLineList![index].lineNum.toString() ==
@@ -1297,7 +1308,6 @@ class PosController extends ChangeNotifier {
 
   getInvoiceApi(
       String sapDocEntry, BuildContext context, ThemeData theme) async {
-    loadSearch = true;
     sapDocentry = '';
 
     await SerlaySalesInvoiceAPI.getData(sapDocEntry).then((value) async {
@@ -1968,15 +1978,15 @@ class PosController extends ChangeNotifier {
     for (var ih = 0; ih < openOrdLineList!.length; ih++) {
       if (openOrdLineList![ih].checkBClr == true) {
         itemCodeList.add(openOrdLineList![ih].itemCode);
-        log('itemcodelist::${itemCodeList.toString()}');
+        // log('itemcodelist::${itemCodeList.toString()}');
 
         tempItem = itemCodeList.toString().replaceAll('[', '');
         tempItem2 = tempItem.toString().replaceAll(']', '');
-        log('tempItem2tempItem2::${tempItem2.toString()}');
+        // log('tempItem2tempItem2::${tempItem2.toString()}');
 
         tempItem3 = tempItem2.toString().replaceAll(' ', '');
 
-        log('tempItem3tempItem3::${tempItem3.toString()}');
+        // log('tempItem3tempItem3::${tempItem3.toString()}');
       }
     }
     await AutoSelectApi.getGlobalData(tempItem3).then((value) {
@@ -2014,8 +2024,8 @@ class PosController extends ChangeNotifier {
         balQty = double.parse(soListController[i].text);
 
         for (var im = 0; im < openAutoSelect!.length; im++) {
-          log('openAutoSelect![im].remQty::${i}::${im}::::${openAutoSelect![im].remQty}');
-          log('balQtybalQty::${balQty}');
+          // log('openAutoSelect![im].remQty::${i}::${im}::::${openAutoSelect![im].remQty}');
+          // log('balQtybalQty::${balQty}');
           if (openOrdLineList![i].itemCode == openAutoSelect![im].itemCode &&
               openAutoSelect![im].remQty > 0) {
             log('itemode::${openAutoSelect![im].itemCode}');
@@ -2077,7 +2087,7 @@ class PosController extends ChangeNotifier {
                   soScanItem[iv].baselineid.toString()) {
             soListqty = soListqty + soScanItem[iv].openRetQty!;
             openOrdLineList![i].valueInsert = true;
-            log('soListqtysoListqty::${soListqty}');
+            // log('soListqtysoListqty::${soListqty}');
 
             soListController[i].text = soListqty.toString();
             notifyListeners();
@@ -2506,7 +2516,7 @@ class PosController extends ChangeNotifier {
                       soScanItem[iv].baselineid.toString()) {
                 soListqty = soListqty + soScanItem[iv].openRetQty!;
                 openOrdLineList![ih].valueInsert = true;
-                log('soListqtysoListqty::${soListqty}');
+                // log('soListqtysoListqty::${soListqty}');
 
                 soListController[ih].text = soListqty.toString();
                 notifyListeners();
@@ -2575,7 +2585,7 @@ class PosController extends ChangeNotifier {
     for (var ih = 0; ih < openOrdLineList!.length; ih++) {
       if (openOrdLineList![ih].checkBClr == true) {
         itemCodeList.add(openOrdLineList![ih].itemCode);
-        log('itemcodelist::${itemCodeList.toString()}');
+        // log('itemcodelist::${itemCodeList.toString()}');
 
         tempItem = itemCodeList.toString().replaceAll('[', '');
         tempItem2 = tempItem.toString().replaceAll(']', '');
@@ -2650,8 +2660,8 @@ class PosController extends ChangeNotifier {
       if (openOrdLineList![ih].checkBClr == true) {
         double balQty = double.parse(soListController[ih].text);
         for (var im = 0; im < openAutoSelect!.length; im++) {
-          log('openAutoSelect![im].remQty::${i}::${im}::::${openAutoSelect![im].remQty}');
-          log('balQtybalQty::${balQty}');
+          // log('openAutoSelect![im].remQty::${i}::${im}::::${openAutoSelect![im].remQty}');
+          // log('balQtybalQty::${balQty}');
           if (openOrdLineList![ih].itemCode == openAutoSelect![im].itemCode &&
               openAutoSelect![im].remQty > 0) {
             if (balQty >= openAutoSelect![im].remQty) {
@@ -2714,7 +2724,7 @@ class PosController extends ChangeNotifier {
                   soScanItem[iv].baselineid.toString()) {
             soListqty = soListqty + soScanItem[iv].openRetQty!;
             openOrdLineList![ih].valueInsert = true;
-            log('soListqtysoListqty::${soListqty}');
+            // log('soListqtysoListqty::${soListqty}');
 
             soListController[ih].text = soListqty.toString();
             notifyListeners();
@@ -3193,6 +3203,7 @@ class PosController extends ChangeNotifier {
         : selectedcust!.name;
     OrderToInvoicesPostAPI.docLineQout = itemsDocDetails;
     OrderToInvoicesPostAPI.tinNo = tinNoController.text;
+    OrderToInvoicesPostAPI.VATNo = vatNoController.text;
     OrderToInvoicesPostAPI.docDate = config.currentDate();
     OrderToInvoicesPostAPI.dueDate = config.currentDate().toString();
     OrderToInvoicesPostAPI.remarks = remarkcontroller3.text;
@@ -3262,6 +3273,9 @@ class PosController extends ChangeNotifier {
             selectedcust = null;
             schemebtnclk = false;
             paymentWay.clear();
+            custNameController.text = '';
+            tinNoController.text = '';
+            vatNoController.text = '';
             cashAccCode = '';
             cardAcctype = '';
             cardAccCode = '';
@@ -3458,6 +3472,10 @@ class PosController extends ChangeNotifier {
             cardAcctype = '';
             cardAccCode = '';
             chequeAcctype = '';
+            tinNoController.text = '';
+            vatNoController.text = '';
+            custNameController.text = '';
+
             chequeAccCode = '';
             transAcctype = '';
             transAccCode = '';
@@ -3481,6 +3499,9 @@ class PosController extends ChangeNotifier {
             remarkcontroller3.text = "";
             scanneditemData.clear();
             ondDisablebutton = false;
+            custNameController.text = '';
+            tinNoController.text = '';
+            vatNoController.text = '';
             injectToDb();
             Get.offAllNamed(ConstantRoutes.dashboard);
           }
@@ -3804,7 +3825,7 @@ class PosController extends ChangeNotifier {
         itemCode: itemcodelistitem[i].itemCode,
         itemName: itemcodelistitem[i].itemName,
         serialBatch: itemcodelistitem[i].serialBatch,
-        inStockQty: itemcodelistitem[i].qty,
+        inStockQty: 0,
         qty: 1,
         mrp: double.parse(itemcodelistitem[i].mrp.toString()),
         createdUserID: itemcodelistitem[i].createdUserID.toString(),
@@ -4352,6 +4373,43 @@ class PosController extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<OnHandModelsData> onhandData = [];
+  callOnHandApi(String itemCode, int index) async {
+    onhandData = [];
+    notifyListeners();
+
+    OnhandApi.getGlobalData('$itemCode', '${AppConstant.branch}').then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        if (value.onHandData != null || value.onHandData!.isNotEmpty) {
+          for (int i = 0; i < value.onHandData!.length; i++) {
+            onhandData.add(OnHandModelsData(
+                onHand: value.onHandData![i].onHand,
+                itemCode: value.onHandData![i].itemCode,
+                whsCode: value.onHandData![i].whsCode));
+            notifyListeners();
+          }
+
+          for (var ik = 0; ik < onhandData.length; ik++) {
+            if (scanneditemData[index].itemCode.toString() ==
+                onhandData[ik].itemCode.toString()) {
+              scanneditemData[index].inStockQty =
+                  double.parse(onhandData[ik].onHand.toString());
+            }
+          }
+          notifyListeners();
+        } else if (value.onHandData == null) {
+          catchmsg.add("Stock details2: ${value.message!}");
+          notifyListeners();
+        }
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        catchmsg.add("Stock details3: ${value.error!}");
+      } else {
+        catchmsg.add("Stcok details4: ${value.error!}");
+      }
+    });
+    notifyListeners();
+  }
+
   mapsoqty(int ij, BuildContext context, ThemeData theme) async {
     final Database db = (await DBHelper.getInstance())!;
 
@@ -4493,6 +4551,7 @@ class PosController extends ChangeNotifier {
 
   TextEditingController custNameController = TextEditingController();
   TextEditingController tinNoController = TextEditingController();
+  TextEditingController vatNoController = TextEditingController();
 
   custSelected(CustomerDetals customerDetals, BuildContext context,
       ThemeData theme) async {
@@ -4500,6 +4559,9 @@ class PosController extends ChangeNotifier {
     selectedcust55 = null;
     selectedBillAdress = 0;
     selectedShipAdress = 0;
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     double? updateCustBal = 0;
     loadingscrn = true;
     holddocentry = '';
@@ -4711,6 +4773,9 @@ class PosController extends ChangeNotifier {
     openOrdLine = [];
     selectAll = true;
     holddocentry = '';
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     for (var i = 0; i < scanneditemData.length; i++) {
       scanneditemData[i].taxRate = 0.0;
       if (selectedcust != null) {
@@ -4962,7 +5027,7 @@ class PosController extends ChangeNotifier {
         openOrdLineList![i].checkBClr = true;
         openOrdLineList![i].invoiceClr = 1;
         addIndex.add('${i}');
-        log('addIndexaddIndex::${addIndex.length}');
+        // log('addIndexaddIndex::${addIndex.length}');
         notifyListeners();
       } else {
         soListController[i].text = '';
@@ -5876,7 +5941,9 @@ class PosController extends ChangeNotifier {
     mycontroller[5].clear();
     mycontroller[6].clear();
     mycontroller[21].clear();
+    vatNoController.text = '';
     tinNoController.text = '';
+
     openSalesOrd = [];
     openOrdLine = [];
     custNameController.text = '';
@@ -7034,7 +7101,9 @@ class PosController extends ChangeNotifier {
   getdraft(int ji) async {
     final Database db = (await DBHelper.getInstance())!;
     List<Map<String, Object?>> getDBholddata1 =
-        await DBOperation.getSalesHeadHoldvalueDB(db);
+        await DBOperation.getSalesHeadHoldvalueDB(
+      db,
+    );
 
     remarkcontroller3.text = "";
     List<StocksnapModelData> scannData = [];
@@ -7307,7 +7376,12 @@ class PosController extends ChangeNotifier {
         loadingscrn = false;
       }
     });
+
     for (int ik = 0; ik < getDBholddata1.length; ik++) {
+      custNameController.text = getDBholddata1[ik]['customername'].toString();
+      tinNoController.text = getDBholddata1[ik]['TinNo'].toString();
+      vatNoController.text = getDBholddata1[ik]['VatNo'].toString();
+
       remarkcontroller3.text = getDBholddata1[ik]['remarks'].toString();
       for (int i = 0; i < getcustaddd.length; i++) {
         if (getDBholddata1[ik]['billaddressid'].toString() != null ||
@@ -7569,7 +7643,7 @@ class PosController extends ChangeNotifier {
   newadditemlistcount() {
     addIndex = [];
     for (var ik = 0; ik < openOrdLineList!.length; ik++) {
-      log('addIndexaddIndex::11');
+      // log('addIndexaddIndex::11');
 
       if (openOrdLineList![ik].checkBClr == true) {
         addIndex.add(ik.toString());
@@ -7578,7 +7652,7 @@ class PosController extends ChangeNotifier {
     }
     if (addIndex.isNotEmpty) {
       for (var ik = 0; ik < addIndex.length; ik++) {
-        log('addIndexaddIndex::${addIndex[ik].toString()}');
+        // log('addIndexaddIndex::${addIndex[ik].toString()}');
       }
       notifyListeners();
     }
@@ -8912,18 +8986,21 @@ class PosController extends ChangeNotifier {
   }
 
   String orderCustname = '';
-  showaopenOrderLines() {
+  showopenOrderLines() {
     openOrdLineList = [];
     for (var ij = 0; ij < openSalesOrd.length; ij++) {
       if (openSalesOrd[ij].invoiceClr == 1 &&
           openSalesOrd[ij].checkBClr == true) {
         //
-
+        custNameController.text = openSalesOrd[ij].cardName;
+        tinNoController.text = openSalesOrd[ij].uTinNO ?? '';
+        vatNoController.text = openSalesOrd[ij].uVATNUMBER ?? '';
         orderCustname = openSalesOrd[ij].cardName.toString();
         for (var i = 0; i < openOrdLine!.length; i++) {
           // if (openOrdLineList![i].docEntry == docentryy) {
           if (openOrdLine![i].docEntry == openSalesOrd[ij].docEntry) {
-            log('openOrdLineList![i].upack::${openOrdLine![i].uPackSize}');
+            // log('openOrdLineList![i].upack::${openOrdLine![i].uPackSize}');
+
             openOrdLineList!.add(OpenSalesOrderLineData(
                 price: openOrdLine![i].price,
                 stock: openOrdLine![i].stock,
@@ -9159,6 +9236,8 @@ class PosController extends ChangeNotifier {
       } else {
         scanneditemData[il].taxRate = 0.0;
       }
+
+      await callOnHandApi(scanneditemData[il].itemCode.toString(), il);
       // discountcontroller[il].text = scanneditemData[il].discountper.toString();
     }
     log('soScanItemsoScanItem::${soScanItem.length}');
@@ -9172,7 +9251,7 @@ class PosController extends ChangeNotifier {
       notifyListeners();
     }
     for (var i = 0; i < soBatchTable.length; i++) {
-      log('s batch qty' + soBatchTable[i].quantity.toString());
+      // log('s batch qty' + soBatchTable[i].quantity.toString());
     }
     log('soBatchTablesoBatchTable::${soBatchTable.length}');
     notifyListeners();
@@ -9304,6 +9383,9 @@ class PosController extends ChangeNotifier {
     billadrrssItemlist5 = [];
     shipadrrssItemlist5 = [];
     mycontroller[50].clear();
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     cpyfrmso = '';
     paymentWay.clear();
     totalPayment = null;
@@ -9605,6 +9687,7 @@ class PosController extends ChangeNotifier {
     selectionBtnLoading = false;
     addIndex = [];
     openSalesOrd = [];
+    vatNoController.text = '';
     tinNoController.text = '';
     custNameController.text = '';
     newCustAddData = [];

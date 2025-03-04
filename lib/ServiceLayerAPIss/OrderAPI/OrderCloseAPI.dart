@@ -7,7 +7,7 @@ import 'package:posproject/Constant/AppConstant.dart';
 // import '../../Models/ServiceLayerModel/SapSalesQuotation/GetQuotStatusModel.dart';
 import '../../url/url.dart';
 
-class SerlayOrderCancelAPI {
+class SerlayOrderCloseAPI {
   static Future getData(String sapDocEntry) async {
     // int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");

@@ -127,6 +127,7 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                               color: Colors.grey.withOpacity(0.001),
                             ),
                             child: TextFormField(
+                              readOnly: true,
                               controller: context
                                   .read<PayreceiptController>()
                                   .postingDatecontroller,

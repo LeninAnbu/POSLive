@@ -14,7 +14,7 @@ class SerlaySalesOrderAPI {
     // int? ressCode = 500;
     log("AppConstant.sapSessionIDxx:::${AppConstant.sapSessionID}");
     try {
-      log("sapDocNum sapDocNum::$sapDocEntry");
+      log("sapDocNum sapDocNum::${URL.sapUrl}/Orders($sapDocEntry)");
       final response = await http.get(
         //http://102.69.167.106:50000/b1s/v1/Orders($sapDocEntry)/Close
         Uri.parse('${URL.sapUrl}/Orders($sapDocEntry)'),

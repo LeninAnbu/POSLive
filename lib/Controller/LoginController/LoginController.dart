@@ -17,8 +17,14 @@ import '../../Models/Service Model/LoginUserModel.dart';
 import '../../main.dart';
 
 class LoginController extends ChangeNotifier {
-  void init() {
+  Future<void> init() async {
     // isalreadyset=false;
+    await SharedPref.clearHost();
+    await SharedPref.clearSiteCode();
+    await SharedPref.clearDeviceID();
+    await SharedPref.clearTerminal();
+    await SharedPref.clearUserSP();
+    await SharedPref.clearSapDB();
     disableBtn = false;
     incorrectPwd = '';
     createDB();

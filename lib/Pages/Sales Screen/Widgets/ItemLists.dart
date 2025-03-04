@@ -495,7 +495,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               children: [
                                                 Container(
                                                     width: widget.searchWidth *
-                                                        0.09,
+                                                        0.1,
                                                     height:
                                                         widget.searchHeight *
                                                             0.07,
@@ -751,7 +751,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               width: widget.searchWidth * 0.15,
                                               alignment: Alignment.centerRight,
                                               child: Text(
-                                                  'Tax : ${context.watch<PosController>().getScanneditemData[index].taxRate ?? 0.00} %',
+                                                  'Tax : ${context.watch<PosController>().getScanneditemData[index].taxRate ?? 0.00}%',
                                                   style: theme
                                                       .textTheme.bodyMedium
                                                       ?.copyWith(
@@ -764,7 +764,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               width: widget.searchWidth * 0.17,
                                               alignment: Alignment.centerRight,
                                               child: Text(
-                                                  'InStock : ${context.watch<PosController>().getScanneditemData[index].openQty ?? 0}',
+                                                  'InStock : ${context.watch<PosController>().getScanneditemData[index].inStockQty ?? 0}',
                                                   style: theme
                                                       .textTheme.bodyMedium
                                                       ?.copyWith(

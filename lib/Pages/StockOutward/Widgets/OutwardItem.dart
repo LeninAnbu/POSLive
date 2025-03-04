@@ -455,8 +455,13 @@ stockOutward(
                     //           : CircularProgressIndicator(
                     //               color: theme.primaryColor),
                     //     )),
-                    GestureDetector(
-                        onTap: () {
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: BorderSide(
+                              color: theme.primaryColor,
+                            )),
+                        onPressed: () {
                           st(() {
                             context.read<StockOutwardController>().cancelbtn =
                                 false;
@@ -473,6 +478,9 @@ stockOutward(
                                 .selectedcust2 = null;
                             context
                                 .read<StockOutwardController>()
+                                .selectedcust = null;
+                            context
+                                .read<StockOutwardController>()
                                 .getStockReqData();
                             context
                                 .read<StockOutwardController>()
@@ -483,10 +491,9 @@ stockOutward(
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: Colors.grey[400],
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          height: stockInheight * 0.9,
+                          height: stockInheight * 1,
                           width: stockInWidth * 0.25,
                           child: Text("Clear",
                               style: theme.textTheme.bodyMedium?.copyWith(

@@ -680,11 +680,13 @@ class ExpenseController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     seriesType = '';
 
-    await callSeriesApi(context, '46');
+    // await callSeriesApi(context, '46');
     addAccLine();
     PostExpenseAPi.cashAccount = creditAcc;
     PostExpenseAPi.seriesType = seriesType;
     PostExpenseAPi.reference = mycontroller[0].text;
+
+    PostExpenseAPi.payTo = mycontroller[21].text.toString();
     PostExpenseAPi.docDate = config.alignDate1(mycontroller[17].text);
     PostExpenseAPi.docType = "rAccount";
     PostExpenseAPi.cashSum = mycontroller[1].text;
@@ -830,11 +832,12 @@ class ExpenseController extends ChangeNotifier {
 
     seriesType = '';
     log('message1');
-    await callSeriesApi(context, '46');
+    // await callSeriesApi(context, '46');
     addAccLine();
     PostApprovalExpenseAPi.cashAccount = creditAcc;
     PostApprovalExpenseAPi.docDate = config.alignDate1(mycontroller[17].text);
     PostApprovalExpenseAPi.seriesType = seriesType;
+    PostApprovalExpenseAPi.payTo = mycontroller[21].text.toString();
     PostApprovalExpenseAPi.docType = "rAccount";
     PostApprovalExpenseAPi.cashSum = mycontroller[1].text;
     PostApprovalExpenseAPi.remarks = mycontroller[3].text.toString();

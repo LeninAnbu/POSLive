@@ -631,134 +631,273 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                     key: context
                                         .read<PosController>()
                                         .formkeyy[20],
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
-                                          height: widget.custHeight * 0.16,
-                                          width: widget.custWidth * 0.55,
-                                          child: context
-                                                          .read<PosController>()
-                                                          .selectedcust !=
-                                                      null &&
-                                                  context
-                                                          .read<PosController>()
-                                                          .selectedcust!
-                                                          .paymentGroup !=
-                                                      null &&
-                                                  context
-                                                          .read<PosController>()
-                                                          .selectedcust!
-                                                          .paymentGroup!
-                                                          .contains('cash') ==
-                                                      true
-                                              ? TextFormField(
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return '';
-                                                    } else {
-                                                      return null;
-                                                    }
-                                                  },
-                                                  onEditingComplete: () {
-                                                    context
-                                                            .read<PosController>()
-                                                            .selectedcust!
-                                                            .name =
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              height: widget.custHeight * 0.16,
+                                              width: widget.custWidth * 0.55,
+                                              child: context
+                                                              .read<
+                                                                  PosController>()
+                                                              .selectedcust !=
+                                                          null &&
+                                                      context
+                                                              .read<
+                                                                  PosController>()
+                                                              .selectedcust!
+                                                              .paymentGroup !=
+                                                          null &&
+                                                      context
+                                                              .read<
+                                                                  PosController>()
+                                                              .selectedcust!
+                                                              .paymentGroup!
+                                                              .contains(
+                                                                  'cash') ==
+                                                          true
+                                                  ? TextFormField(
+                                                      validator: (value) {
+                                                        if (value!.isEmpty) {
+                                                          return '';
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                      onEditingComplete: () {
+                                                        context
+                                                                .read<
+                                                                    PosController>()
+                                                                .selectedcust!
+                                                                .name =
+                                                            context
+                                                                .read<
+                                                                    PosController>()
+                                                                .custNameController
+                                                                .text;
                                                         context
                                                             .read<
                                                                 PosController>()
-                                                            .custNameController
-                                                            .text;
-                                                    context
-                                                        .read<PosController>()
-                                                        .disableKeyBoard(
-                                                            context);
-                                                  },
-                                                  controller: context
-                                                      .read<PosController>()
-                                                      .custNameController,
-                                                  decoration: InputDecoration(
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      borderSide:
-                                                          const BorderSide(
-                                                              color:
-                                                                  Colors.red),
-                                                    ),
-                                                    focusedErrorBorder:
-                                                        OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      borderSide:
-                                                          const BorderSide(
-                                                              color:
-                                                                  Colors.red),
-                                                    ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      borderSide:
-                                                          const BorderSide(
-                                                              color:
-                                                                  Colors.grey),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      borderSide:
-                                                          const BorderSide(
-                                                              color:
-                                                                  Colors.grey),
-                                                    ),
-                                                    hintText: 'Name',
-                                                    hintStyle: widget.theme
-                                                        .textTheme.bodyMedium
-                                                        ?.copyWith(
-                                                            color: Colors.grey),
-                                                    filled: false,
-                                                    contentPadding:
-                                                        const EdgeInsets
-                                                            .symmetric(
-                                                      // vertical: 10,
-                                                      horizontal: 10,
-                                                    ),
-                                                  ),
-                                                )
-                                              : Text(
-                                                  context
+                                                            .disableKeyBoard(
+                                                                context);
+                                                      },
+                                                      controller: context
+                                                          .read<PosController>()
+                                                          .custNameController,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .red),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .red),
+                                                        ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .grey),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .grey),
+                                                        ),
+                                                        hintText: 'Name',
+                                                        // labelText: 'Name',
+                                                        hintStyle: widget
+                                                            .theme
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.copyWith(
+                                                                color: Colors
+                                                                    .grey),
+                                                        filled: false,
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          // vertical: 10,
+                                                          horizontal: 10,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Text(
+                                                      context
+                                                                  .watch<
+                                                                      PosController>()
+                                                                  .getselectedcust!
+                                                                  .name ==
+                                                              null
+                                                          ? ""
+                                                          : context
                                                               .watch<
                                                                   PosController>()
                                                               .getselectedcust!
-                                                              .name ==
-                                                          null
-                                                      ? ""
-                                                      : context
-                                                          .watch<
-                                                              PosController>()
-                                                          .getselectedcust!
-                                                          .name
-                                                          .toString(),
-                                                  maxLines: 1,
-                                                  style: theme
-                                                      .textTheme.bodyLarge
-                                                      ?.copyWith(
-                                                          color: Colors.black,
-                                                          fontSize: 20),
-                                                ),
+                                                              .name
+                                                              .toString(),
+                                                      maxLines: 1,
+                                                      style: theme
+                                                          .textTheme.bodyLarge
+                                                          ?.copyWith(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 20),
+                                                    ),
+                                            ),
+                                            SizedBox(
+                                              width:
+                                                  Screens.width(context) * 0.01,
+                                            ),
+                                            SizedBox(
+                                                height:
+                                                    widget.custHeight * 0.16,
+                                                width: widget.custWidth * 0.3,
+                                                child: context
+                                                                .read<
+                                                                    PosController>()
+                                                                .selectedcust !=
+                                                            null &&
+                                                        context
+                                                                .read<
+                                                                    PosController>()
+                                                                .selectedcust!
+                                                                .paymentGroup !=
+                                                            null &&
+                                                        context
+                                                                .read<
+                                                                    PosController>()
+                                                                .selectedcust!
+                                                                .paymentGroup!
+                                                                .contains(
+                                                                    'cash') ==
+                                                            true
+                                                    ? TextFormField(
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return '';
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                        onEditingComplete: () {
+                                                          // context
+                                                          //         .read<PosController>()
+                                                          //         .selectedcust!
+                                                          //         .name =
+                                                          //     context
+                                                          //         .read<
+                                                          //             PosController>()
+                                                          //         .custNameController
+                                                          //         .text;
+                                                          context
+                                                              .read<
+                                                                  PosController>()
+                                                              .disableKeyBoard(
+                                                                  context);
+                                                        },
+                                                        controller: context
+                                                            .read<
+                                                                PosController>()
+                                                            .tinNoController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .red),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .red),
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
+                                                          hintText: 'Tin no',
+                                                          // labelText: 'Tin no',
+                                                          hintStyle: widget
+                                                              .theme
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  color: Colors
+                                                                      .grey),
+                                                          filled: false,
+                                                          contentPadding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                            // vertical: 10,
+                                                            horizontal: 10,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Container())
+                                          ],
                                         ),
                                         SizedBox(
-                                          width: Screens.width(context) * 0.01,
-                                        ),
+                                            height:
+                                                Screens.padingHeight(context) *
+                                                    0.01),
                                         SizedBox(
                                             height: widget.custHeight * 0.16,
                                             width: widget.custWidth * 0.3,
@@ -805,7 +944,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                     },
                                                     controller: context
                                                         .read<PosController>()
-                                                        .tinNoController,
+                                                        .vatNoController,
                                                     decoration: InputDecoration(
                                                       errorBorder:
                                                           OutlineInputBorder(
@@ -847,7 +986,8 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                                 color: Colors
                                                                     .grey),
                                                       ),
-                                                      hintText: 'Tin no',
+                                                      hintText: 'VAT no',
+                                                      // labelText: 'VAT no',
                                                       hintStyle: widget.theme
                                                           .textTheme.bodyMedium
                                                           ?.copyWith(

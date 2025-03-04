@@ -47,6 +47,7 @@ class DashBoardController extends ChangeNotifier {
     checkpaidfrom();
     refreshQueue();
     await deleteholdmethod();
+    showVersion(context);
     log('UserValues.userIDUserValues.userID::${UserValues.userCode}');
 
     // userloginapi();
@@ -738,9 +739,26 @@ class DashBoardController extends ChangeNotifier {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     // log("packageInfo.version::" + packageInfo.version.toString());
     AppConstant.version = packageInfo.version;
-    checkVesionNum(context);
-    //   print(
-    //       "packageInfo.versionConstant::" + ConstantValues.appversion.toString());
+
+    bool? netbool = await config.haveNoInterNet();
+    log('netboolnetbool::${netbool}');
+    if (netbool == false) {
+      log('messagemmmmm');
+      checkVesionNum(context);
+    } else {
+      showSnackBar('Check your internet !!..', context);
+    }
+  }
+
+  void showSnackBar(String msg, BuildContext context) {
+    final sn = SnackBar(
+      content: Text(
+        "$msg",
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.red,
+    );
+    ScaffoldMessenger.maybeOf(context)!.showSnackBar(sn);
   }
 
   void checkVesionNum(BuildContext context) async {
@@ -748,7 +766,7 @@ class DashBoardController extends ChangeNotifier {
 
     visibleLoading = true;
     plyStoreVersionNumber =
-        await checkverConfig.getStoreVersion('com.buson.verifytapp');
+        await checkverConfig.getStoreVersion('com.buson.posinsignia');
     if (plyStoreVersionNumber == AppConstant.version) {
       // await checkLoginPage();
 
@@ -774,11 +792,12 @@ class DashBoardController extends ChangeNotifier {
         builder: (context) {
           return AlertDialog(
             content: SizedBox(
-              width: Screens.width(context),
-              height: Screens.bodyheight(context) * 0.27,
+              width: Screens.width(context) * 0.25,
+              // height: Screens.bodyheight(context) * 0.3,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     "Update available",
@@ -796,16 +815,16 @@ class DashBoardController extends ChangeNotifier {
                     child: Row(
                       children: [
                         Container(
-                          height: Screens.bodyheight(context) * 0.08,
-                          width: Screens.width(context) * 0.15,
+                          height: Screens.bodyheight(context) * 0.15,
+                          width: Screens.width(context) * 0.10,
                           padding: EdgeInsets.all(
                               Screens.bodyheight(context) * 0.008),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: Colors.grey[200]),
                           child: Image.asset(
-                            'assets/appiconlaunch.png',
-                            // fit: BoxFit.fill,
+                            'assets/SellerSymbol.png',
+                            fit: BoxFit.fill,
                           ),
                         ),
                         Container(
@@ -825,6 +844,9 @@ class DashBoardController extends ChangeNotifier {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: Screens.bodyheight(context) * 0.01,
+                  ),
                   // context
                   // .read<ConfigurationContoller>()
                   // .checkStartingPage(pagename, docEntry);
@@ -842,9 +864,10 @@ class DashBoardController extends ChangeNotifier {
                                 final appId = Platform.isAndroid
                                     ? 'com.buson.posinsignia'
                                     : 'com.buson.posinsignia';
+                                //com.buson.posinsignia
                                 final url = Uri.parse(
                                   Platform.isAndroid
-                                      ? "https://play.google.com/store/apps/details?id=com.buson.verifytapp"
+                                      ? "https://play.google.com/store/apps/details?id=com.buson.posinsignia"
                                       : "https://apps.apple.com/app/id$appId",
                                 );
                                 launchUrl(
@@ -892,8 +915,12 @@ class DashBoardController extends ChangeNotifier {
     AppConstant.sapDB = (await SharedPref.getSapDB())!;
     // 'InsigniaLimited';
     AppConstant.slpCode = (await SharedPref.getslpCode())!;
-    AppConstant.sapPassword = await SharedPref.getSapPassword();
-    AppConstant.sapUserName = await SharedPref.getSapUserName();
+    AppConstant.sapPassword =
+        //  "ub@17";
+        await SharedPref.getSapPassword();
+    AppConstant.sapUserName =
+        // 'Ubongo';
+        await SharedPref.getSapUserName();
 
     notifyListeners();
   }

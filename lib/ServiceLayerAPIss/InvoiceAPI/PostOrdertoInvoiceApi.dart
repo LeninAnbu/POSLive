@@ -19,7 +19,7 @@ class OrderToInvoicesPostAPI {
   static String? cardName;
   static String? seriesType;
   static String? tinNo;
-
+  static String? VATNo;
   static String? remarks;
   static int? uTruckInternal;
 
@@ -29,8 +29,9 @@ class OrderToInvoicesPostAPI {
       "CardName": "$cardName",
       "DocumentStatus": "bost_Open",
       "DocDate": "$docDate",
-      "DocDueDate": "$dueDate",
+      // "DocDueDate": "$dueDate",
       "Comments": "$remarks",
+      "U_VAT_NUMBER":"$VATNo",
       // 'Series': '$seriesType',
       'U_TinNO': '$tinNo',
       "U_DeviceTransID": deviceTransID,
@@ -50,8 +51,9 @@ class OrderToInvoicesPostAPI {
         "CardCode": "$cardCodePost",
         "DocumentStatus": "bost_Open",
         "DocDate": "$docDate",
-        "DocDueDate": "$dueDate",
+        // "DocDueDate": "$dueDate",
         "Comments": "$remarks",
+        "U_VAT_NUMBER":"$VATNo",
         // 'Series': '$seriesType',
         'U_TinNO': '$tinNo',
         "U_DeviceTransID": deviceTransID,
@@ -75,8 +77,9 @@ class OrderToInvoicesPostAPI {
           "DocType": "$docType",
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
-          "DocDueDate": "$dueDate",
+          // "DocDueDate": "$dueDate",
           "Comments": "$remarks",
+          "U_VAT_NUMBER":"$VATNo",
           // 'Series': '$seriesType',
           'U_TinNO': '$tinNo',
           "U_DeviceTransID": deviceTransID,
@@ -96,6 +99,7 @@ class OrderToInvoicesPostAPI {
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
               "DocDueDate": "$dueDate",
+              "U_VAT_NUMBER":"$VATNo",
               "Comments": "$remarks",
               // 'Series': '$seriesType',
               'U_TinNO': '$tinNo',

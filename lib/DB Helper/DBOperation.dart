@@ -47,7 +47,7 @@ class DBOperation {
 //log("customercodecustomercode::" + customercode.toString());
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMaster where customerCode ="$customercode" ''');
-    log("CustomerMaster Len55: $result");
+    // log("CustomerMaster Len55: $result");
     return result;
   }
 
@@ -1621,10 +1621,10 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
 
   static Future<List<Map<String, Object?>>> getusersvaldata(
       Database db, String userssName) async {
-//log("userNameuserName" + userssName.toString());
+    log("userNameuserName" + userssName.toString());
     List<Map<String, Object?>> result = await db.rawQuery(
         "select * from Users where Lower(userName)=Lower('$userssName')");
-    log("Users RRSS" + result.toList().toString());
+    // log("Users RRSS" + result.toList().toString());
     return result;
   }
 
@@ -2110,7 +2110,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
         .rawQuery('''SELECT * FROM  SalesHeader where docstatus = "1"''');
     // log("getSalesHeadHoldvalueDB length:" + result.length.toString());
 
-    // log("getSalesHeadHoldvalueDB:" + result.toString());
+    log("getSalesHeadHoldvalueDB:" + result.toString());
 
     return result;
   }
@@ -2206,7 +2206,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     return result;
   }
 
-  static Future deletewholedata(
+  static Future deleteInvoicewholedata(
     Database db,
   ) async {
     //log('deleted doc entry no:' + docEntry.toString());
@@ -2258,7 +2258,22 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     //log("SH2" + sh2.toString());
   }
 
-  static Future deleteQuotHold(Database db) async {
+  static Future deleteSalesOrder(
+    Database db,
+  ) async {
+    //log('deleted doc entry no:' + docEntry.toString());
+    await db.rawQuery('''
+    delete from SalesOrderHeader 
+     ''');
+    await db.rawQuery('''
+    delete from SalesOrderPay
+     ''');
+    await db.rawQuery('''
+    delete from SalesOrderLine 
+     ''');
+  }
+
+  static Future deleteSalesQuot(Database db) async {
     //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from SalesQuotationHeader
@@ -2407,6 +2422,16 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
      ''');
   }
 
+  static Future deleteStockreq(Database db) async {
+    await db.rawQuery('''
+    delete from StockReqHDT
+     ''');
+
+    await db.rawQuery('''
+    delete from StockReqLineT
+     ''');
+  }
+
   static Future<List<ItemMasterModelDB>> getSearchedStockList(
       Database db, String name) async {
     List<Map<String, Object?>> result = await db.rawQuery('''
@@ -2466,23 +2491,6 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
      ''');
 //log('ItemMaster result::${result.toList()}');
     return result;
-  }
-
-  static exec(Database db) async {
-    // select * from StockReqHDT
-    //  select * from StockReqLineT
-    // delete from StockReqHDT
-    //  delete from StockReqLineT
-
-    List<Map<String, Object?>> result = await db.rawQuery('''
-      select * from StockReqHDT 
-     ''');
-    log("StockReqHDT: ${result.toList()}");
-
-    List<Map<String, Object?>> result2 = await db.rawQuery('''
-      select * from StockReqLineT
-     ''');
-    log("StockReqLineT: ${result2.toList()}");
   }
 
   // insert brand
@@ -3771,8 +3779,17 @@ where docentry = $docentry
 
     List<Map<String, Object?>> sh2 = await db.rawQuery('''
     select *from Expense 
+
      ''');
 //log("SH2" + sh2.toString());
+  }
+
+  static Future deleteExpense(
+    Database db,
+  ) async {
+    await db.rawQuery('''
+    delete from Expense
+     ''');
   }
 
   static Future<void> updtQstatus(
@@ -4319,14 +4336,26 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     await db.rawQuery('''
     delete from StockOutLineDB where baseDocentry = '$docEntry'
      ''');
-    // await db.rawQuery('''
-    // delete from StockOutBatchDB where docentry = '$docEntry'
-    //  ''');
+    await db.rawQuery('''
+    delete from StockOutBatchDB where docentry = '$docEntry'
+     ''');
     // //log("Branch *: "+result3.toList().toString());
     // List<Map<String, Object?>> sh2 = await db.rawQuery('''
     // select *from StockOutHeaderDataDB
     //  ''');
     //log("SH2" + sh2.toString());
+  }
+
+  static Future deleteStOutTable(Database db) async {
+    await db.rawQuery('''
+    delete from StockOutHeaderDataDB 
+     ''');
+    await db.rawQuery('''
+    delete from StockOutLineDB
+     ''');
+    await db.rawQuery('''
+    delete from StockOutBatchDB
+     ''');
   }
 
   static Future<List<Map<String, Object?>>> getHoldStOutHeadDB(
@@ -4411,6 +4440,20 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
      ''');
     await db.rawQuery('''
     delete from StockInLineDB where baseDocentry = $docEntry
+     ''');
+
+    //log('deleted doc entry no:' + docEntry.toString());
+  }
+
+  static Future deleteStkInward(Database db) async {
+    await db.rawQuery('''
+    delete from StockInBatchDB
+     ''');
+    await db.rawQuery('''
+    delete from StockInHeaderDB
+     ''');
+    await db.rawQuery('''
+    delete from StockInLineDB 
      ''');
 
     //log('deleted doc entry no:' + docEntry.toString());

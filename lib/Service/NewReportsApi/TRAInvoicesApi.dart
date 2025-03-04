@@ -24,7 +24,7 @@ class CreateTableApi {
                     "[TRA Invoices user specific-1]  '$frmDate' , '$toDate' , '${AppConstant.branch}'"
               }));
 
-      log("AutoSelect Data Res: ${json.decode(response.body)}");
+      // log("AutoSelect Data Res: ${json.decode(response.body)}");
       print(response.statusCode);
       if (response.statusCode == 200) {
         // var responseBody = response.body;

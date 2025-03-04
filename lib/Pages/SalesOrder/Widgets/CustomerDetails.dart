@@ -40,685 +40,217 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
           left: widget.custHeight * 0.01,
           right: widget.custHeight * 0.01),
       width: widget.custWidth,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          context.read<SOCon>().getselectedcust2 != null
-              ? Container()
-              : Container(
-                  height: widget.custWidth * 0.08,
-                  width: widget.custWidth * 1,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 240, 235, 235)),
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.grey.withOpacity(0.001),
-                  ),
-                  child: TextFormField(
-                    onChanged: (v) {},
-                    readOnly: true,
-                    onTap: context.read<SOCon>().editqty == true
-                        ? null
-                        : () {
-                            if (context.read<SOCon>().cpyfrmsq == false) {
-                              context.read<SOCon>().clearTextField();
-
-                              context.read<SOCon>().refresCufstList();
-
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                        contentPadding: const EdgeInsets.all(0),
-                                        content: AlertBox(
-                                          payMent: 'Select Customer',
-                                          widget: forSearchBtn(context),
-                                          buttonName: '',
-                                          // callback: () {
-                                          //   Navigator.pop(context);
-                                          //   showDialog(
-                                          //       context: context,
-                                          //       barrierDismissible: false,
-                                          //       builder: (BuildContext context) {
-                                          //         return AlertDialog(
-                                          //             contentPadding:
-                                          //                 const EdgeInsets.all(0),
-                                          //             content: AlertBox(
-                                          //               payMent: 'New Customer',
-                                          //               widget: forAddNewBtn(context),
-                                          //               buttonName: null,
-                                          //             ));
-                                          //       });
-                                          // },
-                                        ));
-                                  });
-                            }
-                          },
-                    decoration: InputDecoration(
-                      suffixIcon: const Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      ),
-                      hintText: 'Customers',
-                      hintStyle: theme.textTheme.bodyLarge?.copyWith(),
-                      filled: false,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 10,
-                      ),
-                    ),
-                  ),
-                ),
-          SizedBox(
-            height: widget.custHeight * 0.02,
-          ),
-          context.watch<SOCon>().getselectedcust2 != null
-              ? Container(
-                  color: context.watch<SOCon>().getselectedcust2 != null
-                      ? Colors.grey[300]
-                      : Colors.grey[50],
-                  padding: EdgeInsets.symmetric(
-                      vertical: widget.custHeight * 0.02,
-                      horizontal: widget.custWidth * 0.02),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+      child: StatefulBuilder(builder: (context, setst) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            context.read<SOCon>().getselectedcust2 != null
+                ? Container()
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: widget.custWidth,
-                          alignment: Alignment.centerRight,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: widget.custWidth * 0.8,
-                                child: Text(
-                                  context
-                                      .watch<SOCon>()
-                                      .getselectedcust2!
-                                      .name
-                                      .toString(),
-                                  maxLines: 1,
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: Colors.black, fontSize: 20),
-                                ),
-                              ),
-                            ],
-                          )),
-                      SizedBox(
-                        height: widget.custHeight * 0.01,
-                      ),
-                      SizedBox(
-                        width: widget.custWidth,
-                        child: Row(
-                          children: [
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.phone,
-                                  color: Colors.black54,
-                                ),
-                                Text(
-                                    context
-                                            .read<SOCon>()
-                                            .getselectedcust2!
-                                            .phNo!
-                                            .isNotEmpty
-                                        ? " ${context.watch<SOCon>().getselectedcust2!.phNo}  |  "
-                                        : '',
-                                    style: theme.textTheme.bodyLarge
-                                        ?.copyWith(color: Colors.black54)),
-                              ],
+                        height: widget.custWidth * 0.08,
+                        width: widget.custWidth * 0.55,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 240, 235, 235)),
+                          borderRadius: BorderRadius.circular(3),
+                          color: Colors.grey.withOpacity(0.001),
+                        ),
+                        child: TextFormField(
+                          onChanged: (v) {},
+                          readOnly: true,
+                          onTap: context.read<SOCon>().editqty == true
+                              ? null
+                              : () {
+                                  if (context.read<SOCon>().cpyfrmsq == false) {
+                                    context.read<SOCon>().clearTextField();
+
+                                    context.read<SOCon>().refresCufstList();
+
+                                    showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
+                                              content: AlertBox(
+                                                payMent: 'Select Customer',
+                                                widget: forSearchBtn(context),
+                                                buttonName: '',
+                                                // callback: () {
+                                                //   Navigator.pop(context);
+                                                //   showDialog(
+                                                //       context: context,
+                                                //       barrierDismissible: false,
+                                                //       builder: (BuildContext context) {
+                                                //         return AlertDialog(
+                                                //             contentPadding:
+                                                //                 const EdgeInsets.all(0),
+                                                //             content: AlertBox(
+                                                //               payMent: 'New Customer',
+                                                //               widget: forAddNewBtn(context),
+                                                //               buttonName: null,
+                                                //             ));
+                                                //       });
+                                                // },
+                                              ));
+                                        });
+                                  }
+                                },
+                          decoration: InputDecoration(
+                            suffixIcon: const Icon(
+                              Icons.search,
+                              color: Colors.grey,
                             ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.mail_outline,
-                                  color: Colors.black54,
-                                ),
-                                Text(
-                                    context
-                                            .watch<SOCon>()
-                                            .getselectedcust2!
-                                            .email!
-                                            .isNotEmpty
-                                        ? " ${context.watch<SOCon>().getselectedcust2!.email}"
-                                        : "",
-                                    style: theme.textTheme.bodyLarge
-                                        ?.copyWith(color: Colors.black54)),
-                              ],
+                            hintText: 'Customers',
+                            hintStyle: theme.textTheme.bodyLarge?.copyWith(),
+                            filled: false,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal: 10,
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        height: widget.custHeight * 0.01,
-                      ),
-                      SizedBox(
-                        width: widget.custWidth,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: widget.custWidth * 0.465,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("GST",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                      right: widget.custWidth * 0.02,
-                                    ),
-                                    child: Text(
+                      context.read<SOCon>().selectedcust2 != null
+                          ? Container()
+                          : Container(
+                              height: Screens.padingHeight(context) * 0.06,
+                              width: widget.custWidth * 0.4,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: const Color.fromARGB(
+                                        255, 240, 235, 235)),
+                                borderRadius: BorderRadius.circular(3),
+                                color: Colors.grey.withOpacity(0.001),
+                              ),
+                              child: TextFormField(
+                                readOnly: true,
+                                controller:
+                                    context.read<SOCon>().postingDatecontroller,
+                                textCapitalization:
+                                    TextCapitalization.sentences,
+                                onChanged: (v) {},
+                                onEditingComplete: () {},
+                                onTap: () {
+                                  setState(
+                                    () {
+                                      context
+                                          .read<SOCon>()
+                                          .postingDate(context);
+                                    },
+                                  );
+                                },
+                                decoration: InputDecoration(
+                                  suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {});
                                         context
-                                                .watch<SOCon>()
-                                                .getselectedcust2!
-                                                .tarNo!
-                                                .isNotEmpty
-                                            ? "${context.watch<SOCon>().getselectedcust2!.tarNo}"
-                                            : "",
-                                        style: theme.textTheme.bodyLarge
-                                            ?.copyWith(color: Colors.black54)),
+                                            .read<SOCon>()
+                                            .postingDate(context);
+                                      },
+                                      color: Colors.grey,
+                                      icon: const Icon(Icons.calendar_month)),
+                                  hintStyle:
+                                      theme.textTheme.bodyLarge?.copyWith(),
+                                  filled: false,
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 15,
+                                    horizontal: 10,
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              width: widget.custWidth * 0.465,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Balance",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                  Text(
-                                      context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .accBalance! !=
-                                              0
-                                          ? context
-                                              .watch<SOCon>()
-                                              .config
-                                              .splitValues(context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .accBalance
-                                                  .toString())
-                                          : '0.00',
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       SizedBox(
-                        height: widget.custHeight * 0.01,
+                        height: widget.custHeight * 0.02,
                       ),
-                      SizedBox(
-                        width: widget.custWidth,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: widget.custWidth * 0.465,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Code#",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                      right: widget.custWidth * 0.02,
-                                    ),
-                                    child: Text(
-                                        "${context.watch<SOCon>().getselectedcust2!.cardCode}",
-                                        style: theme.textTheme.bodyLarge
-                                            ?.copyWith(color: Colors.black54)),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              width: widget.custWidth * 0.465,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Points",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                  Text(
-                                      context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .point!
-                                              .isNotEmpty
-                                          ? "${context.watch<SOCon>().getselectedcust2!.point}"
-                                          : "",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: widget.custHeight * 0.01,
-                      ),
-                      SizedBox(
-                        width: widget.custWidth,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: widget.custWidth * 0.465,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Credit Limit",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .creditLimits !=
-                                          null
-                                      ? Container(
-                                          padding: EdgeInsets.only(
-                                            right: widget.custWidth * 0.02,
-                                          ),
-                                          child: Text(
-                                              "${config.splitValues(context.watch<SOCon>().getselectedcust2!.creditLimits!.toStringAsFixed(2))}",
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54)),
-                                        )
-                                      : Container(),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              width: widget.custWidth * 0.465,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Credit Days",
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(color: Colors.black54)),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .creditDays !=
-                                          null
-                                      ? Text(
-                                          "${context.watch<SOCon>().getselectedcust2!.creditDays}",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54))
-                                      : Container(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: SizedBox(
-                              width: widget.custWidth * 0.465,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: widget.custWidth * 0.465,
-                                    padding: EdgeInsets.only(
-                                        right: widget.custWidth * 0.02),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Billing Address",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        ),
-                                        // SizedBox(
-                                        //     width: widget.custWidth * 0.04,
-                                        //     child: const Icon(
-                                        //       Icons.arrow_drop_down,
-                                        //       size: 30,
-                                        //     ))
-                                      ],
-                                    ),
-                                  ),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .address!
-                                              .isEmpty ||
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address ==
-                                              null
-                                      ? Container()
-                                      : Text(
-                                          " ${context.watch<SOCon>().getselectedcust2!.address![0].address1!.isNotEmpty ? context.watch<SOCon>().getselectedcust2!.address![0].address1.toString() : ""},"
-                                          "${context.watch<SOCon>().getselectedcust2!.address![0].address2!.isNotEmpty ? context.watch<SOCon>().getselectedcust2!.address![0].address2.toString() : ""},"
-                                          " ${context.watch<SOCon>().getselectedcust2!.address![0].address3!.isNotEmpty ? context.watch<SOCon>().getselectedcust2!.address![0].address3.toString() : ""}",
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        ),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .address!
-                                              .isEmpty ||
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address ==
-                                              null
-                                      ? Container()
-                                      : Text(
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address![0]
-                                                  .billCity
-                                                  .isNotEmpty
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address![0]
-                                                  .billCity
-                                                  .toString()
-                                              : "",
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        ),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .address!
-                                              .isEmpty ||
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address ==
-                                              null
-                                      ? Container()
-                                      : Text(
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address![0]
-                                                  .billPincode
-                                                  .isNotEmpty
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address![0]
-                                                  .billPincode
-                                                  .toString()
-                                              : '',
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        ),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust2!
-                                              .address!
-                                              .isEmpty ||
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address ==
-                                              null
-                                      ? Container()
-                                      : Text(
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address![0]
-                                                  .billstate
-                                                  .isNotEmpty
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust2!
-                                                  .address![0]
-                                                  .billstate
-                                                  .toString()
-                                              : '',
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: SizedBox(
-                              width: widget.custWidth * 0.465,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: widget.custWidth * 0.465,
-                                    padding: EdgeInsets.only(
-                                        right: widget.custWidth * 0.02),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Shipping Address",
-                                          maxLines: 2,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        ),
-                                        // SizedBox(
-                                        //     width: widget.custWidth * 0.04,
-                                        //     child: const Icon(
-                                        //       Icons.arrow_drop_down,
-                                        //       size: 30,
-                                        //     ))
-                                      ],
-                                    ),
-                                  ),
-                                  context
-                                              .watch<SOCon>()
-                                              .getselectedcust25!
-                                              .address!
-                                              .isNotEmpty ||
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address ==
-                                              null
-                                      ? Text(
-                                          " ${context.read<SOCon>().getselectedcust25!.address![0].address1!.isNotEmpty || context.read<SOCon>().getselectedcust25!.address![0].address1 != null ? context.watch<SOCon>().getselectedcust25!.address![0].address1.toString() : ""},"
-                                          "${context.read<SOCon>().getselectedcust25!.address![0].address2!.isNotEmpty || context.read<SOCon>().getselectedcust25!.address![0].address2 != null ? context.watch<SOCon>().getselectedcust25!.address![0].address2.toString() : ""},"
-                                          "${context.read<SOCon>().getselectedcust25!.address![0].address3!.isNotEmpty || context.read<SOCon>().getselectedcust25!.address![0].address3 != null ? context.watch<SOCon>().getselectedcust25!.address![0].address3.toString() : ""}",
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        )
-                                      : Container(),
-                                  context
-                                          .watch<SOCon>()
-                                          .getselectedcust25!
-                                          .address!
-                                          .isNotEmpty
-                                      ? Text(
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address![0]
-                                                  .billCity
-                                                  .isNotEmpty
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address![0]
-                                                  .billCity
-                                                  .toString()
-                                              : '',
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        )
-                                      : Container(),
-                                  context
-                                          .watch<SOCon>()
-                                          .getselectedcust25!
-                                          .address!
-                                          .isNotEmpty
-                                      ? Text(
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address![0]
-                                                  .billPincode
-                                                  .isNotEmpty
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address![0]
-                                                  .billPincode
-                                                  .toString()
-                                              : '',
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        )
-                                      : Container(),
-                                  context
-                                          .watch<SOCon>()
-                                          .getselectedcust25!
-                                          .address!
-                                          .isNotEmpty
-                                      ? Text(
-                                          context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address![0]
-                                                  .billstate
-                                                  .isNotEmpty
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust25!
-                                                  .address![0]
-                                                  .billstate
-                                                  .toString()
-                                              : '',
-                                          maxLines: 1,
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(color: Colors.black54),
-                                        )
-                                      : Container(),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
-                )
-              : context.watch<SOCon>().getselectedcust == null
-                  ? Container(
-                      height: widget.custHeight * 1.14,
-                      padding: EdgeInsets.symmetric(
-                          vertical: widget.custHeight * 0.02,
-                          horizontal: widget.custWidth * 0.02),
-                      child: SingleChildScrollView(
-                        child: Wrap(
-                            spacing: 10.0,
-                            runSpacing: 10.0,
-                            children: listContainersProduct(
-                              context,
-                              theme,
-                            )),
-                      ),
-                    )
-                  : Container(
-                      color: Colors.grey[50],
-                      padding: EdgeInsets.symmetric(
-                          // vertical: widget.custHeight * 0.02,
-                          horizontal: widget.custWidth * 0.02),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                              width: widget.custWidth,
-                              alignment: Alignment.centerRight,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    width: widget.custWidth * 0.8,
+            SizedBox(
+              height: widget.custHeight * 0.02,
+            ),
+            context.watch<SOCon>().getselectedcust2 != null
+                ? Container(
+                    color: context.watch<SOCon>().getselectedcust2 != null
+                        ? Colors.grey[300]
+                        : Colors.grey[50],
+                    padding: EdgeInsets.symmetric(
+                        vertical: widget.custHeight * 0.02,
+                        horizontal: widget.custWidth * 0.02),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                            width: widget.custWidth,
+                            alignment: Alignment.centerRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: widget.custWidth * 0.6,
+                                  child: Text(
+                                    context
+                                        .watch<SOCon>()
+                                        .getselectedcust2!
+                                        .name
+                                        .toString(),
+                                    maxLines: 1,
+                                    style: theme.textTheme.bodyLarge?.copyWith(
+                                        color: Colors.black, fontSize: 20),
+                                  ),
+                                ),
+                                SizedBox(
                                     height: widget.custHeight * 0.16,
+                                    width: widget.custWidth * 0.3,
                                     child: context
-                                                    .read<SOCon>()
-                                                    .selectedcust !=
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2 !=
                                                 null &&
                                             context
-                                                    .read<SOCon>()
-                                                    .selectedcust!
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
                                                     .paymentGroup !=
                                                 null &&
                                             context
-                                                    .read<SOCon>()
-                                                    .selectedcust!
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
                                                     .paymentGroup!
                                                     .contains('cash') ==
                                                 true
                                         ? TextFormField(
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return '';
+                                              } else {
+                                                return null;
+                                              }
+                                            },
                                             onEditingComplete: () {
+                                              // context
+                                              //         .read<PosController>()
+                                              //         .selectedcust!
+                                              //         .name =
+                                              //     context
+                                              //         .read<
+                                              //             PosController>()
+                                              //         .custNameController
+                                              //         .text;
                                               context
-                                                      .read<SOCon>()
-                                                      .selectedcust!
-                                                      .name =
-                                                  context
-                                                      .read<SOCon>()
-                                                      .custNameController
-                                                      .text;
-                                              context
-                                                  .read<SOCon>()
+                                                  .watch<SOCon>()
                                                   .disableKeyBoard(context);
                                             },
                                             controller: context
-                                                .read<SOCon>()
-                                                .custNameController,
+                                                .watch<SOCon>()
+                                                .tinNoController,
                                             decoration: InputDecoration(
                                               errorBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -745,7 +277,9 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                 borderSide: const BorderSide(
                                                     color: Colors.grey),
                                               ),
-                                              hintText: 'Name',
+                                              hintText: 'Tin no',
+
+                                              // labelText: 'Tin no',
                                               hintStyle: widget
                                                   .theme.textTheme.bodyMedium
                                                   ?.copyWith(
@@ -753,669 +287,1612 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                               filled: false,
                                               contentPadding:
                                                   const EdgeInsets.symmetric(
-                                                vertical: 10,
+                                                // vertical: 10,
                                                 horizontal: 10,
                                               ),
                                             ),
                                           )
-                                        : Text(
-                                            context
-                                                        .watch<SOCon>()
-                                                        .getselectedcust!
-                                                        .name ==
-                                                    null
-                                                ? ""
-                                                : context
-                                                    .watch<SOCon>()
-                                                    .getselectedcust!
-                                                    .name
-                                                    .toString(),
-                                            maxLines: 1,
-                                            style: theme.textTheme.bodyLarge
-                                                ?.copyWith(
-                                                    color: Colors.black,
-                                                    fontSize: 20),
-                                          ),
+                                        : Container()),
+                              ],
+                            )),
+                        SizedBox(
+                            height: widget.custHeight * 0.16,
+                            width: widget.custWidth * 0.3,
+                            child: context.read<SOCon>().selectedcust2 !=
+                                        null &&
+                                    context
+                                            .read<SOCon>()
+                                            .selectedcust2!
+                                            .paymentGroup !=
+                                        null &&
+                                    context
+                                            .read<SOCon>()
+                                            .selectedcust2!
+                                            .paymentGroup!
+                                            .contains('cash') ==
+                                        true
+                                ? TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return '';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    onEditingComplete: () {
+                                      // context
+                                      //         .read<PosController>()
+                                      //         .selectedcust!
+                                      //         .name =
+                                      //     context
+                                      //         .read<
+                                      //             PosController>()
+                                      //         .custNameController
+                                      //         .text;
+                                      context
+                                          .read<SOCon>()
+                                          .disableKeyBoard(context);
+                                    },
+                                    controller:
+                                        context.read<SOCon>().vatNoController,
+                                    decoration: InputDecoration(
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      hintText: 'VAT no',
+                                      hintStyle: widget
+                                          .theme.textTheme.bodyMedium
+                                          ?.copyWith(color: Colors.grey),
+                                      filled: false,
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                        // vertical: 10,
+                                        horizontal: 10,
+                                      ),
+                                    ),
+                                  )
+                                : Container()),
+                        SizedBox(
+                          height: widget.custHeight * 0.01,
+                        ),
+                        SizedBox(
+                          width: widget.custWidth,
+                          child: Row(
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.phone,
+                                    color: Colors.black54,
                                   ),
-                                  InkWell(
-                                      onTap: () {
-                                        if (context.read<SOCon>().cpyfrmsq ==
-                                                true ||
-                                            context.read<SOCon>().editqty ==
-                                                true) {
-                                          context
+                                  Text(
+                                      context
                                               .read<SOCon>()
-                                              .clearData(context, theme);
-                                          context
-                                              .read<SOCon>()
-                                              .scanneditemData = [];
-                                          context.read<SOCon>().cpyfrmsq =
-                                              false;
-                                          context.read<SOCon>().editqty = false;
-                                        } else {
-                                          context
-                                              .read<SOCon>()
-                                              .clearData(context, theme);
-                                        }
-                                      },
-                                      child: Container(
-                                        width: widget.custWidth * 0.06,
-                                        alignment: Alignment.center,
-                                        child: const Icon(Icons.close_sharp),
-                                      )),
+                                              .getselectedcust2!
+                                              .phNo!
+                                              .isNotEmpty
+                                          ? " ${context.watch<SOCon>().getselectedcust2!.phNo}  |  "
+                                          : '',
+                                      style: theme.textTheme.bodyLarge
+                                          ?.copyWith(color: Colors.black54)),
                                 ],
-                              )),
-                          SizedBox(
-                            height: widget.custHeight * 0.01,
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.mail_outline,
+                                    color: Colors.black54,
+                                  ),
+                                  Text(
+                                      context
+                                              .watch<SOCon>()
+                                              .getselectedcust2!
+                                              .email!
+                                              .isNotEmpty
+                                          ? " ${context.watch<SOCon>().getselectedcust2!.email}"
+                                          : "",
+                                      style: theme.textTheme.bodyLarge
+                                          ?.copyWith(color: Colors.black54)),
+                                ],
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: widget.custWidth,
-                            child: Row(
-                              children: [
-                                Row(
+                        ),
+                        SizedBox(
+                          height: widget.custHeight * 0.01,
+                        ),
+                        SizedBox(
+                          width: widget.custWidth,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: widget.custWidth * 0.465,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Icon(
-                                      Icons.phone,
-                                      color: Colors.black54,
-                                    ),
-                                    Text(
-                                        context
-                                                .watch<SOCon>()
-                                                .getselectedcust!
-                                                .phNo!
-                                                .isNotEmpty
-                                            ? " ${context.watch<SOCon>().getselectedcust!.phNo}  |  "
-                                            : '',
+                                    Text("GST",
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.mail_outline,
-                                      color: Colors.black54,
-                                    ),
-                                    Text(
-                                        context
-                                                        .watch<SOCon>()
-                                                        .getselectedcust!
-                                                        .email ==
-                                                    null ||
-                                                context
-                                                        .watch<SOCon>()
-                                                        .getselectedcust!
-                                                        .email ==
-                                                    'null' ||
-                                                context
-                                                    .watch<SOCon>()
-                                                    .getselectedcust!
-                                                    .email!
-                                                    .isEmpty
-                                            ? ""
-                                            : " ${context.watch<SOCon>().getselectedcust!.email}",
-                                        style: theme.textTheme.bodyLarge
-                                            ?.copyWith(color: Colors.black54)),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: widget.custHeight * 0.01,
-                          ),
-                          SizedBox(
-                            width: widget.custWidth,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: widget.custWidth * 0.465,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("GST",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                          right: widget.custWidth * 0.02,
-                                        ),
-                                        child: Text(
-                                            context
-                                                            .watch<SOCon>()
-                                                            .getselectedcust!
-                                                            .tarNo ==
-                                                        null ||
-                                                    context
-                                                            .watch<SOCon>()
-                                                            .getselectedcust!
-                                                            .tarNo ==
-                                                        'null' ||
-                                                    context
-                                                        .watch<SOCon>()
-                                                        .getselectedcust!
-                                                        .tarNo!
-                                                        .isEmpty
-                                                ? ""
-                                                : "${context.watch<SOCon>().getselectedcust!.tarNo}",
-                                            style: theme.textTheme.bodyLarge
-                                                ?.copyWith(
-                                                    color: Colors.black54)),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        right: widget.custWidth * 0.02,
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  width: widget.custWidth * 0.465,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Balance",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                      Text(
-                                          context
-                                                          .watch<SOCon>()
-                                                          .getselectedcust !=
-                                                      null &&
-                                                  (context
-                                                              .watch<SOCon>()
-                                                              .getselectedcust!
-                                                              .accBalance !=
-                                                          null ||
-                                                      context
-                                                              .watch<SOCon>()
-                                                              .getselectedcust!
-                                                              .accBalance !=
-                                                          0)
-                                              ? context
-                                                  .watch<SOCon>()
-                                                  .config
-                                                  .splitValues(context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .accBalance!
-                                                      .toStringAsFixed(2))
-                                              : '0.00',
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: widget.custHeight * 0.01,
-                          ),
-                          SizedBox(
-                            width: widget.custWidth,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: widget.custWidth * 0.465,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Code#",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                          right: widget.custWidth * 0.02,
-                                        ),
-                                        child: Text(
-                                            "${context.watch<SOCon>().getselectedcust!.cardCode}",
-                                            style: theme.textTheme.bodyLarge
-                                                ?.copyWith(
-                                                    color: Colors.black54)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  width: widget.custWidth * 0.465,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Points",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                      Text(
+                                      child: Text(
                                           context
                                                   .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .point!
+                                                  .getselectedcust2!
+                                                  .tarNo!
                                                   .isNotEmpty
-                                              ? "${context.watch<SOCon>().getselectedcust!.point}"
+                                              ? "${context.watch<SOCon>().getselectedcust2!.tarNo}"
                                               : "",
                                           style: theme.textTheme.bodyLarge
                                               ?.copyWith(
                                                   color: Colors.black54)),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: widget.custHeight * 0.01,
-                          ),
-                          SizedBox(
-                            width: widget.custWidth,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: widget.custWidth * 0.465,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Credit Limit",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                      context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .creditLimits !=
-                                              null
-                                          ? Container(
-                                              padding: EdgeInsets.only(
-                                                right: widget.custWidth * 0.02,
-                                              ),
-                                              child: Text(
-                                                  "${config.splitValues(context.watch<SOCon>().getselectedcust!.creditLimits!.toStringAsFixed(2))}",
-                                                  style: theme
-                                                      .textTheme.bodyLarge
-                                                      ?.copyWith(
-                                                          color:
-                                                              Colors.black54)),
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  width: widget.custWidth * 0.465,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("Credit Days",
-                                          style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  color: Colors.black54)),
-                                      context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .creditDays !=
-                                              null
-                                          ? Text(
-                                              "${context.watch<SOCon>().getselectedcust!.creditDays}",
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54))
-                                          : Container(),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: widget.custHeight * 0.01,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  // context.read<SOCon>().clearTextField();
-                                  // billAddress(context);
-                                  // await context.read<SOCon>().billaddresslist();
-                                  // context
-                                  //     .read<SOCon>()
-                                  //     .disableKeyBoard(context);
-                                },
-                                child: SizedBox(
-                                  width: widget.custWidth * 0.465,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: widget.custWidth * 0.465,
-                                        padding: EdgeInsets.only(
-                                            right: widget.custWidth * 0.02),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Billing Address",
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
-                                          ],
-                                        ),
-                                      ),
-                                      context.watch<SOCon>().getselectedcust !=
-                                                      null &&
-                                                  context
-                                                          .watch<SOCon>()
-                                                          .getselectedcust!
-                                                          .address ==
-                                                      null ||
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .address!
-                                                  .isEmpty
-                                          ? Container()
-                                          : Text(
-                                              " ${context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address1!.isNotEmpty ? context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address1.toString() : ""},"
-                                              "${context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address2!.isNotEmpty ? context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address2.toString() : ""},"
-                                              " ${context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address3!.isNotEmpty ? context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address3.toString() : ""}",
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            ),
-                                      context.watch<SOCon>().getselectedcust !=
-                                                  null &&
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .address!
-                                                  .isNotEmpty
-                                          ? Text(
-                                              context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedBillAdress!]
-                                                      .billCity
-                                                      .isNotEmpty
-                                                  ? context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedBillAdress!]
-                                                      .billCity
-                                                      .toString()
-                                                  : "",
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            )
-                                          : Container(),
-                                      context.watch<SOCon>().getselectedcust !=
-                                                  null &&
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .address!
-                                                  .isNotEmpty
-                                          ? Text(
-                                              context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedBillAdress!]
-                                                      .billPincode
-                                                      .isNotEmpty
-                                                  ? context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedBillAdress!]
-                                                      .billPincode
-                                                      .toString()
-                                                  : '',
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            )
-                                          : Container(),
-                                      context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address ==
-                                                  null ||
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust!
-                                                  .address!
-                                                  .isEmpty
-                                          ? Container()
-                                          : Text(
-                                              context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedBillAdress!]
-                                                      .billstate
-                                                      .isNotEmpty
-                                                  ? context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedBillAdress!]
-                                                      .billstate
-                                                      .toString()
-                                                  : '',
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  // context.read<SOCon>().clearTextField();
-                                  // sipaddress(context);
-                                  // await context
-                                  //     .read<SOCon>()
-                                  //     .shippinfaddresslist();
-                                  // context
-                                  //     .read<SOCon>()
-                                  //     .disableKeyBoard(context);
-                                },
-                                child: SizedBox(
-                                  width: widget.custWidth * 0.465,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: widget.custWidth * 0.465,
-                                        padding: EdgeInsets.only(
-                                            right: widget.custWidth * 0.02),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Shipping Address",
-                                              maxLines: 2,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
-                                          ],
-                                        ),
-                                      ),
-                                      context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55 !=
-                                                  null &&
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust55!
-                                                  .address!
-                                                  .isNotEmpty
-                                          ? Text(
-                                              " ${context.watch<SOCon>().getselectedcust55!.address != null || context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address1!.isNotEmpty ? context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address1.toString() : ""},"
-                                              "${context.watch<SOCon>().getselectedcust55!.address != null || context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address2!.isNotEmpty ? context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address2.toString() : ""},"
-                                              " ${context.watch<SOCon>().getselectedcust55!.address != null || context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address3!.isNotEmpty ? context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address3.toString() : ""}",
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            )
-                                          : Container(),
-                                      context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55 !=
-                                                  null &&
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust55!
-                                                  .address!
-                                                  .isNotEmpty
-                                          ? Text(
-                                              context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedShipAdress!]
-                                                      .billCity
-                                                      .isNotEmpty
-                                                  ? context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedShipAdress!]
-                                                      .billCity
-                                                      .toString()
-                                                  : '',
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            )
-                                          : Container(),
-                                      context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55 !=
-                                                  null &&
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust55!
-                                                  .address!
-                                                  .isNotEmpty
-                                          ? Text(
-                                              context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedShipAdress!]
-                                                      .billPincode
-                                                      .isNotEmpty
-                                                  ? context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedShipAdress!]
-                                                      .billPincode
-                                                      .toString()
-                                                  : '',
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            )
-                                          : Container(),
-                                      context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55 !=
-                                                  null &&
-                                              context
-                                                  .watch<SOCon>()
-                                                  .getselectedcust55!
-                                                  .address!
-                                                  .isNotEmpty
-                                          ? Text(
-                                              context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedShipAdress!]
-                                                      .billstate
-                                                      .isNotEmpty
-                                                  ? context
-                                                      .watch<SOCon>()
-                                                      .getselectedcust55!
-                                                      .address![context
-                                                          .watch<SOCon>()
-                                                          .getselectedShipAdress!]
-                                                      .billstate
-                                                      .toString()
-                                                  : '',
-                                              maxLines: 1,
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                      color: Colors.black54),
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                width: widget.custWidth * 0.465,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Balance",
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                    Text(
+                                        context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .accBalance! !=
+                                                0
+                                            ? context
+                                                .watch<SOCon>()
+                                                .config
+                                                .splitValues(context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .accBalance
+                                                    .toString())
+                                            : '0.00',
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                  ],
                                 ),
                               ),
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: widget.custHeight * 0.01,
+                        ),
+                        SizedBox(
+                          width: widget.custWidth,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: widget.custWidth * 0.465,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Code#",
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        right: widget.custWidth * 0.02,
+                                      ),
+                                      child: Text(
+                                          "${context.watch<SOCon>().getselectedcust2!.cardCode}",
+                                          style: theme.textTheme.bodyLarge
+                                              ?.copyWith(
+                                                  color: Colors.black54)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                width: widget.custWidth * 0.465,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Points",
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                    Text(
+                                        context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .point!
+                                                .isNotEmpty
+                                            ? "${context.watch<SOCon>().getselectedcust2!.point}"
+                                            : "",
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: widget.custHeight * 0.01,
+                        ),
+                        SizedBox(
+                          width: widget.custWidth,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: widget.custWidth * 0.465,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Credit Limit",
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .creditLimits !=
+                                            null
+                                        ? Container(
+                                            padding: EdgeInsets.only(
+                                              right: widget.custWidth * 0.02,
+                                            ),
+                                            child: Text(
+                                                "${config.splitValues(context.watch<SOCon>().getselectedcust2!.creditLimits!.toStringAsFixed(2))}",
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54)),
+                                          )
+                                        : Container(),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                width: widget.custWidth * 0.465,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Credit Days",
+                                        style: theme.textTheme.bodyLarge
+                                            ?.copyWith(color: Colors.black54)),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .creditDays !=
+                                            null
+                                        ? Text(
+                                            "${context.watch<SOCon>().getselectedcust2!.creditDays}",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54))
+                                        : Container(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: SizedBox(
+                                width: widget.custWidth * 0.465,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: widget.custWidth * 0.465,
+                                      padding: EdgeInsets.only(
+                                          right: widget.custWidth * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Billing Address",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          ),
+                                          // SizedBox(
+                                          //     width: widget.custWidth * 0.04,
+                                          //     child: const Icon(
+                                          //       Icons.arrow_drop_down,
+                                          //       size: 30,
+                                          //     ))
+                                        ],
+                                      ),
+                                    ),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .address!
+                                                .isEmpty ||
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address ==
+                                                null
+                                        ? Container()
+                                        : Text(
+                                            " ${context.watch<SOCon>().getselectedcust2!.address![0].address1!.isNotEmpty ? context.watch<SOCon>().getselectedcust2!.address![0].address1.toString() : ""},"
+                                            "${context.watch<SOCon>().getselectedcust2!.address![0].address2!.isNotEmpty ? context.watch<SOCon>().getselectedcust2!.address![0].address2.toString() : ""},"
+                                            " ${context.watch<SOCon>().getselectedcust2!.address![0].address3!.isNotEmpty ? context.watch<SOCon>().getselectedcust2!.address![0].address3.toString() : ""}",
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          ),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .address!
+                                                .isEmpty ||
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address ==
+                                                null
+                                        ? Container()
+                                        : Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address![0]
+                                                    .billCity
+                                                    .isNotEmpty
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address![0]
+                                                    .billCity
+                                                    .toString()
+                                                : "",
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          ),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .address!
+                                                .isEmpty ||
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address ==
+                                                null
+                                        ? Container()
+                                        : Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address![0]
+                                                    .billPincode
+                                                    .isNotEmpty
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address![0]
+                                                    .billPincode
+                                                    .toString()
+                                                : '',
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          ),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust2!
+                                                .address!
+                                                .isEmpty ||
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address ==
+                                                null
+                                        ? Container()
+                                        : Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address![0]
+                                                    .billstate
+                                                    .isNotEmpty
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust2!
+                                                    .address![0]
+                                                    .billstate
+                                                    .toString()
+                                                : '',
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: SizedBox(
+                                width: widget.custWidth * 0.465,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: widget.custWidth * 0.465,
+                                      padding: EdgeInsets.only(
+                                          right: widget.custWidth * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Shipping Address",
+                                            maxLines: 2,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          ),
+                                          // SizedBox(
+                                          //     width: widget.custWidth * 0.04,
+                                          //     child: const Icon(
+                                          //       Icons.arrow_drop_down,
+                                          //       size: 30,
+                                          //     ))
+                                        ],
+                                      ),
+                                    ),
+                                    context
+                                                .watch<SOCon>()
+                                                .getselectedcust25!
+                                                .address!
+                                                .isNotEmpty ||
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address ==
+                                                null
+                                        ? Text(
+                                            " ${context.read<SOCon>().getselectedcust25!.address![0].address1!.isNotEmpty || context.read<SOCon>().getselectedcust25!.address![0].address1 != null ? context.watch<SOCon>().getselectedcust25!.address![0].address1.toString() : ""},"
+                                            "${context.read<SOCon>().getselectedcust25!.address![0].address2!.isNotEmpty || context.read<SOCon>().getselectedcust25!.address![0].address2 != null ? context.watch<SOCon>().getselectedcust25!.address![0].address2.toString() : ""},"
+                                            "${context.read<SOCon>().getselectedcust25!.address![0].address3!.isNotEmpty || context.read<SOCon>().getselectedcust25!.address![0].address3 != null ? context.watch<SOCon>().getselectedcust25!.address![0].address3.toString() : ""}",
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          )
+                                        : Container(),
+                                    context
+                                            .watch<SOCon>()
+                                            .getselectedcust25!
+                                            .address!
+                                            .isNotEmpty
+                                        ? Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address![0]
+                                                    .billCity
+                                                    .isNotEmpty
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address![0]
+                                                    .billCity
+                                                    .toString()
+                                                : '',
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          )
+                                        : Container(),
+                                    context
+                                            .watch<SOCon>()
+                                            .getselectedcust25!
+                                            .address!
+                                            .isNotEmpty
+                                        ? Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address![0]
+                                                    .billPincode
+                                                    .isNotEmpty
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address![0]
+                                                    .billPincode
+                                                    .toString()
+                                                : '',
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          )
+                                        : Container(),
+                                    context
+                                            .watch<SOCon>()
+                                            .getselectedcust25!
+                                            .address!
+                                            .isNotEmpty
+                                        ? Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address![0]
+                                                    .billstate
+                                                    .isNotEmpty
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust25!
+                                                    .address![0]
+                                                    .billstate
+                                                    .toString()
+                                                : '',
+                                            maxLines: 1,
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54),
+                                          )
+                                        : Container(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-        ],
-      ),
+                  )
+                : context.watch<SOCon>().getselectedcust == null
+                    ? Container(
+                        height: widget.custHeight * 1.14,
+                        padding: EdgeInsets.symmetric(
+                            vertical: widget.custHeight * 0.02,
+                            horizontal: widget.custWidth * 0.02),
+                        child: SingleChildScrollView(
+                          child: Wrap(
+                              spacing: 10.0,
+                              runSpacing: 10.0,
+                              children: listContainersProduct(
+                                context,
+                                theme,
+                              )),
+                        ),
+                      )
+                    : Container(
+                        color: Colors.grey[50],
+                        padding: EdgeInsets.symmetric(
+                            // vertical: widget.custHeight * 0.02,
+                            horizontal: widget.custWidth * 0.02),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                                width: widget.custWidth,
+                                alignment: Alignment.centerRight,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: widget.custWidth * 0.55,
+                                          height: widget.custHeight * 0.16,
+                                          child: context
+                                                          .read<SOCon>()
+                                                          .selectedcust !=
+                                                      null &&
+                                                  context
+                                                          .read<SOCon>()
+                                                          .selectedcust!
+                                                          .paymentGroup !=
+                                                      null &&
+                                                  context
+                                                          .read<SOCon>()
+                                                          .selectedcust!
+                                                          .paymentGroup!
+                                                          .contains('cash') ==
+                                                      true
+                                              ? TextFormField(
+                                                  onEditingComplete: () {
+                                                    context
+                                                            .read<SOCon>()
+                                                            .selectedcust!
+                                                            .name =
+                                                        context
+                                                            .read<SOCon>()
+                                                            .custNameController
+                                                            .text;
+                                                    context
+                                                        .read<SOCon>()
+                                                        .disableKeyBoard(
+                                                            context);
+                                                  },
+                                                  controller: context
+                                                      .read<SOCon>()
+                                                      .custNameController,
+                                                  decoration: InputDecoration(
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                    ),
+                                                    hintText: 'Name',
+                                                    // labelText: 'Name',
+                                                    hintStyle: widget.theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
+                                                            color: Colors.grey),
+                                                    filled: false,
+                                                    contentPadding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                      vertical: 5,
+                                                      horizontal: 10,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Text(
+                                                  context
+                                                              .watch<SOCon>()
+                                                              .getselectedcust!
+                                                              .name ==
+                                                          null
+                                                      ? ""
+                                                      : context
+                                                          .watch<SOCon>()
+                                                          .getselectedcust!
+                                                          .name
+                                                          .toString(),
+                                                  maxLines: 1,
+                                                  style: theme
+                                                      .textTheme.bodyLarge
+                                                      ?.copyWith(
+                                                          color: Colors.black,
+                                                          fontSize: 20),
+                                                ),
+                                        ),
+                                        SizedBox(
+                                            height: widget.custHeight * 0.16,
+                                            width: widget.custWidth * 0.3,
+                                            child: context
+                                                            .watch<SOCon>()
+                                                            .getselectedcust !=
+                                                        null &&
+                                                    context
+                                                            .watch<SOCon>()
+                                                            .getselectedcust!
+                                                            .paymentGroup !=
+                                                        null &&
+                                                    context
+                                                            .watch<SOCon>()
+                                                            .getselectedcust!
+                                                            .paymentGroup!
+                                                            .contains('cash') ==
+                                                        true
+                                                ? TextFormField(
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return '';
+                                                      } else {
+                                                        return null;
+                                                      }
+                                                    },
+                                                    onEditingComplete: () {
+                                                      // context
+                                                      //         .read<PosController>()
+                                                      //         .selectedcust!
+                                                      //         .name =
+                                                      //     context
+                                                      //         .read<
+                                                      //             PosController>()
+                                                      //         .custNameController
+                                                      //         .text;
+                                                      context
+                                                          .watch<SOCon>()
+                                                          .disableKeyBoard(
+                                                              context);
+                                                    },
+                                                    controller: context
+                                                        .watch<SOCon>()
+                                                        .tinNoController,
+                                                    decoration: InputDecoration(
+                                                      errorBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color:
+                                                                    Colors.red),
+                                                      ),
+                                                      focusedErrorBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color:
+                                                                    Colors.red),
+                                                      ),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .grey),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .grey),
+                                                      ),
+                                                      hintText: 'Tin no',
+                                                      // labelText: 'Tin no',
+                                                      hintStyle: widget.theme
+                                                          .textTheme.bodyMedium
+                                                          ?.copyWith(
+                                                              color:
+                                                                  Colors.grey),
+                                                      filled: false,
+                                                      contentPadding:
+                                                          const EdgeInsets
+                                                              .symmetric(
+                                                        // vertical: 10,
+                                                        horizontal: 10,
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Container()),
+                                        InkWell(
+                                            onTap: () {
+                                              if (context
+                                                          .read<SOCon>()
+                                                          .cpyfrmsq ==
+                                                      true ||
+                                                  context
+                                                          .read<SOCon>()
+                                                          .editqty ==
+                                                      true) {
+                                                context
+                                                    .read<SOCon>()
+                                                    .clearData(context, theme);
+                                                context
+                                                    .read<SOCon>()
+                                                    .scanneditemData = [];
+                                                context.read<SOCon>().cpyfrmsq =
+                                                    false;
+                                                context.read<SOCon>().editqty =
+                                                    false;
+                                              } else {
+                                                context
+                                                    .read<SOCon>()
+                                                    .clearData(context, theme);
+                                              }
+                                            },
+                                            child: Container(
+                                              width: widget.custWidth * 0.06,
+                                              alignment: Alignment.center,
+                                              child:
+                                                  const Icon(Icons.close_sharp),
+                                            )),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                        height: Screens.padingHeight(context) *
+                                            0.01),
+                                    SizedBox(
+                                        height: widget.custHeight * 0.16,
+                                        width: widget.custWidth * 0.3,
+                                        child: context
+                                                        .read<SOCon>()
+                                                        .selectedcust !=
+                                                    null &&
+                                                context
+                                                        .read<SOCon>()
+                                                        .selectedcust!
+                                                        .paymentGroup !=
+                                                    null &&
+                                                context
+                                                        .read<SOCon>()
+                                                        .selectedcust!
+                                                        .paymentGroup!
+                                                        .contains('cash') ==
+                                                    true
+                                            ? TextFormField(
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return '';
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                                onEditingComplete: () {
+                                                  // context
+                                                  //         .read<PosController>()
+                                                  //         .selectedcust!
+                                                  //         .name =
+                                                  //     context
+                                                  //         .read<
+                                                  //             PosController>()
+                                                  //         .custNameController
+                                                  //         .text;
+                                                  context
+                                                      .read<SOCon>()
+                                                      .disableKeyBoard(context);
+                                                },
+                                                controller: context
+                                                    .read<SOCon>()
+                                                    .vatNoController,
+                                                decoration: InputDecoration(
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.red),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.red),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  ),
+                                                  hintText: 'VAT no',
+                                                  // labelText: 'VAT no',
+                                                  hintStyle: widget.theme
+                                                      .textTheme.bodyMedium
+                                                      ?.copyWith(
+                                                          color: Colors.grey),
+                                                  filled: false,
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                          .symmetric(
+                                                    // vertical: 10,
+                                                    horizontal: 10,
+                                                  ),
+                                                ),
+                                              )
+                                            : Container())
+                                  ],
+                                )),
+                            SizedBox(
+                              height: widget.custHeight * 0.01,
+                            ),
+                            SizedBox(
+                              width: widget.custWidth,
+                              child: Row(
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.phone,
+                                        color: Colors.black54,
+                                      ),
+                                      Text(
+                                          context
+                                                  .watch<SOCon>()
+                                                  .getselectedcust!
+                                                  .phNo!
+                                                  .isNotEmpty
+                                              ? " ${context.watch<SOCon>().getselectedcust!.phNo}  |  "
+                                              : '',
+                                          style: theme.textTheme.bodyLarge
+                                              ?.copyWith(
+                                                  color: Colors.black54)),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.mail_outline,
+                                        color: Colors.black54,
+                                      ),
+                                      Text(
+                                          context
+                                                          .watch<SOCon>()
+                                                          .getselectedcust!
+                                                          .email ==
+                                                      null ||
+                                                  context
+                                                          .watch<SOCon>()
+                                                          .getselectedcust!
+                                                          .email ==
+                                                      'null' ||
+                                                  context
+                                                      .watch<SOCon>()
+                                                      .getselectedcust!
+                                                      .email!
+                                                      .isEmpty
+                                              ? ""
+                                              : " ${context.watch<SOCon>().getselectedcust!.email}",
+                                          style: theme.textTheme.bodyLarge
+                                              ?.copyWith(
+                                                  color: Colors.black54)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: widget.custHeight * 0.01,
+                            ),
+                            SizedBox(
+                              width: widget.custWidth,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: widget.custWidth * 0.465,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("GST",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                            right: widget.custWidth * 0.02,
+                                          ),
+                                          child: Text(
+                                              context
+                                                              .watch<SOCon>()
+                                                              .getselectedcust!
+                                                              .tarNo ==
+                                                          null ||
+                                                      context
+                                                              .watch<SOCon>()
+                                                              .getselectedcust!
+                                                              .tarNo ==
+                                                          'null' ||
+                                                      context
+                                                          .watch<SOCon>()
+                                                          .getselectedcust!
+                                                          .tarNo!
+                                                          .isEmpty
+                                                  ? ""
+                                                  : "${context.watch<SOCon>().getselectedcust!.tarNo}",
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      color: Colors.black54)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    width: widget.custWidth * 0.465,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Balance",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                        Text(
+                                            context
+                                                            .watch<SOCon>()
+                                                            .getselectedcust !=
+                                                        null &&
+                                                    (context
+                                                                .watch<SOCon>()
+                                                                .getselectedcust!
+                                                                .accBalance !=
+                                                            null ||
+                                                        context
+                                                                .watch<SOCon>()
+                                                                .getselectedcust!
+                                                                .accBalance !=
+                                                            0)
+                                                ? context
+                                                    .watch<SOCon>()
+                                                    .config
+                                                    .splitValues(context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .accBalance!
+                                                        .toStringAsFixed(2))
+                                                : '0.00',
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: widget.custHeight * 0.01,
+                            ),
+                            SizedBox(
+                              width: widget.custWidth,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: widget.custWidth * 0.465,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Code#",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                            right: widget.custWidth * 0.02,
+                                          ),
+                                          child: Text(
+                                              "${context.watch<SOCon>().getselectedcust!.cardCode}",
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      color: Colors.black54)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    width: widget.custWidth * 0.465,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Points",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                        Text(
+                                            context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .point!
+                                                    .isNotEmpty
+                                                ? "${context.watch<SOCon>().getselectedcust!.point}"
+                                                : "",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: widget.custHeight * 0.01,
+                            ),
+                            SizedBox(
+                              width: widget.custWidth,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: widget.custWidth * 0.465,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Credit Limit",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                        context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .creditLimits !=
+                                                null
+                                            ? Container(
+                                                padding: EdgeInsets.only(
+                                                  right:
+                                                      widget.custWidth * 0.02,
+                                                ),
+                                                child: Text(
+                                                    "${config.splitValues(context.watch<SOCon>().getselectedcust!.creditLimits!.toStringAsFixed(2))}",
+                                                    style: theme
+                                                        .textTheme.bodyLarge
+                                                        ?.copyWith(
+                                                            color: Colors
+                                                                .black54)),
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    width: widget.custWidth * 0.465,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Credit Days",
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                                    color: Colors.black54)),
+                                        context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .creditDays !=
+                                                null
+                                            ? Text(
+                                                "${context.watch<SOCon>().getselectedcust!.creditDays}",
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54))
+                                            : Container(),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: widget.custHeight * 0.01,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () async {
+                                    // context.read<SOCon>().clearTextField();
+                                    // billAddress(context);
+                                    // await context.read<SOCon>().billaddresslist();
+                                    // context
+                                    //     .read<SOCon>()
+                                    //     .disableKeyBoard(context);
+                                  },
+                                  child: SizedBox(
+                                    width: widget.custWidth * 0.465,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: widget.custWidth * 0.465,
+                                          padding: EdgeInsets.only(
+                                              right: widget.custWidth * 0.02),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Billing Address",
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              ),
+                                              // SizedBox(
+                                              //     width: widget.custWidth * 0.04,
+                                              //     child: const Icon(
+                                              //       Icons.arrow_drop_down,
+                                              //       size: 30,
+                                              //     ))
+                                            ],
+                                          ),
+                                        ),
+                                        context
+                                                            .watch<SOCon>()
+                                                            .getselectedcust !=
+                                                        null &&
+                                                    context
+                                                            .watch<SOCon>()
+                                                            .getselectedcust!
+                                                            .address ==
+                                                        null ||
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .address!
+                                                    .isEmpty
+                                            ? Container()
+                                            : Text(
+                                                " ${context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address1!.isNotEmpty ? context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address1.toString() : ""},"
+                                                "${context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address2!.isNotEmpty ? context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address2.toString() : ""},"
+                                                " ${context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address3!.isNotEmpty ? context.watch<SOCon>().getselectedcust!.address![context.watch<SOCon>().getselectedBillAdress!].address3.toString() : ""}",
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              ),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust !=
+                                                    null &&
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .address!
+                                                    .isNotEmpty
+                                            ? Text(
+                                                context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedBillAdress!]
+                                                        .billCity
+                                                        .isNotEmpty
+                                                    ? context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedBillAdress!]
+                                                        .billCity
+                                                        .toString()
+                                                    : "",
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              )
+                                            : Container(),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust !=
+                                                    null &&
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .address!
+                                                    .isNotEmpty
+                                            ? Text(
+                                                context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedBillAdress!]
+                                                        .billPincode
+                                                        .isNotEmpty
+                                                    ? context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedBillAdress!]
+                                                        .billPincode
+                                                        .toString()
+                                                    : '',
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              )
+                                            : Container(),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address ==
+                                                    null ||
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust!
+                                                    .address!
+                                                    .isEmpty
+                                            ? Container()
+                                            : Text(
+                                                context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedBillAdress!]
+                                                        .billstate
+                                                        .isNotEmpty
+                                                    ? context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedBillAdress!]
+                                                        .billstate
+                                                        .toString()
+                                                    : '',
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    // context.read<SOCon>().clearTextField();
+                                    // sipaddress(context);
+                                    // await context
+                                    //     .read<SOCon>()
+                                    //     .shippinfaddresslist();
+                                    // context
+                                    //     .read<SOCon>()
+                                    //     .disableKeyBoard(context);
+                                  },
+                                  child: SizedBox(
+                                    width: widget.custWidth * 0.465,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: widget.custWidth * 0.465,
+                                          padding: EdgeInsets.only(
+                                              right: widget.custWidth * 0.02),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Shipping Address",
+                                                maxLines: 2,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              ),
+                                              // SizedBox(
+                                              //     width: widget.custWidth * 0.04,
+                                              //     child: const Icon(
+                                              //       Icons.arrow_drop_down,
+                                              //       size: 30,
+                                              //     ))
+                                            ],
+                                          ),
+                                        ),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55 !=
+                                                    null &&
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust55!
+                                                    .address!
+                                                    .isNotEmpty
+                                            ? Text(
+                                                " ${context.watch<SOCon>().getselectedcust55!.address != null || context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address1!.isNotEmpty ? context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address1.toString() : ""},"
+                                                "${context.watch<SOCon>().getselectedcust55!.address != null || context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address2!.isNotEmpty ? context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address2.toString() : ""},"
+                                                " ${context.watch<SOCon>().getselectedcust55!.address != null || context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address3!.isNotEmpty ? context.watch<SOCon>().getselectedcust55!.address![context.watch<SOCon>().getselectedShipAdress!].address3.toString() : ""}",
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              )
+                                            : Container(),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55 !=
+                                                    null &&
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust55!
+                                                    .address!
+                                                    .isNotEmpty
+                                            ? Text(
+                                                context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedShipAdress!]
+                                                        .billCity
+                                                        .isNotEmpty
+                                                    ? context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedShipAdress!]
+                                                        .billCity
+                                                        .toString()
+                                                    : '',
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              )
+                                            : Container(),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55 !=
+                                                    null &&
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust55!
+                                                    .address!
+                                                    .isNotEmpty
+                                            ? Text(
+                                                context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedShipAdress!]
+                                                        .billPincode
+                                                        .isNotEmpty
+                                                    ? context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedShipAdress!]
+                                                        .billPincode
+                                                        .toString()
+                                                    : '',
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              )
+                                            : Container(),
+                                        context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55 !=
+                                                    null &&
+                                                context
+                                                    .watch<SOCon>()
+                                                    .getselectedcust55!
+                                                    .address!
+                                                    .isNotEmpty
+                                            ? Text(
+                                                context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedShipAdress!]
+                                                        .billstate
+                                                        .isNotEmpty
+                                                    ? context
+                                                        .watch<SOCon>()
+                                                        .getselectedcust55!
+                                                        .address![context
+                                                            .watch<SOCon>()
+                                                            .getselectedShipAdress!]
+                                                        .billstate
+                                                        .toString()
+                                                    : '',
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black54),
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+          ],
+        );
+      }),
     );
   }
 
@@ -1480,8 +1957,8 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                               bottom: widget.custHeight * 0.03),
                           child: StatefulBuilder(builder: (context, st) {
                             return ListTile(
-                              onTap: () async {
-                                setState(() {
+                              onTap: () {
+                                st(() {
                                   Get.back();
                                   context.read<SOCon>().custSelected(
                                       context

@@ -348,6 +348,19 @@ class BottomButtonsState extends State<BottomButtons> {
                                       .read<PosController>()
                                       .paymentWay2
                                       .clear();
+
+                                  context
+                                      .read<PosController>()
+                                      .tinNoController
+                                      .text = '';
+                                  context
+                                      .read<PosController>()
+                                      .vatNoController
+                                      .text = '';
+                                  context
+                                      .read<PosController>()
+                                      .custNameController
+                                      .text = '';
                                   context.read<PosController>().totalPayment2 =
                                       null;
                                   context.read<PosController>().injectToDb();
@@ -520,7 +533,7 @@ class BottomButtonsState extends State<BottomButtons> {
                                                                 context
                                                                     .read<
                                                                         PosController>()
-                                                                    .showaopenOrderLines();
+                                                                    .showopenOrderLines();
 
                                                                 st(() {
                                                                   if (context

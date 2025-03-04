@@ -9,6 +9,9 @@ import '../../Models/ServiceLayerModel/SapSalesQuotation/SalesQuotPostModel.dart
 class SalesQuotPostAPi {
   static String? sessionID;
   static String? cardCodePost;
+  static String? cardNamePost;
+  static String? vatNo;
+  static String? tinNo;
   static List<QuatationLines>? docLineQout;
   static String? docDate;
   static String? dueDate;
@@ -18,6 +21,9 @@ class SalesQuotPostAPi {
   static void method(String? deviceTransID) {
     final data = json.encode({
       "CardCode": "$cardCodePost",
+      "CardName": "$cardNamePost",
+      "U_VAT_NUMBER": "$vatNo",
+      'U_TinNO': '$tinNo',
       "DocumentStatus": "bost_Open",
       "DocDate": "$docDate",
       "DocDueDate": "$dueDate",
@@ -36,6 +42,9 @@ class SalesQuotPostAPi {
     try {
       final data = json.encode({
         "CardCode": "$cardCodePost",
+        "CardName": "$cardNamePost",
+        "U_VAT_NUMBER": "$vatNo",
+        'U_TinNO': '$tinNo',
         "DocumentStatus": "bost_Open",
         "DocDate": "$docDate",
         "DocDueDate": "$dueDate",
@@ -58,6 +67,9 @@ class SalesQuotPostAPi {
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
+          "CardName": "$cardNamePost",
+          "U_VAT_NUMBER": "$vatNo",
+          'U_TinNO': '$tinNo',
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
           "DocDueDate": "$dueDate",
@@ -74,6 +86,9 @@ class SalesQuotPostAPi {
       log(
         "datatatat Quot: ${json.encode({
               "CardCode": "$cardCodePost",
+              "CardName": "$cardNamePost",
+              "U_VAT_NUMBER": "$vatNo",
+              'U_TinNO': '$tinNo',
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
               "DocDueDate": "$dueDate",

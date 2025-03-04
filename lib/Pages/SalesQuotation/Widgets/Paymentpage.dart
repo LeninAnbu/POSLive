@@ -127,7 +127,7 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                                   ?.copyWith())),
                             ],
                           ),
-                          SizedBox(height: widget.paymentHeight * 0.1),
+                          SizedBox(height: widget.paymentHeight * 0.05),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -185,6 +185,7 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                         ],
                       ),
                     ),
+                   
                     context
                             .watch<SalesQuotationCon>()
                             .getScanneditemData2
@@ -206,7 +207,7 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                               readOnly: true,
                               decoration: InputDecoration(
                                 filled: false,
-                                labelText: "Remarks",
+                                labelText: "Remark",
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide:
@@ -278,8 +279,9 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   borderSide:
                                       const BorderSide(color: Colors.grey),
                                 ),
+                                 isDense: true,
                                 contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 5,
+                                  vertical: 10,
                                   horizontal: 10,
                                 ),
                               ),

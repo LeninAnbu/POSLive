@@ -40,6 +40,9 @@ AppBar soAppbar(String titles, ThemeData theme, BuildContext context) {
                 context.read<SOCon>().callSearchHeaderApi();
                 context.read<SOCon>().scanneditemData2 = [];
 
+                context.read<SOCon>().selectedcust2 = null;
+                context.read<SOCon>().selectedcust25 = null;
+
                 // context.read<SOCon>().getSalesDataDatewise(
                 //     context
                 //         .read<SOCon>()
@@ -503,7 +506,15 @@ class HoldedHeader {
   String? date;
   int? docEntry;
   String? docNo;
+  String? tinNo;
+  String? vatNo;
 
   HoldedHeader(
-      {this.cardName, this.cardcode, this.date, this.docEntry, this.docNo});
+      {this.cardName,
+      this.cardcode,
+      this.date,
+      this.docEntry,
+      this.docNo,
+      required this.tinNo,
+      required this.vatNo});
 }

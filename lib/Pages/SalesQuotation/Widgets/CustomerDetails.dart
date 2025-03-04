@@ -42,75 +42,138 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
         children: [
           context.read<SalesQuotationCon>().getselectedcust2 != null
               ? Container()
-              : Container(
-                  width: widget.custWidth * 1,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 240, 235, 235)),
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.grey.withOpacity(0.001),
-                  ),
-                  child: TextFormField(
-                    onChanged: (v) {},
-                    readOnly: true,
-                    onTap: context.read<SalesQuotationCon>().editqty == true
-                        ? null
-                        : () {
-                            context.read<SalesQuotationCon>().clearTextField();
-                            context.read<SalesQuotationCon>().refresCufstList();
-                            setState(() {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) {
-                                    return StatefulBuilder(
-                                        builder: (context, st) {
-                                      return AlertDialog(
-                                          contentPadding:
-                                              const EdgeInsets.all(0),
-                                          content: AlertBox(
-                                            payMent: 'Select Customer',
-                                            widget: forSearchBtn(context),
-                                            buttonName: '',
-                                            // callback: () {
-                                            //   Navigator.pop(context);
-
-                                            //   showDialog(
-                                            //       context: context,
-                                            //       barrierDismissible: false,
-                                            //       builder: (BuildContext context) {
-                                            //         return AlertDialog(
-                                            //             contentPadding:
-                                            //                 const EdgeInsets.all(0),
-                                            //             content: AlertBox(
-                                            //               payMent: 'New Customer',
-                                            //               widget:
-                                            //                   forAddNewBtn(context),
-                                            //               buttonName: null,
-                                            //             ));
-                                            //       });
-                                            // },
-                                          ));
-                                    });
-                                  });
-                            });
-                          },
-                    decoration: InputDecoration(
-                      suffixIcon: const Icon(
-                        Icons.search,
-                        color: Colors.grey,
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: widget.custWidth * 0.55,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 240, 235, 235)),
+                        borderRadius: BorderRadius.circular(3),
+                        color: Colors.grey.withOpacity(0.001),
                       ),
-                      hintText: 'Customers',
-                      hintStyle: theme.textTheme.bodyLarge?.copyWith(),
-                      filled: false,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 10,
+                      child: TextFormField(
+                        onChanged: (v) {},
+                        readOnly: true,
+                        onTap: context.read<SalesQuotationCon>().editqty == true
+                            ? null
+                            : () {
+                                context
+                                    .read<SalesQuotationCon>()
+                                    .clearTextField();
+                                context
+                                    .read<SalesQuotationCon>()
+                                    .refresCufstList();
+                                setState(() {
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return StatefulBuilder(
+                                            builder: (context, st) {
+                                          return AlertDialog(
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
+                                              content: AlertBox(
+                                                payMent: 'Select Customer',
+                                                widget: forSearchBtn(context),
+                                                buttonName: '',
+                                                // callback: () {
+                                                //   Navigator.pop(context);
+
+                                                //   showDialog(
+                                                //       context: context,
+                                                //       barrierDismissible: false,
+                                                //       builder: (BuildContext context) {
+                                                //         return AlertDialog(
+                                                //             contentPadding:
+                                                //                 const EdgeInsets.all(0),
+                                                //             content: AlertBox(
+                                                //               payMent: 'New Customer',
+                                                //               widget:
+                                                //                   forAddNewBtn(context),
+                                                //               buttonName: null,
+                                                //             ));
+                                                //       });
+                                                // },
+                                              ));
+                                        });
+                                      });
+                                });
+                              },
+                        decoration: InputDecoration(
+                          suffixIcon: const Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
+                          hintText: 'Customers',
+                          hintStyle: theme.textTheme.bodyLarge?.copyWith(),
+                          filled: false,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 10,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    context.read<SalesQuotationCon>().selectedcust2 != null
+                        ? Container()
+                        : Container(
+                            height: Screens.padingHeight(context) * 0.06,
+                            width: widget.custWidth * 0.4,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      const Color.fromARGB(255, 240, 235, 235)),
+                              borderRadius: BorderRadius.circular(3),
+                              color: Colors.grey.withOpacity(0.001),
+                            ),
+                            child: TextFormField(
+                              readOnly: true,
+                              controller: context
+                                  .read<SalesQuotationCon>()
+                                  .postingDatecontroller,
+                              textCapitalization: TextCapitalization.sentences,
+                              onChanged: (v) {},
+                              onEditingComplete: () {},
+                              onTap: () {
+                                setState(
+                                  () {
+                                    context
+                                        .read<SalesQuotationCon>()
+                                        .postingDate(context);
+                                  },
+                                );
+                              },
+                              decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {});
+                                      context
+                                          .read<SalesQuotationCon>()
+                                          .postingDate(context);
+                                    },
+                                    color: Colors.grey,
+                                    icon: const Icon(Icons.calendar_month)),
+                                hintStyle:
+                                    theme.textTheme.bodyLarge?.copyWith(),
+                                filled: false,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 15,
+                                  horizontal: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                    SizedBox(
+                      height: widget.custHeight * 0.02,
+                    ),
+                  ],
                 ),
           SizedBox(
             height: widget.custHeight * 0.02,
@@ -134,18 +197,321 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
-                                width: widget.custWidth * 0.8,
-                                child: Text(
-                                  context
-                                      .watch<SalesQuotationCon>()
-                                      .getselectedcust2!
-                                      .name
-                                      .toString(),
-                                  maxLines: 1,
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: Colors.black, fontSize: 20),
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: widget.custWidth * 0.55,
+                                        height: widget.custHeight * 0.16,
+                                        child: context
+                                                        .read<
+                                                            SalesQuotationCon>()
+                                                        .getselectedcust2 !=
+                                                    null &&
+                                                context
+                                                        .read<
+                                                            SalesQuotationCon>()
+                                                        .getselectedcust2!
+                                                        .paymentGroup !=
+                                                    null &&
+                                                context
+                                                        .read<
+                                                            SalesQuotationCon>()
+                                                        .getselectedcust2!
+                                                        .paymentGroup!
+                                                        .contains('cash') ==
+                                                    true
+                                            ? TextFormField(
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return '';
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                                onEditingComplete: () {
+                                                  context
+                                                          .read<SalesQuotationCon>()
+                                                          .getselectedcust2!
+                                                          .name =
+                                                      context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .custNameController
+                                                          .text;
+                                                  context
+                                                      .read<SalesQuotationCon>()
+                                                      .disableKeyBoard(context);
+                                                },
+                                                controller: context
+                                                    .read<SalesQuotationCon>()
+                                                    .custNameController,
+                                                decoration: InputDecoration(
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.red),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.red),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  ),
+                                                  hintText: 'Name',
+                                                  hintStyle: widget.theme
+                                                      .textTheme.bodyMedium
+                                                      ?.copyWith(
+                                                          color: Colors.grey),
+                                                  filled: false,
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                          .symmetric(
+                                                    // vertical: 10,
+                                                    horizontal: 10,
+                                                  ),
+                                                ),
+                                              )
+                                            : Text(
+                                                context
+                                                    .watch<SalesQuotationCon>()
+                                                    .getselectedcust2!
+                                                    .name
+                                                    .toString(),
+                                                maxLines: 1,
+                                                style: theme.textTheme.bodyLarge
+                                                    ?.copyWith(
+                                                        color: Colors.black,
+                                                        fontSize: 20),
+                                              ),
+                                      ),
+                                      SizedBox(
+                                        width: Screens.width(context) * 0.01,
+                                      ),
+                                      SizedBox(
+                                          height: widget.custHeight * 0.16,
+                                          width: widget.custWidth * 0.3,
+                                          child: context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .getselectedcust2 !=
+                                                      null &&
+                                                  context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .getselectedcust2!
+                                                          .paymentGroup !=
+                                                      null &&
+                                                  context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .getselectedcust2!
+                                                          .paymentGroup!
+                                                          .contains('cash') ==
+                                                      true
+                                              ? TextFormField(
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return '';
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                  onEditingComplete: () {
+                                                    // context
+                                                    //         .read<PosController>()
+                                                    //         .selectedcust!
+                                                    //         .name =
+                                                    //     context
+                                                    //         .read<
+                                                    //             PosController>()
+                                                    //         .custNameController
+                                                    //         .text;
+                                                    context
+                                                        .read<
+                                                            SalesQuotationCon>()
+                                                        .disableKeyBoard(
+                                                            context);
+                                                  },
+                                                  controller: context
+                                                      .read<SalesQuotationCon>()
+                                                      .tinNoController,
+                                                  decoration: InputDecoration(
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                    ),
+                                                    hintText: 'Tin no',
+                                                    hintStyle: widget.theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
+                                                            color: Colors.grey),
+                                                    filled: false,
+                                                    contentPadding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                      // vertical: 10,
+                                                      horizontal: 10,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container())
+                                    ],
+                                  ),
+                                  SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01),
+                                  SizedBox(
+                                      height: widget.custHeight * 0.16,
+                                      width: widget.custWidth * 0.3,
+                                      child: context
+                                                      .read<SalesQuotationCon>()
+                                                      .getselectedcust2 !=
+                                                  null &&
+                                              context
+                                                      .read<SalesQuotationCon>()
+                                                      .getselectedcust2!
+                                                      .paymentGroup !=
+                                                  null &&
+                                              context
+                                                      .read<SalesQuotationCon>()
+                                                      .getselectedcust2!
+                                                      .paymentGroup!
+                                                      .contains('cash') ==
+                                                  true
+                                          ? TextFormField(
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  return '';
+                                                } else {
+                                                  return null;
+                                                }
+                                              },
+                                              onEditingComplete: () {
+                                                // context
+                                                //         .read<PosController>()
+                                                //         .selectedcust!
+                                                //         .name =
+                                                //     context
+                                                //         .read<
+                                                //             PosController>()
+                                                //         .custNameController
+                                                //         .text;
+                                                context
+                                                    .read<SalesQuotationCon>()
+                                                    .disableKeyBoard(context);
+                                              },
+                                              controller: context
+                                                  .read<SalesQuotationCon>()
+                                                  .vatNoController,
+                                              decoration: InputDecoration(
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.grey),
+                                                ),
+                                                hintText: 'VAT no',
+                                                hintStyle: widget
+                                                    .theme.textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                        color: Colors.grey),
+                                                filled: false,
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                  // vertical: 10,
+                                                  horizontal: 10,
+                                                ),
+                                              ),
+                                            )
+                                          : Container())
+                                ],
                               ),
                             ],
                           )),
@@ -688,26 +1054,370 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SizedBox(
-                                    width: widget.custWidth * 0.8,
-                                    child: Text(
-                                      context
-                                                  .watch<SalesQuotationCon>()
-                                                  .getselectedcust!
-                                                  .name ==
-                                              null
-                                          ? ""
-                                          : context
-                                              .watch<SalesQuotationCon>()
-                                              .getselectedcust!
-                                              .name
-                                              .toString(),
-                                      maxLines: 1,
-                                      style: theme.textTheme.bodyLarge
-                                          ?.copyWith(
-                                              color: Colors.black,
-                                              fontSize: 20),
-                                    ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            height: widget.custHeight * 0.16,
+                                            width: widget.custWidth * 0.55,
+                                            child: context
+                                                            .read<
+                                                                SalesQuotationCon>()
+                                                            .selectedcust !=
+                                                        null &&
+                                                    context
+                                                            .read<
+                                                                SalesQuotationCon>()
+                                                            .selectedcust!
+                                                            .paymentGroup !=
+                                                        null &&
+                                                    context
+                                                            .read<
+                                                                SalesQuotationCon>()
+                                                            .selectedcust!
+                                                            .paymentGroup!
+                                                            .contains('cash') ==
+                                                        true
+                                                ? TextFormField(
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return '';
+                                                      } else {
+                                                        return null;
+                                                      }
+                                                    },
+                                                    onEditingComplete: () {
+                                                      context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .selectedcust!
+                                                              .name =
+                                                          context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .custNameController
+                                                              .text;
+                                                      context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .disableKeyBoard(
+                                                              context);
+                                                    },
+                                                    controller: context
+                                                        .read<
+                                                            SalesQuotationCon>()
+                                                        .custNameController,
+                                                    decoration: InputDecoration(
+                                                      errorBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color:
+                                                                    Colors.red),
+                                                      ),
+                                                      focusedErrorBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color:
+                                                                    Colors.red),
+                                                      ),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .grey),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .grey),
+                                                      ),
+                                                      hintText: 'Name',
+                                                      // labelText: 'Name',
+                                                      hintStyle: widget.theme
+                                                          .textTheme.bodyMedium
+                                                          ?.copyWith(
+                                                              color:
+                                                                  Colors.grey),
+                                                      filled: false,
+                                                      contentPadding:
+                                                          const EdgeInsets
+                                                              .symmetric(
+                                                        // vertical: 10,
+                                                        horizontal: 10,
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Text(
+                                                    context
+                                                                .watch<
+                                                                    SalesQuotationCon>()
+                                                                .getselectedcust!
+                                                                .name ==
+                                                            null
+                                                        ? ""
+                                                        : context
+                                                            .watch<
+                                                                SalesQuotationCon>()
+                                                            .getselectedcust!
+                                                            .name
+                                                            .toString(),
+                                                    maxLines: 1,
+                                                    style: theme
+                                                        .textTheme.bodyLarge
+                                                        ?.copyWith(
+                                                            color: Colors.black,
+                                                            fontSize: 20),
+                                                  ),
+                                          ),
+                                          SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.01,
+                                          ),
+                                          SizedBox(
+                                              height: widget.custHeight * 0.16,
+                                              width: widget.custWidth * 0.3,
+                                              child: context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .selectedcust !=
+                                                          null &&
+                                                      context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .selectedcust!
+                                                              .paymentGroup !=
+                                                          null &&
+                                                      context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .selectedcust!
+                                                              .paymentGroup!
+                                                              .contains(
+                                                                  'cash') ==
+                                                          true
+                                                  ? TextFormField(
+                                                      validator: (value) {
+                                                        if (value!.isEmpty) {
+                                                          return '';
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                      onEditingComplete: () {
+                                                        // context
+                                                        //         .read<PosController>()
+                                                        //         .selectedcust!
+                                                        //         .name =
+                                                        //     context
+                                                        //         .read<
+                                                        //             PosController>()
+                                                        //         .custNameController
+                                                        //         .text;
+                                                        context
+                                                            .read<
+                                                                SalesQuotationCon>()
+                                                            .disableKeyBoard(
+                                                                context);
+                                                      },
+                                                      controller: context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .tinNoController,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .red),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .red),
+                                                        ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .grey),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          borderSide:
+                                                              const BorderSide(
+                                                                  color: Colors
+                                                                      .grey),
+                                                        ),
+                                                        hintText: 'Tin no',
+                                                        // labelText: 'Tin no',
+                                                        hintStyle: widget
+                                                            .theme
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.copyWith(
+                                                                color: Colors
+                                                                    .grey),
+                                                        filled: false,
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                          // vertical: 10,
+                                                          horizontal: 10,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Container())
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height:
+                                              Screens.padingHeight(context) *
+                                                  0.01),
+                                      SizedBox(
+                                          height: widget.custHeight * 0.16,
+                                          width: widget.custWidth * 0.3,
+                                          child: context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .selectedcust !=
+                                                      null &&
+                                                  context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .selectedcust!
+                                                          .paymentGroup !=
+                                                      null &&
+                                                  context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .selectedcust!
+                                                          .paymentGroup!
+                                                          .contains('cash') ==
+                                                      true
+                                              ? TextFormField(
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return '';
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                  onEditingComplete: () {
+                                                    // context
+                                                    //         .read<PosController>()
+                                                    //         .selectedcust!
+                                                    //         .name =
+                                                    //     context
+                                                    //         .read<
+                                                    //             PosController>()
+                                                    //         .custNameController
+                                                    //         .text;
+                                                    context
+                                                        .read<
+                                                            SalesQuotationCon>()
+                                                        .disableKeyBoard(
+                                                            context);
+                                                  },
+                                                  controller: context
+                                                      .read<SalesQuotationCon>()
+                                                      .vatNoController,
+                                                  decoration: InputDecoration(
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.red),
+                                                    ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                    ),
+                                                    hintText: 'VAT no',
+                                                    // labelText: 'VAT no',
+                                                    hintStyle: widget.theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
+                                                            color: Colors.grey),
+                                                    filled: false,
+                                                    contentPadding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                      // vertical: 10,
+                                                      horizontal: 10,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container())
+                                    ],
                                   ),
                                   InkWell(
                                       onTap: () {

@@ -26,7 +26,7 @@ class AutoSelectApi {
             "query":
                 "Pos_AutoBatch_GetFiFoQty',$itemCode','${AppConstant.branch}'"
           })}');
-      log("AutoSelect Data Res: ${json.decode(response.body)}");
+      // log("AutoSelect Data Res: ${json.decode(response.body)}");
 
       print(response.statusCode);
       if (response.statusCode == 200) {

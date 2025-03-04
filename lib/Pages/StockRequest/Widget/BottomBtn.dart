@@ -161,8 +161,10 @@ class _StockReqBottomBtnState extends State<StockReqBottomBtn> {
                       width: widget.btnWidth * 0.2,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey[300],
-                          ),
+                              backgroundColor: Colors.white,
+                              side: BorderSide(
+                                color: widget.theme.primaryColor,
+                              )),
                           onPressed: () {
                             setState(() {
                               context.read<StockReqController>().searchclear();

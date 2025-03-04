@@ -566,7 +566,6 @@ class StockInwrdController extends ChangeNotifier {
   bool searchLoading = false;
 
   callSearchLine(String docEntry, int index) async {
-    searchLoading = true;
     stockInward2.clear();
     stInController2[50].text = "";
     sapDocentry = '';
@@ -1093,6 +1092,8 @@ class StockInwrdController extends ChangeNotifier {
                 .serialbatchList!
                 .add(StockInSerialbatch(
                   lineno: stockInward[index].data![list_i].lineNo.toString(),
+                  itemName:
+                      stockInward[index].data![list_i].dscription.toString(),
                   baseDocentry:
                       stockInward[index].data![list_i].baseDocentry.toString(),
                   itemcode: stockInward[index].data![list_i].itemcode,
@@ -1128,6 +1129,7 @@ class StockInwrdController extends ChangeNotifier {
           baseDocentry:
               stockInward[index].data![list_i].baseDocentry.toString(),
           itemcode: stockInward[index].data![list_i].itemcode,
+          itemName: stockInward[index].data![list_i].dscription,
           qty: 1,
           serialbatch: serialBatch.toString().trim(),
           docstatus: null,
@@ -2087,6 +2089,7 @@ class StockInwrdController extends ChangeNotifier {
             stInBatch.add(
               StockInSerialbatch(
                 lineno: getDBStInBatch[k]["lineno"].toString(),
+                itemName: getDBStInBatch[k]["itemName"].toString(),
                 baseDocentry: getDBStInBatch[k]["baseDocentry"].toString(),
                 itemcode: getDBStInBatch[k]["itemcode"].toString(),
                 qty: int.parse(getDBStInBatch[k]["quantity"].toString()),
@@ -2362,6 +2365,7 @@ class StockInwrdController extends ChangeNotifier {
               stoutSeralBatchList.add(StockInSerialbatch(
                   serialbatch:
                       sapInwardModelData[i].batchNumbers[ij].batchNumber,
+                  itemName: '',
                   qty: int.parse(sapInwardModelData[i]
                       .batchNumbers[ij]
                       .quantity
@@ -2582,6 +2586,7 @@ class StockInwrdController extends ChangeNotifier {
             lineno: stockOut[index].data![j].lineNo.toString(),
             baseDocentry: stockOut[index].data![j].baseDocentry.toString(),
             itemcode: stockOut[index].data![j].itemcode.toString(),
+            itemName: stockOut[index].data![j].dscription.toString(),
             qty: stockOut[index].data![j].serialbatchList![k].qty,
             serialbatch: stockOut[index]
                 .data![j]

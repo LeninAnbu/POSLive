@@ -349,6 +349,13 @@ class _PaymentRecieptSearhBoxState extends State<PaymentRecieptSearhBox> {
                                 itemBuilder: (context, index) {
                                   return InkWell(
                                     onTap: () async {
+                                      context
+                                          .read<PayreceiptController>()
+                                          .loadSearch = true;
+                                      context
+                                          .read<PayreceiptController>()
+                                          .setstate1();
+
                                       await context
                                           .read<PayreceiptController>()
                                           .getReceiptApi(
@@ -504,7 +511,7 @@ class _PaymentRecieptSearhBoxState extends State<PaymentRecieptSearhBox> {
           visible: context.watch<PayreceiptController>().loadSearch,
           child: Container(
             width: Screens.width(context),
-            height: Screens.bodyheight(context) * 0.85,
+            height: Screens.bodyheight(context) * 0.88,
             color: Colors.white60,
             child: Center(
               child: SpinKitFadingCircle(

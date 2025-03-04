@@ -17,6 +17,7 @@ class DirectInvoicePostAPI {
   static String? docDate;
   static String? dueDate;
   static String? tinNo;
+  static String? VATNo;
   static String? cardName;
 
   static String? docType;
@@ -28,8 +29,9 @@ class DirectInvoicePostAPI {
       "CardName": "$cardName",
       "DocumentStatus": "bost_Open",
       "DocDate": "$docDate",
-      "DocDueDate": "$dueDate",
+      // "DocDueDate": "$dueDate",
       "Comments": "$remarks",
+      "U_VAT_NUMBER":"$VATNo",
       // 'Series': '$seriesType',
       'U_TinNO': '$tinNo',
       "U_DeviceTransID": deviceTransID,
@@ -59,8 +61,9 @@ class DirectInvoicePostAPI {
           "DocType": "$docType",
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
-          "DocDueDate": "$dueDate",
+          // "DocDueDate": "$dueDate",
           "Comments": "$remarks",
+          "U_VAT_NUMBER":"$VATNo",
           // 'Series': '$seriesType',
           'U_TinNO': '$tinNo',
           "U_DeviceTransID": deviceTransID,
@@ -77,7 +80,9 @@ class DirectInvoicePostAPI {
               "CardCode": "$cardCodePost",
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
-              "DocDueDate": "$dueDate",
+              "U_VAT_NUMBER":"$VATNo",
+               'U_TinNO': '$tinNo',
+              // "DocDueDate": "$dueDate",
               "Comments": "$remarks",
               "U_DeviceTransID": deviceTransID,
               "U_Truck_Internal": uTruckInternal,

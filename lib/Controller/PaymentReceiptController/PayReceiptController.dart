@@ -959,9 +959,12 @@ class PayreceiptController extends ChangeNotifier {
     notifyListeners();
   }
 
+  setstate1() {
+    notifyListeners();
+  }
+
   getReceiptApi(
       String sapDocEntry, BuildContext context, ThemeData theme) async {
-    loadSearch = true;
     await SerlayPayReceiptAPI.getData(sapDocEntry).then((value) async {
       paymentWay2 = [];
       scanneditemData2 = [];

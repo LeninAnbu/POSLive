@@ -79,8 +79,6 @@ class SalesReurnPostAPi {
             })}",
       );
       log("Responce: ${response.statusCode}");
-      // log("Quotations post: " +
-      //     json.decode(response.body.toString()).toString());
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         return SalesQuotStatus.fromJson(response.statusCode);
       } else {

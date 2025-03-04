@@ -77,7 +77,8 @@ class _SalesInvoiceTabScreenState extends State<SalesInvoiceTabScreen> {
                                 )
                               : CustomerDetails(
                                   custWidth: Screens.width(context) * 0.43,
-                                  custHeight: Screens.bodyheight(context) * 0.3,
+                                  custHeight:
+                                      Screens.bodyheight(context) * 0.25,
                                   theme: widget.theme,
                                 ),
                           context

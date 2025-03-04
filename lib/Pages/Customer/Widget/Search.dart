@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:posproject/main.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Constant/Screen.dart';
 import '../../../Controller/CustomerController/CustomerController.dart';
+import 'detailsPage.dart';
 
 class Search_Widget extends StatefulWidget {
   Search_Widget(
@@ -177,7 +180,13 @@ class _Search_WidgetState extends State<Search_Widget> {
                             return InkWell(
                               onTap: () {
                                 setState(() {
-                                  context.read<CustomerController>().pageplus();
+                                  context.read<CustomerController>().cusList1 =
+                                      null;
+                                  context
+                                      .read<CustomerController>()
+                                      .addressListdata = [];
+
+                                  // context.read<CustomerController>().pageplus();
 
                                   context.read<CustomerController>().listPasss(
                                       context
@@ -190,6 +199,21 @@ class _Search_WidgetState extends State<Search_Widget> {
                                           .read<CustomerController>()
                                           .filtercustomerList[index]
                                           .customerCode!);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CustomerdetailPage(
+                                                searchHeight:
+                                                    Screens.bodyheight(context),
+                                                searchWidth:
+                                                    Screens.width(context),
+                                              )));
+                                  // CustomerdetailPage(
+                                  // searchHeight: Screens.bodyheight(context),
+                                  // searchWidth: Screens.width(context),
+                                  //         // custMaslist:context.read<CustomerController>().cusList1,
+                                  // )
                                 });
                               },
                               child: Card(
@@ -210,7 +234,7 @@ class _Search_WidgetState extends State<Search_Widget> {
                                     children: [
                                       Container(
                                           // color: Colors.red,
-                                          alignment: Alignment.center,
+                                          alignment: Alignment.centerLeft,
                                           width: widget.searchWidth * 0.07,
                                           child: Text(
                                             "${index + 1}",
@@ -219,7 +243,7 @@ class _Search_WidgetState extends State<Search_Widget> {
                                           )),
                                       Container(
                                           // color: Colors.red,
-                                          alignment: Alignment.center,
+                                          alignment: Alignment.centerLeft,
                                           width: widget.searchWidth * 0.29,
                                           child: Text(
                                             "${context.watch<CustomerController>().filtercustomerList[index].customername}",
@@ -231,7 +255,15 @@ class _Search_WidgetState extends State<Search_Widget> {
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.17,
                                           child: Text(
-                                            "${context.watch<CustomerController>().filtercustomerList[index].customerCode}",
+                                            context
+                                                        .watch<
+                                                            CustomerController>()
+                                                        .filtercustomerList[
+                                                            index]
+                                                        .customerCode !=
+                                                    null
+                                                ? "${context.watch<CustomerController>().filtercustomerList[index].customerCode}"
+                                                : '',
                                             style: theme.textTheme.bodyMedium
                                                 ?.copyWith(color: Colors.black),
                                           )),
@@ -240,11 +272,11 @@ class _Search_WidgetState extends State<Search_Widget> {
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.17,
                                           child: Text(
-                                            context
+                                            config.splitValues(context
                                                 .watch<CustomerController>()
                                                 .filtercustomerList[index]
                                                 .balance!
-                                                .toStringAsFixed(2),
+                                                .toStringAsFixed(2)),
                                             // textAlign: TextAlign.left,
                                             style: theme.textTheme.bodyMedium
                                                 ?.copyWith(color: Colors.black),

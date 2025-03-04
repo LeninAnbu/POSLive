@@ -326,6 +326,13 @@ class _saleReturnSearhBoxState extends State<saleReturnSearhBox> {
                               itemBuilder: (context, index) {
                                 return InkWell(
                                   onTap: () async {
+                                    context
+                                        .read<SalesReturnController>()
+                                        .searchLoading = true;
+
+                                    context
+                                        .read<SalesReturnController>()
+                                        .seststate1();
                                     await context
                                         .read<SalesReturnController>()
                                         .callGetReturnApi(

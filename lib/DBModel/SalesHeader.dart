@@ -5,6 +5,9 @@ class SalesHeaderT {
   static String doctype = "doctype";
   static String objtype = 'objtype';
   static String objname = 'objname';
+  static String vatNo = 'VatNo';
+  static String tinNo = 'TinNo';
+
   static String terminal = "terminal";
   static String branch = "branch";
   static String basedocentry = "basedocentry";
@@ -71,6 +74,9 @@ class SalesHeaderTModelDB {
   String? billaddressid;
   String? docentry;
   String? basedocentry;
+  String? tinNo;
+  String? vatNo;
+
   String? terminal;
   String? doctype;
   String? objtype;
@@ -142,6 +148,8 @@ class SalesHeaderTModelDB {
     required this.baltopay,
     required this.totalweight,
     required this.totalltr,
+    required this.tinNo,
+    required this.vatNo,
     this.addressName1,
     this.street,
     this.block,
@@ -206,6 +214,8 @@ class SalesHeaderTModelDB {
         documentno: resp['documentno'],
         amtpaid: resp['amtpaid'],
         country: resp['country'],
+        vatNo: resp['VatNo'],
+        tinNo: resp['TinNo'],
         city: resp['city'],
         state: resp['state'],
         gst: resp['gst'],
@@ -252,8 +262,12 @@ class SalesHeaderTModelDB {
         transtime: resp['transtime'],
         updatedDatetime: resp['UpdatedDatetime'],
         updateduserid: resp['updateduserid'].toString(),
-        sapDocNo: resp['sapDocNo'] == null ? null : int.parse(resp['sapDocNo'].toString()),
-        sapDocentry: resp['sapDocentry'] == null ? null : int.parse(resp['sapDocentry'].toString()),
+        sapDocNo: resp['sapDocNo'] == null
+            ? null
+            : int.parse(resp['sapDocNo'].toString()),
+        sapDocentry: resp['sapDocentry'] == null
+            ? null
+            : int.parse(resp['sapDocentry'].toString()),
         qStatus: 'Y',
         basedocentry: resp['basedocentry'].toString(),
         customerSeriesNum: resp['customerSeriesNum'].toString());
@@ -295,6 +309,9 @@ class SalesHeaderTModelDB {
         SalesHeaderT.doctype: doctype,
         SalesHeaderT.objtype: objtype,
         SalesHeaderT.objname: objname,
+        SalesHeaderT.tinNo: tinNo,
+        SalesHeaderT.vatNo: vatNo,
+
         SalesHeaderT.docstatus: docstatus,
         SalesHeaderT.doctotal: doctotal,
         SalesHeaderT.documentno: documentno,

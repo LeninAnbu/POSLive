@@ -210,6 +210,11 @@ class SharedPref {
     return await preferences.setString(sapDB, sapdb);
   }
 
+  static Future<bool> clearSapDB() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.remove(sapDB);
+  }
+
   static Future<String?> getSapDB() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(sapDB);

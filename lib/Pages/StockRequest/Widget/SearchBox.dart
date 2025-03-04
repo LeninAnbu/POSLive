@@ -326,6 +326,9 @@ class _StRequestSearhBoxState extends State<StRequestSearhBox> {
                                           .read<StockReqController>()
                                           .loadSearch = true;
                                       context
+                                          .read<StockReqController>()
+                                          .setstate1();
+                                      context
                                               .read<StockReqController>()
                                               .sapDocentry =
                                           context
@@ -342,13 +345,13 @@ class _StRequestSearhBoxState extends State<StRequestSearhBox> {
                                                   .docEntry
                                                   .toString(),
                                               index);
-                                      context
-                                          .read<StockReqController>()
-                                          .soCustAddressApi(context
-                                              .read<StockReqController>()
-                                              .filtersearchData[index]
-                                              .docEntry
-                                              .toString());
+                                      // context
+                                      //     .read<StockReqController>()
+                                      //     .soCustAddressApi(context
+                                      //         .read<StockReqController>()
+                                      //         .filtersearchData[index]
+                                      //         .docEntry
+                                      //         .toString());
                                     });
 
                                     // await context

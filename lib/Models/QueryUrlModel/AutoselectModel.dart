@@ -106,7 +106,7 @@ class AutoSelectModlData {
 
   factory AutoSelectModlData.fromJson(dynamic jsons) {
     return AutoSelectModlData(
-        inDate: jsons['InDate'] ?? 0,
+        inDate: jsons['InDate'] ?? '',
         expDate: jsons['ExpDate'] ?? '',
         prdDate: jsons['PrdDate'] ?? '',
         itemName: jsons['ItemName'] ?? '',

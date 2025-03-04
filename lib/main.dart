@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 import 'package:posproject/Constant/UserValues.dart';
 import 'package:posproject/Controller/DashBoardController/DashboardController.dart';
+import 'package:posproject/Controller/LogoutController/LogOutControllers.dart';
 import 'package:posproject/Controller/ReportsController.dart';
 import 'package:posproject/Controller/StockRequestController/StockRequestController.dart';
 import 'package:posproject/Controller/TransacationSyncController/TransactionSyncController.dart';
@@ -1487,6 +1488,7 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(create: (_) => RefundController()), //
         ChangeNotifierProvider(create: (_) => ReconciliationCtrl()),
+        ChangeNotifierProvider(create: (_) => LogoutCtrl()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

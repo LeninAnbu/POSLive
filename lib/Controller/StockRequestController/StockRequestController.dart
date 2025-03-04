@@ -720,11 +720,14 @@ class StockReqController extends ChangeNotifier {
     notifyListeners();
   }
 
+  setstate1() {
+    notifyListeners();
+  }
+
   bool loadSearch = false;
 
   callSearchLineApi(String docEntry, int index) async {
     final Database db = (await DBHelper.getInstance())!;
-    loadSearch = true;
     scanneditemData2 = [];
     sapDocentry = '';
 
@@ -2664,7 +2667,7 @@ class StockReqController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     var uuid = const Uuid();
     String? uuidg = uuid.v1();
-    await callSeriesApi(context, '1250000001');
+    // await callSeriesApi(context, '1250000001');
     await addReqLinedata(whsDetails);
     PostRequestAPi.cardCodePost = selectedcust!.cardCode;
     PostRequestAPi.fromWarehouse = whsDetails.whsCode;

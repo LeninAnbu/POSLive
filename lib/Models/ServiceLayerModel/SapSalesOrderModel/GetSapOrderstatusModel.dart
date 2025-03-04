@@ -5,7 +5,7 @@
 import '../ErrorModell/ErrorModelSl.dart';
 
 // SapSalesOrderModel sapSalesOrderModelFromJson(String str) =>
-//     SapSalesOrderModel.fromJson(json.decode(str));
+//     SapSalesOrderModel.fromJson(json.decode(str));Y
 
 // String sapSalesOrderModelToJson(SapSalesOrderModel data) =>
 //     json.encode(data.toJson());
@@ -21,7 +21,7 @@ class SapSalesOrderModel {
   // String handWritten;
   // String printed;
   String? docDate;
-  // DateTime? docDueDate;
+  String? docDueDate;
   String cardCode;
   String cardName;
   // String address;
@@ -304,7 +304,7 @@ class SapSalesOrderModel {
   String? uTruckInternal;
   String uGpApproval;
   // dynamic uSupplierName;
-  // dynamic uVatNumber;
+  String uVatNumber;
   String? uTransferType;
   // dynamic uSalesOrder;
   // String uReceived;
@@ -318,7 +318,7 @@ class SapSalesOrderModel {
   String? uReceivedDate;
   // dynamic uExpiryDate;
   // String uCnType;
-  // dynamic uTinNo;
+  String uTinNo;
   // dynamic uLpoNo;
   // int uOrderQty;
   // dynamic uDispatchDate;
@@ -362,7 +362,7 @@ class SapSalesOrderModel {
     // required this.handWritten,
     // required this.printed,
     required this.docDate,
-    // required this.docDueDate,
+    required this.docDueDate,
     required this.cardCode,
     required this.cardName,
     // required this.address,
@@ -642,7 +642,7 @@ class SapSalesOrderModel {
     required this.uTruckInternal,
     required this.uGpApproval,
     // required this.uSupplierName,
-    // required this.uVatNumber,
+    required this.uVatNumber,
     required this.uTransferType,
     // required this.uSalesOrder,
     // required this.uReceived,
@@ -656,7 +656,7 @@ class SapSalesOrderModel {
     required this.uReceivedDate,
     // required this.uExpiryDate,
     // required this.uCnType,
-    // required this.uTinNo,
+    required this.uTinNo,
     // required this.uLpoNo,
     // required this.uOrderQty,
     // required this.uDispatchDate,
@@ -706,7 +706,7 @@ class SapSalesOrderModel {
         // handWritten: json["HandWritten"] ?? '',
         // printed: json["Printed"] ?? '',
         docDate: json["DocDate"] ?? '',
-        // docDueDate: DateTime.parse(json["DocDueDate"]),
+        docDueDate: json["DocDueDate"] ?? '',
         cardCode: json["CardCode"] ?? '',
         cardName: json["CardName"] ?? '',
         // address: json["Address"] ?? '',
@@ -989,7 +989,7 @@ class SapSalesOrderModel {
         uTruckInternal: json["U_Truck_Internal"],
         uGpApproval: json["U_GP_Approval"].toString(),
         // uSupplierName: json["U_SUPPLIER_NAME"],
-        // uVatNumber: json["U_VAT_NUMBER"],
+        uVatNumber: json["U_VAT_NUMBER"]??'',
         uTransferType: json["U_Transfer_Type"],
         // uSalesOrder: json["U_Sales_Order"],
         // uReceived: json["U_Received"]??'1',
@@ -1003,7 +1003,7 @@ class SapSalesOrderModel {
         uReceivedDate: json["U_Received_Date"],
         // uExpiryDate: json["U_Expiry_Date"],
         // uCnType: json["U_CN_Type"],
-        // uTinNo: json["U_TinNO"],
+        uTinNo: json["U_TinNO"]??'',
         // uLpoNo: json["U_LPONo"],
         // uOrderQty: json["U_OrderQty"],
         // uDispatchDate: json["U_Dispatch_Date"],
@@ -1043,6 +1043,8 @@ class SapSalesOrderModel {
       // odataMetadata: '',
       // odataEtag: '',
       docEntry: 0,
+      uTinNo: '',
+      uVatNumber: '',
       // discountPercent: 0,
       docNum: 0,
       uTransferType: '', uReceivedTime: '', uReceivedDate: '',
@@ -1066,7 +1068,7 @@ class SapSalesOrderModel {
       documentLines: [],
       error: ErrorModel.fromJson(json['error']),
       docDate: '', uTruckInternal: '',
-      // docDueDate: null,
+      docDueDate: '',
     );
   }
   factory SapSalesOrderModel.expError(String json, int statuscode) {
@@ -1078,7 +1080,8 @@ class SapSalesOrderModel {
       docNum: 0,
       comments: '',
       uOrderType: '',
-
+      uTinNo: '',
+      uVatNumber: '',
       uOrderDate: '',
 
       // discountPercent: 0,
@@ -1100,7 +1103,7 @@ class SapSalesOrderModel {
       error: null,
       docDate: '', uTransferType: '', uReceivedTime: '', uReceivedDate: '',
       uTruckInternal: '',
-      // docDueDate: null,
+      docDueDate: '',
     );
   }
   Map<String, dynamic> toJson() => {
@@ -1395,7 +1398,7 @@ class SapSalesOrderModel {
         // "U_Truck_Internal": uTruckInternal,
         "U_GP_Approval": uGpApproval,
         // "U_SUPPLIER_NAME": uSupplierName,
-        // "U_VAT_NUMBER": uVatNumber,
+        "U_VAT_NUMBER": uVatNumber,
         // "U_Transfer_Type": uTransferType,
         // "U_Sales_Order": uSalesOrder,
         // "U_Received": uReceived,
@@ -1409,7 +1412,7 @@ class SapSalesOrderModel {
         // "U_Received_Date": uReceivedDate,
         // "U_Expiry_Date": uExpiryDate,
         // "U_CN_Type": uCnType,
-        // "U_TinNO": uTinNo,
+        "U_TinNO": uTinNo,
         // "U_LPONo": uLpoNo,
         // "U_OrderQty": uOrderQty,
         // "U_Dispatch_Date": uDispatchDate,

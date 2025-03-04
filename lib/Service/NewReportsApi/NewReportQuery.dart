@@ -17,13 +17,19 @@ class NewReportApi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_NewReportApi"
+                "query": "EXEC BZ_POS_NewReportApi"
                 //  "Select * From [@POS_ORPT]"
               }));
 
-      // log("New Changed Res: ${json.decode(response.body)}");
+      log("New Changed sts: ${response.statusCode}");
+      log("New Changed Res: ${json.decode(response.body)}");
 
+      log(json.encode({
+        "constr":
+            "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
+        "query": "EXEC BZ_POS_NewReportApi"
+        //  "Select * From [@POS_ORPT]"
+      }));
       print(response.statusCode);
       if (response.statusCode == 200) {
         return NewReportMdl.fromJson(

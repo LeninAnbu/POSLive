@@ -145,11 +145,11 @@ class FooterContainer extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.001),
                       ),
                       child: TextFormField(
-                        // autofocus: true,
+                        autofocus: true,
                         controller:
                             context.read<LoginController>().mycontroller[2],
                         cursorColor: Colors.grey,
-                        readOnly: context.read<LoginController>().isalreadyset,
+                        // readOnly: context.read<LoginController>().isalreadyset,
                         keyboardType: TextInputType.number,
                         onChanged: (v) {},
                         validator: (value) {

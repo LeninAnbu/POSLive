@@ -6,6 +6,8 @@ class StockInBatchData {
 
   static String lineno = "lineno";
   static String itemcode = "itemcode";
+  static String itemCode = "itemName";
+
   static String qty = 'quantity';
   static String seialBatch = "serialBatch";
   static String docstatus = "docstatus";

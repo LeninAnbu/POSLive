@@ -87,12 +87,13 @@ class _SObillingTabScreenState extends State<SObillingTabScreen> {
                               ? Container()
                               : POCashWidget(
                                   cashWidth: Screens.width(context) * 0.42,
-                                  cashHeight: Screens.bodyheight(context) * 0.2,
+                                  cashHeight:
+                                      Screens.bodyheight(context) * 0.18,
                                   theme: widget.theme,
                                 ),
                           SOBottomButtons(
                             theme: widget.theme,
-                            btnheight: Screens.bodyheight(context) * 0.28,
+                            btnheight: Screens.bodyheight(context) * 0.25,
                             btnWidth: Screens.width(context) * 0.42,
                           )
                         ],

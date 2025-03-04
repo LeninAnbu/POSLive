@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:posproject/Controller/DownLoadController/DownloadController.dart';
 import '../Constant/AppConstant.dart';
 import '../Controller/ApiSettingsController/ApiSettingsController.dart';
 import '../Models/Service Model/CustomerMasterModel.dart';
@@ -11,6 +12,7 @@ class CustomerMasterApi {
     int resCode = 500;
 
     try {
+      log("${URL.url}CustomerMaster/${AppConstant.branch}/${AppConstant.terminal}");
       //${URL.url}CustomerMaster/ARSFG/T1
       final response = await http.get(
         Uri.parse(
@@ -19,12 +21,19 @@ class CustomerMasterApi {
           "content-type": "application/json",
         },
       );
+        String csvData = response.body;
+        List<dynamic> responcedata = [];
       // resCode = response.statusCode;
       log(response.statusCode.toString());
-      // log("sk_inventory_master_data${json.decode(response.body)}");
+      // log("cussk_inventory_master_data${json.decode(response.body)}");
       if (response.statusCode == 200) {
         if (ApiSettingsController.customerapisetting == true) {
-        } else {}
+       responcedata =
+              await ApiSettingsController.jsonconvertCustomer(response.body);
+        } else {
+          responcedata =
+              await DownLoadController.jsonconvertCustomer(response.body);
+        }
         // Map data = json.decode(response.body);
         return CustomerModel.fromJson(
             json.decode(response.body), response.statusCode);

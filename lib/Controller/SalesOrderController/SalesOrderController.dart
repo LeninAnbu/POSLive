@@ -30,6 +30,7 @@ import 'package:posproject/Service/NewCustCodeCreate/TeritoryApi.dart';
 import 'package:posproject/ServiceLayerAPIss/BankListApi/BankListsApi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:uuid/uuid.dart';
 import '../../Constant/AppConstant.dart';
 import '../../Constant/Configuration.dart';
@@ -50,6 +51,7 @@ import '../../Models/DataModel/PaymentModel/PaymentModel.dart';
 import '../../Models/DataModel/SeriesMode/SeriesModels.dart';
 import '../../Models/QueryUrlModel/CompanyAddModel.dart';
 import '../../Models/QueryUrlModel/NewCashAccount.dart';
+import '../../Models/QueryUrlModel/OnhandModel.dart';
 import '../../Models/QueryUrlModel/SOCustoAddressModel.dart';
 import '../../Models/QueryUrlModel/SalesOrderQueryModel/OpenSalesOrderHeader_Model.dart';
 import '../../Models/QueryUrlModel/SalesOrderQueryModel/OpenSalesOrderLineModel.dart';
@@ -71,6 +73,7 @@ import '../../Service/Printer/orderPrint.dart';
 import '../../Service/QueryURL/CompanyAddressApi.dart';
 import '../../Service/QueryURL/CreditDaysModelAPI.dart';
 import '../../Service/QueryURL/CreditLimitModeAPI.dart';
+import '../../Service/QueryURL/OnHandApi.dart';
 import '../../Service/QueryURL/OpenQuotLineApi.dart';
 import '../../Service/QueryURL/OpenQuotationApi.dart';
 import '../../Service/QueryURL/SoCustomerAddressApi.dart';
@@ -101,6 +104,9 @@ import '../../Widgets/ContentContainer.dart';
 class SOCon extends ChangeNotifier {
   Configure config = Configure();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TextEditingController tinNoController = TextEditingController();
+  TextEditingController vatNoController = TextEditingController();
   List<GlobalKey<FormState>> formkey =
       List.generate(100, (i) => GlobalKey<FormState>());
   List<GlobalKey<FormState>> approvalformkey =
@@ -314,12 +320,13 @@ class SOCon extends ChangeNotifier {
 
   String userTypes = '';
   callGetUserType() async {
+    userTypes = '';
     final Database db = (await DBHelper.getInstance())!;
 
     List<Map<String, Object?>> userData =
         await DBOperation.getusersvaldata(db, UserValues.username);
     if (userData.isNotEmpty) {
-      userTypes = userData[0]['usertype'].toString();
+      userTypes = userData[0]['usertype'].toString().toLowerCase();
     }
     notifyListeners();
   }
@@ -348,6 +355,23 @@ class SOCon extends ChangeNotifier {
     } on PlatformException catch (e) {
       log("Failed to open location settings: '${e.message}'.");
     }
+  }
+
+  TextEditingController postingDatecontroller = TextEditingController();
+
+  postingDate(
+    BuildContext context,
+  ) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100));
+    if (pickedDate == null) {
+      return;
+    }
+    String datetype = DateFormat('dd-MM-yyyy').format(pickedDate);
+    postingDatecontroller.text = datetype;
   }
 
   void checkAndPromptLocationService(BuildContext context) async {
@@ -402,6 +426,7 @@ class SOCon extends ChangeNotifier {
     mycontroller = List.generate(150, (i) => TextEditingController());
     searchcontroller = TextEditingController();
     qtymycontroller = List.generate(100, (ij) => TextEditingController());
+    postingDatecontroller.text = '';
     checkboxx = false;
     selectedcust = null;
     selectedcust2 = null;
@@ -421,6 +446,8 @@ class SOCon extends ChangeNotifier {
     mycontroller2 = List.generate(150, (i) => TextEditingController());
     mycontroller[99].clear();
     focusnode = List.generate(100, (i) => FocusNode());
+    postingDatecontroller.text = config.alignDate(DateTime.now().toString());
+
     notifyListeners();
   }
 
@@ -652,7 +679,7 @@ class SOCon extends ChangeNotifier {
       } else {
         scanneditemData[i].taxRate = 0.0;
       }
-
+      await callOnHandApi(scanneditemData[i].itemCode.toString(), i);
       log('scanneditemData[i].packsize::${scanneditemData[i].uPackSize.toString()}');
     }
 
@@ -1024,7 +1051,7 @@ class SOCon extends ChangeNotifier {
           openQuotLineList![kn].itemCode.toString() ==
               scanneditemData[ind].itemCode.toString()) {
         if (openQuotLineList![kn].openQty >=
-            int.parse(qtymycontroller[ind].text.toString())) {
+            double.parse(qtymycontroller[ind].text.toString())) {
           calCulateDocVal(context, theme);
           notifyListeners();
         } else {
@@ -1128,6 +1155,7 @@ class SOCon extends ChangeNotifier {
       } else {
         scanneditemData[il].taxRate = 0.0;
       }
+      await callOnHandApi(scanneditemData[il].itemCode.toString(), il);
     }
 
     notifyListeners();
@@ -1196,6 +1224,44 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<OnHandModelsData> onhandData = [];
+  callOnHandApi(String itemCode, int index) async {
+    onhandData = [];
+    notifyListeners();
+
+    await OnhandApi.getGlobalData('$itemCode', '${AppConstant.branch}')
+        .then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        if (value.onHandData != null || value.onHandData!.isNotEmpty) {
+          for (int i = 0; i < value.onHandData!.length; i++) {
+            onhandData.add(OnHandModelsData(
+                onHand: value.onHandData![i].onHand,
+                itemCode: value.onHandData![i].itemCode,
+                whsCode: value.onHandData![i].whsCode));
+            notifyListeners();
+          }
+
+          for (var ik = 0; ik < onhandData.length; ik++) {
+            if (scanneditemData[index].itemCode.toString() ==
+                onhandData[ik].itemCode.toString()) {
+              scanneditemData[index].inStockQty =
+                  double.parse(onhandData[ik].onHand.toString());
+            }
+          }
+          notifyListeners();
+        } else if (value.onHandData == null) {
+          catchmsg.add("Stock details2: ${value.message!}");
+          notifyListeners();
+        }
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        catchmsg.add("Stock details3: ${value.error!}");
+      } else {
+        catchmsg.add("Stcok details4: ${value.error!}");
+      }
+    });
+    notifyListeners();
+  }
+
   salesOrderSchemeData() async {
     schemeData = [];
     for (int i = 0; i < scanneditemData.length; i++) {
@@ -1224,6 +1290,8 @@ class SOCon extends ChangeNotifier {
     for (int i = 0; i < getholddata.length; i++) {
       holdData.add(HoldedHeader(
           cardName: getholddata[i]['customername'].toString(),
+          tinNo: getholddata[i]['TinNo'].toString(),
+          vatNo: getholddata[i]['VatNo'].toString(),
           cardcode: getholddata[i]['customercode'].toString(),
           docEntry: int.parse(getholddata[i]['docentry'].toString()),
           docNo: getholddata[i]['documentno'].toString(),
@@ -1282,6 +1350,9 @@ class SOCon extends ChangeNotifier {
     selectedcust55 = null;
     List<Map<String, Object?>> getholddata =
         await DBOperation.getSalesOrderHeadHoldvalueDB(db);
+    tinNoController.text = holddata.tinNo.toString();
+    vatNoController.text = holddata.vatNo.toString();
+
     selectedcust = CustomerDetals(
       name: holddata.cardName,
       taxCode: custData[0]['taxCode'].toString(),
@@ -2055,6 +2126,10 @@ class SOCon extends ChangeNotifier {
               selectedcust2 = null;
               selectedcust25 = null;
               scanneditemData2 = [];
+              postingDatecontroller.text = '';
+              custNameController.text = '';
+              tinNoController.text = '';
+              vatNoController.text = '';
               cashpayment = 0;
               cqpayment = 0;
               transpayment = null;
@@ -2207,19 +2282,24 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
-  getOrderApi(String sapDocEntry, BuildContext context, ThemeData theme) async {
+  getOrderApi(String sapDocEntry, String docStatus, BuildContext context,
+      ThemeData theme) async {
     await SerlaySalesOrderAPI.getData(sapDocEntry).then((value) async {
       scanneditemData2 = [];
       editqty = false;
-      clickAprList = true;
       sapDocentry = '';
 
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        log(' value.uOrderType::${value.uOrderType}');
+        log(' value.uOrderDate::${value.docDueDate}');
         sapDocentry = value.docEntry.toString();
         log('sapDocentry::$sapDocentry');
         mycontroller2[50].text = value.comments.toString();
         remarkcontroller3.text = value.comments.toString();
+        postingDatecontroller.text =
+            config.alignDateT(value.docDueDate.toString());
+        tinNoController.text = value.uTinNo.toString();
+        vatNoController.text = value.uVatNumber.toString();
+
         if (value.documentLines.isNotEmpty) {
           for (var i = 0; i < value.documentLines.length; i++) {
             log('value.documentLines length::${value.documentLines[i].uPackSize}');
@@ -2310,7 +2390,9 @@ class SOCon extends ChangeNotifier {
             accBalance: 0,
             address: address2,
             uGPApproval: value.uGpApproval.toString(),
-            uOrderDate: config.alignDateT(value.uOrderDate),
+            uOrderDate: value.uOrderDate == 'null' || value.uOrderDate == null
+                ? ''
+                : config.alignDateT(value.uOrderDate),
             uOrderType: value.uOrderType != null || value.uOrderType!.isNotEmpty
                 ? value.uOrderType
                 : '1',
@@ -2318,6 +2400,7 @@ class SOCon extends ChangeNotifier {
             custRefNum: value.numAtCard,
             docentry: value.docEntry.toString(),
             invoicenum: value.docNum.toString(),
+            docStatus: docStatus,
             email: getcustomer[0]['emalid'].toString(),
             tarNo: getcustomer[0]['taxno'].toString(),
             autoId: getcustomer[0]['autoid'].toString(),
@@ -2330,9 +2413,10 @@ class SOCon extends ChangeNotifier {
             point: getcustomer[0]['points'].toString(),
             address: address25,
             accBalance: 0,
+            docStatus: docStatus,
             uOrderType: value.uOrderType ?? '1',
             uGPApproval: value.uGpApproval,
-            uOrderDate: value.uOrderDate,
+            uOrderDate: '',
             docentry: value.docEntry.toString(),
             invoiceDate: value.docDate,
             invoicenum: value.docNum.toString(),
@@ -3117,6 +3201,8 @@ class SOCon extends ChangeNotifier {
             : selectedcust != null
                 ? selectedcust!.name
                 : "",
+        tinNo: tinNoController.text,
+        vatno: vatNoController.text,
         customertype: UserValues.userType,
         docbasic: totalPayment != null
             ? totalPayment!.subtotal!.toString().replaceAll(',', '')
@@ -3408,7 +3494,7 @@ class SOCon extends ChangeNotifier {
   getOrderDocList() {
     itemsDocDetails = [];
 
-    if (userTypes == 'corporate') {
+    if (userTypes == 'corporate' || userTypes == 'retail') {
       for (int i = 0; i < scanneditemData.length; i++) {
         scanneditemData[i].sellPrice =
             double.parse(pricemycontroller[i].text.toString());
@@ -3879,8 +3965,10 @@ class SOCon extends ChangeNotifier {
     SalesOrderPostAPi.copyfromsq = cpyfrmsq;
     SalesOrderPostAPi.docLineQout = itemsDocDetails;
     SalesOrderPostAPi.docDate = config.currentDate();
-    SalesOrderPostAPi.dueDate = config.currentDate();
+    SalesOrderPostAPi.dueDate = config.alignDate2(postingDatecontroller.text);
     SalesOrderPostAPi.remarks = remarkcontroller3.text;
+    SalesOrderPostAPi.tinNo = tinNoController.text;
+    SalesOrderPostAPi.vatNo = vatNoController.text;
     SalesOrderPostAPi.orderDate = config.alignDate2(udfController[2].text);
     SalesOrderPostAPi.orderType = valueSelectedOrder;
     SalesOrderPostAPi.gpApproval = valueSelectedGPApproval;
@@ -4035,7 +4123,9 @@ class SOCon extends ChangeNotifier {
     OrderPostAPi2.docLineQout = itemsDocDetails;
     OrderPostAPi2.seriesType = seriesType.toString();
     OrderPostAPi2.docDate = config.currentDate();
-    OrderPostAPi2.dueDate = config.currentDate();
+    OrderPostAPi2.dueDate = config.alignDate2(postingDatecontroller.text);
+    OrderPostAPi2.tinNo = tinNoController.text;
+    OrderPostAPi2.vatNo = vatNoController.text;
     OrderPostAPi2.remarks = remarkcontroller3.text;
     OrderPostAPi2.orderDate = config.alignDate2(udfController[2].text);
     OrderPostAPi2.orderType = valueSelectedOrder;
@@ -4088,7 +4178,10 @@ class SOCon extends ChangeNotifier {
           newBillAddrsValue = [];
           newCustValues = [];
           totalPayment = null;
-
+          postingDatecontroller.text = '';
+          custNameController.text = '';
+          tinNoController.text = '';
+          vatNoController.text = '';
           mycontroller[50].text = "";
           discountcontroller =
               List.generate(100, (i) => TextEditingController());
@@ -4211,6 +4304,10 @@ class SOCon extends ChangeNotifier {
           cpyfrmsq = false;
           onDisablebutton = true;
           selectedcust55 = null;
+          postingDatecontroller.text = '';
+          custNameController.text = '';
+          tinNoController.text = '';
+          vatNoController.text = '';
           selectedcust = null;
           scanneditemData.clear();
           schemebtnclk = false;
@@ -4427,44 +4524,49 @@ class SOCon extends ChangeNotifier {
   }
 
   checkSAPsts(BuildContext context, ThemeData theme) async {
-    log('scanneditemData2::${scanneditemData2.length}');
+    log('scanned;itemData2:${selectedcust2!.docStatus}:${scanneditemData2.length}');
     if (scanneditemData2.isNotEmpty) {
-      for (int ij = 0; ij < scanneditemData2.length; ij++) {
-        if (scanneditemData2[ij].lineStatus == "bost_Open") {
-          await newUpdateFixDataMethod(context, theme);
-          // await updateFixDataMethod(context, theme);
-        } else if (scanneditemData2[ij].lineStatus == "bost_Close") {
-          cancelbtn = false;
+      log('step1');
+      // for (int ij = 0; ;ij < scanneditemData2.length; ij++) {
+      if (selectedcust2!.docStatus == "O") {
+        log('step12');
 
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                    contentPadding: EdgeInsets.zero,
-                    content: AlertBox(
-                      payMent: 'Alert',
-                      errormsg: true,
-                      widget: Center(
-                          child: ContentContainer(
-                        content: 'Document is already cancelled',
-                        theme: theme,
-                      )),
-                      buttonName: null,
-                    ));
-              }).then((value) {
-            sapDocentry = '';
-            sapDocuNumber = '';
-            sapDocentry = '';
-            sapDocuNumber = '';
-            selectedcust2 = null;
-            scanneditemData2.clear();
-            selectedcust25 = null;
-            cancelbtn = false;
-            notifyListeners();
-          });
+        await newUpdateFixDataMethod(context, theme);
+      }
+      // await updateFixDataMethod(context, theme);
+      else if (selectedcust2!.docStatus == "C") {
+        log('step13');
+        // } else {
+        cancelbtn = false;
+
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: 'Document is already cancelled',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          // selectedcust2 = null;
+          // scanneditemData2.clear();
+          // selectedcust25 = null;
+          // cancelbtn = false;
           notifyListeners();
-        }
+        });
+        notifyListeners();
       }
     } else {
       showDialog(
@@ -5923,7 +6025,7 @@ class SOCon extends ChangeNotifier {
           ? custNameController.text
           : selectedcust!.name;
       SalesOrdPatchAPI.docDate = config.currentDate2();
-      SalesOrdPatchAPI.dueDate = config.currentDate2();
+      SalesOrdPatchAPI.dueDate = config.alignDate2(postingDatecontroller.text);
       SalesOrdPatchAPI.remarks = remarkcontroller3.text;
       SalesOrdPatchAPI.orderDate =
           config.alignDate2(selectedcust!.uOrderDate.toString());
@@ -5938,7 +6040,7 @@ class SOCon extends ChangeNotifier {
       SalesOrdPatchAPI.slpCode = AppConstant.slpCode;
       for (int ij = 0; ij < scanneditemData.length; ij++) {
         if (scanneditemData[ij].lineStatus == "bost_Open") {
-          if (userTypes != 'corporate') {
+          if (userTypes == 'user') {
             await scehmeapiforckout(context, theme);
           }
           await callOrderPatchApi(
@@ -6022,6 +6124,8 @@ class SOCon extends ChangeNotifier {
       docentry: tbDocEntry.toString(),
       objname: '',
       objtype: '',
+      tinNo: tinNoController.text,
+      vatno: vatNoController.text,
       amtpaid: totalPayment != null
           ? getSumTotalPaid().toString().replaceAll(',', '')
           : null,
@@ -6709,6 +6813,7 @@ class SOCon extends ChangeNotifier {
     cashType = '';
     udfClear();
     selectbankCode = '';
+    postingDatecontroller.text = '';
     selectedBankType = null;
     bankhintcolor = false;
     creditType = '';
@@ -7102,12 +7207,15 @@ class SOCon extends ChangeNotifier {
   List<OpenSalesOrderLineData>? openQuotLine;
   List<OpenSalesOrderLineData>? openQuotLineList;
 
-  showaopenQuotLines() {
+  showopenQuotLines() {
     openQuotLineList = [];
 
     for (var ij = 0; ij < openSalesQuot.length; ij++) {
       if (openSalesQuot[ij].invoiceClr == 1 &&
           openSalesQuot[ij].checkBClr == true) {
+        custNameController.text = openSalesQuot[ij].cardName;
+        tinNoController.text = openSalesQuot[ij].uTinNO ?? '';
+        vatNoController.text = openSalesQuot[ij].uVATNUMBER ?? '';
         for (var i = 0; i < openQuotLine!.length; i++) {
           // log('penQuotLine![i].docEntry::${openQuotLine![i].docEntry}:::${openSalesQuot[ij].docEntry.toString()}');
 
@@ -7178,6 +7286,9 @@ class SOCon extends ChangeNotifier {
     selectedcust = null;
     selectedcust55 = null;
     custNameController.text = '';
+
+    tinNoController.text = '';
+    vatNoController.text = '';
     selectedBillAdress = 0;
     selectedShipAdress = 0;
     double? updateCustBal = 0;
@@ -7348,6 +7459,11 @@ class SOCon extends ChangeNotifier {
     holddocentry = '';
     selectedcust = null;
     selectedcust55 = null;
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
+
+    postingDatecontroller.text = config.alignDate(DateTime.now().toString());
     if (scanneditemData.isNotEmpty) {
       for (var i = 0; i < scanneditemData.length; i++) {
         scanneditemData[i].taxRate = 0.0;
@@ -8435,7 +8551,8 @@ class SOCon extends ChangeNotifier {
     mycontroller[6].clear();
     mycontroller[21].clear();
     custNameController.text = '';
-
+    vatNoController.text = '';
+    tinNoController.text = '';
     notifyListeners();
   }
 
@@ -8461,7 +8578,7 @@ class SOCon extends ChangeNotifier {
       String ansbasic =
           (scanneditemData2[iss].sellPrice! * scanneditemData2[iss].qty!)
               .toString();
-      log('ansbasicansbasic::$ansbasic');
+      // log('ansbasicansbasic::$ansbasic');
       scanneditemData2[iss].basic = double.parse(ansbasic);
       // scanneditemData2[iss].discountper =
       //     discountcontroller2[iss].text.isNotEmpty
@@ -8554,7 +8671,10 @@ class SOCon extends ChangeNotifier {
       // log('priceaftDiscpriceaftDisc::$priceaftDisc');
       scanneditemData[iss].taxable =
           scanneditemData[iss].basic! - scanneditemData[iss].discount!;
-
+      if (scanneditemData[iss].taxRate == null ||
+          scanneditemData[iss].taxRate == 'null') {
+        scanneditemData[iss].taxRate = 0;
+      } else {}
       scanneditemData[iss].taxvalue =
           scanneditemData[iss].taxable! * scanneditemData[iss].taxRate! / 100;
 
@@ -9054,7 +9174,7 @@ class SOCon extends ChangeNotifier {
   }
 
   changecheckout(BuildContext context, ThemeData theme) async {
-    if (userTypes != 'corporate') {
+    if (userTypes == 'user') {
       await scehmeapiforckout(context, theme);
     }
     checkOut(context, theme);
@@ -9213,14 +9333,17 @@ class SOCon extends ChangeNotifier {
 
   clickacancelbtn(BuildContext context, ThemeData theme) async {
     final Database db = (await DBHelper.getInstance())!;
-    log("tbDocEntrytbDocEntry:::$tbDocEntry");
+    log("sapDocentrysapDocentry:::$sapDocentry");
     if (sapDocentry.isNotEmpty) {
+      log('step1');
       List<Map<String, Object?>> getheaderData =
           await DBOperation.salesOrderCancellQuery(
         db,
         tbDocEntry.toString(),
       );
       if (getheaderData.isNotEmpty) {
+        log('step12');
+
         if (getheaderData[0]['basedocentry'].toString() ==
             tbDocEntry.toString()) {
           showDialog(
@@ -9261,9 +9384,12 @@ class SOCon extends ChangeNotifier {
           });
         }
       } else {
-        await sapOrderLoginApi(
-          context,
-        );
+        log('step13');
+
+        log('message::Cancel api calling');
+        await callSalesOrderCancelAPI(context, theme);
+        log('step15');
+
         notifyListeners();
       }
     } else {
@@ -9300,6 +9426,7 @@ class SOCon extends ChangeNotifier {
         notifyListeners();
       });
     }
+    notifyListeners();
   }
 
   sapOrderLoginApi(
@@ -9349,7 +9476,7 @@ class SOCon extends ChangeNotifier {
           duration: const Duration(seconds: 4),
           backgroundColor: Colors.red,
           content: const Text(
-            "Opps Something went wrong !!..",
+            "Something went wrong !!..",
             style: TextStyle(color: Colors.white),
           ),
         );
@@ -9424,111 +9551,178 @@ class SOCon extends ChangeNotifier {
   }
 
   callSalesOrderCancelAPI(BuildContext context, ThemeData theme) async {
-    final Database db = (await DBHelper.getInstance())!;
-    if (sapSaleOrderModelData.isNotEmpty) {
-      for (int ij = 0; ij < sapSaleOrderModelData.length; ij++) {
-        if (sapSaleOrderModelData[ij].lineStatus == "bost_Open") {
-          await SerlayOrderCancelAPI.getData(sapDocentry.toString())
-              .then((value) async {
-            if (value.statusCode! >= 200 && value.statusCode! <= 204) {
-              cancelbtn = false;
+    // if (sapSaleOrderModelData.isNotEmpty) {
+    // for (int ij = 0; ij < sapSaleOrderModelData.length; ij++) {
+    if (selectedcust2!.docStatus == 'O') {
+      onDisablebutton = false;
+      Get.defaultDialog(
+          title: 'Warning',
+          titleStyle: theme.textTheme.bodyMedium
+              ?.copyWith(color: Colors.red, fontSize: 18),
+          middleText: 'Do you want to cancel this document ?',
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: theme.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      width: Screens.width(context) * 0.07,
+                      height: Screens.padingHeight(context) * 0.05,
+                      child: Text(" Yes ",
+                          style: theme.textTheme.bodyMedium
+                              ?.copyWith(color: Colors.white)),
+                      alignment: Alignment.center,
+                    ),
+                    onPressed: () async {
+                      Get.back();
 
-              await DBOperation.updateSalesOrderclosedocsts(
-                  db, sapDocentry.toString());
-              notifyListeners();
+                      notifyListeners();
 
-              await Get.defaultDialog(
-                      title: "Success",
-                      middleText: 'Document is successfully cancelled ..!!',
-                      backgroundColor: Colors.white,
-                      titleStyle: const TextStyle(color: Colors.red),
-                      middleTextStyle: const TextStyle(color: Colors.black),
-                      actions: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              child: const Text("Close"),
-                              onPressed: () => Get.back(),
-                            ),
-                          ],
-                        ),
-                      ],
-                      radius: 5)
-                  .then((value) {
-                sapDocentry = '';
-                sapDocuNumber = '';
-                selectedcust2 = null;
-                selectedcust25 = null;
-                paymentWay2.clear();
-                scanneditemData2.clear();
-                notifyListeners();
-              });
-              custserieserrormsg = '';
-              notifyListeners();
-            } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-              cancelbtn = false;
+                      log('step14');
+                      onDisablebutton = true;
+                      await callCancelApi(context, theme);
+                      notifyListeners();
+                    }),
+                TextButton(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: theme.primaryColor,
+                        borderRadius: BorderRadius.circular(5)),
+                    width: Screens.width(context) * 0.07,
+                    height: Screens.padingHeight(context) * 0.05,
+                    child: Text(
+                      "No",
+                      style: theme.textTheme.bodyMedium
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    alignment: Alignment.center,
+                  ),
+                  onPressed: () {
+                    onDisablebutton = false;
 
-              custserieserrormsg = value.exception!.message!.value.toString();
-              showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                        contentPadding: EdgeInsets.zero,
-                        content: AlertBox(
-                          payMent: 'Alert',
-                          errormsg: true,
-                          widget: Center(
-                              child: ContentContainer(
-                            content: '$custserieserrormsg',
-                            theme: theme,
-                          )),
-                          buttonName: null,
-                        ));
-                  }).then((value) {
-                sapDocentry = '';
-                sapDocuNumber = '';
-                selectedcust2 = null;
-                selectedcust25 = null;
-                paymentWay2.clear();
-                scanneditemData2.clear();
-                notifyListeners();
-              });
-            } else {}
-          });
-        } else if (sapSaleOrderModelData[ij].lineStatus == "bost_Close") {
-          cancelbtn = false;
+                    Get.back();
+                  },
+                ),
+              ],
+            ),
+          ],
+          radius: 5);
+    } else if (selectedcust2!.docStatus == 'C') {
+      cancelbtn = false;
 
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                    contentPadding: EdgeInsets.zero,
-                    content: AlertBox(
-                      payMent: 'Alert',
-                      errormsg: true,
-                      widget: Center(
-                          child: ContentContainer(
-                        content: 'Document is already cancelled',
-                        theme: theme,
-                      )),
-                      buttonName: null,
-                    ));
-              }).then((value) {
-            sapDocentry = '';
-            sapDocuNumber = '';
-            selectedcust2 = null;
-            selectedcust25 = null;
-            paymentWay2.clear();
-            scanneditemData2.clear();
-            notifyListeners();
-          });
-          notifyListeners();
-        }
-      }
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                contentPadding: EdgeInsets.zero,
+                content: AlertBox(
+                  payMent: 'Alert',
+                  errormsg: true,
+                  widget: Center(
+                      child: ContentContainer(
+                    content: 'Document is already cancelled',
+                    theme: theme,
+                  )),
+                  buttonName: null,
+                ));
+          }).then((value) {
+        onDisablebutton = false;
+        // sapDocentry = '';
+        // sapDocuNumber = '';
+        // selectedcust2 = null;
+        // selectedcust25 = null;
+        // paymentWay2.clear();
+        // scanneditemData2.clear();
+        notifyListeners();
+      });
+      notifyListeners();
+      // }
+      // }
     }
+  }
+
+  callCancelApi(BuildContext context, ThemeData theme) async {
+    final Database db = (await DBHelper.getInstance())!;
+    await sapOrderLoginApi(
+      context,
+    );
+    await SerlayOrderCancelAPI.getData(sapDocentry.toString())
+        .then((value) async {
+      if (value.statusCode! >= 200 && value.statusCode! <= 204) {
+        cancelbtn = false;
+
+        await DBOperation.updateSalesOrderclosedocsts(
+            db, sapDocentry.toString());
+        notifyListeners();
+
+        await Get.defaultDialog(
+                title: "Success",
+                middleText: 'Document is successfully cancelled ..!!',
+                backgroundColor: Colors.white,
+                titleStyle: const TextStyle(color: Colors.red),
+                middleTextStyle: const TextStyle(color: Colors.black),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text("Close"),
+                        onPressed: () => Get.back(),
+                      ),
+                    ],
+                  ),
+                ],
+                radius: 5)
+            .then((value) {
+          sapDocentry = '';
+          sapDocuNumber = '';
+          selectedcust2 = null;
+          selectedcust25 = null;
+          paymentWay2.clear();
+          scanneditemData2.clear();
+          onDisablebutton = false;
+
+          notifyListeners();
+        });
+        custserieserrormsg = '';
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        cancelbtn = false;
+
+        custserieserrormsg = value.exception!.message!.value.toString();
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: '$custserieserrormsg',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          // selectedcust2 = null;
+          // selectedcust25 = null;
+          // paymentWay2.clear();
+          // scanneditemData2.clear();
+          onDisablebutton = false;
+          notifyListeners();
+        });
+      } else {}
+    });
+    notifyListeners();
   }
 
   Future<int?> checkCredit(String typpe) {
@@ -9586,7 +9780,7 @@ class SOCon extends ChangeNotifier {
       scanneditemData2.clear();
       paymentWay2.clear();
       totalPayment2 = null;
-      if (userTypes != 'corporate') {
+      if (userTypes == 'user') {
         if (schemebtnclk == true) {
           await scehmeapiforckout(context, theme);
         }
@@ -9731,6 +9925,9 @@ class SOCon extends ChangeNotifier {
   List get getdiscountType => discountType;
   String? discount;
   clearAllData(BuildContext context, ThemeData theme) {
+    vatNoController.text = '';
+    tinNoController.text = '';
+    onhandData = [];
     isLoading = false;
     clickAprList = false;
     newCashAcc = [];

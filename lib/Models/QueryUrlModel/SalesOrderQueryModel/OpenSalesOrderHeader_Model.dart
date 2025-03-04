@@ -79,6 +79,9 @@ class OpenSalesOrderHeaderData {
   String docDate;
   double docTotal;
   String whsCode;
+  String? uTinNO;
+
+  String? uVATNUMBER;
   String cardName;
   String? docStatus;
   String? comments;
@@ -89,6 +92,8 @@ class OpenSalesOrderHeaderData {
       required this.cardCode,
       required this.cardName,
       required this.comments,
+      required this.uTinNO,
+      required this.uVATNUMBER,
       required this.docEntry,
       this.docStatus,
       this.checkBClr,
@@ -101,6 +106,8 @@ class OpenSalesOrderHeaderData {
     return OpenSalesOrderHeaderData(
         docDate: jsons['DocDate'] ?? '',
         cardCode: jsons['CardCode'] ?? "",
+        uTinNO: jsons['U_TinNO'] ?? "",
+        uVATNUMBER: jsons['U_VAT_NUMBER'] ?? "",
         cardName: jsons['CardName'] ?? "",
         comments: jsons['Comments'] ?? '',
         docStatus: jsons['DocStatus'] ?? "",

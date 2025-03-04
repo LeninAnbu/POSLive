@@ -1329,7 +1329,7 @@ class ApiSettingsController extends ChangeNotifier {
     await DBOperation.truncateCustomerMasterAddress(db);
     await AddressMasterApi.getData().then((value) async {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
-        // log("value.addressdata length:::${value.addressdata!.length}");
+        log("value.addressdata length:::${value.addressdata!.length}");
         // print(
         //     " UserValues.branch  address table" + UserValues.branch.toString());
         if (value.addressdata != null) {
@@ -1404,14 +1404,18 @@ class ApiSettingsController extends ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     });
-    await DBOperation.insertCustomerAddress(db, addrsvalue).then((value) async {
-      log("inseted CustomerAddressMaster");
-      progressCustomerAddressMaster = false;
-      customerAddressMasterCount =
-          (await DBOperation.getCustomerMasterCount(db))!;
+    log('addrsvalueaddrsvalue::${addrsvalue.length}');
+    if (addrsvalue.isNotEmpty) {
+      await DBOperation.insertCustomerAddress(db, addrsvalue)
+          .then((value) async {
+        log("inseted CustomerAddressMaster");
+        progressCustomerAddressMaster = false;
+        customerAddressMasterCount =
+            (await DBOperation.getCustomerAddressMasterCount(db))!;
 
-      notifyListeners();
-    });
+        notifyListeners();
+      });
+    }
   }
 
   getCustomerAddressMasterData(BuildContext context, ThemeData theme) async {

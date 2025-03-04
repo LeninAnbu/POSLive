@@ -381,24 +381,32 @@ class SearhBoxState extends State<SearhBoxSO> {
                                 itemBuilder: (context, index) {
                                   return InkWell(
                                     onTap: () async {
+                                      context.read<SOCon>().clickAprList = true;
+                                      context.read<SOCon>().setstate1();
+
                                       await context.read<SOCon>().getOrderApi(
                                           context
                                               .read<SOCon>()
                                               .filtersearchData[index]
                                               .docEntry
                                               .toString(),
+                                          context
+                                              .read<SOCon>()
+                                              .filtersearchData[index]
+                                              .docStatus
+                                              .toString(),
                                           context,
                                           widget.theme);
 
-                                      await context
-                                          .read<SOCon>()
-                                          .soCustAddressApi(
-                                            context
-                                                .read<SOCon>()
-                                                .filtersearchData[index]
-                                                .docEntry
-                                                .toString(),
-                                          );
+                                      // await context
+                                      //     .read<SOCon>()
+                                      //     .soCustAddressApi(
+                                      //       context
+                                      //           .read<SOCon>()
+                                      //           .filtersearchData[index]
+                                      //           .docEntry
+                                      //           .toString(),
+                                      //     );
 
                                       // await context
                                       //     .read<SOCon>()
@@ -576,7 +584,7 @@ class SearhBoxState extends State<SearhBoxSO> {
           visible: context.watch<SOCon>().clickAprList,
           child: Container(
             width: Screens.width(context),
-            height: Screens.bodyheight(context) * 0.85,
+            height: Screens.bodyheight(context) * 0.88,
             color: Colors.white60,
             child: Center(
               child: SpinKitFadingCircle(

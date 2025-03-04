@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -71,8 +72,28 @@ class Configure {
 
   Future<bool> haveInterNet() async {
     final result = await Connectivity().checkConnectivity();
+    print('resultresult::${result}');
     final hasInternet = result != ConnectivityResult.none;
     return hasInternet;
+  }
+
+  Future<bool?> haveNoInterNet() async {
+    // final result = await Connectivity().checkConnectivity();
+
+    final List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
+    bool? hasnoInternet;
+
+    if (connectivityResult.contains(ConnectivityResult.none) == true) {
+      print(
+          'VVVVVVVVVVVVVVVVV::::${connectivityResult.contains(ConnectivityResult.none)}');
+      hasnoInternet = true;
+    } else {
+      hasnoInternet = false;
+    }
+    // result != (connectivityResult.contains(ConnectivityResult.none));
+    // log('hasnoInternethasnoInternet:$hasnoInternet');
+    return hasnoInternet;
   }
 
   String alignDate(String date) {
@@ -104,11 +125,23 @@ class Configure {
   }
 
   String alignDateT(String date) {
+    log('datedate::$date');
     var dates = DateTime.parse(date);
     return "${dates.day.toString().padLeft(2, '0')}-${dates.month.toString().padLeft(2, '0')}-${dates.year}";
     // } else {
     //   return '';
     // }
+  }
+
+  String alignmeetingdate(String date1) {
+    String dateT = date1.replaceAll("T", " ");
+    log("DATATTA" + dateT.toString());
+    final timestamp = DateTime.parse('$date1');
+
+    // Define the desired date and time format
+    final formattedDateTime = DateFormat('dd-MM-yyyy h:mma').format(timestamp);
+    log("DATE::" + formattedDateTime);
+    return formattedDateTime;
   }
 
   Future<String?> getdeviceId() async {

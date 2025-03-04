@@ -81,7 +81,7 @@ class _CustomerMainScreensState extends State<CustomerMainScreens> {
               theme,
               context,
             ),
-            body: const SafeArea(
+            body: SafeArea(
               child: TabCustomerScreen(),
             )),
       );

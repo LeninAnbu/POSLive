@@ -331,6 +331,9 @@ class _stConSearhBoxState extends State<StInConSearhBox> {
                                       context
                                           .read<StockInwrdController>()
                                           .searchLoading = true;
+
+                                      context.read<StockInwrdController>()
+                                        ..setstatemethod();
                                       context
                                           .read<StockInwrdController>()
                                           .callSearchLine(
@@ -340,15 +343,15 @@ class _stConSearhBoxState extends State<StInConSearhBox> {
                                                   .docEntry
                                                   .toString(),
                                               index);
-                                      context
-                                          .read<StockInwrdController>()
-                                          .soCustAddressApi(
-                                            context
-                                                .read<StockInwrdController>()
-                                                .filtersearchData[index]
-                                                .docEntry
-                                                .toString(),
-                                          );
+                                      // context
+                                      // .read<StockInwrdController>()
+                                      // .soCustAddressApi(
+                                      //   context
+                                      //       .read<StockInwrdController>()
+                                      //       .filtersearchData[index]
+                                      //       .docEntry
+                                      //       .toString(),
+                                      // );
                                       // await context
                                       //     .read<StockInwrdController>()
                                       //     .callgetStkinwardAPI(context, widget.theme);

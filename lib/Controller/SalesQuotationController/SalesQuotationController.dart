@@ -20,6 +20,8 @@ import 'package:posproject/Service/NewCustCodeCreate/CustomerSeriesApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/FileUploadApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/PaymentGroupApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/TeritoryApi.dart';
+import 'package:posproject/Service/QueryURL/CreditDaysModelAPI.dart';
+import 'package:posproject/Service/QueryURL/CreditLimitModeAPI.dart';
 import 'package:posproject/ServiceLayerAPIss/QuotationAPI/QuotationPostAPI.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -38,6 +40,7 @@ import '../../Models/DataModel/CustomerModel/CustomerModel.dart';
 import '../../Models/DataModel/PaymentModel/PaymentModel.dart';
 import '../../Models/DataModel/SeriesMode/SeriesModels.dart';
 import '../../Models/QueryUrlModel/CompanyTinVatModel.dart';
+import '../../Models/QueryUrlModel/OnhandModel.dart';
 import '../../Models/QueryUrlModel/SOCustoAddressModel.dart';
 import '../../Models/QueryUrlModel/SalesOrderQueryModel/OpenSalesOrderHeader_Model.dart';
 import '../../Models/SchemeOrderModel/SchemeOrderModel.dart';
@@ -53,6 +56,7 @@ import '../../Pages/SalesQuotation/Widgets/QuotPrintLayout.dart';
 import '../../Service/NewCustCodeCreate/NewAddCreatePatchApi.dart';
 import '../../Service/Printer/QuotationPrint.dart';
 import '../../Service/QueryURL/CompanyVatTinApi.dart';
+import '../../Service/QueryURL/OnHandApi.dart';
 import '../../Service/QueryURL/SoCustomerAddressApi.dart';
 import '../../Service/SearchQuery/SearchQuotHeaderApi.dart';
 import '../../Service/SeriesApi.dart';
@@ -73,6 +77,11 @@ import 'package:uuid/uuid.dart';
 class SalesQuotationCon extends ChangeNotifier {
   Configure config = Configure();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TextEditingController custNameController = TextEditingController();
+  TextEditingController tinNoController = TextEditingController();
+  TextEditingController vatNoController = TextEditingController();
+
   List<GlobalKey<FormState>> formkey =
       List.generate(100, (i) => GlobalKey<FormState>());
   GlobalKey<FormState> formkeyAd = GlobalKey<FormState>();
@@ -86,6 +95,9 @@ class SalesQuotationCon extends ChangeNotifier {
       List.generate(150, (i) => TextEditingController());
   List<TextEditingController> pricemycontroller =
       List.generate(150, (i) => TextEditingController());
+  List<TextEditingController> itemNameController =
+      List.generate(150, (i) => TextEditingController());
+
   List<TextEditingController> qtymycontroller =
       List.generate(100, (ij) => TextEditingController());
   List<TextEditingController> discountcontroller =
@@ -94,6 +106,32 @@ class SalesQuotationCon extends ChangeNotifier {
       List.generate(100, (ij) => TextEditingController());
 
   TextEditingController remarkcontroller3 = TextEditingController();
+  TextEditingController duedatecontroller = TextEditingController();
+  String? filterapiwonDate = '';
+  void showfromDate(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2050),
+    ).then((value) {
+      if (value == null) {
+        return;
+      }
+      duedatecontroller.clear();
+      String chooseddate = value.toString();
+      var date = DateTime.parse(chooseddate);
+      chooseddate = "";
+      chooseddate =
+          "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}";
+      filterapiwonDate =
+          "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+      // print(apiWonFDate);
+
+      duedatecontroller.text = chooseddate;
+      notifyListeners();
+    });
+  }
 
   List<TextEditingController> mycontroller2 =
       List.generate(150, (i) => TextEditingController());
@@ -325,12 +363,14 @@ class SalesQuotationCon extends ChangeNotifier {
 
   String userTypes = '';
   callGetUserType() async {
+    userTypes = '';
     final Database db = (await DBHelper.getInstance())!;
 
     List<Map<String, Object?>> userData =
         await DBOperation.getusersvaldata(db, UserValues.username);
     if (userData.isNotEmpty) {
-      userTypes = userData[0]['usertype'].toString();
+      userTypes = userData[0]['usertype'].toString().toLowerCase();
+      log('userTypesuserTypesuserTypes::${userTypes}');
     }
     notifyListeners();
   }
@@ -477,6 +517,15 @@ class SalesQuotationCon extends ChangeNotifier {
     notifyListeners();
   }
 
+  itemnameChanged(
+    int index,
+    BuildContext context,
+    ThemeData theme,
+  ) async {
+    scanneditemData[index].itemName = itemNameController[index].text.toString();
+    notifyListeners();
+  }
+
   discountChanged(
     int index,
     BuildContext context,
@@ -540,6 +589,8 @@ class SalesQuotationCon extends ChangeNotifier {
       scanneditemData[i].transID = i;
       pricemycontroller[i].text = scanneditemData[i].sellPrice.toString();
       discountcontroller[i].text = scanneditemData[i].discountper.toString();
+      itemNameController[i].text = scanneditemData[i].itemName.toString();
+
       if (selectedcust != null && selectedcust!.taxCode != null) {
         if (selectedcust!.taxCode == 'O1') {
           scanneditemData[i].taxRate = 18.0;
@@ -550,6 +601,8 @@ class SalesQuotationCon extends ChangeNotifier {
       } else {
         scanneditemData[i].taxRate = 0.0;
       }
+
+      await callOnHandApi(scanneditemData[i].itemCode.toString(), i);
       log('scanneditemData[i].packsize::${scanneditemData[i].uPackSize}');
     }
 
@@ -603,10 +656,11 @@ class SalesQuotationCon extends ChangeNotifier {
       for (int ik = 0; ik < resSchemeDataList.length; ik++) {
         if (resSchemeDataList[ik].lineNum == scanneditemData[i].transID) {
           // discountt = discountt + resSchemeDataList[ik].discPer;
-          discountcontroller[i].text =
-              scanneditemData[i].discountper!.toString();
+
           scanneditemData[i].discountper =
               scanneditemData[i].discountper! + resSchemeDataList[ik].discPer;
+          discountcontroller[i].text =
+              scanneditemData[i].discountper!.toString();
           log(' discountcontroller[i].text ::${scanneditemData[i].discountper}');
 
           notifyListeners();
@@ -920,42 +974,42 @@ class SalesQuotationCon extends ChangeNotifier {
 
   checkSAPsts(BuildContext context, ThemeData theme) async {
     if (scanneditemData2.isNotEmpty) {
-      for (int ij = 0; ij < scanneditemData2.length; ij++) {
-        if (scanneditemData2[ij].lineStatus == "bost_Open") {
-          newUpdateFixDataMethod(context, theme);
-          // await updateFixDataMethod(context, theme);
-        } else if (scanneditemData2[ij].lineStatus == "bost_Close") {
-          cancelbtn = false;
+      // for (int ij = 0; ij < scanneditemData2.length; ij++) {
+      if (selectedcust2!.docStatus == "O") {
+        newUpdateFixDataMethod(context, theme);
 
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                    contentPadding: const EdgeInsets.all(0),
-                    content: AlertBox(
-                      payMent: 'Alert',
-                      errormsg: true,
-                      widget: Center(
-                          child: ContentContainer(
-                        content: 'Document is already cancelled',
-                        theme: theme,
-                      )),
-                      buttonName: null,
-                    ));
-              }).then((value) {
-            sapDocentry = '';
-            sapDocuNumber = '';
-            sapDocentry = '';
-            sapDocuNumber = '';
-            selectedcust2 = null;
-            scanneditemData2.clear();
-            selectedcust25 = null;
-            cancelbtn = false;
-            notifyListeners();
-          });
+        // await updateFixDataMethod(context, theme);
+      } else if (selectedcust2!.docStatus == "C") {
+        cancelbtn = false;
+
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: const EdgeInsets.all(0),
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: 'Document is already cancelled',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          // selectedcust2 = null;
+          // scanneditemData2.clear();
+          // selectedcust25 = null;
+          // cancelbtn = false;
           notifyListeners();
-        }
+        });
+        notifyListeners();
       }
     } else {
       showDialog(
@@ -1027,8 +1081,7 @@ class SalesQuotationCon extends ChangeNotifier {
           });
         }
       } else {
-        await sapLoginApi(context);
-        await callSerlaySalesQuoAPI(context, theme);
+        // await callSerlaySalesQuoAPI(context, theme);
         await callSerlaySalesCancelQuoAPI(context, theme);
         notifyListeners();
       }
@@ -1303,110 +1356,180 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   callSerlaySalesCancelQuoAPI(BuildContext context, ThemeData theme) async {
-    final Database db = (await DBHelper.getInstance())!;
-    if (sapSsalesQuoline.isNotEmpty) {
-      for (int ij = 0; ij < sapSsalesQuoline.length; ij++) {
-        if (sapSsalesQuoline[ij].lineStatus == "bost_Open") {
-          await SerlayCancelQuoAPI.getData(sapDocentry.toString())
-              .then((value) async {
-            if (value.statusCode! >= 200 && value.statusCode! <= 204) {
-              cancelbtn = false;
-              await DBOperation.updateSalesQuoclosedocsts(
-                  db, sapDocentry.toString());
+    notifyListeners();
+    if (scanneditemData2.isNotEmpty) {
+      // for (int ij = 0; ij < sapSsalesQuoline.length; ij++) {
+      if (selectedcust2!.docStatus == 'O') {
+        onDisablebutton = false;
+        Get.defaultDialog(
+            title: 'Warning',
+            titleStyle: theme.textTheme.bodyMedium
+                ?.copyWith(color: Colors.red, fontSize: 18),
+            middleText: 'Do you want to cancel this document ?',
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: theme.primaryColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        width: Screens.width(context) * 0.07,
+                        height: Screens.padingHeight(context) * 0.05,
+                        child: Text(" Yes ",
+                            style: theme.textTheme.bodyMedium
+                                ?.copyWith(color: Colors.white)),
+                        alignment: Alignment.center,
+                      ),
+                      onPressed: () async {
+                        Get.back();
+                        onDisablebutton = true;
 
-              await Get.defaultDialog(
-                      title: "Success",
-                      middleText: 'Document is successfully cancelled ..!!',
-                      backgroundColor: Colors.white,
-                      titleStyle: const TextStyle(color: Colors.red),
-                      middleTextStyle: const TextStyle(color: Colors.black),
-                      actions: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              child: const Text("Close"),
-                              onPressed: () => Get.back(),
-                            ),
-                          ],
-                        ),
-                      ],
-                      radius: 5)
-                  .then((value) {
-                sapDocentry = '';
-                sapDocuNumber = '';
-                selectedcust2 = null;
-                scanneditemData2.clear();
-                selectedcust25 = null;
-                notifyListeners();
-              });
-              custserieserrormsg = '';
-              notifyListeners();
-            } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-              cancelbtn = false;
+                        await callCancelApi(context, theme);
+                        notifyListeners();
+                      }),
+                  TextButton(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: theme.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      width: Screens.width(context) * 0.07,
+                      height: Screens.padingHeight(context) * 0.05,
+                      child: Text(
+                        "No",
+                        style: theme.textTheme.bodyMedium
+                            ?.copyWith(color: Colors.white),
+                      ),
+                      alignment: Alignment.center,
+                    ),
+                    onPressed: () {
+                      onDisablebutton = false;
 
-              custserieserrormsg = value.exception!.message.toString();
-              showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                        contentPadding: const EdgeInsets.all(0),
-                        content: AlertBox(
-                          payMent: 'Alert',
-                          errormsg: true,
-                          widget: Center(
-                              child: ContentContainer(
-                            content: '$custserieserrormsg',
-                            theme: theme,
-                          )),
-                          buttonName: null,
-                        ));
-                  }).then((value) {
-                sapDocentry = '';
-                sapDocuNumber = '';
-                selectedcust2 = null;
-                selectedcust25 = null;
-                paymentWay2.clear();
-                scanneditemData2.clear();
-                notifyListeners();
-              });
-            } else {}
-          });
-        } else if (sapSsalesQuoline[ij].lineStatus == "bost_Close") {
-          cancelbtn = false;
+                      Get.back();
+                    },
+                  ),
+                ],
+              ),
+            ],
+            radius: 5);
+      } else if (selectedcust2!.docStatus == 'C') {
+        onDisablebutton = true;
 
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                    contentPadding: const EdgeInsets.all(0),
-                    content: AlertBox(
-                      payMent: 'Alert',
-                      errormsg: true,
-                      widget: Center(
-                          child: ContentContainer(
-                        content: 'Document is already cancelled',
-                        theme: theme,
-                      )),
-                      buttonName: null,
-                    ));
-              }).then((value) {
-            sapDocentry = '';
-            sapDocuNumber = '';
-            sapDocentry = '';
-            sapDocuNumber = '';
-            selectedcust2 = null;
-            scanneditemData2.clear();
-            selectedcust25 = null;
-            cancelbtn = false;
-            notifyListeners();
-          });
+        cancelbtn = false;
+        log('Already cancelled');
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: const EdgeInsets.all(0),
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: 'Document is already cancelled',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          // sapDocentry = '';
+          // sapDocuNumber = '';
+          onDisablebutton = false;
+
+          // selectedcust2 = null;
+          // scanneditemData2.clear();
+          // selectedcust25 = null;
+          // cancelbtn = false;
           notifyListeners();
-        }
+        });
+        notifyListeners();
       }
+      // }
     }
+    notifyListeners();
+  }
+
+  callCancelApi(BuildContext context, ThemeData theme) async {
+    onDisablebutton = true;
+
+    final Database db = (await DBHelper.getInstance())!;
+    await sapLoginApi(context);
+
+    await SerlayCancelQuoAPI.getData(sapDocentry.toString())
+        .then((value) async {
+      if (value.statusCode! >= 200 && value.statusCode! <= 204) {
+        cancelbtn = false;
+        await DBOperation.updateSalesQuoclosedocsts(db, sapDocentry.toString());
+        notifyListeners();
+
+        await Get.defaultDialog(
+                title: "Success",
+                middleText: 'Document is successfully cancelled ..!!',
+                backgroundColor: Colors.white,
+                titleStyle: const TextStyle(color: Colors.red),
+                middleTextStyle: const TextStyle(color: Colors.black),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text("Close"),
+                        onPressed: () => Get.back(),
+                      ),
+                    ],
+                  ),
+                ],
+                radius: 5)
+            .then((value) {
+          sapDocentry = '';
+          sapDocuNumber = '';
+          selectedcust2 = null;
+          scanneditemData2.clear();
+          selectedcust25 = null;
+          onDisablebutton = false;
+          notifyListeners();
+        });
+        custserieserrormsg = '';
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        cancelbtn = false;
+        log('Already cancelled');
+        custserieserrormsg = value.exception!.message.toString();
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: const EdgeInsets.all(0),
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: '$custserieserrormsg',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          sapDocentry = '';
+          sapDocuNumber = '';
+          selectedcust2 = null;
+          selectedcust25 = null;
+          onDisablebutton = false;
+
+          paymentWay2.clear();
+          scanneditemData2.clear();
+          notifyListeners();
+        });
+      } else {}
+    });
+    notifyListeners();
   }
 
   DateTime? currentBackPressTime;
@@ -1431,6 +1554,8 @@ class SalesQuotationCon extends ChangeNotifier {
         await DBOperation.getSalesQuoHeadHoldvalueDB(db);
     for (int i = 0; i < getholddata.length; i++) {
       holdData.add(HoldedHeader(
+          vatNo: getholddata[i]['VatNo'].toString(),
+          tinNo: getholddata[i]['TinNo'].toString(),
           cardName: getholddata[i]['customername'].toString(),
           cardcode: getholddata[i]['customercode'].toString(),
           docEntry: int.parse(getholddata[i]['docentry'].toString()),
@@ -1462,7 +1587,34 @@ class SalesQuotationCon extends ChangeNotifier {
 
     holddocentry = holddata.docEntry.toString();
 
-    mapCustomer(context, theme, getcustomer, getcustaddd);
+    tinNoController.text = holddata.tinNo.toString();
+    vatNoController.text = holddata.vatNo.toString();
+
+    await mapCustomer(context, theme, getcustomer, getcustaddd);
+    await CustCreditDaysAPI.getGlobalData(
+      holddata.cardcode.toString(),
+    ).then((value) {
+      if (value.statuscode >= 200 && value.statuscode <= 210) {
+        if (value.creditDaysData != null) {
+          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
+
+          selectedcust!.creditDays =
+              value.creditDaysData![0].creditDays.toString();
+          selectedcust!.paymentGroup =
+              value.creditDaysData![0].paymentGroup.toString().toLowerCase();
+          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
+          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+            selectedcust!.name = holddata.cardName;
+            custNameController.text = holddata.cardName!;
+          } else {
+            selectedcust!.name = getcustomer[0]['customername'].toString();
+          }
+          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
+          notifyListeners();
+        }
+        loadingscrn = false;
+      }
+    });
     mapProdcut(getDBholdSalesLine, context, theme);
     getCustDetFDB();
     calCulateDocVal(context, theme);
@@ -1481,7 +1633,8 @@ class SalesQuotationCon extends ChangeNotifier {
     List<Map<String, Object?>> getholddata =
         await DBOperation.getSalesQuoHeadHoldvalueDB(db);
     selectedcust = CustomerDetals(
-      name: custData[0]['customername'].toString(),
+      name: '',
+      // custData[0]['customername'].toString(),
       phNo: custData[0]['phoneno1'].toString(),
       taxCode: custData[0]['taxCode'].toString(),
       cardCode: custData[0]['customerCode'].toString(),
@@ -1519,10 +1672,11 @@ class SalesQuotationCon extends ChangeNotifier {
           if (getholddata[ik]['shipaddresid'].toString() ==
               getcustaddd[i]['autoid'].toString()) {
             selectedcust55 = CustomerDetals(
-              name: custData[0]['customername'].toString(),
+              name: '',
+              // custData[0]['customername'].toString(),
               taxCode: custData[0]['taxCode'].toString(),
               phNo: custData[0]['phoneno1'].toString(),
-              cardCode: custData[0]['customercode'].toString(),
+              cardCode: custData[0]['customerCode'].toString(),
               point: custData[0]['points'].toString(),
               address: [],
               email: custData[0]['emalid'].toString(),
@@ -1634,6 +1788,8 @@ class SalesQuotationCon extends ChangeNotifier {
       scanneditemData[ig].transID = ig;
       pricemycontroller[ig].text = scanneditemData[ig].sellPrice!.toString();
       discountcontroller[ig].text = scanneditemData[ig].discountper!.toString();
+      itemNameController[ig].text = scanneditemData[i].itemName.toString();
+
       qtymycontroller[ig].text = scanneditemData[ig].openQty!.toString();
       notifyListeners();
     }
@@ -3227,10 +3383,10 @@ class SalesQuotationCon extends ChangeNotifier {
       log("Message:::$i");
       print("Total::" + getdocumentApprovalValue[i].total.toString());
       print("Tacode::" + getdocumentApprovalValue[i].taxTotal.toString());
-      // print("Tacode::" + getdocumentApprovalValue[i].toString());
-      final double taxtotall = getdocumentApprovalValue[i].taxTotal == null
-          ? 0
-          : getdocumentApprovalValue[i].taxTotal!;
+      // // print("Tacode::" + getdocumentApprovalValue[i].toString());
+      // final double taxtotall = getdocumentApprovalValue[i].taxTotal == null
+      //     ? 0
+      //     : getdocumentApprovalValue[i].taxTotal!;
       contentitemsDetails.add(AddItem2(
         warehouse: getdocumentApprovalValue[i].warehouseCode,
         itemCode: getdocumentApprovalValue[i].itemCode,
@@ -4039,8 +4195,45 @@ class SalesQuotationCon extends ChangeNotifier {
     });
   }
 
-  getQuotApi(String sapDocEntry, BuildContext context, ThemeData theme) async {
-    loadSearch = true;
+  List<OnHandModelsData> onhandData = [];
+  callOnHandApi(String itemCode, int index) async {
+    onhandData = [];
+    notifyListeners();
+
+    OnhandApi.getGlobalData('$itemCode', '${AppConstant.branch}').then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        if (value.onHandData != null || value.onHandData!.isNotEmpty) {
+          for (int i = 0; i < value.onHandData!.length; i++) {
+            onhandData.add(OnHandModelsData(
+                onHand: value.onHandData![i].onHand,
+                itemCode: value.onHandData![i].itemCode,
+                whsCode: value.onHandData![i].whsCode));
+            notifyListeners();
+          }
+
+          for (var ik = 0; ik < onhandData.length; ik++) {
+            if (scanneditemData[index].itemCode.toString() ==
+                onhandData[ik].itemCode.toString()) {
+              scanneditemData[index].inStockQty =
+                  double.parse(onhandData[ik].onHand.toString());
+            }
+          }
+          notifyListeners();
+        } else if (value.onHandData == null) {
+          catchmsg.add("Stock details2: ${value.message!}");
+          notifyListeners();
+        }
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        catchmsg.add("Stock details3: ${value.error!}");
+      } else {
+        catchmsg.add("Stcok details4: ${value.error!}");
+      }
+    });
+    notifyListeners();
+  }
+
+  getQuotApi(String sapDocEntry, String docstatus, BuildContext context,
+      ThemeData theme) async {
     await SerlaySalesQuoAPI.getData(sapDocEntry).then((value) async {
       scanneditemData2 = [];
       editqty = false;
@@ -4048,8 +4241,11 @@ class SalesQuotationCon extends ChangeNotifier {
         sapDocentry = value.docEntry.toString();
         sapDocuNumber = value.docNum.toString();
         mycontroller2[50].text = value.comments.toString();
-
         remarkcontroller3.text = value.comments.toString();
+        tinNoController.text = value.uTinNo.toString();
+        vatNoController.text = value.uVatNumber.toString();
+        postingDatecontroller.text =
+            config.alignDateT(value.docDueDate.toString());
         if (value.documentLines!.isNotEmpty) {
           log('value.documentLines length::${value.documentLines!.length}');
           for (var i = 0; i < value.documentLines!.length; i++) {
@@ -4126,6 +4322,7 @@ class SalesQuotationCon extends ChangeNotifier {
             tinno: value.uTinNo,
             vatregno: value.uVatNumber,
             address: address2,
+            docStatus: docstatus,
             invoiceDate: value.docDate,
             invoicenum: value.docNum.toString(),
             email: getcustomer[0]['emalid'].toString(),
@@ -4161,6 +4358,53 @@ class SalesQuotationCon extends ChangeNotifier {
               double.parse(getcustomer[0]['balance'].toString());
           selectedcust25!.accBalance = updateCustBal ??
               double.parse(getcustomer[0]['balance'].toString());
+          await CustCreditLimitAPi.getGlobalData(value.cardCode.toString())
+              .then((value) {
+            if (value.statuscode >= 200 && value.statuscode <= 210) {
+              if (value.creditLimitData != null) {
+                // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
+
+                selectedcust2!.creditLimits = double.parse(
+                    value.creditLimitData![0].creditLine.toString());
+                selectedcust25!.creditLimits = double.parse(
+                    value.creditLimitData![0].creditLine.toString());
+                notifyListeners();
+              }
+            }
+          });
+
+          await CustCreditDaysAPI.getGlobalData(value.cardCode.toString())
+              .then((value2) {
+            if (value2.statuscode >= 200 && value2.statuscode <= 210) {
+              if (value2.creditDaysData != null) {
+                // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
+
+                selectedcust2!.creditDays =
+                    value2.creditDaysData![0].creditDays.toString();
+                selectedcust2!.paymentGroup = value2
+                    .creditDaysData![0].paymentGroup
+                    .toString()
+                    .toLowerCase();
+                selectedcust25!.creditDays =
+                    value2.creditDaysData![0].creditDays.toString();
+                selectedcust25!.paymentGroup = value2
+                    .creditDaysData![0].paymentGroup
+                    .toString()
+                    .toLowerCase();
+                log('selectedcust paymentGroup::${selectedcust2!.paymentGroup!}');
+                if (selectedcust2!.paymentGroup!.contains('cash') == true) {
+                  custNameController.text = value.cardName!;
+                  tinNoController.text = value.uTinNo!;
+                  vatNoController.text = value.uVatNumber!;
+                } else {
+                  selectedcust2!.name = value.cardName!;
+                }
+                log('Cash paymentGroup::${selectedcust2!.paymentGroup!.contains('cash')}');
+                notifyListeners();
+              }
+              loadingscrn = false;
+            }
+          });
           // }
           // }
           // if (scanneditemData2.isNotEmpty) {
@@ -4520,6 +4764,7 @@ class SalesQuotationCon extends ChangeNotifier {
       pricemycontroller[i].text = scanneditemData[i].sellPrice.toString();
       discountcontroller[i].text = scanneditemData[i].discountper.toString();
       qtymycontroller[i].text = scanneditemData[i].qty.toString();
+      itemNameController[i].text = scanneditemData[i].itemName.toString();
       scanneditemData[i].transID = i;
     }
 
@@ -4630,6 +4875,8 @@ class SalesQuotationCon extends ChangeNotifier {
             double.parse(qtymycontroller[i].text.toString());
         discountcontroller[i].text = scanneditemData[i].discountper.toString();
         scanneditemData[i].transID = i;
+        itemNameController[i].text = scanneditemData[i].itemName.toString();
+
         totalQuantity =
             totalQuantity! + int.parse(qtymycontroller[i].text.toString());
 
@@ -4859,6 +5106,8 @@ class SalesQuotationCon extends ChangeNotifier {
       objtype: '',
       amtpaid: '',
       baltopay: '',
+      tinNo: tinNoController.text,
+      vatno: vatNoController.text,
       billaddressid: selectedcust == null && selectedcust!.address == null ||
               selectedcust!.address!.isEmpty
           ? ''
@@ -4872,7 +5121,11 @@ class SalesQuotationCon extends ChangeNotifier {
           ? ""
           : selectedcust!.cardCode.toString(),
       customerSeriesNum: '',
-      customername: selectedcust != null ? selectedcust!.name : "",
+      customername: custNameController.text.isNotEmpty
+          ? custNameController.text
+          : selectedcust != null
+              ? selectedcust!.name
+              : "",
       customertype: UserValues.userType,
       docbasic: totalPayment != null
           ? totalPayment!.subtotal!.toString().replaceAll(',', '')
@@ -5067,12 +5320,13 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   addDocLine() {
-    if (userTypes == 'corporate') {
+    if (userTypes == 'corporate' || userTypes == 'retail') {
       for (int i = 0; i < scanneditemData.length; i++) {
         scanneditemData[i].sellPrice =
             double.parse(pricemycontroller[i].text.toString());
         scanneditemData[i].discountper =
             double.parse(discountcontroller[i].text.toString());
+        scanneditemData[i].itemName = itemNameController[i].text;
       }
       notifyListeners();
     }
@@ -5100,12 +5354,13 @@ class SalesQuotationCon extends ChangeNotifier {
 
   addDocLineUpdate() {
     log('message scanneditemData::${scanneditemData.length}');
-    if (userTypes == 'corporate') {
+    if (userTypes == 'corporate' || userTypes == 'retail') {
       for (int i = 0; i < scanneditemData.length; i++) {
         scanneditemData[i].sellPrice =
             double.parse(pricemycontroller[i].text.toString());
         scanneditemData[i].discountper =
             double.parse(discountcontroller[i].text.toString());
+        scanneditemData[i].itemName = itemNameController[i].text;
       }
       notifyListeners();
     }
@@ -5145,9 +5400,15 @@ class SalesQuotationCon extends ChangeNotifier {
     addDocLine();
     SalesQuotPostAPi.seriesType = seriesType;
     SalesQuotPostAPi.cardCodePost = selectedcust!.cardCode;
+    SalesQuotPostAPi.cardNamePost = custNameController.text.isNotEmpty
+        ? custNameController.text
+        : selectedcust!.name;
+
+    SalesQuotPostAPi.tinNo = tinNoController.text;
+    SalesQuotPostAPi.vatNo = vatNoController.text;
     SalesQuotPostAPi.docLineQout = itemsDocDetails;
     SalesQuotPostAPi.docDate = config.currentDate();
-    SalesQuotPostAPi.dueDate = config.currentDate().toString();
+    SalesQuotPostAPi.dueDate = config.alignDate2(postingDatecontroller.text);
     SalesQuotPostAPi.remarks = remarkcontroller3.text;
     var uuid = const Uuid();
     String? uuidg = uuid.v1();
@@ -5175,6 +5436,10 @@ class SalesQuotationCon extends ChangeNotifier {
           newShipAddrsValue = [];
           itemsDocDetails = [];
           newBillAddrsValue = [];
+          postingDatecontroller.text = '';
+          custNameController.text = '';
+          tinNoController.text = '';
+          vatNoController.text = '';
           newCustValues = [];
           totalPayment = null;
           mycontroller[50].text = "";
@@ -5349,6 +5614,8 @@ class SalesQuotationCon extends ChangeNotifier {
       createdUserID: UserValues.userID.toString(),
       createdateTime: config.currentDate(),
       createdbyuser: UserValues.userType,
+      tinNo: tinNoController.text,
+      vatno: vatNoController.text,
       customercode: selectedcust!.cardCode == null
           ? ""
           : selectedcust!.cardCode.toString(),
@@ -5618,6 +5885,7 @@ class SalesQuotationCon extends ChangeNotifier {
     mycontroller[50].clear();
     paymentWay.clear();
     totalPayment = null;
+    postingDatecontroller.text = '';
     newBillAddrsValue = [];
     newShipAddrsValue = [];
     billcreateNewAddress = [];
@@ -5803,9 +6071,16 @@ class SalesQuotationCon extends ChangeNotifier {
     var uuid = const Uuid();
     String? uuidg = uuid.v1();
     SerlaySalesQuoPatchAPI.cardCodePost = selectedcust!.cardCode;
+    SerlaySalesQuoPatchAPI.cardNamePost = custNameController.text.isNotEmpty
+        ? custNameController.text
+        : selectedcust!.name;
+
+    SerlaySalesQuoPatchAPI.tinNo = tinNoController.text;
+    SerlaySalesQuoPatchAPI.vatNo = vatNoController.text;
     SerlaySalesQuoPatchAPI.docLineQout = itemsDocDetails;
     SerlaySalesQuoPatchAPI.docDate = config.currentDate();
-    SerlaySalesQuoPatchAPI.dueDate = config.currentDate().toString();
+    SerlaySalesQuoPatchAPI.dueDate =
+        config.alignDate2(postingDatecontroller.text);
     SerlaySalesQuoPatchAPI.remarks = remarkcontroller3.text;
 
     SerlaySalesQuoPatchAPI.deviceTransID = uuidg;
@@ -6080,6 +6355,9 @@ class SalesQuotationCon extends ChangeNotifier {
     selectedBillAdress = 0;
     selectedShipAdress = 0;
     loadingscrn = true;
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     holddocentry = '';
     double? updateCustBal;
     notifyListeners();
@@ -6139,7 +6417,7 @@ class SalesQuotationCon extends ChangeNotifier {
     }
     await AccountBalApi.getData(selectedcust!.cardCode.toString())
         .then((value) {
-      loadingscrn = false;
+      // loadingscrn = false;
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         updateCustBal =
             double.parse(value.accBalanceData![0].balance.toString());
@@ -6149,6 +6427,41 @@ class SalesQuotationCon extends ChangeNotifier {
     selectedcust!.accBalance = updateCustBal ?? customerDetals.accBalance!;
     selectedcust55!.accBalance = updateCustBal ?? customerDetals.accBalance!;
     addCardCode = selectedcust!.cardCode.toString();
+    await CustCreditLimitAPi.getGlobalData(customerDetals.cardCode.toString())
+        .then((value) {
+      if (value.statuscode >= 200 && value.statuscode <= 210) {
+        if (value.creditLimitData != null) {
+          // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
+
+          selectedcust!.creditLimits =
+              double.parse(value.creditLimitData![0].creditLine.toString());
+          notifyListeners();
+        }
+      }
+    });
+
+    await CustCreditDaysAPI.getGlobalData(customerDetals.cardCode.toString())
+        .then((value) {
+      if (value.statuscode >= 200 && value.statuscode <= 210) {
+        if (value.creditDaysData != null) {
+          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
+
+          selectedcust!.creditDays =
+              value.creditDaysData![0].creditDays.toString();
+          selectedcust!.paymentGroup =
+              value.creditDaysData![0].paymentGroup.toString().toLowerCase();
+          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
+          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+            selectedcust!.name = '';
+          } else {
+            selectedcust!.name = customerDetals.name!;
+          }
+          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
+          notifyListeners();
+        }
+        loadingscrn = false;
+      }
+    });
 
     if (scanneditemData.isNotEmpty) {
       for (var i = 0; i < scanneditemData.length; i++) {
@@ -6219,7 +6532,11 @@ class SalesQuotationCon extends ChangeNotifier {
     selectedcust = null;
     selectedcust55 = null;
     selectedcust2 = null;
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     selectedcust25 = null;
+    postingDatecontroller.text = config.alignDate(DateTime.now().toString());
     if (scanneditemData.isNotEmpty) {
       for (var i = 0; i < scanneditemData.length; i++) {
         scanneditemData[i].taxRate = 0.0;
@@ -7277,7 +7594,9 @@ class SalesQuotationCon extends ChangeNotifier {
     mycontroller[5].clear();
     mycontroller[6].clear();
     mycontroller[21].clear();
-
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     notifyListeners();
   }
 //payment func
@@ -7324,7 +7643,10 @@ class SalesQuotationCon extends ChangeNotifier {
 
       scanneditemData[iss].taxable =
           scanneditemData[iss].basic! - scanneditemData[iss].discount!;
-
+      if (scanneditemData[iss].taxRate == null ||
+          scanneditemData[iss].taxRate == 'null') {
+        scanneditemData[iss].taxRate = 0;
+      } else {}
       scanneditemData[iss].taxvalue =
           scanneditemData[iss].taxable! * scanneditemData[iss].taxRate! / 100;
 
@@ -7444,7 +7766,7 @@ class SalesQuotationCon extends ChangeNotifier {
           totalPay.total! + double.parse(scanneditemData2[iss].qty.toString());
       totalPay.totalDue = totalPay.totalDue! + scanneditemData2[iss].netvalue!;
       totalPayment2 = totalPay;
-      log('total qty:::${totalPay.total}');
+      // log('total qty:::${totalPay.total}');
       notifyListeners();
       // } else if (mycontlaa >= 100) {
       //   showDialog(
@@ -7589,7 +7911,10 @@ class SalesQuotationCon extends ChangeNotifier {
 
 //checkout
   changecheckout(BuildContext context, ThemeData theme) async {
-    if (userTypes != 'corporate') {
+    log('checkout userTypesuserTypes::${userTypes}');
+    if (userTypes == 'user') {
+      log('checkout userTypesuserTypes222::${userTypes}');
+
       await schemeapiforckout(context, theme);
     }
     log('message Checkoutout');
@@ -7631,7 +7956,7 @@ class SalesQuotationCon extends ChangeNotifier {
     if (scanneditemData.isNotEmpty) {
       for (int ij = 0; ij < scanneditemData.length; ij++) {
         if (scanneditemData[ij].lineStatus == "bost_Open") {
-          if (userTypes != 'corporate') {
+          if (userTypes == 'user') {
             await schemeapiforckout(context, theme);
           }
           await callPatchApi(context, theme, int.parse(sapDocentry.toString()));
@@ -7825,7 +8150,7 @@ class SalesQuotationCon extends ChangeNotifier {
       scanneditemData2.clear();
       paymentWay2.clear();
       totalPayment2 = null;
-      if (userTypes != 'corporate') {
+      if (userTypes == 'user') {
         if (schemebtnclk == true) {
           await schemeapiforckout(context, theme);
         }
@@ -7872,8 +8197,12 @@ class SalesQuotationCon extends ChangeNotifier {
 
   String? discount;
   clearAllData(BuildContext context, ThemeData theme) {
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
     addCardCode = '';
     seriesType = '';
+    postingDatecontroller.text = '';
     userTypes = '';
     scanneditemCheckUpdateData = [];
     filtersearchData = [];
@@ -7949,6 +8278,8 @@ class SalesQuotationCon extends ChangeNotifier {
     itemData.clear();
     selectedShipAdress = 0;
     selectedBillAdress = 0;
+    postingDatecontroller.text = config.alignDate(DateTime.now().toString());
+
     notifyListeners();
   }
 
@@ -7979,10 +8310,28 @@ class SalesQuotationCon extends ChangeNotifier {
     calCulateDocVal(context, theme);
   }
 
+  TextEditingController postingDatecontroller = TextEditingController();
+
+  postingDate(
+    BuildContext context,
+  ) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100));
+    if (pickedDate == null) {
+      return;
+    }
+
+    String datetype = DateFormat('dd-MM-yyyy').format(pickedDate!);
+    postingDatecontroller.text = datetype;
+  }
+
   viewdetails() async {
     final Database db = (await DBHelper.getInstance())!;
 
-    await DBOperation.deleteQuotHold(db);
+    await DBOperation.deleteSalesQuot(db);
     log("delete tab");
   }
 

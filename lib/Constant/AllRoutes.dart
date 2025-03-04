@@ -9,6 +9,7 @@ import '../Pages/CashStatement/CashStatement/screens/CashStatement.dart';
 import '../Pages/DashBoard/Screens/DashBoardScreen.dart';
 import '../Pages/DownloadPage/Screens.dart';
 import '../Pages/Expenses/ExpenseScreen.dart';
+import '../Pages/LogOut/LogoutScreens.dart';
 import '../Pages/NotificationPage/Screens/Screenss.dart';
 import '../Pages/NumberingSeriesPage/Screens/Screens.dart';
 import '../Pages/PaymentReceipt/Screens/Screens.dart';
@@ -171,5 +172,10 @@ class Routes {
       name: ConstantRoutes.notification,
       page: () => NotificationMainScreens(),
     ),
+    GetPage<dynamic>(
+      name: ConstantRoutes.logout,
+      page: () => LogoutScreenPage(),
+    ),
   ];
 }
+//logout

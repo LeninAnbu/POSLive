@@ -21,19 +21,19 @@ class SearchOrderHeaderAPi {
 
                 // "constr": "Server=INSIGNIAC03313;Database=${GetValues.sapDB};User Id=sa; Password=Insignia@2021#;",
                 "query":
-                "EXEC [BZ_POS_SearchOrderHeaderAPi] '$fromDate','$toDate','${AppConstant.branch}'"
-                    // "Select distinct T0.DocEntry,T0.DocNum,T0.DocDate,T1.WhsCode,T0.CardCode,T0.CardName,T0.DocTotal,T0.DocStatus from ORDR T0 join RDR1 T1 on T0.DocEntry=t1.DocEntry Where T0.DocDate between '$fromDate' and '$toDate' AND T1.WhsCode='${AppConstant.branch}'order by  T0.DocDate desc,T0.DocNum desc"
+                    "EXEC [BZ_POS_SearchOrderHeaderAPi] '$fromDate','$toDate','${AppConstant.branch}'"
+                // "Select distinct T0.DocEntry,T0.DocNum,T0.DocDate,T1.WhsCode,T0.CardCode,T0.CardName,T0.DocTotal,T0.DocStatus from ORDR T0 join RDR1 T1 on T0.DocEntry=t1.DocEntry Where T0.DocDate between '$fromDate' and '$toDate' AND T1.WhsCode='${AppConstant.branch}'order by  T0.DocDate desc,T0.DocNum desc"
               }));
 
-      log("Order Header Data " +
-          json.encode({
-            "constr":
-                "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
+      // log("Order Header Data " +
+      //     json.encode({
+      //       "constr":
+      //           "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
 
-            // "constr": "Server=INSIGNIAC03313;Database=${GetValues.sapDB};User Id=sa; Password=Insignia@2021#;",
-            "query":
-                "Select distinct DocEntry,DocNum,DocDate,CardCode,CardName,DocTotal,T1.WhsCode from ORDR Where DocDate between '$fromDate' and '$toDate' order by A.DocNum",
-          }));
+      //       // "constr": "Server=INSIGNIAC03313;Database=${GetValues.sapDB};User Id=sa; Password=Insignia@2021#;",
+      //       "query":
+      //           "Select distinct DocEntry,DocNum,DocDate,CardCode,CardName,DocTotal,T1.WhsCode from ORDR Where DocDate between '$fromDate' and '$toDate' order by A.DocNum",
+      //     }));
 
       // log("SQ Header Data Res: " + json.decode(response.body).toString());
       print(response.statusCode);

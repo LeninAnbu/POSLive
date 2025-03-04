@@ -144,6 +144,8 @@ class StockInSerialbatch {
   String? docentry;
   String? lineno;
   String? itemcode;
+  String? itemName;
+
   int? qty;
   String? serialbatch;
   String? docstatus;
@@ -155,6 +157,7 @@ class StockInSerialbatch {
       this.docentry,
       this.baseDocentry,
       required this.itemcode,
+      required this.itemName,
       required this.qty,
       this.scanbool,
       this.docstatus,

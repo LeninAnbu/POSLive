@@ -15,6 +15,7 @@ class PostApprovalExpenseAPi {
   static String? cashAccount;
   static String? seriesType;
 
+  static String? payTo;
   static String? remarks;
   static String? docDate;
   static String? cashSum;
@@ -36,7 +37,7 @@ class PostApprovalExpenseAPi {
                 "CashAccount": "$cashAccount",
                 "Remarks": "$remarks",
                 "JournalRemarks": "$remarks",
-                "Address": "$remarks",
+                "Address": "$payTo",
                 'U_DeviceTransID': deviceTransID,
                 "CashSum": "$cashSum",
                 "U_PosUserCode": UserValues.userCode,
@@ -54,7 +55,7 @@ class PostApprovalExpenseAPi {
         "CashAccount": "$cashAccount",
         // "U_DeviceTransID": deviceTransID,
         "JournalRemarks": "$remarks",
-        "Address": "$remarks",
+        "Address": "$payTo",
         "Remarks": "$remarks",
         "CashSum": "$cashSum",
         "U_PosUserCode": UserValues.userCode,

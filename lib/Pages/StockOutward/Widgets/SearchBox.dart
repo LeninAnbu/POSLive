@@ -356,6 +356,10 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                             .searchLoading = true;
                                         context
                                             .read<StockOutwardController>()
+                                            .setstatemethod();
+
+                                        context
+                                            .read<StockOutwardController>()
                                             .callSearchLine(
                                                 context
                                                     .read<
@@ -364,13 +368,13 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                                     .docEntry
                                                     .toString(),
                                                 index);
-                                        context
-                                            .read<StockOutwardController>()
-                                            .soCustAddressApi(context
-                                                .read<StockOutwardController>()
-                                                .filtersearchData[index]
-                                                .docEntry
-                                                .toString());
+                                        // context
+                                        //     .read<StockOutwardController>()
+                                        //     .soCustAddressApi(context
+                                        //         .read<StockOutwardController>()
+                                        //         .filtersearchData[index]
+                                        //         .docEntry
+                                        //         .toString());
                                       });
 
                                       // await context
@@ -552,7 +556,7 @@ class _StConSearhBoxState extends State<StConSearhBox> {
           visible: context.read<StockOutwardController>().searchLoading,
           child: Container(
             width: Screens.width(context),
-            height: Screens.bodyheight(context) * 0.85,
+            height: Screens.bodyheight(context) * 0.91,
             color: Colors.white60,
             child: Center(
               child: SpinKitFadingCircle(

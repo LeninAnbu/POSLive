@@ -433,14 +433,14 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                   widget.searchHeight * 0.07,
                                               alignment: Alignment.centerRight,
                                               child: Text(
-                                                  '${context.watch<SalesQuotationCon>().getScanneditemData2[index].priceAftDiscVal}')),
+                                                  '${context.read<SalesQuotationCon>().getScanneditemData2[index].priceAftDiscVal}')),
                                           Container(
                                               width: widget.searchWidth * 0.19,
                                               height:
                                                   widget.searchHeight * 0.07,
                                               alignment: Alignment.centerRight,
                                               child: Text(
-                                                  '${context.watch<SalesQuotationCon>().getScanneditemData2[index].taxable}')),
+                                                  '${context.read<SalesQuotationCon>().getScanneditemData2[index].taxable}')),
                                         ],
                                       ),
                                     ),
@@ -471,7 +471,7 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                       .taxRate ==
                                                   null
                                               ? '00'
-                                              : 'Tax :  ${context.watch<SalesQuotationCon>().getScanneditemData2[index].taxRate} %',
+                                              : 'Tax :  ${context.read<SalesQuotationCon>().getScanneditemData2[index].taxRate} %',
                                           style: theme.textTheme.bodyMedium
                                               ?.copyWith(color: Colors.black)),
                                     ),
@@ -494,6 +494,7 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                 child: Container(
                                     padding: EdgeInsets.only(
                                       top: widget.searchHeight * 0.01,
+                                      bottom: widget.searchHeight * 0.01,
                                       left: widget.searchHeight * 0.01,
                                       right: widget.searchHeight * 0.01,
                                     ),
@@ -804,25 +805,27 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                                       .black),
                                                         ),
                                                       ),
-                                                context
-                                                            .watch<
-                                                                SalesQuotationCon>()
-                                                            .userTypes ==
-                                                        'corporate'
+                                                context.watch<SalesQuotationCon>().userTypes ==
+                                                            'corporate' ||
+                                                        context
+                                                                .watch<
+                                                                    SalesQuotationCon>()
+                                                                .userTypes ==
+                                                            'retail'
                                                     ? Container(
-                                                        width: widget
-                                                                .searchWidth *
-                                                            0.14,
+                                                        width:
+                                                            widget
+                                                                    .searchWidth *
+                                                                0.12,
                                                         height: widget
                                                                 .searchHeight *
                                                             0.07,
-                                                        alignment: Alignment
-                                                            .center,
-                                                        padding:
-                                                            EdgeInsets.symmetric(
-                                                                horizontal: widget
-                                                                        .searchWidth *
-                                                                    0.005),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        padding: EdgeInsets.symmetric(
+                                                            horizontal: widget
+                                                                    .searchWidth *
+                                                                0.005),
                                                         child: TextFormField(
                                                           textAlign:
                                                               TextAlign.right,
@@ -936,13 +939,13 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                         width:
                                                             widget.searchWidth *
                                                                 0.08,
-                                                        height: widget
-                                                                .searchHeight *
-                                                            0.07,
+                                                        height:
+                                                            widget.searchHeight *
+                                                                0.07,
                                                         alignment: Alignment
                                                             .centerRight,
-                                                        child: Text(
-                                                            '${context.watch<SalesQuotationCon>().scanneditemData[index].discountper!.toStringAsFixed(2)}')),
+                                                        child:
+                                                            Text('${context.watch<SalesQuotationCon>().scanneditemData[index].discountper!.toStringAsFixed(2)}')),
                                                 Container(
                                                   width:
                                                       widget.searchWidth * 0.15,
@@ -993,29 +996,150 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                       ),
                                       Row(
                                         children: [
-                                          Container(
-                                              width: widget.searchWidth * 0.65,
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                context
-                                                        .watch<
+                                          context
+                                                      .watch<
+                                                          SalesQuotationCon>()
+                                                      .userTypes
+                                                      .toLowerCase() ==
+                                                  'corporate'
+                                              ? Container(
+                                                  width:
+                                                      widget.searchWidth * 0.65,
+                                                  height: widget.searchHeight *
+                                                      0.07,
+                                                  alignment: Alignment.center,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal:
+                                                          widget.searchWidth *
+                                                              0.005),
+                                                  child: TextFormField(
+                                                    // textAlign: TextAlign.right,
+                                                    onChanged: (val) {
+                                                      context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .itemnameChanged(
+                                                              index,
+                                                              context,
+                                                              theme);
+                                                    },
+                                                    onTap: () {
+                                                      context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .itemNameController[
+                                                                  index]
+                                                              .text =
+                                                          context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .itemNameController[
+                                                                  index]
+                                                              .text;
+                                                      context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .itemNameController[
+                                                              index]
+                                                          .selection = TextSelection(
+                                                        baseOffset: 0,
+                                                        extentOffset: context
+                                                            .read<
+                                                                SalesQuotationCon>()
+                                                            .itemNameController[
+                                                                index]
+                                                            .text
+                                                            .length,
+                                                      );
+                                                    },
+                                                    style: theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
+                                                            color:
+                                                                Colors.black),
+                                                    cursorColor: Colors.grey,
+                                                    textDirection:
+                                                        TextDirection.ltr,
+                                                    // keyboardType:
+                                                    //     TextInputType.number,
+                                                    // inputFormatters: [
+                                                    //   DecimalInputFormatter()
+                                                    // ],
+                                                    onEditingComplete: () {
+                                                      context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .itemnameChanged(
+                                                              index,
+                                                              context,
+                                                              theme);
+                                                      context
+                                                          .read<
+                                                              SalesQuotationCon>()
+                                                          .disableKeyBoard(
+                                                              context);
+                                                    },
+                                                    controller: context
+                                                        .read<
                                                             SalesQuotationCon>()
-                                                        .getScanneditemData[
-                                                            index]
-                                                        .itemName ??
-                                                    '',
-                                                maxLines: 2,
-                                                style: theme
-                                                    .textTheme.bodyMedium
-                                                    ?.copyWith(
-                                                        color: Colors.black),
-                                              )),
+                                                        .itemNameController[index],
+                                                    decoration: InputDecoration(
+                                                      // filled: false,
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .grey),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Colors
+                                                                    .grey),
+                                                      ),
+                                                      contentPadding:
+                                                          const EdgeInsets
+                                                              .symmetric(
+                                                        vertical: 0,
+                                                        horizontal: 5,
+                                                      ),
+                                                    ),
+                                                  ))
+                                              : Container(
+                                                  width:
+                                                      widget.searchWidth * 0.58,
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    context
+                                                            .watch<
+                                                                SalesQuotationCon>()
+                                                            .getScanneditemData[
+                                                                index]
+                                                            .itemName ??
+                                                        '',
+                                                    maxLines: 2,
+                                                    style: theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(
+                                                            color:
+                                                                Colors.black),
+                                                  )),
                                           SizedBox(
                                             width:
-                                                Screens.width(context) * 0.02,
+                                                Screens.width(context) * 0.005,
                                           ),
                                           Container(
-                                            width: widget.searchWidth * 0.15,
+                                            // color: Colors.red,
+                                            width: widget.searchWidth * 0.14,
                                             alignment: Alignment.centerLeft,
                                             child: Text(
                                                 context
@@ -1025,8 +1149,27 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                                 index]
                                                             .taxRate ==
                                                         null
-                                                    ? '00'
-                                                    : 'Tax : ${context.watch<SalesQuotationCon>().getScanneditemData[index].taxRate!.toStringAsFixed(2)} %',
+                                                    ? 'Tax :00'
+                                                    : 'Tax :${context.watch<SalesQuotationCon>().getScanneditemData[index].taxRate!.toStringAsFixed(2)}%',
+                                                style: theme
+                                                    .textTheme.bodyMedium
+                                                    ?.copyWith(
+                                                        color: Colors.black)),
+                                          ),
+                                          Container(
+                                            // color: Colors.green,
+                                            width: widget.searchWidth * 0.18,
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                context
+                                                            .watch<
+                                                                SalesQuotationCon>()
+                                                            .getScanneditemData[
+                                                                index]
+                                                            .inStockQty ==
+                                                        null
+                                                    ? 'Instock : 00'
+                                                    : 'Instock : ${context.read<SalesQuotationCon>().getScanneditemData[index].inStockQty}',
                                                 style: theme
                                                     .textTheme.bodyMedium
                                                     ?.copyWith(

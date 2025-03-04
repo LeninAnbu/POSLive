@@ -282,7 +282,7 @@ class _StockOutReqListState extends State<StockOutReqList> {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                      "Reqdduest From ${context.watch<StockOutwardController>().openSalesReq[index].uwhsCode}  ",
+                                                      "Request From ${context.watch<StockOutwardController>().openSalesReq[index].uwhsCode}  ",
                                                       style: widget.theme
                                                           .textTheme.bodyLarge),
                                                 ],

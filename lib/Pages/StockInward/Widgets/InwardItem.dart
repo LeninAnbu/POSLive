@@ -515,57 +515,74 @@ class _StockInwardState extends State<StockInward> {
                               ),
                             ),
                             child: IntrinsicHeight(
-                              child: Row(
+                              child:
+                                  // Row(
+                                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.spaceBetween,
+                                  //     children: [
+                                  SizedBox(
+                                width: widget.stockInWidth * 0.5,
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SizedBox(
-                                      width: widget.stockInWidth * 0.5,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${context.watch<StockInwrdController>().stockInward2[0].data![i].itemcode}",
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "${context.watch<StockInwrdController>().stockInward2[0].data![i].itemcode}",
+                                          style:
+                                              widget.theme.textTheme.bodyLarge,
+                                        ),
+                                        Text(
+                                          " - ${context.watch<StockInwrdController>().stockInward2[0].data![i].dscription}",
+                                          style:
+                                              widget.theme.textTheme.bodyLarge,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                            width: widget.stockInWidth * 0.5,
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              " ${context.watch<StockInwrdController>().stockInward2[0].data![i].serialBatch}",
+                                              style: widget
+                                                  .theme.textTheme.bodyLarge,
+                                            )),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          width: widget.stockInWidth * 0.15,
+                                          child: Text(
+                                            "${context.watch<StockInwrdController>().stockInward2[0].data![i].qty}",
                                             style: widget
                                                 .theme.textTheme.bodyLarge,
                                           ),
-                                          Container(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                " ${context.watch<StockInwrdController>().stockInward2[0].data![i].serialBatch}",
-                                                style: widget
-                                                    .theme.textTheme.bodyLarge,
-                                              ))
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      width: widget.stockInWidth * 0.15,
-                                      child: Text(
-                                        "${context.watch<StockInwrdController>().stockInward2[0].data![i].qty}",
-                                        style: widget.theme.textTheme.bodyLarge,
-                                      ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      width: widget.stockInWidth * 0.15,
-                                      child: Text(
-                                        "${context.watch<StockInwrdController>().stockInward2[0].data![i].trans_Qty}",
-                                        style: widget.theme.textTheme.bodyLarge,
-                                      ),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      width: widget.stockInWidth * 0.15,
-                                      child: Text(
-                                        "${context.watch<StockInwrdController>().stockInward2[0].data![i].Scanned_Qty ?? ''}",
-                                        style: widget.theme.textTheme.bodyLarge,
-                                      ),
-                                    ),
-                                  ]),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          width: widget.stockInWidth * 0.15,
+                                          child: Text(
+                                            "${context.watch<StockInwrdController>().stockInward2[0].data![i].trans_Qty}",
+                                            style: widget
+                                                .theme.textTheme.bodyLarge,
+                                          ),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          width: widget.stockInWidth * 0.15,
+                                          child: Text(
+                                            "${context.watch<StockInwrdController>().stockInward2[0].data![i].Scanned_Qty ?? ''}",
+                                            style: widget
+                                                .theme.textTheme.bodyLarge,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              // ]),
                             ),
                           ),
                         ),
@@ -590,301 +607,323 @@ class _StockInwardState extends State<StockInward> {
                             .length,
                         itemBuilder: (context, i) {
                           return Card(
-                            margin: EdgeInsets.all(2),
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  context.read<StockInwrdController>().valPass(
-                                      context
-                                          .read<StockInwrdController>()
-                                          .passdata![i]
-                                          .Scanned_Qty!);
-
-                                  context
-                                          .read<StockInwrdController>()
-                                          .scannigVal =
-                                      context
-                                          .read<StockInwrdController>()
-                                          .passdata![i]
-                                          .Scanned_Qty!;
-                                  context
-                                      .read<StockInwrdController>()
-                                      .selectindex2(i);
-
-                                  context
-                                      .read<StockInwrdController>()
-                                      .passindexBachPage(
-                                          widget.index,
-                                          i,
-                                          context
-                                              .read<StockInwrdController>()
-                                              .passdata![i]);
-                                  StockInwardDetails datax = context
-                                      .read<StockInwrdController>()
-                                      .passdata![i];
-                                  for (var im = 0;
-                                      im < datax.StOutSerialbatchList!.length;
-                                      im++) {
-                                    context
-                                            .read<StockInwrdController>()
-                                            .stInController[0]
-                                            .text =
-                                        datax.StOutSerialbatchList![im]
-                                            .serialbatch!;
-                                  }
+                              margin: EdgeInsets.all(2),
+                              child: InkWell(
+                                onTap: () {
                                   setState(() {
-                                    context.read<StockInwrdController>().msg =
-                                        '';
                                     context
                                         .read<StockInwrdController>()
-                                        .scanmethod(
-                                          context
-                                              .read<StockInwrdController>()
-                                              .get_i_value,
-                                          context
-                                              .read<StockInwrdController>()
-                                              .batch_datalist,
-                                          context
-                                              .read<StockInwrdController>()
-                                              .batch_i!,
-                                        );
-
-                                    if (context
+                                        .valPass(context
                                             .read<StockInwrdController>()
-                                            .stockInward[context
-                                                .read<StockInwrdController>()
-                                                .get_i_value]
-                                            .data![context
-                                                .read<StockInwrdController>()
-                                                .batch_i!]
-                                            .serialbatchList !=
-                                        null) {
-                                      for (var iss = 0;
-                                          iss <
-                                              context
-                                                  .read<StockInwrdController>()
-                                                  .stockInward[context
-                                                      .read<
-                                                          StockInwrdController>()
-                                                      .get_i_value]
-                                                  .data![context
-                                                      .read<
-                                                          StockInwrdController>()
-                                                      .batch_i!]
-                                                  .serialbatchList!
-                                                  .length;
-                                          iss++) {
+                                            .passdata![i]
+                                            .Scanned_Qty!);
+
+                                    context
+                                            .read<StockInwrdController>()
+                                            .scannigVal =
                                         context
-                                                .read<StockInwrdController>()
-                                                .stockInward[context
-                                                    .read<StockInwrdController>()
-                                                    .get_i_value]
-                                                .data![context
-                                                    .read<StockInwrdController>()
-                                                    .batch_i!]
-                                                .serialbatchList![iss]
-                                                .qty =
-                                            int.parse(context
-                                                .read<StockInwrdController>()
-                                                .passdata![i]
-                                                .trans_Qty
-                                                .toString()
-                                                .replaceAll('.0', ''));
-                                        context
-                                                .read<StockInwrdController>()
-                                                .sinqtycontroller[iss]
-                                                .text =
+                                            .read<StockInwrdController>()
+                                            .passdata![i]
+                                            .Scanned_Qty!;
+                                    context
+                                        .read<StockInwrdController>()
+                                        .selectindex2(i);
+
+                                    context
+                                        .read<StockInwrdController>()
+                                        .passindexBachPage(
+                                            widget.index,
+                                            i,
                                             context
                                                 .read<StockInwrdController>()
-                                                .passdata![i]
-                                                .trans_Qty
-                                                .toString();
-                                      }
-                                    }
-                                  });
-
-                                  for (var im = 0;
-                                      im < datax.StOutSerialbatchList!.length;
-                                      im++) {
-                                    if (context
-                                            .read<StockInwrdController>()
-                                            .selectAll ==
-                                        true) {
+                                                .passdata![i]);
+                                    StockInwardDetails datax = context
+                                        .read<StockInwrdController>()
+                                        .passdata![i];
+                                    for (var im = 0;
+                                        im < datax.StOutSerialbatchList!.length;
+                                        im++) {
                                       context
                                               .read<StockInwrdController>()
                                               .stInController[0]
                                               .text =
                                           datax.StOutSerialbatchList![im]
                                               .serialbatch!;
-                                    } else {
+                                    }
+                                    setState(() {
+                                      context.read<StockInwrdController>().msg =
+                                          '';
                                       context
                                           .read<StockInwrdController>()
-                                          .stInController[0]
-                                          .text = '';
+                                          .scanmethod(
+                                            context
+                                                .read<StockInwrdController>()
+                                                .get_i_value,
+                                            context
+                                                .read<StockInwrdController>()
+                                                .batch_datalist,
+                                            context
+                                                .read<StockInwrdController>()
+                                                .batch_i!,
+                                          );
+
+                                      if (context
+                                              .read<StockInwrdController>()
+                                              .stockInward[context
+                                                  .read<StockInwrdController>()
+                                                  .get_i_value]
+                                              .data![context
+                                                  .read<StockInwrdController>()
+                                                  .batch_i!]
+                                              .serialbatchList !=
+                                          null) {
+                                        for (var iss = 0;
+                                            iss <
+                                                context
+                                                    .read<
+                                                        StockInwrdController>()
+                                                    .stockInward[context
+                                                        .read<
+                                                            StockInwrdController>()
+                                                        .get_i_value]
+                                                    .data![context
+                                                        .read<
+                                                            StockInwrdController>()
+                                                        .batch_i!]
+                                                    .serialbatchList!
+                                                    .length;
+                                            iss++) {
+                                          context
+                                                  .read<StockInwrdController>()
+                                                  .stockInward[context
+                                                      .read<StockInwrdController>()
+                                                      .get_i_value]
+                                                  .data![context
+                                                      .read<StockInwrdController>()
+                                                      .batch_i!]
+                                                  .serialbatchList![iss]
+                                                  .qty =
+                                              int.parse(context
+                                                  .read<StockInwrdController>()
+                                                  .passdata![i]
+                                                  .trans_Qty
+                                                  .toString()
+                                                  .replaceAll('.0', ''));
+                                          context
+                                                  .read<StockInwrdController>()
+                                                  .sinqtycontroller[iss]
+                                                  .text =
+                                              context
+                                                  .read<StockInwrdController>()
+                                                  .passdata![i]
+                                                  .trans_Qty
+                                                  .toString();
+                                        }
+                                      }
+                                    });
+
+                                    for (var im = 0;
+                                        im < datax.StOutSerialbatchList!.length;
+                                        im++) {
+                                      if (context
+                                              .read<StockInwrdController>()
+                                              .selectAll ==
+                                          true) {
+                                        context
+                                                .read<StockInwrdController>()
+                                                .stInController[0]
+                                                .text =
+                                            datax.StOutSerialbatchList![im]
+                                                .serialbatch!;
+                                      } else {
+                                        context
+                                            .read<StockInwrdController>()
+                                            .stInController[0]
+                                            .text = '';
+                                      }
                                     }
-                                  }
-                                  context
-                                      .read<StockInwrdController>()
-                                      .isselectmethod();
-                                });
-                              },
-                              child: Container(
-                                padding: EdgeInsets.only(
-                                  // top: widget.stockInheight * 0.008,
-                                  left: widget.stockInWidth * 0.01,
-                                  right: widget.stockInWidth * 0.01,
-                                  bottom: widget.stockInheight * 0.01,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: context
-                                                  .watch<StockInwrdController>()
-                                                  .passdata![i]
-                                                  .Scanned_Qty !=
-                                              0 &&
-                                          (context
-                                                  .watch<StockInwrdController>()
-                                                  .passdata![i]
-                                                  .Scanned_Qty !=
-                                              context
-                                                  .watch<StockInwrdController>()
-                                                  .passdata![i]
-                                                  .trans_Qty)
-                                      ? const Color(0xFFfcedee)
-                                      : context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .passdata![i]
-                                                      .Scanned_Qty ==
-                                                  context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .passdata![i]
-                                                      .trans_Qty &&
-                                              context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .passdata![i]
-                                                      .listClr ==
-                                                  true
-                                          ? const Color(0xFFebfaef)
-                                          : context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .getScannigVal ==
-                                                  0
-                                              ? Colors.grey.withOpacity(0.04)
-                                              : Colors.grey.withOpacity(0.04),
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                      width: Screens.width(context) * 0.001,
-                                      color: context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .passdata![i]
-                                                      .Scanned_Qty !=
-                                                  0 &&
-                                              context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .passdata![i]
-                                                      .Scanned_Qty !=
-                                                  context
-                                                      .watch<
-                                                          StockInwrdController>()
-                                                      .passdata![i]
-                                                      .trans_Qty
-                                          ? Colors.red.withOpacity(0.4)
-                                          : context
-                                                          .watch<
-                                                              StockInwrdController>()
-                                                          .passdata![i]
-                                                          .Scanned_Qty ==
-                                                      context
-                                                          .watch<
-                                                              StockInwrdController>()
-                                                          .passdata![i]
-                                                          .trans_Qty &&
-                                                  context
-                                                          .watch<
-                                                              StockInwrdController>()
-                                                          .passdata![i]
-                                                          .listClr ==
-                                                      true
-                                              ? Colors.green.withOpacity(0.4)
-                                              : context
-                                                          .watch<
-                                                              StockInwrdController>()
-                                                          .getScannigVal ==
-                                                      0
-                                                  ? Colors.white
-                                                  : Colors.white),
-                                ),
-                                child: IntrinsicHeight(
-                                  child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: widget.stockInWidth * 0.5,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "${context.watch<StockInwrdController>().passdata![i].itemcode}",
-                                                style: widget
-                                                    .theme.textTheme.bodyLarge,
-                                              ),
-                                              Wrap(
-                                                  spacing: 10.0,
-                                                  runSpacing: 10.0,
-                                                  children: listContainersBatch(
-                                                    context,
-                                                    widget.theme,
+                                    context
+                                        .read<StockInwrdController>()
+                                        .isselectmethod();
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                    // top: widget.stockInheight * 0.008,
+                                    left: widget.stockInWidth * 0.01,
+                                    right: widget.stockInWidth * 0.01,
+                                    bottom: widget.stockInheight * 0.01,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: context
+                                                    .watch<
+                                                        StockInwrdController>()
+                                                    .passdata![i]
+                                                    .Scanned_Qty !=
+                                                0 &&
+                                            (context
+                                                    .watch<
+                                                        StockInwrdController>()
+                                                    .passdata![i]
+                                                    .Scanned_Qty !=
+                                                context
+                                                    .watch<
+                                                        StockInwrdController>()
+                                                    .passdata![i]
+                                                    .trans_Qty)
+                                        ? const Color(0xFFfcedee)
+                                        : context
+                                                        .watch<
+                                                            StockInwrdController>()
+                                                        .passdata![i]
+                                                        .Scanned_Qty ==
                                                     context
                                                         .watch<
                                                             StockInwrdController>()
-                                                        .passdata![i],
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: widget.stockInWidth * 0.15,
-                                          child: Text(
-                                            "${context.watch<StockInwrdController>().passdata![i].qty}",
-                                            style: widget
-                                                .theme.textTheme.bodyLarge,
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: widget.stockInWidth * 0.15,
-                                          child: Text(
-                                            "${context.watch<StockInwrdController>().passdata![i].trans_Qty}",
-                                            style: widget
-                                                .theme.textTheme.bodyLarge,
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: widget.stockInWidth * 0.15,
-                                          child: Text(
-                                            "${context.watch<StockInwrdController>().passdata![i].Scanned_Qty}",
-                                            style: widget
-                                                .theme.textTheme.bodyLarge,
-                                          ),
-                                        ),
-                                      ]),
+                                                        .passdata![i]
+                                                        .trans_Qty &&
+                                                context
+                                                        .watch<
+                                                            StockInwrdController>()
+                                                        .passdata![i]
+                                                        .listClr ==
+                                                    true
+                                            ? const Color(0xFFebfaef)
+                                            : context
+                                                        .watch<
+                                                            StockInwrdController>()
+                                                        .getScannigVal ==
+                                                    0
+                                                ? Colors.grey.withOpacity(0.04)
+                                                : Colors.grey.withOpacity(0.04),
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        width: Screens.width(context) * 0.001,
+                                        color: context
+                                                        .watch<
+                                                            StockInwrdController>()
+                                                        .passdata![i]
+                                                        .Scanned_Qty !=
+                                                    0 &&
+                                                context
+                                                        .watch<
+                                                            StockInwrdController>()
+                                                        .passdata![i]
+                                                        .Scanned_Qty !=
+                                                    context
+                                                        .watch<
+                                                            StockInwrdController>()
+                                                        .passdata![i]
+                                                        .trans_Qty
+                                            ? Colors.red.withOpacity(0.4)
+                                            : context
+                                                            .watch<
+                                                                StockInwrdController>()
+                                                            .passdata![i]
+                                                            .Scanned_Qty ==
+                                                        context
+                                                            .watch<
+                                                                StockInwrdController>()
+                                                            .passdata![i]
+                                                            .trans_Qty &&
+                                                    context
+                                                            .watch<
+                                                                StockInwrdController>()
+                                                            .passdata![i]
+                                                            .listClr ==
+                                                        true
+                                                ? Colors.green.withOpacity(0.4)
+                                                : context
+                                                            .watch<
+                                                                StockInwrdController>()
+                                                            .getScannigVal ==
+                                                        0
+                                                    ? Colors.white
+                                                    : Colors.white),
+                                  ),
+                                  child: IntrinsicHeight(
+                                    child:
+                                        // Row(
+                                        //     crossAxisAlignment:
+                                        //         CrossAxisAlignment.start,
+                                        //     mainAxisAlignment:
+                                        //         MainAxisAlignment.spaceBetween,
+                                        //     children: [
+                                        SizedBox(
+                                      width: widget.stockInWidth,
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "${context.watch<StockInwrdController>().passdata![i].itemcode}",
+                                                  style: widget.theme.textTheme
+                                                      .bodyLarge,
+                                                ),
+                                                Text(
+                                                  " - ${context.watch<StockInwrdController>().passdata![i].dscription}",
+                                                  style: widget.theme.textTheme
+                                                      .bodyLarge,
+                                                ),
+                                              ],
+                                            ),
+                                            Row(children: [
+                                              Container(
+                                                width:
+                                                    widget.stockInWidth * 0.5,
+                                                child: Wrap(
+                                                    spacing: 10.0,
+                                                    runSpacing: 10.0,
+                                                    children:
+                                                        listContainersBatch(
+                                                      context,
+                                                      widget.theme,
+                                                      context
+                                                          .watch<
+                                                              StockInwrdController>()
+                                                          .passdata![i],
+                                                    )),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                width:
+                                                    widget.stockInWidth * 0.15,
+                                                child: Text(
+                                                  "${context.watch<StockInwrdController>().passdata![i].qty}",
+                                                  style: widget.theme.textTheme
+                                                      .bodyLarge,
+                                                ),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                width:
+                                                    widget.stockInWidth * 0.15,
+                                                child: Text(
+                                                  "${context.watch<StockInwrdController>().passdata![i].trans_Qty}",
+                                                  style: widget.theme.textTheme
+                                                      .bodyLarge,
+                                                ),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                width:
+                                                    widget.stockInWidth * 0.15,
+                                                child: Text(
+                                                  "${context.watch<StockInwrdController>().passdata![i].Scanned_Qty}",
+                                                  style: widget.theme.textTheme
+                                                      .bodyLarge,
+                                                ),
+                                              ),
+                                            ]),
+                                          ]),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          );
+                              ));
                         }),
           ),
           SizedBox(
@@ -1033,13 +1072,21 @@ class _StockInwardState extends State<StockInward> {
                       //           : CircularProgressIndicator(
                       //               color: widget.theme.primaryColor),
                       //     )),
-                      GestureDetector(
-                          onTap: () {
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: BorderSide(
+                                color: widget.theme.primaryColor,
+                              )),
+                          onPressed: () {
                             setState(() {
                               context
                                   .read<StockInwrdController>()
                                   .stockInward2
                                   .clear();
+                              context
+                                  .read<StockInwrdController>()
+                                  .stockInward2 = [];
                               context
                                   .read<StockInwrdController>()
                                   .stInController2[50]
@@ -1052,16 +1099,19 @@ class _StockInwardState extends State<StockInward> {
                               context
                                   .read<StockInwrdController>()
                                   .selectedcust2 = null;
+                              context
+                                  .read<StockInwrdController>()
+                                  .setstatemethod();
                             });
                           },
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: Colors.grey[400],
+                              // color: Colors.grey[400],
                               borderRadius: BorderRadius.circular(5),
                             ),
                             height: widget.stockInheight * 0.9,
-                            width: widget.stockInWidth * 0.25,
+                            width: widget.stockInWidth * 0.2,
                             child: Text("Clear",
                                 style:
                                     widget.theme.textTheme.bodyMedium?.copyWith(
