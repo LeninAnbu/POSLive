@@ -1,5 +1,5 @@
 class URL {
-  static String url = 'http://102.69.167.106:1889/api/POSMaster/';
+  static String url = 'http://102.69.167.106:1888/api/POSMaster/';
   static String sapUrl = 'http://102.69.167.106:50001/b1s/v1';
 
   static String urlLocal = 'http://102.69.167.106:80/Api/';

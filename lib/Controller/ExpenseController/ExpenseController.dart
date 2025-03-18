@@ -24,14 +24,21 @@ import '../../DB Helper/DBhelper.dart';
 import '../../DBModel/ExpenseDBModel.dart';
 import '../../Models/DataModel/SeriesMode/SeriesModels.dart';
 import '../../Models/ExpenseModel/ExpenseGetModel.dart';
+import '../../Models/ExpenseModel/GetExpDetailsMdl.dart';
 import '../../Models/ExpenseModel/SearchExpHeaderModel.dart';
 import '../../Models/ExpenseModel/expensecode.dart';
+import '../../Models/QueryUrlModel/Profitcentermodel.dart';
+import '../../Models/QueryUrlModel/ProjectCodeModel.dart';
+import '../../Models/QueryUrlModel/TaxcodeModel.dart';
 import '../../Models/SearBox/SearchModel.dart';
 import '../../Models/Service Model/PettyCashModel.dart';
 import '../../Models/ServiceLayerModel/SapExpensModel/ExpePostingList.dart';
 import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/approvals_details.modal.dart';
 import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/approvals_modal.dart';
 import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/approvals_order_modal.dart';
+import '../../Service/QueryURL/ProfitCenterApi.dart';
+import '../../Service/QueryURL/ProjectCodeApi.dart';
+import '../../Service/QueryURL/TaxcodeApi.dart';
 import '../../Service/SeriesApi.dart';
 import '../../ServiceLayerAPIss/ExpensesAPI/ExpApprovalApi/ApprovalToDocApi.dart';
 import '../../ServiceLayerAPIss/ExpensesAPI/ExpApprovalApi/ExpApprovalQryApi.dart';
@@ -50,14 +57,16 @@ import '../../Widgets/ContentContainer.dart';
 class ExpenseController extends ChangeNotifier {
   Configure config = Configure();
 
-  void init() {
-    clearData();
+  Future<void> init() async {
+    clearallData();
     getcodeExpense();
     getpaidfomExpense();
     getdraftindex();
-    callPettyCashApi();
+    await callPettyCashApi();
+    await callTaxCodeApi();
+    await callProfitApi();
+    await callProjectApi();
     notifyListeners();
-    expenseModel = [];
   }
 
   List<SearchEpenseDataModel> filtersearchData = [];
@@ -75,6 +84,9 @@ class ExpenseController extends ChangeNotifier {
       List.generate(2, (i) => GlobalKey<FormState>());
   List<TextEditingController> mycontroller =
       List.generate(150, (i) => TextEditingController());
+
+  List<TextEditingController> uRvcController =
+      List.generate(150, (i) => TextEditingController());
   List<codeforexpense> expCode = [];
   List finalcode = [];
   String holddocentry = '';
@@ -86,10 +98,129 @@ class ExpenseController extends ChangeNotifier {
 
   String? draftDocuNumber = '';
   String? uDeviceTransId = '';
+  List<ProfitCentermdlData> profitCenterData = [];
+  String? profitCode;
+  String? profitName;
+  String? taxCode;
+  String? taxName;
+  String? projectCode;
+  String? projectName;
+
+  selectProfitCode(String val) {
+    profitCode = null;
+    for (var i = 0; i < profitCenterData.length; i++) {
+      if (val == profitCenterData[i].ocrName.toString()) {
+        profitCode = profitCenterData[i].ocrCode;
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectProfitCode2(String val) {
+    profitCode = null;
+    for (var i = 0; i < profitCenterData.length; i++) {
+      if (val == profitCenterData[i].ocrCode.toString()) {
+        profitCode = profitCenterData[i].ocrCode;
+        profitName = profitCenterData[i].ocrName;
+        mycontroller[20].text = profitCenterData[i].ocrName!;
+
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectTaxCode(String val) {
+    for (var i = 0; i < taxCodeDataList.length; i++) {
+      if (val == taxCodeDataList[i].name.toString()) {
+        taxCode = taxCodeDataList[i].code;
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectTaxCode2(String val) {
+    for (var i = 0; i < taxCodeDataList.length; i++) {
+      if (val == taxCodeDataList[i].code.toString()) {
+        taxCode = taxCodeDataList[i].code;
+        taxName = taxCodeDataList[i].name;
+        mycontroller[19].text = taxCodeDataList[i].name!;
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectProjectCode(String val) {
+    for (var i = 0; i < projectCodeList.length; i++) {
+      if (val == projectCodeList[i].name.toString()) {
+        log('message::${projectCodeList[i].code.toString()}');
+        projectCode = projectCodeList[i].code.toString();
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectProjectCode2(String val) {
+    for (var i = 0; i < projectCodeList.length; i++) {
+      if (val == projectCodeList[i].code.toString()) {
+        projectCode = projectCodeList[i].code;
+        projectName = projectCodeList[i].name;
+        uRvcController[3].text = projectCodeList[i].name!;
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  List<ProjectCodeMdlData> projectCodeList = [];
+
+  callProfitApi() async {
+    profitCenterData = [];
+    await ProfitCenterApii.getGlobalData().then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        profitCenterData = value.openOutwardData!;
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        profitCenterData = [];
+      }
+    });
+    notifyListeners();
+  }
+
+  callProjectApi() async {
+    projectCodeList = [];
+    await NewProjectCodeApi.getGlobalData().then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        projectCodeList = value.projectCodeData!;
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        profitCenterData = [];
+      }
+    });
+    notifyListeners();
+  }
+
+  List<TaxCodeMdlData> taxCodeDataList = [];
+  callTaxCodeApi() async {
+    taxCodeDataList = [];
+    await TaxCodeApii.getGlobalData().then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        taxCodeDataList = value.taxCodeData!;
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        taxCodeDataList = [];
+      }
+    });
+    notifyListeners();
+  }
 
   Future<SharedPreferences> pref = SharedPreferences.getInstance();
   callExpenseApi() async {
-    ExpanseMasterApi.getData().then((value) {
+    await ExpanseMasterApi.getData().then((value) {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
         if (value.addressdata != null) {
           expenseModel = value.addressdata!;
@@ -115,7 +246,7 @@ class ExpenseController extends ChangeNotifier {
   String? pettyCashAmt;
   callPettyCashApi() async {
     expenseModel = [];
-    PettyCashModelAPI.getData(AppConstant.branch).then((value) {
+    await PettyCashModelAPI.getData(AppConstant.branch).then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.pettyCashList != null) {
           pettyCashListt = value.pettyCashList;
@@ -294,7 +425,7 @@ class ExpenseController extends ChangeNotifier {
               : double.parse(getSalesHeader[i]["rcamount"].toString())));
     }
     searchData.addAll(searchdata2);
-    // filtersearchData = searchData;
+
     searchbool = false;
     notifyListeners();
   }
@@ -386,12 +517,28 @@ class ExpenseController extends ChangeNotifier {
     notifyListeners();
   }
 
+  clearallData() {
+    taxCodeDataList = [];
+    profitCenterData = [];
+    projectCodeList = [];
+
+    expenseModel = [];
+    clearData();
+    notifyListeners();
+  }
+
   clearData() {
     mycontroller = List.generate(150, (i) => TextEditingController());
     mycontroller[9].text = "";
     displayExpanseValue = null;
     sapDocentry = '';
     seriesType = '';
+    projectCode = null;
+    projectName = null;
+    profitName = null;
+    profitCode = null;
+    taxCode = null;
+    taxName = null;
     availableAmt = 0;
     seriesVal = [];
     uuiDeviceId = '';
@@ -403,6 +550,8 @@ class ExpenseController extends ChangeNotifier {
     mycontroller[10].text = "";
     mycontroller[11].text = "";
     mycontroller[12].text = "";
+    mycontroller[22].text = "";
+
     mycontroller[13].text = "";
     mycontroller[15].text = '';
     mycontroller[14].text = "";
@@ -410,6 +559,14 @@ class ExpenseController extends ChangeNotifier {
     mycontroller[1].text = "";
     mycontroller[2].text = "";
     mycontroller[3].text = "";
+    mycontroller[19].text = '';
+    mycontroller[20].text = '';
+    uRvcController[1].text = '';
+    uRvcController[0].text = '';
+
+    uRvcController[3].text = '';
+    mycontroller[16].text = '';
+
     codeValue = null;
     chosenValue = null;
     codeValue = null;
@@ -482,7 +639,7 @@ class ExpenseController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     mycontroller[i].text = modifiedString2.toString();
-    log(mycontroller[i].text); // Output: example-text-with-double-dots
+    log(mycontroller[i].text);
     notifyListeners();
   }
 
@@ -515,7 +672,7 @@ class ExpenseController extends ChangeNotifier {
       docEntryCreated =
           await DBOperation.generateDocentr(db, "docentry", "Expense");
     }
-    log('message22222');
+    log('message22222:::$profitCode:::$taxCode');
     String documentNum = '';
     int? documentN0 =
         await DBOperation.getnumbSer(db, "nextno", "NumberingSeries", 8);
@@ -546,6 +703,9 @@ class ExpenseController extends ChangeNotifier {
         documentno: documentNum.toString(),
         reference: mycontroller[0].text,
         rcamount: mycontroller[1].text,
+        distRule: profitCode,
+        uRVC: uRvcController[0].text,
+        taxCode: taxCode,
         paidto: depitAcc,
         paidfrom: creditAcc,
         docstatus: docstatus == "hold"
@@ -557,7 +717,8 @@ class ExpenseController extends ChangeNotifier {
         sapDocNo: null,
         sapDocentry: null,
         remarks: mycontroller[3].text.toString(),
-        attachment: mycontroller[16].text.toString()));
+        attachment: mycontroller[16].text.toString(),
+        projectCode: '$projectCode'));
 
     int? docentry2 = await DBOperation.insertExpense(db, values);
     await DBOperation.updatenextno(db, 8, nextno);
@@ -569,12 +730,25 @@ class ExpenseController extends ChangeNotifier {
       getdraftindex();
       mycontroller[0].text = "";
       mycontroller[1].text = "";
+
       mycontroller[2].text = "";
       mycontroller[3].text = '';
+      mycontroller[17].text = '';
+      mycontroller[21].text = '';
+
       codeValue = null;
       onDisablebutton = true;
       chosenValue = null;
       displayExpanseValue = null;
+      uRvcController[0].text = '';
+      mycontroller[16].text = '';
+      projectCode = null;
+      projectName = null;
+      profitName = '';
+      profitName = null;
+      profitCode = null;
+      taxCode = null;
+      taxName = null;
       await Get.defaultDialog(
               title: "Success",
               middleText: docstatus == "hold" ? "Saved as draft" : "null",
@@ -630,14 +804,47 @@ class ExpenseController extends ChangeNotifier {
     notifyListeners();
   }
 
+  double taxAmt = 0;
+  double sumPaid = 0;
+  vatSum() {
+    taxAmt = 0;
+    sumPaid = 0;
+    if (taxCode != null) {
+      if (taxCode.toString() == 'I1' || taxCode.toString() == 'I2') {
+        String taxRate = '18';
+
+        taxAmt =
+            double.parse(mycontroller[1].text) * (double.parse(taxRate) / 100);
+        sumPaid = double.parse(mycontroller[1].text) - (taxAmt);
+        log('$sumPaid::::$taxAmt');
+        notifyListeners();
+      } else {
+        notifyListeners();
+
+        taxAmt = 0;
+        sumPaid = double.parse(mycontroller[1].text);
+      }
+    } else {
+      taxAmt = 0;
+      sumPaid = double.parse(mycontroller[1].text);
+    }
+    notifyListeners();
+  }
+
   List<ExpenseListMoel> itemsDocDetails = [];
-  addAccLine() {
+  addAccLine() async {
+    await vatSum();
     itemsDocDetails = [];
     itemsDocDetails.add(ExpenseListMoel(
-        accountCode: depitAcc,
-        decription: mycontroller[3].text.toString(),
-        grossAmount: double.parse(mycontroller[1].text),
-        sumPaid: double.parse(mycontroller[1].text.toString())));
+      accountCode: depitAcc,
+      decription: mycontroller[3].text.toString(),
+      grossAmount: double.parse(mycontroller[1].text),
+      vatGroup: '$taxCode',
+      ocrCode: '$profitCode',
+      sumPaid: sumPaid,
+      projectCode: projectCode,
+      vatAmt: taxAmt.toString(),
+    ));
     notifyListeners();
   }
 
@@ -658,7 +865,6 @@ class ExpenseController extends ChangeNotifier {
               await DBOperation.getBrnachbyCode(db, AppConstant.branch);
           for (var i = 0; i < seriesVal.length; i++) {
             for (var ik = 0; ik < branchdata.length; ik++) {
-              // log('seriesVal[i].name::${seriesVal[i].name}::${branchdata[ik]['WhsName'].toString()}');
               if (branchdata[ik]['WhsName'].toString() == seriesVal[i].name) {
                 seriesType = seriesVal[i].series.toString();
               }
@@ -680,8 +886,7 @@ class ExpenseController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     seriesType = '';
 
-    // await callSeriesApi(context, '46');
-    addAccLine();
+    await addAccLine();
     PostExpenseAPi.cashAccount = creditAcc;
     PostExpenseAPi.seriesType = seriesType;
     PostExpenseAPi.reference = mycontroller[0].text;
@@ -692,10 +897,14 @@ class ExpenseController extends ChangeNotifier {
     PostExpenseAPi.cashSum = mycontroller[1].text;
     PostExpenseAPi.remarks = mycontroller[3].text.toString();
     PostExpenseAPi.paymentAccounts = itemsDocDetails;
+    // PostExpenseAPi.projectCode = uRvcController[1].text;
+    PostExpenseAPi.uRvc = uRvcController[0].text;
+    // PostExpenseAPi.OcrCode = profitCode;
+    // PostExpenseAPi.vatGroup = taxCode;
+    // PostExpenseAPi.projectCode = projectCode;
 
     await PostExpenseAPi.method(uuiDeviceId);
-    // // var uuid = const Uuid();
-    // String? uuidg = uuid.v1();
+
     await PostExpenseAPi.getGlobalData(uuiDeviceId).then((value) async {
       if (value.statusCode == null) {
         return;
@@ -736,6 +945,8 @@ class ExpenseController extends ChangeNotifier {
             mycontroller[1].text = "";
             mycontroller[2].text = "";
             mycontroller[3].text = '';
+            taxCodeDataList = [];
+            profitCenterData = [];
             codeValue = null;
             onDisablebutton = true;
             chosenValue = null;
@@ -773,25 +984,6 @@ class ExpenseController extends ChangeNotifier {
                   child: Text('Close'))
             ]);
 
-        // showDialog(
-        //     context: context,
-        //     barrierDismissible: false,
-        //     builder: (BuildContext context) {
-        //       return AlertDialog(
-        //           contentPadding: const EdgeInsets.all(0),
-        //           content: AlertBox(
-        //             payMent: 'Alert',
-        //             errormsg: true,
-        //             widget: Center(
-        //                 child: ContentContainer(
-        //               content: '$custserieserrormsg',
-        //               theme: theme,
-        //             )),
-        //             buttonName: null,
-        //           ));
-        //     }).then((value) {
-        //   onDisablebutton = false;
-        // });
         notifyListeners();
       } else {
         cancelbtn = false;
@@ -832,8 +1024,8 @@ class ExpenseController extends ChangeNotifier {
 
     seriesType = '';
     log('message1');
-    // await callSeriesApi(context, '46');
-    addAccLine();
+
+    await addAccLine();
     PostApprovalExpenseAPi.cashAccount = creditAcc;
     PostApprovalExpenseAPi.docDate = config.alignDate1(mycontroller[17].text);
     PostApprovalExpenseAPi.seriesType = seriesType;
@@ -842,7 +1034,10 @@ class ExpenseController extends ChangeNotifier {
     PostApprovalExpenseAPi.cashSum = mycontroller[1].text;
     PostApprovalExpenseAPi.remarks = mycontroller[3].text.toString();
     PostApprovalExpenseAPi.paymentAccounts = itemsDocDetails;
+    PostApprovalExpenseAPi.uRvc = uRvcController[0].text;
+    PostApprovalExpenseAPi.reference = mycontroller[0].text;
 
+    PostApprovalExpenseAPi.method(uuiDeviceId);
     await PostApprovalExpenseAPi.getGlobalData(uuiDeviceId).then((value) async {
       log('message1');
 
@@ -882,6 +1077,8 @@ class ExpenseController extends ChangeNotifier {
           mycontroller[2].text = "";
           mycontroller[3].text = '';
           codeValue = null;
+          taxCodeDataList = [];
+          profitCenterData = [];
           onDisablebutton = true;
           chosenValue = null;
           displayExpanseValue = null;
@@ -895,15 +1092,9 @@ class ExpenseController extends ChangeNotifier {
         });
 
         custserieserrormsg = '';
-        // } else {
-        //   custserieserrormsg = value.error!.message!.value.toString();
-        //   mycontroller = List.generate(150, (i) => TextEditingController());
-
-        //   onDisablebutton = false;
-        // }
       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
         cancelbtn = false;
-        // custserieserrormsg = value.error!.message!.value.toString();
+
         showDialog(
             context: context,
             barrierDismissible: false,
@@ -946,6 +1137,7 @@ class ExpenseController extends ChangeNotifier {
       }
       onDisablebutton = false;
     });
+
     onDisablebutton = false;
 
     notifyListeners();
@@ -960,9 +1152,21 @@ class ExpenseController extends ChangeNotifier {
     mycontroller[1].text = "";
     mycontroller[2].text = "";
     mycontroller[3].text = '';
+    mycontroller[16].text = '';
+    mycontroller[21].text = '';
+    mycontroller[22].text = '';
+    mycontroller[17].text = '';
     codeValue = null;
     onDisablebutton = false;
     chosenValue = null;
+    uRvcController[0].text = '';
+
+    projectCode = null;
+    projectName = null;
+    profitName = null;
+    profitCode = null;
+    taxCode = null;
+    taxName = null;
     notifyListeners();
     Get.defaultDialog(
             title: "Success",
@@ -1090,7 +1294,12 @@ class ExpenseController extends ChangeNotifier {
       docentry: getDBholddata5[i]['docentry'].toString(),
       remarks: getDBholddata5[i]['remarks'].toString(),
       attachment: getDBholddata5[i]['attachment'].toString(),
+      uRVC: getDBholddata5[i]['U_RVC'].toString(),
+      distRule: getDBholddata5[i]['DistRule'].toString(),
+      taxCode: getDBholddata5[i]['TaxCode'].toString(),
+      projectName: getDBholddata5[i]['projectCode'].toString(),
     );
+
     expenceval2.add(expenceval);
     onhold.add(expenceval);
     onholdfilter = onhold;
@@ -1117,13 +1326,25 @@ class ExpenseController extends ChangeNotifier {
     mycontroller[0].text = onholdfilter[i].reference.toString();
     mycontroller[1].text = onholdfilter[i].rcamount.toString();
     mycontroller[2].text = onholdfilter[i].paidto.toString();
+
     chosenValue = onholdfilter[i].paidfrom.toString();
     creditAcc = onholdfilter[i].paidfrom.toString();
     depitAcc = onholdfilter[i].paidto.toString();
     mycontroller[3].text = onholdfilter[i].remarks.toString();
     mycontroller[16].text = onholdfilter[i].attachment.toString();
+    uRvcController[0].text = onholdfilter[i].uRVC == 'null' ||
+            onholdfilter[i].uRVC == null ||
+            onholdfilter[i].uRVC!.isEmpty
+        ? ''
+        : onholdfilter[i].uRVC.toString();
+    // mycontroller[19].text = onholdfilter[i].taxCode.toString();
 
-    notifyListeners();
+    // mycontroller[20].text = onholdfilter[i].distRule.toString();
+    // uRvcController[3].text = onholdfilter[i].projectName.toString();
+
+    selectProjectCode2(onholdfilter[i].projectName.toString());
+    selectProfitCode2(onholdfilter[i].distRule.toString());
+    selectTaxCode2(onholdfilter[i].taxCode.toString());
     holddocentry = onholdfilter[i].docentry.toString();
 
     notifyListeners();
@@ -1242,17 +1463,10 @@ class ExpenseController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     await sapLoginApi(context);
     ApprovalsExpPostAPi.docEntry = draftDocuNumber;
-    // ApprovalsExpPostAPi.docDueDate = approvalDetailsValue!.DocDate;
-    // ApprovalsExpPostAPi.orderDate = approvalDetailsValue!.U_OrderDate;
-    // ApprovalsExpPostAPi.orderTime = approvalDetailsValue!.U_Received_Time;
-    // ApprovalsExpPostAPi.orderType = approvalDetailsValue!.PostOrder_Type;
-    // ApprovalsExpPostAPi.custREfNo = approvalDetailsValue!.numAt;
-    // ApprovalsExpPostAPi.gpApproval = approvalDetailsValue!.PostGP_Approval;
 
     await ApprovalsExpPostAPi.getGlobalData().then((valuex) async {
       if (valuex.statusCode >= 200 && valuex.statusCode <= 210) {
         ApprovalsExpAPi.uDeviceID = uDeviceTransId;
-        // approvalDetailsValue!.uDevicTransId.toString();
 
         await ApprovalsExpAPi.getGlobalData().then((value) async {
           if (value.statusCode! >= 200 && value.statusCode! <= 210) {
@@ -1561,8 +1775,6 @@ class ExpenseController extends ChangeNotifier {
         approvalDetailsValue = value;
         documentApprovalValue = value.documentLines!;
         log('documentApprovalValue::${documentApprovalValue.length}');
-        // await mapApprovalData(
-        //     int.parse(approvalDetailsValue!.docEntry.toString()));
       } else if (value.error != null) {
         final snackBar = SnackBar(
           duration: const Duration(seconds: 5),
@@ -1604,6 +1816,8 @@ class ExpenseController extends ChangeNotifier {
   }
 
   bool searchLoad = false;
+
+  List<PaymentAccount> payAcc = [];
   callGetExpDetailsApi(String docEntry, BuildContext context) async {
     await sapLoginApi(context);
     mycontroller[9].text = mycontroller[10].text = '';
@@ -1621,17 +1835,23 @@ class ExpenseController extends ChangeNotifier {
           for (var i = 0; i < value.paymentAccounts.length; i++) {
             mycontroller[9].text =
                 value.paymentAccounts[i].accountName.toString();
-            mycontroller[10].text = value.reference1.toString();
+            mycontroller[10].text = value.counterReference.toString();
             mycontroller[11].text = config.splitValues(
                 value.paymentAccounts[i].sumPaid.toStringAsFixed(2));
-            // mycontroller[12].text = getDBExpensesHeader[0]["paidto"].toString();
+
             mycontroller[13].text = '';
-            // getDBExpensesHeader[0]["paidfrom"].toString();
+
             mycontroller[14].text = value.remarks.toString();
             mycontroller[18].text = config.alignDate(value.docDate.toString());
+            // mycontroller[19].text = value.paymentAccounts[i].vatGroup;
+            // mycontroller[20].text = value.paymentAccounts[i].profitCenter;
+            uRvcController[1].text = value.uRVC.toString();
+            // uRvcController[3].text = value.paymentAccounts[i].projectCode;
+            mycontroller[22].text = value.address.toString();
 
-            // mycontroller[15].text =
-            //     getDBExpensesHeader[0]["attachment"].toString();
+            selectProjectCode2(value.paymentAccounts[i].projectCode.toString());
+            selectProfitCode2(value.paymentAccounts[i].profitCenter.toString());
+            selectTaxCode2(value.paymentAccounts[i].vatGroup.toString());
           }
           searchLoad = false;
 
@@ -1695,7 +1915,7 @@ class ExpenseController extends ChangeNotifier {
     searchAprvlData = [];
     filterAprvlData = [];
     searchbool = true;
-    // ExpApprovalAPi.slpCode = AppConstant.slpCode;
+
     ExpApprovalAPi.dbname = "${AppConstant.sapDB}";
     await ExpApprovalAPi.getGlobalData(fromdate, todate).then(
       (value) {

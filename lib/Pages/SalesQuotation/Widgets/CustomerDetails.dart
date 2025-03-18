@@ -222,9 +222,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                         .read<
                                                             SalesQuotationCon>()
                                                         .getselectedcust2!
-                                                        .paymentGroup!
-                                                        .contains('cash') ==
-                                                    true
+                                                        .U_CashCust ==
+                                                    'YES'
                                             ? TextFormField(
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
@@ -335,9 +334,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                           .read<
                                                               SalesQuotationCon>()
                                                           .getselectedcust2!
-                                                          .paymentGroup!
-                                                          .contains('cash') ==
-                                                      true
+                                                          .U_CashCust ==
+                                                      'YES'
                                               ? TextFormField(
                                                   validator: (value) {
                                                     if (value!.isEmpty) {
@@ -441,9 +439,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                               context
                                                       .read<SalesQuotationCon>()
                                                       .getselectedcust2!
-                                                      .paymentGroup!
-                                                      .contains('cash') ==
-                                                  true
+                                                      .U_CashCust ==
+                                                  'YES'
                                           ? TextFormField(
                                               validator: (value) {
                                                 if (value!.isEmpty) {
@@ -1080,9 +1077,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                             .read<
                                                                 SalesQuotationCon>()
                                                             .selectedcust!
-                                                            .paymentGroup!
-                                                            .contains('cash') ==
-                                                        true
+                                                            .U_CashCust ==
+                                                        'YES'
                                                 ? TextFormField(
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
@@ -1213,10 +1209,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                               .read<
                                                                   SalesQuotationCon>()
                                                               .selectedcust!
-                                                              .paymentGroup!
-                                                              .contains(
-                                                                  'cash') ==
-                                                          true
+                                                              .U_CashCust ==
+                                                          'YES'
                                                   ? TextFormField(
                                                       validator: (value) {
                                                         if (value!.isEmpty) {
@@ -1330,9 +1324,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                           .read<
                                                               SalesQuotationCon>()
                                                           .selectedcust!
-                                                          .paymentGroup!
-                                                          .contains('cash') ==
-                                                      true
+                                                          .U_CashCust ==
+                                                      'YES'
                                               ? TextFormField(
                                                   validator: (value) {
                                                     if (value!.isEmpty) {

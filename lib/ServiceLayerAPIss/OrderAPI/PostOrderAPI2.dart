@@ -20,8 +20,8 @@ class OrderPostAPi2 {
   static String? gpApproval;
   static String? orderTime;
   static String? seriesType;
-static String? tinNo;
- static String? vatNo;
+  static String? tinNo;
+  static String? vatNo;
   static String? custREfNo;
   static String? deviceCode;
   static String? deviceTransID;
@@ -60,10 +60,10 @@ static String? tinNo;
       "DocDate": "$docDate",
       "DocDueDate": "$dueDate",
       "Comments": "$remarks",
-      // 'Series': '$seriesType',
+      'Series': '$seriesType',
       "NumAtCard": "$custREfNo",
       'U_TinNO': '$tinNo',
-      "U_VAT_NUMBER":"$vatNo",
+      "U_VAT_NUMBER": "$vatNo",
 
       "U_OrderDate": "$orderDate",
       "U_Order_Type": "$orderType",
@@ -76,7 +76,7 @@ static String? tinNo;
       "U_longitude": longitude,
       "DocumentLines": copyfromsq == true
           ? docLineQout!.map((e) => e.tojson()).toList()
-          : docLineQout!.map((e) => e.tojson2()).toList(),
+          : docLineQout!.map((e) => e.tojson3()).toList(),
     });
 
     log("Jsons Sales ORder Post222: $datx");
@@ -92,7 +92,7 @@ static String? tinNo;
         "DocDate": "$docDate",
         "DocDueDate": "$dueDate",
         "Comments": "$remarks",
-        // 'Series': '$seriesType',
+        'Series': '$seriesType',
         "U_OrderDate": "$orderDate",
         "U_Order_Type": "$orderType",
         "U_GP_Approval": "$gpApproval",
@@ -101,13 +101,13 @@ static String? tinNo;
         'U_DeviceCode': deviceCode,
         'U_DeviceTransID': deviceTransID,
         'U_TinNO': '$tinNo',
-        "U_VAT_NUMBER":"$vatNo",
+        "U_VAT_NUMBER": "$vatNo",
         // 'SalesPersonCode': '$slpCode',
         "U_latitude ": latitude,
         "U_longitude": longitude,
         "DocumentLines": copyfromsq == true
             ? docLineQout!.map((e) => e.tojson()).toList()
-            : docLineQout!.map((e) => e.tojson2()).toList(),
+            : docLineQout!.map((e) => e.tojson3()).toList(),
       });
       final response = await http.post(
         Uri.parse(
@@ -126,8 +126,8 @@ static String? tinNo;
           "DocDueDate": "$dueDate",
           "Comments": "$remarks",
           'U_TinNO': '$tinNo',
-          "U_VAT_NUMBER":"$vatNo",
-          // 'Series': '$seriesType',
+          "U_VAT_NUMBER": "$vatNo",
+          'Series': '$seriesType',
           "U_OrderDate": "$orderDate",
           "U_Order_Type": "$orderType",
           "U_GP_Approval": "$gpApproval",
@@ -143,7 +143,7 @@ static String? tinNo;
           "U_Request": data,
           "DocumentLines": copyfromsq == true
               ? docLineQout!.map((e) => e.tojson()).toList()
-              : docLineQout!.map((e) => e.tojson2()).toList(),
+              : docLineQout!.map((e) => e.tojson3()).toList(),
         }),
       );
       log(json.encode({
@@ -161,7 +161,7 @@ static String? tinNo;
         'U_DeviceCode': deviceCode,
         'U_DeviceTransID': deviceTransID,
         'SalesPersonCode': '$slpCode',
-        "U_VAT_NUMBER":"$vatNo",
+        "U_VAT_NUMBER": "$vatNo",
         // 'Series':'${GetValues.seriresOrder}',
         "U_latitude ": latitude,
         "U_longitude": longitude,

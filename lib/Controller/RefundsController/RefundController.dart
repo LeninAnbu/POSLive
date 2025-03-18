@@ -252,6 +252,7 @@ class RefundController extends ChangeNotifier {
       selecust.invoicenum = salesPayModell5[i].invoiceNum.toString();
 
       selecust.invoiceDate = salesPayModell5[i].invoceDate.toString();
+      selecust.U_CashCust = '';
       selectedcust = selecust;
       selectedcustcode = salesPayModell5[i].cardCode;
 
@@ -597,6 +598,7 @@ class RefundController extends ChangeNotifier {
         phNo: customerDetals.phNo,
         cardCode: customerDetals.cardCode,
         accBalance: customerDetals.accBalance,
+        U_CashCust: customerDetals.U_CashCust,
         point: customerDetals.point,
         address: customerDetals.address,
         email: customerDetals.email,
@@ -1188,6 +1190,7 @@ class RefundController extends ChangeNotifier {
             name: getDBsalesdata1[ig]['customername'].toString(),
             phNo: getDBsalesdata1[ig]['customerphono'].toString(),
             cardCode: getDBsalesdata1[ig]['customercode'].toString(),
+            U_CashCust: '',
             point: getDBsalesdata1[ig]['customerpoint'].toString(),
             address: [
               Address(
@@ -1291,6 +1294,7 @@ class RefundController extends ChangeNotifier {
     selectedcust = CustomerDetals(
         name: salesPayModell5[ih].custName,
         phNo: salesPayModell5[ih].phNo,
+        U_CashCust: '',
         cardCode: salesPayModell5[ih].cardCode,
         accBalance: salesPayModell5[ih].accBalance != null
             ? double.parse(salesPayModell5[ih].accBalance.toString())

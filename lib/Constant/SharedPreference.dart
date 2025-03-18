@@ -51,6 +51,11 @@ class SharedPref {
     return preferences.getBool(isDatadownloaded);
   }
 
+  static Future<bool?> clearDatadonld() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.remove(isDatadownloaded);
+  }
+
   static Future<bool> saveLocaleSP(String locale) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return await preferences.setString(sPLocale, locale);
@@ -133,6 +138,11 @@ class SharedPref {
   static Future<bool?> getLoggedINSP() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getBool(islogggedIN);
+  }
+
+  static Future<bool?> clearLoggedINSP() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.remove(islogggedIN);
   }
 
   static clearLoggedIN() async {

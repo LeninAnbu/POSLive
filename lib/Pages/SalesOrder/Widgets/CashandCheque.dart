@@ -139,17 +139,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                   children: [
                     GestureDetector(
                       onTap: context.read<SOCon>().selectedcust != null &&
-                              context
-                                      .read<SOCon>()
-                                      .selectedcust!
-                                      .paymentGroup !=
+                              context.read<SOCon>().selectedcust!.U_CashCust !=
                                   null &&
-                              context
-                                      .read<SOCon>()
-                                      .selectedcust!
-                                      .paymentGroup!
-                                      .contains('cash') ==
-                                  false
+                              context.read<SOCon>().selectedcust!.U_CashCust !=
+                                  'YES'
                           ? null
                           : () {
                               context.read<SOCon>().nullErrorMsg();
@@ -222,14 +215,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                     context
                                             .read<SOCon>()
                                             .selectedcust!
-                                            .paymentGroup !=
+                                            .U_CashCust !=
                                         null &&
                                     context
                                             .read<SOCon>()
                                             .selectedcust!
-                                            .paymentGroup!
-                                            .contains('cash') ==
-                                        false
+                                            .U_CashCust !=
+                                        'YES'
                                 ? Colors.grey.withOpacity(0.2)
                                 : widget.theme.primaryColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(5),
@@ -266,14 +258,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? null
                             : () {
                                 context.read<SOCon>().nullErrorMsg();
@@ -334,9 +325,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                               },
                         child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.only(
-                                left: widget.cashHeight * 0.01,
-                                right: widget.cashHeight * 0.01),
+                            padding:
+                                EdgeInsets.only(
+                                    left: widget.cashHeight * 0.01,
+                                    right: widget.cashHeight * 0.01),
                             height: widget.cashHeight * 0.29,
                             width: widget.cashWidth * 0.25,
                             decoration: BoxDecoration(
@@ -345,14 +337,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup !=
+                                              .U_CashCust !=
                                           null &&
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup!
-                                              .contains('cash') ==
-                                          false
+                                              .U_CashCust !=
+                                          'YES'
                                   ? Colors.grey.withOpacity(0.2)
                                   : widget.theme.primaryColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5),
@@ -389,14 +380,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? null
                             : () {
                                 context.read<SOCon>().nullErrorMsg();
@@ -457,9 +447,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                               },
                         child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.only(
-                                left: widget.cashHeight * 0.01,
-                                right: widget.cashHeight * 0.01),
+                            padding:
+                                EdgeInsets.only(
+                                    left: widget.cashHeight * 0.01,
+                                    right: widget.cashHeight * 0.01),
                             height: widget.cashHeight * 0.29,
                             width: widget.cashWidth * 0.25,
                             decoration: BoxDecoration(
@@ -468,14 +459,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup !=
+                                              .U_CashCust !=
                                           null &&
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup!
-                                              .contains('cash') ==
-                                          false
+                                              .U_CashCust !=
+                                          'YES'
                                   ? Colors.grey.withOpacity(0.2)
                                   : widget.theme.primaryColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5),
@@ -515,14 +505,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? null
                             : () {
                                 context.read<SOCon>().nullErrorMsg();
@@ -580,9 +569,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                               },
                         child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.only(
-                                left: widget.cashHeight * 0.01,
-                                right: widget.cashHeight * 0.01),
+                            padding:
+                                EdgeInsets.only(
+                                    left: widget.cashHeight * 0.01,
+                                    right: widget.cashHeight * 0.01),
                             height: widget.cashHeight * 0.29,
                             width: widget.cashWidth * 0.25,
                             decoration: BoxDecoration(
@@ -591,14 +581,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup !=
+                                              .U_CashCust !=
                                           null &&
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup!
-                                              .contains('cash') ==
-                                          false
+                                              .U_CashCust !=
+                                          'YES'
                                   ? Colors.grey.withOpacity(0.2)
                                   : widget.theme.primaryColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5),
@@ -632,14 +621,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? null
                             : () {
                                 context.read<SOCon>().nullErrorMsg();
@@ -697,9 +685,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                               },
                         child: Container(
                             alignment: Alignment.center,
-                            padding: EdgeInsets.only(
-                                left: widget.cashHeight * 0.01,
-                                right: widget.cashHeight * 0.01),
+                            padding:
+                                EdgeInsets.only(
+                                    left: widget.cashHeight * 0.01,
+                                    right: widget.cashHeight * 0.01),
                             height: widget.cashHeight * 0.29,
                             width: widget.cashWidth * 0.25,
                             decoration: BoxDecoration(
@@ -708,14 +697,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup !=
+                                              .U_CashCust !=
                                           null &&
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup!
-                                              .contains('cash') ==
-                                          false
+                                              .U_CashCust !=
+                                          'YES'
                                   ? Colors.grey.withOpacity(0.2)
                                   : widget.theme.primaryColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5),
@@ -844,17 +832,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                   children: [
                     GestureDetector(
                       onTap: context.read<SOCon>().selectedcust != null &&
-                              context
-                                      .read<SOCon>()
-                                      .selectedcust!
-                                      .paymentGroup !=
+                              context.read<SOCon>().selectedcust!.U_CashCust !=
                                   null &&
-                              context
-                                      .read<SOCon>()
-                                      .selectedcust!
-                                      .paymentGroup!
-                                      .contains('cash') ==
-                                  false
+                              context.read<SOCon>().selectedcust!.U_CashCust !=
+                                  'YES'
                           ? null
                           : () {
                               context.read<SOCon>().nullErrorMsg();
@@ -948,14 +929,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                     context
                                             .read<SOCon>()
                                             .selectedcust!
-                                            .paymentGroup !=
+                                            .U_CashCust !=
                                         null &&
                                     context
                                             .read<SOCon>()
                                             .selectedcust!
-                                            .paymentGroup!
-                                            .contains('cash') ==
-                                        false
+                                            .U_CashCust !=
+                                        'YES'
                                 ? Colors.grey.withOpacity(0.2)
                                 : widget.theme.primaryColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(5),
@@ -966,17 +946,10 @@ class _POCashWidgetState extends State<POCashWidget> {
                     ),
                     GestureDetector(
                       onTap: context.read<SOCon>().selectedcust != null &&
-                              context
-                                      .read<SOCon>()
-                                      .selectedcust!
-                                      .paymentGroup !=
+                              context.read<SOCon>().selectedcust!.U_CashCust !=
                                   null &&
-                              context
-                                      .read<SOCon>()
-                                      .selectedcust!
-                                      .paymentGroup!
-                                      .contains('cash') ==
-                                  true
+                              context.read<SOCon>().selectedcust!.U_CashCust ==
+                                  'YES'
                           ? null
                           : () {
                               context.read<SOCon>().nullErrorMsg();
@@ -1065,14 +1038,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                   context
                                           .read<SOCon>()
                                           .selectedcust!
-                                          .paymentGroup !=
+                                          .U_CashCust !=
                                       null &&
                                   context
                                           .read<SOCon>()
                                           .selectedcust!
-                                          .paymentGroup!
-                                          .contains('cash') ==
-                                      true
+                                          .U_CashCust ==
+                                      'YES'
                               ? Colors.grey.withOpacity(0.2)
                               : widget.theme.primaryColor.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(5),
@@ -1087,14 +1059,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<SOCon>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    true
+                                        .U_CashCust ==
+                                    'YES'
                             ? null
                             : () {
                                 context.read<SOCon>().nullErrorMsg();
@@ -1165,14 +1136,13 @@ class _POCashWidgetState extends State<POCashWidget> {
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup !=
+                                              .U_CashCust !=
                                           null &&
                                       context
                                               .read<SOCon>()
                                               .selectedcust!
-                                              .paymentGroup!
-                                              .contains('cash') ==
-                                          true
+                                              .U_CashCust ==
+                                          'YES'
                                   ? Colors.grey.withOpacity(0.2)
                                   : widget.theme.primaryColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5),

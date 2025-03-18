@@ -52,7 +52,7 @@ class SalesOrderPutAPi {
         'DocDate': quotputaval!.docDate,
         'DocDueDate': quotputaval!.docDueDate,
         'U_DeviceTransID': quotputaval!.uDeviceTransId,
-        "DocumentLines": uReqdocLineQout!.map((e) => e.tojson2()).toList(),
+        "DocumentLines": uReqdocLineQout!.map((e) => e.tojson3()).toList(),
 
         // 'odata.metadata': quotputaval!.odataMetadata,
         // 'odata.etag': quotputaval!.odataEtag,

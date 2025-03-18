@@ -19,6 +19,9 @@ class CustomerMasterT {
   static String updateduserid = "updateduserid";
   static String lastupdateIp = "lastupdateIp";
   static String TaxCode = "TaxCode";
+  static String uCashCust = "U_CASHCUST";
+// customerCode	customername	premiumid	customertype	taxno	createdbybranch	balance	points	snapdatetime	phoneno1
+// 	phoneno2	emalid	createdateTime	updatedDatetime	createdUserID	updateduserid	lastupdateIp	TaxCode	U_CASHCUST
 
   // static String autoid = "autoid";
   // static String customerCode = "customercode";
@@ -65,6 +68,8 @@ class CustomerModelDB {
   String? createdateTime;
   String? updatedDatetime;
   String? createdUserID;
+  String? uCashCust;
+
   int? updateduserid;
   String? lastupdateIp;
 
@@ -81,6 +86,7 @@ class CustomerModelDB {
       required this.updateduserid,
       required this.balance,
       required this.createdbybranch,
+      required this.uCashCust,
       this.terminal,
       required this.customername,
       required this.customertype,
@@ -94,6 +100,7 @@ class CustomerModelDB {
   factory CustomerModelDB.fromMap(Map<String, dynamic> item) => CustomerModelDB(
         customerCode: item['createdUserID'],
         createdUserID: item['createdUserID'],
+        uCashCust: item['createdUserID'],
         createdateTime: item['createdUserID'],
         lastupdateIp: item['createdUserID'],
         updatedDatetime: item['createdUserID'],
@@ -124,6 +131,8 @@ class CustomerModelDB {
         CustomerMasterT.customerCode: customerCode,
         CustomerMasterT.balance: balance,
         CustomerMasterT.createdUserID: createdUserID,
+        CustomerMasterT.uCashCust: uCashCust,
+
         CustomerMasterT.createdateTime: createdateTime,
         CustomerMasterT.createdbybranch: createdbybranch,
         CustomerMasterT.customername: customername,

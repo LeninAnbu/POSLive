@@ -80,6 +80,7 @@ class StocksnapModelData {
       this.transID,
       required this.branch,
       required this.itemCode,
+      this.shipDate,
       required this.itemName,
       this.itemnamelong,
       this.itemnameshort,
@@ -138,6 +139,7 @@ class StocksnapModelData {
   String? uPackSizeuom;
   double? uSpecificGravity;
   String? docentry;
+  String? shipDate;
   String? taxCode;
   double? taxable;
   String? taxType;
@@ -196,6 +198,7 @@ class StocksnapModelData {
   factory StocksnapModelData.fromJson(Map<String, dynamic> json) =>
       StocksnapModelData(
           itemCode: json['itemcode'].toString(),
+          shipDate: json['shipDate'].toString(),
           itemName: json['itemname'].toString(),
           serialBatch: json['serialbatch'].toString(),
           branch: json['WhsCode'].toString(),

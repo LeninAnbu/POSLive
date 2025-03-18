@@ -20,6 +20,10 @@ class ExpenseT {
   static String sapDocentry = "sapDocentry";
   static String sapDocNo = "sapDocNo";
   static String uDeviceId = 'U_DeviceId';
+  static String uRVC = 'U_RVC';
+  static String taxCode = 'TaxCode';
+  static String distRule = 'DistRule';
+  static String projectCode = 'projectCode';
 
   static String qStatus = "qStatus";
 }
@@ -44,6 +48,11 @@ class ExpenseDBModel {
   int? sapDocentry;
   int? sapDocNo;
   String? uDeviceId;
+  String? uRVC;
+  String? taxCode;
+  String? distRule;
+  String? projectCode;
+
   String? qStatus;
 
   ExpenseDBModel({
@@ -52,6 +61,10 @@ class ExpenseDBModel {
     required this.lineid,
     this.attachment,
     required this.documentno,
+    required this.distRule,
+    required this.taxCode,
+    required this.uRVC,
+    required this.projectCode,
     required this.expensecode,
     required this.reference,
     required this.remarks,
@@ -72,6 +85,7 @@ class ExpenseDBModel {
   factory ExpenseDBModel.fromjson(Map<String, dynamic> resp) {
     return ExpenseDBModel(
         docentry: resp['docentry'].toString(),
+        projectCode: resp['docentry'].toString(),
         terminal: resp['terminal'],
         lineid: resp['lineid'].toString(),
         documentno: resp['documentno'].toString(),
@@ -79,6 +93,9 @@ class ExpenseDBModel {
         reference: resp['reference'],
         rcamount: resp['rcamount'].toString(),
         paidto: resp['paidto'],
+        distRule: resp['reference'],
+        uRVC: resp['rcamount'].toString(),
+        taxCode: resp['paidto'],
         paidfrom: resp['paidfrom'],
         remarks: resp['remarks'],
         docstatus: resp['docstatus'],
@@ -116,5 +133,9 @@ class ExpenseDBModel {
         ExpenseT.sapDocentry: sapDocentry,
         ExpenseT.sapDocNo: sapDocNo,
         ExpenseT.qStatus: qStatus,
+        ExpenseT.projectCode: projectCode,
+        ExpenseT.uRVC: uRVC,
+        ExpenseT.taxCode: taxCode,
+        ExpenseT.distRule: distRule,
       };
 }

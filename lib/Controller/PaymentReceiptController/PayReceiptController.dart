@@ -126,7 +126,7 @@ class PayreceiptController extends ChangeNotifier {
 
   List<searchModel> searchData = [];
   bool searchbool = false;
-  // List<searchModel> filtersearchData = [];
+
   List<PaymentWay> paymentWay = [];
   List<PaymentWay> get getpaymentWay => paymentWay;
 
@@ -313,7 +313,7 @@ class PayreceiptController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     mycontroller[i].text = modifiedString2.toString();
-    log(mycontroller[i].text); // Output: example-text-with-double-dots
+    log(mycontroller[i].text);
     notifyListeners();
   }
 
@@ -373,7 +373,7 @@ class PayreceiptController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     invMycontroller[i].text = modifiedString2.toString();
-    log(invMycontroller[i].text); // Output: example-text-with-double-dots
+    log(invMycontroller[i].text);
     notifyListeners();
   }
 
@@ -719,7 +719,7 @@ class PayreceiptController extends ChangeNotifier {
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
         country: '', //mycontroller[10].text,
-        state: '', // mycontroller[12].text,
+        state: '',
         street: '',
         zipCode: mycontroller[13].text,
       ),
@@ -842,6 +842,7 @@ class PayreceiptController extends ChangeNotifier {
 
     selectedcust2 = CustomerDetals(
       name: custDataDet[0]["customername"].toString(),
+      U_CashCust: '',
       taxCode: custDataDet[0]["taxCode"].toString(),
       phNo: custDataDet[0]["phoneno1"].toString(),
       docentry: getDBReceiptHeader[0]["docentry"].toString(),
@@ -863,6 +864,7 @@ class PayreceiptController extends ChangeNotifier {
       phNo: custDataDet[0]["customerphono"].toString(),
       docentry: custDataDet[0]["docentry"].toString(),
       taxCode: custDataDet[0]["taxCode"].toString(),
+      U_CashCust: '',
       cardCode: custDataDet[0]["customercode"].toString(),
       accBalance: double.parse(custDataDet[0]["balance"].toString()),
       point: custDataDet[0]["customerpoint"].toString(),
@@ -965,6 +967,8 @@ class PayreceiptController extends ChangeNotifier {
 
   getReceiptApi(
       String sapDocEntry, BuildContext context, ThemeData theme) async {
+    await sapLoginApi(context);
+
     await SerlayPayReceiptAPI.getData(sapDocEntry).then((value) async {
       paymentWay2 = [];
       scanneditemData2 = [];
@@ -990,7 +994,6 @@ class PayreceiptController extends ChangeNotifier {
         if (value.paymentInvoices.isNotEmpty) {
           double? cash = value.cashSum ?? 0;
           double? transfer = value.transferSum ?? 0;
-          // totalduepay2 = cash + transfer;
 
           if (transfer != 0) {
             paymentWay2.add(PaymentWay(
@@ -1018,11 +1021,8 @@ class PayreceiptController extends ChangeNotifier {
               doctype: value.paymentInvoices[i].invoiceType.toString(),
               transdocentry: value.paymentInvoices[i].docEntry.toString(),
               sapbasedocentry: value.paymentInvoices[i].docEntry,
-
               checkClr: true,
               checkbx: 1,
-              // sapbasedocentry:
-              //     int.parse(getDBReceiptHeader[0]["sapInvoicedocentry"].toString()),
             ));
             mycontroller2[i].text =
                 value.paymentInvoices[i].sumApplied.toString();
@@ -1031,15 +1031,12 @@ class PayreceiptController extends ChangeNotifier {
           double cash = value.cashSum ?? 0;
           double transfer = value.transferSum ?? 0;
 
-          // totalduepay2 = cash + transfer;
-
           if (cash != 0) {
             paymentWay2.add(PaymentWay(
               amt: cash,
               type: 'Cash',
               dateTime: value.docDate,
               reference: value.remarks,
-              // remarks: value.remarks,
             ));
           }
           if (transfer != 0) {
@@ -1078,9 +1075,6 @@ class PayreceiptController extends ChangeNotifier {
             ];
           }
           if (csadresdataDB[k].addresstype == "S") {
-            // if (getDBSalesQuoHeader[0]['shipaddresid'].toString().isNotEmpty) {
-            //   if (csadresdataDB[k].autoid.toString() ==
-            //       getDBSalesQuoHeader[0]['shipaddresid'].toString()) {
             address25 = [
               Address(
                   autoId: int.parse(csadresdataDB[k].autoid.toString()),
@@ -1102,6 +1096,7 @@ class PayreceiptController extends ChangeNotifier {
         selectedcust2 = CustomerDetals(
           name: getcustomer[0]['customername'].toString(),
           phNo: getcustomer[0]['phoneno1'].toString(),
+          U_CashCust: getcustomer[0]['U_CASHCUST'].toString(),
           taxCode: getcustomer[0]['taxCode'].toString(),
           cardCode: getcustomer[0]['customerCode'].toString(),
           point: getcustomer[0]['points'].toString(),
@@ -1116,6 +1111,7 @@ class PayreceiptController extends ChangeNotifier {
           phNo: getcustomer[0]['phoneno1'].toString(),
           taxCode: getcustomer[0]['taxCode'].toString(),
           cardCode: getcustomer[0]['customerCode'].toString(),
+          U_CashCust: getcustomer[0]['U_CASHCUST'].toString(),
           point: getcustomer[0]['points'].toString(),
           address: address25,
           accBalance: 0,
@@ -1136,8 +1132,7 @@ class PayreceiptController extends ChangeNotifier {
             updateCustBal ?? double.parse(getcustomer[0]['balance'].toString());
         selectedcust25!.accBalance =
             updateCustBal ?? double.parse(getcustomer[0]['balance'].toString());
-        // }
-        // }
+
         loadSearch = true;
       } else if (value.stsCode >= 400 && value.stsCode <= 410) {
         loadSearch = false;
@@ -1190,7 +1185,7 @@ class PayreceiptController extends ChangeNotifier {
               : double.parse(getSalesHeader[i]["totalamount"].toString())));
     }
     searchData.addAll(searchdata2);
-    // filtersearchData = searchData;
+
     notifyListeners();
 
     searchbool = false;
@@ -1435,6 +1430,7 @@ class PayreceiptController extends ChangeNotifier {
           autoId: newcusdataDB[i]['autoid'].toString(),
           taxCode: newcusdataDB[i]["taxCode"].toString(),
           cardCode: newcusdataDB[i]['customercode'].toString(),
+          U_CashCust: newcusdataDB[0]['U_CASHCUST'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
@@ -1704,7 +1700,7 @@ class PayreceiptController extends ChangeNotifier {
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
         country: "TZ", //mycontroller[20].text,
-        state: '', // mycontroller[19].text,
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -1766,7 +1762,7 @@ class PayreceiptController extends ChangeNotifier {
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
         country: "TZ", //mycontroller[20].text,
-        state: '', // mycontroller[19].text,
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -1915,7 +1911,8 @@ class PayreceiptController extends ChangeNotifier {
             : '',
         terminal: UserValues.terminal,
         tinNo: '',
-        vatregno: ''));
+        vatregno: '',
+        uCashCust: ''));
     notifyListeners();
 
     newBillAddrsValue.add(CustomerAddressModelDB(
@@ -2099,16 +2096,6 @@ class PayreceiptController extends ChangeNotifier {
   List get getwalletlist => walletlist;
   String? wallet;
 
-  // List couponlist = [
-  //   'GROUPON',
-  //   'AMAZON PAY',
-  //   'FLIPKART CORPORATE',
-  //   'HDFC GIFTPLUS',
-  //   'ICICI GIFT COUPON',
-  //   'UNILET COUPONS',
-  //   'INSIGNIA COUPONS'
-  // ];
-  // List get getcouponlist => couponlist;
   String? coupon;
   List discountType = [
     'Credit Note Discount',
@@ -2279,7 +2266,6 @@ class PayreceiptController extends ChangeNotifier {
                       widget: Center(
                           child: ContentContainer(
                         content: "Pay the full amount",
-                        //  'Your paid amount is less than 1',
                         theme: theme,
                       )),
                       buttonName: null));
@@ -2467,19 +2453,6 @@ class PayreceiptController extends ChangeNotifier {
       return 0.00;
     }
   }
-
-  // double getBalancePaid2() {
-  //   for (int i = 0; i < scanneditemData2.length; i++) {
-  //     totpaidamt2 = double.parse(mycontroller2[i].text);
-  //   }
-
-  //   if (paymentWay2.isNotEmpty) {
-  //     return totpaidamt != 0
-  //         ? (totpaidamt2! - double.parse(getSumTotalPaid2().toStringAsFixed(2)))
-  //         : totalduepay2! - double.parse(getSumTotalPaid2().toStringAsFixed(2));
-  //   }
-  //   return totpaidamt != 0 ? totpaidamt2! : totalduepay2!;
-  // }
 
   double getBalancePaid() {
     if (paymentWay.isNotEmpty) {
@@ -2857,6 +2830,7 @@ class PayreceiptController extends ChangeNotifier {
         taxCode: salesPayModell5[ih].taxCode!,
         phNo: salesPayModell5[ih].phNo,
         cardCode: salesPayModell5[ih].cardCode,
+        U_CashCust: '',
         accBalance: salesPayModell5[ih].accBalance != null
             ? double.parse(salesPayModell5[ih].accBalance.toString())
             : 0,
@@ -3290,6 +3264,7 @@ class PayreceiptController extends ChangeNotifier {
       if (cusdataDB[i].customername != "This is my updated name") {
         custList.add(CustomerDetals(
             cardCode: cusdataDB[i].customerCode,
+            U_CashCust: cusdataDB[i].uCashCust,
             name: cusdataDB[i].customername,
             phNo: cusdataDB[i].phoneno1,
             taxCode: cusdataDB[i].taxCode,
@@ -3311,6 +3286,7 @@ class PayreceiptController extends ChangeNotifier {
               cardCode: cusdataDB[i].customerCode,
               taxCode: cusdataDB[i].taxCode,
               name: cusdataDB[i].customername,
+              U_CashCust: cusdataDB[i].uCashCust,
               phNo: cusdataDB[i].phoneno1,
               accBalance: cusdataDB[i].balance,
               point: cusdataDB[i].points.toString(),
@@ -3363,6 +3339,7 @@ class PayreceiptController extends ChangeNotifier {
         cardCode: custList[custList.length - 1].cardCode,
         name: custList[custList.length - 1].name,
         taxCode: custList[custList.length - 1].taxCode,
+        U_CashCust: custList[custList.length - 1].U_CashCust,
         phNo: custList[custList.length - 1].phNo,
         point: custList[custList.length - 1].point,
         tarNo: custList[custList.length - 1].tarNo,
@@ -3412,6 +3389,7 @@ class PayreceiptController extends ChangeNotifier {
     selectedcust = CustomerDetals(
         autoId: customerDetals.autoId,
         name: customerDetals.name,
+        U_CashCust: customerDetals.U_CashCust,
         taxCode: customerDetals.taxCode,
         phNo: customerDetals.phNo,
         cardCode: customerDetals.cardCode,
@@ -3424,6 +3402,7 @@ class PayreceiptController extends ChangeNotifier {
         autoId: customerDetals.autoId,
         taxCode: customerDetals.taxCode,
         name: customerDetals.name,
+        U_CashCust: customerDetals.U_CashCust,
         phNo: customerDetals.phNo,
         cardCode: customerDetals.cardCode,
         point: customerDetals.point,
@@ -3635,6 +3614,7 @@ class PayreceiptController extends ChangeNotifier {
         name: custData[0]['customername'].toString() ?? '',
         phNo: custData[0]['phoneno1'].toString(),
         cardCode: custData[0]['customerCode'].toString(),
+        U_CashCust: custData[0]['U_CASHCUST'].toString(),
         taxCode: custData[0]['TaxCode'].toString(),
         accBalance: double.parse(custData[0]['balance'].toString()),
         point: custData[0]['points'].toString(),
@@ -3651,6 +3631,7 @@ class PayreceiptController extends ChangeNotifier {
         name: custData[0]['customername'].toString(),
         phNo: custData[0]['phoneno1'].toString(),
         cardCode: custData[0]['customercode'].toString(),
+        U_CashCust: custData[0]['U_CASHCUST'].toString(),
         taxCode: custData[0]['taxCode'].toString(),
         accBalance: double.parse(custData[0]['balance'].toString()),
         point: custData[0]['points'].toString(),
@@ -4225,7 +4206,7 @@ class PayreceiptController extends ChangeNotifier {
         if (!context.mounted) return;
         await callReceiptPostApi(
             context, theme, docentry5!, docstatus!, documentNum);
-        // postRabitMqPaymentReceipt(docentry5);
+
         notifyListeners();
       }
     }
@@ -4444,10 +4425,7 @@ class PayreceiptController extends ChangeNotifier {
     await addCardValues();
     await addInvoiceLine();
     String wallwtType = wallet != null ? wallet! : '';
-    // String cashAcc = (preferences.getString('UCashAccount'))!;
-    // String creditAcc = (preferences.getString('UCreditAccount'))!;
-    // String checkAcc = (preferences.getString('UCheckAccount'))!;
-    // String walletAcc = await (preferences.getString('UWalletAccount'))!;
+
     ReceiptPostAPi.transferSum = null;
     ReceiptPostAPi.cashSum = null;
     ReceiptPostAPi.docType = "rCustomer";
@@ -4832,11 +4810,9 @@ class PayreceiptController extends ChangeNotifier {
 
     MessageProperties properties = MessageProperties();
 
-    // properties.headers = {"Branch": UserValues.branch};
     Channel channel = await client1.channel(); //Server_CS
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-    // exchange.publish(ddd, "", properties: properties);
 
     //cs
 
@@ -4865,7 +4841,7 @@ class PayreceiptController extends ChangeNotifier {
     });
 //log("payload22 :$ddd");
     //RabitMQ
-    // Client client = Client();
+
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(), //"102.69.167.106"
         //"102.69.167.106"
@@ -4884,8 +4860,6 @@ class PayreceiptController extends ChangeNotifier {
 
     //cs
 
-    // properties.headers = {"Branch": "Server"};
-    // exchange.publish(ddd, "", properties: properties);
     client1.close();
   }
 
@@ -5001,6 +4975,7 @@ class PayreceiptController extends ChangeNotifier {
           accBalance: double.parse(custData[0]['balance'].toString()),
           name: custData[0]['customername'].toString(),
           phNo: custData[0]['phoneno1'].toString(),
+          U_CashCust: custData[0]['U_CASHCUST'].toString(),
           taxCode: custData[0]['taxCode'].toString(),
           cardCode: custData[0]['customerCode'].toString(),
           point: custData[0]['points'].toString(),
@@ -5245,6 +5220,7 @@ class PayreceiptController extends ChangeNotifier {
       selectedcust = CustomerDetals(
           autoId: newcusdataDB[i]['autoid'].toString(),
           cardCode: newcusdataDB[i]['customercode'].toString(),
+          U_CashCust: newcusdataDB[i]['U_CASHCUST'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
@@ -5259,6 +5235,7 @@ class PayreceiptController extends ChangeNotifier {
       selectedcust55 = CustomerDetals(
           autoId: newcusdataDB[i]['autoid'].toString(),
           cardCode: newcusdataDB[i]['customercode'].toString(),
+          U_CashCust: newcusdataDB[i]['U_CASHCUST'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),

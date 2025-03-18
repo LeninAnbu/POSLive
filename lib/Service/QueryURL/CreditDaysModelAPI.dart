@@ -30,7 +30,7 @@ class CustCreditDaysAPI {
       //           "select  b.ExtraDays from OCRD a inner join OCTG b on a.GroupNum=b.GroupNum  where CardCode='$cardCode'"
       //     })}");
 
-      // log("CustCreditDaysAPI Acc Res: ${json.decode(response.body)}");
+      log("CustCreditDaysAPI Acc Res: ${json.decode(response.body)}");
       if (response.statusCode == 200) {
         return CreditDaysModel.fromJson(
             json.decode(response.body) as Map<String, dynamic>,

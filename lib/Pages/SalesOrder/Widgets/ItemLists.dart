@@ -440,11 +440,64 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                   children: [
                                     Container(
                                       alignment: Alignment.centerLeft,
-                                      width: widget.searchWidth * 0.7,
+                                      // color: Colors.green,
+                                      width: widget.searchWidth * 0.5,
                                       child: Text(
                                         "${context.watch<SOCon>().getScanneditemData2[index].itemName}",
                                         style: theme.textTheme.bodyMedium
                                             ?.copyWith(),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: widget.searchWidth * 0.01,
+                                    ),
+                                    Container(
+                                      height:
+                                          Screens.padingHeight(context) * 0.055,
+                                      width: widget.searchWidth * 0.22,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: const Color.fromARGB(
+                                                255, 240, 235, 235)),
+                                        borderRadius: BorderRadius.circular(3),
+                                        color: Colors.grey.withOpacity(0.001),
+                                      ),
+                                      child: TextFormField(
+                                        readOnly: true,
+                                        controller: context
+                                            .read<SOCon>()
+                                            .itemListDateCtrl2[index],
+                                        textCapitalization:
+                                            TextCapitalization.sentences,
+                                        onChanged: (v) {},
+                                        onEditingComplete: () {},
+                                        onTap: () {},
+                                        decoration: InputDecoration(
+                                          // suffixIcon: IconButton(
+                                          // onPressed: () {
+                                          // setState(() {
+                                          //   context
+                                          //       .read<SOCon>()
+                                          //       .leadDatePicker(
+                                          //         context,
+                                          //         index,
+                                          //       );
+                                          // });
+                                          // },
+                                          // color: Colors.grey,
+                                          // icon: const Icon(
+                                          //     Icons.calendar_month)),
+                                          hintStyle: theme.textTheme.bodyLarge
+                                              ?.copyWith(),
+                                          filled: false,
+                                          enabledBorder: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            vertical: 2,
+                                            horizontal: 5,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -1000,10 +1053,18 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                           Alignment.centerRight,
                                                       child: Text(
                                                         context
-                                                            .read<SOCon>()
-                                                            .config
-                                                            .splitValues(
-                                                                "${context.watch<SOCon>().getScanneditemData[index].taxable}"),
+                                                                    .watch<
+                                                                        SOCon>()
+                                                                    .getScanneditemData[
+                                                                        index]
+                                                                    .taxable !=
+                                                                null
+                                                            ? context
+                                                                .read<SOCon>()
+                                                                .config
+                                                                .splitValues(
+                                                                    "${context.watch<SOCon>().getScanneditemData[index].taxable}")
+                                                            : '0.00',
                                                         style: theme.textTheme
                                                             .bodyMedium
                                                             ?.copyWith(
@@ -1016,61 +1077,144 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                               ),
                                             ],
                                           ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                // color: Colors.green,
-                                                alignment: Alignment.centerLeft,
-                                                width: widget.searchWidth * 0.6,
-                                                child: Text(
-                                                  " ${context.watch<SOCon>().getScanneditemData[index].itemName}",
-                                                  style: theme
-                                                      .textTheme.bodyMedium
-                                                      ?.copyWith(),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                bottom: Screens.padingHeight(
+                                                        context) *
+                                                    0.01),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  width:
+                                                      widget.searchWidth * 0.4,
+                                                  child: Text(
+                                                    " ${context.watch<SOCon>().getScanneditemData[index].itemName}",
+                                                    style: theme
+                                                        .textTheme.bodyMedium
+                                                        ?.copyWith(),
+                                                  ),
                                                 ),
-                                              ),
-                                              Container(
-                                                // color: Colors.red,
-                                                width:
-                                                    widget.searchWidth * 0.16,
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                child: Text(
-                                                    context
-                                                                .read<SOCon>()
-                                                                .getScanneditemData[
-                                                                    index]
-                                                                .taxRate ==
-                                                            null
-                                                        ? 'Tax : 00'
-                                                        : 'Tax : ${context.watch<SOCon>().getScanneditemData[index].taxRate!.toStringAsFixed(2)}%',
-                                                    style: theme
-                                                        .textTheme.bodyMedium
-                                                        ?.copyWith(
-                                                            color:
-                                                                Colors.black)),
-                                              ),
-                                              Container(
-                                                // color: Colors.green,
-                                                width: widget.searchWidth * 0.2,
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                child: Text(
-                                                    context
-                                                                .watch<SOCon>()
-                                                                .getScanneditemData[
-                                                                    index]
-                                                                .inStockQty ==
-                                                            null
-                                                        ? 'Instock : 00'
-                                                        : 'Instock :  ${context.read<SOCon>().getScanneditemData[index].inStockQty}',
-                                                    style: theme
-                                                        .textTheme.bodyMedium
-                                                        ?.copyWith(
-                                                            color:
-                                                                Colors.black)),
-                                              ),
-                                            ],
+                                                Container(
+                                                  height: Screens.padingHeight(
+                                                          context) *
+                                                      0.05,
+                                                  width:
+                                                      widget.searchWidth * 0.22,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color
+                                                            .fromARGB(255, 240,
+                                                            235, 235)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                    color: Colors.grey
+                                                        .withOpacity(0.001),
+                                                  ),
+                                                  child: TextFormField(
+                                                    readOnly: true,
+                                                    controller: context
+                                                            .read<SOCon>()
+                                                            .itemListDateCtrl[
+                                                        index],
+                                                    textCapitalization:
+                                                        TextCapitalization
+                                                            .sentences,
+                                                    onChanged: (v) {},
+                                                    onEditingComplete: () {},
+                                                    onTap: () {
+                                                      setState(
+                                                        () {
+                                                          context
+                                                              .read<SOCon>()
+                                                              .leadDatePicker(
+                                                                context,
+                                                                index,
+                                                              );
+                                                        },
+                                                      );
+                                                    },
+                                                    decoration: InputDecoration(
+                                                      suffixIcon: IconButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              context
+                                                                  .read<SOCon>()
+                                                                  .leadDatePicker(
+                                                                    context,
+                                                                    index,
+                                                                  );
+                                                            });
+                                                          },
+                                                          color: Colors.grey,
+                                                          icon: const Icon(Icons
+                                                              .calendar_month)),
+                                                      hintStyle: theme
+                                                          .textTheme.bodyLarge
+                                                          ?.copyWith(),
+                                                      filled: false,
+                                                      enabledBorder:
+                                                          InputBorder.none,
+                                                      focusedBorder:
+                                                          InputBorder.none,
+                                                      contentPadding:
+                                                          const EdgeInsets
+                                                              .symmetric(
+                                                        vertical: 4,
+                                                        horizontal: 5,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width:
+                                                      widget.searchWidth * 0.14,
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: Text(
+                                                      context
+                                                                  .read<SOCon>()
+                                                                  .getScanneditemData[
+                                                                      index]
+                                                                  .taxRate ==
+                                                              null
+                                                          ? 'Tax : 00'
+                                                          : 'Tax : ${context.watch<SOCon>().getScanneditemData[index].taxRate!.toStringAsFixed(2)}%',
+                                                      style: theme
+                                                          .textTheme.bodyMedium
+                                                          ?.copyWith(
+                                                              color: Colors
+                                                                  .black)),
+                                                ),
+                                                Container(
+                                                  // color: Colors.green,
+                                                  width:
+                                                      widget.searchWidth * 0.18,
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: Text(
+                                                      context
+                                                                  .watch<
+                                                                      SOCon>()
+                                                                  .getScanneditemData[
+                                                                      index]
+                                                                  .inStockQty ==
+                                                              null
+                                                          ? 'Instock : 00'
+                                                          : 'Instock :  ${context.read<SOCon>().getScanneditemData[index].inStockQty}',
+                                                      style: theme
+                                                          .textTheme.bodyMedium
+                                                          ?.copyWith(
+                                                              color: Colors
+                                                                  .black)),
+                                                ),
+                                              ],
+                                            ),
                                           )
                                         ])),
                                   ),

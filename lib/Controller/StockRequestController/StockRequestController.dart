@@ -445,41 +445,7 @@ class StockReqController extends ChangeNotifier {
     });
     addCardCode = customerDetals.cardCode!;
     selectedcust!.accBalance = updateCustBal ?? customerDetals.accBalance!;
-    // await CustCreditLimitAPi.getGlobalData(customerDetals.cardCode.toString())
-    //     .then((value) {
-    //   if (value.statuscode >= 200 && value.statuscode <= 210) {
-    //     if (value.creditLimitData != null) {
-    //       // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
 
-    //       selectedcust!.creditLimits =
-    //           double.parse(value.creditLimitData![0].creditLine.toString());
-    //       notifyListeners();
-    //     }
-    //   }
-    // });
-
-    // await CustCreditDaysAPI.getGlobalData(customerDetals.cardCode.toString())
-    //     .then((value) {
-    //   if (value.statuscode >= 200 && value.statuscode <= 210) {
-    //     if (value.creditDaysData != null) {
-    //       // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
-    //       selectedcust!.creditDays =
-    //           value.creditDaysData![0].creditDays.toString();
-    //       selectedcust!.paymentGroup =
-    //           value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-    //       log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-    //       if (selectedcust!.paymentGroup!.contains('cash') == true) {
-    //         selectedcust!.name = '';
-    //       } else {
-    //         selectedcust!.name = customerDetals.name!;
-    //       }
-    //       log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
-    //       notifyListeners();
-    //     }
-    //     loadingscrn = false;
-    //   }
-    // });
     selectedcust55 = CustomerDetals(
         autoId: customerDetals.autoId,
         name: customerDetals.name,
@@ -583,7 +549,7 @@ class StockReqController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     qtyCont[i].text = modifiedString2.toString();
-    log(qtyCont[i].text); // Output: example-text-with-double-dots
+    log(qtyCont[i].text);
     notifyListeners();
   }
 
@@ -759,7 +725,6 @@ class StockReqController extends ChangeNotifier {
                 itemName: value.activitiesData![i].description,
                 serialBatch: '',
                 qty: value.activitiesData![i].qty,
-                // openQty:
                 openRetQty: value.activitiesData![i].qty,
                 mrp: 0.0,
                 sellPrice: value.activitiesData![i].unitPrice,
@@ -867,7 +832,6 @@ class StockReqController extends ChangeNotifier {
         notifyListeners();
       }
       searchData.addAll(searchdata2);
-      // filtersearchData = searchData;
     } else {
       searchbool = false;
       searchData.clear();
@@ -980,7 +944,6 @@ class StockReqController extends ChangeNotifier {
   getSession() async {
     var preff = await SharedPreferences.getInstance();
     AppConstant.sapSessionID = preff.getString('sessionId')!;
-    // log("AppConstant.sapSessionID::${AppConstant.sapSessionID}");
   }
 
   callSerlaySalesQuoAPI(BuildContext context, ThemeData theme) async {
@@ -1616,75 +1579,6 @@ class StockReqController extends ChangeNotifier {
     inven.requestFocus();
     notifyListeners();
   }
-
-  // refereshItemMaster() async {
-  //   final Database db = (await DBHelper.getInstance())!;
-  //   List<String> catchmsg = [];
-  //   List<ItemMasterModelDB> itemMasterDB = [];
-  //   await DBOperation.truncateItemMaster(db);
-
-  //   await ProductMasterApi.getData(AppConstant.branch, AppConstant.terminal)
-  //       .then((value) {
-  //     if (value.stcode! >= 200 && value.stcode! <= 210) {
-  //       if (value.productItemData.isNotEmpty) {
-  //         for (int i = 0; i < value.productItemData.length; i++) {
-  //           itemMasterDB.add(ItemMasterModelDB(
-  //             isselected: 0,
-  //             autoId: value.productItemData[i].autoId,
-  //             maximumQty: value.productItemData[i].maximumQty,
-  //             minimumQty: value.productItemData[i].minimumQty,
-  //             weight: value.productItemData[i].weight,
-  //             liter: value.productItemData[i].liter,
-  //             displayQty: value.productItemData[i].displayQty,
-  //             searchString: value.productItemData[i].searchString,
-  //             brand: UserValues.branch,
-  //             category: value.productItemData[i].category,
-  //             createdUserID: value.productItemData[i].createdUserID.toString(),
-  //             createdateTime: value.productItemData[i].createdateTime,
-  //             hsnsac: value.productItemData[i].hsnsac,
-  //             isActive: value.productItemData[i].isActive,
-  //             isfreeby: value.productItemData[i].isfreeby,
-  //             isinventory: value.productItemData[i].isinventory,
-  //             issellpricebyscrbat: value.productItemData[i].issellpricebyscrbat,
-  //             itemcode: value.productItemData[i].itemcode,
-  //             itemnamelong: value.productItemData[i].itemnamelong,
-  //             itemnameshort: value.productItemData[i].itemnameshort,
-  //             lastupdateIp: UserValues.lastUpdateIp,
-  //             maxdiscount: value.productItemData[i].maxdiscount == null
-  //                 ? 0.00
-  //                 : double.parse(
-  //                     value.productItemData[i].maxdiscount.toString()),
-  //             skucode: value.productItemData[i].skucode,
-  //             subcategory: value.productItemData[i].subcategory,
-  //             taxrate: value.productItemData[i].taxrate.toString(),
-  //             updatedDatetime: value.productItemData[i].updatedDatetime,
-  //             updateduserid: value.productItemData[i].updateduserid.toString(),
-  //             mrpprice: value.productItemData[i].mrpprice!.toString(),
-  //             sellprice: value.productItemData[i].sellprice!.toString(),
-  //             quantity: value.productItemData[i].quantity == null
-  //                 ? 0
-  //                 : int.parse(value.productItemData[i].quantity.toString()),
-  //             uPackSizeuom: value.productItemData[i].uPackSizeuom!.toString(),
-  //             uPackSize: value.productItemData[i].uPackSize.toString(),
-  //             uTINSPERBOX: value.productItemData[i].uTINSPERBOX!,
-  //             uSpecificGravity:
-  //                 value.productItemData[i].uSpecificGravity.toString(),
-  //           ));
-  //         }
-  //         notifyListeners();
-  //       } else if (value.productItemData.isNotEmpty) {
-  //         catchmsg.add("Product details: ${value.exception!}");
-  //       }
-  //     } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-  //       catchmsg.add("Product details: ${value.exception!}");
-  //     } else {
-  //       catchmsg.add("Product details: ${value.exception!}");
-  //     }
-  //   });
-  //   await DBOperation.insertItemter(db, itemMasterDB).then((value) {
-  //     notifyListeners();
-  //   });
-  // }
 
   allselectedData(ItemMasterModelDB data) async {
     getAllSelect.add(data);
@@ -2380,13 +2274,6 @@ class StockReqController extends ChangeNotifier {
         await DBOperation.addgetCstmMasAddDB(
             db, orderdetails[i].cardCode.toString());
 
-    // await mapCustomer(
-    //   getcustomer,
-    //   getcustaddd,
-    // );
-    // selectedcust2 = CustomerDetals(
-    //     name: holdDataHD[0]['CardName'].toString(),
-    //     cardCode: holdDataHD[0]['CardCode'].toString());
     calculateDetails();
 
     notifyListeners();
@@ -2667,7 +2554,7 @@ class StockReqController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     var uuid = const Uuid();
     String? uuidg = uuid.v1();
-    // await callSeriesApi(context, '1250000001');
+
     await addReqLinedata(whsDetails);
     PostRequestAPi.cardCodePost = selectedcust!.cardCode;
     PostRequestAPi.fromWarehouse = whsDetails.whsCode;
@@ -2880,14 +2767,12 @@ class StockReqController extends ChangeNotifier {
 
     InventoryReqPrintAPi.docEntry = sapDocentry;
     InventoryReqPrintAPi.slpCode = AppConstant.slpCode;
-    // print("InventoryReqPrintAPi.slpCode: " + InventoryReqPrintAPi.slpCode.toString());
+
     InventoryReqPrintAPi.getGlobalData().then((value) {
       notifyListeners();
       if (value == 200) {
         onclickDisable = false;
         notifyListeners();
-
-        // saveAllExcel(InventoryReqPrintAPi.path.toString(), context, theme);
       } else {
         onclickDisable = false;
 
@@ -2902,7 +2787,6 @@ class StockReqController extends ChangeNotifier {
     BuildContext context,
     ThemeData theme,
   ) async {
-    // await saveToExcel(valuesddd1, keysList1);
     Get.dialog(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -2928,7 +2812,7 @@ class StockReqController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-                      // const SizedBox(height: 15),
+
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
@@ -2986,8 +2870,7 @@ class StockReqController extends ChangeNotifier {
   mapCallOutwardForPDF(preff, BuildContext context, ThemeData theme) async {
     List<InvoiceItem> itemsList = [];
     invoice = null;
-    // for (int ih = 0; ih < salesmodl.length; ih++) {
-    // await addressxx();
+
     for (int i = 0; i < scanneditemData2.length; i++) {
       log('scanneditemData2.length:::${scanneditemData2.length}');
 
@@ -2998,8 +2881,6 @@ class StockReqController extends ChangeNotifier {
         unitPrice:
             double.parse(scanneditemData2[i].sellPrice!.toStringAsFixed(2)),
         quantity: double.parse((scanneditemData2[i].openRetQty.toString())),
-        // dics: scanneditemData2[i].discountper ?? 0,
-        // vat: double.parse(scanneditemData2[i].taxvalue!.toStringAsFixed(2)),
       ));
       notifyListeners();
     }
@@ -3029,18 +2910,8 @@ class StockReqController extends ChangeNotifier {
         time: 'time',
         customerName: selectedcust2!.name ?? '',
         address: custDetails[0].address ?? '',
-        // printerName: custDetails[0].printHeadr ?? '',
         mobile:
             selectedcust2!.phNo!.isEmpty ? '' : selectedcust2!.phNo.toString(),
-        // city: address2.isEmpty || address2[0].billCity.isEmpty
-        //     ? ''
-        //     : address2[0].billCity.toString(),
-        // area: address2.isEmpty || address2[0].address3!.isEmpty
-        //     ? ''
-        //     : address2[0].address3.toString(),
-        // pin: address2.isEmpty || address2[0].billPincode.isEmpty
-        //     ? ''
-        //     : address2[0].billPincode.toString(),
       ),
       items: itemsList,
     );
@@ -3055,30 +2926,18 @@ class StockReqController extends ChangeNotifier {
       for (int i = 0; i < invoice!.items!.length; i++) {
         invoice!.items![i].basic =
             (invoice!.items![i].quantity!) * (invoice!.items![i].unitPrice!);
-        // invoice!.items![i].discountamt =
-        //     (invoice!.items![i].basic! * invoice!.items![i].dics! / 100);
+
         invoice!.items![i].netTotal = (invoice!.items![i].basic!);
-        //  - (invoice!.items![i].discountamt!);
+
         ReqPrintLayout.exclTxTotal =
             (ReqPrintLayout.exclTxTotal) + (invoice!.items![i].netTotal!);
-        // ReqPrintLayout.vatTx = (ReqPrintLayout.vatTx) +
-        //     double.parse(invoice!.items![i].vat.toString());
+
         ReqPrintLayout.inclTxTotal =
             double.parse(invoice!.items![i].unitPrice.toString());
-        // double.parse(invoice!.items![i].vat.toString());
-        // ReqPrintLayout.pails = 0;
-        // ReqPrintLayout.pails! + invoice!.items![i].pails!;
-        // ReqPrintLayout.cartons =
-        //     ReqPrintLayout.cartons! + invoice!.items![i].cartons!;
-        // ReqPrintLayout.looseTins =
-        //     ReqPrintLayout.looseTins! + invoice!.items![i].looseTins!;
-        // ReqPrintLayout.tonnage = 0;
-        // ReqPrintLayout.tonnage! + invoice!.items![i].tonnage!;
+
         notifyListeners();
       }
-      // ReqPrintLayout.totalPack = ReqPrintLayout.pails! +
-      //     ReqPrintLayout.cartons! +
-      //     ReqPrintLayout.looseTins!;
+
       ReqPrintLayout.inclTxTotal =
           (ReqPrintLayout.exclTxTotal) + (ReqPrintLayout.vatTx);
       int length = invoice!.items!.length;

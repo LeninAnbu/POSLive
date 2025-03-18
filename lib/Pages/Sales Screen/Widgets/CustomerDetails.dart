@@ -651,16 +651,14 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                               .read<
                                                                   PosController>()
                                                               .selectedcust!
-                                                              .paymentGroup !=
+                                                              .U_CashCust !=
                                                           null &&
                                                       context
                                                               .read<
                                                                   PosController>()
                                                               .selectedcust!
-                                                              .paymentGroup!
-                                                              .contains(
-                                                                  'cash') ==
-                                                          true
+                                                              .U_CashCust ==
+                                                          'YES'
                                                   ? TextFormField(
                                                       validator: (value) {
                                                         if (value!.isEmpty) {
@@ -789,16 +787,14 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                                 .read<
                                                                     PosController>()
                                                                 .selectedcust!
-                                                                .paymentGroup !=
+                                                                .U_CashCust !=
                                                             null &&
                                                         context
                                                                 .read<
                                                                     PosController>()
                                                                 .selectedcust!
-                                                                .paymentGroup!
-                                                                .contains(
-                                                                    'cash') ==
-                                                            true
+                                                                .U_CashCust ==
+                                                            'YES'
                                                     ? TextFormField(
                                                         validator: (value) {
                                                           if (value!.isEmpty) {
@@ -910,15 +906,14 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                             .read<
                                                                 PosController>()
                                                             .selectedcust!
-                                                            .paymentGroup !=
+                                                            .U_CashCust !=
                                                         null &&
                                                     context
                                                             .read<
                                                                 PosController>()
                                                             .selectedcust!
-                                                            .paymentGroup!
-                                                            .contains('cash') ==
-                                                        true
+                                                            .U_CashCust ==
+                                                        'YES'
                                                 ? TextFormField(
                                                     validator: (value) {
                                                       if (value!.isEmpty) {

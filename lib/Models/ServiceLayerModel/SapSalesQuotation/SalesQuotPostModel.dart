@@ -85,6 +85,7 @@ class QuatationLines {
   String? quantity;
   String? taxCode;
   String? unitPrice;
+  String? leadDate;
   String? price;
   String? discPrcnt;
   String? whsCode;
@@ -108,10 +109,9 @@ class QuatationLines {
       this.taxCode,
       this.unitPrice,
       this.whsCode,
-      // this.fromWarehouse,
-      // this.toWarehouse,
       this.baseType,
       this.basedocentry,
+      this.leadDate,
       this.baseline});
   Map<String, dynamic> tojson() {
     Map<String, String> map = {
@@ -127,6 +127,8 @@ class QuatationLines {
       "BaseLine": baseline.toString(),
       "Currency": "TZS",
       "WarehouseCode": whsCode.toString(),
+      "ShipDate": '$leadDate',
+      "U_AMDD": '$leadDate',
     };
     return map;
   }
@@ -141,7 +143,24 @@ class QuatationLines {
       "Quantity": quantity.toString(),
       "UnitPrice": unitPrice.toString(),
       "Currency": "TZS",
-      "WarehouseCode": whsCode.toString()
+      "WarehouseCode": whsCode.toString(),
+    };
+    return map;
+  }
+
+  Map<String, dynamic> tojson3() {
+    Map<String, String> map = {
+      "ItemCode": itemCode.toString(),
+      'LineNum': lineNo.toString(),
+      "ItemDescription": itemName,
+      "DiscountPercent": discPrcnt.toString(),
+      "TaxCode": taxCode.toString(),
+      "Quantity": quantity.toString(),
+      "UnitPrice": unitPrice.toString(),
+      "Currency": "TZS",
+      "WarehouseCode": whsCode.toString(),
+      "ShipDate": '$leadDate',
+      "U_AMDD": '$leadDate',
     };
     return map;
   }

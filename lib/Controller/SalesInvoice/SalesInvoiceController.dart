@@ -234,14 +234,13 @@ class PosController extends ChangeNotifier {
   String? selectedValue;
   String? get getselectedValue => selectedValue;
 
-  /// customer
   List<CustomerDetals> custList = [];
   List<CustomerDetals> filtercustList = [];
   List<CustomerDetals> get getfiltercustList => filtercustList;
 
   int selectedCustomer = 0;
   int get getselectedCustomer => selectedCustomer;
-  // cus functions
+
   bool loadSearch = false;
   CustomerDetals? selectedcust;
   CustomerDetals? get getselectedcust => selectedcust;
@@ -267,7 +266,7 @@ class PosController extends ChangeNotifier {
     injectToDb();
     getdraftindex();
     getCustSeriesApi();
-    // await callNewCashAccountApi();
+
     await sapLoginApi(context);
     await callBankmasterApi();
   }
@@ -295,7 +294,7 @@ class PosController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     mycontroller[i].text = modifiedString2.toString();
-    log(mycontroller[i].text); // Output: example-text-with-double-dots
+    log(mycontroller[i].text);
     notifyListeners();
   }
 
@@ -309,8 +308,6 @@ class PosController extends ChangeNotifier {
     await GetBankListAPI.getData().then((value) {
       if (value.stsCode >= 200 && value.stsCode <= 210) {
         for (var i = 0; i < value.listValue.length; i++) {
-          // log('value.listValue[$i].bankName::${value.listValue[i].bankName!.isEmpty}');
-
           if (value.listValue[i].bankName!.isNotEmpty) {
             bankList.add(BankListValue(
                 bankCode: value.listValue[i].bankCode,
@@ -449,7 +446,6 @@ class PosController extends ChangeNotifier {
               : double.parse(getSalesHeader[i]["doctotal"].toString())));
     }
     searchData.addAll(searchdata2);
-    // filtersearchData = searchData;
 
     searchbool = false;
     notifyListeners();
@@ -490,7 +486,6 @@ class PosController extends ChangeNotifier {
         ? getDBSalesHeader[0]['documentno'].toString()
         : "";
     for (int kk = 0; kk < getDBSalespay.length; kk++) {
-      // log("getDBholdSalespay.length:${getDBSalespay.length}");
       if (getDBSalespay[0]['docentry'] == getDBSalespay[kk]['docentry']) {
         payment.add(PaymentWay(
           amt: double.parse(getDBSalespay[kk]['rcamount'].toString()),
@@ -510,15 +505,15 @@ class PosController extends ChangeNotifier {
           coupontype: "", //getDBholdSalespay[kk]['coupontype'].toString(),
           discountcode: getDBSalespay[kk]['discountcode'].toString(),
           discounttype: getDBSalespay[kk]['discounttype'].toString(),
-          // creditref: getDBholdSalespay[kk]['creditref'].toString(),
+
           recoverydate: getDBSalespay[kk]['recoverydate'].toString(),
           redeempoint: getDBSalespay[kk]['redeempoint'].toString(),
           availablept: getDBSalespay[kk]['availablept'].toString(),
           remarks: getDBSalespay[kk]['remarks'].toString(),
-          // transref: getDBholdSalespay[kk]['transref'].toString(),
+
           transtype: getDBSalespay[kk]['transtype'].toString(),
           walletid: getDBSalespay[kk]['walletid'].toString(),
-          // walletref: getDBholdSalespay[kk]['walletref'].toString(),
+
           wallettype: getDBSalespay[kk]['wallettype'].toString(),
         ));
         paymentWay2 = payment;
@@ -528,14 +523,11 @@ class PosController extends ChangeNotifier {
     totwieght = double.parse(getDBSalesHeader[0]["totalweight"].toString());
     totLiter = double.parse(getDBSalesHeader[0]["totalltr"].toString());
 
-    // remarkcontroller3.text = getDBSalesHeader[0]['remarks'].toString();
     mycontroller2[50].text = getDBSalesHeader[0]['remarks'] != null
         ? getDBSalesHeader[0]['remarks'].toString()
         : "";
 
     for (int ik = 0; ik < getDBSalesLine.length; ik++) {
-      // log("getDBholdSalesLine.length:${getDBSalesLine.length}");
-
       scanneditemData2.add(StocksnapModelData(
           pails: getDBSalesLine[ik]['pails'] != null
               ? double.parse(getDBSalesLine[ik]['pails'].toString())
@@ -556,7 +548,6 @@ class PosController extends ChangeNotifier {
               ? double.parse(getDBSalesLine[ik]['netlinetotal'].toString())
               : null,
           transID: int.parse(getDBSalesLine[ik]['docentry'].toString()),
-          // taxCode: getDBSalesLine[ik]['taxCode'].toString(),
           branch: getDBSalesLine[ik]['branch'].toString(),
           itemCode: getDBSalesLine[ik]['itemcode'].toString(),
           itemName: getDBSalesLine[ik]['itemname'].toString(),
@@ -619,8 +610,6 @@ class PosController extends ChangeNotifier {
       scanneditemData2[i].taxable =
           scanneditemData2[i].basic! - getScanneditemData2[i].discount!;
 
-      // scanneditemData2[i].qty=int.parse(qtymycontroller2[i].text.toString());
-      // log("controller2" + qtymycontroller2[i].text.toString());
       totalQuantity =
           totalQuantity! + int.parse(qtymycontroller2[i].text.toString());
 
@@ -635,7 +624,7 @@ class PosController extends ChangeNotifier {
       discount2: getDBSalesHeader[0]['docdiscamt'] == null
           ? 0.00
           : double.parse(getDBSalesHeader[0]['docdiscamt'].toString()),
-      // double.parse(getDBholddata1[ji]['docdiscamt'].toString()),
+
       discount: getDBSalesHeader[0]['docdiscamt'] == null
           ? 0.00
           : double.parse(getDBSalesHeader[0]['docdiscamt'].toString()),
@@ -728,12 +717,13 @@ class PosController extends ChangeNotifier {
     notifyListeners();
 
     salesmodl.add(salesM);
-    // log(salesmodl.length.toString());
+
     selectedcust2 = CustomerDetals(
-      name:
-          getDBSalesHeader[0]["customername"].toString(), // customername!.name
+      name: getDBSalesHeader[0]["customername"].toString(),
       phNo: getDBSalesHeader[0]["customerphono"].toString(), //customerphono
       docentry: getDBSalesHeader[0]["docentry"].toString(),
+      U_CashCust: getDBSalesHeader[0]["U_CASHCUST"].toString(),
+
       cardCode: getDBSalesHeader[0]["customercode"]
           .toString(), //customercode!.cardCode
       accBalance: double.parse(
@@ -754,9 +744,9 @@ class PosController extends ChangeNotifier {
 
     selectedcust25 = CustomerDetals(
       taxCode: getDBSalesHeader[0]["taxCode"].toString(),
+      U_CashCust: getDBSalesHeader[0]["U_CASHCUST"].toString(),
 
-      name:
-          getDBSalesHeader[0]["customername"].toString(), // customername!.name
+      name: getDBSalesHeader[0]["customername"].toString(),
       phNo: getDBSalesHeader[0]["customerphono"].toString(), //customerphono
       docentry: getDBSalesHeader[0]["docentry"].toString(),
       cardCode: getDBSalesHeader[0]["customercode"]
@@ -864,7 +854,7 @@ class PosController extends ChangeNotifier {
     listdata.add(data.toString());
     listdata.add(data!.substring(8));
 
-    return listdata; // int.parse(data.substring(8));
+    return listdata;
   }
 
   insertSalesHeaderToDB(
@@ -916,9 +906,7 @@ class PosController extends ChangeNotifier {
         billaddressid: selectedcust == null && selectedcust!.address == null ||
                 selectedcust!.address!.isEmpty
             ? ""
-            : selectedcust!.address![selectedBillAdress].autoId.toString()
-        // ? " ${selectedcust!.address![selectedBillAdress].address1.toString()},${selectedcust!.address![selectedBillAdress].address2.toString()}, ${selectedcust!.address![selectedBillAdress].address3.toString()}"
-        ,
+            : selectedcust!.address![selectedBillAdress].autoId.toString(),
         billtype: null,
         branch: UserValues.branch!,
         createdUserID: UserValues.userID.toString(),
@@ -964,7 +952,6 @@ class PosController extends ChangeNotifier {
         seriesnum: '',
         shipaddresid: selectedcust55!.address!.isNotEmpty
             ? selectedcust55!.address![selectedShipAdress].autoId.toString()
-            // ? '${selectedcust!.address![selectedShipAdress].address1.toString()},${selectedcust!.address![selectedShipAdress].address2.toString()},${selectedcust!.address![selectedShipAdress].address3}'
             : "",
         sodocno: "",
         sodocseries: "",
@@ -1139,8 +1126,6 @@ class PosController extends ChangeNotifier {
                   ? 'Successfully Done, Document Number is $documentNum'
                   : docstatus == "hold"
                       ? "Saved as draft"
-                      // : docstatus == "suspend"
-                      //     ? "This Sales Transaction Suspended Sucessfully..!!"
                       : "null",
               backgroundColor: Colors.white,
               titleStyle: const TextStyle(color: Colors.red),
@@ -1178,7 +1163,7 @@ class PosController extends ChangeNotifier {
   }
 
   List<AutoSelectModlData>? openAutoSelect = [];
-  // String itemCode = '';
+
   bool autoselectbtndisable = false;
   bool manualselectbtndisable = false;
 
@@ -1191,7 +1176,7 @@ class PosController extends ChangeNotifier {
   mapItemCodeWiseSoItemData(int index) {
     soFilterScanItem = [];
     double qty2 = 0;
-    // log('soScanItemsoScanItem length::${soScanItem.length}');
+
     for (var i = 0; i < soScanItem.length; i++) {
       if (openOrdLineList![index].itemCode == soScanItem[i].itemCode &&
           openOrdLineList![index].lineNum.toString() ==
@@ -1230,6 +1215,7 @@ class PosController extends ChangeNotifier {
             openOrdLineList![ih].lineNum.toString() ==
                 soScanItem[i].baselineid.toString()) {
           soFilterScanItem.add(StocksnapModelData(
+            shipDate: '',
             branch: AppConstant.branch,
             baselineid: openOrdLineList![ih].lineNum.toString(),
             basedocentry: openOrdLineList![ih].docEntry.toString(),
@@ -1261,7 +1247,7 @@ class PosController extends ChangeNotifier {
         double.tryParse(modifiedString2.split('.').join('.'));
 
     soListController[i].text = modifiedString2.toString();
-    log(soListController[i].text); // Output: example-text-with-double-dots
+    log(soListController[i].text);
     notifyListeners();
   }
 
@@ -1273,7 +1259,7 @@ class PosController extends ChangeNotifier {
         double.tryParse(modifiedString2.split('.').join('.'));
 
     manualQtyCtrl[i].text = modifiedString2.toString();
-    log(manualQtyCtrl[i].text); // Output: example-text-with-double-dots
+    log(manualQtyCtrl[i].text);
     notifyListeners();
   }
 
@@ -1285,7 +1271,7 @@ class PosController extends ChangeNotifier {
         double.tryParse(modifiedString2.split('.').join('.'));
 
     qtymycontroller[i].text = modifiedString2.toString();
-    log(qtymycontroller[i].text); // Output: example-text-with-double-dots
+    log(qtymycontroller[i].text);
     notifyListeners();
   }
 
@@ -1310,6 +1296,7 @@ class PosController extends ChangeNotifier {
       String sapDocEntry, BuildContext context, ThemeData theme) async {
     sapDocentry = '';
 
+    await sapLoginApi(context);
     await SerlaySalesInvoiceAPI.getData(sapDocEntry).then((value) async {
       scanneditemData2 = [];
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
@@ -1330,7 +1317,8 @@ class PosController extends ChangeNotifier {
                 discountper: value.documentLines[i].discountPercent,
                 serialBatch: '',
                 mrp: 0,
-                sellPrice: value.documentLines[i].unitPrice));
+                sellPrice: value.documentLines[i].unitPrice,
+                shipDate: ''));
           }
           notifyListeners();
 
@@ -1370,9 +1358,6 @@ class PosController extends ChangeNotifier {
               ];
             }
             if (csadresdataDB[k].addresstype == "S") {
-              // if (getDBSalesQuoHeader[0]['shipaddresid'].toString().isNotEmpty) {
-              //   if (csadresdataDB[k].autoid.toString() ==
-              //       getDBSalesQuoHeader[0]['shipaddresid'].toString()) {
               address25 = [
                 Address(
                     autoId: int.parse(csadresdataDB[k].autoid.toString()),
@@ -1397,6 +1382,7 @@ class PosController extends ChangeNotifier {
           selectedcust2 = CustomerDetals(
             name: value.cardName,
             phNo: getcustomer[0]['phoneno1'].toString(),
+            U_CashCust: getcustomer[0]["U_CASHCUST"].toString(),
             taxCode: getcustomer[0]['TaxCode'].toString(),
             cardCode: getcustomer[0]['customerCode'].toString(),
             point: getcustomer[0]['points'].toString(),
@@ -1421,6 +1407,7 @@ class PosController extends ChangeNotifier {
             name: getcustomer[0]['customername'].toString(),
             phNo: getcustomer[0]['phoneno1'].toString(),
             taxCode: getcustomer[0]['TaxCode'].toString(),
+            U_CashCust: getcustomer[0]["U_CASHCUST"].toString(),
             cardCode: getcustomer[0]['customerCode'].toString(),
             point: getcustomer[0]['points'].toString(),
             address: address25,
@@ -1451,8 +1438,7 @@ class PosController extends ChangeNotifier {
               double.parse(getcustomer[0]['balance'].toString());
           selectedcust25!.accBalance = updateCustBal ??
               double.parse(getcustomer[0]['balance'].toString());
-          // }
-          // }
+
           if (scanneditemData2.isNotEmpty) {
             for (var i = 0; i < scanneditemData.length; i++) {
               scanneditemData2[i].taxRate = 0.0;
@@ -1494,17 +1480,7 @@ class PosController extends ChangeNotifier {
     for (var im = 0; im < openOrdLineList!.length; im++) {
       if (openOrdLineList![im].checkBClr == true) {
         double balQty = double.parse(soListController[im].text);
-        // for (var ik = 0; ik < soScanItem.length; ik++) {
-        //   if (openOrdLineList![im].itemCode == soScanItem[ik].itemCode) {
-        //     soScanItem.removeAt(ik);
-        //   }
-        //   notifyListeners();
-        // }
-        // for (var ix = 0; ix < soFilterScanItem.length; ix++) {
-        //   if (openOrdLineList![im].itemCode == soFilterScanItem[ix].itemCode) {
-        //     soFilterScanItem.removeAt(ix);
-        //   }
-        // }
+
         await FetchBatchPdaApi.getGlobalData(
                 openOrdLineList![im].lineNum.toString(),
                 openOrdLineList![im].docEntry.toString(),
@@ -1530,7 +1506,8 @@ class PosController extends ChangeNotifier {
                         maxdiscount: '0',
                         discountper: 0,
                         mrp: 0,
-                        sellPrice: 0));
+                        sellPrice: 0,
+                        shipDate: ''));
                     balQty = balQty - fetchBatchData[i].pickedQty;
 
                     notifyListeners();
@@ -1546,7 +1523,8 @@ class PosController extends ChangeNotifier {
                         maxdiscount: '0',
                         discountper: 0,
                         mrp: 0,
-                        sellPrice: 0));
+                        sellPrice: 0,
+                        shipDate: ''));
 
                     notifyListeners();
 
@@ -1683,12 +1661,14 @@ class PosController extends ChangeNotifier {
                       maxdiscount: '0',
                       discountper: 0,
                       mrp: 0,
+                      shipDate: '',
                       sellPrice: 0));
                   balQty = balQty - fetchBatchData[i].pickedQty;
                   notifyListeners();
                 } else {
                   soScanItem.add(StocksnapModelData(
                       branch: AppConstant.branch,
+                      shipDate: '',
                       baselineid: openOrdLineList![index].lineNum.toString(),
                       basedocentry: openOrdLineList![index].docEntry.toString(),
                       itemCode: fetchBatchData[i].itemCode,
@@ -1782,154 +1762,7 @@ class PosController extends ChangeNotifier {
     }
     batchselectbtndisable = false;
   }
-  // newAutoselectAllMethod(
-  //   // String itemcode,
-  //   // int index,
-  //   ThemeData theme,
-  //   BuildContext context,
-  // ) async {
-  //   openAutoSelect = [];
-  //   double soListqty = 0;
-  //   autoselectbtndisable = true;
-  //   batchselectbtndisable = false;
-  //   manualselectbtndisable = false;
-  //   selectionBtnLoading = true;
-  //   notifyListeners();
-  //   noMsgText = '';
-  //   for (var ih = 0; ih < openOrdLineList!.length; ih++) {
-  //     if (selectAll == false) {
-  //       for (var ik = 0; ik < soScanItem.length; ik++) {
-  //         if (openOrdLineList![ih].itemCode == soScanItem[ik].itemCode &&
-  //             openOrdLineList![ih].lineNum.toString() ==
-  //                 soScanItem[ik].baselineid.toString()) {
-  //           soScanItem.removeAt(ik);
-  //         }
-  //       }
 
-  //       notifyListeners();
-  //     }
-  //     if (selectAll == false) {
-  //       for (var ix = 0; ix < soFilterScanItem.length; ix++) {
-  //         if (openOrdLineList![ih].itemCode == soFilterScanItem[ix].itemCode &&
-  //             openOrdLineList![ih].lineNum.toString() ==
-  //                 soFilterScanItem[ix].baselineid.toString()) {
-  //           soFilterScanItem.removeAt(ix);
-  //         }
-  //       }
-  //     }
-  //     double balQty = double.parse(soListController[ih].text);
-
-  //     await AutoSelectApi.getGlobalData(openOrdLineList![ih].itemCode)
-  //         .then((value) async {
-  //       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-  //         openAutoSelect = value.openOutwardData!;
-
-  //         selectionBtnLoading = false;
-  //         if (openAutoSelect!.isNotEmpty) {
-  //           for (var i = 0; i < openAutoSelect!.length; i++) {
-  //             if (balQty != 0) {
-  //               if (balQty >= openAutoSelect![i].qty) {
-  //                 soScanItem.add(StocksnapModelData(
-  //                   branch: AppConstant.branch,
-  //                   baselineid: openOrdLineList![ih].lineNum.toString(),
-  //                   basedocentry: openOrdLineList![ih].docEntry.toString(),
-  //                   itemCode: openAutoSelect![i].itemCode,
-  //                   itemName: openAutoSelect![i].itemName,
-  //                   serialBatch: openAutoSelect![i].batchNum,
-  //                   inDate: openAutoSelect![i].inDate,
-  //                   openRetQty: openAutoSelect![i].qty,
-  //                   maxdiscount: '0',
-  //                   discountper: 0,
-  //                   mrp: 0,
-  //                   sellPrice: openAutoSelect![i].price,
-  //                 ));
-  //                 balQty = balQty - openAutoSelect![i].qty;
-
-  //                 notifyListeners();
-  //               } else {
-  //                 log('balQty:::$balQty');
-
-  //                 soScanItem.add(StocksnapModelData(
-  //                   branch: AppConstant.branch,
-  //                   baselineid: openOrdLineList![ih].lineNum.toString(),
-  //                   basedocentry: openOrdLineList![ih].docEntry.toString(),
-  //                   itemCode: openAutoSelect![i].itemCode,
-  //                   itemName: openAutoSelect![i].itemName,
-  //                   serialBatch: openAutoSelect![i].batchNum,
-  //                   inDate: openAutoSelect![i].inDate,
-  //                   openRetQty: balQty,
-  //                   maxdiscount: '0',
-  //                   discountper: 0,
-  //                   mrp: 0,
-  //                   sellPrice: openAutoSelect![i].price,
-  //                 ));
-
-  //                 notifyListeners();
-
-  //                 break;
-  //               }
-  //             }
-  //           }
-  //           soListqty = 0;
-  //           await mapItemCodeWiseSoAllData(ih);
-
-  //           for (var iv = 0; iv < soScanItem.length; iv++) {
-  //             if (openOrdLineList![ih].itemCode == soScanItem[iv].itemCode &&
-  //                 openOrdLineList![ih].lineNum.toString() ==
-  //                     soScanItem[iv].baselineid.toString()) {
-  //               soListqty = soListqty + soScanItem[iv].openRetQty!;
-  //               openOrdLineList![ih].valueInsert = true;
-  //               log('soListqtysoListqty::${soListqty}');
-
-  //               soListController[ih].text = soListqty.toString();
-  //               notifyListeners();
-  //             }
-  //           }
-  //         } else {
-  //           noMsgText = value.error!;
-  //           batchselectbtndisable = false;
-  //           autoselectbtndisable = false;
-  //           manualselectbtndisable = false;
-
-  //           selectionBtnLoading = false;
-  //         }
-  //       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-  //         batchselectbtndisable = false;
-  //         autoselectbtndisable = false;
-  //         manualselectbtndisable = false;
-
-  //         selectionBtnLoading = false;
-  //         showDialog(
-  //             context: context,
-  //             barrierDismissible: false,
-  //             builder: (BuildContext context) {
-  //               return AlertDialog(
-  //                   contentPadding: const EdgeInsets.all(0),
-  //                   content: AlertBox(
-  //                     payMent: 'Alert',
-  //                     errormsg: true,
-  //                     widget: Center(
-  //                         child: ContentContainer(
-  //                       content: '${value.error}',
-  //                       theme: theme,
-  //                     )),
-  //                     buttonName: null,
-  //                   ));
-  //             }).then((value) {});
-  //         notifyListeners();
-  //       } else {
-  //         batchselectbtndisable = false;
-  //         autoselectbtndisable = false;
-  //         manualselectbtndisable = false;
-
-  //         selectionBtnLoading = false;
-  //       }
-
-  //       notifyListeners();
-  //     });
-  //   }
-  //   notifyListeners();
-  // }
   bool selectionBtnLoading = false;
 
   newAutoselectAllMethod(
@@ -1978,15 +1811,11 @@ class PosController extends ChangeNotifier {
     for (var ih = 0; ih < openOrdLineList!.length; ih++) {
       if (openOrdLineList![ih].checkBClr == true) {
         itemCodeList.add(openOrdLineList![ih].itemCode);
-        // log('itemcodelist::${itemCodeList.toString()}');
 
         tempItem = itemCodeList.toString().replaceAll('[', '');
         tempItem2 = tempItem.toString().replaceAll(']', '');
-        // log('tempItem2tempItem2::${tempItem2.toString()}');
 
         tempItem3 = tempItem2.toString().replaceAll(' ', '');
-
-        // log('tempItem3tempItem3::${tempItem3.toString()}');
       }
     }
     await AutoSelectApi.getGlobalData(tempItem3).then((value) {
@@ -2024,14 +1853,13 @@ class PosController extends ChangeNotifier {
         balQty = double.parse(soListController[i].text);
 
         for (var im = 0; im < openAutoSelect!.length; im++) {
-          // log('openAutoSelect![im].remQty::${i}::${im}::::${openAutoSelect![im].remQty}');
-          // log('balQtybalQty::${balQty}');
           if (openOrdLineList![i].itemCode == openAutoSelect![im].itemCode &&
               openAutoSelect![im].remQty > 0) {
             log('itemode::${openAutoSelect![im].itemCode}');
             if (balQty >= openAutoSelect![im].remQty && balQty != 0) {
               soScanItem.add(StocksnapModelData(
                 branch: AppConstant.branch,
+                shipDate: '',
                 baselineid: openOrdLineList![i].lineNum.toString(),
                 basedocentry: openOrdLineList![i].docEntry.toString(),
                 itemCode: openAutoSelect![im].itemCode,
@@ -2051,6 +1879,7 @@ class PosController extends ChangeNotifier {
               if (balQty != 0) {
                 soScanItem.add(StocksnapModelData(
                   branch: AppConstant.branch,
+                  shipDate: '',
                   baselineid: openOrdLineList![i].lineNum.toString(),
                   basedocentry: openOrdLineList![i].docEntry.toString(),
                   itemCode: openAutoSelect![im].itemCode,
@@ -2087,7 +1916,6 @@ class PosController extends ChangeNotifier {
                   soScanItem[iv].baselineid.toString()) {
             soListqty = soListqty + soScanItem[iv].openRetQty!;
             openOrdLineList![i].valueInsert = true;
-            // log('soListqtysoListqty::${soListqty}');
 
             soListController[i].text = soListqty.toString();
             notifyListeners();
@@ -2196,7 +2024,7 @@ class PosController extends ChangeNotifier {
         }
       }
     }
-    // double balQty = double.parse(soListController[ih].text);
+
     if (openOrdLineList![ih].checkBClr == true) {
       await AutoSelectApi.getGlobalData(openOrdLineList![ih].itemCode)
           .then((value) async {
@@ -2303,23 +2131,6 @@ class PosController extends ChangeNotifier {
                                                           doubleDotMethodautomethod(
                                                               index, val);
                                                         },
-                                                        // inputFormatters: [
-                                                        //   openOrdLineList![index]
-                                                        //                   .uPackSize ==
-                                                        //               null ||
-                                                        //           openOrdLineList![
-                                                        //                       index]
-                                                        //                   .uPackSize ==
-                                                        //               0.000
-                                                        //       ? FilteringTextInputFormatter
-                                                        //           .allow(RegExp(
-                                                        //               dotAll:
-                                                        //                   true,
-                                                        //               r'^\d*\.?\d{0,9}$'))
-                                                        //       : FilteringTextInputFormatter
-                                                        //           .digitsOnly
-                                                        // ],
-
                                                         onEditingComplete: () {
                                                           disableKeyBoard(
                                                               context);
@@ -2421,6 +2232,7 @@ class PosController extends ChangeNotifier {
                                       if (manualQtyCtrl[xx].text != '0') {
                                         soScanItem.add(StocksnapModelData(
                                           branch: AppConstant.branch,
+                                          shipDate: '',
                                           baselineid: openOrdLineList![ih]
                                               .lineNum
                                               .toString(),
@@ -2462,52 +2274,6 @@ class PosController extends ChangeNotifier {
                   );
                 });
 
-            // for (var i = 0; i < openAutoSelect!.length; i++) {
-            //   if (balQty != 0) {
-            //     if (balQty >= openAutoSelect![i].qty) {
-            // soScanItem.add(StocksnapModelData(
-            //   branch: AppConstant.branch,
-            //   baselineid: openOrdLineList![ih].lineNum.toString(),
-            //   basedocentry: openOrdLineList![ih].docEntry.toString(),
-            //   itemCode: openAutoSelect![i].itemCode,
-            //   itemName: openAutoSelect![i].itemName,
-            //   serialBatch: openAutoSelect![i].batchNum,
-            //   inDate: openAutoSelect![i].inDate,
-            //   openRetQty: openAutoSelect![i].qty,
-            //   maxdiscount: '0',
-            //   discountper: 0,
-            //   mrp: 0,
-            //   sellPrice: openAutoSelect![i].price,
-            // ));
-            //       balQty = balQty - openAutoSelect![i].qty;
-            //       await mapItemCodeWiseSoItemData(ih);
-
-            //       notifyListeners();
-            //     } else {
-            //       log('balQty:::$balQty');
-
-            //       soScanItem.add(StocksnapModelData(
-            //         branch: AppConstant.branch,
-            //         baselineid: openOrdLineList![ih].lineNum.toString(),
-            //         basedocentry: openOrdLineList![ih].docEntry.toString(),
-            //         itemCode: openAutoSelect![i].itemCode,
-            //         itemName: openAutoSelect![i].itemName,
-            //         serialBatch: openAutoSelect![i].batchNum,
-            //         inDate: openAutoSelect![i].inDate,
-            //         openRetQty: balQty,
-            //         maxdiscount: '0',
-            //         discountper: 0,
-            //         mrp: 0,
-            //         sellPrice: openAutoSelect![i].price,
-            //       ));
-            //       await mapItemCodeWiseSoItemData(ih);
-
-            //       notifyListeners();
-
-            //       break;
-            //     }
-            //   }
-            // }
             soListqty = 0;
 
             for (var iv = 0; iv < soScanItem.length; iv++) {
@@ -2516,7 +2282,6 @@ class PosController extends ChangeNotifier {
                       soScanItem[iv].baselineid.toString()) {
                 soListqty = soListqty + soScanItem[iv].openRetQty!;
                 openOrdLineList![ih].valueInsert = true;
-                // log('soListqtysoListqty::${soListqty}');
 
                 soListController[ih].text = soListqty.toString();
                 notifyListeners();
@@ -2565,7 +2330,6 @@ class PosController extends ChangeNotifier {
   }
 
   newAutoselectItemMethod(
-    // int ih,
     ThemeData theme,
     BuildContext context,
   ) async {
@@ -2585,7 +2349,6 @@ class PosController extends ChangeNotifier {
     for (var ih = 0; ih < openOrdLineList!.length; ih++) {
       if (openOrdLineList![ih].checkBClr == true) {
         itemCodeList.add(openOrdLineList![ih].itemCode);
-        // log('itemcodelist::${itemCodeList.toString()}');
 
         tempItem = itemCodeList.toString().replaceAll('[', '');
         tempItem2 = tempItem.toString().replaceAll(']', '');
@@ -2660,8 +2423,6 @@ class PosController extends ChangeNotifier {
       if (openOrdLineList![ih].checkBClr == true) {
         double balQty = double.parse(soListController[ih].text);
         for (var im = 0; im < openAutoSelect!.length; im++) {
-          // log('openAutoSelect![im].remQty::${i}::${im}::::${openAutoSelect![im].remQty}');
-          // log('balQtybalQty::${balQty}');
           if (openOrdLineList![ih].itemCode == openAutoSelect![im].itemCode &&
               openAutoSelect![im].remQty > 0) {
             if (balQty >= openAutoSelect![im].remQty) {
@@ -2673,6 +2434,7 @@ class PosController extends ChangeNotifier {
                 basedocentry: openOrdLineList![ih].docEntry.toString(),
                 itemCode: openAutoSelect![im].itemCode,
                 itemName: openAutoSelect![im].itemName,
+                shipDate: '',
                 serialBatch: openAutoSelect![im].batchNum,
                 inDate: openAutoSelect![im].inDate,
                 openRetQty: openAutoSelect![im].remQty,
@@ -2689,6 +2451,7 @@ class PosController extends ChangeNotifier {
 
               soScanItem.add(StocksnapModelData(
                 branch: AppConstant.branch,
+                shipDate: '',
                 baselineid: openOrdLineList![ih].lineNum.toString(),
                 basedocentry: openOrdLineList![ih].docEntry.toString(),
                 itemCode: openAutoSelect![im].itemCode,
@@ -2713,7 +2476,6 @@ class PosController extends ChangeNotifier {
     }
     await mapItemCodeWiseSoAllData();
 
-    // for (var i = 0; i < openOrdLineList!.length; i++) {
     for (var ih = 0; ih < openOrdLineList!.length; ih++) {
       if (openOrdLineList![ih].checkBClr == true) {
         soListqty = 0;
@@ -2724,7 +2486,6 @@ class PosController extends ChangeNotifier {
                   soScanItem[iv].baselineid.toString()) {
             soListqty = soListqty + soScanItem[iv].openRetQty!;
             openOrdLineList![ih].valueInsert = true;
-            // log('soListqtysoListqty::${soListqty}');
 
             soListController[ih].text = soListqty.toString();
             notifyListeners();
@@ -3023,13 +2784,10 @@ class PosController extends ChangeNotifier {
     int docEntry,
   ) async {
     final Database db = (await DBHelper.getInstance())!;
-    // SharedPreferences preferences = await SharedPreferences.getInstance();
+
     log('message payreceipt');
     seriesType = '';
-    // String cashAcc = await (preferences.getString('UCashAccount'))!;
-    // String creditAcc = await (preferences.getString('UCreditAccount'))!;
-    // String checkAcc = await (preferences.getString('UCheckAccount'))!;
-    // String walletAcc = await (preferences.getString('UWalletAccount'))!;
+
     await callSeriesApi(context, '24');
 
     await addChequeValues22();
@@ -3058,7 +2816,6 @@ class PosController extends ChangeNotifier {
       notifyListeners();
     }
     if (transferType == 'Transfer') {
-      // String transAcc = await (preferences.getString('UTransAccount'))!;
       ReceiptPostAPi.transferAccount = transAccCode;
       ReceiptPostAPi.transferSum = transpayment;
       ReceiptPostAPi.transferReference = transrefff;
@@ -3227,13 +2984,7 @@ class PosController extends ChangeNotifier {
             walletType == "Wallet" ||
             pointType == 'Points Redemption') {
           log("mycontroller[22].text:::$cashpayment");
-
-          // await postingReceipt22(context, theme, docEntry);
         }
-        // if (sapDocentry != null || sapDocentry!.isNotEmpty) {
-        //   await callEInvoiceApi(docstatus);
-        //   notifyListeners();
-        // }
 
         await DBOperation.updtSapDetSalHead(db, int.parse(sapDocentry!),
             int.parse(sapDocuNumber), docEntry, 'SalesHeader');
@@ -3243,8 +2994,6 @@ class PosController extends ChangeNotifier {
                 title: "Success",
                 middleText: docstatus == "check out"
                     ? 'Successfully Done,\nDocument Number $sapDocuNumber'
-
-                    // \n Incoming Payment Document Number ${sapReceiptDocNum!.isNotEmpty || sapReceiptDocNum != null ? sapReceiptDocNum : 'N/A'}\n$expMsg'
                     : docstatus == "hold"
                         ? "Saved as draft"
                         : "null",
@@ -3333,7 +3082,6 @@ class PosController extends ChangeNotifier {
             }).then((value) {
           ondDisablebutton = false;
           notifyListeners();
-          // injectToDb();
         });
       } else {
         custserieserrormsg = value.error!.message!.value.toString();
@@ -3356,7 +3104,6 @@ class PosController extends ChangeNotifier {
             }).then((value) {
           ondDisablebutton = false;
           notifyListeners();
-          // injectToDb();
         });
       }
     });
@@ -3422,12 +3169,7 @@ class PosController extends ChangeNotifier {
             walletType == "Wallet" ||
             pointType == 'Points Redemption') {
           log("mycontroller[22].text:::$cashpayment");
-          // await postingReceipt22(context, theme, docEntry);
         }
-        // if (sapDocentry != null || sapDocentry!.isNotEmpty) {
-        //   await callEInvoiceApi(docstatus);
-        //   notifyListeners();
-        // }
 
         await DBOperation.updtSapDetSalHead(db, int.parse(sapDocentry!),
             int.parse(sapDocuNumber), docEntry, 'SalesHeader');
@@ -3437,8 +3179,6 @@ class PosController extends ChangeNotifier {
                 title: "Success",
                 middleText: docstatus == "check out"
                     ? 'Successfully Done,\nDocument Number $sapDocuNumber'
-
-                    // \nIncoming Payment Document Number ${sapReceiptDocNum != null || sapReceiptDocNum!.isNotEmpty ? sapReceiptDocNum : 'N/A'}\n$expMsg'
                     : docstatus == "hold"
                         ? "Saved as draft"
                         : "null",
@@ -3531,7 +3271,6 @@ class PosController extends ChangeNotifier {
             }).then((value) {
           ondDisablebutton = false;
           notifyListeners();
-          // injectToDb();
         });
       } else {
         custserieserrormsg = value.error!.message!.value.toString();
@@ -3554,7 +3293,6 @@ class PosController extends ChangeNotifier {
             }).then((value) {
           ondDisablebutton = false;
           notifyListeners();
-          // injectToDb();
         });
       }
     });
@@ -3575,7 +3313,7 @@ class PosController extends ChangeNotifier {
     String salesPAY = json.encode(getDBSalespay);
     String salesLine = json.encode(getDBSalesLine);
     String salesHeader = json.encode(getDBSalesHeader);
-    // dynamic data = {"payload": salesPAY};
+
     var ddd = json.encode({
       "ObjectType": 1,
       "ActionType": "Add",
@@ -3586,11 +3324,8 @@ class PosController extends ChangeNotifier {
 
     //RabitMQ
 
-    // Client client = Client();
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-        // AppConstant.ip,
-        // "102.69.167.106",
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -3600,8 +3335,6 @@ class PosController extends ChangeNotifier {
     Channel channel = await client1.channel(); //Server_CS
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-    // properties.headers = {"branch": AppConstant.branch};
-    // exchange.publish(ddd, "", properties: properties);
 
     //cs
 
@@ -3624,7 +3357,6 @@ class PosController extends ChangeNotifier {
     String salesLine = json.encode(getDBSalesLine);
     String salesHeader = json.encode(getDBSalesHeader);
 
-    // dynamic data = {"payload": salesPAY};
     var ddd = json.encode({
       "ObjectType": 1,
       "ActionType": "Add",
@@ -3633,11 +3365,9 @@ class PosController extends ChangeNotifier {
       "InvoicePay": salesPAY,
     });
 
-    // RabitMQ
-    // Client client = Client();
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-        // AppConstant.ip,
+
         //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
@@ -3653,8 +3383,6 @@ class PosController extends ChangeNotifier {
 
     //cs
 
-    // properties.headers = {"branch": "Server"};
-    // exchange.publish(ddd, "", properties: properties);
     client1.close();
   }
 
@@ -3691,6 +3419,7 @@ class PosController extends ChangeNotifier {
             cardCode: cusdataDB[i].customerCode,
             taxCode: cusdataDB[i].taxCode,
             name: cusdataDB[i].customername,
+            U_CashCust: cusdataDB[i].uCashCust,
             phNo: cusdataDB[i].phoneno1,
             accBalance: cusdataDB[i].balance,
             point: cusdataDB[i].points.toString(),
@@ -3728,6 +3457,7 @@ class PosController extends ChangeNotifier {
               cardCode: cusdataDB[i].customerCode,
               taxCode: cusdataDB[i].taxCode,
               name: cusdataDB[i].customername,
+              U_CashCust: cusdataDB[i].uCashCust,
               phNo: cusdataDB[i].phoneno1,
               accBalance: cusdataDB[i].balance,
               point: cusdataDB[i].points.toString(),
@@ -3762,8 +3492,6 @@ class PosController extends ChangeNotifier {
     filtercustList = custList;
     notifyListeners();
   }
-
-  // call api
 
   postCategory(String value) {
     selectedValue = value;
@@ -3806,13 +3534,9 @@ class PosController extends ChangeNotifier {
   }
 
   aaaabbb(BuildContext context, ThemeData theme, int i) {
-    // if (scanneditemData.isEmpty) {
     itemcodedataaa(context, theme, i);
     mycontroller[99].clear();
-    // } else {
-    //   addScndData(i, context, theme);
-    //   mycontroller[99].clear();
-    // }
+
     calCulateDocVal(context, theme);
     notifyListeners();
   }
@@ -3824,6 +3548,7 @@ class PosController extends ChangeNotifier {
         branch: itemcodelistitem[i].branch,
         itemCode: itemcodelistitem[i].itemCode,
         itemName: itemcodelistitem[i].itemName,
+        shipDate: '',
         serialBatch: itemcodelistitem[i].serialBatch,
         inStockQty: 0,
         qty: 1,
@@ -3897,7 +3622,7 @@ class PosController extends ChangeNotifier {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
         if (value.seriescustData != null) {
           seriesData = value.seriescustData!;
-          // custserieserrormsg = '';
+
           notifyListeners();
         } else {
           custserieserrormsg = value.message!.toString();
@@ -4036,7 +3761,7 @@ class PosController extends ChangeNotifier {
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
         country: '', //mycontroller[10].text,
-        state: '', // mycontroller[12].text,
+        state: '',
         street: '',
         zipCode: mycontroller[13].text,
       ),
@@ -4058,7 +3783,6 @@ class PosController extends ChangeNotifier {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
         cardCodexx = value.cardCode.toString();
         await insertAddNewCusToDB(context);
-        // Navigator.pop(context);
 
         notifyListeners();
       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
@@ -4215,7 +3939,7 @@ class PosController extends ChangeNotifier {
     final theme = Theme.of(context);
     return SizedBox(
       height: Screens.bodyheight(context) * 0.5,
-      width: Screens.width(context) * 1, // Change as per your requirement
+      width: Screens.width(context) * 1,
       child: ListView.builder(
           itemCount: itemcodelistitem.length,
           itemBuilder: (context, index) {
@@ -4368,7 +4092,6 @@ class PosController extends ChangeNotifier {
         qqqttyy = qqqttyy + int.parse(soqtycontroller[ij].text);
         notifyListeners();
       }
-      // }
     }
     notifyListeners();
   }
@@ -4605,6 +4328,7 @@ class PosController extends ChangeNotifier {
         accBalance: 0,
         phNo: customerDetals.phNo,
         cardCode: customerDetals.cardCode,
+        U_CashCust: customerDetals.U_CashCust,
         point: customerDetals.point,
         address: address22,
         email: customerDetals.email ?? '',
@@ -4615,6 +4339,7 @@ class PosController extends ChangeNotifier {
         name: customerDetals.name,
         phNo: customerDetals.phNo,
         taxCode: customerDetals.taxCode,
+        U_CashCust: customerDetals.U_CashCust,
         cardCode: customerDetals.cardCode,
         point: customerDetals.point,
         address: address55,
@@ -4649,8 +4374,6 @@ class PosController extends ChangeNotifier {
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditLimitData != null) {
-          // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
-
           selectedcust!.creditLimits =
               double.parse(value.creditLimitData![0].creditLine.toString());
           notifyListeners();
@@ -4662,19 +4385,15 @@ class PosController extends ChangeNotifier {
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditDaysData != null) {
-          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
           selectedcust!.creditDays =
               value.creditDaysData![0].creditDays.toString();
           selectedcust!.paymentGroup =
               value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+          if (selectedcust!.U_CashCust == 'YES') {
             selectedcust!.name = '';
           } else {
             selectedcust!.name = customerDetals.name!;
           }
-          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
           notifyListeners();
         }
         loadingscrn = false;
@@ -4879,7 +4598,7 @@ class PosController extends ChangeNotifier {
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
         country: "TZ", //mycontroller[20].text,
-        state: '', // mycontroller[19].text,
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -4939,7 +4658,7 @@ class PosController extends ChangeNotifier {
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
         country: "TZ", //mycontroller[20].text,
-        state: '', // mycontroller[19].text,
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -5027,7 +4746,7 @@ class PosController extends ChangeNotifier {
         openOrdLineList![i].checkBClr = true;
         openOrdLineList![i].invoiceClr = 1;
         addIndex.add('${i}');
-        // log('addIndexaddIndex::${addIndex.length}');
+
         notifyListeners();
       } else {
         soListController[i].text = '';
@@ -5464,6 +5183,7 @@ class PosController extends ChangeNotifier {
           autoId: newcusdataDB[i]['autoid'].toString(),
           cardCode: newcusdataDB[i]['customerCode'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
+          U_CashCust: '',
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
           point: newcusdataDB[i]['points'].toString(),
@@ -5480,6 +5200,7 @@ class PosController extends ChangeNotifier {
           taxCode: newcusdataDB[i]['taxCode'].toString(),
           cardCode: newcusdataDB[i]['customercode'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
+          U_CashCust: '',
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
           point: newcusdataDB[i]['points'].toString(),
@@ -5549,6 +5270,7 @@ class PosController extends ChangeNotifier {
         createdUserID: UserValues.userID.toString(),
         createdateTime: config.currentDate(),
         lastupdateIp: UserValues.lastUpdateIp.toString(),
+        uCashCust: '',
         updatedDatetime: config.currentDate(),
         updateduserid: UserValues.userID,
         balance: 0,
@@ -5592,8 +5314,8 @@ class PosController extends ChangeNotifier {
       'phoneno2': '', //ph2
       'emalid':
           mycontroller[21].text.isNotEmpty ? mycontroller[21].text : '', //email
-      'createdateTime': config.currentDate(), // createddatetime
-      'updatedDatetime': config.currentDate(), // updateddatetime
+      'createdateTime': config.currentDate(),
+      'updatedDatetime': config.currentDate(),
       'createdUserID': UserValues.userID.toString(), //createdUserid
       'updateduserid': UserValues.userID.toString(), //updateduserid
       'lastupdateIp': UserValues.lastUpdateIp.toString(),
@@ -5869,6 +5591,7 @@ class PosController extends ChangeNotifier {
           cardCode: newcusdataDB[i]['customercode'].toString(),
           taxCode: newcusdataDB[i]['taxCode'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
+          U_CashCust: '',
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
           point: newcusdataDB[i]['points'].toString(),
@@ -5966,11 +5689,6 @@ class PosController extends ChangeNotifier {
     totalPay.totalDue = 0.00;
     String ansbasic = '';
     for (int iss = 0; iss < scanneditemData.length; iss++) {
-      // log("issss sellprice:${scanneditemData[iss].sellPrice}");
-      // double? mycontlaa = discountcontroller[iss].text.isNotEmpty
-      //     ? double.parse(discountcontroller[iss].text.toString())
-      //     : 0;
-
       if (cpyfrmso == 'CopyfromSo') {
         scanneditemData[iss].openRetQty = double.parse(
             qtymycontroller[iss].text.isNotEmpty
@@ -5995,9 +5713,7 @@ class PosController extends ChangeNotifier {
       }
 
       scanneditemData[iss].basic = double.parse(ansbasic);
-      // scanneditemData[iss].discountper = discountcontroller[iss].text.isNotEmpty
-      //     ? double.parse(discountcontroller[iss].text.toString())
-      //     : 00;
+
       double? mycontlaa = scanneditemData[iss].discountper! ?? 0;
       scanneditemData[iss].discount =
           (scanneditemData[iss].basic! * mycontlaa / 100);
@@ -6013,7 +5729,7 @@ class PosController extends ChangeNotifier {
 
       double priceaftDisc = scanneditemData[iss].priceAfDiscBasic! - priceafd;
       scanneditemData[iss].priceAftDiscVal = priceaftDisc;
-      // log('priceaftDiscpriceaftDisc::$priceaftDisc');
+
       scanneditemData[iss].taxvalue =
           scanneditemData[iss].taxable! * scanneditemData[iss].taxRate! / 100;
 
@@ -6075,7 +5791,6 @@ class PosController extends ChangeNotifier {
 
       totalPayment = totalPay;
 
-      // disableKeyBoard(context);
       notifyListeners();
     }
     notifyListeners();
@@ -6094,11 +5809,6 @@ class PosController extends ChangeNotifier {
 
     String ansbasic = '';
     for (int iss = 0; iss < scanneditemData2.length; iss++) {
-      // log("issss sellprice:${scanneditemData2[iss].sellPrice}");
-      // double? mycontlaa = discountcontroller[iss].text.isNotEmpty
-      //     ? double.parse(discountcontroller[iss].text.toString())
-      //     : 0;
-
       scanneditemData2[iss].qty = double.parse(
           qtymycontroller2[iss].text.isNotEmpty
               ? qtymycontroller2[iss].text
@@ -6110,13 +5820,10 @@ class PosController extends ChangeNotifier {
           .toString();
 
       scanneditemData2[iss].basic = double.parse(ansbasic);
-      // scanneditemData[iss].discountper = discountcontroller[iss].text.isNotEmpty
-      //     ? double.parse(discountcontroller[iss].text.toString())
-      //     : 00;
+
       double? mycontlaa = scanneditemData2[iss].discountper! ?? 0;
       scanneditemData2[iss].discount =
           (scanneditemData2[iss].basic! * mycontlaa / 100);
-      // log('scanneditemData2[iss].discount ::${scanneditemData2[iss].discount}');
 
       scanneditemData2[iss].taxable =
           scanneditemData2[iss].basic! - scanneditemData2[iss].discount!;
@@ -6201,32 +5908,9 @@ class PosController extends ChangeNotifier {
 
       notifyListeners();
     }
-    // disableKeyBoard(context);
 
     notifyListeners();
   }
-  // calculateLineVal(BuildContext context, ThemeData theme, int iss) {
-  //   String ans = (scanneditemData[iss].sellPrice! * scanneditemData[iss].qty!)
-  //       .toString();
-  //   scanneditemData[iss].basic = double.parse(ans);
-  //   scanneditemData[iss].discountper = discountcontroller[iss].text.isNotEmpty
-  //       ? double.parse(discountcontroller[iss].text.toString())
-  //       : 00;
-  //   scanneditemData[iss].discount =
-  //       (scanneditemData[iss].basic! * scanneditemData[iss].discountper! / 100);
-
-  //   scanneditemData[iss].taxable =
-  //       scanneditemData[iss].basic! - scanneditemData[iss].discount!;
-
-  //   scanneditemData[iss].taxvalue =
-  //       scanneditemData[iss].taxable! * scanneditemData[iss].taxRate! / 100;
-
-  //   scanneditemData[iss].netvalue =
-  //       (scanneditemData[iss].basic! - scanneditemData[iss].discount!) +
-  //           scanneditemData[iss].taxvalue!;
-
-  //   notifyListeners();
-  // }
 
   double getNoOfqty() {
     var getqty = scanneditemData.map((itemdet) => itemdet.qty.toString());
@@ -6244,7 +5928,7 @@ class PosController extends ChangeNotifier {
   }
 
   double getNoSubTotal() {
-    double totalqty = 0; // getNoOfqty();
+    double totalqty = 0;
     double totalPrice = 0; //getSumPrice();
     double sumTotal = 0; //(totalqty * totalPrice);
 
@@ -6259,7 +5943,7 @@ class PosController extends ChangeNotifier {
 
   double getTotalTax() {
     //bala sir//=(H10-N10)*I10/100=
-    double totalqty = 0; // getNoOfqty();
+    double totalqty = 0;
     double totalPrice = 0; //getSumPrice();
     double tax = 0; //getSumTotalTax();
     double totalTax = 0;
@@ -6280,7 +5964,7 @@ class PosController extends ChangeNotifier {
 
   double getDiscount() {
     double totaldisc = 0;
-    double totalqty = 0; // getNoOfqty();
+    double totalqty = 0;
     double totalPrice = 0; //getSumPrice();
     double itemdisc = 0; //getSumTotalTax();
 
@@ -6592,16 +6276,6 @@ class PosController extends ChangeNotifier {
     notifyListeners();
   }
 
-//  int? chqnum = 0;
-//   String? transrefff = '';
-//   String cashType = '';
-//   String creditType = '';
-//   String cardType = '';
-//   String chequeType = '';
-//   String
-//   String walletType = '';
-//   String pointType = '';
-//   String accType = '';
   removePayment(int i) {
     if (selectedcust != null) {
       if (paymentWay[i].type == "Account Balance") {
@@ -7066,10 +6740,6 @@ class PosController extends ChangeNotifier {
     "Terminal - 2",
     "Terminal - 3",
     "Terminal - 4",
-    // "HDFC Machine",
-    // 'Pinelabs Machine - 1',
-    // 'Pinelabs - Accessories',
-    // 'Pinelabs - 2nd Counter'
   ];
   List get getpayTerminal => payTerminal;
 
@@ -7156,6 +6826,7 @@ class PosController extends ChangeNotifier {
             basic: getDBholdSalesLine[ik]['basic'] != null
                 ? double.parse(getDBholdSalesLine[ik]['basic'].toString())
                 : 00,
+            shipDate: getDBholdSalesLine[ik]['ShipDate'].toString(),
             netvalue: getDBholdSalesLine[ik]['netlinetotal'] != null
                 ? double.parse(
                     getDBholdSalesLine[ik]['netlinetotal'].toString())
@@ -7331,9 +7002,9 @@ class PosController extends ChangeNotifier {
             db, salesmodl[ih].cardCode.toString());
     selectedcust = CustomerDetals(
       name: '',
-      // custData[0]['customername'].toString(),
       taxCode: custData[0]['taxCode'].toString(),
       phNo: custData[0]['phoneno1'].toString(),
+      U_CashCust: custData[0]['U_CASHCUST'].toString(),
       cardCode: custData[0]['customerCode'].toString(),
       accBalance: double.parse(custData[0]['balance'].toString()),
       point: custData[0]['points'].toString(),
@@ -7343,6 +7014,7 @@ class PosController extends ChangeNotifier {
     );
     selectedcust55 = CustomerDetals(
       name: custData[0]['customername'].toString(),
+      U_CashCust: custData[0]['U_CASHCUST'].toString(),
       taxCode: custData[0]['taxCode'].toString(),
       phNo: custData[0]['phoneno1'].toString(),
       cardCode: custData[0]['customerCode'].toString(),
@@ -7358,19 +7030,15 @@ class PosController extends ChangeNotifier {
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditDaysData != null) {
-          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
           selectedcust!.creditDays =
               value.creditDaysData![0].creditDays.toString();
           selectedcust!.paymentGroup =
               value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+          if (selectedcust!.U_CashCust == 'YES') {
             selectedcust!.name = '';
           } else {
             selectedcust!.name = custData[0]['customername'].toString();
           }
-          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
           notifyListeners();
         }
         loadingscrn = false;
@@ -7425,6 +7093,7 @@ class PosController extends ChangeNotifier {
     for (int i = 0; i < salesmodl[ih].item!.length; i++) {
       scanneditemData.add(StocksnapModelData(
           uPackSize: salesmodl[ih].item![i].uPackSize ?? 0,
+          shipDate: '',
           uTINSPERBOX: salesmodl[ih].item![i].uTINSPERBOX ?? 0,
           uSpecificGravity: salesmodl[ih].item![i].uSpecificGravity ?? 0,
           maxdiscount: salesmodl[ih].item![i].maxdiscount,
@@ -7496,7 +7165,6 @@ class PosController extends ChangeNotifier {
   }
 
   calculatescheme(BuildContext context, ThemeData theme) async {
-    // double discount = 0;
     for (int i = 0; i < scanneditemData.length; i++) {
       discountcontroller[i].text = 0.0.toString();
       scanneditemData[i].discountper = 0.0;
@@ -7634,26 +7302,16 @@ class PosController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // itemselect(int index) {
-  //   openOrdLineList![index].invoiceClr = 1;
-  //   openOrdLineList![index].checkBClr = true;
-  //   notifyListeners();
-  // }
-
   newadditemlistcount() {
     addIndex = [];
     for (var ik = 0; ik < openOrdLineList!.length; ik++) {
-      // log('addIndexaddIndex::11');
-
       if (openOrdLineList![ik].checkBClr == true) {
         addIndex.add(ik.toString());
         notifyListeners();
       }
     }
     if (addIndex.isNotEmpty) {
-      for (var ik = 0; ik < addIndex.length; ik++) {
-        // log('addIndexaddIndex::${addIndex[ik].toString()}');
-      }
+      for (var ik = 0; ik < addIndex.length; ik++) {}
       notifyListeners();
     }
   }
@@ -8140,6 +7798,7 @@ class PosController extends ChangeNotifier {
                   lineData[i]['docentry'].toString()) {
                 scannData.add(StocksnapModelData(
                     basedocentry: lineData[i]['docentry'].toString(),
+                    shipDate: lineData[i]['ShipDate'].toString(),
                     sapbasedocentry:
                         int.parse(getheaderData[ik]['sapDocentry'].toString()),
                     baselineid: lineData[i]['lineID'].toString(),
@@ -8585,13 +8244,11 @@ class PosController extends ChangeNotifier {
   }
 
   soInvoiceScan(String sBatch, BuildContext context, ThemeData theme) async {
-    // log("Step1:::$sBatch");
     int? indx = await selectsalesorderlist();
-    // log("Step2:::$indx");
 
     if (indx != null) {
       int? sindx = await soScanBatch(sBatch, context, theme, indx);
-      // log('sindxsindxsindx::$sindx');
+
       if (sindx != null) {
         cccddd(context, theme, sindx, indx);
         notifyListeners();
@@ -8997,10 +8654,7 @@ class PosController extends ChangeNotifier {
         vatNoController.text = openSalesOrd[ij].uVATNUMBER ?? '';
         orderCustname = openSalesOrd[ij].cardName.toString();
         for (var i = 0; i < openOrdLine!.length; i++) {
-          // if (openOrdLineList![i].docEntry == docentryy) {
           if (openOrdLine![i].docEntry == openSalesOrd[ij].docEntry) {
-            // log('openOrdLineList![i].upack::${openOrdLine![i].uPackSize}');
-
             openOrdLineList!.add(OpenSalesOrderLineData(
                 price: openOrdLine![i].price,
                 stock: openOrdLine![i].stock,
@@ -9022,13 +8676,9 @@ class PosController extends ChangeNotifier {
         }
       }
     }
-    // if (openOrdLineList!.isNotEmpty) {
-    //   for (var i = 0; i < openOrdLineList!.length; i++) {
-    //     soListController[i].text = openOrdLineList![i].openQty.toString();
-    //   }
 
     notifyListeners();
-    // }
+
     notifyListeners();
     log('openOrdLineListListopenOrdLineListList::${openOrdLineList!.length}');
   }
@@ -9144,10 +8794,9 @@ class PosController extends ChangeNotifier {
 
     for (int ihk = 0; ihk < openOrdLineList!.length; ihk++) {
       log('openOrdLineList![ihk].valueInsert ::${openOrdLineList![ihk].valueInsert}');
-      // for (int im = 0; im < soScanItem.length; im++) {
+
       if (openOrdLineList![ihk].valueInsert == true &&
           soListController[ihk].text.isNotEmpty) {
-        // if (scanneditemData.isEmpty) {
         scanneditemData.add(StocksnapModelData(
           branch: openOrdLineList![ihk].whsCode,
           itemCode: openOrdLineList![ihk].itemCode,
@@ -9174,48 +8823,7 @@ class PosController extends ChangeNotifier {
           inType: '',
         ));
       }
-      // else {
-      //   for (var iz = 0; iz < scanneditemData.length; iz++) {
-      //     log('message:::${scanneditemData[iz].itemCode}');
-      //     if (
-      //         // soScanItem[im].itemCode.toString() !=
-      //         //       scanneditemData[iz].itemCode &&
-      //         openOrdLineList![ihk].itemCode.toString() ==
-      //             soScanItem[im].itemCode.toString()) {
-      //       if (openOrdLineList![ihk].itemCode.toString() !=
-      //           scanneditemData[iz].itemCode) {
-      //         log('message 22:::$i');
-      //         scanneditemData.add(StocksnapModelData(
-      //           branch: openOrdLineList![ihk].whsCode,
-      //           itemCode: openOrdLineList![ihk].itemCode,
-      //           itemName: openOrdLineList![ihk].description,
-      //           basedocentry: openOrdLineList![ihk].docEntry.toString(),
-      //           baselineid: openOrdLineList![ihk].lineNum.toString(),
-      //           serialBatch: '',
-      //           // qty: int.parse(soqtycontroller[im].text),
-      //           openRetQty: double.parse(soListController[ihk].text),
-      //           // openOrdLineList![ihk].openQty,
-      //           discountper: 0,
-      //           mrp: 0,
 
-      //           sellPrice: openOrdLineList![ihk].price,
-
-      //           inDate: '',
-      //           cost: 0,
-      //           uPackSize: 0,
-      //           uPackSizeuom: '0',
-      //           uSpecificGravity: 0,
-      //           uTINSPERBOX: 0,
-      //           inType: '',
-      //         ));
-      //         notifyListeners();
-      //         break;
-      //       }
-      //     } else {}
-      //       }
-      //     }
-      //   }
-      // }
       notifyListeners();
     }
     log("SO scanneditemData.length::${scanneditemData.length}");
@@ -9238,7 +8846,6 @@ class PosController extends ChangeNotifier {
       }
 
       await callOnHandApi(scanneditemData[il].itemCode.toString(), il);
-      // discountcontroller[il].text = scanneditemData[il].discountper.toString();
     }
     log('soScanItemsoScanItem::${soScanItem.length}');
 
@@ -9250,15 +8857,12 @@ class PosController extends ChangeNotifier {
           batchNumberProperty: soScanItem[ik].serialBatch.toString()));
       notifyListeners();
     }
-    for (var i = 0; i < soBatchTable.length; i++) {
-      // log('s batch qty' + soBatchTable[i].quantity.toString());
-    }
+    for (var i = 0; i < soBatchTable.length; i++) {}
     log('soBatchTablesoBatchTable::${soBatchTable.length}');
     notifyListeners();
     await calCulateDocVal(context, theme);
 
     Get.back();
-    // Navigator.pop(context);
 
     notifyListeners();
   }
@@ -9277,7 +8881,6 @@ class PosController extends ChangeNotifier {
   String? selectedTruckType;
   bool isSelectTruckType = false;
   List<Map<String, String>> internalTruckType = [
-    // {"name": "Select", "value": '0'},
     {"name": "NO", "value": '1'},
     {"name": "YES", "value": '2'},
     {"name": "N/A", "value": '3'},
@@ -9303,7 +8906,6 @@ class PosController extends ChangeNotifier {
   }
 
   Future<void> copyDatabaseToExternalStorage() async {
-    // Request permissions first
     await getPermissionStorage();
 
     final internalDbPath = await getDatabasesPath();
@@ -9485,13 +9087,11 @@ class PosController extends ChangeNotifier {
 
     SalesInvoicePrintAPi.docEntry = sapDocentry;
     SalesInvoicePrintAPi.slpCode = AppConstant.slpCode;
-    // print("SalesInvoicePrintAPi.slpCode: " + SalesInvoicePrintAPi.slpCode.toString());
+
     await SalesInvoicePrintAPi.getGlobalData().then((value) {
       if (value == 200) {
         ondDisablebutton = false;
         notifyListeners();
-
-        // saveAllExcel(SalesInvoicePrintAPi.path.toString(), context, theme);
       } else {
         showSnackBar('Try again!!..', context);
         ondDisablebutton = false;
@@ -9518,7 +9118,7 @@ class PosController extends ChangeNotifier {
       preff, BuildContext context, ThemeData theme) async {
     List<InvoiceItem> itemsList = [];
     invoice = null;
-    // for (int ih = 0; ih < salesmodl.length; ih++) {
+
     addressxx();
     for (int i = 0; i < scanneditemData2.length; i++) {
       itemsList.add(InvoiceItem(

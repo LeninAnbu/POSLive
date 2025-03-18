@@ -784,9 +784,8 @@ class BottomButtonsState extends State<BottomButtons> {
                                       if (context
                                               .read<PosController>()
                                               .selectedcust!
-                                              .paymentGroup!
-                                              .contains('cash') ==
-                                          true) {
+                                              .U_CashCust ==
+                                          'YES') {
                                         log('bbbbbbbb');
                                         if (context
                                             .read<PosController>()

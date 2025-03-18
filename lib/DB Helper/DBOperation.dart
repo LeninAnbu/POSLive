@@ -65,7 +65,7 @@ class DBOperation {
   ) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesOrderHeader where docstatus = "1"''');
-//log("SalesOrderHeadHoldvalueDB:" + result.toString());
+    log("SalesOrderHeadHoldvalueDB:" + result.toString());
     return result;
   }
 
@@ -931,7 +931,7 @@ customerSeriesNum = "${values.customerSeriesNum}",
   ) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesQuotationHeader where docstatus = "1"''');
-    // log("SalesOrderHeadHoldvalueDB:" + result.toString());
+    log("SalesOrderHeadHoldvalueDB:" + result.toString());
     return result;
   }
 
@@ -1730,6 +1730,8 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
       return CustomerModelDB(
         autoid: result[i]['autoid'].toString(),
         customerCode: result[i]['customerCode'].toString(),
+        uCashCust: result[i]['U_CASHCUST'].toString(),
+
         createdUserID: result[i]['createdUserID'].toString(),
         createdateTime: result[i]['createdateTime'].toString(),
         lastupdateIp: result[i]['lastupdateIp'].toString(),
@@ -1767,6 +1769,8 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         createdUserID: result[i]['createdUserID'].toString(),
         createdateTime: result[i]['createdateTime'].toString(),
         lastupdateIp: result[i]['lastupdateIp'].toString(),
+        uCashCust: result[i]['U_CASHCUST'].toString(),
+
         updatedDatetime: result[i]['updatedDatetime'].toString(),
         updateduserid: int.parse(result[i]['updateduserid'].toString()),
         balance: double.parse(result[i]['balance'].toString()),
@@ -1855,7 +1859,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMasterAddress where custcode = "$custCode"''');
     // log("SELECT * FROM  CustomerMasterAddress where autoid = $autoid");
-    log("CustomerMasterAddress: $result");
+    // log("CustomerMasterAddress: $result");
     return result;
   }
 
@@ -3238,7 +3242,7 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
   ) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesReturnHeader where docstatus = "1"''');
-//log("SalesReturnHeader hold::" + result.toString());
+    log("SalesReturnHeader hold::" + result.toString());
     return result;
   }
 
@@ -3727,6 +3731,7 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  Expense where docstatus = "1"''');
+    log('getExpenseDB::$result');
     return result;
   }
 

@@ -14,12 +14,39 @@ class PostApprovalExpenseAPi {
 
   static String? cashAccount;
   static String? seriesType;
+  static String? reference;
 
   static String? payTo;
   static String? remarks;
   static String? docDate;
   static String? cashSum;
+
+  static String? uRvc;
+  // static String? projectCode;
   static List<ExpenseListMoel>? paymentAccounts;
+
+  static method(String? deviceTransID) {
+    final data = json.encode({
+      "DocDate": "$docDate",
+      "DocType": "$docType",
+      "CashAccount": "$cashAccount",
+      "Remarks": "$remarks",
+      "JournalRemarks": "$remarks",
+      "Address": "$payTo",
+      'U_DeviceTransID': deviceTransID,
+      "CounterReference": "$reference",
+      "CashSum": "$cashSum",
+      "U_PosUserCode": UserValues.userCode,
+      "U_PosTerminal": AppConstant.terminal,
+      // "ProjectCode": "$projectCode",
+
+      "U_RVC": '$uRvc',
+      // 'Series': '$seriesType',
+      "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList(),
+    });
+    log('PostApprovalExpenseAPi::$data');
+  }
+
   static Future<SalesQuotStatus> getGlobalData(String? deviceTransID) async {
     try {
       log("Step11");
@@ -42,6 +69,9 @@ class PostApprovalExpenseAPi {
                 "CashSum": "$cashSum",
                 "U_PosUserCode": UserValues.userCode,
                 "U_PosTerminal": AppConstant.terminal,
+                "CounterReference": "$reference",
+
+                "U_RVC": '$uRvc',
                 // 'Series': '$seriesType',
                 "PaymentAccounts":
                     paymentAccounts!.map((e) => e.tojson()).toList(),
@@ -53,11 +83,12 @@ class PostApprovalExpenseAPi {
         "DocType": "$docType",
         // 'Series': '$seriesType',
         "CashAccount": "$cashAccount",
-        // "U_DeviceTransID": deviceTransID,
         "JournalRemarks": "$remarks",
         "Address": "$payTo",
         "Remarks": "$remarks",
         "CashSum": "$cashSum",
+        "CounterReference": "$reference",
+        "U_RVC": '$uRvc',
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
         "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList(),

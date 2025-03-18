@@ -28,4 +28,5 @@ class ConstantRoutes {
   static String showPdf = "/showPdf";
   static String notification = "/Notification";
   static String logout = "/Logout";
+  static String login = "/login";
 }

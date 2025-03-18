@@ -223,9 +223,8 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                             context
                                                     .watch<SOCon>()
                                                     .getselectedcust2!
-                                                    .paymentGroup!
-                                                    .contains('cash') ==
-                                                true
+                                                    .U_CashCust ==
+                                                'YES'
                                         ? TextFormField(
                                             validator: (value) {
                                               if (value!.isEmpty) {
@@ -308,9 +307,8 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                     context
                                             .read<SOCon>()
                                             .selectedcust2!
-                                            .paymentGroup!
-                                            .contains('cash') ==
-                                        true
+                                            .U_CashCust ==
+                                        'YES'
                                 ? TextFormField(
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -935,9 +933,8 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                   context
                                                           .read<SOCon>()
                                                           .selectedcust!
-                                                          .paymentGroup!
-                                                          .contains('cash') ==
-                                                      true
+                                                          .U_CashCust ==
+                                                      'YES'
                                               ? TextFormField(
                                                   onEditingComplete: () {
                                                     context
@@ -1047,9 +1044,8 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                     context
                                                             .watch<SOCon>()
                                                             .getselectedcust!
-                                                            .paymentGroup!
-                                                            .contains('cash') ==
-                                                        true
+                                                            .U_CashCust ==
+                                                        'YES'
                                                 ? TextFormField(
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
@@ -1186,9 +1182,8 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                 context
                                                         .read<SOCon>()
                                                         .selectedcust!
-                                                        .paymentGroup!
-                                                        .contains('cash') ==
-                                                    true
+                                                        .U_CashCust ==
+                                                    'YES'
                                             ? TextFormField(
                                                 validator: (value) {
                                                   if (value!.isEmpty) {

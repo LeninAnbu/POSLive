@@ -63,7 +63,7 @@ class StockOutwardController extends ChangeNotifier {
     getCustDetFDB();
     callOpenReqAPi(context);
     deletereq();
-    // getStockReqData();
+
     gethold();
   }
 
@@ -116,7 +116,7 @@ class StockOutwardController extends ChangeNotifier {
 
   bool searchbool = false;
   List<searchModel> searchData = [];
-  // List<searchModel> filtersearchData = [];
+
   List<StockOutwardList> StockOutward2 = [];
   bool? dbDataTrue = false;
   List<StockOutwardList> savedraftBill = [];
@@ -205,7 +205,7 @@ class StockOutwardController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     qtymycontroller[i].text = modifiedString2.toString();
-    log(qtymycontroller[i].text); // Output: example-text-with-double-dots
+    log(qtymycontroller[i].text);
     notifyListeners();
   }
 
@@ -215,7 +215,7 @@ class StockOutwardController extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     manualQtyCtrl[i].text = modifiedString2.toString();
-    log(manualQtyCtrl[i].text); // Output: example-text-with-double-dots
+    log(manualQtyCtrl[i].text);
     notifyListeners();
   }
 
@@ -236,7 +236,6 @@ class StockOutwardController extends ChangeNotifier {
     StockOutward2.clear();
     openAutoSelect = [];
 
-    // getStockReqData();
     StOutController2[50].text = "";
     StOutController[50].clear();
     StOutController2[50].clear();
@@ -261,7 +260,6 @@ class StockOutwardController extends ChangeNotifier {
       selectIndex = index;
       i_value = index;
 
-      // passdata = StockOutward[index].data;
       notifyListeners();
     } else if (StockOutward[index].data.isEmpty) {
       showDialog(
@@ -380,41 +378,7 @@ class StockOutwardController extends ChangeNotifier {
       }
     });
     selectedcust!.accBalance = updateCustBal ?? customerDetals.accBalance!;
-    // await CustCreditLimitAPi.getGlobalData(customerDetals.cardCode.toString())
-    //     .then((value) {
-    //   if (value.statuscode >= 200 && value.statuscode <= 210) {
-    //     if (value.creditLimitData != null) {
-    //       // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
 
-    //       selectedcust!.creditLimits =
-    //           double.parse(value.creditLimitData![0].creditLine.toString());
-    //       notifyListeners();
-    //     }
-    //   }
-    // });
-
-    // await CustCreditDaysAPI.getGlobalData(customerDetals.cardCode.toString())
-    //     .then((value) {
-    //   if (value.statuscode >= 200 && value.statuscode <= 210) {
-    //     if (value.creditDaysData != null) {
-    //       // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
-    //       selectedcust!.creditDays =
-    //           value.creditDaysData![0].creditDays.toString();
-    //       selectedcust!.paymentGroup =
-    //           value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-    //       log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-    //       if (selectedcust!.paymentGroup!.contains('cash') == true) {
-    //         selectedcust!.name = '';
-    //       } else {
-    //         selectedcust!.name = customerDetals.name!;
-    //       }
-    //       log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
-    //       notifyListeners();
-    //     }
-    //     loadingscrn = false;
-    //   }
-    // });
     selectedcust55 = CustomerDetals(
         autoId: customerDetals.autoId,
         name: customerDetals.name,
@@ -528,13 +492,11 @@ class StockOutwardController extends ChangeNotifier {
     OnclickDisable = true;
     TransferPrintAPi.docEntry = sapDocentry;
     TransferPrintAPi.slpCode = AppConstant.slpCode;
-    // print("TransferPrintAPi.slpCode: " + TransferPrintAPi.slpCode.toString());
+
     TransferPrintAPi.getGlobalData().then((value) {
       notifyListeners();
       if (value == 200) {
         OnclickDisable = false;
-
-        // saveAllExcel(TransferPrintAPi.path.toString(), context, theme);
       } else {
         OnclickDisable = false;
 
@@ -549,7 +511,6 @@ class StockOutwardController extends ChangeNotifier {
     BuildContext context,
     ThemeData theme,
   ) async {
-    // await saveToExcel(valuesddd1, keysList1);
     Get.dialog(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -575,7 +536,7 @@ class StockOutwardController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-                      // const SizedBox(height: 15),
+
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
@@ -662,7 +623,6 @@ class StockOutwardController extends ChangeNotifier {
             batchlistData.add(StockOutSerialbatch(
                 lineno: value.openOutwardData![i].batchLine.toString(),
                 docentry: value.openOutwardData![i].docEntry.toString(),
-                // baseDocentry: lineData[i].docEntry.toString(),
                 itemcode: value.openOutwardData![i].itemCode.toString(),
                 qty: double.parse(value.openOutwardData![i].qty.toString()),
                 serialbatch: value.openOutwardData![i].batchNum.toString()));
@@ -679,7 +639,6 @@ class StockOutwardController extends ChangeNotifier {
                 lastupdateIp: "",
                 lineNo: value.openOutwardData![i].batchLine,
                 qty: value.openOutwardData![i].qty,
-                // status: getDB_StoutLine[j]["createdateTime"].toString(),
                 updatedDatetime: '',
                 updateduserid: 1,
                 price: value.openOutwardData![i].price,
@@ -687,7 +646,6 @@ class StockOutwardController extends ChangeNotifier {
                 taxRate: 0.0,
                 taxType: "",
                 trans_Qty: value.openOutwardData![i].batchQty,
-                // Scanned_Qty:
                 baseDocline: value.openOutwardData![i].batchLine,
                 serialbatchList: batchlistData));
           }
@@ -699,7 +657,6 @@ class StockOutwardController extends ChangeNotifier {
               remarks: filtersearchData[index].comments,
               branch: AppConstant.branch,
               docentry: filtersearchData[index].docEntry.toString(),
-              // baceDocentry: getDB_StoutHeader[0]["baceDocentry"].toString(),
               docstatus: '',
               documentno: filtersearchData[index].docNum.toString(),
               reqfromWhs: filtersearchData[index].uwhsCode,
@@ -737,7 +694,7 @@ class StockOutwardController extends ChangeNotifier {
     filterSerialbatchList = [];
 
     serialBatch = searchcon.text.toString();
-    // print("AAAA2:" + list_i.toString());
+
     OnScanDisable = true;
     batchselectbtndisable = true;
     autoselectbtndisable = false;
@@ -853,7 +810,7 @@ class StockOutwardController extends ChangeNotifier {
   callFetchFromItemApi(int index, String serialBatch, ThemeData theme, int ix,
       BuildContext context) async {
     serialBatch = searchcon.text.toString();
-    // print("AAAA2:" + list_i.toString());
+
     OnScanDisable = true;
     batchselectbtndisable = true;
     autoselectbtndisable = false;
@@ -883,7 +840,7 @@ class StockOutwardController extends ChangeNotifier {
 
       notifyListeners();
     }
-    // for (var ix = 0; ix < passdata!.length; ix++) {
+
     double balQty = StockOutward[index].data[ix].balQty!;
     double scnQty = 0;
     await FetchBatchPdaApi.getGlobalData(
@@ -952,7 +909,7 @@ class StockOutwardController extends ChangeNotifier {
         }
       }
     });
-    // }
+
     notifyListeners();
 
     OnScanDisable = false;
@@ -980,15 +937,6 @@ class StockOutwardController extends ChangeNotifier {
 
     for (var ix = 0; ix < passdata!.length; ix++) {
       if (passdata![ix].listClr == true) {
-        //     itemCodeList.add(passdata![ix].itemcode.toString());
-        //     log('itemcodelist::${itemCodeList.toString()}');
-        //     tempItem = itemCodeList.toString().replaceAll('[', '');
-        //     tempItem2 = tempItem.toString().replaceAll(']', '');
-        //     tempItem2 = tempItem2.toString().replaceAll(' ', '');
-
-        //     log('tempItem2tempItem2::${tempItem2.toString()}');
-        //   }
-        // }
         await AutoSelectApi.getGlobalData(passdata![ix].itemcode.toString())
             .then((value) async {
           if (value.statusCode! >= 200 && value.statusCode! <= 210) {
@@ -1020,7 +968,7 @@ class StockOutwardController extends ChangeNotifier {
                 docstatus: null,
                 docentry: '',
               ));
-              // StockOutward[index].data[ix].serialbatchL ist = serialbatchList;
+
               balQty = balQty - openAutoSelect![i].remQty;
               openAutoSelect![i].remQty = 0;
               notifyListeners();
@@ -1065,7 +1013,6 @@ class StockOutwardController extends ChangeNotifier {
       }
     }
     notifyListeners();
-    // }
 
     OnScanDisable = false;
     serialBatch = "";
@@ -1086,7 +1033,7 @@ class StockOutwardController extends ChangeNotifier {
     print("AAAA1:" + serialBatch.toString());
     msg = "";
     serialBatch = searchcon.text.toString();
-    // if (itemcode == StockOutward[index].data[list_i].itemcode.toString()) {
+
     OnScanDisable = true;
     if (passdata![ix].listClr == true && qtymycontroller[ix].text.isNotEmpty) {
       for (var ik = 0; ik < serialbatchList!.length; ik++) {
@@ -1146,23 +1093,6 @@ class StockOutwardController extends ChangeNotifier {
           }
           await mapItemCodeWiseSoItemData(ix);
 
-          // for (var i = 0; i < openAutoSelect!.length; i++) {
-          //   for (int im = 0;
-          //       im < StockOutward[index].data[ix].serialbatchList!.length;
-          //       im++) {
-          //     if (StockOutward[index]
-          //             .data[ix]
-          //             .serialbatchList![im]
-          //             .serialbatch ==
-          //         openAutoSelect![i].batchNum) {
-          //       qtymycontroller[im].text = StockOutward[index]
-          //           .data[ix]
-          //           .serialbatchList![im]
-          //           .qty!
-          //           .toString();
-          //     }
-          //   }
-          // }
           if (serialbatchList != null) {
             for (var id = 0; id < serialbatchList!.length; id++) {
               if (serialbatchList![id].lineno.toString() ==
@@ -1196,7 +1126,6 @@ class StockOutwardController extends ChangeNotifier {
     });
 
     notifyListeners();
-    // }
 
     OnScanDisable = false;
     serialBatch = "";
@@ -1224,9 +1153,6 @@ class StockOutwardController extends ChangeNotifier {
         docstatus: null,
         docentry: '',
       ));
-      // qty2 = qty2 + double.parse(soScanItem[i].openRetQty.toString());
-
-      // soListController[index].text = qty2.toString();
     }
 
     log('soFilterScanItemsoFilterScanItem::${filterSerialbatchList!.length}');
@@ -1304,7 +1230,7 @@ class StockOutwardController extends ChangeNotifier {
     print("AAAA1:" + serialBatch.toString());
     msg = "";
     serialBatch = searchcon.text.toString();
-    // if (itemcode == StockOutward[index].data[list_i].itemcode.toString()) {
+
     OnScanDisable = true;
     if (selectItemIndex == ix) {
       for (var ik = 0; ik < serialbatchList!.length; ik++) {
@@ -1333,7 +1259,6 @@ class StockOutwardController extends ChangeNotifier {
         openAutoSelect = value.openOutwardData!;
         log('openAutoSelectopenAutoSelect::${openAutoSelect!.length}');
         if (openAutoSelect!.isNotEmpty) {
-          // for (var i = 0; i < openAutoSelect!.length; i++) {
           showDialog(
               barrierDismissible: false,
               context: context,
@@ -1603,53 +1528,6 @@ class StockOutwardController extends ChangeNotifier {
                   ),
                 );
               });
-
-          // if (balQty >= openAutoSelect![i].qty) {
-          // serialbatchList!.add(StockOutSerialbatch(
-          //   lineno: StockOutward[index].data[ix].lineNo.toString(),
-          //   baseDocentry:
-          //       StockOutward[index].data[ix].baseDocentry.toString(),
-          //   itemcode: StockOutward[index].data[ix].itemcode,
-          //   qty: openAutoSelect![i].qty,
-          //   serialbatch: openAutoSelect![i].batchNum.toString(),
-          //   docstatus: null,
-          //   docentry: '',
-          // ));
-          // StockOutward[index].data[ix].serialbatchList = serialbatchList;
-          // balQty = balQty - openAutoSelect![i].qty;
-          // notifyListeners();
-          //   } else {
-          //     serialbatchList!.add(StockOutSerialbatch(
-          //       lineno: StockOutward[index].data[ix].lineNo.toString(),
-          //       baseDocentry:
-          //           StockOutward[index].data[ix].baseDocentry.toString(),
-          //       itemcode: StockOutward[index].data[ix].itemcode,
-          //       qty: balQty,
-          //       serialbatch: openAutoSelect![i].batchNum.toString(),
-          //       docstatus: null,
-          //       docentry: '',
-          //     ));
-          //     StockOutward[index].data[ix].serialbatchList = serialbatchList;
-          //     notifyListeners();
-          //     break;
-          //   }
-          // }
-          // for (var i = 0; i < openAutoSelect!.length; i++) {
-          //   for (int im = 0;
-          //       im < StockOutward[index].data[ix].serialbatchList!.length;
-          //       im++) {
-          //     if (StockOutward[index]
-          //             .data[ix]
-          //             .serialbatchList![im]
-          //             .serialbatch ==
-          //         openAutoSelect![i].batchNum) {
-          //       qtymycontroller[im].text = StockOutward[index]
-          //           .data[ix]
-          //           .serialbatchList![im]
-          //           .qty!
-          //           .toString();
-          //     }
-          //   }
         } else {
           msg = "No Qty Does Not Have...!!";
           for (int im = 0;
@@ -1667,7 +1545,6 @@ class StockOutwardController extends ChangeNotifier {
     });
 
     notifyListeners();
-    // }
 
     OnScanDisable = false;
     serialBatch = "";
@@ -1884,7 +1761,6 @@ class StockOutwardController extends ChangeNotifier {
         notifyListeners();
       }
       searchData.addAll(searchdata2);
-      // filtersearchData = searchData;
     } else {
       searchbool = false;
       searchData.clear();
@@ -1990,7 +1866,7 @@ class StockOutwardController extends ChangeNotifier {
   int qqqttyy = 0;
   qqqqq(int index, String serialBatch, int list_i, String itemcode, im) {
     qqqttyy = 0;
-    // for (int ix = 0; ix < soData.length; ix++) {
+
     for (int im = 0;
         im < StockOutward[index].data[list_i].serialbatchList!.length;
         im++) {
@@ -2059,7 +1935,7 @@ class StockOutwardController extends ChangeNotifier {
     if (itemcode == StockOutward[index].data[list_i].itemcode.toString()) {
       print("AAAA2:" + list_i.toString());
       OnScanDisable = true;
-      // StockOutward[i].data.length;
+
       final Database db = (await DBHelper.getInstance())!;
       msg = "";
       List<Map<String, Object?>> serailbatchCheck =
@@ -2206,7 +2082,6 @@ class StockOutwardController extends ChangeNotifier {
             }
           }
         }
-        // }
 
         notifyListeners();
       } else {
@@ -2341,11 +2216,7 @@ class StockOutwardController extends ChangeNotifier {
       double? totalscanqty = 0;
 
       for (int i = 0; i < data.length; i++) {
-        //   scannedtottal =
-        //       scannedtottal! + data[i].Scanned_Qty! + data[i].trans_Qty!;
-        //   totalReqQty = totalReqQty! + data[i].qty!;
         totalscanqty = data[i].Scanned_Qty!;
-        //   notifyListeners();
       }
       if (totalscanqty == 0) {
         Get.defaultDialog(
@@ -2384,7 +2255,6 @@ class StockOutwardController extends ChangeNotifier {
 
           postingStockOutward(
               '',
-              // tempDocentry,
               index,
               int.parse(StockOutward[index].baceDocentry!),
               data,
@@ -2583,7 +2453,6 @@ class StockOutwardController extends ChangeNotifier {
         reqfromWhs: StockOutward[index].reqfromWhs,
         systime: config.currentDate(),
         reqtoWhs: "",
-        // StockOutward[index].reqtoWhs,
         transdate: config.currentDate(),
         salesexec: "",
         totalitems: 0,
@@ -2717,7 +2586,6 @@ class StockOutwardController extends ChangeNotifier {
 
   postingStockOutward(
       String docstatus,
-      // int docEntry,
       int index,
       int baseentry,
       List<StockOutwardDetails>? data,
@@ -2726,14 +2594,7 @@ class StockOutwardController extends ChangeNotifier {
       ThemeData theme) async {
     await sapLoginApi(context);
     await postOutwardData(
-        docstatus,
-        //  docEntry,
-        index,
-        baseentry,
-        data,
-        datatotal,
-        context,
-        theme);
+        docstatus, index, baseentry, data, datatotal, context, theme);
     notifyListeners();
   }
 
@@ -2749,7 +2610,6 @@ class StockOutwardController extends ChangeNotifier {
           passdata![index].lineNo.toString() ==
               serialbatchList![ik].lineno.toString()) {
         batchTable!.add(StockOutbatch(
-            // lineId: int.parse(serialbatchList![ik].baselineid.toString()),
             quantity: double.parse(serialbatchList![ik].qty.toString()),
             batchNumberProperty: serialbatchList![ik].serialbatch.toString()));
         notifyListeners();
@@ -2769,7 +2629,6 @@ class StockOutwardController extends ChangeNotifier {
       if (passdata![i].insertValue == true) {
         addBatchtable(i);
 
-        // if (passdata![i].serialbatchList != null) {
         StockOutwardLines!.add(StockOutLineModel(
             fromWarehouseCode: UserValues.branch.toString(),
             itemCode: passdata![i].itemcode.toString(),
@@ -2784,7 +2643,6 @@ class StockOutwardController extends ChangeNotifier {
             baseline: passdata![i].baseDocline.toString(),
             batchNumbers: batchTable!,
             baseType: '1250000001'));
-        // }
       }
     }
     notifyListeners();
@@ -2860,9 +2718,6 @@ class StockOutwardController extends ChangeNotifier {
 
         await updateOutWrdStkSnaptab(
             int.parse(sapDocentry.toString()), int.parse(baseentry.toString()));
-
-        // await PostRabitMq2(int.parse(docEntryId.toString()),
-        //     baseentry.toString(), RequestedWarehouse.toString());
 
         await Get.defaultDialog(
           title: "Success",
@@ -3162,12 +3017,9 @@ class StockOutwardController extends ChangeNotifier {
         }
         if (passdata!.isNotEmpty) {
           for (var i = 0; i < passdata!.length; i++) {
-            // qtymycontroller[i].text = passdata![i].balQty.toString();
             if (selectAll == true) {
               notifyListeners();
               selectAllItem();
-
-              // mapItemCodeWiseSoAllData();
             } else {
               mapItemCodeWiseSoItemData(i);
             }
@@ -3287,9 +3139,6 @@ class StockOutwardController extends ChangeNotifier {
         reqdocno: StockOutward[index].documentno,
         docseries: "",
         docseriesno: 0,
-        //       PostStkOutwardAPi.fromWarehouse = UserValues.branch;
-        // PostStkOutwardAPi.toWarehouse = StockOutward[index].reqtoWhs;
-        // PostStkOutwardAPi.ureqWarehouse = StockOutward[index].u_reqWhs;
         doctime: config.currentDate(),
         reqfromWhs: UserValues.branch,
         systime: config.currentDate(),
@@ -3513,9 +3362,7 @@ class StockOutwardController extends ChangeNotifier {
     for (int i = 0; i < getDBStOutHead.length; i++) {
       List<Map<String, Object?>> getDBStOutLine =
           await DBOperation.holdStOutLineDB2(
-              db,
-              // int.parse(getDBStOutHead[i]["baseDocentry"].toString()),
-              int.parse(getDBStOutHead[i]["docentry"].toString()));
+              db, int.parse(getDBStOutHead[i]["docentry"].toString()));
       Stout_Line = [];
       for (int j = 0; j < getDBStOutLine.length; j++) {
         List<Map<String, Object?>> getDBStOutBatch =
@@ -3636,7 +3483,6 @@ class StockOutwardController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // DateTime? currentBackPressTime;
   Future<bool> onbackpress3() {
     final now = DateTime.now();
 
@@ -3782,10 +3628,6 @@ class StockOutwardController extends ChangeNotifier {
         await DBOperation.addgetCstmMasAddDB(
             db, StockOut[index].cardCode.toString());
 
-    // await mapCustomer(
-    //   getcustomer,
-    //   getcustaddd,
-    // );
     notifyListeners();
   }
 
@@ -4294,15 +4136,11 @@ class StockOutwardController extends ChangeNotifier {
     Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-    // properties.headers = {"Branch": AppConstant.branch};
-    // exchange.publish(ddd, "", properties: properties);
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
 
     //to
-    // properties.headers = {"Branch": toWhs};
-    // exchange.publish(ddd, "", properties: properties);
 
     client1.close();
   }
@@ -4345,9 +4183,6 @@ class StockOutwardController extends ChangeNotifier {
 
     //cs
 
-    // properties.headers = {"Branch": "Server"};
-    // exchange.publish(ddd, "", properties: properties);
-
     properties.headers = {"Branch": toWhs};
     exchange.publish(ddd, "", properties: properties);
 
@@ -4385,8 +4220,7 @@ class StockOutwardController extends ChangeNotifier {
   mapCallOutwardForPDF(preff, BuildContext context, ThemeData theme) async {
     List<InvoiceItem> itemsList = [];
     invoice = null;
-    // for (int ih = 0; ih < salesmodl.length; ih++) {
-    // await addressxx();
+
     for (int i = 0; i < StockOutward2[0].data.length; i++) {
       log('StockOutward2[0].data.length:::${StockOutward2[0].data.length}');
 
@@ -4396,8 +4230,6 @@ class StockOutwardController extends ChangeNotifier {
         unitPrice:
             double.parse(StockOutward2[0].data[i].price!.toStringAsFixed(2)),
         quantity: double.parse((StockOutward2[0].data[i].qty.toString())),
-        // dics: scanneditemData2[i].discountper ?? 0,
-        // vat: double.parse(scanneditemData2[i].taxvalue!.toStringAsFixed(2)),
       ));
       notifyListeners();
     }
@@ -4425,18 +4257,9 @@ class StockOutwardController extends ChangeNotifier {
         customerName: selectedcust2!.name ?? '',
         address: '',
         //custDetails[0].address ?? '',
-        // printerName: custDetails[0].printHeadr ?? '',
+
         mobile:
             selectedcust2!.phNo!.isEmpty ? '' : selectedcust2!.phNo.toString(),
-        // city: address2.isEmpty || address2[0].billCity.isEmpty
-        //     ? ''
-        //     : address2[0].billCity.toString(),
-        // area: address2.isEmpty || address2[0].address3!.isEmpty
-        //     ? ''
-        //     : address2[0].address3.toString(),
-        // pin: address2.isEmpty || address2[0].billPincode.isEmpty
-        //     ? ''
-        //     : address2[0].billPincode.toString(),
       ),
       items: itemsList,
     );
@@ -4451,25 +4274,19 @@ class StockOutwardController extends ChangeNotifier {
       for (int i = 0; i < invoice!.items!.length; i++) {
         invoice!.items![i].basic =
             (invoice!.items![i].quantity!) * (invoice!.items![i].unitPrice!);
-        // invoice!.items![i].discountamt =
-        //     (invoice!.items![i].basic! * invoice!.items![i].dics! / 100);
+
         invoice!.items![i].netTotal = (invoice!.items![i].basic!);
-        //  - (invoice!.items![i].discountamt!);
+
         PDFOutwardpi.exclTxTotal =
             (PDFOutwardpi.exclTxTotal) + (invoice!.items![i].netTotal!);
-        // PDFOutwardpi.vatTx = (PDFOutwardpi.vatTx) +
-        //     double.parse(invoice!.items![i].vat.toString());
+
         PDFOutwardpi.inclTxTotal =
             double.parse(invoice!.items![i].unitPrice.toString());
-        // double.parse(invoice!.items![i].vat.toString());
+
         PDFOutwardpi.pails = 0;
-        // PDFOutwardpi.pails! + invoice!.items![i].pails!;
-        // PDFOutwardpi.cartons =
-        //     PDFOutwardpi.cartons! + invoice!.items![i].cartons!;
-        // PDFOutwardpi.looseTins =
-        //     PDFOutwardpi.looseTins! + invoice!.items![i].looseTins!;
+
         PDFOutwardpi.tonnage = 0;
-        // PDFOutwardpi.tonnage! + invoice!.items![i].tonnage!;
+
         notifyListeners();
       }
       PDFOutwardpi.totalPack =

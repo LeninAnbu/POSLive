@@ -411,6 +411,13 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                   .tinNoController
                                                   .text = '';
                                               context
+                                                      .read<SOCon>()
+                                                      .itemListDateCtrl2 =
+                                                  List.generate(
+                                                      200,
+                                                      (i) =>
+                                                          TextEditingController());
+                                              context
                                                   .read<SOCon>()
                                                   .vatNoController
                                                   .text = '';
@@ -447,6 +454,14 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                   .text = "";
                                               context.read<SOCon>().cancelbtn =
                                                   false;
+                                              context
+                                                  .read<SOCon>()
+                                                  .warehousectrl[1]
+                                                  .text = '';
+                                              context
+                                                  .read<SOCon>()
+                                                  .warehousectrl[0]
+                                                  .text = '';
                                             });
                                           },
                                           child: Container(
@@ -878,9 +893,8 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                     context
                                                             .read<SOCon>()
                                                             .selectedcust!
-                                                            .paymentGroup!
-                                                            .contains('cash') ==
-                                                        true) {
+                                                            .U_CashCust ==
+                                                        'YES') {
                                                   log('bbbbbbbb');
                                                   if (context
                                                       .read<SOCon>()

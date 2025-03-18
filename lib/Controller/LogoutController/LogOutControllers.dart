@@ -72,6 +72,8 @@ class LogoutCtrl extends ChangeNotifier {
     await SharedPref.clearTerminal();
     await SharedPref.clrBranchSSP();
     await SharedPref.clrUserIdSP();
+    await SharedPref.clearDatadonld();
+    await SharedPref.clearLoggedINSP();
     await SharedPref.clrdsappassword();
     await SharedPref.clrsapusername();
     context.read<LoginController>().mycontroller[0].text = '';
@@ -80,8 +82,9 @@ class LogoutCtrl extends ChangeNotifier {
     context.read<LoginController>().mycontroller[4].text = '';
     context.read<LoginController>().mycontroller[5].text = '';
 
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Get.offAllNamed(ConstantRoutes.login);
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) => const LoginScreen()));
 
     notifyListeners();
   }

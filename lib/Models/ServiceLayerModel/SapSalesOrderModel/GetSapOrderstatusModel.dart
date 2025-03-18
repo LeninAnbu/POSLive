@@ -46,7 +46,7 @@ class SapSalesOrderModel {
   // String summeryType;
   // dynamic contactPersonCode;
   // String showScn;
-  // int series;
+  int series;
   // DateTime taxDate;
   // String partialSupply;
   // String docObjectCode;
@@ -384,7 +384,7 @@ class SapSalesOrderModel {
     // required this.summeryType,
     // required this.contactPersonCode,
     // required this.showScn,
-    // required this.series,
+    required this.series,
     // required this.taxDate,
     // required this.partialSupply,
     // required this.docObjectCode,
@@ -731,7 +731,7 @@ class SapSalesOrderModel {
         // summeryType: json["SummeryType"],
         // contactPersonCode: json["ContactPersonCode"],
         // showScn: json["ShowSCN"],
-        // series: json["Series"],
+        series: json["Series"] ?? '',
         // taxDate: DateTime.parse(json["TaxDate"]),
         // partialSupply: json["PartialSupply"],
         // docObjectCode: json["DocObjectCode"],
@@ -989,7 +989,7 @@ class SapSalesOrderModel {
         uTruckInternal: json["U_Truck_Internal"],
         uGpApproval: json["U_GP_Approval"].toString(),
         // uSupplierName: json["U_SUPPLIER_NAME"],
-        uVatNumber: json["U_VAT_NUMBER"]??'',
+        uVatNumber: json["U_VAT_NUMBER"] ?? '',
         uTransferType: json["U_Transfer_Type"],
         // uSalesOrder: json["U_Sales_Order"],
         // uReceived: json["U_Received"]??'1',
@@ -1003,7 +1003,7 @@ class SapSalesOrderModel {
         uReceivedDate: json["U_Received_Date"],
         // uExpiryDate: json["U_Expiry_Date"],
         // uCnType: json["U_CN_Type"],
-        uTinNo: json["U_TinNO"]??'',
+        uTinNo: json["U_TinNO"] ?? '',
         // uLpoNo: json["U_LPONo"],
         // uOrderQty: json["U_OrderQty"],
         // uDispatchDate: json["U_Dispatch_Date"],
@@ -1068,7 +1068,7 @@ class SapSalesOrderModel {
       documentLines: [],
       error: ErrorModel.fromJson(json['error']),
       docDate: '', uTruckInternal: '',
-      docDueDate: '',
+      docDueDate: '', series: 0,
     );
   }
   factory SapSalesOrderModel.expError(String json, int statuscode) {
@@ -1077,6 +1077,7 @@ class SapSalesOrderModel {
       // odataMetadata: '',
       // odataEtag: '',
       docEntry: 0,
+      series: 0,
       docNum: 0,
       comments: '',
       uOrderType: '',
@@ -1139,7 +1140,7 @@ class SapSalesOrderModel {
         // "SummeryType": summeryType,
         // "ContactPersonCode": contactPersonCode,
         // "ShowSCN": showScn,
-        // "Series": series,
+        "Series": series,
         // "TaxDate": "${taxDate.year.toString().padLeft(4, '0')}-${taxDate.month.toString().padLeft(2, '0')}-${taxDate.day.toString().padLeft(2, '0')}",
         // "PartialSupply": partialSupply,
         // "DocObjectCode": docObjectCode,
@@ -1706,7 +1707,7 @@ class OrderDocumentLine {
   double quantity;
   String lineStatus;
 
-  // DateTime shipDate;
+  String shipDate;
   // double price;
   // double priceAfterVat;
   // String currency;
@@ -1714,7 +1715,7 @@ class OrderDocumentLine {
   double discountPercent;
   // dynamic vendorNum;
   // dynamic serialNum;
-  // String warehouseCode;
+  String warehouseCode;
   // int salesPersonCode;
   // double commisionPercent;
   // String treeType;
@@ -1938,7 +1939,7 @@ class OrderDocumentLine {
     required this.itemCode,
     required this.itemDescription,
     required this.quantity,
-    // required this.shipDate,
+    required this.shipDate,
     // required this.price,
     // required this.priceAfterVat,
     // required this.currency,
@@ -1946,7 +1947,7 @@ class OrderDocumentLine {
     required this.discountPercent,
     // required this.vendorNum,
     // required this.serialNum,
-    // required this.warehouseCode,
+    required this.warehouseCode,
     // required this.salesPersonCode,
     // required this.commisionPercent,
     // required this.treeType,
@@ -2173,7 +2174,7 @@ class OrderDocumentLine {
         itemCode: json["ItemCode"] ?? '',
         itemDescription: json["ItemDescription"] ?? '',
         quantity: json["Quantity"] ?? '',
-        // shipDate: DateTime.parse(json["ShipDate"]),
+        shipDate: json["ShipDate"].toString(),
         // price: json["Price"],
         // priceAfterVat: json["PriceAfterVAT"] ?? '',
         // currency: json["Currency"] ?? '',
@@ -2181,7 +2182,7 @@ class OrderDocumentLine {
         discountPercent: json["DiscountPercent"] ?? '',
         // vendorNum: json["VendorNum"] ?? '',
         // serialNum: json["SerialNum"] ?? '',
-        // warehouseCode: json["WarehouseCode"] ?? '',
+        warehouseCode: json["WarehouseCode"] ?? '',
         // salesPersonCode: json["SalesPersonCode"] ?? '',
         // commisionPercent: json["CommisionPercent"] ?? '',
         // treeType: json["TreeType"] ?? '',
@@ -2407,7 +2408,7 @@ class OrderDocumentLine {
         "ItemCode": itemCode,
         "ItemDescription": itemDescription,
         "Quantity": quantity,
-        // "ShipDate":
+        "ShipDate": shipDate,
         //     "${shipDate.year.toString().padLeft(4, '0')}-${shipDate.month.toString().padLeft(2, '0')}-${shipDate.day.toString().padLeft(2, '0')}",
         // "Price": price,
         // "PriceAfterVAT": priceAfterVat,
@@ -2416,7 +2417,7 @@ class OrderDocumentLine {
         "DiscountPercent": discountPercent,
         // "VendorNum": vendorNum,
         // "SerialNum": serialNum,
-        // "WarehouseCode": warehouseCode,
+        "WarehouseCode": warehouseCode,
         // "SalesPersonCode": salesPersonCode,
         // "CommisionPercent": commisionPercent,
         // "TreeType": treeType,

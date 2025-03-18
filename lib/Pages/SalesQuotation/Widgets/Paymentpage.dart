@@ -146,9 +146,7 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                               .watch<SalesQuotationCon>()
                                               .getScanneditemData2
                                               .isNotEmpty &&
-                                          context
-                                                  .watch<SalesQuotationCon>()
-                                                  .totalPayment2 !=
+                                          context.watch<SalesQuotationCon>().totalPayment2 !=
                                               null
                                       ? Text(
                                           context.watch<SalesQuotationCon>().totalPayment2 != null &&
@@ -161,8 +159,7 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                                   .total!
                                                   .toString()
                                               : '0.00',
-                                          style: widget
-                                              .theme.textTheme.bodyMedium
+                                          style: widget.theme.textTheme.bodyMedium
                                               ?.copyWith())
                                       : context
                                                   .watch<SalesQuotationCon>()
@@ -174,18 +171,19 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                               "0",
                                             )
                                           : Text(
-                                              context
-                                                  .watch<SalesQuotationCon>()
-                                                  .totalPayment!
-                                                  .total!
-                                                  .toString(),
+                                              context.watch<SalesQuotationCon>().totalPayment != null
+                                                  ? context
+                                                      .watch<SalesQuotationCon>()
+                                                      .totalPayment!
+                                                      .total!
+                                                      .toString()
+                                                  : '0.00',
                                               style: widget.theme.textTheme.bodyMedium?.copyWith()))
                             ],
                           ),
                         ],
                       ),
                     ),
-                   
                     context
                             .watch<SalesQuotationCon>()
                             .getScanneditemData2
@@ -279,7 +277,7 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   borderSide:
                                       const BorderSide(color: Colors.grey),
                                 ),
-                                 isDense: true,
+                                isDense: true,
                                 contentPadding: const EdgeInsets.symmetric(
                                   vertical: 10,
                                   horizontal: 10,
@@ -347,13 +345,18 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   ? const Text("0.00")
                                   : Text(
                                       context
-                                          .watch<SalesQuotationCon>()
-                                          .config
-                                          .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment !=
+                                              null
+                                          ? context
                                               .watch<SalesQuotationCon>()
-                                              .totalPayment!
-                                              .subtotal!
-                                              .toStringAsFixed(2)),
+                                              .config
+                                              .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment!
+                                                  .subtotal!
+                                                  .toStringAsFixed(2))
+                                          : "0.00",
                                       style: widget.theme.textTheme.bodyMedium
                                           ?.copyWith(),
                                     ),
@@ -412,13 +415,18 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   ? const Text("0.00")
                                   : Text(
                                       context
-                                          .watch<SalesQuotationCon>()
-                                          .config
-                                          .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment !=
+                                              null
+                                          ? context
                                               .watch<SalesQuotationCon>()
-                                              .totalPayment!
-                                              .discount!
-                                              .toStringAsFixed(2)),
+                                              .config
+                                              .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment!
+                                                  .discount!
+                                                  .toStringAsFixed(2))
+                                          : '0.00',
                                       style: widget.theme.textTheme.bodyMedium
                                           ?.copyWith(),
                                     ),
@@ -477,13 +485,18 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   ? const Text("0.00")
                                   : Text(
                                       context
-                                          .watch<SalesQuotationCon>()
-                                          .config
-                                          .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment !=
+                                              null
+                                          ? context
                                               .watch<SalesQuotationCon>()
-                                              .totalPayment!
-                                              .taxable!
-                                              .toStringAsFixed(2)),
+                                              .config
+                                              .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment!
+                                                  .taxable!
+                                                  .toStringAsFixed(2))
+                                          : '0.00',
                                       style: widget.theme.textTheme.bodyMedium
                                           ?.copyWith(),
                                     ),
@@ -542,13 +555,18 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   ? const Text("0.00")
                                   : Text(
                                       context
-                                          .watch<SalesQuotationCon>()
-                                          .config
-                                          .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment !=
+                                              null
+                                          ? context
                                               .watch<SalesQuotationCon>()
-                                              .totalPayment!
-                                              .totalTX!
-                                              .toStringAsFixed(2)),
+                                              .config
+                                              .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment!
+                                                  .totalTX!
+                                                  .toStringAsFixed(2))
+                                          : '0.00',
                                       style: widget.theme.textTheme.bodyMedium
                                           ?.copyWith(),
                                     ),
@@ -607,13 +625,18 @@ class _SQuotationPayDetailsState extends State<SQuotationPayDetails> {
                                   ? const Text("0.00")
                                   : Text(
                                       context
-                                          .watch<SalesQuotationCon>()
-                                          .config
-                                          .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment !=
+                                              null
+                                          ? context
                                               .watch<SalesQuotationCon>()
-                                              .totalPayment!
-                                              .totalDue!
-                                              .toStringAsFixed(2)),
+                                              .config
+                                              .splitValues(context
+                                                  .watch<SalesQuotationCon>()
+                                                  .totalPayment!
+                                                  .totalDue!
+                                                  .toStringAsFixed(2))
+                                          : '0.00',
                                       style: widget.theme.textTheme.bodyMedium
                                           ?.copyWith(),
                                     ),

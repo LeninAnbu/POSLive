@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
@@ -76,6 +78,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                 .mycontroller[9],
                                             readOnly: true,
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               fillColor: Colors.grey[300],
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
@@ -108,10 +114,77 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         ),
                                       ],
                                     ),
-
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Pay To',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          color: Colors.grey[300],
+
+                                          width: Screens.width(context) * 0.50,
+                                          //  height: Screens.padingHeight(context) * 0.06,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .mycontroller[22],
+                                            validator: (data) {
+                                              if (data!.isEmpty) {
+                                                return "Required*";
+                                              }
+                                              return null;
+                                            },
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
+                                              labelText: '',
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,6 +209,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                 .mycontroller[10],
                                             readOnly: true,
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               fillColor: Colors.grey[300],
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
@@ -170,7 +247,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       // mainAxisAlignment:MainAxisAlignment.spaceBetween ,
@@ -195,6 +272,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             keyboardType: TextInputType.number,
                                             readOnly: true,
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               fillColor: Colors.grey[300],
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
@@ -229,7 +310,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       children: [
@@ -261,6 +342,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               return null;
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -292,19 +377,22 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         ),
                                       ],
                                     ),
-                                    // SizedBox(
-                                    //   height: Screens.padingHeight(context) * 0.03,
-                                    // ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
                                     // Row(
                                     //   children: [
                                     //     SizedBox(
-                                    //         width: Screens.width(context) * 0.30,
+                                    //         width:
+                                    //             Screens.width(context) * 0.30,
                                     //         //color: Colors.amber,
                                     //         child: Text(
                                     //           'Paid To',
                                     //           style: theme.textTheme.bodyLarge
                                     //               ?.copyWith(
-                                    //                   fontWeight: FontWeight.bold),
+                                    //                   fontWeight:
+                                    //                       FontWeight.bold),
                                     //         )),
                                     //     Container(
                                     //       width: Screens.width(context) * 0.50,
@@ -324,7 +412,8 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     //             borderSide: const BorderSide(
                                     //                 color: Colors.red),
                                     //           ),
-                                    //           focusedErrorBorder: OutlineInputBorder(
+                                    //           focusedErrorBorder:
+                                    //               OutlineInputBorder(
                                     //             borderRadius:
                                     //                 BorderRadius.circular(5),
                                     //             borderSide: const BorderSide(
@@ -348,15 +437,17 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     //   ],
                                     // ),
                                     // SizedBox(
-                                    //   height: Screens.padingHeight(context) * 0.03,
+                                    //   height:
+                                    //       Screens.padingHeight(context) * 0.03,
                                     // ),
                                     // Row(
                                     //   children: [
-                                    //     SizedBox(
-
+                                    //     Container(
+                                    //         color: Colors.grey[300],
                                     //         //   color: Colors.amber,
 
-                                    //         width: Screens.width(context) * 0.30,
+                                    //         width:
+                                    //             Screens.width(context) * 0.30,
                                     //         child: Text('Paid From',
                                     //             style: theme.textTheme.bodyLarge
                                     //                 ?.copyWith(
@@ -377,12 +468,12 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
 
                                     //       //   ),
 
-                                    //       decoration:
-                                    //           BoxDecoration(color: Colors.grey[300]
+                                    //       decoration: BoxDecoration(
+                                    //           color: Colors.grey[300]
 
-                                    //               //color: Colors.amber,
+                                    //           //color: Colors.amber,
 
-                                    //               ),
+                                    //           ),
                                     //       child: TextFormField(
                                     //         // style: theme.textTheme.bodyMedium!.copyWith(
                                     //         //   color: Colors.grey[300]
@@ -411,10 +502,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     //     ),
                                     //   ],
                                     // ),
-                                    SizedBox(
-                                      height:
-                                          Screens.padingHeight(context) * 0.03,
-                                    ),
+
                                     Row(
                                       children: [
                                         SizedBox(
@@ -438,6 +526,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                 .mycontroller[14],
                                             readOnly: true,
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               fillColor: Colors.grey[300],
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
@@ -472,7 +564,256 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                         height: Screens.padingHeight(context) *
-                                            0.03),
+                                            0.01),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Tax Code',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          color: Colors.grey[300],
+                                          width: Screens.width(context) * 0.50,
+                                          // height: Screens.padingHeight(context) * 0.06,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .mycontroller[19],
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
+                                              labelText: '',
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                            // color: Colors.grey[300],
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Dist Rule',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          color: Colors.grey[300],
+                                          width: Screens.width(context) * 0.50,
+                                          // height: Screens.padingHeight(context) * 0.06,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .mycontroller[20],
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
+                                              labelText: '',
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            //color: Colors.amber,
+                                            child: Text(
+                                              'Receipt Verification Code',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          color: Colors.grey[300],
+
+                                          width: Screens.width(context) * 0.50,
+                                          // height: Screens.padingHeight(context) * 0.06,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .uRvcController[1],
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
+                                              labelText: '',
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Project Code',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          color: Colors.grey[300],
+                                          width: Screens.width(context) * 0.50,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .uRvcController[2],
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                            // onChanged: (value) {
+                                            //   setState(() {
+                                            //     context
+                                            //         .read<ExpenseController>()
+                                            //         .selectProjectCode(
+                                            //             value.toString());
+                                            //   });
+                                            // }
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
                                     Row(
                                       children: [
                                         SizedBox(
@@ -503,6 +844,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               // });
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               suffixIcon: IconButton(
                                                   onPressed: () {},
                                                   icon: const Icon(
@@ -564,6 +909,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                       ? 'Required*'
                                                       : null,
                                               decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
                                                 errorBorder: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(5),
@@ -610,7 +959,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                     ));
                                               }).toList(),
                                               hint: const Text(
-                                                "Choose Expense code",
+                                                "Choose expense code",
                                                 style: TextStyle(
                                                     color: Colors.black54,
                                                     fontSize: 14,
@@ -646,7 +995,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         : Container(),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -675,6 +1024,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               return null;
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -708,7 +1061,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -737,6 +1090,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               return null;
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -770,7 +1127,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     // Row(
                                     //   children: [
@@ -792,7 +1149,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     //       decoration: const BoxDecoration(),
                                     //       child: DropdownButtonFormField<String>(
 
-                                    //           //           hint: Text('Expense code'),
+                                    //
                                     //           validator: (value) => value == null
                                     //               ? 'field required'
                                     //               : null,
@@ -968,6 +1325,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                   .disableKeyBoard(context);
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -1001,7 +1362,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       children: [
@@ -1036,6 +1397,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               return null;
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               suffixIcon:
                                                   Icon(Icons.calendar_month),
                                               labelText: '',
@@ -1071,7 +1436,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       children: [
@@ -1109,6 +1474,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             //   return null;
                                             // },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               labelText: '',
                                               errorBorder: OutlineInputBorder(
                                                 borderRadius:
@@ -1142,7 +1511,355 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     ),
                                     SizedBox(
                                       height:
-                                          Screens.padingHeight(context) * 0.03,
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Tax Code',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: const BoxDecoration(),
+                                          child: DropdownButtonFormField(
+                                              // validator: (value) =>
+                                              //     value == null
+                                              //         ? 'Required*'
+                                              //         : null,
+                                              decoration: InputDecoration(
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              icon: const Icon(
+                                                  Icons.arrow_drop_down),
+                                              value: context
+                                                  .watch<ExpenseController>()
+                                                  .taxName,
+                                              items: context
+                                                  .read<ExpenseController>()
+                                                  .taxCodeDataList
+                                                  .map((e) {
+                                                return DropdownMenuItem(
+                                                    value: e.name,
+                                                    child: Text(
+                                                      e.name.toString(),
+                                                    ));
+                                              }).toList(),
+                                              hint: const Text(
+                                                "Choose tax code",
+                                                style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  context
+                                                      .read<ExpenseController>()
+                                                      .taxName = value!;
+                                                  context
+                                                      .read<ExpenseController>()
+                                                      .selectTaxCode(value!);
+                                                });
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Dist Rule',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: const BoxDecoration(),
+                                          child: DropdownButtonFormField(
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              icon: const Icon(
+                                                  Icons.arrow_drop_down),
+                                              value: context
+                                                  .watch<ExpenseController>()
+                                                  .profitName,
+                                              items: context
+                                                  .read<ExpenseController>()
+                                                  .profitCenterData
+                                                  .map((e) {
+                                                return DropdownMenuItem(
+                                                    value: e.ocrName,
+                                                    child: Text(
+                                                      e.ocrName.toString(),
+                                                    ));
+                                              }).toList(),
+                                              hint: const Text(
+                                                "Choose dist rule",
+                                                style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  context
+                                                      .read<ExpenseController>()
+                                                      .profitName = value;
+                                                  context
+                                                      .read<ExpenseController>()
+                                                      .selectProfitCode(value!);
+                                                });
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Project Code',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: const BoxDecoration(),
+                                          child: DropdownButtonFormField(
+                                              // validator: (value) =>
+                                              //     value == null
+                                              //         ? 'Required*'
+                                              //         : null,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              icon: const Icon(
+                                                  Icons.arrow_drop_down),
+                                              value: context
+                                                  .watch<ExpenseController>()
+                                                  .projectName,
+                                              items: context
+                                                  .read<ExpenseController>()
+                                                  .projectCodeList
+                                                  .map((e) {
+                                                return DropdownMenuItem(
+                                                    value: e.name,
+                                                    child: Container(
+                                                      width: Screens.width(
+                                                              context) *
+                                                          0.46,
+                                                      child: Text(
+                                                        e.name.toString(),
+                                                        maxLines: 2,
+                                                      ),
+                                                    ));
+                                              }).toList(),
+                                              hint: const Text(
+                                                "Choose project code",
+                                                style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  context
+                                                      .read<ExpenseController>()
+                                                      .projectName = value!;
+                                                  context
+                                                      .read<ExpenseController>()
+                                                      .selectProjectCode(
+                                                          value.toString());
+                                                });
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            //color: Colors.amber,
+                                            child: Text(
+                                              'Receipt Verification Code',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        SizedBox(
+                                          width: Screens.width(context) * 0.50,
+                                          // height: Screens.padingHeight(context) * 0.06,
+                                          child: TextFormField(
+                                            controller: context
+                                                .read<ExpenseController>()
+                                                .uRvcController[0],
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
+                                              labelText: '',
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: const BorderSide(
+                                                    color: Colors.red),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                borderSide: BorderSide(
+                                                    color: theme.primaryColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
                                       children: [
@@ -1173,6 +1890,10 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               });
                                             },
                                             decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      vertical: 10,
+                                                      horizontal: 5),
                                               suffixIcon: IconButton(
                                                   onPressed: () {
                                                     setState(() {

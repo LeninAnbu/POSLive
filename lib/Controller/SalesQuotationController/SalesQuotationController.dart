@@ -39,7 +39,9 @@ import '../../DBModel/StockSnap.dart';
 import '../../Models/DataModel/CustomerModel/CustomerModel.dart';
 import '../../Models/DataModel/PaymentModel/PaymentModel.dart';
 import '../../Models/DataModel/SeriesMode/SeriesModels.dart';
+import '../../Models/DataModel/StockReqModel/warehouseModel.dart';
 import '../../Models/QueryUrlModel/CompanyTinVatModel.dart';
+import '../../Models/QueryUrlModel/DocSeriesMdl.dart';
 import '../../Models/QueryUrlModel/OnhandModel.dart';
 import '../../Models/QueryUrlModel/SOCustoAddressModel.dart';
 import '../../Models/QueryUrlModel/SalesOrderQueryModel/OpenSalesOrderHeader_Model.dart';
@@ -56,6 +58,7 @@ import '../../Pages/SalesQuotation/Widgets/QuotPrintLayout.dart';
 import '../../Service/NewCustCodeCreate/NewAddCreatePatchApi.dart';
 import '../../Service/Printer/QuotationPrint.dart';
 import '../../Service/QueryURL/CompanyVatTinApi.dart';
+import '../../Service/QueryURL/DocSeriesApi.dart';
 import '../../Service/QueryURL/OnHandApi.dart';
 import '../../Service/QueryURL/SoCustomerAddressApi.dart';
 import '../../Service/SearchQuery/SearchQuotHeaderApi.dart';
@@ -93,6 +96,8 @@ class SalesQuotationCon extends ChangeNotifier {
   List<SchemeOrderModalData> resSchemeDataList = [];
   List<TextEditingController> mycontroller =
       List.generate(150, (i) => TextEditingController());
+  List<TextEditingController> warehousectrl =
+      List.generate(150, (i) => TextEditingController());
   List<TextEditingController> pricemycontroller =
       List.generate(150, (i) => TextEditingController());
   List<TextEditingController> itemNameController =
@@ -107,6 +112,61 @@ class SalesQuotationCon extends ChangeNotifier {
 
   TextEditingController remarkcontroller3 = TextEditingController();
   TextEditingController duedatecontroller = TextEditingController();
+
+  String? whsName;
+  String? whsCode;
+
+  List<WhsDetails> whsLists = [];
+
+  selectedWhsCode(String val) {
+    for (var i = 0; i < whsLists.length; i++) {
+      if (whsLists[i].companyName == val) {
+        whsCode = whsLists[i].whsCode;
+      }
+    }
+    notifyListeners();
+  }
+
+  selectedWhsCode2(String val) {
+    whsName = '';
+    for (var i = 0; i < whsLists.length; i++) {
+      if (whsLists[i].whsCode.toString() == val) {
+        whsCode = whsLists[i].whsCode;
+        whsName = whsLists[i].companyName;
+        warehousectrl[0].text = whsLists[i].companyName!.toString();
+      }
+    }
+    log('whsName1::${whsName}');
+    notifyListeners();
+  }
+
+  getBrachDetails() async {
+    final Database db = (await DBHelper.getInstance())!;
+    whsLists = [];
+    List<Map<String, Object?>> branchData = await DBOperation.getBranch(db);
+    if (branchData.isNotEmpty) {
+      for (int i = 0; i < branchData.length; i++) {
+        log(' branchData WhsCode:${branchData[i]['WhsCode'].toString()}');
+        whsLists.add(WhsDetails(
+            whsName: branchData[i]['WhsName'].toString(),
+            companyName: branchData[i]['CompanyName'].toString(),
+            whsCode: branchData[i]['WhsCode'].toString(),
+            gitWhs: branchData[i]['GITWhs'].toString(),
+            whsmailID: branchData[i]['E_Mail'].toString(),
+            whsPhoNo: '',
+            whsGst: branchData[i]['GSTNo'].toString(),
+            whsAddress: branchData[i]['Address1'].toString(),
+            whsDistric: branchData[i]['DisAcct1'].toString(),
+            pinCode: branchData[i]['Pincode'].toString(),
+            whsState: branchData[i]['StateCode'].toString(),
+            whsCity: branchData[i]['City'].toString()));
+      }
+      notifyListeners();
+    }
+    log('whsListswhsLists::${whsLists.length}');
+    notifyListeners();
+  }
+
   String? filterapiwonDate = '';
   void showfromDate(BuildContext context) {
     showDatePicker(
@@ -126,7 +186,6 @@ class SalesQuotationCon extends ChangeNotifier {
           "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}";
       filterapiwonDate =
           "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-      // print(apiWonFDate);
 
       duedatecontroller.text = chooseddate;
       notifyListeners();
@@ -270,11 +329,14 @@ class SalesQuotationCon extends ChangeNotifier {
     clearAllData(context, theme);
     clearAll(context, theme);
     await callGetUserType();
+    await callNewDocSeriesApi();
 
     await injectToDb();
     await getCustDetFDB();
+    await getBrachDetails();
     await getdraftindex();
     await custSeriesApi();
+    // Newsdoceriesapi.getGlobalData('17');
     await callSeriesApi(context);
     notifyListeners();
   }
@@ -310,7 +372,7 @@ class SalesQuotationCon extends ChangeNotifier {
     getSearchedData = await DBOperation.getSearchedStockList(db, data);
     getfilterSearchedData = getSearchedData;
     log("getOrderSearchedData ${getSearchedData.length}");
-    // searchcon.clear();
+
     notifyListeners();
 
     return getSearchedData;
@@ -323,7 +385,7 @@ class SalesQuotationCon extends ChangeNotifier {
       final Database db = (await DBHelper.getInstance())!;
       getSearchedData = await DBOperation.getSearchedStockList(db, data);
       getfilterSearchedData = getSearchedData;
-      // searchcon.clear();
+
       return getSearchedData;
     } else {
       getSearchedData = [];
@@ -376,7 +438,6 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   singleitemsearch(BuildContext context, ThemeData theme, int indx) async {
-    // if (scanneditemData.isEmpty) {
     int res = checkhaveQty(indx, 0);
 
     if (res > 0) {
@@ -385,27 +446,11 @@ class SalesQuotationCon extends ChangeNotifier {
       Get.defaultDialog(title: 'Alert', middleText: 'No more qty to add');
       searchcon.clear();
     }
-    // }
-    // else {
-    //   int result = await checkalreadyScanedd(indx);
-    //   if (result != -1) {
-    //     int res = checkhaveQty(indx, int.parse(qtymycontroller[result].text));
-    //     if (res > 0) {
-    //       incrementQty(result, '1', context, theme);
-    //       notifyListeners();
-    //     } else {
-    //       Get.defaultDialog(title: 'Alert', middleText: 'No more qty to add');
-    //     }
-    //   } else {
-    //     addSannedItem(indx, context, theme);
-    //     notifyListeners();
-    //   }
-    // }
   }
 
   onselectFst(BuildContext context, ThemeData theme, int indx) async {
     Navigator.pop(context);
-    // if (scanneditemData.isEmpty) {
+
     int res = checkhaveQty(indx, 0);
 
     if (res > 0) {
@@ -414,21 +459,6 @@ class SalesQuotationCon extends ChangeNotifier {
       Get.defaultDialog(title: 'Alert', middleText: 'No more qty to add');
       searchcon.clear();
     }
-    // } else {
-    //   int result = await checkalreadyScanedd(indx);
-    //   if (result != -1) {
-    //     int res = checkhaveQty(indx, int.parse(qtymycontroller[result].text));
-    //     if (res > 0) {
-    //       incrementQty(result, '1', context, theme);
-    //     } else {
-    //       Get.defaultDialog(title: 'Alert', middleText: 'No more qty to add');
-    //     }
-    //   } else {
-    //     addSannedItem(indx, context, theme);
-    //   }
-    //   notifyListeners();
-    // }
-    // calCulateDocVal(context, theme);
   }
 
   int checkhaveQty(int ind, int scanedQty) {
@@ -455,8 +485,7 @@ class SalesQuotationCon extends ChangeNotifier {
     if (type == 'Qty') {
       qtymycontroller[i].text = modifiedString2.toString();
       log(qtymycontroller[i].text);
-    } // Output: example-text-with-double-dots
-    else if (type == 'Price') {
+    } else if (type == 'Price') {
       pricemycontroller[i].text = modifiedString2.toString();
     }
     notifyListeners();
@@ -526,6 +555,25 @@ class SalesQuotationCon extends ChangeNotifier {
     notifyListeners();
   }
 
+  callClearBtn() {
+    selectedcust2 = null;
+    custNameController.text = '';
+    tinNoController.text = '';
+    vatNoController.text = '';
+    selectedcust25 = null;
+    scanneditemData2.clear();
+    paymentWay2.clear();
+    totalPayment2 = null;
+    custList2.clear();
+    injectToDb();
+    getdraftindex();
+    mycontroller2[50].text = "";
+    cancelbtn = false;
+    warehousectrl[1].text = '';
+    warehousectrl[0].text = '';
+    notifyListeners();
+  }
+
   discountChanged(
     int index,
     BuildContext context,
@@ -563,9 +611,7 @@ class SalesQuotationCon extends ChangeNotifier {
         basic: 0,
         netvalue: 0,
         taxvalue: 0,
-        maxdiscount: getfilterSearchedData[ind]
-            .maxdiscount
-            .toString(), // getfilterSearchedData[ind].d,
+        maxdiscount: getfilterSearchedData[ind].maxdiscount.toString(),
         createdUserID: '',
         createdateTime: '',
         lastupdateIp: '',
@@ -584,6 +630,7 @@ class SalesQuotationCon extends ChangeNotifier {
         discountper: 0.0,
         liter: double.parse(getfilterSearchedData[ind].liter.toString()),
         weight: double.parse(getfilterSearchedData[ind].weight.toString())));
+    qtychangemtd(scanneditemData.length - 1, '1', context, theme);
 
     for (int i = 0; i < scanneditemData.length; i++) {
       scanneditemData[i].transID = i;
@@ -606,7 +653,6 @@ class SalesQuotationCon extends ChangeNotifier {
       log('scanneditemData[i].packsize::${scanneditemData[i].uPackSize}');
     }
 
-    qtychangemtd(scanneditemData.length - 1, '1', context, theme);
     searchcon.text = '';
     notifyListeners();
   }
@@ -655,8 +701,6 @@ class SalesQuotationCon extends ChangeNotifier {
     for (int i = 0; i < scanneditemData.length; i++) {
       for (int ik = 0; ik < resSchemeDataList.length; ik++) {
         if (resSchemeDataList[ik].lineNum == scanneditemData[i].transID) {
-          // discountt = discountt + resSchemeDataList[ik].discPer;
-
           scanneditemData[i].discountper =
               scanneditemData[i].discountper! + resSchemeDataList[ik].discPer;
           discountcontroller[i].text =
@@ -666,8 +710,6 @@ class SalesQuotationCon extends ChangeNotifier {
           notifyListeners();
         }
       }
-
-      // discountcontroller[i].text = discountt.toString();
     }
     await calCulateDocVal(context, theme);
     notifyListeners();
@@ -965,8 +1007,6 @@ class SalesQuotationCon extends ChangeNotifier {
         notifyListeners();
       });
     } else {
-      // await sapLoginApi(context);
-      // await callSerlaySalesQuoAPI(context, theme);
       await checkSAPsts(context, theme);
       notifyListeners();
     }
@@ -974,11 +1014,8 @@ class SalesQuotationCon extends ChangeNotifier {
 
   checkSAPsts(BuildContext context, ThemeData theme) async {
     if (scanneditemData2.isNotEmpty) {
-      // for (int ij = 0; ij < scanneditemData2.length; ij++) {
       if (selectedcust2!.docStatus == "O") {
         newUpdateFixDataMethod(context, theme);
-
-        // await updateFixDataMethod(context, theme);
       } else if (selectedcust2!.docStatus == "C") {
         cancelbtn = false;
 
@@ -999,14 +1036,6 @@ class SalesQuotationCon extends ChangeNotifier {
                     buttonName: null,
                   ));
             }).then((value) {
-          // sapDocentry = '';
-          // sapDocuNumber = '';
-          // sapDocentry = '';
-          // sapDocuNumber = '';
-          // selectedcust2 = null;
-          // scanneditemData2.clear();
-          // selectedcust25 = null;
-          // cancelbtn = false;
           notifyListeners();
         });
         notifyListeners();
@@ -1081,7 +1110,6 @@ class SalesQuotationCon extends ChangeNotifier {
           });
         }
       } else {
-        // await callSerlaySalesQuoAPI(context, theme);
         await callSerlaySalesCancelQuoAPI(context, theme);
         notifyListeners();
       }
@@ -1315,7 +1343,7 @@ class SalesQuotationCon extends ChangeNotifier {
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
         country: '', //mycontroller[10].text,
-        state: '', // mycontroller[12].text,
+        state: '',
         street: '',
         zipCode: mycontroller[13].text,
       ),
@@ -1358,7 +1386,6 @@ class SalesQuotationCon extends ChangeNotifier {
   callSerlaySalesCancelQuoAPI(BuildContext context, ThemeData theme) async {
     notifyListeners();
     if (scanneditemData2.isNotEmpty) {
-      // for (int ij = 0; ij < sapSsalesQuoline.length; ij++) {
       if (selectedcust2!.docStatus == 'O') {
         onDisablebutton = false;
         Get.defaultDialog(
@@ -1435,21 +1462,57 @@ class SalesQuotationCon extends ChangeNotifier {
                     buttonName: null,
                   ));
             }).then((value) {
-          // sapDocentry = '';
-          // sapDocuNumber = '';
-          // sapDocentry = '';
-          // sapDocuNumber = '';
           onDisablebutton = false;
 
-          // selectedcust2 = null;
-          // scanneditemData2.clear();
-          // selectedcust25 = null;
-          // cancelbtn = false;
           notifyListeners();
         });
         notifyListeners();
       }
-      // }
+    }
+    notifyListeners();
+  }
+
+  List<NewDocSeriesMdlData> newDocSeries = [];
+
+  callNewDocSeriesApi() async {
+    newDocSeries = [];
+    await Newsdoceriesapi.getGlobalData('23').then((value) async {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        newDocSeries = value.openOutwardData!;
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {}
+      notifyListeners();
+    });
+    notifyListeners();
+  }
+
+  String? newSeriesCode;
+  String? newSeriesName;
+  String? newSeriesName2;
+
+  selectDocSeries(String val) {
+    newSeriesCode = null;
+    for (var i = 0; i < newDocSeries.length; i++) {
+      if (newDocSeries[i].seriesName == val) {
+        newSeriesCode = newDocSeries[i].seriesCode!.toString();
+        log('newSeriesCode::${newSeriesCode}');
+
+        notifyListeners();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectDocSeries2(String val) {
+    newSeriesCode = null;
+    for (var i = 0; i < newDocSeries.length; i++) {
+      if (newDocSeries[i].seriesCode.toString() == val) {
+        newSeriesCode = newDocSeries[i].seriesCode!.toString();
+        newSeriesName = newDocSeries[i].seriesName!.toString();
+        log('newSeriesName::${newSeriesName}');
+        warehousectrl[1].text = newDocSeries[i].seriesName!.toString();
+        notifyListeners();
+      }
     }
     notifyListeners();
   }
@@ -1548,22 +1611,25 @@ class SalesQuotationCon extends ChangeNotifier {
 
   getdraftindex() async {
     final Database db = (await DBHelper.getInstance())!;
-    List<HoldedHeader> holdData = [];
+    List<HoldedHeader> holdDataa = [];
     fileterHoldData = [];
     List<Map<String, Object?>> getholddata =
         await DBOperation.getSalesQuoHeadHoldvalueDB(db);
     for (int i = 0; i < getholddata.length; i++) {
-      holdData.add(HoldedHeader(
+      holdDataa.add(HoldedHeader(
           vatNo: getholddata[i]['VatNo'].toString(),
           tinNo: getholddata[i]['TinNo'].toString(),
           cardName: getholddata[i]['customername'].toString(),
           cardcode: getholddata[i]['customercode'].toString(),
           docEntry: int.parse(getholddata[i]['docentry'].toString()),
           docNo: getholddata[i]['documentno'].toString(),
+          branch: getholddata[i]['branch'].toString(),
+          seresid: getholddata[i]['seresid'].toString(),
           date: getholddata[i]['createdateTime'].toString()));
       notifyListeners();
     }
-    fileterHoldData = holdData;
+    fileterHoldData = holdDataa;
+
     notifyListeners();
   }
 
@@ -1589,6 +1655,11 @@ class SalesQuotationCon extends ChangeNotifier {
 
     tinNoController.text = holddata.tinNo.toString();
     vatNoController.text = holddata.vatNo.toString();
+    whsCode = holddata.branch.toString();
+    log('holddata.seresid::${holddata.seresid!}');
+    selectDocSeries2(holddata.seresid!);
+
+    selectedWhsCode2(holddata.branch.toString());
 
     await mapCustomer(context, theme, getcustomer, getcustaddd);
     await CustCreditDaysAPI.getGlobalData(
@@ -1596,20 +1667,17 @@ class SalesQuotationCon extends ChangeNotifier {
     ).then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditDaysData != null) {
-          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
           selectedcust!.creditDays =
               value.creditDaysData![0].creditDays.toString();
           selectedcust!.paymentGroup =
               value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+
+          if (selectedcust!.U_CashCust == 'YES') {
             selectedcust!.name = holddata.cardName;
             custNameController.text = holddata.cardName!;
           } else {
             selectedcust!.name = getcustomer[0]['customername'].toString();
           }
-          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
           notifyListeners();
         }
         loadingscrn = false;
@@ -1634,11 +1702,11 @@ class SalesQuotationCon extends ChangeNotifier {
         await DBOperation.getSalesQuoHeadHoldvalueDB(db);
     selectedcust = CustomerDetals(
       name: '',
-      // custData[0]['customername'].toString(),
       phNo: custData[0]['phoneno1'].toString(),
       taxCode: custData[0]['taxCode'].toString(),
       cardCode: custData[0]['customerCode'].toString(),
       point: custData[0]['points'].toString(),
+      U_CashCust: custData[0]['U_CASHCUST'].toString(),
       address: [],
       email: custData[0]['emalid'].toString(),
       tarNo: custData[0]['taxno'].toString(),
@@ -1673,8 +1741,8 @@ class SalesQuotationCon extends ChangeNotifier {
               getcustaddd[i]['autoid'].toString()) {
             selectedcust55 = CustomerDetals(
               name: '',
-              // custData[0]['customername'].toString(),
               taxCode: custData[0]['taxCode'].toString(),
+              U_CashCust: custData[0]['U_CASHCUST'].toString(),
               phNo: custData[0]['phoneno1'].toString(),
               cardCode: custData[0]['customerCode'].toString(),
               point: custData[0]['points'].toString(),
@@ -1770,7 +1838,7 @@ class SalesQuotationCon extends ChangeNotifier {
               : '',
           uSpecificGravity: lineData[i]['U_Specific_Gravity'] != null
               ? double.parse(lineData[i]['U_Specific_Gravity'].toString())
-              : 0, // double.parse(getfilterSearchedData[ind].maxdiscount.toString()),
+              : 0,
           uTINSPERBOX: lineData[i]['U_TINS_PER_BOX'] != null
               ? int.parse(
                   lineData[i]['U_TINS_PER_BOX'].toString(),
@@ -1788,7 +1856,7 @@ class SalesQuotationCon extends ChangeNotifier {
       scanneditemData[ig].transID = ig;
       pricemycontroller[ig].text = scanneditemData[ig].sellPrice!.toString();
       discountcontroller[ig].text = scanneditemData[ig].discountper!.toString();
-      itemNameController[ig].text = scanneditemData[i].itemName.toString();
+      itemNameController[ig].text = scanneditemData[ig].itemName.toString();
 
       qtymycontroller[ig].text = scanneditemData[ig].openQty!.toString();
       notifyListeners();
@@ -1958,8 +2026,7 @@ class SalesQuotationCon extends ChangeNotifier {
   delputHeaderValues() {
     itemsDetailsData = [];
     scanneditemCheckUpdateData = [];
-    // getdocumentApprovalValue = ContentEditCreationState.contentitemsDetails;
-    // approvalDetailsValue = SalesDetailsQuotState.approvalDetailsValue;
+
     quotputdataval = QuotPutModel(
       odataMetadata: approvalDetailsValue!.odataMetadata == null ||
               approvalDetailsValue!.odataMetadata == "null"
@@ -3340,38 +3407,13 @@ class SalesQuotationCon extends ChangeNotifier {
           mrp: getdocitemsDetailsData[i].unitPrice,
           sellPrice: getdocitemsDetailsData[i].unitPrice));
     }
-    // for (var i = 0; i < scanneditemData.length; i++) {
-    //   for (var ik = 0; ik < approvalDetailsValue!.documentLines!.length; ik++) {
-    //     if (scanneditemData[i].baselineid.toString() ==
-    //         getdocumentApprovalValue[ik].lineNum.toString()) {
-    //       getdocitemsDetailsData .add(DocumentApprovalPutValue(U_Pack_Size: getdocumentApprovalValue[ik]. U_Pack_Size,
-    //        lineNum:  getdocumentApprovalValue[ik].lineNum, itemCode: getdocumentApprovalValue[ik]. itemCode,
-    //        itemDescription:  getdocumentApprovalValue[ik].itemDescription, quantity:  getdocumentApprovalValue[ik].quantity,
-
-    //         shipDate:  getdocumentApprovalValue[ik].shipDate, price:  getdocumentApprovalValue[ik].price, total:  getdocumentApprovalValue[ik].total, currency:  getdocumentApprovalValue[ik].currency,
-    //         rate: getdocumentApprovalValue[ik]. rate, discountPercent: getdocumentApprovalValue[ik]. discountPercent, vendorNum: getdocumentApprovalValue[ik]. vendorNum,
-    //          serialNum:  getdocumentApprovalValue[ik].serialNum, warehouseCode: getdocumentApprovalValue[ik]. warehouseCode, salesPersonCode: getdocumentApprovalValue[ik]. salesPersonCode, commisionPercent: getdocumentApprovalValue[ik]. commisionPercent, treeType:  getdocumentApprovalValue[ik].treeType, accountCode: accountCode, useBaseUnits: useBaseUnits, supplierCatNum: supplierCatNum, costingCode: costingCode,
-    //          projectCode:  getdocumentApprovalValue[ik].projectCode, barCode:  getdocumentApprovalValue[ik].barCode,
-    //          vatGroup: getdocumentApprovalValue[ik]. vatGroup, height1: getdocumentApprovalValue[ik]. height1, hight1Unit:  getdocumentApprovalValue[ik].hight1Unit, height2:  getdocumentApprovalValue[ik].height2, height2Unit:  getdocumentApprovalValue[ik]. getdocumentApprovalValue[ik].height2Unit,
-    //          lengh1: getdocumentApprovalValue[ik]. lengh1, lengh1Unit: getdocumentApprovalValue[ik]. lengh1Unit, lengh2:  getdocumentApprovalValue[ik].lengh2, lengh2Unit:  getdocumentApprovalValue[ik].lengh2Unit, weight1: getdocumentApprovalValue[ik]. weight1,
-    //          weight1Unit:  getdocumentApprovalValue[ik].weight1Unit, weight2: getdocumentApprovalValue[ik]. weight2, weight2Unit:  getdocumentApprovalValue[ik].weight2Unit, factor1: getdocumentApprovalValue[ik]. factor1, factor2: getdocumentApprovalValue[ik]. factor2, factor3: factor3, factor4: factor4, baseType: baseType, baseEntry: baseEntry,
-    //           baseLine: baseLine, volume: volume, volumeUnit: volumeUnit,
-    //            width1: width1, width1Unit: width1Unit, width2: width2,
-    //             width2Unit: width2Unit, address: address, taxCode: taxCode,
-    //             taxType: taxType, taxLiable: taxLiable, pickStatus: pickStatus, pickQuantity: pickQuantity, pickListIdNumber: pickListIdNumber, originalItem: originalItem, backOrder: backOrder, freeText: freeText, shippingMethod: shippingMethod, poTargetNum: poTargetNum, poTargetEntry: poTargetEntry, poTargetRowNum: poTargetRowNum, correctionInvoiceItem: correctionInvoiceItem, corrInvAmountToStock: corrInvAmountToStock, corrInvAmountToDiffAcct: corrInvAmountToDiffAcct, appliedTax: appliedTax, appliedTaxFc: appliedTaxFc, appliedTaxSc: appliedTaxSc, wtLiable: wtLiable, deferredTax: deferredTax, equalizationTaxPercent: equalizationTaxPercent, totalEqualizationTax: totalEqualizationTax, totalEqualizationTaxFc: totalEqualizationTaxFc, totalEqualizationTaxSc: totalEqualizationTaxSc, netTaxAmount: netTaxAmount, netTaxAmountFc: netTaxAmountFc, netTaxAmountSc: netTaxAmountSc, measureUnit: measureUnit, unitsOfMeasurment: unitsOfMeasurment, lineTotal: lineTotal, taxPercentagePerRow: taxPercentagePerRow, taxTotal: taxTotal, consumerSalesForecast: consumerSalesForecast, exciseAmount: exciseAmount, taxPerUnit: taxPerUnit, totalInclTax: totalInclTax, countryOrg: countryOrg, sww: sww, transactionType: transactionType, distributeExpense: distributeExpense, rowTotalFc: rowTotalFc, rowTotalSc: rowTotalSc, lastBuyInmPrice: lastBuyInmPrice, lastBuyDistributeSumFc: lastBuyDistributeSumFc, lastBuyDistributeSumSc: lastBuyDistributeSumSc, lastBuyDistributeSum: lastBuyDistributeSum, stockDistributesumForeign: stockDistributesumForeign, stockDistributesumSystem: stockDistributesumSystem, stockDistributesum: stockDistributesum, stockInmPrice: stockInmPrice, pickStatusEx: pickStatusEx, taxBeforeDpm: taxBeforeDpm, taxBeforeDpmfc: taxBeforeDpmfc, taxBeforeDpmsc: taxBeforeDpmsc,
-    //          cfopCode: cfopCode, cstCode: cstCode,
-    //          usage: usage, taxOnly: taxOnly, visualOrder: visualOrder, baseOpenQuantity: baseOpenQuantity, unitPrice: unitPrice, lineStatus: lineStatus, packageQuantity: packageQuantity, text: text, lineType: lineType, cogsCostingCode: cogsCostingCode, cogsAccountCode: cogsAccountCode, changeAssemlyBoMWarehouse: changeAssemlyBoMWarehouse, grossBuyPrice: grossBuyPrice, grossBase: grossBase, grossProfitTotalBasePrice: grossProfitTotalBasePrice, costingCode2: costingCode2, costingCode3: costingCode3, costingCode4: costingCode4, costingCode5: costingCode5, itemDetails: itemDetails, locationCode: locationCode, actualDeliveryDate: actualDeliveryDate, remainingOpenQuantity: remainingOpenQuantity, openAmount: openAmount, openAmountFc: openAmountFc, openAmountSc: openAmountSc, exLineNo: exLineNo, Date: Date, requiredQuantity: requiredQuantity, cogsCostingCode2: cogsCostingCode2, cogsCostingCode3: cogsCostingCode3, cogsCostingCode4: cogsCostingCode4, cogsCostingCode5: cogsCostingCode5, csTforIpi: csTforIpi, csTforPis: csTforPis, csTforCofins: csTforCofins, creditOriginCode: creditOriginCode, withoutInventoryMovement: withoutInventoryMovement, agreementNo: agreementNo, agreementRowNumber: agreementRowNumber, actualBaseEntry: actualBaseEntry, actualBaseLine: actualBaseLine, docEntry: docEntry, surpluses: surpluses, defectAndBreakup: defectAndBreakup, shortages: shortages, considerQuantity: considerQuantity, partialRetirement: partialRetirement, retirementQuantity: retirementQuantity, retirementApc: retirementApc, thirdParty: thirdParty, poNum: poNum, poItmNum: poItmNum, expenseType: expenseType, receiptNumber: receiptNumber, expenseOperationType: expenseOperationType, federalTaxId: federalTaxId, grossProfit: grossProfit, grossProfitFc: grossProfitFc, grossProfitSc: grossProfitSc, priceSource: priceSource, stgSeqNum: stgSeqNum, stgEntry: stgEntry, stgDesc: stgDesc, uoMEntry: uoMEntry, uoMCode: uoMCode, inventoryQuantity: inventoryQuantity, remainingOpenInventoryQuantity: remainingOpenInventoryQuantity, parentLineNum: parentLineNum, incoterms: incoterms, transportMode: transportMode, natureOfTransaction: natureOfTransaction, destinationCountryForImport: destinationCountryForImport, destinationRegionForImport: destinationRegionForImport, originCountryForExport: originCountryForExport, originRegionForExport: originRegionForExport, itemType: itemType, changeInventoryQuantityIndependently: changeInventoryQuantityIndependently, freeOfChargeBp: freeOfChargeBp, sacEntry: sacEntry, hsnEntry: hsnEntry, grossPrice: grossPrice, grossTotal: grossTotal, grossTotalFc: grossTotalFc, grossTotalSc: grossTotalSc, ncmCode: ncmCode, nveCode: nveCode, indEscala: indEscala, ctrSealQty: ctrSealQty, cnjpMan: cnjpMan, cestCode: cestCode, ufFiscalBenefitCode: ufFiscalBenefitCode, shipToCode: shipToCode, shipToDescription: shipToDescription, externalCalcTaxRate: externalCalcTaxRate, externalCalcTaxAmount: externalCalcTaxAmount, externalCalcTaxAmountFc: externalCalcTaxAmountFc, externalCalcTaxAmountSc: externalCalcTaxAmountSc, standardItemIdentification: standardItemIdentification, commodityClassification: commodityClassification, unencumberedReason: unencumberedReason, cuSplit: cuSplit, uQtyOrdered: uQtyOrdered, uOpenQty: uOpenQty, uTonnage: uTonnage, uPackSize: uPackSize, uProfitCentre: uProfitCentre, uNumberDrums: uNumberDrums, uDrumSize: uDrumSize, uPails: uPails, uCartons: uCartons, uLooseTins: uLooseTins, uNettWt: uNettWt, uGrossWt: uGrossWt, uAppLinId: uAppLinId, uMuQty: uMuQty, uRvc: uRvc, uVrn: uVrn, uIdentifier: uIdentifier))
-    //     }
-    //   }
-    // }
   }
 
   putcheckitem() async {
     itemsDetailsData = [];
     log("getdocitemsDetailsData::::${getdocitemsDetailsData.length}");
-    // for (int i = 0; i < getdocitemsDetailsData.length; i++) {
+
     await dputItemListData();
-    // }
   }
 
   static List<AddItem2> contentitemsDetails = [];
@@ -3383,16 +3425,12 @@ class SalesQuotationCon extends ChangeNotifier {
       log("Message:::$i");
       print("Total::" + getdocumentApprovalValue[i].total.toString());
       print("Tacode::" + getdocumentApprovalValue[i].taxTotal.toString());
-      // // print("Tacode::" + getdocumentApprovalValue[i].toString());
-      // final double taxtotall = getdocumentApprovalValue[i].taxTotal == null
-      //     ? 0
-      //     : getdocumentApprovalValue[i].taxTotal!;
+
       contentitemsDetails.add(AddItem2(
         warehouse: getdocumentApprovalValue[i].warehouseCode,
         itemCode: getdocumentApprovalValue[i].itemCode,
         itemName: getdocumentApprovalValue[i].itemDescription,
         price: getdocumentApprovalValue[i].unitPrice,
-
         discount: getdocumentApprovalValue[i].discountPercent,
         qty: double.parse(
             getdocumentApprovalValue[i].quantity!.toStringAsFixed(0)),
@@ -3402,21 +3440,7 @@ class SalesQuotationCon extends ChangeNotifier {
         tax: getdocumentApprovalValue[i].taxTotal,
         taxCode: selectedcust!.taxCode,
         lineNoo: i,
-
-        // double.parse( getdocumentApprovalValue[i].TaxCode.toString()) == null ||
-        //        double.parse( getdocumentApprovalValue[i].TaxCode) ==0
-        // ? isTaxApplied(getdocumentApprovalValue[i].LineTotal!,
-        //     getdocumentApprovalValue[i].TaxTotal!)
-        //     :     double.parse( getdocumentApprovalValue[i].TaxCode!),
         taxPer: 0,
-        // caluclateTaxpercent(
-        //     getdocumentApprovalValue[i].lineTotal!, taxtotall),
-        // wareHouseCode: GetValues.branch.toString(),
-        // // getdocumentApprovalValue[i]
-        // //     .warehouseCode,
-        // taxName: "",
-        // baseline: getdocumentApprovalValue[i].LineNum.toString(),
-        // basedocentry: docEntryforSO
         lineNumm: i,
         itemDescription: getdocumentApprovalValue[i].itemDescription,
         quantity: getdocumentApprovalValue[i].quantity,
@@ -3667,66 +3691,14 @@ class SalesQuotationCon extends ChangeNotifier {
         U_Pack_Size: getdocumentApprovalValue[i].U_Pack_Size,
       ));
     }
-    // //
 
     for (int ij = 0; ij < contentitemsDetails.length; ij++) {
       mycontroller[1].text = contentitemsDetails[ij].price!.toString();
       mycontroller[3].text = contentitemsDetails[ij].discount!.toString();
       mycontroller[2].text = contentitemsDetails[ij].qty!.toString();
 
-      // await getTaxRate(ij, contentitemsDetails[ij].taxCode.toString());
-
       //
-
-      // await GetPackANDTinsPerBoxApi.getGlobalData(
-      //         contentitemsDetails[ij].itemCode)
-      //     .then((value) {
-      //   if (value.statusCode! <= 210 && value.statusCode! >= 200) {
-      //     log("PackSize::" + value.activitiesData![0].U_Pack_Size.toString());
-      //     log("TinPErBox::" +
-      //         value.activitiesData![0].U_Tins_Per_Box.toString());
-      //     log("controller 4:::" + mycontroller[4].text);
-
-      //     contentitemsDetails[ij].U_Pack_Size =
-      //         value.activitiesData![0].U_Pack_Size;
-      //     contentitemsDetails[ij].U_Tins_Per_Box =
-      //         value.activitiesData![0].U_Tins_Per_Box;
-      //     //
-      //     final double price = contentitemsDetails[ij].unitPrice!;
-      //     // double.parse(mycontroller[1].text);
-      //     final double qty = contentitemsDetails[ij].qty!;
-      //     // double.parse(mycontroller[2].text);
-      //     final double discountper =
-      //         double.parse(contentitemsDetails[ij].discounpercent.toString()
-      //             // mycontroller[3].text == '' ? '0' : mycontroller[3].text
-      //             );
-      //     final double discount = (price * qty) * discountper / 100;
-      //     final double taxper = taxSelected;
-      //     final double tax = ((qty * price) - discount) * taxper / 100;
-
-      //     double total = (price * qty) - discount;
-      //     log("total1::::" + total.toString());
-
-      //     log("discount val::::" + discount.toString());
-      //     total = total + tax;
-      //     log("total2::::" + total.toString());
-      //     int carton2 = 0;
-      //     if (contentitemsDetails[ij].U_Pack_Size! < 10 &&
-      //         contentitemsDetails[ij].U_Tins_Per_Box! > 0) {
-      //       carton2 = qty ~/ contentitemsDetails[ij].U_Tins_Per_Box!;
-      //       print("cartooooooone" + carton2.toString());
-      //       print("cartooooooone" + carton2.toInt().toString());
-      //     }
-      //     contentitemsDetails[ij].carton = carton2;
-      //     contentitemsDetails[ij].valueAF = (price * qty) - discount;
-      //     contentitemsDetails[ij].total = total;
-      //   }
-      //   // contentitemsDetails[i].shipToCode = "";
-      //   // contentitemsDetails[i].lineNo = 0;
-      // });
     }
-
-    // contentitemsDetails
   }
 
   dputItemListData() {
@@ -3735,7 +3707,7 @@ class SalesQuotationCon extends ChangeNotifier {
         if (scanneditemData[i].baselineid.toString() ==
             getdocumentApprovalValue[ij].lineNum.toString()) {
           log("getdocumentApprovalValue[ij].lineNo::${getdocumentApprovalValue[ij].lineNum}");
-          // log("message:::");
+
           if (getdocumentApprovalValue[ij].lineNum != null) {
             itemsDetailsData.add(
               DocumentLineData(
@@ -3763,7 +3735,6 @@ class SalesQuotationCon extends ChangeNotifier {
                         getdocumentApprovalValue[ij].projectCode == "null"
                     ? null
                     : getdocumentApprovalValue[ij].projectCode,
-                // getdocumentApprovalValue[ij].projectCode,
                 barCode: getdocumentApprovalValue[ij].barCode == null ||
                         getdocumentApprovalValue[ij].barCode == "null"
                     ? null
@@ -3958,7 +3929,6 @@ class SalesQuotationCon extends ChangeNotifier {
                             getdocumentApprovalValue[ij].federalTaxId == "null"
                         ? null
                         : approvalDetailsValue!.federalTaxId,
-                //  getdocumentApprovalValue[ij].federalTaxId,
                 grossProfit: getdocumentApprovalValue[ij].grossProfit,
                 grossProfitFc: getdocumentApprovalValue[ij].grossProfitFc,
                 grossProfitSc: getdocumentApprovalValue[ij].grossProfitSc,
@@ -4055,50 +4025,8 @@ class SalesQuotationCon extends ChangeNotifier {
     notifyListeners();
     log("itemsDetailsData::${itemsDetailsData.length}");
   }
-  //  approvalDetailsValue!.documentLines!
 
   List<AddItem2> contentdocitemsDetails = [];
-  // List<AddQuotEditItem> edititemsDetails = [];
-  // Future<int?> patchhcheckitem() async {
-  //   // edititemsDetails = [];
-  //   contentdocitemsDetails = [];
-  //   log("getdocitemsDetailsData::::${getdocitemsDetailsData.length}");
-  //   // for (int i = 0; i < getdocitemsDetailsData.length; i++) {
-  //   // addEditList();
-  //   return null;
-  //   // }
-  // }
-
-  // addEditList() {
-  //   log('scanneditemData::${scanneditemData.length}');
-  //   for (int im = 0; im < scanneditemData.length; im++) {
-  //     if (userTypes == 'corporate') {
-  //       for (int i = 0; i < scanneditemData.length; i++) {
-  //         scanneditemData[i].sellPrice =
-  //             double.parse(pricemycontroller[i].text.toString());
-  //       }
-  //       notifyListeners();
-  //     }
-  //     log("IMIMIM:::${scanneditemData[im].itemCode}");
-  //     edititemsDetails.add(
-  //       AddQuotEditItem(
-  //         lineNo: scanneditemData[im].transID,
-  //         itemCode: scanneditemData[im].itemCode ?? '',
-  //         itemName: scanneditemData[im].itemName ?? '',
-  //         price: scanneditemData[im].sellPrice ?? 0,
-  //         discount: scanneditemData[im].discount ?? 0,
-  //         qty: double.parse(qtymycontroller[im].text.toString()),
-  //         valuechoosed: scanneditemData[im].taxCode.toString(),
-  //         discounpercent: scanneditemData[im].discountper,
-  //         taxCode: scanneditemData[im].taxCode.toString(),
-  //         warehouse: AppConstant.branch.toString(),
-  //         taxPer: scanneditemData[im].taxRate ?? 0,
-  //       ),
-  //     );
-  //   }
-
-  //   log("edititemsDetails length:::${edititemsDetails.length}");
-  // }
 
   Future<void> validateAndCallApi(
     BuildContext context,
@@ -4110,7 +4038,6 @@ class SalesQuotationCon extends ChangeNotifier {
     await addDocLineUpdate();
     await delputHeaderValues();
     await putcheckitem();
-    // await patchhcheckitem();
 
     SalesQuotPutAPi.quotputaval = quotputdataval;
     SalesQuotPutAPi.cardCodePost = selectedcust!.cardCode;
@@ -4122,7 +4049,7 @@ class SalesQuotationCon extends ChangeNotifier {
     SalesQuotPutAPi.remarks = mycontroller[50].text;
     var uuid = Uuid();
     String? uuidg = uuid.v1();
-    // SalesQuotPutAPi.method(uuidg);
+
     log('scanneditemCheckUpdateData::${scanneditemCheckUpdateData.length}::${scanneditemData.length}');
     if (scanneditemCheckUpdateData.length != scanneditemData.length) {
       await SalesQuotPutAPi.getGlobalData(uuidg, int.parse(sapDocentry))
@@ -4159,8 +4086,6 @@ class SalesQuotationCon extends ChangeNotifier {
     }
   }
 
-  // List<DocumentApprovalValue>? documentLines = [];
-
   bool loadSearch = false;
 
   getQuotDetails(
@@ -4169,15 +4094,21 @@ class SalesQuotationCon extends ChangeNotifier {
   ) async {
     sapDocentry = '';
     loadSearch = true;
+    await sapLoginApi(context);
+
     await SalesDetailsQtAPi.getGlobalData(sapDocEntry).then((value) {
       getdocumentApprovalValue = [];
       approvalDetailsValue = null;
 
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        print("cardName: " + value.cardName.toString());
+        print("warehouseCode:: " +
+            value.documentLines![0].warehouseCode.toString());
         sapDocentry = value.docEntry.toString();
         approvalDetailsValue = value;
         getdocumentApprovalValue = value.documentLines!;
+        selectedWhsCode2(value.documentLines![0].warehouseCode.toString());
+
+        selectDocSeries2(value.series.toString());
         loadSearch = false;
       } else if (value.error != null) {
         final snackBar = SnackBar(
@@ -4290,9 +4221,6 @@ class SalesQuotationCon extends ChangeNotifier {
               ];
             }
             if (csadresdataDB[k].addresstype == "S") {
-              // if (getDBSalesQuoHeader[0]['shipaddresid'].toString().isNotEmpty) {
-              //   if (csadresdataDB[k].autoid.toString() ==
-              //       getDBSalesQuoHeader[0]['shipaddresid'].toString()) {
               address25 = [
                 Address(
                     autoId: int.parse(csadresdataDB[k].autoid.toString()),
@@ -4314,6 +4242,7 @@ class SalesQuotationCon extends ChangeNotifier {
           selectedcust2 = CustomerDetals(
             name: getcustomer[0]['customername'].toString(),
             phNo: getcustomer[0]['phoneno1'].toString(),
+            U_CashCust: getcustomer[0]['U_CASHCUST'].toString(),
             taxCode: getcustomer[0]['TaxCode'].toString(),
             cardCode: getcustomer[0]['customerCode'].toString(),
             point: getcustomer[0]['points'].toString(),
@@ -4331,6 +4260,7 @@ class SalesQuotationCon extends ChangeNotifier {
           );
           selectedcust25 = CustomerDetals(
             name: getcustomer[0]['customername'].toString(),
+            U_CashCust: getcustomer[0]['U_CASHCUST'].toString(),
             phNo: getcustomer[0]['phoneno1'].toString(),
             taxCode: getcustomer[0]['TaxCode'].toString(),
             cardCode: getcustomer[0]['customerCode'].toString(),
@@ -4362,8 +4292,6 @@ class SalesQuotationCon extends ChangeNotifier {
               .then((value) {
             if (value.statuscode >= 200 && value.statuscode <= 210) {
               if (value.creditLimitData != null) {
-                // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
-
                 selectedcust2!.creditLimits = double.parse(
                     value.creditLimitData![0].creditLine.toString());
                 selectedcust25!.creditLimits = double.parse(
@@ -4377,8 +4305,6 @@ class SalesQuotationCon extends ChangeNotifier {
               .then((value2) {
             if (value2.statuscode >= 200 && value2.statuscode <= 210) {
               if (value2.creditDaysData != null) {
-                // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
                 selectedcust2!.creditDays =
                     value2.creditDaysData![0].creditDays.toString();
                 selectedcust2!.paymentGroup = value2
@@ -4392,32 +4318,19 @@ class SalesQuotationCon extends ChangeNotifier {
                     .toString()
                     .toLowerCase();
                 log('selectedcust paymentGroup::${selectedcust2!.paymentGroup!}');
-                if (selectedcust2!.paymentGroup!.contains('cash') == true) {
+                if (selectedcust2!.U_CashCust == 'YES') {
                   custNameController.text = value.cardName!;
                   tinNoController.text = value.uTinNo!;
                   vatNoController.text = value.uVatNumber!;
                 } else {
                   selectedcust2!.name = value.cardName!;
                 }
-                log('Cash paymentGroup::${selectedcust2!.paymentGroup!.contains('cash')}');
+                log('Cash U_CashCust::${selectedcust2!.U_CashCust}');
                 notifyListeners();
               }
               loadingscrn = false;
             }
           });
-          // }
-          // }
-          // if (scanneditemData2.isNotEmpty) {
-          //   for (var i = 0; i < scanneditemData.length; i++) {
-          //     scanneditemData2[i].taxRate = 0.0;
-          //     if (selectedcust2!.taxCode == 'O1') {
-          //       scanneditemData2[i].taxRate = 18;
-          //     } else {
-          //       scanneditemData2[i].taxRate = 0.0;
-          //     }
-          //     notifyListeners();
-          //   }
-          //   calCulateDocVal2(context, theme);
 
           for (var i = 0; i < scanneditemData2.length; i++) {
             qtymycontroller2[i].text =
@@ -4479,7 +4392,6 @@ class SalesQuotationCon extends ChangeNotifier {
               : double.parse(getSalesHeader[i]["doctotal"].toString())));
     }
     searchData.addAll(searchdata2);
-    // filtersearchData = searchData;
 
     searchbool = false;
     notifyListeners();
@@ -4694,6 +4606,7 @@ class SalesQuotationCon extends ChangeNotifier {
       phNo: getDBSalesQuoHeader[0]["customerphono"].toString(),
       docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
       taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
+      U_CashCust: '',
 
       cardCode: getDBSalesQuoHeader[0]["customercode"]
           .toString(), //customercode!.cardCode
@@ -4712,10 +4625,11 @@ class SalesQuotationCon extends ChangeNotifier {
           : double.parse(getDBSalesQuoHeader[0]["doctotal"].toString()),
     );
     selectedcust25 = CustomerDetals(
-      name: getDBSalesQuoHeader[0]["customername"]
-          .toString(), // customername!.name
+      name: getDBSalesQuoHeader[0]["customername"].toString(),
       phNo: getDBSalesQuoHeader[0]["customerphono"].toString(),
       docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
+      U_CashCust: '',
+
       taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
 
       cardCode: getDBSalesQuoHeader[0]["customercode"]
@@ -4960,8 +4874,9 @@ class SalesQuotationCon extends ChangeNotifier {
         autoId: getDBSalesQuoHeader[0]["billaddressid"].toString(),
         taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
 
-        name: getDBSalesQuoHeader[0]["customername"]
-            .toString(), // customername!.name
+        name: getDBSalesQuoHeader[0]["customername"].toString(),
+        U_CashCust: '',
+
         phNo:
             getDBSalesQuoHeader[0]["customerphono"].toString(), //customerphono
         docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
@@ -4986,9 +4901,9 @@ class SalesQuotationCon extends ChangeNotifier {
       selectedcust55 = CustomerDetals(
         autoId: getDBSalesQuoHeader[0]["shipaddresid"].toString(),
         taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
+        U_CashCust: '',
 
-        name: getDBSalesQuoHeader[0]["customername"]
-            .toString(), // customername!.name
+        name: getDBSalesQuoHeader[0]["customername"].toString(),
         phNo:
             getDBSalesQuoHeader[0]["customerphono"].toString(), //customerphono
         docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
@@ -5010,8 +4925,6 @@ class SalesQuotationCon extends ChangeNotifier {
       );
       notifyListeners();
       //log("selectedcust25!.address!length::" +
-      // selectedcust25!.address!.length.toString());
-      // int? totqty;
 
       notifyListeners();
       selectedBillAdress = selectedcust!.address!.length - 1;
@@ -5036,7 +4949,6 @@ class SalesQuotationCon extends ChangeNotifier {
                   buttonName: null,
                 ));
           }).then((value) {
-        // onDisablebutton = false;
         notifyListeners();
       });
     }
@@ -5113,7 +5025,7 @@ class SalesQuotationCon extends ChangeNotifier {
           ? ''
           : selectedcust!.address![selectedBillAdress].autoId.toString(),
       billtype: null,
-      branch: UserValues.branch!,
+      branch: userTypes == 'corporate' ? whsCode : AppConstant.branch,
       createdUserID: UserValues.userID.toString(),
       createdateTime: config.currentDate(),
       createdbyuser: UserValues.userType,
@@ -5137,17 +5049,13 @@ class SalesQuotationCon extends ChangeNotifier {
           ? mycontroller[i].text.toString()
           : '0',
       documentno: (documentNum).toString(),
-      docstatus:
-          // docstatus == "suspend"
-          //     ? "0"
-          //     :
-          docstatus == "hold"
-              ? '1'
-              : docstatus == "save as order"
-                  ? "2"
-                  : docstatus == "check out"
-                      ? '3'
-                      : "null",
+      docstatus: docstatus == "hold"
+          ? '1'
+          : docstatus == "save as order"
+              ? "2"
+              : docstatus == "check out"
+                  ? '3'
+                  : "null",
       doctotal: totalPayment != null
           ? totalPayment!.totalDue!.toStringAsFixed(2)
           : null,
@@ -5155,13 +5063,12 @@ class SalesQuotationCon extends ChangeNotifier {
       premiumid: '',
       remarks: remarkcontroller3.text.toString(),
       salesexec: '',
-      seresid: "",
+      seresid: newSeriesCode != null ? newSeriesCode : '',
       seriesnum: '',
-      shipaddresid: selectedcust55 != null &&
-              selectedcust55!.address!.isNotEmpty
-          ? selectedcust55!.address![selectedShipAdress].autoId.toString()
-          // ? '${selectedcust!.address![selectedShipAdress].address1.toString()},${selectedcust!.address![selectedShipAdress].address2.toString()},${selectedcust!.address![selectedShipAdress].address3}'
-          : "",
+      shipaddresid:
+          selectedcust55 != null && selectedcust55!.address!.isNotEmpty
+              ? selectedcust55!.address![selectedShipAdress].autoId.toString()
+              : "",
       sodocno: "",
       sodocseries: "",
       sodocseriesno: '',
@@ -5212,23 +5119,16 @@ class SalesQuotationCon extends ChangeNotifier {
     tabledocentry = docentry2;
     await DBOperation.updatenextno(db, 10, nextno);
     for (int i = 0; i < scanneditemData.length; i++) {
-      // double? mycontamount = mycontroller[i].text.toString().isNotEmpty
-      //     ? double.parse(mycontroller[i].text.toString())
-      //     : 00;
       salesQuoLineValues.add(SalesQuotationLineTDB(
         sapdocentry: '',
         basic: scanneditemData[i].basic.toString(),
-        branch: UserValues.branch,
+        branch: userTypes == 'corporate' ? whsCode : AppConstant.branch,
         createdUser: UserValues.userType,
         createdUserID: UserValues.userID.toString(),
         createdateTime: config.currentDate(),
         discamt: scanneditemData[i].discount.toString(),
-        // totalPayment != null
-        //     ? totalPayment!.discount.toString().replaceAll(',', '')
-        //     : null,mycontroller[iss].text.toString()
         discperc: scanneditemData[i].discountper.toString(),
         discperunit: scanneditemData[i].discount.toString(),
-        //     (scanneditemData[i].sellPrice! * mycontamount / 100).toString(),
         maxdiscount: scanneditemData[i].maxdiscount.toString(),
         docentry: docentry2.toString(),
         itemcode: scanneditemData[i].itemCode,
@@ -5236,17 +5136,11 @@ class SalesQuotationCon extends ChangeNotifier {
         lineID: i.toString(),
         linetotal: scanneditemData[i].basic.toString(),
         netlinetotal: scanneditemData[i].netvalue!.toStringAsFixed(2),
-        // totalPayment != null
-        //     ? totalPayment!.totalDue.toString().replaceAll(',', '')
-        //     : null,
         price: scanneditemData[i].sellPrice.toString(),
         quantity: scanneditemData[i].qty.toString(),
         serialbatch: scanneditemData[i].serialBatch,
         taxrate: scanneditemData[i].taxRate.toString(),
         taxtotal: scanneditemData[i].taxvalue!.toStringAsFixed(2),
-        // totalPayment != null
-        //     ? totalPayment!.totalTX!.toString().replaceAll(',', '')
-        //     : null,
         updatedDatetime: config.currentDate(),
         updateduserid: UserValues.userID.toString(),
         terminal: UserValues.terminal,
@@ -5254,7 +5148,6 @@ class SalesQuotationCon extends ChangeNotifier {
       ));
 
       notifyListeners();
-// salesLineValues.add(salesLine);
     }
 
     if (salesQuoLineValues.isNotEmpty) {
@@ -5266,7 +5159,6 @@ class SalesQuotationCon extends ChangeNotifier {
 
     if (netbool == true) {
       if (docstatus == "check out") {
-        // pushRabiMqSO(docentry2!);
         await callQuotPostApi(
             context, theme, docentry2!, docstatus, documentNum);
       }
@@ -5311,7 +5203,10 @@ class SalesQuotationCon extends ChangeNotifier {
         qtymycontroller = List.generate(100, (i) => TextEditingController());
         remarkcontroller3.text = '';
         onDisablebutton = false;
-
+        whsName = null;
+        whsCode = null;
+        newSeriesCode = null;
+        newSeriesName = null;
         notifyListeners();
       });
     }
@@ -5342,7 +5237,8 @@ class SalesQuotationCon extends ChangeNotifier {
         quantity: scanneditemData[i].qty.toString(),
         taxCode: selectedcust!.taxCode,
         unitPrice: scanneditemData[i].sellPrice!.toStringAsFixed(2),
-        whsCode: AppConstant.branch,
+        whsCode:
+            whsCode == null || whsCode!.isEmpty ? AppConstant.branch : whsCode,
         itemName: scanneditemData[i].itemName.toString(),
       ));
     }
@@ -5371,14 +5267,12 @@ class SalesQuotationCon extends ChangeNotifier {
         currency: "TZS",
         discPrcnt: scanneditemData[i].discountper.toString(),
         itemCode: scanneditemData[i].itemCode,
-        // lineNo: scanneditemData[i].baselineid != null
-        //     ? int.parse(scanneditemData[i].baselineid!)
-        //     : scanneditemData[i].transID,
         price: scanneditemData[i].sellPrice.toString(),
         quantity: scanneditemData[i].qty.toString(),
         taxCode: selectedcust!.taxCode,
         unitPrice: scanneditemData[i].sellPrice!.toStringAsFixed(2),
         whsCode: AppConstant.branch,
+        // whsCode == null || whsCode!.isEmpty ? AppConstant.branch : whsCode,
         itemName: scanneditemData[i].itemName.toString(),
       ));
     }
@@ -5398,7 +5292,7 @@ class SalesQuotationCon extends ChangeNotifier {
       String docstatus, String documentNum) async {
     final Database db = (await DBHelper.getInstance())!;
     addDocLine();
-    SalesQuotPostAPi.seriesType = seriesType;
+    // SalesQuotPostAPi.seriesType = seriesType;
     SalesQuotPostAPi.cardCodePost = selectedcust!.cardCode;
     SalesQuotPostAPi.cardNamePost = custNameController.text.isNotEmpty
         ? custNameController.text
@@ -5410,6 +5304,7 @@ class SalesQuotationCon extends ChangeNotifier {
     SalesQuotPostAPi.docDate = config.currentDate();
     SalesQuotPostAPi.dueDate = config.alignDate2(postingDatecontroller.text);
     SalesQuotPostAPi.remarks = remarkcontroller3.text;
+    SalesQuotPostAPi.seriesType = newSeriesCode != null ? newSeriesCode! : '';
     var uuid = const Uuid();
     String? uuidg = uuid.v1();
     SalesQuotPostAPi.method(uuidg);
@@ -5441,6 +5336,8 @@ class SalesQuotationCon extends ChangeNotifier {
           tinNoController.text = '';
           vatNoController.text = '';
           newCustValues = [];
+          whsName = null;
+          whsCode = null;
           totalPayment = null;
           mycontroller[50].text = "";
           discountcontroller =
@@ -5458,8 +5355,6 @@ class SalesQuotationCon extends ChangeNotifier {
                           ? "Sales quotation successfully saved..!!, Document Number is $sapDocuNumber"
                           : docstatus == "hold"
                               ? "Saved as draft"
-                              // : docstatus == "suspend"
-                              //     ? "This Sales Transaction Suspended Sucessfully..!!"
                               : "null",
                   backgroundColor: Colors.white,
                   titleStyle: const TextStyle(color: Colors.red),
@@ -5502,6 +5397,8 @@ class SalesQuotationCon extends ChangeNotifier {
           newCustValues = [];
           totalPayment = null;
           mycontroller[50].text = "";
+          whsName = null;
+          whsCode = null;
           discountcontroller =
               List.generate(100, (i) => TextEditingController());
           mycontroller = List.generate(150, (i) => TextEditingController());
@@ -5587,7 +5484,6 @@ class SalesQuotationCon extends ChangeNotifier {
           onDisablebutton = false;
           notifyListeners();
         });
-        // onDisablebutton = false;
       }
     });
     notifyListeners();
@@ -5610,7 +5506,7 @@ class SalesQuotationCon extends ChangeNotifier {
           ? ''
           : selectedcust!.address![selectedBillAdress].autoId.toString(),
       billtype: null,
-      branch: UserValues.branch!,
+      branch: userTypes == 'corporate' ? whsCode : AppConstant.branch,
       createdUserID: UserValues.userID.toString(),
       createdateTime: config.currentDate(),
       createdbyuser: UserValues.userType,
@@ -5642,11 +5538,10 @@ class SalesQuotationCon extends ChangeNotifier {
       salesexec: '',
       seresid: "",
       seriesnum: '',
-      shipaddresid: selectedcust55 != null &&
-              selectedcust55!.address!.isNotEmpty
-          ? selectedcust55!.address![selectedShipAdress].autoId.toString()
-          // ? '${selectedcust!.address![selectedShipAdress].address1.toString()},${selectedcust!.address![selectedShipAdress].address2.toString()},${selectedcust!.address![selectedShipAdress].address3}'
-          : "",
+      shipaddresid:
+          selectedcust55 != null && selectedcust55!.address!.isNotEmpty
+              ? selectedcust55!.address![selectedShipAdress].autoId.toString()
+              : "",
       sodocno: "",
       sodocseries: "",
       sodocseriesno: '',
@@ -5695,20 +5590,13 @@ class SalesQuotationCon extends ChangeNotifier {
     await DBOperation.updateSaleQuoheader(db, salesQuoHeaderValues1,
         cancelDocEntry.toString(), cancelDocnum.toString());
 
-    // List<Map<String, Object?>> getDBUpdateSalesOrdHeader =
-    //     await DBOperation.getSaleQuorHeaderDB(
-    //         db, int.parse(cancelDocEntry.toString()));
-
     log("cancelDocEntry222:::$cancelDocEntry");
 
     for (int i = 0; i < scanneditemData.length; i++) {
-      // double? mycontamount = mycontroller[i].text.toString().isNotEmpty
-      //     ? double.parse(mycontroller[i].text.toString())
-      //     : 00;
       salesQuoLineValues.add(SalesQuotationLineTDB(
         sapdocentry: scanneditemData[i].sapbasedocentry.toString(),
         basic: scanneditemData[i].basic.toString(),
-        branch: UserValues.branch,
+        branch: userTypes == 'corporate' ? whsCode : AppConstant.branch,
         createdUser: UserValues.userType,
         createdUserID: UserValues.userID.toString(),
         createdateTime: config.currentDate(),
@@ -5769,10 +5657,10 @@ class SalesQuotationCon extends ChangeNotifier {
       "SalesQuotationLine": salesQuotLine,
     });
     log("payload11 : $ddd");
-    // Client client = Client();
+
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-        // AppConstant.ip,
+
         //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
@@ -5783,8 +5671,6 @@ class SalesQuotationCon extends ChangeNotifier {
     Channel channel = await client1.channel(); //Server_CS
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-    // properties.headers = {"Branch": UserValues.branch};
-    // exchange.publish(ddd, "", properties: properties);
 
     //cs
 
@@ -5800,7 +5686,7 @@ class SalesQuotationCon extends ChangeNotifier {
         await DBOperation.getSalesQuoLineDB(db, docentry!);
     List<Map<String, Object?>> getDBSalesQuoHeader =
         await DBOperation.getSaleQuorHeaderDB(db, docentry);
-    // String salesPAY = json.encode(getDBSalespay);
+
     String salesQuotLine = json.encode(getDBSalesquotLine);
     String salesQuotHeader = json.encode(getDBSalesQuoHeader);
     var ddd = json.encode({
@@ -5809,12 +5695,12 @@ class SalesQuotationCon extends ChangeNotifier {
       "SalesQuotationHeader": salesQuotHeader,
       "SalesQuotationLine": salesQuotLine,
     });
-    // log("payload22 : $ddd");
+
     //RabitMQ
-    // Client client = Client();
+
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-        // AppConstant.ip,
+
         //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
@@ -5830,8 +5716,6 @@ class SalesQuotationCon extends ChangeNotifier {
 
     //cs
 
-    // properties.headers = {"Branch": "Server"};
-    // exchange.publish(ddd, "", properties: properties);
     client1.close();
   }
 
@@ -5855,7 +5739,7 @@ class SalesQuotationCon extends ChangeNotifier {
     Client client = Client();
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-        // AppConstant.ip,
+
         //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
@@ -5881,6 +5765,12 @@ class SalesQuotationCon extends ChangeNotifier {
     scanneditemData.clear();
     selectedcust = null;
     selectedcust55 = null;
+    whsName = null;
+    whsCode = null;
+    newSeriesCode = null;
+    newSeriesName = null;
+    newSeriesName2 = null;
+
     remarkcontroller3.text = '';
     mycontroller[50].clear();
     paymentWay.clear();
@@ -5990,6 +5880,7 @@ class SalesQuotationCon extends ChangeNotifier {
         name: cusdataDB[i].customername,
         phNo: cusdataDB[i].phoneno1,
         accBalance: cusdataDB[i].balance,
+        U_CashCust: cusdataDB[i].uCashCust,
         taxCode: cusdataDB[i].taxCode,
         point: cusdataDB[i].points.toString(),
         tarNo: cusdataDB[i].taxno,
@@ -6000,7 +5891,6 @@ class SalesQuotationCon extends ChangeNotifier {
         address: [],
         autoId: null,
       ));
-      // }
     }
     for (int i = 0; i < custList.length; i++) {
       for (int ia = 0; ia < csadresdataDB.length; ia++) {
@@ -6028,6 +5918,7 @@ class SalesQuotationCon extends ChangeNotifier {
               cardCode: cusdataDB[i].customerCode,
               name: cusdataDB[i].customername,
               phNo: cusdataDB[i].phoneno1,
+              U_CashCust: cusdataDB[i].uCashCust,
               accBalance: cusdataDB[i].balance,
               point: cusdataDB[i].points.toString(),
               tarNo: cusdataDB[i].taxno,
@@ -6090,9 +5981,6 @@ class SalesQuotationCon extends ChangeNotifier {
         return;
       }
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        // await updateSalesQuoHeaderToDB(context, theme);
-        // await DBOperation.updtSapDetSalHead(db, int.parse(sapDocentry),
-        //     int.parse(sapDocuNumber), docEntry, 'SalesQuotationHeader');
         onDisablebutton = false;
 
         await Get.defaultDialog(
@@ -6201,13 +6089,9 @@ class SalesQuotationCon extends ChangeNotifier {
     notifyListeners();
   }
 
-  // call api
-
   postCategory(String value) {
     selectedValue = value;
   }
-
-  // int intval = 0;
 
   Future<int?> checkSameSerialBatchScnd(String sBatch) async {
     for (int i = 0; i < scanneditemData.length; i++) {
@@ -6344,7 +6228,6 @@ class SalesQuotationCon extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// customer
   String addCardCode = '';
 
   custSelected(CustomerDetals customerDetals, BuildContext context,
@@ -6366,6 +6249,7 @@ class SalesQuotationCon extends ChangeNotifier {
         name: customerDetals.name,
         phNo: customerDetals.phNo,
         cardCode: customerDetals.cardCode,
+        U_CashCust: customerDetals.U_CashCust,
         taxCode: customerDetals.taxCode,
         point: customerDetals.point,
         address: [],
@@ -6377,6 +6261,7 @@ class SalesQuotationCon extends ChangeNotifier {
     selectedcust55 = CustomerDetals(
         autoId: customerDetals.autoId,
         name: customerDetals.name,
+        U_CashCust: customerDetals.U_CashCust,
         phNo: customerDetals.phNo,
         taxCode: customerDetals.taxCode,
         cardCode: customerDetals.cardCode,
@@ -6417,7 +6302,6 @@ class SalesQuotationCon extends ChangeNotifier {
     }
     await AccountBalApi.getData(selectedcust!.cardCode.toString())
         .then((value) {
-      // loadingscrn = false;
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         updateCustBal =
             double.parse(value.accBalanceData![0].balance.toString());
@@ -6431,8 +6315,6 @@ class SalesQuotationCon extends ChangeNotifier {
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditLimitData != null) {
-          // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
-
           selectedcust!.creditLimits =
               double.parse(value.creditLimitData![0].creditLine.toString());
           notifyListeners();
@@ -6444,19 +6326,17 @@ class SalesQuotationCon extends ChangeNotifier {
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditDaysData != null) {
-          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
           selectedcust!.creditDays =
               value.creditDaysData![0].creditDays.toString();
           selectedcust!.paymentGroup =
               value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+          log('selectedcust paymentGroup::${selectedcust!.U_CashCust}');
+          if (selectedcust!.U_CashCust == 'YES') {
             selectedcust!.name = '';
           } else {
             selectedcust!.name = customerDetals.name!;
           }
-          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
+
           notifyListeners();
         }
         loadingscrn = false;
@@ -6582,7 +6462,7 @@ class SalesQuotationCon extends ChangeNotifier {
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
         country: "TZ", //mycontroller[20].text,
-        state: '', // mycontroller[19].text,
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -6696,7 +6576,7 @@ class SalesQuotationCon extends ChangeNotifier {
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
         country: "TZ", //mycontroller[20].text,
-        state: '', // mycontroller[19].text,
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -6877,7 +6757,6 @@ class SalesQuotationCon extends ChangeNotifier {
         city: mycontroller[10].text,
         countrycode: mycontroller[13].text,
         custcode: selectedcust!.cardCode,
-        // mycontroller[77].text,
         geolocation1: '',
         geolocation2: '',
         statecode: mycontroller[12].text,
@@ -6994,7 +6873,6 @@ class SalesQuotationCon extends ChangeNotifier {
 
   createnewchangescustaddres(
       BuildContext context, ThemeData theme, int ij) async {
-    // final Database db = (await DBHelper.getInstance())!;
     await addnewCustomer(context, theme, ij);
     await getCustDetFDB();
     await getNewCustandadd(context);
@@ -7119,6 +6997,7 @@ class SalesQuotationCon extends ChangeNotifier {
           autoId: newcusdataDB[i]['autoid'].toString(),
           taxCode: newcusdataDB[i]['taxCode'].toString(),
           cardCode: newcusdataDB[i]['customerCode'].toString(),
+          U_CashCust: '',
           name: newcusdataDB[i]['customername'].toString(),
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
@@ -7136,6 +7015,7 @@ class SalesQuotationCon extends ChangeNotifier {
           cardCode: newcusdataDB[i]['customercode'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
           phNo: newcusdataDB[i]['phoneno1'].toString(),
+          U_CashCust: '',
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
           point: newcusdataDB[i]['points'].toString(),
           tarNo: newcusdataDB[i]['taxno'].toString(),
@@ -7191,7 +7071,6 @@ class SalesQuotationCon extends ChangeNotifier {
   insertAddNewCusToDB(
     BuildContext context,
   ) async {
-    log("lastUpdateIp::-----${UserValues.lastUpdateIp}");
     newBillAddrsValue = [];
     newShipAddrsValue = [];
     newCustValues = [];
@@ -7199,6 +7078,7 @@ class SalesQuotationCon extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     newCustValues.add(CustomerModelDB(
         taxCode: '',
+        uCashCust: '',
         customerCode:
             mycontroller[3].text.isNotEmpty ? mycontroller[3].text : '',
         createdUserID: UserValues.userID.toString(),
@@ -7246,8 +7126,8 @@ class SalesQuotationCon extends ChangeNotifier {
       'phoneno2': '', //ph2
       'emalid':
           mycontroller[21].text.isNotEmpty ? mycontroller[21].text : '', //email
-      'createdateTime': config.currentDate(), // createddatetime
-      'updatedDatetime': config.currentDate(), // updateddatetime
+      'createdateTime': config.currentDate(),
+      'updatedDatetime': config.currentDate(),
       'createdUserID': UserValues.userID.toString(), //createdUserid
       'updateduserid': UserValues.userID.toString(), //updateduserid
       'lastupdateIp': UserValues.lastUpdateIp.toString(),
@@ -7521,6 +7401,7 @@ class SalesQuotationCon extends ChangeNotifier {
           taxCode: newcusdataDB[i]['taxCode'].toString(),
           cardCode: newcusdataDB[i]['customercode'].toString(),
           name: newcusdataDB[i]['customername'].toString(),
+          U_CashCust: '',
           phNo: newcusdataDB[i]['phoneno1'].toString(),
           accBalance: double.parse(newcusdataDB[i]['balance'].toString()),
           point: newcusdataDB[i]['points'].toString(),
@@ -7618,16 +7499,13 @@ class SalesQuotationCon extends ChangeNotifier {
               ? qtymycontroller[iss].text
               : "0");
 
-      // log('  totalPay.total   totalPay.total ::${totalPay.total}');
       notifyListeners();
-      // if (double.parse(scanneditemData[iss].maxdiscount!) >= mycontlaa) {
+
       String ansbasic =
           (scanneditemData[iss].sellPrice! * scanneditemData[iss].qty!)
               .toString();
       scanneditemData[iss].basic = double.parse(ansbasic);
-      // scanneditemData[iss].discountper = discountcontroller[iss].text.isNotEmpty
-      //     ? double.parse(discountcontroller[iss].text.toString())
-      //     : 00;
+
       mycontlaa = scanneditemData[iss].discountper ?? 0;
       scanneditemData[iss].discount =
           (scanneditemData[iss].basic! * mycontlaa / 100);
@@ -7639,7 +7517,6 @@ class SalesQuotationCon extends ChangeNotifier {
 
       double priceaftDisc = scanneditemData[iss].priceAfDiscBasic! - priceafd;
       scanneditemData[iss].priceAftDiscVal = priceaftDisc;
-      // log('priceaftDiscpriceaftDisc::$priceaftDisc');
 
       scanneditemData[iss].taxable =
           scanneditemData[iss].basic! - scanneditemData[iss].discount!;
@@ -7664,45 +7541,6 @@ class SalesQuotationCon extends ChangeNotifier {
       totalPay.total =
           totalPay.total! + double.parse(scanneditemData[iss].qty.toString());
       notifyListeners();
-      // } else if (mycontlaa >= 100) {
-      //   showDialog(
-      //       context: context,
-      //       barrierDismissible: true,
-      //       builder: (BuildContext context) {
-      //         return AlertDialog(
-      //             contentPadding: const EdgeInsets.all(0),
-      //             content: SizedBox(
-      //               width: Screens.width(context) * 0.5,
-      //               height: Screens.bodyheight(context) * 0.15,
-      //               child: ContentWidgetMob(
-      //                   theme: theme,
-      //                   msg:
-      //                       "Please enter the discount percentage is below 100"),
-      //             ));
-      //       }).then((value) {
-      //     discountcontroller[iss].text = '';
-      //     notifyListeners();
-      //   });
-      // } else {
-      //   showDialog(
-      //       context: context,
-      //       barrierDismissible: true,
-      //       builder: (BuildContext context) {
-      //         return AlertDialog(
-      //             contentPadding: const EdgeInsets.all(0),
-      //             content: SizedBox(
-      //               width: Screens.width(context) * 0.5,
-      //               height: Screens.bodyheight(context) * 0.15,
-      //               child: ContentWidgetMob(
-      //                   theme: theme,
-      //                   msg:
-      //                       "Discount is greater than Maximum Discount(${scanneditemData[iss].maxdiscount})"),
-      //             ));
-      //       }).then((value) {
-      //     discountcontroller[iss].text = '';
-      //     notifyListeners();
-      //   });
-      // }
     }
     notifyListeners();
   }
@@ -7718,24 +7556,18 @@ class SalesQuotationCon extends ChangeNotifier {
     log("issss length:${scanneditemData2.length}");
 
     for (int iss = 0; iss < scanneditemData2.length; iss++) {
-      // double? mycontlaa = discountcontroller2[iss].text.isNotEmpty
-      //     ? double.parse(discountcontroller2[iss].text.toString())
-      //     : 0;
       scanneditemData2[iss].qty = double.parse(
           qtymycontroller2[iss].text.isNotEmpty
               ? qtymycontroller2[iss].text
               : "0");
 
       notifyListeners();
-      // if (double.parse(scanneditemData2[iss].maxdiscount!) >= mycontlaa) {
+
       String ansbasic =
           (scanneditemData2[iss].sellPrice! * scanneditemData2[iss].qty!)
               .toString();
       scanneditemData2[iss].basic = double.parse(ansbasic);
-      // scanneditemData2[iss].discountper =
-      //     discountcontroller2[iss].text.isNotEmpty
-      //         ? double.parse(discountcontroller2[iss].text.toString())
-      //         : 00;
+
       scanneditemData2[iss].discount = (scanneditemData2[iss].basic! *
           scanneditemData2[iss].discountper! /
           100);
@@ -7757,7 +7589,6 @@ class SalesQuotationCon extends ChangeNotifier {
           (scanneditemData2[iss].basic! - scanneditemData2[iss].discount!) +
               scanneditemData2[iss].taxvalue!;
 
-      // totalPay.total = totalPay.total! + int.parse(qtymycontroller2[iss].text);
       totalPay.subtotal = totalPay.subtotal! + scanneditemData2[iss].basic!;
       totalPay.discount = totalPay.discount! + scanneditemData2[iss].discount!;
       totalPay.totalTX = totalPay.totalTX! + scanneditemData2[iss].taxvalue!;
@@ -7766,46 +7597,8 @@ class SalesQuotationCon extends ChangeNotifier {
           totalPay.total! + double.parse(scanneditemData2[iss].qty.toString());
       totalPay.totalDue = totalPay.totalDue! + scanneditemData2[iss].netvalue!;
       totalPayment2 = totalPay;
-      // log('total qty:::${totalPay.total}');
+
       notifyListeners();
-      // } else if (mycontlaa >= 100) {
-      //   showDialog(
-      //       context: context,
-      //       barrierDismissible: true,
-      //       builder: (BuildContext context) {
-      //         return AlertDialog(
-      //             contentPadding: const EdgeInsets.all(0),
-      //             content: SizedBox(
-      //               width: Screens.width(context) * 0.5,
-      //               height: Screens.bodyheight(context) * 0.15,
-      //               child: ContentWidgetMob(
-      //                   theme: theme,
-      //                   msg:
-      //                       "Please enter the discount percentage is below 100"),
-      //             ));
-      //       }).then((value) {
-      //     discountcontroller2[iss].text = '';
-      //     notifyListeners();
-      //   });
-      // } else {
-      //   showDialog(
-      //       context: context,
-      //       barrierDismissible: true,
-      //       builder: (BuildContext context) {
-      //         return AlertDialog(
-      //             contentPadding: const EdgeInsets.all(0),
-      //             content: SizedBox(
-      //               width: Screens.width(context) * 0.5,
-      //               height: Screens.bodyheight(context) * 0.15,
-      //               child: ContentWidgetMob(
-      //                   theme: theme,
-      //                   msg:
-      //                       "Discount is greater than Maximum Discount(${scanneditemData2[iss].maxdiscount})"),
-      //             ));
-      //       }).then((value) {
-      //     discountcontroller2[iss].text = '';
-      //     notifyListeners();
-      //   });
     }
     FocusScopeNode focus = FocusScope.of(context);
     //log("taxRate:${scanneditemData[iss].taxRate}");
@@ -8092,7 +7885,6 @@ class SalesQuotationCon extends ChangeNotifier {
   removeEmptyList(BuildContext context) {
     for (int i = 0; i < scanneditemData.length; i++) {
       if (qtymycontroller[i].text.isEmpty) {
-        // removeI.add(i);
         qtymycontroller.removeAt(i);
         scanneditemData.removeAt(i);
       }
@@ -8200,8 +7992,18 @@ class SalesQuotationCon extends ChangeNotifier {
     custNameController.text = '';
     tinNoController.text = '';
     vatNoController.text = '';
+
     addCardCode = '';
+    whsCode = null;
+    whsName = null;
+
+    whsLists = [];
     seriesType = '';
+    newDocSeries = [];
+    newSeriesCode = null;
+    newSeriesName = null;
+    newSeriesName2 = null;
+
     postingDatecontroller.text = '';
     userTypes = '';
     scanneditemCheckUpdateData = [];
@@ -8227,6 +8029,7 @@ class SalesQuotationCon extends ChangeNotifier {
     sapDocentry = '';
     sapDocuNumber = '';
     formkey = List.generate(100, (i) => GlobalKey<FormState>());
+    warehousectrl = List.generate(150, (i) => TextEditingController());
     focusnode = List.generate(100, (i) => FocusNode());
     mycontroller = List.generate(150, (i) => TextEditingController());
     mycontroller2 = List.generate(150, (i) => TextEditingController());
@@ -8284,29 +8087,14 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   onselectVisibleItem(BuildContext context, ThemeData theme, int indx) async {
-    // Navigator.pop(context);
-    // if (scanneditemData.isEmpty) {
     int res = checkhaveQty(indx, 0);
 
     if (res > 0) {
       addSannedItem(indx, context, theme);
     } else {
       Get.defaultDialog(title: 'Alert', middleText: 'No more qty to add');
-      // }
     }
-    // else {
-    //   int result = await checkalreadyScanedd(indx);
-    //   if (result != -1) {
-    //     int res = checkhaveQty(indx, int.parse(qtymycontroller[result].text));
-    //     if (res > 0) {
-    //       incrementQty(result, '1', context, theme);
-    //     } else {
-    //       Get.defaultDialog(title: 'Alert', middleText: 'No more qty to add');
-    //     }
-    //   } else {
-    //     addSannedItem(indx, context, theme);
-    //   }
-    // }
+
     calCulateDocVal(context, theme);
   }
 
@@ -8479,14 +8267,12 @@ class SalesQuotationCon extends ChangeNotifier {
     onDisablebutton = true;
     QuotationPrintAPi.docEntry = sapDocentry;
     QuotationPrintAPi.slpCode = AppConstant.slpCode;
-    // print("QuotationPrintAPi.slpCode: " + QuotationPrintAPi.slpCode.toString());
+
     await QuotationPrintAPi.getGlobalData().then((value) {
       notifyListeners();
       if (value == 200) {
         onDisablebutton = false;
         notifyListeners();
-
-        // saveAllExcel(QuotationPrintAPi.path.toString(), context, theme);
       } else {
         onDisablebutton = false;
 
@@ -8514,7 +8300,7 @@ class SalesQuotationCon extends ChangeNotifier {
     log("FFFFFFFF::${scanneditemData2.length}");
     List<InvoiceItem> itemsList = [];
     invoice = null;
-    // for (int ih = 0; ih < salesmodl.length; ih++) {
+
     await addressxx();
     for (int i = 0; i < scanneditemData2.length; i++) {
       itemsList.add(InvoiceItem(

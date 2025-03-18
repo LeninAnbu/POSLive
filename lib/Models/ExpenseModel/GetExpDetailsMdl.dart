@@ -1,21 +1,24 @@
 import '../ServiceLayerModel/ErrorModell/ErrorModelSl.dart';
 
-// GetExpnseDetModel GetExpnseDetModelFromJson(String str) =>
-//     GetExpnseDetModel.fromJson(json.decode(str));
-
 class GetExpnseDetModel {
   int? docNum;
   int? stsCode;
   String? docDate;
   String? errorMsg;
   String? reference1;
-
   ErrorModel? error;
   double? cashSum;
   String? remarks;
   String? journalRemarks;
+  String? address;
 
+// Address
   int? docEntry;
+  String? uRVC;
+  String? taxCode;
+  String? distRule;
+  String? projectCode;
+  String counterReference;
 
   List<PaymentAccount> paymentAccounts;
 
@@ -24,12 +27,18 @@ class GetExpnseDetModel {
     required this.docDate,
     required this.cashSum,
     required this.stsCode,
+    required this.address,
     this.errorMsg,
     this.error,
     required this.remarks,
+    required this.counterReference,
     required this.reference1,
     required this.journalRemarks,
     required this.docEntry,
+    required this.distRule,
+    required this.projectCode,
+    required this.taxCode,
+    required this.uRVC,
     required this.paymentAccounts,
   });
 
@@ -39,10 +48,18 @@ class GetExpnseDetModel {
         docNum: json["DocNum"],
         docDate: json["DocDate"] ?? '',
         reference1: json["Reference1"] ?? '',
+        address: json["Address"] ?? '',
 
         cashSum: json["CashSum"] ?? 0,
         remarks: json["Remarks"] ?? '',
         journalRemarks: json["JournalRemarks"] ?? '',
+        counterReference: json["CounterReference"] ?? '',
+
+        projectCode: json["ProjectCode"] ?? '',
+        uRVC: json["U_RVC"] ?? '',
+        distRule: json["ProfitCenter"] ?? '',
+        taxCode: json["VatGroup"] ?? '',
+
         docEntry: json["DocEntry"],
         //  List<InvoiceDocumentLine>.from(
         // json["DocumentLines"].map((x) => InvoiceDocumentLine.fromJson(x))),
@@ -56,6 +73,12 @@ class GetExpnseDetModel {
           docDate: '',
           errorMsg: '',
           reference1: '',
+          address: '',
+          taxCode: '',
+          projectCode: '',
+          counterReference: '',
+          distRule: '',
+          uRVC: '',
           cashSum: null,
           error: ErrorModel.fromJson(json['error']),
           remarks: '',
@@ -70,6 +93,12 @@ class GetExpnseDetModel {
           errorMsg: e,
           cashSum: null,
           reference1: '',
+          taxCode: '',
+          address: '',
+          projectCode: '',
+          distRule: '',
+          counterReference: '',
+          uRVC: '',
           remarks: '',
           journalRemarks: '',
           docEntry: null,
@@ -98,7 +127,7 @@ class GetExpnseDetModel {
   //     "DocRate": docRate,
   //     "Reference1": reference1,
   //     "Reference2": reference2,
-  //     "CounterReference": counterReference,
+  // "CounterReference": counterReference,
   //     "Remarks": remarks,
   //     "JournalRemarks": journalRemarks,
   //     "SplitTransaction": splitTransaction,
@@ -205,7 +234,7 @@ class PaymentAccount {
   double sumPaid;
   double sumPaidFc;
   String decription;
-  // dynamic vatGroup;
+  String vatGroup;
   String accountName;
   double grossAmount;
   String profitCenter;
@@ -235,7 +264,7 @@ class PaymentAccount {
     required this.sumPaid,
     required this.sumPaidFc,
     required this.decription,
-    // required this.vatGroup,
+    required this.vatGroup,
     required this.accountName,
     required this.grossAmount,
     required this.profitCenter,
@@ -266,7 +295,7 @@ class PaymentAccount {
         sumPaid: json["SumPaid"] ?? 0,
         sumPaidFc: json["SumPaidFC"] ?? 0,
         decription: json["Decription"] ?? '',
-        // vatGroup: json["VatGroup"],
+        vatGroup: json["VatGroup"] ?? '',
         accountName: json["AccountName"] ?? '',
         grossAmount: json["GrossAmount"] ?? 0,
         profitCenter: json["ProfitCenter"] ?? '',

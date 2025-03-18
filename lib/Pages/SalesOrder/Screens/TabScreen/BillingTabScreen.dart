@@ -47,14 +47,14 @@ class _SObillingTabScreenState extends State<SObillingTabScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SOSearchWidget(
-                              searchHeight: Screens.bodyheight(context) * 0.67,
+                              searchHeight: Screens.bodyheight(context) * 0.64,
                               searchWidth: Screens.width(context) * 0.565,
                               theme: widget.theme,
                             ),
                             SOPaymentDetails(
                               theme: widget.theme,
                               paymentWidth: Screens.width(context) * 0.565,
-                              paymentHeight: Screens.bodyheight(context) * 0.25,
+                              paymentHeight: Screens.bodyheight(context) * 0.28,
                             )
                           ])),
                   SizedBox(

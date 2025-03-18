@@ -508,6 +508,8 @@ class HoldedHeader {
   String? docNo;
   String? tinNo;
   String? vatNo;
+  String? branch;
+  String? seresid;
 
   HoldedHeader(
       {this.cardName,
@@ -515,6 +517,8 @@ class HoldedHeader {
       this.date,
       this.docEntry,
       this.docNo,
+      this.branch,
       required this.tinNo,
+      required this.seresid,
       required this.vatNo});
 }

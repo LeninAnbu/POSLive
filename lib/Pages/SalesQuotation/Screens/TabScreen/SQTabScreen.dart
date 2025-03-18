@@ -75,23 +75,24 @@ class _SQuotationbillingTabScreenState
                                   custHeight: Screens.bodyheight(context) * 0.3,
                                   theme: widget.theme,
                                 ),
-                          context
-                                      .watch<SalesQuotationCon>()
-                                      .getScanneditemData2
-                                      .isNotEmpty &&
-                                  context
-                                          .watch<SalesQuotationCon>()
-                                          .getselectedcust2 !=
-                                      null
-                              ? Container()
-                              : SQCashWidget(
-                                  cashWidth: Screens.width(context) * 0.44,
-                                  cashHeight: Screens.bodyheight(context) * 0.1,
-                                  theme: widget.theme,
-                                ),
+                          // context
+                          //             .watch<SalesQuotationCon>()
+                          //             .getScanneditemData2
+                          //             .isNotEmpty &&
+                          //         context
+                          //                 .watch<SalesQuotationCon>()
+                          //                 .getselectedcust2 !=
+                          //             null
+                          //     ? Container()
+                          //     :
+                          SQCashWidget(
+                            cashWidth: Screens.width(context) * 0.44,
+                            cashHeight: Screens.bodyheight(context) * 0.16,
+                            theme: widget.theme,
+                          ),
                           SQBottomButtons(
                             theme: widget.theme,
-                            btnheight: Screens.bodyheight(context) * 0.35,
+                            btnheight: Screens.bodyheight(context) * 0.26,
                             btnWidth: Screens.width(context) * 0.44,
                           )
                         ],

@@ -953,11 +953,19 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                       Alignment.centerRight,
                                                   child: Text(
                                                     context
-                                                        .watch<
-                                                            SalesQuotationCon>()
-                                                        .config
-                                                        .splitValues(
-                                                            "${context.watch<SalesQuotationCon>().getScanneditemData[index].priceAftDiscVal}"),
+                                                                .watch<
+                                                                    SalesQuotationCon>()
+                                                                .getScanneditemData[
+                                                                    index]
+                                                                .priceAftDiscVal !=
+                                                            null
+                                                        ? context
+                                                            .watch<
+                                                                SalesQuotationCon>()
+                                                            .config
+                                                            .splitValues(
+                                                                "${context.watch<SalesQuotationCon>().getScanneditemData[index].priceAftDiscVal}")
+                                                        : '0.0',
                                                     style: theme
                                                         .textTheme.bodyMedium
                                                         ?.copyWith(

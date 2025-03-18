@@ -29,6 +29,7 @@ class SalesOrderLineT {
   static String createdUserID = "createdUserID";
   static String updateduserid = "updateduserid";
   static String lastupdateIp = "lastupdateIp";
+  static String shipDate = "ShipDate";
 }
 
 class SalesOrderLineTDB {
@@ -49,6 +50,7 @@ class SalesOrderLineTDB {
   String? maxdiscount;
   String? basic;
   String? taxtotal;
+  String shipDate;
   String? discamt;
   String? netlinetotal;
   String? branch;
@@ -65,6 +67,7 @@ class SalesOrderLineTDB {
     this.balqty,
     this.createdUser,
     required this.basic,
+    required this.shipDate,
     required this.basetype,
     required this.basedocentry,
     required this.baselineID,
@@ -97,6 +100,7 @@ class SalesOrderLineTDB {
       createdUser: resp['createdUser'],
       basedocentry: resp['basedocentry'].toString(),
       baselineID: resp['baselineID'].toString(),
+      shipDate: resp['baselineID'].toString(),
       basic: resp['basic'],
       branch: resp['branch'],
       terminal: resp['terminal'],
@@ -151,6 +155,7 @@ class SalesOrderLineTDB {
         SalesOrderLineT.taxtotal: taxtotal,
         SalesOrderLineT.updatedDatetime: updatedDatetime,
         SalesOrderLineT.maxdiscount: maxdiscount,
-        SalesOrderLineT.updateduserid: updateduserid
+        SalesOrderLineT.updateduserid: updateduserid,
+        SalesOrderLineT.shipDate: shipDate
       };
 }

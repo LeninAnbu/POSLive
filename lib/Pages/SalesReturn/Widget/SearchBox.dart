@@ -333,9 +333,21 @@ class _saleReturnSearhBoxState extends State<saleReturnSearhBox> {
                                     context
                                         .read<SalesReturnController>()
                                         .seststate1();
+
                                     await context
                                         .read<SalesReturnController>()
                                         .callGetReturnApi(
+                                            context,
+                                            widget.theme,
+                                            context
+                                                .read<SalesReturnController>()
+                                                .filtersearchData[index]
+                                                .docEntry
+                                                .toString());
+
+                                    await context
+                                        .read<SalesReturnController>()
+                                        .callReturnPrintApi(
                                             context,
                                             widget.theme,
                                             context

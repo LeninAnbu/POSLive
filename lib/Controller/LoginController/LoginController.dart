@@ -25,6 +25,8 @@ class LoginController extends ChangeNotifier {
     await SharedPref.clearTerminal();
     await SharedPref.clearUserSP();
     await SharedPref.clearSapDB();
+    await SharedPref.clearDatadonld();
+    await SharedPref.clearLoggedINSP();
     disableBtn = false;
     incorrectPwd = '';
     createDB();

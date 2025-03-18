@@ -42,6 +42,8 @@ import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/
 import '../../Models/ServiceLayerModel/SapSalesReturnModel/ReturnPostingListModel.dart';
 import '../../Models/ServiceLayerModel/SapSalesReturnModel/SapSaleReturnmodel.dart';
 import '../../Pages/Sales Screen/Screens/MobileScreenSales/WidgetsMob/ContentcontainerMob.dart';
+import '../../Service/Printer/SalesreturnPrintApi.dart';
+import '../../Service/Printer/orderPrint.dart';
 import '../../Service/QueryURL/CreditDaysModelAPI.dart';
 import '../../Service/QueryURL/CreditLimitModeAPI.dart';
 import '../../Service/QueryURL/ReturnCardCodeApi.dart';
@@ -107,7 +109,7 @@ class SalesReturnController extends ChangeNotifier {
   List<searchModel> searchData = [];
   bool validateqty = true;
   bool cancelbtn = false;
-  // List<searchModel> filtersearchData = [];
+
   List<StocksnapModelData> scanneditemData2 = [];
   List<StocksnapModelData> get getScanneditemData2 => scanneditemData2;
   TotalPayment? totalPayment2;
@@ -293,7 +295,7 @@ class SalesReturnController extends ChangeNotifier {
       ThemeData theme) async {
     selectedcust = null;
     selectedcust55 = null;
-    // custNameController.text = '';
+
     selectedBillAdress = 0;
     selectedShipAdress = 0;
     double? updateCustBal = 0;
@@ -304,6 +306,7 @@ class SalesReturnController extends ChangeNotifier {
     selectedcust = CustomerDetals(
         autoId: customerDetals.autoId,
         taxCode: customerDetals.taxCode,
+        U_CashCust: customerDetals.U_CashCust,
         name: '',
         phNo: customerDetals.phNo,
         cardCode: customerDetals.cardCode,
@@ -324,14 +327,12 @@ class SalesReturnController extends ChangeNotifier {
         updateCustBal = 0;
       }
     });
-    // addCardCode = customerDetals.cardCode!;
+
     selectedcust!.accBalance = updateCustBal ?? customerDetals.accBalance!;
     await CustCreditLimitAPi.getGlobalData(customerDetals.cardCode.toString())
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditLimitData != null) {
-          // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
-
           selectedcust!.creditLimits =
               double.parse(value.creditLimitData![0].creditLine.toString());
           notifyListeners();
@@ -343,19 +344,15 @@ class SalesReturnController extends ChangeNotifier {
         .then((value) {
       if (value.statuscode >= 200 && value.statuscode <= 210) {
         if (value.creditDaysData != null) {
-          // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
           selectedcust!.creditDays =
               value.creditDaysData![0].creditDays.toString();
           selectedcust!.paymentGroup =
               value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-          log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-          if (selectedcust!.paymentGroup!.contains('cash') == true) {
+          if (selectedcust!.U_CashCust == 'YES') {
             selectedcust!.name = '';
           } else {
             selectedcust!.name = customerDetals.name!;
           }
-          log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
           notifyListeners();
         }
         loadingscrn = false;
@@ -363,6 +360,7 @@ class SalesReturnController extends ChangeNotifier {
     });
     selectedcust55 = CustomerDetals(
         autoId: customerDetals.autoId,
+        U_CashCust: customerDetals.U_CashCust,
         name: customerDetals.name,
         taxCode: customerDetals.taxCode,
         phNo: customerDetals.phNo,
@@ -412,10 +410,8 @@ class SalesReturnController extends ChangeNotifier {
         }
         notifyListeners();
       }
-      // calCulateDocVal(context, theme);
     }
 
-    // await callOpenSalesQuotation(context, theme);
     notifyListeners();
   }
 
@@ -441,6 +437,7 @@ class SalesReturnController extends ChangeNotifier {
             cardCode: cusdataDB[i].customerCode,
             taxCode: cusdataDB[i].taxCode,
             name: cusdataDB[i].customername,
+            U_CashCust: cusdataDB[i].uCashCust,
             phNo: cusdataDB[i].phoneno1,
             accBalance: cusdataDB[i].balance,
             point: cusdataDB[i].points.toString(),
@@ -477,6 +474,7 @@ class SalesReturnController extends ChangeNotifier {
           custList2.add(CustomerDetals(
               cardCode: cusdataDB[i].customerCode,
               taxCode: cusdataDB[i].taxCode,
+              U_CashCust: cusdataDB[i].uCashCust,
               name: cusdataDB[i].customername,
               phNo: cusdataDB[i].phoneno1,
               point: cusdataDB[i].points.toString(),
@@ -633,7 +631,6 @@ class SalesReturnController extends ChangeNotifier {
                     contentPadding: const EdgeInsets.all(0),
                     content: SingleChildScrollView(
                       child: Container(
-                        // height: Screens.padingHeight(context) * 0.5,
                         width: Screens.width(context) * 0.3,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -670,7 +667,6 @@ class SalesReturnController extends ChangeNotifier {
                                             context, srmycontroller[1].text);
                                       },
                                       child: Container(
-                                        // padding: EdgeInsets.all(10),
                                         child: Card(
                                           margin: EdgeInsets.all(1),
                                           child: Container(
@@ -716,31 +712,8 @@ class SalesReturnController extends ChangeNotifier {
                     ));
               });
 
-          // await addCustomer(value.activitiesData![0].cardCode,
-          //     value.activitiesData![0].cardName);
-
           notifyListeners();
-        } else {
-          //   showDialog(
-          //       context: context,
-          //       barrierDismissible: true,
-          // builder: (BuildContext context) {
-          //   return AlertDialog(
-          //       contentPadding: const EdgeInsets.all(0),
-          //       content: AlertBox(
-          //               payMent: 'Alert',
-          //               errormsg: true,
-          //               widget: Container(
-          //                   padding: EdgeInsets.only(
-          //                       top: Screens.padingHeight(context) * 0.02),
-          //                   child: Center(child: Text('No Data Found'))),
-          //               buttonName: null,
-          //             ));
-          //       });
-          //   isloading = false;
-          //   srmycontroller[1].text = '';
-          //   notifyListeners();
-        }
+        } else {}
       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
         showDialog(
             context: context,
@@ -809,8 +782,6 @@ class SalesReturnController extends ChangeNotifier {
                 lineId: value.activitiesData![i].lineNum));
           }
           isloading = false;
-          // await addCustomer(value.activitiesData![0].cardCode,
-          //     value.activitiesData![0].cardName);
 
           if (selectedcust != null) {
             selectedcust!.name = value.activitiesData![0].cardName ?? '';
@@ -1005,6 +976,7 @@ class SalesReturnController extends ChangeNotifier {
           name: getdbSaleretheader[0]["customername"].toString(),
           phNo: getdbSaleretheader[0]["customerphono"].toString(),
           cardCode: getdbSaleretheader[0]["customercode"].toString(),
+          U_CashCust: '',
           accBalance:
               double.parse(getdbSaleretheader[0]["customeraccbal"].toString()),
           point: getdbSaleretheader[0]["customerpoint"].toString(),
@@ -1165,7 +1137,6 @@ class SalesReturnController extends ChangeNotifier {
   callGetReturnApi(
       BuildContext context, ThemeData theme, String Docentry) async {
     await sapReturnLoginApi();
-    // final Database db = (await DBHelper.getInstance())!;
 
     sapReturnLineData = [];
     scanneditemData2 = [];
@@ -1196,7 +1167,6 @@ class SalesReturnController extends ChangeNotifier {
                   scanneditemData2[ik].openQty.toString();
             }
             addCustomer2(value.cardCode.toString());
-            // calCulateDocVal2();
           }
         } else {}
         searchLoading = false;
@@ -1377,7 +1347,7 @@ class SalesReturnController extends ChangeNotifier {
                   .replaceAll(',', ''))));
     }
     searchData.addAll(searchdata2);
-    // filtersearchData = searchData;
+
     searchbool = false;
     notifyListeners();
   }
@@ -1393,9 +1363,9 @@ class SalesReturnController extends ChangeNotifier {
         await DBOperation.getCstmMasDatabyautoid(db, cardCode.toString());
     if (custData.isNotEmpty) {
       selectedcust = CustomerDetals(
-        // autoId: custData[0]['autoid'].toString(),
         name: cardName ?? "",
         phNo: custData[0]['phoneno1'].toString() ?? '',
+        U_CashCust: custData[0]['U_CASHCUST'].toString() ?? '',
         cardCode: custData[0]['customerCode'].toString() ?? '',
         accBalance: double.parse(custData[0]['balance'].toString()),
         point: custData[0]['points'].toString(),
@@ -1412,6 +1382,7 @@ class SalesReturnController extends ChangeNotifier {
       selectedcust55 = CustomerDetals(
         autoId: custData[0]['autoid'].toString(),
         name: custData[0]['customername'].toString(),
+        U_CashCust: custData[0]['U_CASHCUST'].toString() ?? '',
         phNo: custData[0]['phoneno1'].toString(),
         cardCode: custData[0]['customerCode'].toString(),
         accBalance: double.parse(custData[0]['balance'].toString()),
@@ -1499,6 +1470,7 @@ class SalesReturnController extends ChangeNotifier {
     selectedcust2 = CustomerDetals(
       autoId: custData[0]['autoid'].toString(),
       name: custData[0]['customername'].toString(),
+      U_CashCust: custData[0]['U_CASHCUST'].toString() ?? '',
       phNo: custData[0]['phoneno1'].toString(),
       cardCode: custData[0]['customerCode'].toString(),
       accBalance: double.parse(custData[0]['balance'].toString()),
@@ -2268,7 +2240,6 @@ class SalesReturnController extends ChangeNotifier {
   }
 
   calCulateDocVal2() async {
-    // await salesCreditRcAmt();
     await calculateLineVal2();
     TotalPayment totalPay = TotalPayment();
     totalPay.total = 0;
@@ -2315,7 +2286,6 @@ class SalesReturnController extends ChangeNotifier {
     totalPayment2 = totalPay;
     notifyListeners();
 
-    // btnEnabledfn();
     totalcalculate();
   }
 
@@ -2485,7 +2455,6 @@ class SalesReturnController extends ChangeNotifier {
   }
 
   double getBalancePaid22() {
-    // salesCreditRcAmt();
     if (paymentWay2.isNotEmpty) {
       return double.parse(config
               .splitValues(totalPayment2!.totalDue!.toStringAsFixed(2))
@@ -2920,9 +2889,10 @@ class SalesReturnController extends ChangeNotifier {
           await DBOperation.getCstmMasDatabyautoid(
               db, getDBholddata1[ik]['customercode'].toString());
       selectedcust = CustomerDetals(
-          name: custData[0]['customername'].toString(),
+          name: getDBholddata1[ik]['customername'].toString(),
           phNo: custData[0]['phoneno1'].toString(),
-          cardCode: custData[0]['customercode'].toString(),
+          cardCode: custData[0]['customerCode'].toString(),
+          U_CashCust: custData[0]['U_CashCust'].toString(),
           accBalance: double.parse(custData[0]['balance'].toString()),
           point: custData[0]['points'].toString(),
           address: [],
@@ -2935,9 +2905,10 @@ class SalesReturnController extends ChangeNotifier {
       notifyListeners();
 
       selectedcust55 = CustomerDetals(
-        name: custData[0]['customername'].toString(),
+        name: getDBholddata1[ik]['customername'].toString(),
         phNo: custData[0]['phoneno1'].toString(),
-        cardCode: custData[0]['customercode'].toString(),
+        cardCode: custData[0]['customerCode'].toString(),
+        U_CashCust: custData[0]['U_CASHCUST'].toString() ?? '',
         accBalance: double.parse(custData[0]['balance'].toString()),
         point: custData[0]['points'].toString(),
         address: [],
@@ -3343,7 +3314,6 @@ class SalesReturnController extends ChangeNotifier {
         netlinetotal: scanneditemData[i].netvalue.toString(),
         price: scanneditemData[i].sellPrice.toString(),
         quantity: qtymycontroller[i].text.toString(),
-        // scanneditemData[i].qty.toString(),
         serialbatch: scanneditemData[i].serialBatch,
         taxrate: scanneditemData[i].taxRate.toString(),
         taxtotal: scanneditemData[i].taxvalue.toString(),
@@ -3487,9 +3457,7 @@ class SalesReturnController extends ChangeNotifier {
     String docstatus,
   ) async {
     await sapReturnLoginApi();
-    // await callSeriesApi(
-    //   context,
-    // );
+
     await postingreturn(
       context,
       theme,
@@ -3497,6 +3465,40 @@ class SalesReturnController extends ChangeNotifier {
       baseDocentry,
       docstatus,
     );
+    notifyListeners();
+  }
+
+  void showSnackBar(
+    String msg,
+    BuildContext context,
+  ) {
+    final sn = SnackBar(
+      content: Text(
+        "$msg",
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.red,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(sn);
+  }
+
+  callReturnPrintApi(
+      BuildContext context, ThemeData theme, String docEntry) async {
+    freezeScrn = true;
+
+    // SalesReturnPrintAPii.docEntry = sapDocentry;
+    SalesReturnPrintAPii.slpCode = AppConstant.slpCode;
+
+    await SalesReturnPrintAPii.getGlobalData(docEntry).then((value) {
+      if (value == 200) {
+        freezeScrn = false;
+        notifyListeners();
+      } else {
+        freezeScrn = false;
+
+        showSnackBar('Try again!!..', context);
+      }
+    });
     notifyListeners();
   }
 
@@ -3675,32 +3677,12 @@ class SalesReturnController extends ChangeNotifier {
     SalesReurnPostAPi.remarks = remarkcontroller3.text;
     SalesReurnPostAPi.cnType = selectCreditNoteCode!;
     SalesReurnPostAPi.seriesType = seriesType;
-    // var uuid = const Uuid();
-    // String? uuidg = uuid.v1();
+
     SalesReurnPostAPi.method(uuiDeviceId);
-    // freezeScrn = false;
 
     await SalesReurnPostAPi.getGlobalData(uuiDeviceId).then((value) async {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        // sapDocentry = value.docEntry.toString();
-        // sapDocuNumber = value.docNum.toString();
-        // await DBOperation.updtSapDetSalHead(
-        //     db,
-        //     int.parse(sapDocentry),
-        //     int.parse(value.docNum.toString()),
-        //     docEntry,
-        //     'SalesReturnHeader');
         await DBOperation.UpdateApprovalReturnDB(db, docEntry.toString());
-        // mycontroller = List.generate(150, (i) => TextEditingController());
-        // qtymycontroller = List.generate(150, (i) => TextEditingController());
-
-        // selectedcust = null;
-
-        // paymentWay.clear();
-        // totalPayment = null;
-
-        // remarkcontroller3.text = "";
-        // scanneditemData.clear();
 
         notifyListeners();
         await Get.defaultDialog(
@@ -3737,7 +3719,6 @@ class SalesReturnController extends ChangeNotifier {
         {
           freezeScrn = false;
 
-          // custserieserrormsg = value.error!.message!.value.toString();
           await showDialog(
               context: context,
               barrierDismissible: false,
@@ -4222,8 +4203,12 @@ class SalesReturnController extends ChangeNotifier {
         invoceDate: getDBholddata1[ji]['createdateTime'].toString(),
         invoiceNum: getDBholddata1[ji]['basedocnum'].toString(),
         createdateTime: getDBholddata1[ji]['createdateTime'].toString(),
-        invoceAmount: double.parse(
-            getDBholddata1[ji]['doctotal'].toString().replaceAll(",", '')),
+        invoceAmount: getDBholddata1[ji]['doctotal'] == null ||
+                getDBholddata1[ji]['doctotal'] == 'null' ||
+                getDBholddata1[ji]['doctotal'].toString().isEmpty
+            ? 0
+            : double.parse(
+                getDBholddata1[ji]['doctotal'].toString().replaceAll(",", '')),
         address: addressadd,
         totalPayment: TotalPayment(
           subtotal: double.parse(getDBholddata1[ji]['docbasic'] == null
@@ -4241,9 +4226,13 @@ class SalesReturnController extends ChangeNotifier {
           total: getDBholddata1[ji]['quantity'] != null
               ? double.parse(getDBholddata1[ji]['quantity'].toString())
               : 0,
-          totalDue: double.parse(getDBholddata1[ji]['doctotal'] == null
-              ? '0'
-              : getDBholddata1[ji]['doctotal'].toString().replaceAll(',', '')),
+          totalDue: getDBholddata1[ji]['doctotal'] == null ||
+                  getDBholddata1[ji]['doctotal'] == 'null' ||
+                  getDBholddata1[ji]['doctotal'].toString().isEmpty
+              ? 0
+              : double.parse(getDBholddata1[ji]['doctotal']
+                  .toString()
+                  .replaceAll(',', '')),
           totpaid: double.parse(getDBholddata1[ji]['amtpaid'] == null
               ? '0'
               : getDBholddata1[ji]['amtpaid'].toString().replaceAll(',', '')),
@@ -4272,7 +4261,6 @@ class SalesReturnController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     await sapReturnLoginApi();
     ApprovalsRetPostAPi.docEntry = approvalDetailsValue!.docEntry.toString();
-    // ApprovalsRetPostAPi.docDueDate = approvalDetailsValue!.DocDate;
 
     log('kkkkk' + selectedcust2!.docentry.toString());
     await ApprovalsRetPostAPi.getGlobalData().then((valuex) async {
@@ -4565,6 +4553,7 @@ class SalesReturnController extends ChangeNotifier {
               taxCode: newcusdataDB[ij]['taxCode'].toString(),
               autoId: newcusdataDB[ij]['autoid'].toString(),
               cardCode: newcusdataDB[ij]['customerCode'].toString(),
+              U_CashCust: newcusdataDB[ij]['U_CASHCUST'].toString() ?? '',
               name: newcusdataDB[ij]['customername'].toString(),
               phNo: newcusdataDB[ij]['phoneno1'].toString(),
               accBalance: double.parse(newcusdataDB[ij]['balance'].toString()),
@@ -4610,18 +4599,6 @@ class SalesReturnController extends ChangeNotifier {
             balance: double.parse(
                 getsoheader[0]['baltopay'].toString().replaceAll(',', '')),
           );
-
-          // for (int j = 0; j < getdbSaleretpay.length; j++) {
-          //   paymentWay2.add(PaymentWay(
-          //     amt: getdbSaleretpay[j]['rcamount'] != null
-          //         ? double.parse(getdbSaleretpay[j]['rcamount'].toString())
-          //         : null,
-          //     type: getdbSaleretpay[j]['rcmode'].toString(),
-          //     reference: getdbSaleretpay[j]['reference'] != null
-          //         ? getdbSaleretpay[j]['reference'].toString()
-          //         : '',
-          //   ));
-          // }
         }
       }
       notifyListeners();

@@ -36,7 +36,7 @@ class OnHandModels {
         return OnHandModels(
           message: jsons['message'].toString(),
           status: jsons['status'] as bool,
-          onHandData: null,
+          onHandData: [],
           error: jsons['data'].toString(),
           statusCode: stcode,
         );

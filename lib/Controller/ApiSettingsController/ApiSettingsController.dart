@@ -162,8 +162,10 @@ class ApiSettingsController extends ChangeNotifier {
               weight: value.stocksnapitemdata![i].weight,
               liter: value.stocksnapitemdata![i].liter,
               uPackSize: value.stocksnapitemdata![i].uPackSize.toString(),
-              uTINSPERBOX:
-                  int.parse(value.stocksnapitemdata![i].uTINSPERBOX.toString()),
+              uTINSPERBOX: value.stocksnapitemdata![i].uTINSPERBOX != null
+                  ? int.parse(
+                      value.stocksnapitemdata![i].uTINSPERBOX.toString())
+                  : 0,
               uSpecificGravity:
                   value.stocksnapitemdata![i].uSpecificGravity.toString(),
               uPackSizeuom: value.stocksnapitemdata![i].uPackSizeuom.toString(),

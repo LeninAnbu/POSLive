@@ -52,7 +52,7 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                 ),
               ),
               SizedBox(
-                height: widget.btnheight * 0.65,
+                height: widget.btnheight * 0.6,
                 child: context
                         .read<SalesQuotationCon>()
                         .getpaymentWay2
@@ -363,50 +363,7 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                                       setState(() {
                                         context
                                             .read<SalesQuotationCon>()
-                                            .selectedcust2 = null;
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .custNameController
-                                            .text = '';
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .tinNoController
-                                            .text = '';
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .vatNoController
-                                            .text = '';
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .selectedcust25 = null;
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .scanneditemData2
-                                            .clear();
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .paymentWay2
-                                            .clear();
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .totalPayment2 = null;
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .custList2
-                                            .clear();
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .injectToDb();
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .getdraftindex();
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .mycontroller2[50]
-                                            .text = "";
-                                        context
-                                            .read<SalesQuotationCon>()
-                                            .cancelbtn = false;
+                                            .callClearBtn();
                                       });
                                     },
                                     child: Container(

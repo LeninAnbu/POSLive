@@ -10,6 +10,7 @@ import '../Pages/DashBoard/Screens/DashBoardScreen.dart';
 import '../Pages/DownloadPage/Screens.dart';
 import '../Pages/Expenses/ExpenseScreen.dart';
 import '../Pages/LogOut/LogoutScreens.dart';
+import '../Pages/LoginScreen/LoginScreen.dart';
 import '../Pages/NotificationPage/Screens/Screenss.dart';
 import '../Pages/NumberingSeriesPage/Screens/Screens.dart';
 import '../Pages/PaymentReceipt/Screens/Screens.dart';
@@ -175,6 +176,10 @@ class Routes {
     GetPage<dynamic>(
       name: ConstantRoutes.logout,
       page: () => LogoutScreenPage(),
+    ),
+    GetPage<dynamic>(
+      name: ConstantRoutes.login,
+      page: () => LoginScreen(),
     ),
   ];
 }

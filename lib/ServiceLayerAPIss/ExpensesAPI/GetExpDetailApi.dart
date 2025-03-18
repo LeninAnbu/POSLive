@@ -9,7 +9,7 @@ import '../../url/url.dart';
 
 class SerlayExpensesAPI {
   static Future<GetExpnseDetModel> getData(String sapDocEntry) async {
-    log("Expenses sapSessionID:::${AppConstant.sapSessionID}");
+    log("Expenses sapSessionID:::${AppConstant.sapSessionID}:::::${URL.sapUrl}/VendorPayments($sapDocEntry)");
     try {
       final response = await http.get(
         Uri.parse('${URL.sapUrl}/VendorPayments($sapDocEntry)'),

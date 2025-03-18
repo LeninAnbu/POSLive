@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Constant/Screen.dart';
 import '../../../Controller/SalesOrderController/SalesOrderController.dart';
 
 class SOPaymentDetails extends StatefulWidget {
@@ -44,25 +46,28 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
             top: widget.paymentHeight * 0.01,
             left: widget.paymentWidth * 0.01,
             right: widget.paymentWidth * 0.02,
-            bottom: widget.paymentHeight * 0.02,
+            // bottom: widget.paymentHeight * 0.02,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
+              Container(
+                // color: Colors.red,
                 width: widget.paymentWidth * 0.5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    Container(
+                      // color: Colors.red,
                       width: widget.paymentWidth * 0.35,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
@@ -113,6 +118,7 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                             ],
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
@@ -171,6 +177,7 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                         ? Container(
                             alignment: Alignment.center,
                             width: widget.paymentWidth * 0.5,
+                            height: Screens.padingHeight(context) * 0.057,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
                             ),
@@ -214,6 +221,7 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                           )
                         : Container(
                             alignment: Alignment.center,
+                            height: Screens.padingHeight(context) * 0.057,
                             width: widget.paymentWidth * 0.5,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -262,6 +270,229 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                               ),
                             ),
                           ),
+                    context.watch<SOCon>().getScanneditemData2.isNotEmpty &&
+                            context.read<SOCon>().userTypes == 'corporate'
+                        ? Container(
+                            alignment: Alignment.center,
+                            width: widget.paymentWidth * 0.5,
+                            height: Screens.padingHeight(context) * 0.057,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: TextFormField(
+                              controller:
+                                  context.watch<SOCon>().warehousectrl[0],
+                              cursorColor: Colors.grey,
+                              style:
+                                  widget.theme.textTheme.bodyMedium?.copyWith(),
+                              onChanged: (v) {},
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                filled: false,
+                                // labelText: "Warehouse code",
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 10,
+                                ),
+                              ),
+                            ),
+                          )
+                        : context.read<SOCon>().userTypes == 'corporate'
+                            ? Container(
+                                // padding: EdgeInsets.only(
+                                //     left: widget.paymentHeight * 0.05),
+                                height: Screens.padingHeight(context) * 0.057,
+                                width: widget.paymentWidth * 0.5,
+                                decoration: const BoxDecoration(),
+                                child: DropdownButtonFormField(
+                                    validator: (value) =>
+                                        value == null ? 'Required*' : null,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 5),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: widget.theme.primaryColor),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: widget.theme.primaryColor),
+                                      ),
+                                    ),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    value: context.watch<SOCon>().whsName,
+                                    items:
+                                        context.read<SOCon>().whsLists.map((e) {
+                                      return DropdownMenuItem(
+                                          value: e.companyName,
+                                          child: Text(
+                                            e.companyName.toString(),
+                                          ));
+                                    }).toList(),
+                                    hint: const Text(
+                                      "Choose warehouse code",
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        context.read<SOCon>().whsName = value!;
+                                        context
+                                            .read<SOCon>()
+                                            .selectedWhsCode(value.toString());
+                                      });
+                                    }),
+                              )
+                            : Container(
+                                width: Screens.width(context) * 0.15,
+                              ),
+                    context.watch<SOCon>().getScanneditemData2.isNotEmpty &&
+                            context.read<SOCon>().userTypes == 'corporate'
+                        ? Container(
+                            alignment: Alignment.center,
+                            width: widget.paymentWidth * 0.5,
+                            height: Screens.padingHeight(context) * 0.057,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: TextFormField(
+                              controller:
+                                  context.watch<SOCon>().warehousectrl[1],
+                              cursorColor: Colors.grey,
+                              style:
+                                  widget.theme.textTheme.bodyMedium?.copyWith(),
+                              onChanged: (v) {},
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                filled: false,
+                                // labelText: "series code",
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 5,
+                                  horizontal: 10,
+                                ),
+                              ),
+                            ),
+                          )
+                        : context.read<SOCon>().userTypes == 'corporate'
+                            ? Container(
+                                // padding: EdgeInsets.only(
+                                //     left: widget.paymentHeight * 0.05),
+                                height: Screens.padingHeight(context) * 0.057,
+                                width: widget.paymentWidth * 0.5,
+                                decoration: const BoxDecoration(),
+                                child: DropdownButtonFormField(
+                                    validator: (value) =>
+                                        value == null ? 'Required*' : null,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 5),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: widget.theme.primaryColor),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: widget.theme.primaryColor),
+                                      ),
+                                    ),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    value: context.watch<SOCon>().newSeriesName,
+                                    items: context
+                                        .read<SOCon>()
+                                        .newDocSeries
+                                        .map((e) {
+                                      return DropdownMenuItem(
+                                          value: e.seriesName,
+                                          child: Text(
+                                            e.seriesName.toString(),
+                                          ));
+                                    }).toList(),
+                                    hint: const Text(
+                                      "Choose series",
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        context.read<SOCon>().newSeriesName =
+                                            value!;
+                                        context
+                                            .read<SOCon>()
+                                            .selectDocSeries(value.toString());
+                                      });
+                                    }),
+                              )
+                            : Container(
+                                width: Screens.width(context) * 0.15,
+                              ),
                   ],
                 ),
               ),

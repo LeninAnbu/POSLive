@@ -7,14 +7,8 @@ import '../../Service/ReportsApi/CashStatementApi.dart';
 import 'package:intl/intl.dart';
 
 class CashStateCon extends ChangeNotifier {
-  // CashStateCon(){
-  //  init();
-  // }
-
   init() async {
     clearalldata();
-    // await getStockReg();
-    // callCashReportApi();
   }
 
   List<CashStateData> salesReg = [];
@@ -32,25 +26,6 @@ class CashStateCon extends ChangeNotifier {
     searchcontroller = List.generate(150, (i) => TextEditingController());
   }
 
-  // Future<void> getStockReg() async {
-  //   final Database db = (await DBHelper.getInstance())!;
-  //   List<Map<String, Object?>> data = await DBOperation.getCashstatement(db);
-
-  //   for (int i = 0; i < data.length; i++) {
-  //     salesReg.add(CashStateData(
-  //         branch: data[i]['branch'].toString(),
-  //         cardcode: data[i]['customercode'].toString(),
-  //         cardname: data[i]['customername'].toString(),
-  //         date: data[i]['transtime'].toString(),
-  //         expense: data[i]['Expense'].toString(),
-  //         docno: data[i]['documentno'].toString(),
-  //         doctype: data[i]['doctype'].toString(),
-  //         amount: data[i]['rcamount'].toString(),
-  //         terminal: data[i]['terminal'].toString()));
-  //   }
-  //   filtersalesReg = salesReg;
-  //   notifyListeners();
-  // }
   List<GlobalKey<FormState>> formkey =
       List.generate(100, (i) => GlobalKey<FormState>());
 

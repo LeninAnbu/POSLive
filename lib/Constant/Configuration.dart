@@ -78,8 +78,6 @@ class Configure {
   }
 
   Future<bool?> haveNoInterNet() async {
-    // final result = await Connectivity().checkConnectivity();
-
     final List<ConnectivityResult> connectivityResult =
         await (Connectivity().checkConnectivity());
     bool? hasnoInternet;
@@ -91,19 +89,16 @@ class Configure {
     } else {
       hasnoInternet = false;
     }
-    // result != (connectivityResult.contains(ConnectivityResult.none));
-    // log('hasnoInternethasnoInternet:$hasnoInternet');
+
     return hasnoInternet;
   }
 
   String alignDate(String date) {
-    // log("message" + date);
     if (date == 'null' || date.isEmpty) {
       return '';
     }
     var dates = DateTime.parse(date);
-    // print(
-    //     "${dates.day.toString().padLeft(2, '0')}-${dates.month.toString().padLeft(2, '0')}-${dates.year}");
+
     return "${dates.day.toString().padLeft(2, '0')}-${dates.month.toString().padLeft(2, '0')}-${dates.year}";
   }
 
@@ -118,19 +113,15 @@ class Configure {
   String alignDate1(String date) {
     var inputFormat = DateFormat('dd-MM-yyyy');
     var date1 = inputFormat.parse(date);
-    // log("------------------------------------------------------------------------------------------------");
+
     var dates = DateTime.parse(date1.toString());
     return "${dates.year}-${dates.month.toString().padLeft(2, '0')}-${dates.day.toString().padLeft(2, '0')}";
-    // return date1.toString();
   }
 
   String alignDateT(String date) {
     log('datedate::$date');
     var dates = DateTime.parse(date);
     return "${dates.day.toString().padLeft(2, '0')}-${dates.month.toString().padLeft(2, '0')}-${dates.year}";
-    // } else {
-    //   return '';
-    // }
   }
 
   String alignmeetingdate(String date1) {
@@ -138,7 +129,6 @@ class Configure {
     log("DATATTA" + dateT.toString());
     final timestamp = DateTime.parse('$date1');
 
-    // Define the desired date and time format
     final formattedDateTime = DateFormat('dd-MM-yyyy h:mma').format(timestamp);
     log("DATE::" + formattedDateTime);
     return formattedDateTime;
@@ -147,13 +137,11 @@ class Configure {
   Future<String?> getdeviceId() async {
     var deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {
-      // import 'dart:io'
-
       var iosDeviceInfo = await deviceInfo.iosInfo;
-      return iosDeviceInfo.identifierForVendor; // unique ID on iOS
+      return iosDeviceInfo.identifierForVendor;
     } else if (Platform.isAndroid) {
       var androidDeviceInfo = await deviceInfo.androidInfo;
-      return androidDeviceInfo.id; // unique ID on Android
+      return androidDeviceInfo.id;
     }
     return null;
   }
@@ -163,8 +151,15 @@ class Configure {
     var date1 = inputFormat.parse(date);
     var dates = DateTime.parse(date1.toString());
     return "${dates.year}-${dates.month.toString().padLeft(2, '0')}-${dates.day.toString().padLeft(2, '0')}";
+  }
 
-    // return date1.toString();
+  findFirstDateOfTheMonth2(DateTime dateTime) {
+    Duration timeZoneOffset = Duration(hours: 5, minutes: 30);
+
+    DateTime dateTimeWithOffset = dateTime.toUtc().add(timeZoneOffset);
+
+    return DateTime(dateTimeWithOffset.year, dateTimeWithOffset.month, 1)
+        .toIso8601String();
   }
 
   String currentDate() {
@@ -184,20 +179,20 @@ class Configure {
   String slpitCurrency2(String value) {
     double values = double.parse(value);
     var format = NumberFormat.currency(
-      name: "INR", locale: 'en_IN',
-      decimalDigits: 2, // change it to get decimal places
+      name: "INR",
+      locale: 'en_IN',
+      decimalDigits: 2,
       symbol: '',
     );
     String formattedCurrency = format.format(values);
-    //  double formattedvalue =  double.parse(formattedCurrency);
+
     return formattedCurrency;
   }
 
   String splitValues(String val) {
-    // print("vvvvv: "+val);
     var formatter = NumberFormat('###,000.00');
     double formatNO = double.parse(val);
-    // print("formatedd: "+formatter.format(formatNO));
+
     String retunVal = formatter.format(formatNO).toString();
     return retunVal;
   }

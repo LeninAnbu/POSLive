@@ -42,14 +42,13 @@ class CashWidget extends StatelessWidget {
                         context
                                 .read<PosController>()
                                 .selectedcust!
-                                .paymentGroup !=
+                                .U_CashCust !=
                             null &&
                         context
                                 .read<PosController>()
                                 .selectedcust!
-                                .paymentGroup!
-                                .contains('cash') ==
-                            false
+                                .U_CashCust !=
+                            'YES'
                     ? null
                     : () {
                         context.read<PosController>().nullErrorMsg();
@@ -119,14 +118,13 @@ class CashWidget extends StatelessWidget {
                                   context
                                           .read<PosController>()
                                           .selectedcust!
-                                          .paymentGroup !=
+                                          .U_CashCust !=
                                       null &&
                                   context
                                           .read<PosController>()
                                           .selectedcust!
-                                          .paymentGroup!
-                                          .contains('cash') ==
-                                      false
+                                          .U_CashCust !=
+                                      'YES'
                               ? Colors.grey.withOpacity(0.2)
                               : theme.primaryColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(5),
@@ -163,14 +161,13 @@ class CashWidget extends StatelessWidget {
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup !=
+                                  .U_CashCust !=
                               null &&
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup!
-                                  .contains('cash') ==
-                              false
+                                  .U_CashCust !=
+                              'YES'
                       ? null
                       : () {
                           context.read<PosController>().nullErrorMsg();
@@ -243,14 +240,13 @@ class CashWidget extends StatelessWidget {
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? Colors.grey.withOpacity(0.2)
                             : theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(5),
@@ -286,14 +282,13 @@ class CashWidget extends StatelessWidget {
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup !=
+                                  .U_CashCust !=
                               null &&
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup!
-                                  .contains('cash') ==
-                              false
+                                  .U_CashCust !=
+                              'YES'
                       ? null
                       : () {
                           context.read<PosController>().nullErrorMsg();
@@ -363,14 +358,13 @@ class CashWidget extends StatelessWidget {
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? Colors.grey.withOpacity(0.2)
                             : theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(5),
@@ -408,14 +402,13 @@ class CashWidget extends StatelessWidget {
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup !=
+                                  .U_CashCust !=
                               null &&
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup!
-                                  .contains('cash') ==
-                              false
+                                  .U_CashCust !=
+                              'YES'
                       ? null
                       : () {
                           context.read<PosController>().nullErrorMsg();
@@ -481,14 +474,13 @@ class CashWidget extends StatelessWidget {
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? Colors.grey.withOpacity(0.2)
                             : theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(5),
@@ -521,14 +513,13 @@ class CashWidget extends StatelessWidget {
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup !=
+                                  .U_CashCust !=
                               null &&
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup!
-                                  .contains('cash') ==
-                              false
+                                  .U_CashCust !=
+                              'YES'
                       ? null
                       : () {
                           context.read<PosController>().nullErrorMsg();
@@ -597,14 +588,13 @@ class CashWidget extends StatelessWidget {
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    false
+                                        .U_CashCust !=
+                                    'YES'
                             ? Colors.grey.withOpacity(0.2)
                             : theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(5),
@@ -694,12 +684,12 @@ class CashWidget extends StatelessWidget {
                         //         context
                         //                 .read<PosController>()
                         //                 .selectedcust!
-                        //                 .paymentGroup !=
+                        //                 .U_CashCust !=
                         //             null &&
                         //         context
                         //                 .read<PosController>()
                         //                 .selectedcust!
-                        //                 .paymentGroup!
+                        //                 .U_CashCust!
                         //                 .contains('cash') ==
                         //             false
                         //     ? Colors.grey.withOpacity(0.2)
@@ -739,14 +729,13 @@ class CashWidget extends StatelessWidget {
                         context
                                 .read<PosController>()
                                 .selectedcust!
-                                .paymentGroup !=
+                                .U_CashCust !=
                             null &&
                         context
                                 .read<PosController>()
                                 .selectedcust!
-                                .paymentGroup!
-                                .contains('cash') ==
-                            false
+                                .U_CashCust !=
+                            'YES'
                     ? null
                     : () {
                         context.read<PosController>().nullErrorMsg();
@@ -838,14 +827,13 @@ class CashWidget extends StatelessWidget {
                                   context
                                           .read<PosController>()
                                           .selectedcust!
-                                          .paymentGroup !=
+                                          .U_CashCust !=
                                       null &&
                                   context
                                           .read<PosController>()
                                           .selectedcust!
-                                          .paymentGroup!
-                                          .contains('cash') ==
-                                      false
+                                          .U_CashCust !=
+                                      'YES'
                               ? Colors.grey.withOpacity(0.2)
                               : theme.primaryColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(5),
@@ -860,12 +848,12 @@ class CashWidget extends StatelessWidget {
                     //         context
                     //                 .read<PosController>()
                     //                 .selectedcust!
-                    //                 .paymentGroup !=
+                    //                 .U_CashCust !=
                     //             null &&
                     //         context
                     //                 .read<PosController>()
                     //                 .selectedcust!
-                    //                 .paymentGroup!
+                    //                 .U_CashCust!
                     //                 .contains('cash') ==
                     //             true
                     //     ? null
@@ -952,12 +940,12 @@ class CashWidget extends StatelessWidget {
                         //         context
                         //                 .read<PosController>()
                         //                 .selectedcust!
-                        //                 .paymentGroup !=
+                        //                 .U_CashCust !=
                         //             null &&
                         //         context
                         //                 .read<PosController>()
                         //                 .selectedcust!
-                        //                 .paymentGroup!
+                        //                 .U_CashCust!
                         //                 .contains('cash') ==
                         //             true
                         //     ? Colors.grey.withOpacity(0.2)
@@ -975,14 +963,13 @@ class CashWidget extends StatelessWidget {
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup !=
+                                  .U_CashCust !=
                               null &&
                           context
                                   .read<PosController>()
                                   .selectedcust!
-                                  .paymentGroup!
-                                  .contains('cash') ==
-                              true
+                                  .U_CashCust ==
+                              'YES'
                       ? null
                       : () {
                           context.read<PosController>().nullErrorMsg();
@@ -1048,14 +1035,13 @@ class CashWidget extends StatelessWidget {
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup !=
+                                        .U_CashCust !=
                                     null &&
                                 context
                                         .read<PosController>()
                                         .selectedcust!
-                                        .paymentGroup!
-                                        .contains('cash') ==
-                                    true
+                                        .U_CashCust ==
+                                    'YES'
                             ? Colors.grey.withOpacity(0.2)
                             : theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(5),

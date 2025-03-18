@@ -52,7 +52,7 @@ class SalesOrdPatchAPI {
         "U_longitude": longitude,
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
-        "DocumentLines": docLineQout!.map((e) => e.tojson2()).toList(),
+        "DocumentLines": docLineQout!.map((e) => e.tojson3()).toList(),
       });
       log("sapDocEntry sapDocEntry::$data");
       log("url::::${'${URL.sapUrl}/Orders($sapDocEntry)'}");
@@ -82,7 +82,7 @@ class SalesOrdPatchAPI {
           "U_PosUserCode": UserValues.userCode,
           "U_PosTerminal": AppConstant.terminal,
           "U_Request": data,
-          "DocumentLines": docLineQout!.map((e) => e.tojson2()).toList(),
+          "DocumentLines": docLineQout!.map((e) => e.tojson3()).toList(),
         }),
       );
       log("SalesQuopatch stscode::${response.statusCode}");

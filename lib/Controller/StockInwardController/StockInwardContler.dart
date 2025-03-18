@@ -146,7 +146,7 @@ class StockInwrdController extends ChangeNotifier {
         passdata![i].Scanned_Qty = passdata![i].trans_Qty!;
         passdata![i].listClr = true;
       }
-      // isselectmethod();
+
       notifyListeners();
     } else {
       for (var i = 0; i < passdata!.length; i++) {
@@ -403,41 +403,7 @@ class StockInwrdController extends ChangeNotifier {
       }
     });
     selectedcust!.accBalance = updateCustBal ?? customerDetals.accBalance!;
-    // await CustCreditLimitAPi.getGlobalData(customerDetals.cardCode.toString())
-    //     .then((value) {
-    //   if (value.statuscode >= 200 && value.statuscode <= 210) {
-    //     if (value.creditLimitData != null) {
-    //       // log('xxxxxxxx::${value.creditLimitData![0].creditLine.toString()}');
 
-    //       selectedcust!.creditLimits =
-    //           double.parse(value.creditLimitData![0].creditLine.toString());
-    //       notifyListeners();
-    //     }
-    //   }
-    // });
-
-    // await CustCreditDaysAPI.getGlobalData(customerDetals.cardCode.toString())
-    //     .then((value) {
-    //   if (value.statuscode >= 200 && value.statuscode <= 210) {
-    //     if (value.creditDaysData != null) {
-    //       // log('yyyyyyyyyy::${value.creditDaysData![0].creditDays.toString()}');
-
-    //       selectedcust!.creditDays =
-    //           value.creditDaysData![0].creditDays.toString();
-    //       selectedcust!.paymentGroup =
-    //           value.creditDaysData![0].paymentGroup.toString().toLowerCase();
-    //       log('selectedcust paymentGroup::${selectedcust!.paymentGroup!}');
-    //       if (selectedcust!.paymentGroup!.contains('cash') == true) {
-    //         selectedcust!.name = '';
-    //       } else {
-    //         selectedcust!.name = customerDetals.name!;
-    //       }
-    //       log('Cash paymentGroup::${selectedcust!.paymentGroup!.contains('cash')}');
-    //       notifyListeners();
-    //     }
-    //     loadingscrn = false;
-    //   }
-    // });
     selectedcust55 = CustomerDetals(
         autoId: customerDetals.autoId,
         name: customerDetals.name,
@@ -523,7 +489,6 @@ class StockInwrdController extends ChangeNotifier {
         notifyListeners();
       }
       searchData.addAll(searchdata2);
-      // filtersearchData = searchData;
     } else {
       searchbool = false;
       searchData.clear();
@@ -610,7 +575,6 @@ class StockInwrdController extends ChangeNotifier {
                 taxRate: 0.0,
                 taxType: "",
                 trans_Qty: value.openOutwardData![i].batchQty,
-                // Scanned_Qty:,
                 baseDocline: value.openOutwardData![i].batchLine,
                 serialbatchList: stoutSeralBatchList));
           }
@@ -760,8 +724,6 @@ class StockInwrdController extends ChangeNotifier {
             }
             stockInward[ij].data = listData;
 
-            // passdata = listData;
-
             for (var i = 0; i < stockInward[ij].data!.length; i++) {
               log('stockInward[ij].data ::${stockInward[ij].data![i].StOutSerialbatchList!.length}');
             }
@@ -899,7 +861,6 @@ class StockInwrdController extends ChangeNotifier {
   }
 
   passData(ThemeData theme, BuildContext context, int index) {
-    // log("stockInward[index].data! length:${stockInward[index].data![0].StOutSerialbatchList!.length}");
     passdata = [];
     if (stockInward[index].data!.isNotEmpty) {
       selectIndex = index;
@@ -1033,7 +994,6 @@ class StockInwrdController extends ChangeNotifier {
         }
       }
 
-      // if (serialBatch.isNotEmpty) {
       int totalscanqty = 0;
 
       if (stockInward[index].data![list_i].serialbatchList != null) {
@@ -1082,9 +1042,7 @@ class StockInwrdController extends ChangeNotifier {
                 }
                 notifyListeners();
               }
-            } else {
-              // msg = 'Please Scan Other SerialBatch...!!';
-            }
+            } else {}
             notifyListeners();
           } else {
             stockInward[index]
@@ -1146,9 +1104,6 @@ class StockInwrdController extends ChangeNotifier {
               .toString();
         }
       }
-      // } else {
-      //   msg = 'Wrong BatchCode Scan...!!';
-      // }
 
       notifyListeners();
     } else {
@@ -1428,9 +1383,7 @@ class StockInwrdController extends ChangeNotifier {
         sapDocentry: null,
         qStatus: 'N',
         sapStockReqdocentry: sapStockReqdocentry,
-        // sapdetails.isEmpty ? "" : sapdetails[0]['sapDocentry'].toString(),
         sapStockReqdocnum: sapStockReqdocnum,
-        // sapdetails.isEmpty ? "" : sapdetails[0]['sapDocNo'].toString(),
         remarks: stInController[50].text.toString()));
     int? docentry2 = await DBOperation.insertStockInheader(db, stInHeader);
     await DBOperation.updatenextno(db, 6, nextno);
@@ -1452,7 +1405,7 @@ class StockInwrdController extends ChangeNotifier {
             stockInward[index].data![i].itemcode!,
           );
         }
-        // log('stockInward[index].data![i].serialbatchList::${stockInward[index].data![i].serialbatchList!.length}');
+
         for (int l = 0;
             l < stockInward[index].data![i].StOutSerialbatchList!.length;
             l++) {
@@ -2344,7 +2297,6 @@ class StockInwrdController extends ChangeNotifier {
   void getSession() async {
     var preff = await SharedPreferences.getInstance();
     AppConstant.sapSessionID = preff.getString('sessionId')!;
-    // log("  AppConstant.sapSessionID::${AppConstant.sapSessionID}");
   }
 
   callgetStkinwardAPI(BuildContext context, ThemeData theme) async {
@@ -2396,15 +2348,6 @@ class StockInwrdController extends ChangeNotifier {
                 taxRate: 0.0,
                 taxType: "",
                 baseDocline: sapInwardModelData[i].lineNum,
-                // trans_Qty: getDBStInLine[j]["transferQty"] == null
-                //     ? 0
-                //     : double.parse(getDBStInLine[j]["transferQty"].toString()),
-                // Scanned_Qty: getDBStInLine[j]["scannedQty"] == null
-                //     ? 0
-                //     : double.parse(getDBStInLine[j]["scannedQty"].toString()),
-                // baseDocline: getDBStInLine[j]["baseDocline"] == null
-                //     ? 0
-                //     : int.parse(getDBStInLine[j]["baseDocline"].toString()),
                 serialbatchList: stoutSeralBatchList));
           }
           stInController2[50].text = value.comments;
@@ -2413,10 +2356,7 @@ class StockInwrdController extends ChangeNotifier {
               branch: AppConstant.branch,
               docentry: value.docEntry.toString(),
               baceDocentry: value.docEntry.toString(),
-              // docstatus: value..toString(),
               documentno: value.docNum.toString(),
-              // reqfromWhs: getDBstInHeader[0]["reqfromWhs"].toString(),
-              // reqtoWhs: getDBstInHeader[0]["reqtoWhs"].toString(),
               reqtransdate: value.docDate,
               data: stockDetails2));
           sapDocentry = value.docEntry.toString();
@@ -2713,131 +2653,6 @@ class StockInwrdController extends ChangeNotifier {
   bool? scandbDataTrue = false;
   bool? scanListTrue = false;
 
-  // getStockOutData() async {
-  //   stockInward.clear();
-  //   stockOutDATA.clear();
-  //   final Database db = (await DBHelper.getInstance())!;
-  //   List<Map<String, Object?>> getStockOutValues =
-  //       await DBOperation.getStockOut(db);
-  //   if (getStockOutValues.isNotEmpty) {
-  //     for (int i = 0; i < getStockOutValues.length; i++) {
-  //       if (getStockOutValues[i]["reqfromWhs"].toString() ==
-  //           AppConstant.branch) {
-  //         stockOutDATA = [];
-  //         stkreqfromwhs = getStockOutValues[i]["reqfromWhs"].toString();
-
-  //         dbDataTrue = false;
-
-  //         List<Map<String, Object?>> getStockOutLineData =
-  //             await DBOperation.getTrasferQtyStIn(
-  //                 db,
-  //                 int.parse(getStockOutValues[i]["docentry"].toString()),
-  //                 int.parse(getStockOutValues[i]["baseDocentry"].toString()));
-  //         List<StockInwardDetails> stockDetails = [];
-  //         List<StOutSerialbatch>? stOutSerialbatchList2 = [];
-
-  //         for (int j = 0; j < getStockOutLineData.length; j++) {
-  //           if (getStockOutValues[i]["reqtoWhs"].toString() == "HOGIT") {
-  //             stOutSerialbatchList2 = [];
-
-  //             List<Map<String, Object?>> getStockOutBatchListData =
-  //                 await DBOperation.getBatchInOutwardStIn2(
-  //                     db,
-  //                     int.parse(getStockOutLineData[j]["docentry"].toString()),
-  //                     int.parse(
-  //                         getStockOutLineData[j]["baseDocentry"].toString()),
-  //                     getStockOutLineData[j]["itemcode"].toString());
-
-  //             for (int k = 0; k < getStockOutBatchListData.length; k++) {
-  //               if (getStockOutBatchListData[k]['docentry'].toString() ==
-  //                   getStockOutLineData[j]["docentry"].toString()) {
-  //                 stOutSerialbatchList2.add(StOutSerialbatch(
-  //                     lineno: getStockOutBatchListData[k]['lineno'].toString(),
-  //                     docentry:
-  //                         getStockOutBatchListData[k]['docentry'].toString(),
-  //                     baseDocentry: getStockOutBatchListData[k]['baseDocentry']
-  //                         .toString(),
-  //                     itemcode:
-  //                         getStockOutBatchListData[k]['itemcode'].toString(),
-  //                     qty: double.parse(
-  //                         getStockOutBatchListData[k]['quantity'].toString()),
-  //                     serialbatch: getStockOutBatchListData[k]['serialBatch']
-  //                         .toString()));
-  //                 notifyListeners();
-  //               }
-  //             }
-
-  //             stockDetails.add(StockInwardDetails(
-  //                 baseDocentry: int.parse(
-  //                     getStockOutLineData[j]["baseDocentry"].toString()),
-  //                 baseDocline:
-  //                     int.parse(getStockOutLineData[j]["lineno"].toString()),
-  //                 createdUserID: getStockOutLineData[j]["createdUserID"] == null
-  //                     ? 0
-  //                     : int.parse(
-  //                         getStockOutLineData[j]["createdUserID"].toString()),
-  //                 createdateTime:
-  //                     getStockOutLineData[j]["createdateTime"].toString(),
-  //                 docentry:
-  //                     int.parse(getStockOutLineData[j]["docentry"].toString()),
-  //                 dscription: "",
-  //                 baseDocNum: '',
-  //                 itemcode: getStockOutLineData[j]["itemcode"].toString(),
-  //                 lastupdateIp:
-  //                     getStockOutLineData[j]["lastupdateIp"].toString(),
-  //                 lineNo:
-  //                     int.parse(getStockOutLineData[j]["lineno"].toString()),
-  //                 qty: double.parse(
-  //                     getStockOutLineData[j]["quantity"].toString()),
-  //                 status: "",
-  //                 updatedDatetime:
-  //                     getStockOutLineData[j]["UpdatedDatetime"].toString(),
-  //                 updateduserid: getStockOutLineData[j]["updateduserid"] == null
-  //                     ? 0
-  //                     : int.parse(
-  //                         getStockOutLineData[j]["updateduserid"].toString()),
-  //                 price: getStockOutLineData[j]["price"] == null
-  //                     ? 0.0
-  //                     : double.parse(getStockOutLineData[j]["price"].toString()),
-  //                 serialBatch: getStockOutLineData[j]["serialBatch"].toString(),
-  //                 taxRate: 0.0,
-  //                 Scanned_Qty: double.parse(getStockOutLineData[j]["scanndQty"].toString()),
-  //                 trans_Qty: double.parse(getStockOutLineData[j]["balqty"].toString()),
-  //                 taxType: "",
-  //                 StOutSerialbatchList: stOutSerialbatchList2));
-  //           }
-  //           notifyListeners();
-
-  //           notifyListeners();
-  //         }
-
-  //         stockOutDATA.add(StockInwardList(
-  //             branch: getStockOutValues[i]["branch"].toString(),
-  //             docentry: getStockOutValues[i]["docentry"].toString(),
-  //             baceDocentry: getStockOutValues[i]["baseDocentry"].toString(),
-  //             docstatus: getStockOutValues[i]["docstatus"].toString(),
-  //             reqdocumentno: getStockOutValues[i]["reqdocno"] == null
-  //                 ? "0"
-  //                 : getStockOutValues[i]["reqdocno"].toString(),
-  //             documentno: getStockOutValues[i]["documentno"] == null
-  //                 ? "0"
-  //                 : getStockOutValues[i]["documentno"].toString(),
-  //             reqfromWhs: getStockOutValues[i]["reqfromWhs"].toString(),
-  //             reqtoWhs: getStockOutValues[i]["branch"].toString(),
-  //             reqtransdate: getStockOutValues[i]["transdate"].toString(),
-  //             data: stockDetails));
-  //       } else {
-  //         notifyListeners();
-  //       }
-  //       notifyListeners();
-  //     }
-  //   } else {
-  //     dbDataTrue = true;
-  //     notifyListeners();
-  //   }
-  //   notifyListeners();
-  // }
-
   disableKeyBoard(BuildContext context) {
     FocusScopeNode focus = FocusScope.of(context);
     if (!focus.hasPrimaryFocus) {
@@ -2963,12 +2778,11 @@ class StockInwrdController extends ChangeNotifier {
 
     TransferPrintAPi.docEntry = sapDocentry;
     TransferPrintAPi.slpCode = AppConstant.slpCode;
-    // print("TransferPrintAPi.slpCode: " + TransferPrintAPi.slpCode.toString());
+
     await TransferPrintAPi.getGlobalData().then((value) {
       notifyListeners();
       if (value == 200) {
         onClickDisable = false;
-        // saveAllExcel(TransferPrintAPi.path.toString(), context, theme);
       } else {
         onClickDisable = false;
 
@@ -2983,7 +2797,6 @@ class StockInwrdController extends ChangeNotifier {
     BuildContext context,
     ThemeData theme,
   ) async {
-    // await saveToExcel(valuesddd1, keysList1);
     Get.dialog(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -3009,7 +2822,7 @@ class StockInwrdController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-                      // const SizedBox(height: 15),
+
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
@@ -3067,8 +2880,7 @@ class StockInwrdController extends ChangeNotifier {
   mapCallInwardForPDF(preff, BuildContext context, ThemeData theme) async {
     List<InvoiceItem> itemsList = [];
     invoice = null;
-    // for (int ih = 0; ih < salesmodl.length; ih++) {
-    // await addressxx();
+
     log('StockOutward2[0].data.length:::${stockInward2[0].data!.length}');
 
     for (int i = 0; i < stockInward2[0].data!.length; i++) {
@@ -3078,8 +2890,6 @@ class StockInwrdController extends ChangeNotifier {
         unitPrice:
             double.parse(stockInward2[0].data![i].price!.toStringAsFixed(2)),
         quantity: double.parse((stockInward2[0].data![i].qty.toString())),
-        // dics: scanneditemData2[i].discountper ?? 0,
-        // vat: double.parse(scanneditemData2[i].taxvalue!.toStringAsFixed(2)),
       ));
       notifyListeners();
     }
@@ -3106,19 +2916,8 @@ class StockInwrdController extends ChangeNotifier {
         time: 'time',
         customerName: selectedcust2!.name ?? '',
         address: '',
-        //  custDetails[0].address ?? '',
-        // printerName: custDetails[0].printHeadr ?? '',
         mobile:
             selectedcust2!.phNo!.isEmpty ? '' : selectedcust2!.phNo.toString(),
-        // city: address2.isEmpty || address2[0].billCity.isEmpty
-        //     ? ''
-        //     : address2[0].billCity.toString(),
-        // area: address2.isEmpty || address2[0].address3!.isEmpty
-        //     ? ''
-        //     : address2[0].address3.toString(),
-        // pin: address2.isEmpty || address2[0].billPincode.isEmpty
-        //     ? ''
-        //     : address2[0].billPincode.toString(),
       ),
       items: itemsList,
     );
@@ -3134,24 +2933,23 @@ class StockInwrdController extends ChangeNotifier {
         invoice!.items![i].basic =
             (invoice!.items![i].quantity!) * (invoice!.items![i].unitPrice!);
         invoice!.items![i].discountamt = 0;
-        //     (invoice!.items![i].basic! * invoice!.items![i].dics! / 100);
+
         invoice!.items![i].netTotal =
             (invoice!.items![i].basic!) - (invoice!.items![i].discountamt!);
         PDFInwardapi.exclTxTotal =
             (PDFInwardapi.exclTxTotal) + (invoice!.items![i].netTotal!);
-        // PDFInwardapi.vatTx = (PDFInwardapi.vatTx) +
-        //     double.parse(invoice!.items![i].vat.toString());
+
         PDFInwardapi.inclTxTotal =
             double.parse(invoice!.items![i].unitPrice.toString());
-        //  + double.parse(invoice!.items![i].vat.toString());
+
         PDFInwardapi.pails = 0;
-        //  PDFInwardapi.pails! + invoice!.items![i].pails!;
+
         PDFInwardapi.cartons = 0;
-        // PDFInwardapi.cartons! + invoice!.items![i].cartons!;
+
         PDFInwardapi.looseTins = 0;
-        // PDFInwardapi.looseTins! + invoice!.items![i].looseTins!;
+
         PDFInwardapi.tonnage = 0;
-        // PDFInwardapi.tonnage! + invoice!.items![i].tonnage!;
+
         notifyListeners();
       }
       PDFInwardapi.totalPack =

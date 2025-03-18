@@ -69,8 +69,8 @@ android {
         // minSdkVersion 20 // usage of db
        minSdkVersion 21
         targetSdkVersion 34 //26(Using DB Save) and 30 (apkbuild)
-        versionCode 19
-        versionName '1.1.8'
+        versionCode 20
+        versionName '1.2.3'
     }
 
      signingConfigs {

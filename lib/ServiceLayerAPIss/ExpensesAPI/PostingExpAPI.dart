@@ -12,13 +12,15 @@ class PostExpenseAPi {
   static String? docType;
 
   static String? cashAccount;
-  
+
   static String? payTo;
   static String? seriesType;
   static String? reference;
   static String? remarks;
   static String? docDate;
   static String? cashSum;
+
+  static String? uRvc;
   static List<ExpenseListMoel>? paymentAccounts;
 
   static method(String? deviceTransID) {
@@ -29,12 +31,17 @@ class PostExpenseAPi {
       "JournalRemarks": "$remarks",
       "Address": "$payTo",
       "Remarks": "$remarks",
-      // "Reference1": "$reference",
+      "CounterReference": "$reference",
       "CashSum": "$cashSum",
       // 'Series': '$seriesType',
       'U_DeviceTransID': deviceTransID,
       "U_PosUserCode": UserValues.userCode,
       "U_PosTerminal": AppConstant.terminal,
+      // "ProjectCode": "$projectCode",
+      // "VatGroup": '$vatGroup',
+      // "ProfitCenter": '$OcrCode',
+      "U_RVC": '$uRvc',
+
       "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList()
     });
 
@@ -60,9 +67,9 @@ class PostExpenseAPi {
                 "JournalRemarks": "$remarks",
                 "Address": "$payTo",
                 "Remarks": "$remarks",
-                // "Reference1": "$reference",
+                "CounterReference": "$reference",
                 "CashSum": "$cashSum",
-                // 'Series': '$seriesType',
+                "U_RVC": '$uRvc',
                 'U_DeviceTransID': deviceTransID,
                 "U_PosUserCode": UserValues.userCode,
                 "U_PosTerminal": AppConstant.terminal,
@@ -79,6 +86,8 @@ class PostExpenseAPi {
         "Address": "$payTo",
         "Remarks": "$remarks",
         "CashSum": "$cashSum",
+        "CounterReference": "$reference",
+        "U_RVC": '$uRvc',
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
         "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList(),

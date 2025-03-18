@@ -189,6 +189,9 @@ AutoId INTEGER primary key AUTOINCREMENT
 //  ${CustomerMasterT.updateduserid} integer,
 //  ${CustomerMasterT.lastupdateIp} varchar
 //  ) ''');
+
+// customerCode	customername	premiumid	customertype	taxno	createdbybranch	balance	points	snapdatetime	phoneno1
+// 	phoneno2	emalid	createdateTime	updatedDatetime	createdUserID	updateduserid	lastupdateIp	TaxCode	U_CASHCUST
     await database.execute('''
  create table $tableCustomerMaster(
  ${CustomerMasterT.customerCode} varchar,
@@ -209,8 +212,11 @@ AutoId INTEGER primary key AUTOINCREMENT
  ${CustomerMasterT.updateduserid} varchar,
  ${CustomerMasterT.lastupdateIp} varchar,
  ${CustomerMasterT.TaxCode} varchar,
-   autoid INTEGER primary key AUTOINCREMENT
+ ${CustomerMasterT.uCashCust} varchar,
+  autoid INTEGER primary key AUTOINCREMENT
  ) ''');
+    //
+
     await database.execute('''
  create table $tableCustomerMasterAdress(
  ${CustomerMasterAddressT.autoid}  INTEGER primary key AUTOINCREMENT,
@@ -703,7 +709,8 @@ ${SalesOrderLineT.serialbatch}  varchar ,
   ${SalesOrderLineT.discamt}  NUMERIC,
   ${SalesOrderLineT.netlinetotal}  NUMERIC ,
   ${SalesOrderLineT.branch} varchar(100),
-  ${SalesOrderLineT.terminal}  varchar ,
+  ${SalesOrderLineT.terminal}  varchar(100),
+  ${SalesOrderLineT.shipDate} varchar(100),
   ${SalesOrderLineT.createdUser} varchar,
   ${SalesOrderLineT.createdateTime}  datetime ,
   ${SalesOrderLineT.updatedDatetime} datetime,
@@ -1320,14 +1327,14 @@ create table $tableExpense(
   ${ExpenseT.documentno} integer,
   ${ExpenseT.lineid} integer,
   ${ExpenseT.terminal} varchar,
-    ${ExpenseT.remarks} varchar,
-    ${ExpenseT.attachment} varchar,
-    ${ExpenseT.uDeviceId} varchar,
+  ${ExpenseT.remarks} varchar,
+  ${ExpenseT.attachment} varchar,
+  ${ExpenseT.uDeviceId} varchar,
   ${ExpenseT.expensecode} integer,
   ${ExpenseT.reference} varchar,
   ${ExpenseT.rcamount} integer,
   ${ExpenseT.paidto} varchar,
-   ${ExpenseT.docstatus} varchar,
+  ${ExpenseT.docstatus} varchar,
   ${ExpenseT.paidfrom} varchar,
   ${ExpenseT.doctype} varchar,
   ${ExpenseT.createdateTime} datetime,
@@ -1335,6 +1342,10 @@ create table $tableExpense(
   ${ExpenseT.branch} varchar,
   ${ExpenseT.sapDocentry} varchar,
   ${ExpenseT.sapDocNo} varchar,
+  ${ExpenseT.taxCode} varchar,
+  ${ExpenseT.uRVC} varchar,
+  ${ExpenseT.distRule} varchar,
+  ${ExpenseT.projectCode} varchar,
   ${ExpenseT.qStatus} varchar
 )''');
     await database.execute('''

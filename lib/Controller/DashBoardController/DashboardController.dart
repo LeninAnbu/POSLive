@@ -657,10 +657,6 @@ class DashBoardController extends ChangeNotifier {
       for (int j = 0; j < getOutOfItemsData.length; j++) {
         if (getOutOfItemsData[j]["shortageQty"] != 0) {
           outOfstock.add(SyncData(
-              //
-              // itemname: getOutOfItemsData[j]["itemname_short"] == null
-              //     ? ''
-              //     : getOutOfItemsData[j]["itemname_short"].toString(),
               itemname: getOutOfItemsData[j]["itemnameshort"] == null
                   ? ''
                   : getOutOfItemsData[j]["itemnameshort"].toString(),
@@ -737,12 +733,11 @@ class DashBoardController extends ChangeNotifier {
   String? plyStoreVersionNumber = '';
   Future<void> showVersion(BuildContext context) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    // log("packageInfo.version::" + packageInfo.version.toString());
     AppConstant.version = packageInfo.version;
 
-    bool? netbool = await config.haveNoInterNet();
-    log('netboolnetbool::${netbool}');
-    if (netbool == false) {
+    bool? netbool = await config.haveInterNet();
+
+    if (netbool == true) {
       log('messagemmmmm');
       checkVesionNum(context);
     } else {
@@ -767,20 +762,21 @@ class DashBoardController extends ChangeNotifier {
     visibleLoading = true;
     plyStoreVersionNumber =
         await checkverConfig.getStoreVersion('com.buson.posinsignia');
-    if (plyStoreVersionNumber == AppConstant.version) {
-      // await checkLoginPage();
+    log('versionNumber11::$plyStoreVersionNumber::AppVersionversion11::${AppConstant.version}');
 
-      log('versionNumber11::$plyStoreVersionNumber::AppVersionversion11::${AppConstant.version}');
-    } else {
-      log('versionNumber22::$plyStoreVersionNumber::AppVersionversion22::${AppConstant.version}');
+    if (plyStoreVersionNumber != null) {
+      if (plyStoreVersionNumber == AppConstant.version) {
+      } else {
+        log('versionNumber22::$plyStoreVersionNumber::AppVersionversion22::${AppConstant.version}');
 
-      await Future.delayed(
-        const Duration(seconds: 1),
-        () {
-          visibleLoading = true;
-          updateDialog(context);
-        },
-      );
+        await Future.delayed(
+          const Duration(seconds: 1),
+          () {
+            visibleLoading = true;
+            updateDialog(context);
+          },
+        );
+      }
     }
   }
 
@@ -793,7 +789,6 @@ class DashBoardController extends ChangeNotifier {
           return AlertDialog(
             content: SizedBox(
               width: Screens.width(context) * 0.25,
-              // height: Screens.bodyheight(context) * 0.3,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -831,10 +826,6 @@ class DashBoardController extends ChangeNotifier {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(
                               Screens.bodyheight(context) * 0.008),
-                          // decoration: BoxDecoration(
-                          //   borderRadius: BorderRadius.circular(5),
-                          //   color: Colors.grey[200]
-                          // ),
                           child: Text(
                             'Version : ${plyStoreVersionNumber}',
                             style: theme.textTheme.bodySmall!
@@ -847,9 +838,6 @@ class DashBoardController extends ChangeNotifier {
                   SizedBox(
                     height: Screens.bodyheight(context) * 0.01,
                   ),
-                  // context
-                  // .read<ConfigurationContoller>()
-                  // .checkStartingPage(pagename, docEntry);
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -873,9 +861,7 @@ class DashBoardController extends ChangeNotifier {
                                 launchUrl(
                                   url,
                                   mode: LaunchMode.externalApplication,
-                                ).then((value) {
-                                  // exit(0);
-                                });
+                                ).then((value) {});
                               }
                             },
                             child: Text(
@@ -884,21 +870,6 @@ class DashBoardController extends ChangeNotifier {
                                   ?.copyWith(color: Colors.white),
                             )),
                       ),
-                      // SizedBox(
-                      //   width: Screens.width(context) * 0.25,
-                      //   child: ElevatedButton(
-                      //       style: ElevatedButton.styleFrom(
-                      //         backgroundColor: theme.primaryColor,
-                      //       ),
-                      //       onPressed: () async {
-                      //         Navigator.of(context).pop('Close');
-                      //       },
-                      //       child: Text(
-                      //         'Close',
-                      //         style: theme.textTheme.bodyMedium
-                      //             ?.copyWith(color: Colors.white),
-                      //       )),
-                      // ),
                     ],
                   )
                 ],

@@ -1,7 +1,7 @@
 class AppConstant {
   static String branch = ''; //sessionID
   static String terminal = '';
-  // static String sessionID = '';
+
   static String sapSessionID = '';
   static String version = '';
   static String ip = '';

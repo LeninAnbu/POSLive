@@ -53,6 +53,8 @@ class CustomerMasterModeldata {
   String? taxNo;
   String? taxCode;
   String? email;
+  String? uCashCust;
+
   String? point;
   String? createdateTime;
   String? updatedDatetime;
@@ -71,6 +73,7 @@ class CustomerMasterModeldata {
     required this.point,
     required this.taxNo,
     required this.taxCode,
+    required this.uCashCust,
     required this.email,
     required this.Phno2,
     this.createdbybranch,
@@ -94,6 +97,7 @@ class CustomerMasterModeldata {
         name: json['customername'] ?? '',
         phNo: json['phoneno1'] ?? '',
         cardCode: json['customerCode'] ?? '',
+        uCashCust: json['U_CASHCUST'] ?? '',
         customertype: json['customertype'] ?? '',
         accBalance: json['balance'] ?? 0,
         premiumid: json['premiumid'] ?? '',

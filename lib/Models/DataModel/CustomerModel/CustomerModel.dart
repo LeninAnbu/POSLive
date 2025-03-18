@@ -35,6 +35,8 @@ class CustomerDetals {
   double? totalPayment;
 
   String? U_rctCde;
+  String? U_CashCust;
+
   String? U_QRPath;
   String? U_QRValue;
   String? U_VfdIn;
@@ -77,6 +79,7 @@ class CustomerDetals {
       this.uOrderType,
       this.uGPApproval,
       this.uReceivedTime,
+      this.U_CashCust,
       this.totalPayment});
 }
 

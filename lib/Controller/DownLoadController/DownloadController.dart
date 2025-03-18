@@ -107,11 +107,15 @@ class DownLoadController extends ChangeNotifier {
       String tabularData) async {
     List<String> lines = tabularData.split('\n');
     List<String> headers = lines[0].split('\t');
+    // log('headersheaders::${headers.toString()}');
+
     jsonCusotmerList = [];
     for (int i = 1; i < lines.length; i++) {
       List<String> values = lines[i].split('\t');
+
+      // log('valuesvalues::${values.length}');
+
       if (values.length == headers.length) {
-        // log('headersheaders::${headers.length}');
         Map<String, dynamic> jsonItem = {};
         for (int j = 0; j < headers.length; j++) {
           jsonItem[headers[j]] = values[j];
