@@ -521,25 +521,39 @@ class SOCon extends ChangeNotifier {
     DateTime? pickedDate = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime.now(),
+        firstDate: DateTime(2000),
         lastDate: DateTime(2100));
-    if (pickedDate == null) {
-      return;
-    }
-    // String datetype = DateFormat('yyyy-MM-dd').format(pickedDate);
-
-    DateTime date1 = DateTime.parse(pickedDate.toString());
-
-    log('leadDataList[0].leadDays::${leadDataList[0].leadDays!.toString()}');
-    DateTime futureDate = date1
-        .add(Duration(days: int.parse(leadDataList[0].leadDays!.toString())));
-
-    log("date1 date: $date1");
-    log("Date after 90 days: $futureDate");
-    String datetype2 = DateFormat('dd-MM-yyyy').format(futureDate);
+    String datetype2 = DateFormat('dd-MM-yyyy').format(pickedDate!);
 
     itemListDateCtrl[i].text = datetype2.toString();
   }
+
+  // leadDatePickefr(
+  //   BuildContext context,
+  //   int i,
+  // ) async {
+  //   DateTime? pickedDate = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime.now(),
+  //       lastDate: DateTime(2100));
+  //   if (pickedDate == null) {
+  //     return;
+  //   }
+  //   // String datetype = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+  //   DateTime date1 = DateTime.parse(pickedDate.toString());
+
+  //   log('leadDataList[0].leadDays::${leadDataList[0].leadDays!.toString()}');
+  //   DateTime futureDate = date1
+  //       .add(Duration(days: int.parse(leadDataList[0].leadDays!.toString())));
+
+  //   log("date1 date: $date1");
+  //   log("Date after 90 days: $futureDate");
+  //   String datetype2 = DateFormat('dd-MM-yyyy').format(futureDate);
+
+  //   itemListDateCtrl[i].text = datetype2.toString();
+  // }
 
   leadDatePicker2(
     BuildContext context,

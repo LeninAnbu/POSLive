@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:posproject/Pages/LoginScreen/LoginScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 import '../../Constant/ConstantRoutes.dart';
 import '../../Constant/SharedPreference.dart';
@@ -82,6 +82,7 @@ class LogoutCtrl extends ChangeNotifier {
     context.read<LoginController>().mycontroller[4].text = '';
     context.read<LoginController>().mycontroller[5].text = '';
 
+    await DefaultCacheManager().emptyCache();
     Get.offAllNamed(ConstantRoutes.login);
     // Navigator.push(
     //     context, MaterialPageRoute(builder: (context) => const LoginScreen()));

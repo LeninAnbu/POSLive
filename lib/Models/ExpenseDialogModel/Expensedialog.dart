@@ -15,10 +15,14 @@ class Expensedummy {
   String? createDate;
   String? remarks;
   String? projectName;
+  String? uVatNo;
+  String? uSupplier;
 
   Expensedummy({
     this.docentry,
     required this.expensecode,
+    required this.uVatNo,
+    required this.uSupplier,
     required this.attachment,
     required this.reference,
     required this.uRVC,

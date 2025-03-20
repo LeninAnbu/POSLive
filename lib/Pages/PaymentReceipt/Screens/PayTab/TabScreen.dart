@@ -40,14 +40,14 @@ class PaymentTab extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Inventories(
-                              searchHeight: Screens.bodyheight(context) * 0.7,
+                              searchHeight: Screens.bodyheight(context) * 0.65,
                               searchWidth: Screens.width(context) * 0.48,
                               theme: theme,
                             ),
                             PayReceiptPayDetails(
                               theme: theme,
                               paymentWidth: Screens.width(context) * 0.48,
-                              paymentHeight: Screens.bodyheight(context) * 0.15,
+                              paymentHeight: Screens.bodyheight(context) * 0.22,
                             )
                           ])),
                   SizedBox(
@@ -70,8 +70,7 @@ class PaymentTab extends StatelessWidget {
                                 )
                               : PayCustomerDetails(
                                   custWidth: Screens.width(context) * 0.48,
-                                  custHeight:
-                                      Screens.bodyheight(context) * 0.32,
+                                  custHeight: Screens.bodyheight(context) * 0.3,
                                   theme: theme,
                                 ),
                           //         ItemDetails(
@@ -92,7 +91,7 @@ class PaymentTab extends StatelessWidget {
                               : PayTypeBtns(
                                   cashWidth: Screens.width(context) * 0.48,
                                   cashHeight:
-                                      Screens.bodyheight(context) * 0.16,
+                                      Screens.bodyheight(context) * 0.18,
                                   theme: theme,
                                 ),
                           PayBtmBtn(

@@ -31,7 +31,7 @@ class GetIncomingReceiptModel {
   // int docRate;
   // String reference1;
   // dynamic reference2;
-  // dynamic counterReference;
+  String counterReference;
   String remarks;
   // String journalRemarks;
   // String splitTransaction;
@@ -150,7 +150,7 @@ class GetIncomingReceiptModel {
     // required this.docRate,
     // required this.reference1,
     // required this.reference2,
-    // required this.counterReference,
+    required this.counterReference,
     required this.remarks,
     // required this.journalRemarks,
     // required this.splitTransaction,
@@ -259,6 +259,7 @@ class GetIncomingReceiptModel {
         docEntry: json["DocEntry"] ?? 0,
         docType: json["DocType"] ?? '',
         handWritten: json["HandWritten"] ?? '',
+        counterReference: json["CounterReference"] ?? '',
         printed: json["Printed"] ?? '',
         docDate: json["DocDate"] ?? '',
         cardCode: json["CardCode"] ?? '',
@@ -267,7 +268,7 @@ class GetIncomingReceiptModel {
         transferSum: json["TransferSum"] ?? 0,
         address: json["Address"] ?? '',
         cashAccount: json["CashAccount"] ?? '',
-        remarks: json["Remarks"] ?? '',
+        remarks: json["JournalRemarks"] ?? '',
         transferReference: json["TransferReference"] ?? '',
         paymentChecks: List<PaymentCheckData>.from(
             json["PaymentChecks"].map((x) => PaymentCheckData.fromJson(x))),
@@ -281,6 +282,7 @@ class GetIncomingReceiptModel {
           odataEtag: '',
           remarks: '',
           transferReference: '',
+          counterReference: '',
           docNum: 0,
           docEntry: 0,
           docType: '',
@@ -306,7 +308,6 @@ class GetIncomingReceiptModel {
   // docRate: json["DocRate"],
   // reference1: json["Reference1"],
   // reference2: json["Reference2"],
-  // counterReference: json["CounterReference"],
   // remarks: json["Remarks"],
   // journalRemarks: json["JournalRemarks"],
   // splitTransaction: json["SplitTransaction"],

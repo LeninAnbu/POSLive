@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:posproject/DBModel/Receipt.dart';
+import 'package:posproject/DBModel/ReceiptHeader.dart';
 
 import '../../DBModel/ReceiptLine2.dart';
 import '../../DBModel/RecieptLine1.dart';

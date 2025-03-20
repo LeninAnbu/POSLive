@@ -15,11 +15,11 @@ class ReceiptPostAPi {
   static String? cashAccount;
   static double? cashSum;
   static String? seriesType;
-
+  static String? counterRef;
   static List<PostPaymentCheck>? docPaymentChecks;
   static List<PostPaymentInvoice>? docPaymentInvoices;
   static List<PostPaymentCard>? docPaymentCards;
-  static String? journalRemarks;
+  // static String? journalRemarks;
   static String? transferReference;
   static String? checkAccount;
   static String? transferAccount;
@@ -32,11 +32,12 @@ class ReceiptPostAPi {
     final datax = json.encode({
       "CardCode": "$cardCodePost",
       "DocDate": "$docDate",
-      "Remarks": "$remarks",
-      "JournalRemarks": journalRemarks,
+      "Remarks": remarks,
+      "JournalRemarks": remarks,
       "CashAccount": cashAccount,
       "CashSum": cashSum,
       "DocType": docType,
+      "CounterReference": counterRef,
       // 'Series': '$seriesType',
       "CheckAccount": checkAccount,
       "TransferAccount": transferAccount,
@@ -60,7 +61,7 @@ class ReceiptPostAPi {
         "CashAccount": cashAccount,
         "CashSum": cashSum,
         "DocType": docType,
-        "JournalRemarks": journalRemarks,
+        "JournalRemarks": remarks,
         // 'Series': '$seriesType',
         "CheckAccount": checkAccount,
         "TransferAccount": transferAccount,
@@ -89,7 +90,8 @@ class ReceiptPostAPi {
           "CashAccount": cashAccount,
           "CashSum": cashSum,
           "DocType": docType,
-          "JournalRemarks": journalRemarks,
+          "JournalRemarks": remarks,
+          "CounterReference": counterRef,
           // 'Series': '$seriesType',
           "CheckAccount": checkAccount,
           "TransferAccount": transferAccount,
@@ -114,6 +116,7 @@ class ReceiptPostAPi {
               "CashAccount": cashAccount,
               "CashSum": cashSum,
               "DocType": docType,
+              "CounterReference": counterRef,
               // 'Series': '$seriesType',
               "CheckAccount": checkAccount,
               "TransferAccount": transferAccount,

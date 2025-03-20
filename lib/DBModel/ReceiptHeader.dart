@@ -26,7 +26,7 @@ class ReceiptHeaderT {
   static String sapDocNo = "sapDocNo";
   static String qStatus = "qStatus";
   static String remarks = "remarks";
-
+  static String reference = "Reference";
   static String sapInvoicedocentry = 'sapInvoicedocentry';
   static String sapInvoicedocnum = 'sapInvoicedocnum';
 }
@@ -54,6 +54,8 @@ class ReceiptHeaderTDB {
   String? createdUserID;
   String? updateduserid;
   String? lastupdateIp;
+  String? reference;
+
   int? sapDocentry;
   int? sapDocNo;
   String? qStatus;
@@ -70,6 +72,7 @@ class ReceiptHeaderTDB {
     required this.transdocnum,
     required this.remarks,
     required this.docstatus,
+    required this.reference,
     required this.terminal,
     required this.docnumber,
     required this.lastupdateIp,
@@ -95,6 +98,7 @@ class ReceiptHeaderTDB {
       docentry: resp['docentry'],
       doctype: resp['doctype'],
       docnumber: resp['documentno'],
+      reference: resp['documentno'],
       branch: resp['branch'],
       createdUserID: resp['createdUserID'].toString(),
       createdateTime: resp['createdateTime'],
@@ -139,6 +143,7 @@ class ReceiptHeaderTDB {
         ReceiptHeaderT.lastupdateIp: lastupdateIp,
         ReceiptHeaderT.series: series,
         ReceiptHeaderT.remarks: remarks,
+        ReceiptHeaderT.reference: reference,
         ReceiptHeaderT.seriesnumber: seriesnumber,
         ReceiptHeaderT.sysdate: sysdate,
         ReceiptHeaderT.totalamount: totalamount,

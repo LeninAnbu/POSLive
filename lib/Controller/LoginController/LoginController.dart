@@ -15,6 +15,7 @@ import '../../DB Helper/DBOperation.dart';
 import '../../DB Helper/DBhelper.dart';
 import '../../Models/Service Model/LoginUserModel.dart';
 import '../../main.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class LoginController extends ChangeNotifier {
   Future<void> init() async {
@@ -29,6 +30,8 @@ class LoginController extends ChangeNotifier {
     await SharedPref.clearLoggedINSP();
     disableBtn = false;
     incorrectPwd = '';
+    await DefaultCacheManager().emptyCache();
+
     createDB();
     getDeviceID();
   }

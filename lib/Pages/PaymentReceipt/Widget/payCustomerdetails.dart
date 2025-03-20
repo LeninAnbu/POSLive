@@ -68,9 +68,9 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                         onTap: () {
                           setState(
                             () {
-                              context
-                                  .read<PayreceiptController>()
-                                  .clearTextField();
+                              // context
+                              //     .read<PayreceiptController>()
+                              // .clearTextField();
                               context
                                   .read<PayreceiptController>()
                                   .refreshfiltercust();
@@ -80,9 +80,9 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                               onPressed: () {
-                                context
-                                    .read<PayreceiptController>()
-                                    .clearTextField();
+                                // context
+                                //     .read<PayreceiptController>()
+                                // .clearTextField();
                                 context
                                     .read<PayreceiptController>()
                                     .refreshfiltercust();

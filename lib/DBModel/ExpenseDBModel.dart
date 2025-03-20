@@ -21,6 +21,9 @@ class ExpenseT {
   static String sapDocNo = "sapDocNo";
   static String uDeviceId = 'U_DeviceId';
   static String uRVC = 'U_RVC';
+  static String uSupplier = 'U_Supplier';
+  static String uVatNo = 'U_VatNo';
+
   static String taxCode = 'TaxCode';
   static String distRule = 'DistRule';
   static String projectCode = 'projectCode';
@@ -52,6 +55,8 @@ class ExpenseDBModel {
   String? taxCode;
   String? distRule;
   String? projectCode;
+  String? uVatNo;
+  String? USupplier;
 
   String? qStatus;
 
@@ -62,6 +67,8 @@ class ExpenseDBModel {
     this.attachment,
     required this.documentno,
     required this.distRule,
+    required this.uVatNo,
+    required this.USupplier,
     required this.taxCode,
     required this.uRVC,
     required this.projectCode,
@@ -99,6 +106,8 @@ class ExpenseDBModel {
         paidfrom: resp['paidfrom'],
         remarks: resp['remarks'],
         docstatus: resp['docstatus'],
+        uVatNo: resp['docstatus'],
+        USupplier: resp['docstatus'],
         doctype: resp['doctype'],
         createdateTime: resp['createdateTime'],
         rcmode: resp['rcmode'],
@@ -137,5 +146,7 @@ class ExpenseDBModel {
         ExpenseT.uRVC: uRVC,
         ExpenseT.taxCode: taxCode,
         ExpenseT.distRule: distRule,
+        ExpenseT.uSupplier: USupplier,
+        ExpenseT.uVatNo: uVatNo,
       };
 }

@@ -10,6 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:posproject/Constant/Screen.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:posproject/Constant/Configuration.dart';
@@ -27,6 +28,9 @@ import '../../DBModel/paidfromModel.dart';
 import '../../Models/DataModel/OriginalSales/OriginalSales.dart';
 import '../../Models/ExpenseModel/paidfrom.dart';
 import '../../Service/QueryURL/cashcardaccountdetailsApi.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+
+import '../LoginController/LoginController.dart';
 
 class DashBoardController extends ChangeNotifier {
   Configure config = Configure();
@@ -729,6 +733,44 @@ class DashBoardController extends ChangeNotifier {
         false;
   }
 
+  clearData(BuildContext context) async {
+    final Database db = (await DBHelper.getInstance())!;
+
+    await DBOperation.truncateItemMaster(db);
+    await DBOperation.truncateStockSnap(db);
+    await DBOperation.truncateBranchMaster(db);
+    await DBOperation.truncateCouponDetailsMaster(db);
+    await DBOperation.truncateCustomerMasterAddress(db);
+    await DBOperation.truncateCustomerMaster(db);
+    await DBOperation.deleteNotifyAll(db);
+    await DBOperation.truncateUserMaster(db);
+    await DBOperation.deleteSalesQuot(db);
+    await DBOperation.deleteSalesOrder(db);
+    await DBOperation.deleteInvoicewholedata(db);
+    await DBOperation.dltsalesret(db);
+    await DBOperation.deletereceipt(db);
+    await DBOperation.deleteStockreq(db);
+    await DBOperation.deleteStOutTable(db);
+    await DBOperation.deleteStkInward(db);
+    await DBOperation.deleteExpense(db);
+    await SharedPref.clearHost();
+    await SharedPref.clearLoggedIN();
+    await SharedPref.clearSiteCode();
+    await SharedPref.clearTerminal();
+    await SharedPref.clrBranchSSP();
+    await SharedPref.clrUserIdSP();
+    await SharedPref.clearDatadonld();
+    await SharedPref.clearLoggedINSP();
+    await SharedPref.clrdsappassword();
+    await SharedPref.clrsapusername();
+    context.read<LoginController>().mycontroller[0].text = '';
+    context.read<LoginController>().mycontroller[1].text = '';
+    context.read<LoginController>().mycontroller[2].text = '';
+    context.read<LoginController>().mycontroller[4].text = '';
+    context.read<LoginController>().mycontroller[5].text = '';
+    notifyListeners();
+  }
+
   bool visibleLoading = true;
   String? plyStoreVersionNumber = '';
   Future<void> showVersion(BuildContext context) async {
@@ -848,6 +890,7 @@ class DashBoardController extends ChangeNotifier {
                               backgroundColor: theme.primaryColor,
                             ),
                             onPressed: () async {
+                              clearData(context);
                               if (Platform.isAndroid || Platform.isIOS) {
                                 final appId = Platform.isAndroid
                                     ? 'com.buson.posinsignia'
@@ -858,6 +901,7 @@ class DashBoardController extends ChangeNotifier {
                                       ? "https://play.google.com/store/apps/details?id=com.buson.posinsignia"
                                       : "https://apps.apple.com/app/id$appId",
                                 );
+                                await DefaultCacheManager().emptyCache();
                                 launchUrl(
                                   url,
                                   mode: LaunchMode.externalApplication,

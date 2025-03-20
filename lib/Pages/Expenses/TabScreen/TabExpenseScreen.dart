@@ -563,6 +563,138 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                       ],
                                     ),
                                     SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Vat No',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey[300],
+                                          ),
+                                          child: TextFormField(
+                                              controller: context
+                                                  .watch<ExpenseController>()
+                                                  .vatNoController[1],
+                                              decoration: InputDecoration(
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {});
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Supplier',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey[300],
+                                          ),
+                                          child: TextFormField(
+                                              controller: context
+                                                  .watch<ExpenseController>()
+                                                  .vatNoController[3],
+                                              decoration: InputDecoration(
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {});
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
                                         height: Screens.padingHeight(context) *
                                             0.01),
                                     Row(
@@ -1519,6 +1651,135 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             width:
                                                 Screens.width(context) * 0.30,
                                             child: Text(
+                                              'Vat No',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: const BoxDecoration(),
+                                          child: TextFormField(
+                                              controller: context
+                                                  .watch<ExpenseController>()
+                                                  .vatNoController[0],
+                                              decoration: InputDecoration(
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {});
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
+                                              'Supplier',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                            )),
+                                        Container(
+                                          width: Screens.width(context) * 0.50,
+                                          decoration: const BoxDecoration(),
+                                          child: TextFormField(
+                                              controller: context
+                                                  .watch<ExpenseController>()
+                                                  .vatNoController[2],
+                                              decoration: InputDecoration(
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.red),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                        horizontal: 5),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          theme.primaryColor),
+                                                ),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {});
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(
+                                      height:
+                                          Screens.padingHeight(context) * 0.01,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                            width:
+                                                Screens.width(context) * 0.30,
+                                            child: Text(
                                               'Tax Code',
                                               style: theme.textTheme.bodyLarge
                                                   ?.copyWith(
@@ -1598,7 +1859,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                       .taxName = value!;
                                                   context
                                                       .read<ExpenseController>()
-                                                      .selectTaxCode(value!);
+                                                      .selectTaxCode(value);
                                                 });
                                               }),
                                         ),
@@ -2146,7 +2407,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
             visible: context.watch<ExpenseController>().onDisablebutton,
             child: Container(
               width: Screens.width(context),
-              height: Screens.bodyheight(context) * 0.95,
+              height: Screens.bodyheight(context) * 1.2,
               color: Colors.white60,
               child: Center(
                 child: SpinKitFadingCircle(

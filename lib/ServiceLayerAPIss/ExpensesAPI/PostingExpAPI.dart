@@ -19,6 +19,7 @@ class PostExpenseAPi {
   static String? remarks;
   static String? docDate;
   static String? cashSum;
+  static String? uVAT;
 
   static String? uRvc;
   static List<ExpenseListMoel>? paymentAccounts;

@@ -10,7 +10,6 @@ import 'package:posproject/Service/ReportsApi/CustomerApi.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../Constant/AppConstant.dart';
 import '../../Constant/ConstantRoutes.dart';
-import '../../Constant/Screen.dart';
 import '../../DB Helper/DBOperation.dart';
 import '../../DB Helper/DBhelper.dart';
 import '../../Models/ReportsModel/AddressRepModel.dart';

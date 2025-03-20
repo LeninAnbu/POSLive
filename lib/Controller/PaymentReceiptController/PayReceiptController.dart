@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:posproject/Constant/Configuration.dart';
 import 'package:posproject/Constant/Screen.dart';
 import 'package:posproject/Controller/SalesQuotationController/SalesQuotationController.dart';
-import 'package:posproject/DBModel/Receipt.dart';
+import 'package:posproject/DBModel/ReceiptHeader.dart';
 import 'package:posproject/DBModel/ReceiptLine2.dart';
 import 'package:posproject/DBModel/RecieptLine1.dart';
 import 'package:posproject/Models/DataModel/SalesOrderModel.dart';
@@ -87,6 +87,8 @@ class PayreceiptController extends ChangeNotifier {
   List<Address> shipadrrssItemlist = [];
   List<TextEditingController> mycontroller =
       List.generate(150, (i) => TextEditingController());
+  List<TextEditingController> referencemycontroller =
+      List.generate(150, (i) => TextEditingController());
   TextEditingController postingDatecontroller = TextEditingController();
   List<TextEditingController> invMycontroller =
       List.generate(150, (i) => TextEditingController());
@@ -110,7 +112,7 @@ class PayreceiptController extends ChangeNotifier {
   String? sameInvNum;
   CustomerDetals? topselectedcust;
   CustomerDetals? get gettopselectedcust => topselectedcust;
-  TextEditingController remarkcontroller3 = TextEditingController();
+  // TextEditingController remarkcontroller3 = TextEditingController();
   CustomerDetals? selectedcust55;
   CustomerDetals? get getselectedcust55 => selectedcust55;
   CustomerDetals? selectedcust;
@@ -219,6 +221,7 @@ class PayreceiptController extends ChangeNotifier {
     mycontroller2 = List.generate(150, (i) => TextEditingController());
     mycontroller = List.generate(150, (i) => TextEditingController());
     invMycontroller = List.generate(150, (i) => TextEditingController());
+    referencemycontroller = List.generate(150, (i) => TextEditingController());
     loadingscrn = false;
     ondDisablebutton = false;
     loadSearch = false;
@@ -231,7 +234,7 @@ class PayreceiptController extends ChangeNotifier {
     newCustValues = [];
     selectedCustomer = 0;
     filtersearchData.clear();
-    remarkcontroller3 = TextEditingController();
+    // remarkcontroller3 = TextEditingController();
     searchData.clear();
     selectedBillAdress = 0;
     checkboxx = false;
@@ -704,7 +707,7 @@ class PayreceiptController extends ChangeNotifier {
         ? null
         : int.parse(
             mycontroller[49].text.replaceAll(",", "").replaceAll(".", ""));
-    newCutomerModel.notes = mycontroller[50].text;
+    newCutomerModel.notes = referencemycontroller[0].text;
     newCutomerModel.series =
         custseriesNo == null ? null : int.parse(custseriesNo!);
     newCutomerModel.territory =
@@ -973,11 +976,12 @@ class PayreceiptController extends ChangeNotifier {
       paymentWay2 = [];
       scanneditemData2 = [];
       totalduepay2 = 0;
-      remarkcontroller3.text = '';
+      referencemycontroller[3].text = '';
       if (value.stsCode >= 200 && value.stsCode <= 210) {
         sapDocentry = value.docEntry.toString();
-        log('value.documentLines length::${value.remarks}');
-        remarkcontroller3.text = value.remarks;
+        log('value.documentLines length::${sapDocEntry}');
+        referencemycontroller[3].text = value.remarks;
+        referencemycontroller[1].text = value.counterReference;
         if (value.paymentChecks.isNotEmpty) {
           for (var i = 0; i < value.paymentChecks.length; i++) {
             if (value.paymentChecks[i].checkSum != 0) {
@@ -2825,6 +2829,10 @@ class PayreceiptController extends ChangeNotifier {
     loadingscrn = true;
     paymentWay = [];
     totalduepay = 0;
+
+    referencemycontroller[0].text = salesPayModell5[ih].reference!;
+    referencemycontroller[2].text = salesPayModell5[ih].remarks!;
+
     selectedcust = CustomerDetals(
         name: salesPayModell5[ih].custName,
         taxCode: salesPayModell5[ih].taxCode!,
@@ -3059,6 +3067,11 @@ class PayreceiptController extends ChangeNotifier {
     scanneditemData.clear();
     selectedcust = null;
     mycontroller[50].clear();
+    referencemycontroller[0].text = '';
+    referencemycontroller[2].text = '';
+    referencemycontroller[4].text = '';
+    referencemycontroller[5].text = '';
+
     newAddrsValue = [];
     newCustValues = [];
     paymentWay.clear();
@@ -3095,6 +3108,7 @@ class PayreceiptController extends ChangeNotifier {
     selectedcust2 = null;
     isExpanded = false;
     scanneditemData.clear();
+    referencemycontroller = List.generate(150, (i) => TextEditingController());
     scanneditemData2.clear();
     advancetype = '';
     holddocentry = '';
@@ -4125,7 +4139,8 @@ class PayreceiptController extends ChangeNotifier {
           sapdetails.isNotEmpty ? sapdetails[0]['sapDocentry'].toString() : "",
       sapInvoicedocnum:
           sapdetails.isNotEmpty ? sapdetails[0]['sapDocNo'].toString() : '',
-      remarks: mycontroller[50].text.toString(),
+      remarks: referencemycontroller[2].text.toString(),
+      reference: referencemycontroller[0].text.toString(),
     ));
     int? docentry5 = await DBOperation.insertRecieptHeader(db, receiptHeader);
     await DBOperation.updatenextno(db, 7, nextno);
@@ -4250,6 +4265,10 @@ class PayreceiptController extends ChangeNotifier {
       mycontroller[80].clear();
       mycontroller[81].clear();
       mycontroller[50].clear();
+      referencemycontroller[0].text = '';
+      referencemycontroller[2].text = '';
+      referencemycontroller[4].text = '';
+      referencemycontroller[5].text = '';
       newAddrsValue = [];
       newCustValues = [];
       advancests = false;
@@ -4332,7 +4351,7 @@ class PayreceiptController extends ChangeNotifier {
     newCashAcc = [];
     await NewCashCardAccountAPi.getGlobalData(AppConstant.branch).then((value) {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        if (value.activitiesData!.isNotEmpty) {
+        if (value.activitiesData != null) {
           newCashAcc = value.activitiesData!;
         }
         notifyListeners();
@@ -4391,7 +4410,7 @@ class PayreceiptController extends ChangeNotifier {
             checkNumber: int.parse(paymentWay[i].chequeno.toString()),
             bankCode: selectbankCode,
             accounttNum: '',
-            details: remarkcontroller3.text,
+            details: referencemycontroller[3].text,
             checkSum: paymentWay[i].amt!));
       }
       notifyListeners();
@@ -4419,6 +4438,7 @@ class PayreceiptController extends ChangeNotifier {
 
   postingReceipt(BuildContext context, ThemeData theme, int docEntry,
       String docstatus, String documentNum) async {
+    log(' mycontroller[50].text::${referencemycontroller[2].text}');
     final Database db = (await DBHelper.getInstance())!;
     await callSeriesApi(context, '24');
     await addChequeValues();
@@ -4431,6 +4451,7 @@ class PayreceiptController extends ChangeNotifier {
     ReceiptPostAPi.docType = "rCustomer";
     ReceiptPostAPi.seriesType = seriesType.toString();
     ReceiptPostAPi.checkAccount = chequeAccCode;
+    ReceiptPostAPi.counterRef = referencemycontroller[0].text;
     ReceiptPostAPi.cardCodePost = selectedcust!.cardCode;
     ReceiptPostAPi.docPaymentChecks = itemsPaymentCheckDet;
     ReceiptPostAPi.docPaymentCards = itemcardPayment;
@@ -4439,20 +4460,20 @@ class PayreceiptController extends ChangeNotifier {
         ? config.alignDate2(postingDatecontroller.text)
         : '';
     ReceiptPostAPi.dueDate = config.currentDate().toString();
-    ReceiptPostAPi.remarks = mycontroller[50].text +
+    ReceiptPostAPi.remarks = referencemycontroller[2].text +
         " " +
-        mycontroller[32].text +
+        referencemycontroller[4].text +
         " " +
-        mycontroller[33].text +
-        " " +
-        wallwtType;
-    ReceiptPostAPi.journalRemarks = mycontroller[50].text +
-        " " +
-        mycontroller[32].text +
-        " " +
-        mycontroller[33].text +
+        referencemycontroller[5].text +
         " " +
         wallwtType;
+    // ReceiptPostAPi.journalRemarks = mycontroller[50].text +
+    //     " " +
+    //     mycontroller[32].text +
+    //     " " +
+    //     mycontroller[33].text +
+    //     " " +
+    //     wallwtType;
 
     for (int i = 0; i < paymentWay.length; i++) {
       if (paymentWay[i].type == 'Cash') {
@@ -4522,7 +4543,11 @@ class PayreceiptController extends ChangeNotifier {
               selectedcust = null;
               paymentWay.clear();
               postingDatecontroller.text = '';
-              remarkcontroller3.text = "";
+              referencemycontroller =
+                  List.generate(150, (i) => TextEditingController());
+              referencemycontroller[0].text = "";
+              referencemycontroller[2].text = "";
+
               scanneditemData.clear();
               cashAccCode = '';
               cardAcctype = '';
@@ -4558,8 +4583,10 @@ class PayreceiptController extends ChangeNotifier {
           postingDatecontroller.text = '';
 
           scanneditemData.clear();
-          remarkcontroller3.text = "";
+          referencemycontroller[3].text = "";
           scanneditemData.clear();
+          referencemycontroller =
+              List.generate(150, (i) => TextEditingController());
         }
       } else if (value.stscode! >= 400 && value.stscode! <= 410) {
         custserieserrormsg = value.error!.message!.value.toString();
@@ -4609,6 +4636,7 @@ class PayreceiptController extends ChangeNotifier {
         });
       }
     });
+
     notifyListeners();
   }
 
@@ -4679,7 +4707,8 @@ class PayreceiptController extends ChangeNotifier {
       sapDocentry: null,
       sapInvoicedocentry: '',
       sapInvoicedocnum: '',
-      remarks: mycontroller[50].text.toString(),
+      remarks: referencemycontroller[2].text.toString(),
+      reference: referencemycontroller[0].text.toString(),
     ));
     int? docentry5 = await DBOperation.insertRecieptHeader(db, receiptHeader);
     await DBOperation.updatenextno(db, 7, nextno);
@@ -4748,6 +4777,10 @@ class PayreceiptController extends ChangeNotifier {
       totpaidamt = 0;
       advancetype = '';
       postingDatecontroller.text = '';
+      referencemycontroller[0].text = '';
+      referencemycontroller[2].text = '';
+      referencemycontroller[4].text = '';
+      referencemycontroller[5].text = '';
       mycontroller[80].text = "";
       mycontroller[81].text = "";
       mycontroller[0].text = "";
@@ -5081,6 +5114,8 @@ class PayreceiptController extends ChangeNotifier {
         createdateTime:
             getDBholdPayReceiptdata1[ji]['createdateTime'].toString(),
         invoiceNum: getDBholdPayReceiptdata1[ji]['documentno'].toString(),
+        remarks: getDBholdPayReceiptdata1[ji]['remarks'].toString(),
+        reference: getDBholdPayReceiptdata1[ji]['Reference'].toString(),
         payItem: scannData,
         paymentway: payment);
     notifyListeners();

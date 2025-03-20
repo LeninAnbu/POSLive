@@ -254,8 +254,8 @@ class PaymentAccount {
   // dynamic uDccPesaNo;
   // dynamic uDccmno;
   // String uDccco;
-  // dynamic uVat;
-  // dynamic uSupplier;
+  String uVat;
+  String uSupplier;
   // dynamic uRvc;
 
   PaymentAccount({
@@ -270,6 +270,9 @@ class PaymentAccount {
     required this.profitCenter,
     required this.projectCode,
     required this.vatAmount,
+    required this.uSupplier,
+    required this.uVat,
+
     // required this.profitCenter2,
     // required this.profitCenter3,
     // required this.profitCenter4,
@@ -301,6 +304,8 @@ class PaymentAccount {
         profitCenter: json["ProfitCenter"] ?? '',
         projectCode: json["ProjectCode"] ?? '',
         vatAmount: json["VatAmount"] ?? 0,
+        uVat: json["U_VAT"] ?? '',
+        uSupplier: json["U_Supplier"] ?? "",
         // profitCenter2: json["ProfitCenter2"],
         // profitCenter3: json["ProfitCenter3"],
         // profitCenter4: json["ProfitCenter4"],
@@ -315,8 +320,7 @@ class PaymentAccount {
         // uDccPesaNo: json["U_DCCPesaNo"],
         // uDccmno: json["U_DCCMNO"],
         // uDccco: json["U_DCCCO"],
-        // uVat: json["U_VAT"],
-        // uSupplier: json["U_Supplier"],
+
         // uRvc: json["U_RVC"],
       );
 

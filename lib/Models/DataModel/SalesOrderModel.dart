@@ -31,6 +31,9 @@ class SalesModel {
   String? sapInvoiceNum;
   String? sapOrderNum;
   String? objname;
+  String? remarks;
+  String? reference;
+
   List<Address>? address;
   List<StocksnapModelData>? item;
   List<InvoicePayReceipt>? payItem;
@@ -47,6 +50,8 @@ class SalesModel {
       this.address,
       this.ordReference,
       this.custautoid,
+      this.remarks,
+      this.reference,
       this.phNo,
       this.item,
       this.checkBClr,

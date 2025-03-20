@@ -952,7 +952,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
         .newCashAcc
         .where((item) => item.uMode == "CASH")
         .toList();
-    log('cashItems::${cashItems[0].uMode}');
+    // log('cashItems::${cashItems[0].uMode}');
     return StatefulBuilder(builder: (context, st) {
       return Container(
         width: widget.cashWidth * 1.1,
@@ -2445,7 +2445,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           child: TextFormField(
                             controller: context
                                 .read<PayreceiptController>()
-                                .mycontroller[32],
+                                .referencemycontroller[4],
                             cursorColor: Colors.grey,
                             style:
                                 widget.theme.textTheme.bodyMedium?.copyWith(),
@@ -2503,7 +2503,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           child: TextFormField(
                             controller: context
                                 .read<PayreceiptController>()
-                                .mycontroller[33],
+                                .referencemycontroller[5],
                             cursorColor: Colors.grey,
                             style:
                                 widget.theme.textTheme.bodyMedium?.copyWith(),

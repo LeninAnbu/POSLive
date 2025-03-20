@@ -11,7 +11,9 @@ class ExpenseListMoel {
   String? vatGroup;
   String? ocrCode;
   String? projectCode;
-  String? vatAmt;
+  String vatAmt;
+  String uVat;
+  String? uSupplier;
 
   ExpenseListMoel(
       {required this.accountCode,
@@ -20,6 +22,8 @@ class ExpenseListMoel {
       required this.projectCode,
       required this.vatGroup,
       required this.vatAmt,
+      required this.uVat,
+      required this.uSupplier,
       required this.ocrCode,
       required this.sumPaid});
   Map<String, dynamic> tojson() => {
@@ -30,6 +34,8 @@ class ExpenseListMoel {
         "VatGroup": vatGroup == 'null' || vatGroup == null ? null : vatGroup,
         "ProfitCenter": ocrCode == 'null' || ocrCode == null ? null : ocrCode,
         "VatAmount": vatAmt,
+        "U_VAT": uVat,
+        "U_Supplier": uSupplier,
         "ProjectCode":
             projectCode == 'null' || projectCode == null || projectCode!.isEmpty
                 ? null

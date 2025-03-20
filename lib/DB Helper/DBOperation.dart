@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:posproject/DBModel/Receipt.dart';
+import 'package:posproject/DBModel/ReceiptHeader.dart';
 import 'package:posproject/DBModel/SalesReturnLineT.dart';
 import 'package:posproject/DBModel/StockReqLine.dart';
 import 'package:sqflite/sqflite.dart';

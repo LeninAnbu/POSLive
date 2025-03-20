@@ -87,6 +87,8 @@ class ExpenseController extends ChangeNotifier {
 
   List<TextEditingController> uRvcController =
       List.generate(150, (i) => TextEditingController());
+  List<TextEditingController> vatNoController =
+      List.generate(150, (i) => TextEditingController());
   List<codeforexpense> expCode = [];
   List finalcode = [];
   String holddocentry = '';
@@ -521,7 +523,9 @@ class ExpenseController extends ChangeNotifier {
     taxCodeDataList = [];
     profitCenterData = [];
     projectCodeList = [];
-
+    vatNoController = List.generate(150, (i) => TextEditingController());
+    mycontroller = List.generate(150, (i) => TextEditingController());
+    uRvcController == List.generate(150, (i) => TextEditingController());
     expenseModel = [];
     clearData();
     notifyListeners();
@@ -529,12 +533,15 @@ class ExpenseController extends ChangeNotifier {
 
   clearData() {
     mycontroller = List.generate(150, (i) => TextEditingController());
+    uRvcController == List.generate(150, (i) => TextEditingController());
+
     mycontroller[9].text = "";
     displayExpanseValue = null;
     sapDocentry = '';
     seriesType = '';
     projectCode = null;
     projectName = null;
+
     profitName = null;
     profitCode = null;
     taxCode = null;
@@ -551,7 +558,7 @@ class ExpenseController extends ChangeNotifier {
     mycontroller[11].text = "";
     mycontroller[12].text = "";
     mycontroller[22].text = "";
-
+    mycontroller[20].text = '';
     mycontroller[13].text = "";
     mycontroller[15].text = '';
     mycontroller[14].text = "";
@@ -585,6 +592,7 @@ class ExpenseController extends ChangeNotifier {
     searchAprvlData = [];
     expSearchHeaderdata = [];
     filtersearchData = [];
+    vatNoController = List.generate(150, (i) => TextEditingController());
     notifyListeners();
   }
 
@@ -703,6 +711,8 @@ class ExpenseController extends ChangeNotifier {
         documentno: documentNum.toString(),
         reference: mycontroller[0].text,
         rcamount: mycontroller[1].text,
+        uVatNo: vatNoController[0].text,
+        USupplier: vatNoController[2].text,
         distRule: profitCode,
         uRVC: uRvcController[0].text,
         taxCode: taxCode,
@@ -844,6 +854,8 @@ class ExpenseController extends ChangeNotifier {
       sumPaid: sumPaid,
       projectCode: projectCode,
       vatAmt: taxAmt.toString(),
+      uVat: vatNoController[0].text,
+      uSupplier: vatNoController[2].text,
     ));
     notifyListeners();
   }
@@ -1298,6 +1310,8 @@ class ExpenseController extends ChangeNotifier {
       distRule: getDBholddata5[i]['DistRule'].toString(),
       taxCode: getDBholddata5[i]['TaxCode'].toString(),
       projectName: getDBholddata5[i]['projectCode'].toString(),
+      uSupplier: getDBholddata5[i]['U_Supplier'].toString(),
+      uVatNo: getDBholddata5[i]['U_VatNo'].toString(),
     );
 
     expenceval2.add(expenceval);
@@ -1326,6 +1340,9 @@ class ExpenseController extends ChangeNotifier {
     mycontroller[0].text = onholdfilter[i].reference.toString();
     mycontroller[1].text = onholdfilter[i].rcamount.toString();
     mycontroller[2].text = onholdfilter[i].paidto.toString();
+
+    vatNoController[0].text = onholdfilter[i].uVatNo ?? '';
+    vatNoController[2].text = onholdfilter[i].uSupplier ?? '';
 
     chosenValue = onholdfilter[i].paidfrom.toString();
     creditAcc = onholdfilter[i].paidfrom.toString();
@@ -1843,11 +1860,10 @@ class ExpenseController extends ChangeNotifier {
 
             mycontroller[14].text = value.remarks.toString();
             mycontroller[18].text = config.alignDate(value.docDate.toString());
-            // mycontroller[19].text = value.paymentAccounts[i].vatGroup;
-            // mycontroller[20].text = value.paymentAccounts[i].profitCenter;
             uRvcController[1].text = value.uRVC.toString();
-            // uRvcController[3].text = value.paymentAccounts[i].projectCode;
             mycontroller[22].text = value.address.toString();
+            vatNoController[1].text = value.paymentAccounts[i].uVat;
+            vatNoController[3].text = value.paymentAccounts[i].uSupplier;
 
             selectProjectCode2(value.paymentAccounts[i].projectCode.toString());
             selectProfitCode2(value.paymentAccounts[i].profitCenter.toString());

@@ -21,7 +21,7 @@ import '../DBModel/ItemMaster.dart';
 import '../DBModel/NotificationModel.dart';
 import '../DBModel/NumberingSeries.dart';
 import '../DBModel/PriceMaster.dart';
-import '../DBModel/Receipt.dart';
+import '../DBModel/ReceiptHeader.dart';
 import '../DBModel/ReceiptLine2.dart';
 import '../DBModel/RecieptLine1.dart';
 import '../DBModel/RefundLine.dart';
@@ -857,6 +857,8 @@ ${SalesQuotationLineT.serialbatch}  varchar ,
   ${ReceiptHeaderT.docentry} integer,
    ${ReceiptHeaderT.doctype} varchar,
       ${ReceiptHeaderT.remarks} varchar,
+      ${ReceiptHeaderT.reference} varchar,
+
  ${ReceiptHeaderT.docstatus} varchar,
    ${ReceiptHeaderT.branch} varchar,
  ${ReceiptHeaderT.terminal} varchar,
@@ -1346,6 +1348,8 @@ create table $tableExpense(
   ${ExpenseT.uRVC} varchar,
   ${ExpenseT.distRule} varchar,
   ${ExpenseT.projectCode} varchar,
+  ${ExpenseT.uVatNo} varchar,
+  ${ExpenseT.uSupplier} varchar,
   ${ExpenseT.qStatus} varchar
 )''');
     await database.execute('''

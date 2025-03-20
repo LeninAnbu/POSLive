@@ -74,40 +74,6 @@ class _PaymentReceiptScreensState extends State<PaymentReceiptScreens> {
                                       context
                                           .read<PayreceiptController>()
                                           .callSearchHeaderApi();
-                                      // context
-                                      //     .read<PayreceiptController>()
-                                      //     .getSalesDataDatewise(
-                                      //         context
-                                      //             .read<PayreceiptController>()
-                                      //             .config
-                                      //             .alignDate(context
-                                      //                 .read<PayreceiptController>()
-                                      //                 .config
-                                      //                 .currentDate()),
-                                      //         context
-                                      //             .read<PayreceiptController>()
-                                      //             .config
-                                      //             .alignDate(context
-                                      //                 .read<PayreceiptController>()
-                                      //                 .config
-                                      //                 .currentDate()));
-                                      // context
-                                      //     .read<PayreceiptController>()
-                                      //     .getSalesDataDatewise(
-                                      //         context
-                                      //             .read<PayreceiptController>()
-                                      //             .config
-                                      //             .alignDate(context
-                                      //                 .read<PayreceiptController>()
-                                      //                 .config
-                                      //                 .currentDate()),
-                                      // context
-                                      //     .read<PayreceiptController>()
-                                      //     .config
-                                      //             .alignDate(context
-                                      //                 .read<PayreceiptController>()
-                                      //                 .config
-                                      //                 .currentDate()));
                                     });
                                     context
                                         .read<PayreceiptController>()
