@@ -268,7 +268,6 @@ Future<void> receivervb() async {
   String? branch = await getBranch();
   String? terminal = await getTerminal();
   String? sapPassword = await getSapPassword();
-
   String? sapUserName = await getSapUserName();
   if (ip != null &&
       ip != 'null' &&

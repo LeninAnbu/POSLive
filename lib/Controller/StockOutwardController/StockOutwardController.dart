@@ -71,7 +71,7 @@ class StockOutwardController extends ChangeNotifier {
   List<StockSnapTModelDB> getSearchedData = [];
   List<StockSnapTModelDB> getfilterSearchedData = [];
   List<TextEditingController> qtymycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   PageController pageController = PageController(initialPage: 0);
   int currentPage = 0;
   ScrollController scrollController = ScrollController();
@@ -95,9 +95,9 @@ class StockOutwardController extends ChangeNotifier {
       List.generate(50, (i) => GlobalKey<FormState>());
 
   List<TextEditingController> StOutController =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> StOutController2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   int i_value = 0;
   int get get_i_value => i_value;
   double ScannigVal = 0;
@@ -239,7 +239,7 @@ class StockOutwardController extends ChangeNotifier {
     StOutController2[50].text = "";
     StOutController[50].clear();
     StOutController2[50].clear();
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
     isselect = false;
     OnclickDisable = false;
     cancelbtn = false;
@@ -286,9 +286,9 @@ class StockOutwardController extends ChangeNotifier {
     pageIndex = 0;
     selectedcust2 = null;
     StOutController2[50].text = "";
-    manualQtyCtrl = List.generate(100, (ij) => TextEditingController());
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
+    manualQtyCtrl = List.generate(500, (ij) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
     passdata = [];
     searchLoading = false;
     StockOutward = [];
@@ -1136,7 +1136,7 @@ class StockOutwardController extends ChangeNotifier {
   }
 
   List<TextEditingController> manualQtyCtrl =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   bool extraqty = false;
   int? selectItemIndex;
   mapItemCodeWiseSoAllData() {
@@ -1220,7 +1220,7 @@ class StockOutwardController extends ChangeNotifier {
 
   manualscanmethod(int ih, String serialBatch, int ix, ThemeData theme,
       BuildContext context) async {
-    manualQtyCtrl = List.generate(100, (ij) => TextEditingController());
+    manualQtyCtrl = List.generate(500, (ij) => TextEditingController());
     openAutoSelect = [];
     batchselectbtndisable = false;
     autoselectbtndisable = false;
@@ -2743,7 +2743,7 @@ class StockOutwardController extends ChangeNotifier {
                       data!.clear();
                       StOutController[50].text = "";
                       qtymycontroller =
-                          List.generate(100, (ij) => TextEditingController());
+                          List.generate(500, (ij) => TextEditingController());
 
                       notifyListeners();
                     } else {

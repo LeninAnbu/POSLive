@@ -56,7 +56,7 @@ class StockReqController extends ChangeNotifier {
   TextEditingController searchcontroller = TextEditingController();
 
   List<TextEditingController> mycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   TextEditingController remarkscontroller = TextEditingController();
   TextEditingController remarkscontroller2 = TextEditingController();
 

@@ -114,9 +114,9 @@ class SOCon extends ChangeNotifier {
   TextEditingController tinNoController = TextEditingController();
   TextEditingController vatNoController = TextEditingController();
   List<GlobalKey<FormState>> formkey =
-      List.generate(100, (i) => GlobalKey<FormState>());
+      List.generate(500, (i) => GlobalKey<FormState>());
   List<GlobalKey<FormState>> approvalformkey =
-      List.generate(100, (i) => GlobalKey<FormState>());
+      List.generate(500, (i) => GlobalKey<FormState>());
   GlobalKey<FormState> formkeyAd = GlobalKey<FormState>();
   GlobalKey<FormState> formkeyShipAd = GlobalKey<FormState>();
   List<HoldedHeader> holdData = [];
@@ -125,30 +125,30 @@ class SOCon extends ChangeNotifier {
   List<SalesOrderScheme> schemeData = [];
   List<SchemeOrderModalData> resSchemeDataList = [];
   List<TextEditingController> mycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> pricemycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   //
   List<TextEditingController> qtymycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> discountcontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> discountcontroller2 =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> udfController =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
 
   TextEditingController remarkcontroller3 = TextEditingController();
   List<TextEditingController> warehousectrl =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> mycontroller2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> itemListDateCtrl =
       List.generate(200, (i) => TextEditingController());
   List<TextEditingController> itemListDateCtrl2 =
       List.generate(200, (i) => TextEditingController());
   List<TextEditingController> qtymycontroller2 =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   TextEditingController searchcontroller = TextEditingController();
   List<StocksnapModelData> itemData = [];
   List<StocksnapModelData> get getitemData => itemData;
@@ -172,7 +172,7 @@ class SOCon extends ChangeNotifier {
 
   List<searchModel> searchData = [];
 
-  List<FocusNode> focusnode = List.generate(100, (i) => FocusNode());
+  List<FocusNode> focusnode = List.generate(500, (i) => FocusNode());
   String holddocentry = '';
   ItemCodeListModel? itemcodeitem;
   List<StocksnapModelData> soData = [];
@@ -187,7 +187,7 @@ class SOCon extends ChangeNotifier {
 
   bool cancelbtn = false;
   List<TextEditingController> soqtycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   CustomerDetals? selectedcust;
   TextEditingController custNameController = TextEditingController();
   CustomerDetals? get getselectedcust => selectedcust;
@@ -624,9 +624,9 @@ class SOCon extends ChangeNotifier {
     newseries = [];
 
     itemListDateCtrl = List.generate(200, (i) => TextEditingController());
-    mycontroller = List.generate(150, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
     searchcontroller = TextEditingController();
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
     postingDatecontroller.text = '';
     checkboxx = false;
     selectedcust = null;
@@ -644,9 +644,9 @@ class SOCon extends ChangeNotifier {
     scanneditemData2.clear();
     latitude = '';
     longitude = '';
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
     mycontroller[99].clear();
-    focusnode = List.generate(100, (i) => FocusNode());
+    focusnode = List.generate(500, (i) => FocusNode());
     postingDatecontroller.text = config.alignDate(DateTime.now().toString());
 
     notifyListeners();
@@ -1220,7 +1220,7 @@ class SOCon extends ChangeNotifier {
   }
 
   clearsQaqty() {
-    soqtycontroller = List.generate(100, (ij) => TextEditingController());
+    soqtycontroller = List.generate(500, (ij) => TextEditingController());
   }
 
   bool cpyfrmsq = false;
@@ -3363,9 +3363,9 @@ class SOCon extends ChangeNotifier {
         totalPayment = null;
         mycontroller[50].text = "";
         itemListDateCtrl = List.generate(200, (i) => TextEditingController());
-        discountcontroller = List.generate(100, (i) => TextEditingController());
-        mycontroller = List.generate(150, (i) => TextEditingController());
-        qtymycontroller = List.generate(100, (i) => TextEditingController());
+        discountcontroller = List.generate(500, (i) => TextEditingController());
+        mycontroller = List.generate(500, (i) => TextEditingController());
+        qtymycontroller = List.generate(500, (i) => TextEditingController());
         remarkcontroller3.text = '';
         injectToDb();
         onDisablebutton = false;
@@ -3660,7 +3660,7 @@ class SOCon extends ChangeNotifier {
                     buttonName: null,
                   ));
             }).then((value) {
-          mycontroller = List.generate(150, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
           selectedcust = null;
           paymentWay.clear();
           remarkcontroller3.text = "";
@@ -3840,7 +3840,7 @@ class SOCon extends ChangeNotifier {
                     buttonName: null,
                   ));
             }).then((value) {
-          mycontroller = List.generate(150, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
           selectedcust = null;
           paymentWay.clear();
           remarkcontroller3.text = "";
@@ -4114,9 +4114,9 @@ class SOCon extends ChangeNotifier {
           itemListDateCtrl = List.generate(200, (i) => TextEditingController());
 
           discountcontroller =
-              List.generate(100, (i) => TextEditingController());
-          mycontroller = List.generate(150, (i) => TextEditingController());
-          qtymycontroller = List.generate(100, (i) => TextEditingController());
+              List.generate(500, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
+          qtymycontroller = List.generate(500, (i) => TextEditingController());
           remarkcontroller3.text = '';
           injectToDb();
           onDisablebutton = false;
@@ -4273,9 +4273,9 @@ class SOCon extends ChangeNotifier {
           pointType = '';
           accType = '';
           discountcontroller =
-              List.generate(100, (i) => TextEditingController());
-          mycontroller = List.generate(150, (i) => TextEditingController());
-          qtymycontroller = List.generate(100, (i) => TextEditingController());
+              List.generate(500, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
+          qtymycontroller = List.generate(500, (i) => TextEditingController());
           remarkcontroller3.text = '';
 
           injectToDb();
@@ -6730,10 +6730,10 @@ class SOCon extends ChangeNotifier {
     addCardCode = '';
 
     itemListDateCtrl = List.generate(200, (i) => TextEditingController());
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    qtymycontroller = List.generate(100, (i) => TextEditingController());
-    discountcontroller = List.generate(100, (i) => TextEditingController());
-    discountcontroller2 = List.generate(100, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    qtymycontroller = List.generate(500, (i) => TextEditingController());
+    discountcontroller = List.generate(500, (i) => TextEditingController());
+    discountcontroller2 = List.generate(500, (i) => TextEditingController());
 
     notifyListeners();
     Get.defaultDialog(
@@ -9797,15 +9797,15 @@ class SOCon extends ChangeNotifier {
     sapDocentry = '';
     sapDocuNumber = '';
     resSchemeDataList = [];
-    formkey = List.generate(100, (i) => GlobalKey<FormState>());
-    focusnode = List.generate(100, (i) => FocusNode());
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
-    qtymycontroller2 = List.generate(100, (ij) => TextEditingController());
-    discountcontroller = List.generate(100, (ij) => TextEditingController());
+    formkey = List.generate(500, (i) => GlobalKey<FormState>());
+    focusnode = List.generate(500, (i) => FocusNode());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
+    qtymycontroller2 = List.generate(500, (ij) => TextEditingController());
+    discountcontroller = List.generate(500, (ij) => TextEditingController());
     searchcontroller = TextEditingController();
-    udfController = List.generate(100, (ij) => TextEditingController());
+    udfController = List.generate(500, (ij) => TextEditingController());
     selectedcust = null;
     schemebtnclk = false;
     paymentWay.clear();

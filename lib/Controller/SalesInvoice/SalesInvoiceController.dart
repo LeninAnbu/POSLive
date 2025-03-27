@@ -94,20 +94,20 @@ class PosController extends ChangeNotifier {
   List<GlobalKey<FormState>> formkeyy =
       List.generate(100, (i) => GlobalKey<FormState>());
   List<TextEditingController> udfController =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   GlobalKey<FormState> formkeyAdd = GlobalKey<FormState>();
   GlobalKey<FormState> formkeyShipAdd = GlobalKey<FormState>();
 
   List<TextEditingController> mycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
 
   bool listVisible = false;
 
   List<TextEditingController> qtymycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
 
   List<TextEditingController> discountcontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
 
   List<StocksnapModelData> itemData = [];
   List<StocksnapModelData> get getitemData => itemData;
@@ -118,25 +118,25 @@ class PosController extends ChangeNotifier {
   List<StocksnapModelData> get getScanneditemData2 => scanneditemData2;
 
   List<TextEditingController> mycontroller2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
 
   TextEditingController remarkcontroller3 = TextEditingController();
 
   TextEditingController searchcontroller = TextEditingController();
   List<TextEditingController> qtymycontroller2 =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> manualQtyCtrl =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> soqtycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> soListController =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<CustomerAddressModelDB> newBillAddrsValue = [];
   List<CustomerAddressModelDB> newShipAddrsValue = [];
   List<CustomerAddressModelDB> billcreateNewAddress = [];
   List<CustomerAddressModelDB> shipcreateNewAddress = [];
   List<searchModel> searchData = [];
-  List<FocusNode> focusnode = List.generate(100, (i) => FocusNode());
+  List<FocusNode> focusnode = List.generate(500, (i) => FocusNode());
 
   double soTotal = 0;
   String cpyfrmso = '';
@@ -1096,9 +1096,9 @@ class PosController extends ChangeNotifier {
 
     if (docstatus == "hold") {
       await getdraftindex();
-      mycontroller = List.generate(150, (i) => TextEditingController());
-      qtymycontroller = List.generate(150, (i) => TextEditingController());
-      discountcontroller = List.generate(100, (i) => TextEditingController());
+      mycontroller = List.generate(500, (i) => TextEditingController());
+      qtymycontroller = List.generate(500, (i) => TextEditingController());
+      discountcontroller = List.generate(500, (i) => TextEditingController());
       selectedcust = null;
       schemebtnclk = false;
       paymentWay.clear();
@@ -1999,7 +1999,7 @@ class PosController extends ChangeNotifier {
     manualselectbtndisable = true;
     batchselectbtndisable = false;
     selectionBtnLoading = true;
-    manualQtyCtrl = List.generate(100, (ij) => TextEditingController());
+    manualQtyCtrl = List.generate(500, (ij) => TextEditingController());
 
     notifyListeners();
     noMsgText = '';
@@ -2880,7 +2880,7 @@ class PosController extends ChangeNotifier {
                     buttonName: null,
                   ));
             }).then((value) {
-          mycontroller = List.generate(150, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
           selectedcust = null;
           paymentWay.clear();
           remarkcontroller3.text = "";
@@ -3014,11 +3014,11 @@ class PosController extends ChangeNotifier {
                 radius: 5)
             .then((value) {
           if (docstatus == "check out") {
-            mycontroller = List.generate(150, (i) => TextEditingController());
+            mycontroller = List.generate(500, (i) => TextEditingController());
             qtymycontroller =
-                List.generate(150, (i) => TextEditingController());
+                List.generate(500, (i) => TextEditingController());
             discountcontroller =
-                List.generate(100, (i) => TextEditingController());
+                List.generate(500, (i) => TextEditingController());
             selectedcust = null;
             schemebtnclk = false;
             paymentWay.clear();
@@ -3035,7 +3035,7 @@ class PosController extends ChangeNotifier {
             walletAcctype = '';
             walletAccCode = '';
             totalPayment = null;
-            udfController = List.generate(100, (ij) => TextEditingController());
+            udfController = List.generate(500, (ij) => TextEditingController());
             cpyfrmso = '';
             newAddrsValue = [];
             newCustValues = [];
@@ -3199,12 +3199,12 @@ class PosController extends ChangeNotifier {
                 radius: 5)
             .then((value) {
           if (docstatus == "check out") {
-            mycontroller = List.generate(150, (i) => TextEditingController());
+            mycontroller = List.generate(500, (i) => TextEditingController());
             qtymycontroller =
-                List.generate(150, (i) => TextEditingController());
+                List.generate(500, (i) => TextEditingController());
             discountcontroller =
-                List.generate(100, (i) => TextEditingController());
-            udfController = List.generate(100, (ij) => TextEditingController());
+                List.generate(500, (i) => TextEditingController());
+            udfController = List.generate(500, (ij) => TextEditingController());
             selectedcust = null;
             schemebtnclk = false;
             paymentWay.clear();
@@ -8568,7 +8568,7 @@ class PosController extends ChangeNotifier {
   }
 
   clearsoaqty() {
-    soqtycontroller = List.generate(100, (ij) => TextEditingController());
+    soqtycontroller = List.generate(500, (ij) => TextEditingController());
   }
 
   List<OpenSalesOrderHeaderData> openSalesOrd = [];
@@ -8967,9 +8967,9 @@ class PosController extends ChangeNotifier {
   }
 
   clearSuspendedData(BuildContext context, ThemeData theme) {
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
-    discountcontroller = List.generate(100, (ij) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
+    discountcontroller = List.generate(500, (ij) => TextEditingController());
     ondDisablebutton = true;
     selectbankCode = '';
     selectedBankType = null;
@@ -9009,7 +9009,7 @@ class PosController extends ChangeNotifier {
 
     transrefff = null;
 
-    mycontroller = List.generate(150, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
     getdraftindex();
     notifyListeners();
     Get.defaultDialog(
@@ -9268,9 +9268,9 @@ class PosController extends ChangeNotifier {
   }
 
   clearAllData(BuildContext context, ThemeData theme) {
-    formkeyy = List.generate(100, (i) => GlobalKey<FormState>());
-    focusnode = List.generate(100, (i) => FocusNode());
-    manualQtyCtrl = List.generate(100, (ij) => TextEditingController());
+    formkeyy = List.generate(500, (i) => GlobalKey<FormState>());
+    focusnode = List.generate(500, (i) => FocusNode());
+    manualQtyCtrl = List.generate(500, (ij) => TextEditingController());
     soScanItem = [];
     itemsDocDetails = [];
     fetchBatchData = [];
@@ -9328,13 +9328,13 @@ class PosController extends ChangeNotifier {
     cpyfrmso = '';
     remarkcontroller3.text = '';
     formkeyAdd = GlobalKey<FormState>();
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
     remarkcontroller3 = TextEditingController();
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
-    discountcontroller = List.generate(100, (ij) => TextEditingController());
-    qtymycontroller2 = List.generate(100, (ij) => TextEditingController());
-    soqtycontroller = List.generate(100, (ij) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
+    discountcontroller = List.generate(500, (ij) => TextEditingController());
+    qtymycontroller2 = List.generate(500, (ij) => TextEditingController());
+    soqtycontroller = List.generate(500, (ij) => TextEditingController());
     searchcontroller = TextEditingController();
     selectedcust = null;
     paymentWay.clear();

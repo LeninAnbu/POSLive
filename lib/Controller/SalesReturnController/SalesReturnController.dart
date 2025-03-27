@@ -83,18 +83,18 @@ class SalesReturnController extends ChangeNotifier {
   TextEditingController searchcontroller = TextEditingController();
 
   List<TextEditingController> srmycontroller =
-      List.generate(100, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   PosController? posC;
   List<GlobalKey<FormState>> formkey =
-      List.generate(150, (i) => GlobalKey<FormState>());
+      List.generate(500, (i) => GlobalKey<FormState>());
   List<TextEditingController> mycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> mycontroller2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> qtymycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> qtymycontroller2 =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   int selectedBillAdress = 0;
   int? get getselectedBillAdress => selectedBillAdress;
   int selectedShipAdress = 0;
@@ -116,7 +116,7 @@ class SalesReturnController extends ChangeNotifier {
   List<PaymentWay> paymentWay2 = [];
   List<PaymentWay> get getpaymentWay2 => paymentWay2;
   List<GlobalKey<FormState>> approvalformkey =
-      List.generate(100, (i) => GlobalKey<FormState>());
+      List.generate(500, (i) => GlobalKey<FormState>());
   double? totwieght2 = 0.0;
   double? totLiter2 = 0.0;
   double? totwieght = 0.0;
@@ -223,12 +223,12 @@ class SalesReturnController extends ChangeNotifier {
     srmycontroller[2].text = '';
 
     salesCreditamt = 0.00;
-    srmycontroller = List.generate(100, (i) => TextEditingController());
-    formkey = List.generate(100, (i) => GlobalKey<FormState>());
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
-    qtymycontroller2 = List.generate(100, (ij) => TextEditingController());
+    srmycontroller = List.generate(500, (i) => TextEditingController());
+    formkey = List.generate(500, (i) => GlobalKey<FormState>());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
+    qtymycontroller2 = List.generate(500, (ij) => TextEditingController());
     salespaytosalesreturn.clear();
     selectedcust = null;
     paymentWay.clear();
@@ -3365,7 +3365,7 @@ class SalesReturnController extends ChangeNotifier {
       getdraftindex();
 
       scanneditemData.clear();
-      mycontroller = List.generate(150, (i) => TextEditingController());
+      mycontroller = List.generate(500, (i) => TextEditingController());
       selectedcust = null;
       mycontroller[50].clear();
       paymentWay.clear();

@@ -63,7 +63,7 @@ class StockInwrdController extends ChangeNotifier {
   bool selectAll = true;
 
   List<TextEditingController> sinqtycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   bool isselect = false;
   String sapDocentry = '';
   String sapDocuNumber = '';
@@ -202,10 +202,10 @@ class StockInwrdController extends ChangeNotifier {
   bool onDisablebutton = false;
 
   List<TextEditingController> stInController =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
 
   List<TextEditingController> stInController2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
 
   int i_value = 0;
   int get get_i_value => i_value;

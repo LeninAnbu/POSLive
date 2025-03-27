@@ -86,7 +86,7 @@ class SalesQuotationCon extends ChangeNotifier {
   TextEditingController vatNoController = TextEditingController();
 
   List<GlobalKey<FormState>> formkey =
-      List.generate(100, (i) => GlobalKey<FormState>());
+      List.generate(500, (i) => GlobalKey<FormState>());
   GlobalKey<FormState> formkeyAd = GlobalKey<FormState>();
   GlobalKey<FormState> formkeyShipAd = GlobalKey<FormState>();
   List<HoldedHeader> holdData = [];
@@ -95,20 +95,20 @@ class SalesQuotationCon extends ChangeNotifier {
   List<SalesOrderScheme> schemeData = [];
   List<SchemeOrderModalData> resSchemeDataList = [];
   List<TextEditingController> mycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> warehousectrl =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> pricemycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> itemNameController =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
 
   List<TextEditingController> qtymycontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> discountcontroller =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> discountcontroller2 =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
 
   TextEditingController remarkcontroller3 = TextEditingController();
   TextEditingController duedatecontroller = TextEditingController();
@@ -193,9 +193,9 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   List<TextEditingController> mycontroller2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> qtymycontroller2 =
-      List.generate(100, (ij) => TextEditingController());
+      List.generate(500, (ij) => TextEditingController());
   TextEditingController searchcontroller = TextEditingController();
   List<StocksnapModelData> itemData = [];
   List<StocksnapModelData> get getitemData => itemData;
@@ -225,7 +225,7 @@ class SalesQuotationCon extends ChangeNotifier {
   bool editqty = false;
   List<searchModel> searchData = [];
   bool searchmapbool = false;
-  List<FocusNode> focusnode = List.generate(100, (i) => FocusNode());
+  List<FocusNode> focusnode = List.generate(500, (i) => FocusNode());
   String holddocentry = '';
 
   CustomerDetals? selectedcust;
@@ -342,9 +342,9 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   clearAll(BuildContext context, ThemeData theme) {
-    mycontroller = List.generate(150, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
     searchcontroller = TextEditingController();
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
     checkboxx = false;
     selectedcust = null;
     selectedcust2 = null;
@@ -361,9 +361,9 @@ class SalesQuotationCon extends ChangeNotifier {
     scanneditemData.clear();
     getfilterSearchedData = [];
     scanneditemData2.clear();
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
     mycontroller[99].clear();
-    focusnode = List.generate(100, (i) => FocusNode());
+    focusnode = List.generate(500, (i) => FocusNode());
     notifyListeners();
   }
 
@@ -5198,9 +5198,9 @@ class SalesQuotationCon extends ChangeNotifier {
         newCustValues = [];
         totalPayment = null;
         mycontroller[50].text = "";
-        discountcontroller = List.generate(100, (i) => TextEditingController());
-        mycontroller = List.generate(150, (i) => TextEditingController());
-        qtymycontroller = List.generate(100, (i) => TextEditingController());
+        discountcontroller = List.generate(500, (i) => TextEditingController());
+        mycontroller = List.generate(500, (i) => TextEditingController());
+        qtymycontroller = List.generate(500, (i) => TextEditingController());
         remarkcontroller3.text = '';
         onDisablebutton = false;
         whsName = null;
@@ -5341,9 +5341,9 @@ class SalesQuotationCon extends ChangeNotifier {
           totalPayment = null;
           mycontroller[50].text = "";
           discountcontroller =
-              List.generate(100, (i) => TextEditingController());
-          mycontroller = List.generate(150, (i) => TextEditingController());
-          qtymycontroller = List.generate(100, (i) => TextEditingController());
+              List.generate(500, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
+          qtymycontroller = List.generate(500, (i) => TextEditingController());
           remarkcontroller3.text = '';
           notifyListeners();
 
@@ -5400,9 +5400,9 @@ class SalesQuotationCon extends ChangeNotifier {
           whsName = null;
           whsCode = null;
           discountcontroller =
-              List.generate(100, (i) => TextEditingController());
-          mycontroller = List.generate(150, (i) => TextEditingController());
-          qtymycontroller = List.generate(100, (i) => TextEditingController());
+              List.generate(500, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
+          qtymycontroller = List.generate(500, (i) => TextEditingController());
           remarkcontroller3.text = '';
           notifyListeners();
 
@@ -5781,9 +5781,9 @@ class SalesQuotationCon extends ChangeNotifier {
     billcreateNewAddress = [];
     shipcreateNewAddress = [];
     newCustValues = [];
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    qtymycontroller = List.generate(100, (i) => TextEditingController());
-    discountcontroller = List.generate(100, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    qtymycontroller = List.generate(500, (i) => TextEditingController());
+    discountcontroller = List.generate(500, (i) => TextEditingController());
     notifyListeners();
     Get.defaultDialog(
             title: "Success",
@@ -6021,9 +6021,9 @@ class SalesQuotationCon extends ChangeNotifier {
           totalPayment = null;
           mycontroller[50].text = "";
           discountcontroller =
-              List.generate(100, (i) => TextEditingController());
-          mycontroller = List.generate(150, (i) => TextEditingController());
-          qtymycontroller = List.generate(100, (i) => TextEditingController());
+              List.generate(500, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
+          qtymycontroller = List.generate(500, (i) => TextEditingController());
           remarkcontroller3.text = '';
           notifyListeners();
           editqty = false;
@@ -8028,14 +8028,14 @@ class SalesQuotationCon extends ChangeNotifier {
     loadingscrn = false;
     sapDocentry = '';
     sapDocuNumber = '';
-    formkey = List.generate(100, (i) => GlobalKey<FormState>());
-    warehousectrl = List.generate(150, (i) => TextEditingController());
-    focusnode = List.generate(100, (i) => FocusNode());
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
-    qtymycontroller = List.generate(100, (ij) => TextEditingController());
-    qtymycontroller2 = List.generate(100, (ij) => TextEditingController());
-    discountcontroller = List.generate(100, (ij) => TextEditingController());
+    formkey = List.generate(500, (i) => GlobalKey<FormState>());
+    warehousectrl = List.generate(500, (i) => TextEditingController());
+    focusnode = List.generate(500, (i) => FocusNode());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
+    qtymycontroller = List.generate(500, (ij) => TextEditingController());
+    qtymycontroller2 = List.generate(500, (ij) => TextEditingController());
+    discountcontroller = List.generate(500, (ij) => TextEditingController());
     searchcontroller = TextEditingController();
     selectedcust = null;
     paymentWay.clear();

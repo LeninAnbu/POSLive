@@ -86,12 +86,12 @@ class PayreceiptController extends ChangeNotifier {
   List<Address> billadrrssItemlist = [];
   List<Address> shipadrrssItemlist = [];
   List<TextEditingController> mycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> referencemycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   TextEditingController postingDatecontroller = TextEditingController();
   List<TextEditingController> invMycontroller =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   bool ondDisablebutton = false;
   List<CustomerAddressModelDB> createNewAddress = [];
   bool hintcolor = false;
@@ -124,7 +124,7 @@ class PayreceiptController extends ChangeNotifier {
   CustomerDetals? selectedcust2;
   CustomerDetals? get getselectedcust2 => selectedcust2;
   List<TextEditingController> mycontroller2 =
-      List.generate(150, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
 
   List<searchModel> searchData = [];
   bool searchbool = false;
@@ -218,10 +218,10 @@ class PayreceiptController extends ChangeNotifier {
     walletAccCode = null;
     formkey = List.generate(50, (i) => GlobalKey<FormState>());
     formkeyAd = GlobalKey<FormState>();
-    mycontroller2 = List.generate(150, (i) => TextEditingController());
-    mycontroller = List.generate(150, (i) => TextEditingController());
-    invMycontroller = List.generate(150, (i) => TextEditingController());
-    referencemycontroller = List.generate(150, (i) => TextEditingController());
+    mycontroller2 = List.generate(500, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
+    invMycontroller = List.generate(500, (i) => TextEditingController());
+    referencemycontroller = List.generate(500, (i) => TextEditingController());
     loadingscrn = false;
     ondDisablebutton = false;
     loadSearch = false;
@@ -3059,7 +3059,7 @@ class PayreceiptController extends ChangeNotifier {
   }
 
   clearSuspendedData(BuildContext context, ThemeData theme) {
-    mycontroller = List.generate(150, (i) => TextEditingController());
+    mycontroller = List.generate(500, (i) => TextEditingController());
     ondDisablebutton = true;
     selectbankCode = '';
     selectedBankType = null;
@@ -3108,7 +3108,7 @@ class PayreceiptController extends ChangeNotifier {
     selectedcust2 = null;
     isExpanded = false;
     scanneditemData.clear();
-    referencemycontroller = List.generate(150, (i) => TextEditingController());
+    referencemycontroller = List.generate(500, (i) => TextEditingController());
     scanneditemData2.clear();
     advancetype = '';
     holddocentry = '';
@@ -4539,12 +4539,12 @@ class PayreceiptController extends ChangeNotifier {
                   radius: 5)
               .then((value) {
             if (docstatus == "submit") {
-              mycontroller = List.generate(150, (i) => TextEditingController());
+              mycontroller = List.generate(500, (i) => TextEditingController());
               selectedcust = null;
               paymentWay.clear();
               postingDatecontroller.text = '';
               referencemycontroller =
-                  List.generate(150, (i) => TextEditingController());
+                  List.generate(500, (i) => TextEditingController());
               referencemycontroller[0].text = "";
               referencemycontroller[2].text = "";
 
@@ -4566,7 +4566,7 @@ class PayreceiptController extends ChangeNotifier {
           custserieserrormsg = '';
         } else {
           custserieserrormsg = value.error!.message!.value.toString();
-          mycontroller = List.generate(150, (i) => TextEditingController());
+          mycontroller = List.generate(500, (i) => TextEditingController());
 
           selectedcust = null;
           cashAcctype = null;
@@ -4586,7 +4586,7 @@ class PayreceiptController extends ChangeNotifier {
           referencemycontroller[3].text = "";
           scanneditemData.clear();
           referencemycontroller =
-              List.generate(150, (i) => TextEditingController());
+              List.generate(500, (i) => TextEditingController());
         }
       } else if (value.stscode! >= 400 && value.stscode! <= 410) {
         custserieserrormsg = value.error!.message!.value.toString();

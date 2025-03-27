@@ -70,7 +70,7 @@ android {
        minSdkVersion 21
         targetSdkVersion 34 //26(Using DB Save) and 30 (apkbuild)
         versionCode 20
-        versionName '1.2.4'
+        versionName '1.2.5'
     }
 
      signingConfigs {
