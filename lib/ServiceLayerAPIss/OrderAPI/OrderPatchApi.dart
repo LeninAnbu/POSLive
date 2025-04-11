@@ -26,6 +26,7 @@ class SalesOrdPatchAPI {
   static String? deviceCode;
   static String? deviceTransID;
   static String? slpCode;
+  static bool? corporateuser;
 
   static Future<ApprovalstoDocModal> gettData(
       String sapDocEntry, String latitude, String longitude) async {
@@ -52,7 +53,9 @@ class SalesOrdPatchAPI {
         "U_longitude": longitude,
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
-        "DocumentLines": docLineQout!.map((e) => e.tojson3()).toList(),
+        "DocumentLines": corporateuser == true
+            ? docLineQout!.map((e) => e.tojson4()).toList()
+            : docLineQout!.map((e) => e.tojson3()).toList(),
       });
       log("sapDocEntry sapDocEntry::$data");
       log("url::::${'${URL.sapUrl}/Orders($sapDocEntry)'}");
@@ -82,41 +85,18 @@ class SalesOrdPatchAPI {
           "U_PosUserCode": UserValues.userCode,
           "U_PosTerminal": AppConstant.terminal,
           "U_Request": data,
-          "DocumentLines": docLineQout!.map((e) => e.tojson3()).toList(),
+          "DocumentLines": corporateuser == true
+              ? docLineQout!.map((e) => e.tojson4()).toList()
+              : docLineQout!.map((e) => e.tojson3()).toList(),
         }),
       );
-      log("SalesQuopatch stscode::${response.statusCode}");
-      log("SalesQuo patch:${response.body}");
-      // log(
-      //   "datatatat: " +
-      //       json.encode({
-      //         "CardCode": "$cardCodePost",
-      //         "CardName": "$cardNamePost",
-      //         "DocumentStatus": "bost_Open",
-      //         "DocDate": "$docDate",
-      //         "DocDueDate": "$dueDate",
-      //         "Comments": "$remarks",
-      //         "U_OrderDate": "$orderDate",
-      //         "U_Order_Type": "$orderType",
-      //         "U_GP_Approval": "$gpApproval",
-      //         "U_Received_Time": "$orderTime",
-      //         "NumAtCard": "$custREfNo",
-      //         'U_DeviceCode': deviceCode,
-      //         'U_DeviceTransID': deviceTransID,
-      //         'SalesPersonCode': '$slpCode',
-      //         "U_latitude ": latitude,
-      //         "U_longitude": longitude,
-      //         "U_Request": data,
-      //         "DocumentLines": docLineQout!.map((e) => e.tojson()).toList(),
-      //       }),
-      // );
-
-      // // ressCode = response.statusCode;
+      log("Sales Ord patch stscode::${response.statusCode}");
+      log("Sales Ord patch:${response.body}");
 
       if (response.statusCode >= 200 && response.statusCode <= 210) {
         return ApprovalstoDocModal.fromJson(response.statusCode);
       } else {
-        log("SalesQuo Exception: Error");
+        log("SalesOrd Edit Exception: Error");
         // throw Exception("Errorrrrr");
         return ApprovalstoDocModal.fromJson2(
           response.statusCode,

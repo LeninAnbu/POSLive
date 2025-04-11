@@ -19,9 +19,8 @@ class CashCardAccountAPi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_CashCardAccountAPi '$siteCode'"
-                    // "Select U_CashAcct, U_CreditAcct, U_ChequeAcct, U_WalletAcct, U_TransAcct From [@BZ_POSBR] Where U_WhsCode = '$siteCode'"
+                "query": "EXEC BZ_POS_CashCardAccountAPi '$siteCode'"
+                // "Select U_CashAcct, U_CreditAcct, U_ChequeAcct, U_WalletAcct, U_TransAcct From [@BZ_POSBR] Where U_WhsCode = '$siteCode'"
               }));
 //${AppConstant.sapDB}
 
@@ -31,6 +30,7 @@ class CashCardAccountAPi {
       //       "query":
       //           "Select U_CashAcct, U_CreditAcct, U_ChequeAcct, U_WalletAcct, U_TransAcct From [@BZ_POSBR] Where U_WhsCode = '$siteCode'"
       //     })}");
+      log("CashCard Acc Res11: ${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return CashCardAccDetailsModel.fromJson(

@@ -400,68 +400,9 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                       child: GestureDetector(
                                           onTap: () {
                                             setState(() {
-                                              context.read<SOCon>().editqty =
-                                                  false;
                                               context
                                                   .read<SOCon>()
-                                                  .custNameController
-                                                  .text = '';
-                                              context
-                                                  .read<SOCon>()
-                                                  .tinNoController
-                                                  .text = '';
-                                              context
-                                                      .read<SOCon>()
-                                                      .itemListDateCtrl2 =
-                                                  List.generate(
-                                                      200,
-                                                      (i) =>
-                                                          TextEditingController());
-                                              context
-                                                  .read<SOCon>()
-                                                  .vatNoController
-                                                  .text = '';
-                                              context
-                                                  .read<SOCon>()
-                                                  .selectedcust2 = null;
-                                              context
-                                                  .read<SOCon>()
-                                                  .selectedcust25 = null;
-                                              context
-                                                  .read<SOCon>()
-                                                  .scanneditemData2
-                                                  .clear();
-                                              context
-                                                  .read<SOCon>()
-                                                  .paymentWay2
-                                                  .clear();
-                                              context
-                                                  .read<SOCon>()
-                                                  .totalPayment2 = null;
-                                              context
-                                                  .read<SOCon>()
-                                                  .custList2
-                                                  .clear();
-                                              context
-                                                  .read<SOCon>()
-                                                  .injectToDb();
-                                              context
-                                                  .read<SOCon>()
-                                                  .getdraftindex();
-                                              context
-                                                  .read<SOCon>()
-                                                  .mycontroller2[50]
-                                                  .text = "";
-                                              context.read<SOCon>().cancelbtn =
-                                                  false;
-                                              context
-                                                  .read<SOCon>()
-                                                  .warehousectrl[1]
-                                                  .text = '';
-                                              context
-                                                  .read<SOCon>()
-                                                  .warehousectrl[0]
-                                                  .text = '';
+                                                  .callClearBtn();
                                             });
                                           },
                                           child: Container(

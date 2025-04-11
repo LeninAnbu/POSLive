@@ -68,7 +68,6 @@ class SalesOrderPostAPi {
       "NumAtCard": "$custREfNo",
       'U_DeviceCode': deviceCode,
       'U_DeviceTransID': deviceTransID,
-
       "U_VAT_NUMBER": "$vatNo",
       'U_TinNO': '$tinNo',
       // 'SalesPersonCode': '$slpCode',

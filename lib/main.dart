@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui';
-// import 'dart:ui';
 import 'package:dart_amqp/dart_amqp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'package:posproject/Constant/UserValues.dart';
 import 'package:posproject/Controller/DashBoardController/DashboardController.dart';
 import 'package:posproject/Controller/LogoutController/LogOutControllers.dart';
@@ -181,6 +179,7 @@ void main() async {
   await initializeService();
   await createDB();
   Provider.debugCheckInvalidValueType = null;
+
   runApp(MyApp(
     isLogged: isLog,
     isdonload: isdonload,

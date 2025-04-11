@@ -57,6 +57,7 @@ class NewCashCardAccDetailData {
   String uMode;
   String uAcctName;
   String uAcctCode;
+
   NewCashCardAccDetailData({
     required this.uMode,
     required this.uAcctCode,

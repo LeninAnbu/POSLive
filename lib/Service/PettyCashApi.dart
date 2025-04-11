@@ -21,7 +21,7 @@ class PettyCashModelAPI {
       );
       ressCode = response.statusCode;
       log(response.statusCode.toString());
-      // log("Petty cash response:::${json.decode(response.body)}");
+      log("Petty cash response:::${json.decode(response.body)}");
       if (response.statusCode == 200) {
         // Map data = json.decode(response.body);
         return PettyCashModel.fromJson(json.decode(response.body), ressCode);

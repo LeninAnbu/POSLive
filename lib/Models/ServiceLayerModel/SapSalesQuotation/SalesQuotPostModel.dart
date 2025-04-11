@@ -93,13 +93,16 @@ class QuatationLines {
   int? basedocentry;
   int? baseline;
   int? lineNo;
-
+  String? acctCode;
+  String? cogsAcct;
   int? baseType;
   // String? fromWarehouse;
   // String? toWarehouse;
 
   QuatationLines(
       {required this.itemName,
+      this.acctCode,
+      this.cogsAcct,
       this.currency,
       this.discPrcnt,
       this.itemCode,
@@ -161,6 +164,25 @@ class QuatationLines {
       "WarehouseCode": whsCode.toString(),
       "ShipDate": '$leadDate',
       "U_AMDD": '$leadDate',
+    };
+    return map;
+  }
+
+  Map<String, dynamic> tojson4() {
+    Map<String, String> map = {
+      "ItemCode": itemCode.toString(),
+      'LineNum': lineNo.toString(),
+      "ItemDescription": itemName,
+      "DiscountPercent": discPrcnt.toString(),
+      "TaxCode": taxCode.toString(),
+      "Quantity": quantity.toString(),
+      "UnitPrice": unitPrice.toString(),
+      "Currency": "TZS",
+      "WarehouseCode": whsCode.toString(),
+      "ShipDate": '$leadDate',
+      "U_AMDD": '$leadDate',
+      'AccountCode': '$acctCode',
+      'COGSAccountCode': '$cogsAcct'
     };
     return map;
   }

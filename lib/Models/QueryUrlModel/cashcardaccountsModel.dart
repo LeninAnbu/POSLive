@@ -62,9 +62,14 @@ class CashCardAccDetailData {
   String uChequeAcct;
   String uTransferAcct;
   String uWalletAcc;
+  String uCogsAcc;
+  String uGlAcc;
+
   CashCardAccDetailData({
     required this.uCashAcct,
     required this.uChequeAcct,
+    required this.uCogsAcc,
+    required this.uGlAcc,
     required this.uCreditAcct,
     required this.uTransferAcct,
     required this.uWalletAcc,
@@ -77,6 +82,8 @@ class CashCardAccDetailData {
       uCreditAcct: jsons['U_ChequeAcct'] ?? "",
       uTransferAcct: jsons['U_TransAcct'] ?? '',
       uWalletAcc: jsons['U_WalletAcct'] ?? '',
+      uCogsAcc: jsons['U_COGS_Account'] ?? '',
+      uGlAcc: jsons['U_GL_Account'] ?? '',
 
       //
     );

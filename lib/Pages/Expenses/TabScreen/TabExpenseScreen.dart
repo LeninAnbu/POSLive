@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
@@ -381,128 +379,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                       height:
                                           Screens.padingHeight(context) * 0.01,
                                     ),
-                                    // Row(
-                                    //   children: [
-                                    //     SizedBox(
-                                    //         width:
-                                    //             Screens.width(context) * 0.30,
-                                    //         //color: Colors.amber,
-                                    //         child: Text(
-                                    //           'Paid To',
-                                    //           style: theme.textTheme.bodyLarge
-                                    //               ?.copyWith(
-                                    //                   fontWeight:
-                                    //                       FontWeight.bold),
-                                    //         )),
-                                    //     Container(
-                                    //       width: Screens.width(context) * 0.50,
-                                    //       color: Colors.grey[300],
-                                    //       // height: Screens.padingHeight(context) * 0.06,
-                                    //       child: TextFormField(
-                                    //         controller: context
-                                    //             .read<ExpenseController>()
-                                    //             .mycontroller[12],
-                                    //         readOnly: true,
-                                    //         decoration: InputDecoration(
-                                    //           fillColor: Colors.grey[300],
-                                    //           labelText: '',
-                                    //           errorBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: const BorderSide(
-                                    //                 color: Colors.red),
-                                    //           ),
-                                    //           focusedErrorBorder:
-                                    //               OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: const BorderSide(
-                                    //                 color: Colors.red),
-                                    //           ),
-                                    //           enabledBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: BorderSide(
-                                    //                 color: theme.primaryColor),
-                                    //           ),
-                                    //           focusedBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: BorderSide(
-                                    //                 color: theme.primaryColor),
-                                    //           ),
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // SizedBox(
-                                    //   height:
-                                    //       Screens.padingHeight(context) * 0.03,
-                                    // ),
-                                    // Row(
-                                    //   children: [
-                                    //     Container(
-                                    //         color: Colors.grey[300],
-                                    //         //   color: Colors.amber,
-
-                                    //         width:
-                                    //             Screens.width(context) * 0.30,
-                                    //         child: Text('Paid From',
-                                    //             style: theme.textTheme.bodyLarge
-                                    //                 ?.copyWith(
-                                    //                     fontWeight:
-                                    //                         FontWeight.bold))),
-                                    //     Container(
-                                    //       // height: Screens.padingHeight(context) * 0.07,
-
-                                    //       width: Screens.width(context) * 0.50,
-
-                                    //       //   padding: EdgeInsets.only(
-
-                                    //       //     //top:Screens.padingHeight(context)*0.03,
-
-                                    //       //  //   left:Screens.width(context)*0.03 ,
-
-                                    //       //              //   right:Screens.width(context)*0.03
-
-                                    //       //   ),
-
-                                    //       decoration: BoxDecoration(
-                                    //           color: Colors.grey[300]
-
-                                    //           //color: Colors.amber,
-
-                                    //           ),
-                                    //       child: TextFormField(
-                                    //         // style: theme.textTheme.bodyMedium!.copyWith(
-                                    //         //   color: Colors.grey[300]
-                                    //         // ),
-                                    //         controller: context
-                                    //             .read<ExpenseController>()
-                                    //             .mycontroller[13],
-                                    //         readOnly: true,
-                                    //         decoration: InputDecoration(
-                                    //           fillColor: Colors.grey[300],
-                                    //           labelText: '',
-                                    //           enabledBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: BorderSide(
-                                    //                 color: theme.primaryColor),
-                                    //           ),
-                                    //           focusedBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: BorderSide(
-                                    //                 color: theme.primaryColor),
-                                    //           ),
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-
                                     Row(
                                       children: [
                                         SizedBox(
@@ -833,9 +709,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         Container(
                                           color: Colors.grey[300],
-
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -930,14 +804,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                     color: theme.primaryColor),
                                               ),
                                             ),
-                                            // onChanged: (value) {
-                                            //   setState(() {
-                                            //     context
-                                            //         .read<ExpenseController>()
-                                            //         .selectProjectCode(
-                                            //             value.toString());
-                                            //   });
-                                            // }
                                           ),
                                         ),
                                       ],
@@ -1261,156 +1127,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                       height:
                                           Screens.padingHeight(context) * 0.01,
                                     ),
-                                    // Row(
-                                    //   children: [
-                                    //     SizedBox(
-
-                                    //         //   color: Colors.amber,
-
-                                    //         width: Screens.width(context) * 0.30,
-                                    //         child: Text('Paid From',
-                                    //             style: theme.textTheme.bodyLarge
-                                    //                 ?.copyWith(
-                                    //                     fontWeight:
-                                    //                         FontWeight.bold))),
-                                    //     Container(
-                                    //       // height: Screens.padingHeight(context) * 0.07,
-
-                                    //       width: Screens.width(context) * 0.50,
-
-                                    //       decoration: const BoxDecoration(),
-                                    //       child: DropdownButtonFormField<String>(
-
-                                    //
-                                    //           validator: (value) => value == null
-                                    //               ? 'field required'
-                                    //               : null,
-                                    //           decoration: InputDecoration(
-                                    //             errorBorder: OutlineInputBorder(
-                                    //               borderRadius:
-                                    //                   BorderRadius.circular(5),
-                                    //               borderSide: const BorderSide(
-                                    //                   color: Colors.red),
-                                    //             ),
-                                    //             focusedErrorBorder:
-                                    //                 OutlineInputBorder(
-                                    //               borderRadius:
-                                    //                   BorderRadius.circular(5),
-                                    //               borderSide: const BorderSide(
-                                    //                   color: Colors.red),
-                                    //             ),
-                                    //             enabledBorder: OutlineInputBorder(
-                                    //               borderRadius:
-                                    //                   BorderRadius.circular(5),
-                                    //               borderSide: BorderSide(
-                                    //                   color: theme.primaryColor),
-                                    //             ),
-                                    //             focusedBorder: OutlineInputBorder(
-                                    //               borderRadius:
-                                    //                   BorderRadius.circular(5),
-                                    //               borderSide: BorderSide(
-                                    //                   color: theme.primaryColor),
-                                    //             ),
-                                    //           ),
-                                    //           icon: const Icon(Icons.arrow_drop_down),
-                                    //           value: context
-                                    //               .read<ExpenseController>()
-                                    //               .chosenValue,
-                                    //           items: context
-                                    //               .read<ExpenseController>()
-                                    //               .paidFromData
-                                    //               .map<DropdownMenuItem<String>>(
-                                    //                   (PaidFrom value) {
-                                    //             return DropdownMenuItem<String>(
-                                    //               value: value.accountname,
-                                    //               child: Text(
-                                    //                 value.accountname!,
-                                    //                 style: const TextStyle(
-                                    //                     color: Colors.black),
-                                    //               ),
-                                    //             );
-                                    //           }).toList(),
-                                    //           hint: const Text(
-                                    //             "Choose Paid From",
-                                    //             style: TextStyle(
-                                    //                 color: Colors.black54,
-                                    //                 fontSize: 14,
-                                    //                 fontWeight: FontWeight.w500),
-                                    //           ),
-                                    //           onChanged: (String? value) {
-                                    //             setState(() {
-                                    //               context
-                                    //                   .read<ExpenseController>()
-                                    //                   .chosenValue = value!;
-                                    //               context
-                                    //                   .read<ExpenseController>()
-                                    //                   .pettyCashValidation();
-                                    //             });
-                                    //           }),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // SizedBox(
-                                    //   height: Screens.padingHeight(context) * 0.03,
-                                    // ),
-                                    // Row(
-                                    //   children: [
-                                    //     SizedBox(
-                                    //         width: Screens.width(context) * 0.30,
-                                    //         //color: Colors.amber,
-                                    //         child: Text(
-                                    //           'Paid To',
-                                    //           style: theme.textTheme.bodyLarge
-                                    //               ?.copyWith(
-                                    //                   fontWeight: FontWeight.bold),
-                                    //         )),
-                                    //     SizedBox(
-                                    //       width: Screens.width(context) * 0.50,
-                                    //       // height: Screens.padingHeight(context) * 0.06,
-                                    //       child: TextFormField(
-                                    //         controller: context
-                                    //             .read<ExpenseController>()
-                                    //             .mycontroller[2],
-                                    //         validator: (data) {
-                                    //           if (data!.isEmpty) {
-                                    //             return "Required*";
-                                    //           }
-                                    //           return null;
-                                    //         },
-                                    //         decoration: InputDecoration(
-                                    //           labelText: '',
-                                    //           errorBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: const BorderSide(
-                                    //                 color: Colors.red),
-                                    //           ),
-                                    //           focusedErrorBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: const BorderSide(
-                                    //                 color: Colors.red),
-                                    //           ),
-                                    //           enabledBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: BorderSide(
-                                    //                 color: theme.primaryColor),
-                                    //           ),
-                                    //           focusedBorder: OutlineInputBorder(
-                                    //             borderRadius:
-                                    //                 BorderRadius.circular(5),
-                                    //             borderSide: BorderSide(
-                                    //                 color: theme.primaryColor),
-                                    //           ),
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // SizedBox(
-                                    //   height: Screens.padingHeight(context) * 0.03,
-                                    // ),
                                     Row(
                                       // mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                       children: [
@@ -1511,7 +1227,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             readOnly: true,
                                             controller: context
@@ -1585,7 +1300,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             // inputFormatters: [
                                             //   DecimalInputFormatter()
@@ -1599,12 +1313,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             controller: context
                                                 .read<ExpenseController>()
                                                 .mycontroller[3],
-                                            // validator: (data) {
-                                            //   if (data!.isEmpty) {
-                                            //     return "Required*";
-                                            //   }
-                                            //   return null;
-                                            // },
+
                                             decoration: InputDecoration(
                                               contentPadding:
                                                   EdgeInsets.symmetric(
@@ -1769,7 +1478,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         ),
                                       ],
                                     ),
-
                                     SizedBox(
                                       height:
                                           Screens.padingHeight(context) * 0.01,
@@ -1790,10 +1498,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           width: Screens.width(context) * 0.50,
                                           decoration: const BoxDecoration(),
                                           child: DropdownButtonFormField(
-                                              // validator: (value) =>
-                                              //     value == null
-                                              //         ? 'Required*'
-                                              //         : null,
                                               decoration: InputDecoration(
                                                 errorBorder: OutlineInputBorder(
                                                   borderRadius:

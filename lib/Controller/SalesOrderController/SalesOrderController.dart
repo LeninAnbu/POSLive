@@ -14,6 +14,7 @@ import 'package:posproject/Constant/UserValues.dart';
 import 'package:posproject/Controller/SalesQuotationController/SalesQuotationController.dart';
 import 'package:posproject/DB Helper/DBhelper.dart';
 import 'package:posproject/Models/DataModel/SalesOrderModel.dart';
+import 'package:posproject/Models/QueryUrlModel/cashcardaccountsModel.dart';
 import 'package:posproject/Models/Service%20Model/GroupCustModel.dart';
 import 'package:posproject/Models/Service%20Model/PamentGroupModel.dart';
 import 'package:posproject/Models/Service%20Model/TeriTeriModel.dart';
@@ -27,6 +28,7 @@ import 'package:posproject/Service/NewCustCodeCreate/CustomerSeriesApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/FileUploadApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/PaymentGroupApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/TeritoryApi.dart';
+import 'package:posproject/Service/QueryURL/cashcardaccountdetailsApi.dart';
 import 'package:posproject/ServiceLayerAPIss/BankListApi/BankListsApi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -296,7 +298,6 @@ class SOCon extends ChangeNotifier {
     bool? havenet = await config.haveInterNet();
 
     log('haveInterNet::${havenet}');
-
     getSlpCode();
     clearAllData(context, theme);
     clearAll(context, theme);
@@ -322,16 +323,21 @@ class SOCon extends ChangeNotifier {
 
   List<WhsDetails> whsLists = [];
 
-  selectedWhsCode(String val) {
+  selectedWhsCode(String val) async {
     for (var i = 0; i < whsLists.length; i++) {
       if (whsLists[i].companyName.toString() == val) {
         whsCode = whsLists[i].whsCode;
+
+        if (editqty == true) {
+          await callNewCashAccountApi(whsCode!);
+        }
       }
     }
     notifyListeners();
   }
 
-  selectedWhsCode2(String val) {
+// AccCode
+  selectedWhsCode2(String val) async {
     for (var i = 0; i < whsLists.length; i++) {
       if (whsLists[i].whsCode.toString() == val) {
         whsName = whsLists[i].companyName;
@@ -2580,6 +2586,7 @@ class SOCon extends ChangeNotifier {
             U_CashCust: getcustomer[0]['U_CASHCUST'].toString(),
             accBalance: 0,
             address: address2,
+            uReceivedTime: value.uReceivedTime,
             uGPApproval: value.uGpApproval.toString(),
             uOrderDate: value.uOrderDate == 'null' || value.uOrderDate == null
                 ? ''
@@ -2693,44 +2700,57 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<NewCashCardAccDetailData> newCashAcc = [];
-  callNewCashAccountApi() async {
+  List<CashCardAccDetailData> newCashAcc = [];
+
+  String newCogsAccount = '';
+  String newGlAccount = '';
+
+  callNewCashAccountApi(String selectedBranch) async {
+    newCogsAccount = '';
+    newGlAccount = '';
     newCashAcc = [];
-    await NewCashCardAccountAPi.getGlobalData(AppConstant.branch).then((value) {
+    await CashCardAccountAPi.getGlobalData('$selectedBranch').then((value) {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
         if (value.activitiesData!.isNotEmpty) {
           newCashAcc = value.activitiesData!;
+
+          for (var i = 0; i < newCashAcc.length; i++) {
+            newCogsAccount = newCashAcc[i].uCogsAcc.toString();
+            newGlAccount = newCashAcc[i].uGlAcc.toString();
+          }
         }
+
+        log('newGlAccount::${newGlAccount}:newCogsAccount:${newCogsAccount}');
         notifyListeners();
       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {}
     });
     notifyListeners();
   }
 
-  NewCashAccSelect(value) {
-    for (var i = 0; i < newCashAcc.length; i++) {
-      if (newCashAcc[i].uAcctName == value) {
-        if (newCashAcc[i].uMode == 'CASH') {
-          cashAccCode = newCashAcc[i].uAcctCode.toString();
-          log('step1::${cashAccCode}');
-        } else if (newCashAcc[i].uMode == 'CARD') {
-          cardAccCode = newCashAcc[i].uAcctCode.toString();
-          log('step12::$cardAccCode');
-        } else if (newCashAcc[i].uMode == 'CHEQUE') {
-          chequeAccCode = newCashAcc[i].uAcctCode.toString();
-          log('step13::$chequeAccCode');
-        } else if (newCashAcc[i].uMode == 'WALLET') {
-          walletAccCode = newCashAcc[i].uAcctCode.toString();
-          log('step14::$walletAccCode');
-        } else if (newCashAcc[i].uMode == 'TRANSFER') {
-          transAccCode = newCashAcc[i].uAcctCode.toString();
-          log('step15::$transAccCode');
-        }
-      }
-      notifyListeners();
-    }
-    notifyListeners();
-  }
+  // NewCashAccSelect(value) {
+  //   for (var i = 0; i < newCashAcc.length; i++) {
+  //     if (newCashAcc[i].uAcctName == value) {
+  //       if (newCashAcc[i].uMode == 'CASH') {
+  //         cashAccCode = newCashAcc[i].uAcctCode.toString();
+  //         log('step1::${cashAccCode}');
+  //       } else if (newCashAcc[i].uMode == 'CARD') {
+  //         cardAccCode = newCashAcc[i].uAcctCode.toString();
+  //         log('step12::$cardAccCode');
+  //       } else if (newCashAcc[i].uMode == 'CHEQUE') {
+  //         chequeAccCode = newCashAcc[i].uAcctCode.toString();
+  //         log('step13::$chequeAccCode');
+  //       } else if (newCashAcc[i].uMode == 'WALLET') {
+  //         walletAccCode = newCashAcc[i].uAcctCode.toString();
+  //         log('step14::$walletAccCode');
+  //       } else if (newCashAcc[i].uMode == 'TRANSFER') {
+  //         transAccCode = newCashAcc[i].uAcctCode.toString();
+  //         log('step15::$transAccCode');
+  //       }
+  //     }
+  //     notifyListeners();
+  //   }
+  //   notifyListeners();
+  // }
 
   newUpdateFixDataMethod(BuildContext context, ThemeData theme) async {
     await callGetUserType();
@@ -2738,6 +2758,9 @@ class SOCon extends ChangeNotifier {
     scanneditemData = scanneditemData2;
     selectedcust = selectedcust2;
     selectedcust25 = selectedcust25;
+
+    callNewCashAccountApi(whsCode!);
+
     for (var i = 0; i < scanneditemData.length; i++) {
       log('scanneditemData[i].qty.toString()::${scanneditemData[i].qty.toString()}');
       discountcontroller[i].text = scanneditemData[i].discountper.toString();
@@ -3434,28 +3457,29 @@ class SOCon extends ChangeNotifier {
       log('scanneditemData[i].discountper::${scanneditemData[i].discountper}');
       itemsDocDetails.add(
         QuatationLines(
-          currency: "TZS",
-          discPrcnt: scanneditemData[i].discountper.toString(),
-          itemCode: scanneditemData[i].itemCode,
-          price: scanneditemData[i].sellPrice.toString(),
-          lineNo: i,
-          quantity: scanneditemData[i].qty.toString(),
-          taxCode: selectedcust!.taxCode,
-          unitPrice: scanneditemData[i].sellPrice!.toStringAsFixed(2),
-          whsCode: whsCode == null || whsCode!.isEmpty
-              ? AppConstant.branch
-              : whsCode,
-          itemName: scanneditemData[i].itemName.toString(),
-          baseType: scanneditemData[i].sapbasedocentry != null ? 23 : null,
-          baseline: scanneditemData[i].baselineid == null ||
-                  scanneditemData[i].baselineid!.isEmpty
-              ? null
-              : int.parse(scanneditemData[i].baselineid.toString()),
-          basedocentry: scanneditemData[i].sapbasedocentry != null
-              ? scanneditemData[i].sapbasedocentry
-              : null,
-          leadDate: config.alignDate1(itemListDateCtrl[i].text),
-        ),
+            currency: "TZS",
+            discPrcnt: scanneditemData[i].discountper.toString(),
+            itemCode: scanneditemData[i].itemCode,
+            price: scanneditemData[i].sellPrice.toString(),
+            lineNo: i,
+            quantity: scanneditemData[i].qty.toString(),
+            taxCode: selectedcust!.taxCode,
+            unitPrice: scanneditemData[i].sellPrice!.toStringAsFixed(2),
+            whsCode: whsCode == null || whsCode!.isEmpty
+                ? AppConstant.branch
+                : whsCode,
+            itemName: scanneditemData[i].itemName.toString(),
+            baseType: scanneditemData[i].sapbasedocentry != null ? 23 : null,
+            baseline: scanneditemData[i].baselineid == null ||
+                    scanneditemData[i].baselineid!.isEmpty
+                ? null
+                : int.parse(scanneditemData[i].baselineid.toString()),
+            basedocentry: scanneditemData[i].sapbasedocentry != null
+                ? scanneditemData[i].sapbasedocentry
+                : null,
+            leadDate: config.alignDate1(itemListDateCtrl[i].text),
+            cogsAcct: newCogsAccount ?? '',
+            acctCode: newGlAccount ?? ''),
       );
     }
     notifyListeners();
@@ -4442,9 +4466,122 @@ class SOCon extends ChangeNotifier {
     } else {
       log('vvvvvvvvv');
 
-      await checkSAPsts(context, theme);
+      // await checkSAPsts(context, theme);
+      checkSAPsts22(context, theme);
 
       notifyListeners();
+    }
+  }
+
+  callClearBtn() {
+    editqty = false;
+    custNameController.text = '';
+    tinNoController.text = '';
+    itemListDateCtrl2 = List.generate(200, (i) => TextEditingController());
+    vatNoController.text = '';
+    selectedcust2 = null;
+    selectedcust25 = null;
+    scanneditemData2.clear();
+    paymentWay2.clear();
+    totalPayment2 = null;
+    custList2.clear();
+    injectToDb();
+    getdraftindex();
+    mycontroller2[50].text = "";
+    cancelbtn = false;
+    whsCode = null;
+    whsName = null;
+    newSeriesName = null;
+    newSeriesCode = null;
+    warehousectrl = List.generate(200, (i) => TextEditingController());
+    // warehousectrl[0].text = '';
+    notifyListeners();
+  }
+
+  checkSAPsts22(BuildContext context, ThemeData theme) async {
+    log('scanned;itemData2:${selectedcust2!.docStatus}:${scanneditemData2.length}');
+    if (scanneditemData2.isNotEmpty) {
+      log('step1');
+
+      if (selectedcust2!.docStatus == "O") {
+        log('step12');
+
+        for (var i = 0; i < scanneditemData2.length; i++) {
+          log('scanneditemData2[$i].lineStatus::${scanneditemData2[i].lineStatus}');
+          if (scanneditemData2[i].lineStatus == 'bost_Open') {
+            await newUpdateFixDataMethod(context, theme);
+          } else if (scanneditemData2[i].lineStatus == 'bost_Close') {
+            cancelbtn = false;
+
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                      contentPadding: EdgeInsets.zero,
+                      content: AlertBox(
+                        payMent: 'Alert',
+                        errormsg: true,
+                        widget: Center(
+                            child: ContentContainer(
+                          content: 'Document is partially closed',
+                          theme: theme,
+                        )),
+                        buttonName: null,
+                      ));
+                }).then((value) {
+              notifyListeners();
+            });
+            notifyListeners();
+            break;
+          }
+        }
+      } else if (selectedcust2!.docStatus == "C") {
+        log('step13');
+
+        cancelbtn = false;
+
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: 'Document is already cancelled',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          notifyListeners();
+        });
+        notifyListeners();
+      }
+    } else {
+      showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                contentPadding: EdgeInsets.zero,
+                content: AlertBox(
+                  payMent: 'Alert',
+                  errormsg: true,
+                  widget: Center(
+                      child: ContentContainer(
+                    content: 'Something went wrong..!!',
+                    theme: theme,
+                  )),
+                  buttonName: null,
+                ));
+          }).then((value) {
+        notifyListeners();
+      });
     }
   }
 
@@ -4550,7 +4687,7 @@ class SOCon extends ChangeNotifier {
       getdocumentOrderLine = [];
 
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        print("cardNamecardName: " + value.cardName.toString());
+        print("sapDocentry: " + sapDocentry.toString());
         sapDocentry = value.docEntry.toString();
         getOrderDetailss = value;
         getdocumentOrderLine = value.documentLines!;
@@ -5913,7 +6050,8 @@ class SOCon extends ChangeNotifier {
   }
 
   updatechangecheckout(BuildContext context, ThemeData theme) async {
-    log('selectedcust!.uOrderType11 ::${selectedcust!.uOrderType}');
+    log('postingDatecontroller.text ::${postingDatecontroller.text}');
+
     if (scanneditemData.isNotEmpty) {
       SalesOrdPatchAPI.sessionID = AppConstant.sapSessionID.toString();
       SalesOrdPatchAPI.cardCodePost = selectedcust!.cardCode;
@@ -5923,10 +6061,10 @@ class SOCon extends ChangeNotifier {
       SalesOrdPatchAPI.docDate = config.currentDate2();
       SalesOrdPatchAPI.dueDate = config.alignDate2(postingDatecontroller.text);
       SalesOrdPatchAPI.remarks = remarkcontroller3.text;
-      SalesOrdPatchAPI.orderDate =
-          config.alignDate2(selectedcust!.uOrderDate.toString());
+      SalesOrdPatchAPI.orderDate = selectedcust!.uOrderDate!.isNotEmpty
+          ? config.alignDate2(selectedcust!.uOrderDate.toString())
+          : '';
       SalesOrdPatchAPI.orderType = '1';
-      log('selectedcust!.uOrderType22 ::${selectedcust!.uOrderType}');
 
       SalesOrdPatchAPI.gpApproval = selectedcust!.uGPApproval;
       SalesOrdPatchAPI.orderTime = selectedcust!.uReceivedTime;
@@ -5934,6 +6072,9 @@ class SOCon extends ChangeNotifier {
       SalesOrdPatchAPI.deviceTransID = selectedcust!.uDeviceId;
       SalesOrdPatchAPI.deviceCode = AppConstant.ip;
       SalesOrdPatchAPI.slpCode = AppConstant.slpCode;
+
+      SalesOrdPatchAPI.corporateuser = userTypes == 'corporate' ? true : false;
+
       for (int ij = 0; ij < scanneditemData.length; ij++) {
         if (scanneditemData[ij].lineStatus == "bost_Open") {
           if (userTypes == 'user') {
@@ -5972,6 +6113,7 @@ class SOCon extends ChangeNotifier {
             notifyListeners();
           });
           notifyListeners();
+          break;
         }
       }
     } else {
@@ -9728,6 +9870,8 @@ class SOCon extends ChangeNotifier {
   clearAllData(BuildContext context, ThemeData theme) {
     vatNoController.text = '';
     tinNoController.text = '';
+    newCogsAccount = '';
+    newGlAccount = '';
     onhandData = [];
     isLoading = false;
     clickAprList = false;
