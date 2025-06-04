@@ -16,42 +16,23 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<LoginController>().init();
+      context.read<LoginController>().init(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
-        // return ChangeNotifierProvider<LoginController>(
-        //     create: (context) => LoginController(),
-        //     builder: (context, child) {
-        //       return Consumer<LoginController>(
-        //           builder: (BuildContext context, logCon, Widget? child) {
         return WillPopScope(
           onWillPop: () async =>
               await context.read<LoginController>().onWillPop(context),
           child: Scaffold(
             resizeToAvoidBottomInset: false,
-            body: SafeArea(
-                child: MobileLoginScreen(
-                    // logCon: logCon,
-                    )),
+            body: SafeArea(child: MobileLoginScreen()),
           ),
         );
-        // });
-        // });
-        //  });
-        //  }),
-        // });
       } else if (constraints.maxWidth <= 1300) {
-        // return ChangeNotifierProvider<LoginController>(
-        //     create: (context) => LoginController(),
-        //     builder: (context, child) {
-        //       return Consumer<LoginController>(
-        //           builder: (BuildContext context, logCon, Widget? child) {
         return WillPopScope(
           onWillPop: () async =>
               await context.read<LoginController>().onWillPop(context),
@@ -60,8 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
             body: SafeArea(child: TabLoginScreen()),
           ),
         );
-        //   });
-        // });
       } else {
         return ChangeNotifierProvider<LoginController>(
             create: (context) => LoginController(),
@@ -70,15 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   builder: (BuildContext context, logCon, Widget? child) {
                 return WillPopScope(
                   onWillPop: () async => await logCon.onWillPop(context),
-                  child: Scaffold(
-                      body: SafeArea(
-                          child: TabLoginScreen(
-                              // logCon: logCon,
-                              )
-                          //  PosLoginScreen(
-                          //           logCon: logCon,
-                          //         )
-                          )),
+                  child: Scaffold(body: SafeArea(child: TabLoginScreen())),
                 );
               });
             });
@@ -86,26 +57,3 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 }
-  // return Scaffold(
-        //     resizeToAvoidBottomInset: false,
-        //     body: ChangeNotifierProvider<LoginController>(
-        //         create: (context) => LoginController(),
-        //         builder: (context, child) {
-        //           return Consumer<LoginController>(
-        //               builder: (BuildContext context, logCon, Widget? child) {
-        //             return LayoutBuilder(builder: (context, constraints) {
-        //               if (constraints.maxWidth <= 698) {
-        //                 return MobileLoginScreen(
-        //                   logCon: logCon,
-        //                 );
-        //               } else if (constraints.maxWidth <= 1168) {
-        //                 return TabLoginScreen(
-        //                   logCon: logCon,
-        //                 );
-        //               } else
-        //                 return PosLoginScreen(
-        //                   logCon: logCon,
-        //                 );
-        //             });
-        //           });
-        //         }));

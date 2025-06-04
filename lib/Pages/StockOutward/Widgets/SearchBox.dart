@@ -175,21 +175,6 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                           context
                                               .read<StockOutwardController>()
                                               .callSearchOutApi();
-                                          // context
-                                          //     .read<StockOutwardController>()
-                                          //     .getSalesDataDatewise(
-                                          //         context
-                                          //             .read<
-                                          //                 StockOutwardController>()
-                                          //             .StOutController[100]
-                                          //             .text
-                                          //             .toString(),
-                                          //         context
-                                          //             .read<
-                                          //                 StockOutwardController>()
-                                          //             .StOutController[101]
-                                          //             .text
-                                          //             .toString());
                                         }
                                       });
                                     },
@@ -290,15 +275,6 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-                            // Container(
-                            //   alignment: Alignment.center,
-                            //   width: widget.searchWidth * 0.08,
-                            //   child: Text(
-                            //     "SAP DocNo",
-                            //     style: widget.theme.textTheme.bodyMedium!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.1,
@@ -368,25 +344,7 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                                     .docEntry
                                                     .toString(),
                                                 index);
-                                        // context
-                                        //     .read<StockOutwardController>()
-                                        //     .soCustAddressApi(context
-                                        //         .read<StockOutwardController>()
-                                        //         .filtersearchData[index]
-                                        //         .docEntry
-                                        //         .toString());
                                       });
-
-                                      // await context
-                                      //     .read<StockOutwardController>()
-                                      // .fixDataMethod(context
-                                      //     .read<StockOutwardController>()
-                                      //     .filtersearchData[index]
-                                      //     .docEntry);
-                                      // await context
-                                      //     .read<StockOutwardController>()
-                                      //     .callSerlaySalesQuoAPI(
-                                      //         context, widget.theme);
                                     },
                                     child: Container(
                                       padding: EdgeInsets.only(
@@ -403,7 +361,6 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            // color: Colors.red,
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.12,
                                             child: Text(
@@ -420,7 +377,6 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                             ),
                                           ),
                                           Container(
-                                            // color: Colors.red,
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.08,
                                             child: Text(
@@ -461,17 +417,6 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-                                          //   width: widget.searchWidth * 0.08,
-                                          //   child: Text(
-                                          //     "${config.alignDateT(context.watch<StockOutwardController>().filtersearchData[index].docDate)}",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyMedium!
-                                          //         .copyWith(
-                                          //             color: Colors.black),
-                                          //   ),
-                                          // ),
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.1,
@@ -519,30 +464,6 @@ class _StConSearhBoxState extends State<StConSearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-
-                                          // Container(
-                                          //   padding: EdgeInsets.only(
-                                          //     right: widget.searchHeight * 0.02,
-                                          //   ),
-                                          //   alignment: Alignment.centerRight,
-                                          //   width: widget.searchWidth * 0.11,
-                                          //   child: Text(
-                                          //     "${context.watch<StockOutwardController>().filtersearchData[index].doctotal}",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyLarge!
-                                          //         .copyWith(color: Colors.black),
-                                          //   ),
-                                          // ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-                                          //   width: widget.searchWidth * 0.1,
-                                          //   child: Text(
-                                          //     "${context.watch<StockOutwardController>().filtersearchData[index].type}",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyLarge!
-                                          //         .copyWith(color: Colors.black),
-                                          //   ),
-                                          // ),
                                         ],
                                       ),
                                     ),

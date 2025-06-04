@@ -97,7 +97,7 @@ class NewReportCompoApi {
       }
     } catch (e) {
       log('NewReportCompoApi:::$e');
-      //  throw Exception("Exception: $e");
+
       return SalesInDay.error(e.toString(), 500);
     }
   }

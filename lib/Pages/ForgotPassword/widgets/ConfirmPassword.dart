@@ -31,11 +31,7 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
     return WillPopScope(
         onWillPop: () {
           onbackpresslogin();
-          // if (LoginController.loginPageScrn == true) {
-          //   onbackpresslogin();
-          // } else {
-          //   onbackpressprofile();
-          // }
+
           return Future.value(false);
         },
         child: Scaffold(
@@ -160,13 +156,6 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
 
                                           return null;
                                         },
-                                        //  validator: (value) {
-                                        //   if (value!.isEmpty) {
-                                        //     return "Please Enter new Password";
-                                        //   }
-
-                                        //   return null;
-                                        // },
                                         obscureText: true,
                                         controller: prdconf.mycontroller[5],
                                         decoration: InputDecoration(
@@ -207,11 +196,6 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
                                     height:
                                         Screens.padingHeight(context) * 0.06,
                                   ),
-
-                                  // MaterialButton(onPressed: (){},
-
-                                  // child: Text("Reset"),
-                                  // )
                                   SizedBox(
                                     width: Screens.width(context) * 0.3,
                                     child: CustomSpinkitdButton(
@@ -256,7 +240,7 @@ class _ConfirmPasswordPageState extends State<ConfirmPasswordPage> {
       currentBackPressLogin = now;
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const LoginScreen()));
-      // Get.offAllNamed(ConstantRoutes.login);
+
       return Future.value(false);
     }
     return Future.value(false);

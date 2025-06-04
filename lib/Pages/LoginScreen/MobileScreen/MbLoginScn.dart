@@ -17,16 +17,13 @@ class MobileLoginScreen extends StatelessWidget {
   double? width;
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
     return Container(
-      // color: Colors.amber,
       width: Screens.width(context),
       padding: EdgeInsets.only(
         left: Screens.width(context) * 0.02,
         right: Screens.width(context) * 0.02,
         top: Screens.padingHeight(context) * 0.02,
       ),
-      //  child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -36,14 +33,11 @@ class MobileLoginScreen extends StatelessWidget {
           ),
           BodyContainerMob(//logCon: logCon,
               ),
-          //SizedBox(height: Screens.bodyheight(context)*0.19,),
           FooterContainerMob(
-            //logCon: logCon,
             height: Screens.bodyheight(context) * 0.20,
           ),
         ],
       ),
-      // ),
     );
   }
 }

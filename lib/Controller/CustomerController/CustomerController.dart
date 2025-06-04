@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:posproject/Service/ReportsApi/AddressReportApi.dart';
@@ -112,8 +111,7 @@ class CustomerController extends ChangeNotifier {
     SubGroupSalesPdfReportAPi.slpCode = AppConstant.slpCode;
     SubGroupSalesPdfReportAPi.methodName = methodname;
     SubGroupSalesPdfReportAPi.cardCode = cusList1!.customerCode;
-    // mycontroller[9].text;
-    // isFromSalesinDay = false;
+
     SubGroupSalesPdfReportAPi.getGlobalData().then((value) {
       if (value == 200) {
         isScreenLoad = false;
@@ -137,7 +135,7 @@ class CustomerController extends ChangeNotifier {
     SubGroupsSaleExcelReportAPi.toDate = salesApiToVDate;
     SubGroupsSaleExcelReportAPi.slpCode = AppConstant.slpCode;
     SubGroupsSaleExcelReportAPi.cardCode = cusList1!.customerCode;
-    //  mycontroller[9].text;
+
     SubGroupsSaleExcelReportAPi.reportName = '${methodname}Excel';
 
     SubGroupsSaleExcelReportAPi.getGlobalData().then((value) {
@@ -148,7 +146,6 @@ class CustomerController extends ChangeNotifier {
         isScreenLoad = false;
         showSnackBar('Try again!!..', context);
       }
-      // Navigator.pop(context);
     });
 
     notifyListeners();
@@ -178,7 +175,6 @@ class CustomerController extends ChangeNotifier {
         isScreenLoad = false;
         showSnackBar('Try again!!..', context);
       }
-      // Navigator.pop(context);
     });
 
     notifyListeners();
@@ -187,7 +183,6 @@ class CustomerController extends ChangeNotifier {
   Future<void> callApi(BuildContext context) async {
     if (formkey[0].currentState!.validate()) {
       isScreenLoad = true;
-      //  isLoading = true;
 
       CustomerStatementApi.getGlobalData(
               cusList1!.customerCode, apiFromDate, apiToDate)
@@ -195,11 +190,9 @@ class CustomerController extends ChangeNotifier {
         if (value == 200) {
           isScreenLoad = false;
           notifyListeners();
-
-          //isLoading = false;
         } else {
           isScreenLoad = false;
-          //  isLoading = false;
+
           showSnackBar('Try again!!..', context);
         }
       });
@@ -243,7 +236,6 @@ class CustomerController extends ChangeNotifier {
         log('customerdata lenght::${value.customerdata!.length}');
         addressListdata = value.customerdata!;
         if (addressListdata!.isNotEmpty) {
-          // log('customerReportdata![i].cardCode::${customerReportdata![0].cardCode}');
           for (var i = 0; i < addressListdata!.length; i++) {
             cutomerdetail.add(AddressReportData(
                 address1: addressListdata![i].address1,
@@ -288,65 +280,31 @@ class CustomerController extends ChangeNotifier {
       getcustomerMaster();
       mycontroller[0].clear();
       notifyListeners();
-      // return Future.value(true);
+
       log("object:::::$tappageIndex");
     }
-    // else if(tappageIndex == 1){
-    //   //  tappage.animateToPage(--tappageIndex,
-    //   //     duration: Duration(milliseconds: 250), curve: Curves.bounceIn);
 
-    // };
     return Future.value(false);
   }
 
   pageplus() {
     int page = 0;
-    // tappageIndex=0;
+
     if (page == 0) {
       tappage.animateToPage(++tappageIndex,
           duration: const Duration(milliseconds: 400),
           curve: Curves.linearToEaseOut);
-      // Get.toNamed(ConstantRoutes.dashboard);
     }
   }
 
   routecustome() {
-    // if (tappageIndex == 2) {
     tappage.animateToPage(--tappageIndex,
         duration: const Duration(milliseconds: 400),
         curve: Curves.linearToEaseOut);
     log("page ajajajd::::$tappageIndex");
     return true;
-
-    // }
-    // else {
-    //   return false;
-    // }
   }
 
-  // Future<bool> onWillPop(BuildContext context) async {
-  //   return (
-  //     await
-  //   showDialog(
-  //         context: context,
-  //         builder: (context) => AlertDialog(
-  //           title: Text("Are you sure?"),
-  //           content: Text("Do you want to exit an app"),
-  //           actions: [
-  //             TextButton(
-  //               onPressed: () => Navigator.of(context).pop(false),
-  //               child: Text("No"),
-  //             ),
-  //             TextButton(
-  //                 onPressed: () {
-  //                   Navigator.of(context).pop(true);
-  //                 },
-  //                 child: Text("yes"))
-  //           ],
-  //         ),
-  //       )) ??
-  //       false;
-  // }
   List<CustomerMasterList> customerList = [];
   List<CustomerMasterList> filtercustomerList = [];
   bool listbool = false;
@@ -369,20 +327,9 @@ class CustomerController extends ChangeNotifier {
           phoneno1: getCustomerData[i]["phoneno1"].toString(),
           taxno: getCustomerData[i]["taxno"].toString(),
         ));
-
-        //   await AccountBalApi.getData(getCustomerData[i]["customercode"].toString()).then((value) {
-        //     // loadingscrn = false;
-        //     if (value.statuscode >= 200 && value.statuscode <= 210) {
-        //       print("Account Balance");
-        //       customerList[i].customerCode = double.parse(value.accBalanceData![0].balance.toString()).toString();
-        //       // selectedcust55!.accBalance = double.parse(value.accBalanceData![0].balance.toString());
-        //       notifyListeners();
-        //     }
-        //   });
       }
 
       filtercustomerList = customerList;
-      // notifyListeners();
     } else {
       listbool = false;
       notifyListeners();
@@ -391,15 +338,11 @@ class CustomerController extends ChangeNotifier {
   }
 
   filterListSearched(String v) {
-    //y
     if (v.isNotEmpty) {
       filtercustomerList = customerList
           .where((e) =>
-                  e.customername!.toLowerCase().contains(v.toLowerCase()) ||
-                  e.customerCode!.toLowerCase().contains(v.toLowerCase())
-              // ||
-              // e.serialbatch!.toLowerCase().contains(v.toLowerCase())
-              )
+              e.customername!.toLowerCase().contains(v.toLowerCase()) ||
+              e.customerCode!.toLowerCase().contains(v.toLowerCase()))
           .toList();
       notifyListeners();
     } else if (v.isEmpty) {
@@ -409,81 +352,14 @@ class CustomerController extends ChangeNotifier {
   }
 
   List<AddressReportData> cutomerdetail = [];
-  // detailsMetod(String customerCode) async {
-  //   cutomerdetail.clear();
-  //   final Database db = (await DBHelper.getInstance())!;
-  //   List<Map<String, Object?>> getCustomerDetails =
-  //       await DBOperation.getcustomerdetails(db, customerCode);
-  //   if (getCustomerDetails.isEmpty) {
-  //     log("Customer details is Empty");
-  //   } else {
-  //     for (int i = 0; i < getCustomerDetails.length; i++) {
-  //       cutomerdetail.add(CustomerMasterDetail(
-  //           createdUserID: getCustomerDetails[i]["createdUserID"].toString(),
-  //           createdateTime: getCustomerDetails[i]["createdateTime"].toString(),
-  //           lastupdateIp: getCustomerDetails[i]["lastupdateIp"].toString(),
-  //           updatedDatetime:
-  //               getCustomerDetails[i]["UpdatedDatetime"].toString(),
-  //           updateduserid: getCustomerDetails[i]["updateduserid"].toString(),
-  //           getCustomerDetails[i]["address1"].toString(),
-  //           address2: getCustomerDetails[i]["address2"].toString(),
-  //           address3: getCustomerDetails[i]["address3"].toString(),
-  //           pincode: getCustomerDetails[i]["pincode"].toString(),
-  //           city: getCustomerDetails[i]["city"].toString(),
-  //           countrycode: getCustomerDetails[i]["countrycode"].toString(),
-  //           custcode: getCustomerDetails[i]["custcode"].toString(),
-  //           geolocation1: getCustomerDetails[i]["geolocation1"].toString(),
-  //           geolocation2: getCustomerDetails[i]["geolocation2"].toString(),
-  //           statecode: getCustomerDetails[i]["statecode"].toString()));
-  //     }
-  //     log("Customer details1:::::::::::::::${getCustomerDetails[0]["custcode"]}");
-  //     log("Customer details::::${cutomerdetail[0].custcode}");
-  //   }
-  //   notifyListeners();
-  // }
 
-  // int list_i = 0;
   CustomerMasterList? cusList1;
   listPasss(CustomerMasterList cusList) {
-    // cusList=null;
     cusList1 = cusList;
     notifyListeners();
   }
 
-  // morecusdetail() async {
-  //   listbool = true;
-  //   customerList.clear();
-  //   final Database db = (await DBHelper.getInstance())!;
-
-  //   List<Map<String, Object?>> getCustomerData =
-  //       await DBOperation.getMoreCstmMasforcuspage(db, mycontroller[0].text);
-  //   if (getCustomerData.isNotEmpty) {
-  //     for (int i = 0; i < getCustomerData.length; i++) {
-  //       customerList.add(CustomerMasterList(
-  //         customerCode: getCustomerData[i]["customercode"].toString(),
-  //         customername: getCustomerData[i]["customername"].toString(),
-  //         balance: double.parse(getCustomerData[i]["balance"].toString()),
-  //         points: getCustomerData[i]["points"].toString(),
-  //         emalid: getCustomerData[i]["emalid"].toString(),
-  //         customertype: getCustomerData[i]["customertype"].toString(),
-  //         phoneno1: getCustomerData[i]["phoneno1"].toString(),
-  //         taxno: getCustomerData[i]["taxno"].toString(),
-  //       ));
-  //     }
-  //     filtercustomerList = customerList;
-  //     mycontroller[0].text = '';
-  //     // notifyListeners();
-  //   } else {
-  //     // customerList.clear();
-  //     //  getcustomerMaster();
-  //     listbool = false;
-  //     notifyListeners();
-  //   }
-  //   notifyListeners();
-  // }
-
   clearalldata() {
-    //  tappage = PageController(initialPage: 0);
     tappageIndex = 0;
     addressListdata = [];
     filtercustomerList.clear();
@@ -552,8 +428,7 @@ class CustomerController extends ChangeNotifier {
       AgeingExcelAPi.date = apiAgeingDate;
       AgeingExcelAPi.slpCode = AppConstant.slpCode;
       AgeingExcelAPi.custCode = searchmycontroller[4].text;
-      // print("SalesOnDayAPi.slpCode: " + AgeingExcelAPi.slpCode.toString());
-      // isFromSalesinDay = false;
+
       await AgeingExcelAPi.getGlobalData().then((value) {
         isScreenLoad = false;
         notifyListeners();

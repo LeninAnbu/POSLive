@@ -861,10 +861,6 @@ class OrderprintLayout extends StatelessWidget {
                             pw.SizedBox(
                               height: 0.2 * PdfPageFormat.cm,
                             ),
-                            // pw.Text('PO Box 71449',
-                            //     style: const pw.TextStyle(
-                            //       fontSize: 8,
-                            //     )),
                             pw.SizedBox(
                               height: 0.4 * PdfPageFormat.cm,
                             ),
@@ -872,15 +868,10 @@ class OrderprintLayout extends StatelessWidget {
                                 style: const pw.TextStyle(
                                   fontSize: 8,
                                 )),
-                            // pw.Text('TANZANIA',
-                            //     style: const pw.TextStyle(
-                            //       fontSize: 8,
-                            //     )),
                           ])),
                     ])),
                 pw.Container(
                     width: 8.5 * PdfPageFormat.cm,
-                    // color: PdfColors.yellow,
                     child: pw.Column(
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: [
@@ -916,7 +907,6 @@ class OrderprintLayout extends StatelessWidget {
                             style:
                                 const pw.TextStyle(color: PdfColors.blue100)),
                         pw.Container(
-                            // color: PdfColors.green,
                             width: 9.3 * PdfPageFormat.cm,
                             child: pw.Row(
                               mainAxisAlignment:
@@ -1094,17 +1084,6 @@ class OrderprintLayout extends StatelessWidget {
                     style: const pw.TextStyle(
                       fontSize: 8,
                     )),
-                // pw.SizedBox(
-                //   height: 0.2 * PdfPageFormat.cm,
-                // ),
-                // pw.Text('KARIAKOO',
-                //     style: const pw.TextStyle(
-                //       fontSize: 8,
-                //     )),
-                // pw.Text('TANZANIA',
-                //     style: const pw.TextStyle(
-                //       fontSize: 8,
-                //     )),
               ])),
           pageindex == 1
               ? pw.Container(
@@ -1117,7 +1096,6 @@ class OrderprintLayout extends StatelessWidget {
                       children: [
                         pw.Container(
                             alignment: pw.Alignment.centerRight,
-                            // color: PdfColors.orange,
                             child: pw.BarcodeWidget(
                                 data: "${iinvoicee!.headerinfo!.docEntry}-17",
                                 barcode: pw.Barcode.qrCode(),

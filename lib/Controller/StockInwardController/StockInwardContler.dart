@@ -178,6 +178,7 @@ class StockInwrdController extends ChangeNotifier {
     filtercustList = [];
     tappageIndex = 0;
     stInController2[50].text = "";
+    stInController[50].text = '';
     passdata = [];
     stockInward = [];
     selectIndex = null;
@@ -670,19 +671,21 @@ class StockInwrdController extends ChangeNotifier {
 
     List<Map<String, Object?>> getcustomer =
         await DBOperation.getCstmMasDatabyautoid(db, cardCode.toString());
+    if (getcustomer.isNotEmpty) {
+      selectedcust = CustomerDetals(
+        name: getcustomer[0]['customername'].toString(),
+        phNo: getcustomer[0]['phoneno1'].toString(),
+        taxCode: getcustomer[0]['TaxCode'].toString(),
+        cardCode: getcustomer[0]['customerCode'].toString(),
+        point: getcustomer[0]['points'].toString(),
+        custRefNum: '',
+        accBalance: 0,
+        email: getcustomer[0]['emalid'].toString(),
+        tarNo: getcustomer[0]['taxno'].toString(),
+        autoId: getcustomer[0]['autoid'].toString(),
+      );
+    }
 
-    selectedcust = CustomerDetals(
-      name: getcustomer[0]['customername'].toString(),
-      phNo: getcustomer[0]['phoneno1'].toString(),
-      taxCode: getcustomer[0]['TaxCode'].toString(),
-      cardCode: getcustomer[0]['customerCode'].toString(),
-      point: getcustomer[0]['points'].toString(),
-      custRefNum: '',
-      accBalance: 0,
-      email: getcustomer[0]['emalid'].toString(),
-      tarNo: getcustomer[0]['taxno'].toString(),
-      autoId: getcustomer[0]['autoid'].toString(),
-    );
     notifyListeners();
     await OpenInWardLineAPi.getGlobalData(docEntry).then((value) {
       listData = [];
@@ -718,7 +721,10 @@ class StockInwrdController extends ChangeNotifier {
                   price: lineData[i].price,
                   StOutSerialbatchList: batchlistData,
                   serialBatch: lineData[i].batchNum,
-                  trans_Qty: lineData[i].batchQty,
+                  trans_Qty: lineData[i].batchQty != 0 &&
+                          lineData[i].batchNum.isNotEmpty
+                      ? lineData[i].batchQty
+                      : lineData[i].qty,
                   Scanned_Qty: 0));
               notifyListeners();
             }
@@ -1171,7 +1177,9 @@ class StockInwrdController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
 
     onClickDisable = true;
-    if (data!.isEmpty) {
+
+    log('datadatadata::${data!.length}');
+    if (data.isEmpty) {
       Get.defaultDialog(
               title: "Alert",
               middleText: 'Please Select Items..!!',
@@ -1225,6 +1233,7 @@ class StockInwrdController extends ChangeNotifier {
       double? totalscanqty = 0;
 
       for (int i = 0; i < data.length; i++) {
+        log('data[i].Scanned_Qty::${data[i].Scanned_Qty}');
         scannedtottal =
             scannedtottal! + data[i].Scanned_Qty! + data[i].trans_Qty!;
         totalTransQty = totalTransQty! + data[i].trans_Qty!;
@@ -1499,11 +1508,18 @@ class StockInwrdController extends ChangeNotifier {
   addBatchtable(int index, int ik) {
     batchTable = [];
     for (int i = 0; i < passdata![ik].StOutSerialbatchList!.length; i++) {
-      batchTable!.add(StockInbatch(
-        quantity: double.parse(passdata![ik].Scanned_Qty.toString()),
-        batchNumberProperty:
-            passdata![ik].StOutSerialbatchList![i].serialbatch.toString(),
-      ));
+      if (passdata![ik]
+          .StOutSerialbatchList![i]
+          .serialbatch
+          .toString()
+          .isNotEmpty) {
+        batchTable!.add(StockInbatch(
+          quantity: double.parse(passdata![ik].Scanned_Qty.toString()),
+          batchNumberProperty:
+              passdata![ik].StOutSerialbatchList![i].serialbatch.toString(),
+        ));
+      }
+      notifyListeners();
     }
     notifyListeners();
     log('message::${batchTable!.length}');
@@ -2172,6 +2188,7 @@ class StockInwrdController extends ChangeNotifier {
   List<StockInwardDetails>? passdata = [];
   passList(List<StockInwardDetails>? data) {
     passdata = data!;
+
     log("passdata!.length::${passdata![0].StOutSerialbatchList!.length}");
 
     notifyListeners();
@@ -2822,13 +2839,11 @@ class StockInwrdController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      //Buttons
                       SizedBox(
                         height: Screens.bodyheight(context) * 0.05,
                         width: Screens.width(context) * 0.3,

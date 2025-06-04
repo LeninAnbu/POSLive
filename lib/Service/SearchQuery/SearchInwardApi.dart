@@ -22,29 +22,17 @@ class SerachInwardHeaderAPi {
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
                 "query":
                     "EXEC BZ_POS_SerachInwardHeaderAPi '${AppConstant.branch}','$fromDate','$toDate','$GitWhs'"
-                // "select distinct T0.DocEntry,T0.DocNum, t0.CardCode,t0.CardName,T0.DocDate,T0.DocTotal,T0.ToWhsCode, T1.FromWhsCod,T0.DocStatus  from owtr t0 inner join WTR1 T1 on t0.DocEntry=t1.DocEntry where   T0.ToWhsCode ='${AppConstant.branch}'  and T0.DocDate Between '$fromDate' and '$toDate'  And T1.fromwhscod = '$GitWhs'  order by  t0.DocDate desc ,T0.DocNum desc "
               }));
 
-      // log("InwardHeaderAPi Data " +
-      //     json.encode({
-      //       "constr":
-      //           "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-      //       "query":
-      //          "EXEC BZ_POS_SerachInwardHeaderAPi '${AppConstant.branch}','$fromDate','$toDate','$GitWhs'"
-      //         }));
-
-      // log("InwardHeaderAPi Res: " + json.decode(response.body).toString());
       print(response.statusCode);
       if (response.statusCode == 200) {
         return OpenSalesReqHeadersModl.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return OpenSalesReqHeadersModl.fromJson(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
-      //  throw Exception("Exception: $e");
       log('SalsesOrderHeaderAPi::${e.toString()}');
       return OpenSalesReqHeadersModl.error(e.toString(), 500);
     }

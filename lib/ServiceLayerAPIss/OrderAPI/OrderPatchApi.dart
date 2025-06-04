@@ -30,11 +30,9 @@ class SalesOrdPatchAPI {
 
   static Future<ApprovalstoDocModal> gettData(
       String sapDocEntry, String latitude, String longitude) async {
-    // int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       final data = json.encode({
-        //  "AppVersion":AppVersion.version,
         "CardCode": "$cardCodePost",
         "CardName": "$cardNamePost",
         "DocumentStatus": "bost_Open",
@@ -57,8 +55,8 @@ class SalesOrdPatchAPI {
             ? docLineQout!.map((e) => e.tojson4()).toList()
             : docLineQout!.map((e) => e.tojson3()).toList(),
       });
-      log("sapDocEntry sapDocEntry::$data");
-      log("url::::${'${URL.sapUrl}/Orders($sapDocEntry)'}");
+      log("sapDocEntry patch::$data");
+      log("Order patch url::::${'${URL.sapUrl}/Orders($sapDocEntry)'}");
       final response = await http.patch(
         Uri.parse('${URL.sapUrl}/Orders($sapDocEntry)'),
         headers: {
@@ -79,7 +77,6 @@ class SalesOrdPatchAPI {
           "NumAtCard": "$custREfNo",
           'U_DeviceCode': deviceCode,
           'U_DeviceTransID': deviceTransID,
-          // 'SalesPersonCode': '$slpCode',
           "U_latitude ": latitude,
           "U_longitude": longitude,
           "U_PosUserCode": UserValues.userCode,
@@ -97,7 +94,7 @@ class SalesOrdPatchAPI {
         return ApprovalstoDocModal.fromJson(response.statusCode);
       } else {
         log("SalesOrd Edit Exception: Error");
-        // throw Exception("Errorrrrr");
+
         return ApprovalstoDocModal.fromJson2(
           response.statusCode,
           json.decode(response.body) as Map<String, dynamic>,
@@ -105,7 +102,7 @@ class SalesOrdPatchAPI {
       }
     } catch (e) {
       log("OrderPatchException:: $e");
-      // throw Exception("Error");
+
       return ApprovalstoDocModal.issue("$e", 500);
     }
   }

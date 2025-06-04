@@ -28,12 +28,9 @@ class ApprovalReqExcelAPi {
       );
       log("ApprovalRequestExcelSts: " + response.statusCode.toString());
 
-      // log("ApprovalRequestExcelExcelRes: " + response.bodyBytes.toString());
-
       if (response.statusCode == 200) {
-        // log("bodyBytes: "+ response.bodyBytes.toString());
         final bytes = response.bodyBytes;
-        //  log("Uint8List bytes: "+bytes.toString());
+
         final tempDir = await getTemporaryDirectory();
         String timestamp = DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
         final file =
@@ -42,7 +39,6 @@ class ApprovalReqExcelAPi {
         file.writeAsBytesSync(bytes);
         await OpenFile.open(file.path);
 
-        // SReportsState.isLoading = false;
         return 200;
       } else {
         return 400;

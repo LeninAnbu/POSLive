@@ -34,7 +34,6 @@ class _ForgotMainScreenState extends State<ForgotMainScreen> {
               }),
         );
       } else if (constraints.maxWidth <= 1300) {
-        //300
         return Scaffold(
           resizeToAvoidBottomInset: false,
           drawer: naviDrawer(),
@@ -67,13 +66,5 @@ class _ForgotMainScreenState extends State<ForgotMainScreen> {
         );
       }
     });
-    //       else
-    // return ForgotPasswordPage(
-    //   forgetHeight: Screens.padingHeight(context),
-    //   forgetwidth: Screens.width(context)*0.5,
-    // );
-    //     });
-    //   });
-    // }));
   }
 }

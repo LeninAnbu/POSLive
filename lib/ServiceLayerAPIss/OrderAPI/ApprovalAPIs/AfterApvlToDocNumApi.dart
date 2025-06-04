@@ -26,7 +26,6 @@ class ApprovalsQuotAPi {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),
-          // "Prefer":"return-no-content"
         },
       );
       log("statucCode: " + response.statusCode.toString());
@@ -37,14 +36,12 @@ class ApprovalsQuotAPi {
           response.statusCode,
         );
       } else {
-        //  throw Exception('Restart the app or contact the admin!!..');
         return ApprovalsOTORModal.fromJson(
           json.decode(response.body) as Map<String, dynamic>,
           response.statusCode,
         );
       }
     } catch (e) {
-      // throw Exception(e);
       return ApprovalsOTORModal.issue(
           'Restart the app or contact the admin!!..');
     }

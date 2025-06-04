@@ -20,21 +20,18 @@ class Retrunregisterapi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_Retrunregisterapi '$fromDate','$toDate'"
-                    // "SELECT A.DocNum [Document number],B.LocCode [Branch],'' [Terminal] ,A.CardName [Customer Name],A.CardCode [Customer Code],B.ItemCode [Item Code],B.Dscription [Item Name],A.DocDate [DATE] FROM ORIN A INNER JOIN RIN1 B ON A.DocEntry=B.DocEntry where a.DocDate between '$fromDate' and '$toDate' Order by A.DocNum"
+                "query": "EXEC BZ_POS_Retrunregisterapi '$fromDate','$toDate'"
               }));
 
       log("Return reg Res: ${json.decode(response.body)}");
       if (response.statusCode == 200) {
         return ReturnRegtModel.fromJson(response.body, response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return ReturnRegtModel.fromJson(response.body, response.statusCode);
       }
     } catch (e) {
       log('exp::${e.toString()}');
-      //  throw Exception("Exception: $e");
+
       return ReturnRegtModel.error(e.toString(), 500);
     }
   }

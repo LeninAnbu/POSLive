@@ -28,7 +28,7 @@
 
 // class StockReqController extends ChangeNotifier {
 //   Config config = Config();
-//   //
+// 
 //   List<TextEditingController> mycontroller =
 //       List.generate(150, (i) => TextEditingController());
 //   List<TextEditingController> mycontroller2 =
@@ -50,10 +50,10 @@
 //   List<GlobalKey<FormState>> formkey =
 //       List.generate(50, (i) => GlobalKey<FormState>());
 
-//   // StockReqController() {
-//   //   callList();
-//   //   callDB();
-//   // }
+// 
+// 
+// 
+// 
 
 //   void init() {
 //     searchclear();
@@ -61,7 +61,7 @@
 //     callDB();
 //   }
 
-//   // List<WhsDetails> filsterwhsList = [];
+// 
 //   WhsDetails? fromAddressList;
 //   WhsDetails? get getFromAddressList => fromAddressList;
 //   WhsDetails? fromAddressList2;
@@ -171,17 +171,17 @@
 //   }
 
 //   filterbranchList(String v) {
-//     // if (v.isNotEmpty) {
-//     //   filterShipAddressList = shipAddressList
-//     //       .where((e) =>
-//     //           e.billAddress!.toLowerCase().contains(v.toLowerCase()) ||
-//     //           e.billCity!.toLowerCase().contains(v.toLowerCase()))
-//     //       .toList();
-//     //   notifyListeners();
-//     // } else if (v.isEmpty) {
-//     //   filterShipAddressList = shipAddressList;
-//     //   notifyListeners();
-//     // }
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
 //   }
 
 //   WhsDetails? WhsselectedList;
@@ -215,7 +215,7 @@
 
 //   callList() {
 //     filsterwhsList = whsList;
-//     // filterShipAddressList = shipAddressList;
+//   
 //     notifyListeners();
 //   }
 
@@ -313,10 +313,10 @@
 
 //       List<Map<String, Object?>> branchData = await DBOperation.getBranch(db);
 //       for (int i = 0; i < branchData.length; i++) {
-//         // log("--------------------------------" +
-//         //     getDB_SaleReqHeader2[0]["reqtoWhs"].toString());
-//         // log("--------------------------------" +
-//         // branchData[i]['WhsCode'].toString());
+//       
+//       
+//       
+//       
 
 //         if (getDB_SaleReqHeader2[0]["reqtoWhs"].toString() ==
 //             branchData[i]['WhsCode'].toString()) {
@@ -382,9 +382,9 @@
 //                     : getStockReqHeader[i]["docstatus"].toString() == "2"
 //                         ? "Against Stock"
 //                         : "",
-//             // sapDocNo: getStockReqHeader[i]["sapDocNo"] == null
-//             //     ? 0
-//             //     : int.parse(getStockReqHeader[i]["sapDocNo"].toString()),
+//           
+//           
+//           
 //             qStatus: getStockReqHeader[i]["qStatus"] == null
 //                 ? ""
 //                 : getStockReqHeader[i]["qStatus"].toString(),
@@ -394,9 +394,9 @@
 //             docNo: getStockReqHeader[i]["documentno"] == null
 //                 ? "0"
 //                 : getStockReqHeader[i]["documentno"].toString(), //documentno
-//             //  getStockReqHeader[i]["reqdocno"] == null
-//             //     ? "0"
-//             //     : getStockReqHeader[i]["reqdocno"].toString(),
+//           
+//           
+//           
 //             docDate: getStockReqHeader[i]["createdateTime"].toString(),
 //             sapNo: getStockReqHeader[i]["sapDocNo"] == null
 //                 ? 0
@@ -422,66 +422,66 @@
 
 //   List<WhsDetails> filsterwhsList = [];
 //   List<WhsDetails> whsList = [];
-//   // List<WhsDetails> whsList2 = [
-//   //   WhsDetails(
-//   //       whsName: "Dodfg",
-//   //       whsCode: "Dodfg",
-//   //       whsPhoNo: "1234567890",
-//   //       whsmailID: "jcoretails@gmail.com",
-//   //       whsGst: "A43216T8B01PP45",
-//   //       whsAddress: "JcoRetails,Devarajan Layouts,Ram Nagar",
-//   //       whsDistric: "Coimbatore",
-//   //       pinCode: "620002",
-//   //       whsState: "TamilNadu",
-//   //       whsCity: "Coimbatore"),
-//   //   WhsDetails(
-//   //       whsName: "Hofg",
-//   //       whsCode: "Hofg",
-//   //       whsPhoNo: "9876543210",
-//   //       whsmailID: "tvcelctronics@gmail.com",
-//   //       whsGst: "B43216C8B01CC45",
-//   //       whsAddress: "Tvc Electronics,RRR Complex,KK Nagar",
-//   //       whsDistric: "Chennai",
-//   //       pinCode: "600028",
-//   //       whsState: "TamilNadu",
-//   //       whsCity: "Chennai"),
-//   // ];
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   // Future insertWarHos(Database db) async {
-//   //   List<BranchTModelDB> valBranch = [];
+// 
+// 
 
-//   //   for (int i = 0; i < whsList2.length; i++) {
-//   //     valBranch.add(BranchTModelDB(
-//   //         address1: whsList2[i].whsAddress,
-//   //         address2: whsList2[i].whsAddress,
-//   //         address3: whsList2[i].whsAddress,
-//   //         branchID: whsList2[i].whsCode,
-//   //         branchname: whsList2[i].whsName,
-//   //         businessname: "",
-//   //         city: whsList2[i].whsCity!,
-//   //         countrycode: "IN",
-//   //         createdUserID: UserValues.userID,
-//   //         createdateTime: config.currentDate(),
-//   //         emalid: whsList2[i].whsmailID,
-//   //         geolocation1: '',
-//   //         geolocation2: '',
-//   //         httplogo: '',
-//   //         lastupdateIp: UserValues.userID.toString(),
-//   //         phoneno1: whsList2[i].whsPhoNo,
-//   //         phoneno2: whsList2[i].whsPhoNo,
-//   //         stateCode: whsList2[i].whsState,
-//   //         status: "Active",
-//   //         taxno: whsList2[i].whsGst,
-//   //         updatedDatetime: config.currentDate(),
-//   //         updateduserid: UserValues.userID,
-//   //         defaultcurrency: ""));
-//   //   }
-//   //   await DBOperation.insertBranch(db, valBranch);
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //   await getValues(db).then((value) {
-//   //     callList();
-//   //   });
-//   // }
+// 
+// 
+// 
+// 
 
 //   Future getValues(Database db) async {
 //     filsterwhsList = [];
@@ -522,20 +522,20 @@
 //   ShipAddress? ShipSelectedList;
 //   ShipAddress? get get_ShipSelectedList => ShipSelectedList;
 //   List<ShipAddress> filterShipAddressList = [];
-//   // List<ShipAddress> shipAddressList = [
-//   //   ShipAddress(
-//   //       billAddress: "Jco Retails,West Street,T nagar,",
-//   //       billCity: "Chennai",
-//   //       billCountry: "IND",
-//   //       billPincode: "620008",
-//   //       billstate: "Tamil Nadu"),
-//   //   ShipAddress(
-//   //       billAddress: "TVC Electronics,Saibaba Street,KK nagar,",
-//   //       billCity: "Trichy",
-//   //       billCountry: "IND",
-//   //       billPincode: "620006",
-//   //       billstate: "Tamil Nadu")
-//   // ];
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 //   String exception = '';
 //   getAllData() async {
@@ -543,9 +543,9 @@
 //       if (value.stcode! >= 200 && value.stcode! <= 210) {
 //         if (value.stocksnapitemdata != null) {
 //           itemData = value.stocksnapitemdata!;
-//           // dbHelper.insertPos(itemData).then((value) {
-//           //   print("came here..!!");
-//           // });
+//         
+//         
+//         
 //         } else if (value.stocksnapitemdata == null) {
 //           exception = value.message!;
 //         }
@@ -557,7 +557,7 @@
 //     });
 //   }
 
-//   /// list searched data to choose
+// 
 //   List<ItemMasterModelDB> getSearchedData = [];
 //   List<ItemMasterModelDB> getfilterSearchedData = [];
 
@@ -600,9 +600,9 @@
 //       for (int i = 0; i < getShelfReqData.length; i++) {
 //         scanneditemData.add(StocksnapModelData(
 //             TransID: 1,
-//             //  int.parse(selectdata.transentry != null
-//             //     ? selectdata.transentry.toString()
-//             //     : '0')
+//           
+//           
+//           
 
 //             Branch: "", //selectdata.branchcode,
 //             ItemCode: getShelfReqData[i]["itemcode"].toString(),
@@ -667,9 +667,9 @@
 //         if (getShelfReqData[i]["shortageQty"] != 0) {
 //           scanneditemData.add(StocksnapModelData(
 //               TransID: 1,
-//               //  int.parse(selectdata.transentry != null
-//               //     ? selectdata.transentry.toString()
-//               //     : '0')
+//             
+//             
+//             
 
 //               Branch: "", //selectdata.branchcode,
 //               ItemCode: getShelfReqData[i]["Itemcode"].toString(),
@@ -737,9 +737,9 @@
 //         if (getShelfReqData[i]["shortageQty"] != 0) {
 //           scanneditemData.add(StocksnapModelData(
 //               TransID: 1,
-//               //  int.parse(selectdata.transentry != null
-//               //     ? selectdata.transentry.toString()
-//               //     : '0')
+//             
+//             
+//             
 
 //               Branch: "", //selectdata.branchcode,
 //               ItemCode: getShelfReqData[i]["Itemcode"].toString(),
@@ -812,31 +812,31 @@
 //                 ));
 //           });
 //     } else if (WhsselectedList != null) {
-//       // int? indx = await checkBatchAvail(
-//       //    selectdata.itemcode.toString().toUpperCase().trim());
-//       // if (indx != null) {
+//     
+//     
+//     
 //       addScannedData2(selectdata, context, theme);
-//       // addScndData2(selectdata, context, theme);
-//       // } else if (indx == null) {
-//       //   showDialog(
-//       //       context: context,
-//       //       barrierDismissible: true,
-//       //       builder: (BuildContext context) {
-//       //         return AlertDialog(
-//       //             contentPadding: EdgeInsets.all(0),
-//       //             content: AlertBox(
-//       //               payMent: 'Alert',
-//       //               errormsg: true,
-//       //               widget: Center(
-//       //                   child: ContentContainer(
-//       //                 content: 'Wrong batch scanned..!!',
-//       //                 theme: theme,
-//       //               )),
-//       //               buttonName: null,
-//       //             ));
-//       //       });
-//       //   // config.showDialogBox('Alert', 'Wrong batch scanned..!!', context);
-//       // }
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
 //     }
 //   }
 
@@ -913,9 +913,9 @@
 //       log("message2");
 //       scanneditemData.removeAt(indx);
 //       qtyCont.removeAt(indx);
-//       // qtyCont[indx].text = scanneditemData[indx+2].Qty.toString();
-//       // // scanneditemData[indx].Qty = int.parse(qtyCont[indx].text);
-//       // // qtyCont[indx + 1].text = qtyCont[indx + 2].text.toString();
+//     
+//     
+//     
 //       notifyListeners();
 //     } else {
 //       scanneditemData[indx].Qty = int.parse(qtyCont[indx].text);
@@ -979,9 +979,9 @@
 //   onselectedItemasFst(ItemMasterModelDB selectdata) {
 //     scanneditemData.add(StocksnapModelData(
 //         TransID: 1,
-//         //  int.parse(selectdata.transentry != null
-//         //     ? selectdata.transentry.toString()
-//         //     : '0')
+//       
+//       
+//       
 
 //         Branch: "", //selectdata.branchcode,
 //         ItemCode: selectdata.itemcode,
@@ -1005,13 +1005,13 @@
 //     notifyListeners();
 //     calculateDetails();
 //   }
-//   ////
+// 
 
 //   scannBAtch(BuildContext context, ThemeData theme) async {
-//     //  FocusScopeNode focus = FocusScope.of(context);
-//     // if (!focus.hasPrimaryFocus) {
-//     //   focus.unfocus();
-//     // }
+//   
+//   
+//   
+//   
 
 //     if (WhsselectedList == null) {
 //       showDialog(
@@ -1054,7 +1054,7 @@
 //                     buttonName: null,
 //                   ));
 //             });
-//         // config.showDialogBox('Alert', 'Wrong batch scanned..!!', context);
+//       
 //       }
 //     }
 //   }
@@ -1105,9 +1105,9 @@
 //     return Future.value(null);
 //   }
 
-//   // addScndSrlBtchQty(int ind) {
-//   //   scanneditemData[ind].Qty = (scanneditemData[ind].Qty! + 1);
-//   // }
+// 
+// 
+// 
 
 //   addScndDataFst(int ind) {
 //     scanneditemData.add(StocksnapModelData(
@@ -1161,9 +1161,9 @@
 //                 qtyCont[i].text.isEmpty ? "0" : qtyCont[i].text.toString());
 //       }
 
-//       // var getQty = scanneditemData.map((itemdet) => itemdet.Qty.toString());
-//       // var getSum = getQty.map(double.parse).toList();
-//       // var totalqty = getSum.reduce((a, b) => a + b);
+//     
+//     
+//     
 //       return totalqty2;
 //     }
 //     return 0;
@@ -1216,38 +1216,38 @@
 //   itemIncrement(int ind, BuildContext context, ThemeData theme) {
 //     for (int i = 0; i < itemData.length; i++) {
 //       if (itemData[i].SerialBatch == scanneditemData[ind].SerialBatch) {
-//         // if (itemData[i].Qty! > scanneditemData[ind].Qty!) {
+//       
 //         scanneditemData[ind].Qty = scanneditemData[ind].Qty! + 1;
 //         notifyListeners();
-//         // break;
-//         // } else {
-//         //   showDialog(
-//         //       context: context,
-//         //       barrierDismissible: true,
-//         //       builder: (BuildContext context) {
-//         //         return AlertDialog(
-//         //             contentPadding: EdgeInsets.all(0),
-//         //             content: AlertBox(
-//         //               payMent: 'Alert',
-//         //               errormsg: true,
-//         //               widget: Center(
-//         //                   child: ContentContainer(
-//         //                 content: 'No more qty to add..!!',
-//         //                 theme: theme,
-//         //               )),
-//         //               buttonName: null,
-//         //             ));
-//         //       });
-//         //   break;
-//         // }
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
 //       }
 //     }
 //     calculateDetails();
 //     notifyListeners();
 //   }
 
-//   // int i = 1;
-//   // int get geti => i;
+// 
+// 
 
 //   itemdecrement(int ind) {
 //     if (scanneditemData[ind].Qty! > 1) {
@@ -1261,42 +1261,42 @@
 //     calculateDetails();
 //   }
 
-//   // SuspendMethod(BuildContext context, ThemeData theme) {
-//   //   // if (scanneditemData.isNotEmpty ||
-//   //   //     WhsselectedList != null ||
-//   //   //     ShipSelectedList != null) {
-//   //   scanneditemData.clear();
-//   //   WhsselectedList = null;
-//   //   ShipSelectedList = null;
-//   //   calCulteStReq = null;
-//   //   mycontroller[0].text = "";
-//   //   showDialog(
-//   //       context: context,
-//   //       barrierDismissible: true,
-//   //       builder: (BuildContext context) {
-//   //         return AlertDialog(
-//   //             contentPadding: EdgeInsets.all(0),
-//   //             content: AlertBox(
-//   //               payMent: '',
-//   //               errormsg: false,
-//   //               widget: Center(
-//   //                   child: StReq_SuccessAlertbox(
-//   //                 content: 'All Details clear successfully!!',
-//   //                 theme: theme,
-//   //               )),
-//   //               buttonName: null,
-//   //             ));
-//   //       });
-//   //   notifyListeners();
-//   //   // } else {
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //   // }
-//   // }
+// 
+// 
 
 //   SuspendMethodDB(
 //       BuildContext context, ThemeData theme, String Ordertype) async {
 //     final Database db = (await DBHelper.getInstance())!;
-//     // searchclear();
+//   
 //     clearSuspendedData(context, theme);
 //   }
 
@@ -1361,28 +1361,28 @@
 //     mycontroller2[50].text = "";
 //     mycontroller[50].text = "";
 //     callList();
-//     // callDB();
+//   
 //   }
 
 //   List<Orderdetails> savedraftBill = [];
 //   Orderdetails? orderDetailsList;
-//   // saveOrder(String ordertype) {
-//   //   orderdetails orderDetailsList2 = orderdetails(
-//   //       // shipAdd: ShipSelectedList,
-//   //       whsAdd: WhsselectedList!,
-//   //       totalPayment: totalPayment,
-//   //       orderType: ordertype,
-//   //       scannData: scanneditemData);
-//   //   orderDetailsList = orderDetailsList2;
-//   //   notifyListeners();
-//   // }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 //   saveButton(BuildContext context, ThemeData theme, String Ordertype) async {
 //     onclickDisable = true;
 //     final Database db = (await DBHelper.getInstance())!;
 //     await DBOperation.exec(db);
 //     if (
-//         // ShipSelectedList == null ||
+//       
 //         WhsselectedList == null || scanneditemData.isEmpty) {
 //       Get.defaultDialog(
 //               title: "Alert",
@@ -1408,30 +1408,30 @@
 //         notifyListeners();
 //       });
 
-//       // showDialog(
-//       //     context: context,
-//       //     barrierDismissible: true,
-//       //     builder: (BuildContext context) {
-//       //       return AlertDialog(
-//       //           contentPadding: EdgeInsets.all(0),
-//       //           content: AlertBox(
-//       //             payMent: 'Alert',
-//       //             errormsg: true,
-//       //             widget: Center(
-//       //                 child: ContentContainer(
-//       //               content: 'Please Choose All details..!!',
-//       //               theme: theme,
-//       //             )),
-//       //             buttonName: null,
-//       //           ));
-//       //     });
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
 //     } else if (
-//         // ShipSelectedList != null &&
+//       
 //         WhsselectedList != null && scanneditemData.isNotEmpty) {
 //       print(scanneditemData.length);
 //       log("WhsselectedList.dbDocEntry" +
 //           WhsselectedList!.dbDocEntry.toString());
-//       //   await DBOperation.exec(db);
+//     
 
 //       saveValuesTODB(Ordertype, WhsselectedList!, db, context, theme);
 //       if (holddocentry.isNotEmpty) {
@@ -1439,14 +1439,14 @@
 //         await getHoldStReq(db);
 //       }
 //       holddocentry = '';
-//       //old
-//       //   saveOrder(Ordertype);
-//       // scanneditemData.clear();
-//       // WhsselectedList = null;
-//       // ShipSelectedList = null;
-//       // totalPayment = null;
-//       // mycontroller[0].text = "";
-//       // notifyListeners();
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
 //     }
 //     onclickDisable = false;
 //     notifyListeners();
@@ -1455,13 +1455,13 @@
 //   HoldButton(BuildContext context, ThemeData theme) async {
 //     onclickDisable = true;
 //     if (
-//         // ShipSelectedList == null &&
+//       
 //         WhsselectedList == null && scanneditemData.isEmpty) {
 //       Get.defaultDialog(
-//               // content: Container(
-//               //   width: Screens.width(context) * 0.4,
-//               //   height: Screens.bodyheight(context) * 0.1,
-//               // ),
+//             
+//             
+//             
+//             
 //               title: "Alert",
 //               middleText: "Choose WareHouse details..!!",
 //               backgroundColor: Colors.white,
@@ -1487,7 +1487,7 @@
 //     } else {
 //       print("object");
 //       final Database db = (await DBHelper.getInstance())!;
-//       // await DBOperation.exec(db);
+//     
 
 //       saveValuesTODB("hold", WhsselectedList!, db, context, theme);
 //       if (holddocentry.isNotEmpty) {
@@ -1552,51 +1552,51 @@
 //       qtyCont[ik].text = scanneditemData[ik].Qty.toString();
 //     }
 //     holddocentry = WhsselectedList!.dbDocEntry!.toString();
-//     // final Database db = (await DBHelper.getInstance())!;
-//     // await DBOperation.deletereqHold(db, WhsselectedList!.dbDocEntry!);
-//     // await getHoldStReq(db);
+//   
+//   
+//   
 
 //     notifyListeners();
 //   }
 
-//   // getItemFromDB(Database db) async {
-//   //   List<ItemMasterModelDB> itemMasdata = await DBOperation.getItemMasData(db);
-//   //   log("itemData itemMasdata11:  ${itemMasdata.length}");
-//   //   for (int i = 0; i < itemMasdata.length; i++) {
-//   //     itemData.add(StocksnapModelData(
-//   //         TransID: int.parse(itemMasdata[i].transentry != null
-//   //             ? itemMasdata[i].transentry.toString()
-//   //             : '0'),
-//   //         Branch: itemMasdata[i].branchcode,
-//   //         ItemCode: itemMasdata[i].itemcode,
-//   //         ItemName: '',
-//   //         SerialBatch: itemMasdata[i].serialbatch,
-//   //         OpenQty: int.parse(itemMasdata[i].quantity!),
-//   //         Qty: int.parse(itemMasdata[i].quantity!),
-//   //         InDate: '',
-//   //         InType: '',
-//   //         VenCode: '',
-//   //         VenName: '',
-//   //         MRP: 0,
-//   //         SellPrice: int.parse(itemMasdata[i].sellprice!),
-//   //         Cost: 0,
-//   //         TaxRate: 0,
-//   //         TaxType: ''));
-//   //   }
-//   //   log("itemData len11:  ${itemData.length}");
-//   // }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   /// get item master fro db
+// 
 
 //   Future getItemFromDB(Database db) async {
 //     List<ItemMasterModelDB> itemMasdata =
 //         await DBOperation.getItemMasData2(db, "");
-//     // log("itemData itemMasdata11:  ${itemMasdata.length}");
+//   
 //     for (int i = 0; i < itemMasdata.length; i++) {
 //       itemData.add(StocksnapModelData(
 //           TransID: 1, //int.parse(itemMasdata[i].transentry != null
-//           // ? itemMasdata[i].transentry.toString()
-//           // : '0'),
+//         
+//         
 //           Branch: "", //itemMasdata[i].branchcode,
 //           ItemCode: itemMasdata[i].itemcode,
 //           ItemName: itemMasdata[i].itemnameshort,
@@ -1616,7 +1616,7 @@
 //           liter: itemMasdata[i].liter!,
 //           weight: itemMasdata[i].weight!));
 //     }
-//     // log("itemData len11:  ${itemData.length}");
+//   
 //   }
 
 //   saveValuesTODB(String docstatus, WhsDetails whsDetails, Database db,
@@ -1628,9 +1628,9 @@
 //     } else if (docstatus == "against stock") {
 //       insdertStockReqdata(docstatus, whsDetails, db, context, theme);
 //     }
-//     // else if (docstatus == "suspend") {
-//     //   insdertStockReqdata(docstatus, whsDetails, db, context, theme);
-//     // }
+//   
+//   
+//   
 //   }
 
 //   Future<List<String>> checkingdoc(int id) async {
@@ -1646,8 +1646,8 @@
 
 //   insdertStockReqdata(String docstatus, WhsDetails whsDetails, Database db,
 //       BuildContext context, ThemeData theme) async {
-//     // log(UserValues.branch.toString());
-//     // log(whsDetails.whsCode.toString());
+//   
+//   
 
 //     if (docstatus == "against order" || docstatus == "against stock") {
 //       onclickDisable = true;
@@ -1672,7 +1672,7 @@
 //           await DBOperation.generateDocentr(db, "docentry", "StockReqHDT");
 //     }
 
-//     // docnumber generatiom
+//   
 
 //     String docmntNo = '';
 //     int? documentN0 =
@@ -1689,7 +1689,7 @@
 //     String finlDocnum = getseriesvalue[0].toString().substring(0, 8);
 
 //     docmntNo = finlDocnum + documentN0.toString();
-//     // docnumber generatiom
+//   
 //     List<StockReqHDTDB> stckReqDB = [];
 //     stckReqDB.add(StockReqHDTDB(
 //       doctype: "Stock Request",
@@ -1750,9 +1750,9 @@
 //             lineNo: i,
 //             qty: double.parse(getScanneditemData[i].Qty.toString()),
 //             status:
-//                 // docstatus == "suspend"
-//                 //     ? "0"
-//                 //     :
+//               
+//               
+//               
 //                 docstatus == "hold"
 //                     ? '1'
 //                     : docstatus == "against order"
@@ -1805,8 +1805,8 @@
 //               ? "Against Stock Sucessfully Placed"
 //               : docstatus == "hold"
 //                   ? "Saved as draft"
-//                   // : docstatus == "suspend"
-//                   //     ? "Suspended Sucessfully"
+//                 
+//                 
 //                   : "null",
 //       backgroundColor: Colors.white,
 //       titleStyle: theme.textTheme.bodyLarge!.copyWith(color: Colors.red),
@@ -1833,50 +1833,50 @@
 //       onclickDisable = false;
 //       notifyListeners();
 //     });
-//     // await showDialog(
-//     //     context: context,
-//     //     barrierDismissible: true,
-//     //     builder: (BuildContext context) {
-//     //       return AlertDialog(
-//     //           contentPadding: EdgeInsets.all(0),
-//     //           content: AlertBox(
-//     //             payMent: '',
-//     //             errormsg: false,
-//     //             widget: Center(
-//     //                 child: StReq_SuccessAlertbox(
-//     //               content: docstatus == "against order"
-//     //                   ? 'Order Sucessfully Placed'
-//     //                   : docstatus == "against stock"
-//     //                       ? "Stock Sucessfully Placed"
-//     //                       : docstatus == "hold"
-//     //                           ? "Saved as draft"
-//     //                           : docstatus == "suspend"
-//     //                               ? "Suspended Sucessfully"
-//     //                               : "null",
-//     //               theme: theme,
-//     //             )),
-//     //             buttonName: null,
-//     //           ));
-//     //     }).then((value) {
-//     //   scanneditemData.clear();
-//     //   WhsselectedList = null;
-//     //   ShipSelectedList = null;
-//     //   calCulteStReq = null;
-//     //   mycontroller[0].text = "";
-//     //   notifyListeners();
-//     // });
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
 //   }
 
-//   // showalert() async {
-//   //   return Get.defaultDialog(
-//   //       barrierDismissible: true,
-//   //       title: "Alert",
-//   //       middleText: "null",
-//   //       backgroundColor: Colors.white,
-//   //       titleStyle: TextStyle(color: Colors.red),
-//   //       middleTextStyle: TextStyle(color: Colors.black),
-//   //       radius: 10);
-//   // }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 //   PostRabitMqStockReq(int docentry, String toWhs) async {
 //     log("From Whs----" + UserValues.branch.toString());
@@ -1898,7 +1898,7 @@
 //     });
 //     log("payload : $ddd");
 
-//     //RabitMQ
+//   
 //     Client client = Client();
 //     ConnectionSettings settings = ConnectionSettings(
 //         host: AppConstant.ip.toString().trim(), //"102.69.167.106"
@@ -1914,12 +1914,12 @@
 //         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
 //     exchange.publish(ddd, "", properties: properties);
 
-//     //cs
+//   
 
 //     properties.headers = {"Branch": "Server"};
 //     exchange.publish(ddd, "", properties: properties);
 
-//     //ToBranch
+//   
 
 //     properties.headers = {"Branch": toWhs};
 //     exchange.publish(ddd, "", properties: properties);
@@ -1946,7 +1946,7 @@
 // //     });
 // //     log("payload : $ddd");
 
-// //     //RabitMQ
+// //   
 // //     Client client = Client();
 // //     ConnectionSettings settings = ConnectionSettings(
 // //         host: "${AppConstant.ip.toString().trim()}", //"102.69.167.106"
@@ -1962,12 +1962,12 @@
 // //         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
 // //     exchange.publish(ddd, "", properties: properties);
 
-// //     //cs
+// //   
 
 // //     properties.headers = {"Branch": "Server"};
 // //     exchange.publish(ddd, "", properties: properties);
 
-// //     //ToBranch
+// //   
 
 // //     properties.headers = {"Branch": "${toWhs}"};
 // //     exchange.publish(ddd, "", properties: properties);

@@ -15,7 +15,6 @@ class ApprovalsRetPostAPi {
   static Future<ApprovalstoDocModal> getGlobalData() async {
     final data = json.encode({
       "Document": {
-        // "DocDueDate": "$docDueDate",
         "DocEntry": "$docEntry",
       }
     });
@@ -33,11 +32,9 @@ class ApprovalsRetPostAPi {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           "Document": {
-            // "DocDueDate": "$docDueDate",
             "DocEntry": "$docEntry",
           }
         }),
@@ -45,13 +42,10 @@ class ApprovalsRetPostAPi {
       log("statucCode: " + response.statusCode.toString());
       log("Approval to Doc Res: " + response.body);
       if (response.statusCode >= 200 && response.statusCode <= 204) {
-        // if (response.statusCode == 200 || response.statusCode == 204) {
-
         return ApprovalstoDocModal.fromJson(
           response.statusCode,
         );
       } else {
-        //  throw Exception('Restart the app or contact the admin!!..');
         return ApprovalstoDocModal.fromJson2(
           response.statusCode,
           json.decode(response.body),
@@ -59,7 +53,6 @@ class ApprovalsRetPostAPi {
       }
     } catch (e) {
       throw Exception(e);
-      // return ApprovalstoDocModal.issue('Restart the app or contact the admin!!..');
     }
   }
 }

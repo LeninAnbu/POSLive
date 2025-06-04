@@ -17,14 +17,11 @@ class RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // context.read<ForgotPasswordController>().disPosed();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
   }
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body: SafeArea(
@@ -33,12 +30,8 @@ class RegisterPageState extends State<RegisterPage> {
             alignment: Alignment.center,
             width: Screens.width(context),
             height: Screens.padingHeight(context),
-            //  decoration: BoxDecoration(
-            //    color: Colors.white
-            //  ),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              //  Stack(
               children: [MobForgotBodySection()],
             ),
           ),

@@ -29,10 +29,8 @@ class OrderToInvoicesPostAPI {
       "CardName": "$cardName",
       "DocumentStatus": "bost_Open",
       "DocDate": "$docDate",
-      // "DocDueDate": "$dueDate",
       "Comments": "$remarks",
-      "U_VAT_NUMBER":"$VATNo",
-      // 'Series': '$seriesType',
+      "U_VAT_NUMBER": "$VATNo",
       'U_TinNO': '$tinNo',
       "U_DeviceTransID": deviceTransID,
       "U_Truck_Internal": uTruckInternal,
@@ -51,10 +49,8 @@ class OrderToInvoicesPostAPI {
         "CardCode": "$cardCodePost",
         "DocumentStatus": "bost_Open",
         "DocDate": "$docDate",
-        // "DocDueDate": "$dueDate",
         "Comments": "$remarks",
-        "U_VAT_NUMBER":"$VATNo",
-        // 'Series': '$seriesType',
+        "U_VAT_NUMBER": "$VATNo",
         'U_TinNO': '$tinNo',
         "U_DeviceTransID": deviceTransID,
         "U_Truck_Internal": uTruckInternal,
@@ -70,24 +66,20 @@ class OrderToInvoicesPostAPI {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
           "DocType": "$docType",
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
-          // "DocDueDate": "$dueDate",
           "Comments": "$remarks",
-          "U_VAT_NUMBER":"$VATNo",
-          // 'Series': '$seriesType',
+          "U_VAT_NUMBER": "$VATNo",
           'U_TinNO': '$tinNo',
           "U_DeviceTransID": deviceTransID,
           "U_Truck_Internal": uTruckInternal,
           "U_PosUserCode": UserValues.userCode,
           "U_PosTerminal": AppConstant.terminal,
           "U_Request": data,
-
           "DocumentLines": docLineQout!.map((e) => e.tojson()).toList(),
         }),
       );
@@ -98,32 +90,30 @@ class OrderToInvoicesPostAPI {
               "CardCode": "$cardCodePost",
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
-              "DocDueDate": "$dueDate",
-              "U_VAT_NUMBER":"$VATNo",
+              // "DocDueDate": "$dueDate",
+              "U_VAT_NUMBER": "$VATNo",
               "Comments": "$remarks",
-              // 'Series': '$seriesType',
               'U_TinNO': '$tinNo',
               "U_DeviceTransID": deviceTransID,
               "U_Truck_Internal": uTruckInternal,
               "DocumentLines": docLineQout!.map((e) => e.tojson()).toList(),
             })}",
       );
-      // log("Responce: ${json.decode(response.body)}");
+
       log("statucCode: ${response.statusCode}");
-      // log("Quotations post: "+json.decode(response.body.toString()).toString());
+
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         json.decode(response.body.toString());
         return SapSalesinvoiceModel.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return SapSalesinvoiceModel.issue(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
+
       return SapSalesinvoiceModel.exceptionn(
           'Restart the app or contact the admin!!..\n', 500);
     }

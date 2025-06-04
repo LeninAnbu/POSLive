@@ -17,9 +17,7 @@ class SOCustAddressApii {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_SOCustAddressApi '$docEntry' "
-                    // "select T0.DocEntry,T0.CardCode,T0.CardName,T2.PrintHeadr,T0.Address  from ORDR T0 Inner Join OCRD T1 On T0.CardCode=T1.CardCode cross join OADM T2 Where T0.DocEntry ='$docEntry'"
+                "query": "EXEC BZ_POS_SOCustAddressApi '$docEntry' "
               }));
       log('message::${json.encode({
             "constr":

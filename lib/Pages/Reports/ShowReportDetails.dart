@@ -17,10 +17,6 @@ class _ShowReportDetState extends State<ShowReportDet> {
 
   bool _isHeaderScrolling = false;
   bool _isDataScrolling = false;
-  // List<newvaluedynamic> valuesddd = [];
-  // List<String> valuesheader = [];
-  // Map<String, dynamic> entryList = {};
-  // List<dynamic> keysList = [];
 
   void initState() {
     super.initState();
@@ -37,7 +33,6 @@ class _ShowReportDetState extends State<ShowReportDet> {
       _headerScrollController.jumpTo(_dataScrollController.position.pixels);
       _isHeaderScrolling = false;
     });
-    // log(context.read<ReportController>().valuesddd.length.toString());
   }
 
   @override

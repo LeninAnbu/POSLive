@@ -30,15 +30,12 @@ class StockIn_ListWidget extends StatelessWidget {
           SIN_Heigh * 0.008,
         ),
         decoration: const BoxDecoration(
-          // borderRadius: BorderRadius.circular(5),
           color: Colors.white,
-          // border: Border.all(color: theme.primaryColor.withOpacity(0.3))
         ),
         child: SizedBox(
           width: SIN_Width,
           height: SIN_Heigh,
           child: stInCon.stockInward.isEmpty
-              //  && stInCon.dbDataTrue == true
               ? Center(
                   child: Text(
                     "No data From Stock Outward..!!",
@@ -47,7 +44,6 @@ class StockIn_ListWidget extends StatelessWidget {
                   ),
                 )
               : stInCon.stockInward.isEmpty
-                  // && stInCon.dbDataTrue == false
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
@@ -70,32 +66,9 @@ class StockIn_ListWidget extends StatelessWidget {
                                     duration: const Duration(milliseconds: 400),
                                     curve: Curves.linearToEaseOut);
                               }
-
-                              // else if (stInCon
-                              //     .stockInward[index].data!.isEmpty) {
-                              //   showDialog(
-                              //       context: context,
-                              //       barrierDismissible: true,
-                              //       builder: (BuildContext context) {
-                              //         return AlertDialog(
-                              //             contentPadding:
-                              //                 const EdgeInsets.all(0),
-                              //             content: AlertBox(
-                              //                 payMent: 'Alert',
-                              //                 errormsg: true,
-                              //                 widget: Center(
-                              //                     child: ContentContainer(
-                              //                   content:
-                              //                       'This Item Saved in DraftBill..!!',
-                              //                   theme: theme,
-                              //                 )),
-                              //                 buttonName: null));
-                              //       });
-                              // }
                             },
                             child: Container(
                                 width: SIN_Heigh * 0.95,
-                                // height: SIN_Heigh * 0.3,
                                 padding: EdgeInsets.all(
                                   SIN_Heigh * 0.01,
                                 ),
@@ -105,19 +78,14 @@ class StockIn_ListWidget extends StatelessWidget {
                                                     .totalscannedqty(index) &&
                                             stInCon.totalValdationqty(index) !=
                                                 0)
-                                        ?
-                                        // Colors.red
-                                        const Color(0xFFfcedee)
-                                        // Color(0xFFebfaef)
+                                        ? const Color(0xFFfcedee)
                                         : (stInCon.totalqty(index) ==
                                                     stInCon.totalscannedqty(
                                                         index) &&
                                                 stInCon.totalValdationqty(
                                                         index) !=
                                                     0)
-                                            ?
-                                            // Colors.green
-                                            const Color(0xFFebfaef)
+                                            ? const Color(0xFFebfaef)
                                             : (stInCon.totalqty(index) ==
                                                         stInCon.totalscannedqty(
                                                             index) &&
@@ -142,19 +110,14 @@ class StockIn_ListWidget extends StatelessWidget {
                                               stInCon.totalValdationqty(
                                                       index) !=
                                                   0)
-                                          ?
-                                          // Colors.red
-                                          Colors.red.withOpacity(0.3)
-                                          // Color(0xFFebfaef)
+                                          ? Colors.red.withOpacity(0.3)
                                           : (stInCon.totalqty(index) ==
                                                       stInCon.totalscannedqty(
                                                           index) &&
                                                   stInCon.totalValdationqty(
                                                           index) !=
                                                       0)
-                                              ?
-                                              // Colors.green
-                                              Colors.green.withOpacity(0.3)
+                                              ? Colors.green.withOpacity(0.3)
                                               : (stInCon.totalqty(index) ==
                                                           stInCon
                                                               .totalscannedqty(
@@ -172,21 +135,16 @@ class StockIn_ListWidget extends StatelessWidget {
                                       children: [
                                         Container(
                                           width: SIN_Width,
-                                          // color: Colors.amber,
                                           padding:
                                               EdgeInsets.all(SIN_Heigh * 0.006),
                                           decoration: BoxDecoration(
-                                              // color: Colors.grey[200],
                                               borderRadius:
                                                   BorderRadius.circular(4)),
                                           child: Text(
                                             "Inventory Transfer From ${stInCon.stockInward[index].reqtoWhs}",
-                                            // "${stInCon.getScanneditemData[index].ItemName}",
                                             style: theme.textTheme.bodyMedium!
                                                 .copyWith(
-                                              // fontSize: 12,
                                               color: Colors.black,
-                                              // fontWeight: FontWeight.bold
                                             ),
                                           ),
                                         ),
@@ -204,44 +162,25 @@ class StockIn_ListWidget extends StatelessWidget {
                                                 Container(
                                                   padding: EdgeInsets.all(
                                                       SIN_Heigh * 0.005),
-
-                                                  // width: SIN_Width * 0.3,
                                                   decoration: BoxDecoration(
-                                                      // color: Colors.grey[600],
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4)),
-                                                  // color: Colors.blue,
                                                   child: Text(
                                                     "# ${stInCon.stockInward[index].reqtransdate}",
-                                                    // "${stInCon.getScanneditemData[index].SerialBatch}",
                                                     style: theme
                                                         .textTheme.bodyMedium!
-                                                        .copyWith(
-                                                            // color: Colors.green,
-                                                            // fontSize: 10,
-                                                            // fontWeight:
-                                                            //     FontWeight.bold
-                                                            ),
+                                                        .copyWith(),
                                                   ),
                                                 ),
                                                 Container(
-                                                  // width: SIN_Width * 0.6,
                                                   decoration:
-                                                      const BoxDecoration(
-                                                          // color: Colors.amber,
-                                                          ),
+                                                      const BoxDecoration(),
                                                   child: Text(
                                                     "${stInCon.stockInward[index].branch}",
-                                                    // "${stInCon.getScanneditemData[index].ItemCode}",
                                                     style: theme
                                                         .textTheme.bodyMedium!
-                                                        .copyWith(
-                                                            // color: Colors.blueGrey,
-                                                            // fontSize: 12,
-                                                            // fontWeight:
-                                                            //     FontWeight.bold
-                                                            ),
+                                                        .copyWith(),
                                                   ),
                                                 ),
                                               ],

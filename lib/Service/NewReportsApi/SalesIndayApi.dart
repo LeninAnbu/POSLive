@@ -24,7 +24,6 @@ class SalesInDayApi {
                     " [BZ_POS_CONSOLIDATED SALES IN DAY_R1] '$frmDate' , '$toDate' , '${AppConstant.branch}'"
               }));
 
-      // log("AutoSelect Data Res: ${json.decode(response.body)}");
       print(response.statusCode);
       if (response.statusCode == 200) {
         return SalesInDay.fromJson(
@@ -37,7 +36,7 @@ class SalesInDayApi {
       }
     } catch (e) {
       log(' SalesInDay:::$e');
-      //  throw Exception("Exception: $e");
+
       return SalesInDay.error(e.toString(), 500);
     }
   }

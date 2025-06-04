@@ -25,7 +25,6 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
     Configure config = Configure();
     return Container(
         padding: EdgeInsets.all(Screens.bodyheight(context) * 0.008),
-        // height: Screens.padingHeight(context) * 0.09,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -36,10 +35,8 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                   Container(
                     alignment: Alignment.topLeft,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.amber,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
                           width: Screens.width(context),
@@ -62,13 +59,10 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                       ],
                     ),
                   ),
-                  // SizedBox(height: Screens.width(context)*0.02,),
                   Container(
                     alignment: Alignment.topRight,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.blueAccent,
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
@@ -104,10 +98,8 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                   Container(
                     alignment: Alignment.topLeft,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.amber,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
                           width: Screens.width(context),
@@ -130,13 +122,10 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                       ],
                     ),
                   ),
-                  // SizedBox(height: Screens.width(context)*0.02,),
                   Container(
                     alignment: Alignment.topRight,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.blueAccent,
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
@@ -154,7 +143,6 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                           child: Text(
                             config.alignDate(
                                 widget.syncDatadetails.sapDate.toString()),
-                            // textAlign: TextAlign.end,
                             style: widget.theme.textTheme.bodyMedium
                                 ?.copyWith(color: Colors.black),
                           ),
@@ -173,10 +161,8 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                   Container(
                     alignment: Alignment.topLeft,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.amber,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
                           width: Screens.width(context),
@@ -202,7 +188,6 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                   Container(
                     alignment: Alignment.topRight,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.blueAccent,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -221,7 +206,6 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                           child: Text(
                             config.alignDate(
                                 widget.syncDatadetails.docdate.toString()),
-                            // textAlign: TextAlign.end,
                             style: widget.theme.textTheme.bodyMedium
                                 ?.copyWith(color: Colors.black),
                           ),
@@ -267,7 +251,6 @@ class _SyncDataDetailsState extends State<SyncDataDetails> {
                   Container(
                     alignment: Alignment.topRight,
                     width: Screens.width(context) * 0.2,
-                    // color: Colors.blueAccent,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [

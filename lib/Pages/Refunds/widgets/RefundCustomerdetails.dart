@@ -37,15 +37,12 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
           left: widget.custHeight * 0.01,
           right: widget.custHeight * 0.01),
       width: widget.custWidth,
-      //height: custHeight,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           context.read<RefundController>().selectedcust2 != null
               ? Container()
               : Container(
-                  // width: custWidth * 0.7,
                   width: widget.custWidth * 1,
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -60,7 +57,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       onChanged: (v) {},
                       onEditingComplete: () {
                         st(() {
-                          //  context.read<RefundController>().cardCodeScan(context, theme);
                           context.read<RefundController>().scancardcode(
                               context
                                   .read<RefundController>()
@@ -74,59 +70,8 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                         });
                       },
                       decoration: InputDecoration(
-                        // suffixIcon: IconButton(
-                        //     onPressed: () {
-                        //       context.read<RefundController>().clearTextField();
-                        //       // context
-                        //       //     .read<RefundController>()
-                        //       //     .refreshfiltercust();
-                        //       // showDialog(
-                        //       //     context: context,
-                        //       //     barrierDismissible: false,
-                        //       //     builder: (BuildContext context) {
-                        //       //       return AlertDialog(
-                        //       //           contentPadding: EdgeInsets.all(0),
-                        //       //           content: AlertBox(
-                        //       //             payMent: 'Select Customer',
-                        //       //             widget: forSearchBtn(context),
-                        //       //             buttonName: "Add New",
-                        //       //             callback: () {
-                        //       //               Navigator.pop(context);
-                        //       //               showDialog(
-                        //       //                   context: context,
-                        //       //                   barrierDismissible: false,
-                        //       //                   builder:
-                        //       //                       (BuildContext context) {
-                        //       //                     return AlertDialog(
-                        //       //                         contentPadding:
-                        //       //                             EdgeInsets.all(0),
-                        //       //                         content: AlertBox(
-                        //       //                           payMent: 'New Customer',
-                        //       //                           widget: forAddNewBtn(
-                        //       //                               context),
-                        //       //                           buttonName: "Save",
-                        //       //                           callback: () {
-                        //       //                             // context
-                        //       //                             //     .read<
-                        //       //                             //         RefundController>()
-                        //       //                             //     .addnewCustomer(
-                        //       //                             //         context, 6);
-                        //       //                             // prdCD.addNewCus(context, 6);
-                        //       //                           },
-                        //       //                         ));
-                        //       //                   });
-                        //       //             },
-                        //       //           ));
-                        //       //     });
-                        //     },
-
-                        // size: custHeight * 0.08,
-                        // color: Colors.grey,
-                        // icon: Icon(Icons.search)),
                         hintText: 'Customers',
-                        hintStyle: theme.textTheme.bodyLarge?.copyWith(
-                            // color: Colors.grey
-                            ),
+                        hintStyle: theme.textTheme.bodyLarge?.copyWith(),
                         filled: false,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
@@ -147,20 +92,16 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                   padding: EdgeInsets.symmetric(
                       vertical: widget.custHeight * 0.02,
                       horizontal: widget.custWidth * 0.02),
-                  // height: custHeight * 0.75,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           width: widget.custWidth,
                           alignment: Alignment.centerRight,
-                          // height: custHeight * 0.02,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                // color: Colors.green,
                                 width: widget.custWidth * 0.8,
                                 child: Text(
                                   context
@@ -174,63 +115,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                       color: Colors.black, fontSize: 20),
                                 ),
                               ),
-                              // InkWell(
-                              //     onTap: () {
-                              //       // prdCD.mapUpdateCustomer(
-                              //       //     prdCD.getselectedCustomer);
-                              //       // showDialog(
-                              //       //     context: context,
-                              //       //     barrierDismissible: false,
-                              //       //     builder: (BuildContext context) {
-                              //       //       return AlertDialog(
-                              //       //           contentPadding: EdgeInsets.all(0),
-                              //       //           content: AlertBox(
-                              //       //             payMent: 'Update Customer',
-                              //       //             widget: forAddNewBtn(
-                              //       //                 context, prdCD),
-                              //       //             buttonName: "Save",
-                              //       //             callback: () {
-                              //       //               showDialog(
-                              //       //                   context: context,
-                              //       //                   barrierDismissible: false,
-                              //       //                   builder: (BuildContext
-                              //       //                       context) {
-                              //       //                     return AlertDialog(
-                              //       //                       contentPadding:
-                              //       //                           EdgeInsets.all(0),
-                              //       //                       content: updateType(
-                              //       //                           context,
-                              //       //                           prdCD,
-                              //       //                           prdCD
-                              //       //                               .getselectedBillAdress!),
-                              //       //                     );
-                              //       //                   });
-                              //       //             },
-                              //       //           ));
-                              //       //     });
-                              //     },
-                              // child: Container(
-                              //   width: widget.custWidth * 0.06,
-                              //   alignment: Alignment.center,
-                              //   //     color: Colors.red,
-                              //   child: Icon(Icons.edit),
-                              // )),
-                              // StatefulBuilder(builder: (context, st) {
-                              //   return InkWell(
-                              //       onTap: () {
-                              //         st(() {
-                              //           // context
-                              //           //     .read<RefundController>()
-                              //           //     .clearpayData();
-                              //         });
-                              //       },
-                              //       child: Container(
-                              //         width: widget.custWidth * 0.06,
-                              //         alignment: Alignment.center,
-                              //         //     color: Colors.blue,
-                              //         child: Icon(Icons.close_sharp),
-                              //       ));
-                              // }),
                             ],
                           ) // IconButton(onPressed: (){}, icon: Icon(Icons.close_sharp))
                           ),
@@ -239,7 +123,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       ),
                       SizedBox(
                         width: widget.custWidth,
-                        // color: Colors.green,
                         child: Row(
                           children: [
                             Row(
@@ -247,7 +130,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                 const Icon(
                                   Icons.phone,
                                   color: Colors.black54,
-                                  // size: custHeight * 0.05,
                                 ),
                                 Text(
                                     " ${context.watch<RefundController>().getselectedcust2!.phNo}  |  ",
@@ -260,7 +142,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                 const Icon(
                                   Icons.mail_outline,
                                   color: Colors.black54,
-                                  // size: custHeight * 0.05,
                                 ),
                                 Text(
                                     " ${context.watch<RefundController>().getselectedcust2!.email}",
@@ -282,7 +163,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                           children: [
                             SizedBox(
                               width: widget.custWidth * 0.465,
-                              // height: custHeight * 0.02,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -306,8 +186,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: widget.custWidth * 0.465,
-                              //  color: Colors.red,
-                              // height: custHeight * 0.02,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -333,15 +211,7 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                               style: theme.textTheme.bodyLarge
                                                   ?.copyWith(
                                                       color: Colors.black54))
-                                          : null
-                                      // Text(
-                                      //     prdCD.onAccPayment
-                                      //         .toString()
-                                      //         .replaceAll(",", ""),
-                                      //     style: theme.textTheme.bodyMedium
-                                      //         ?.copyWith(
-                                      //             color: Colors.black54)),
-                                      ),
+                                          : null),
                                 ],
                               ),
                             ),
@@ -353,14 +223,11 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       ),
                       SizedBox(
                         width: widget.custWidth,
-                        // color: Colors.green,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: widget.custWidth * 0.465,
-                              //  color: Colors.green,
-                              // height: custHeight * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -383,8 +250,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: widget.custWidth * 0.465,
-                              // color: Colors.red,
-                              // height: custHeight * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -409,13 +274,9 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: () {
-                              // prdCD.clearTextField();
-                              // billAddress(context, prdCD);
-                            },
+                            onTap: () {},
                             child: SizedBox(
                               width: widget.custWidth * 0.465,
-                              // color: Colors.red,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -442,7 +303,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                     ),
                                   ),
                                   Text(
-                                    // [prdCD.getselectedBillAdress!]
                                     "${context.watch<RefundController>().getselectedcust2!.address![0].address1.toString()}, ${context.watch<RefundController>().getselectedcust2!.address![0].address2.toString()}, ${context.watch<RefundController>().getselectedcust2!.address![0].address3}",
                                     maxLines: 1,
                                     style: theme.textTheme.bodyLarge
@@ -486,12 +346,9 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                             ),
                           ),
                           InkWell(
-                            onTap: () {
-                              // sipaddress(context, prdCD);
-                            },
+                            onTap: () {},
                             child: SizedBox(
                               width: widget.custWidth * 0.465,
-                              //color: Colors.green,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -529,7 +386,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                         .read<RefundController>()
                                         .getselectedcust2!
                                         .address![0]
-                                        // [prdCD.getselectedBillAdress!]
                                         .billCity
                                         .toString(),
                                     maxLines: 1,
@@ -585,21 +441,17 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       padding: EdgeInsets.symmetric(
                           vertical: widget.custHeight * 0.02,
                           horizontal: widget.custWidth * 0.02),
-                      // height: custHeight * 0.75,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                               width: widget.custWidth,
                               alignment: Alignment.centerRight,
-                              // height: custHeight * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    // color: Colors.green,
                                     width: widget.custWidth * 0.8,
                                     child: Text(
                                       context
@@ -615,66 +467,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                               fontSize: 20),
                                     ),
                                   ),
-                                  // InkWell(
-                                  //     onTap: () {
-                                  //       // context
-                                  //       //     .read<RefundController>()
-                                  //       //     .mapUpdateCustomer(context
-                                  //       //         .read<RefundController>()
-                                  //       //         .getselectedCustomer);
-                                  //       showDialog(
-                                  //           context: context,
-                                  //           barrierDismissible: false,
-                                  //           builder: (BuildContext context) {
-                                  //             return AlertDialog(
-                                  //                 contentPadding:
-                                  //                     EdgeInsets.all(0),
-                                  //                 content: AlertBox(
-                                  //                   payMent: 'Update Customer',
-                                  //                   widget:
-                                  //                       forAddNewBtn(context),
-                                  //                   buttonName: "Save",
-                                  //                   callback: () {
-                                  //                     showDialog(
-                                  //                         context: context,
-                                  //                         barrierDismissible:
-                                  //                             false,
-                                  //                         builder: (BuildContext
-                                  //                             context) {
-                                  //                           return AlertDialog(
-                                  //                             contentPadding:
-                                  //                                 EdgeInsets
-                                  //                                     .all(0),
-                                  //                             content: updateType(
-                                  //                                 context,
-                                  //                                 context
-                                  //                                     .read<
-                                  //                                         RefundController>()
-                                  //                                     .getselectedBillAdress!),
-                                  //                           );
-                                  //                         });
-                                  //                   },
-                                  //                 ));
-                                  //           });
-                                  //     },
-                                  //     child: Container(
-                                  //       width: widget.custWidth * 0.06,
-                                  //       alignment: Alignment.center,
-                                  //       //     color: Colors.red,
-                                  //       child: Icon(Icons.edit),
-                                  //     )),
-                                  // InkWell(
-                                  //     onTap: () {
-                                  //       // context
-                                  //       //     .read<RefundController>()
-                                  //       //     .clearpayData();
-                                  //     },
-                                  //     child: Container(
-                                  //       width: widget.custWidth * 0.06,
-                                  //       alignment: Alignment.center,
-                                  //       //     color: Colors.blue,
-                                  //       child: Icon(Icons.close_sharp),
-                                  //     )),
                                 ],
                               ) // IconButton(onPressed: (){}, icon: Icon(Icons.close_sharp))
                               ),
@@ -683,7 +475,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                           ),
                           SizedBox(
                             width: widget.custWidth,
-                            // color: Colors.green,
                             child: Row(
                               children: [
                                 Row(
@@ -691,7 +482,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                     const Icon(
                                       Icons.phone,
                                       color: Colors.black54,
-                                      // size: custHeight * 0.05,
                                     ),
                                     Text(
                                         " ${context.watch<RefundController>().getselectedcust!.phNo}  |  ",
@@ -704,7 +494,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                     const Icon(
                                       Icons.mail_outline,
                                       color: Colors.black54,
-                                      // size: custHeight * 0.05,
                                     ),
                                     Text(
                                         " ${context.watch<RefundController>().getselectedcust!.email}",
@@ -726,7 +515,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                               children: [
                                 SizedBox(
                                   width: widget.custWidth * 0.465,
-                                  // height: custHeight * 0.02,
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -753,8 +541,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                 Container(
                                   alignment: Alignment.centerRight,
                                   width: widget.custWidth * 0.465,
-                                  //  color: Colors.red,
-                                  // height: custHeight * 0.02,
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -793,14 +579,11 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                           ),
                           SizedBox(
                             width: widget.custWidth,
-                            // color: Colors.green,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
                                   width: widget.custWidth * 0.465,
-                                  //  color: Colors.green,
-                                  // height: custHeight * 0.02,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -825,8 +608,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                 Container(
                                   alignment: Alignment.centerRight,
                                   width: widget.custWidth * 0.465,
-                                  // color: Colors.red,
-                                  // height: custHeight * 0.02,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -858,13 +639,9 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                       .read<RefundController>()
                                       .clearTextField();
                                   billAddress(context);
-                                  // context
-                                  //     .read<RefundController>()
-                                  //     .disableKeyBoard(context);
                                 },
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
-                                  // color: Colors.red,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -893,7 +670,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                         ),
                                       ),
                                       Text(
-                                        // [prdCD.getselectedBillAdress!]
                                         "${context.watch<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedBillAdress!].address1 != null ? context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedBillAdress!].address1.toString() : ""} "
                                         "${context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedBillAdress!].address2 != null ? context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedBillAdress!].address2.toString() : ""} "
                                         "${context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedBillAdress!].address3 != null ? context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedBillAdress!].address3.toString() : ""}",
@@ -947,13 +723,9 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                               InkWell(
                                 onTap: () {
                                   sipaddress(context);
-                                  // context
-                                  //     .read<RefundController>()
-                                  //     .disableKeyBoard(context);
                                 },
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
-                                  //color: Colors.green,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -986,12 +758,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                         "${context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedShipAdress!].address1 != null ? context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedShipAdress!].address1.toString() : ""} "
                                         "${context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedShipAdress!].address2 != null ? context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedShipAdress!].address2.toString() : ""} "
                                         "${context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedShipAdress!].address3 != null ? context.read<RefundController>().getselectedcust!.address![context.read<RefundController>().getselectedShipAdress!].address3.toString() : ""}",
-
-                                        // "${prdCD.getselectedcust!.address![0].address1.toString()}, " +
-                                        //     "${prdCD.getselectedcust!.address![0].address2.toString()}, " +
-                                        //     prdCD.getselectedcust!.address![0]
-                                        //         .address3
-                                        //         .toString(),
                                         maxLines: 1,
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54),
@@ -1003,7 +769,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                                             .address![context
                                                 .read<RefundController>()
                                                 .getselectedShipAdress!]
-                                            // [prdCD.getselectedBillAdress!]
                                             .billCity
                                             .toString(),
                                         maxLines: 1,
@@ -1075,9 +840,7 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                 controller: context.read<RefundController>().mycontroller[2],
                 cursorColor: Colors.grey,
                 onChanged: (v) {
-                  st(() {
-                    // context.read<RefundController>().filtercustomerList(v);
-                  });
+                  st(() {});
                 },
                 decoration: InputDecoration(
                   hintText: 'Search customer..!!',
@@ -1110,7 +873,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                               left: widget.custHeight * 0.01,
                               right: widget.custHeight * 0.01,
                               bottom: widget.custHeight * 0.03),
-                          // height: custHeight * 0.2,
                           child: ListTile(
                             onTap: () {
                               context.read<RefundController>().custSelected(
@@ -1180,7 +942,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
             bottom: widget.custHeight * 0.02),
         width: widget.custWidth * 1.1,
         height: widget.custHeight * 1.5,
-        // color: Colors.red,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -1243,8 +1004,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       height: widget.custHeight * 0.03,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1295,7 +1054,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       height: widget.custHeight * 0.03,
                     ),
                     Container(
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1308,13 +1066,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                         style: theme.textTheme.bodyLarge
                             ?.copyWith(color: Colors.black),
                         onChanged: (v) {},
-                        // validator: (value) {
-                        //   if (value!.isEmpty) {
-                        //     return "Please Enter the GST No";
-                        //   } else {
-                        //     return null;
-                        //   }
-                        // },
                         decoration: InputDecoration(
                           labelText: "Gst",
                           filled: false,
@@ -1345,8 +1096,6 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                       height: widget.custHeight * 0.09,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1394,19 +1143,15 @@ class _RefundCustomerDetailsState extends State<RefundCustomerDetails> {
                     SizedBox(
                       height: widget.custHeight * 0.02,
                     ),
-                    //addreswidget
                     AddressWidget(
                       theme: theme,
                       custHeight: widget.custHeight,
                       custWidth: widget.custWidth,
                     ),
-
                     SizedBox(
                       height: widget.custHeight * 0.02,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 0.65,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1492,7 +1237,6 @@ class TopCustomer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // print(posC.custList[ind].name);
         context.read<RefundController>().custSelected(
             context.read<RefundController>().custList2[ind], context, theme);
       },
@@ -1518,7 +1262,6 @@ Widget updateType(BuildContext context, int ii) {
   final theme = Theme.of(context);
   return SizedBox(
     width: Screens.width(context) * 0.8,
-    //  height: Screens.padingHeight(context) * 0.4,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -1527,14 +1270,11 @@ Widget updateType(BuildContext context, int ii) {
           height: Screens.padingHeight(context) * 0.05,
           decoration: BoxDecoration(
             color: theme.primaryColor,
-            // borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // color: Colors.red,
                 width: Screens.width(context) * 0.4,
                 alignment: Alignment.center,
                 child: Text(
@@ -1586,9 +1326,7 @@ Widget updateType(BuildContext context, int ii) {
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context);
-                          // context
-                          //     .read<RefundController>()
-                          //     .updateCustomer(ii);
+
                           Navigator.pop(context);
                         },
                         child: const Text("Update to server")),
@@ -1598,9 +1336,7 @@ Widget updateType(BuildContext context, int ii) {
                       child: ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            // context
-                            //     .read<RefundController>()
-                            //     .updateCustomer(ii);
+
                             Navigator.pop(context);
                           },
                           child: const Text("This sale"))),
@@ -1649,9 +1385,7 @@ billAddress(BuildContext context) async {
                           return InkWell(
                             onTap: () {
                               context.read<RefundController>().clearTextField();
-                              // context
-                              //     .read<RefundController>()
-                              //     .changeBillAddress(index);
+
                               Navigator.pop(context);
                             },
                             child: Card(
@@ -1665,15 +1399,6 @@ billAddress(BuildContext context) async {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        //             ListTile(
-                                        //   title: Text( pos.selectedcust!.address[index].billAddress,
-                                        //       style: theme.textTheme.bodySmall),
-                                        //   onTap: () {
-                                        //     pos.changeBillAddress(index);
-                                        //     //pos.selectedcust!.address[pos.selectedAdress].billAddress = pos.selectedcust!.address[index].billAddress;
-                                        //     Navigator.pop(context);
-                                        //   },
-                                        // ),
                                         Text(
                                             "${context.watch<RefundController>().getselectedcust!.address![index].address1 ?? ''},"
                                             "${context.watch<RefundController>().getselectedcust!.address![index].address2 ?? ''},"
@@ -1738,9 +1463,6 @@ sipaddress(BuildContext context) async {
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
-                        // context
-                        //     .read<RefundController>()
-                        //     .changeShipAddress(index);
                         Navigator.pop(context);
                       },
                       child: Card(
@@ -1771,32 +1493,6 @@ sipaddress(BuildContext context) async {
                                       .getselectedcust!
                                       .address![index]
                                       .billstate)
-                                  //             ListTile(
-                                  //   title: Text(pos.selectedcust!.address[index].shipAddress,
-                                  //       style: theme.textTheme.bodySmall),
-                                  //   onTap: () {
-                                  //     pos.changeShipAddress(index);
-                                  //     // pos.selectedcust!.address[0].shipAddress =
-                                  //     //     pos.selectedcust!.address[index].shipAddress;
-                                  //     Navigator.pop(context);
-                                  //   },
-                                  // ),
-                                  // Container(
-                                  //   child: Text(
-                                  //       "${pos.getselectedcust!.address![index].shipAddress}"),
-                                  // ),
-                                  // Container(
-                                  //   child: Text(
-                                  //       "${pos.getselectedcust!.address![index].shipCity}"),
-                                  // ),
-                                  // Container(
-                                  //   child: Text(
-                                  //       "${pos.getselectedcust!.address![index].shipPincode}"),
-                                  // ),
-                                  // Container(
-                                  //   child: Text(
-                                  //       "${pos.getselectedcust!.address![index].shipstate}"),
-                                  // )
                                 ],
                               ))),
                     );
@@ -1826,11 +1522,7 @@ createAddress(BuildContext context, ThemeData theme) async {
               payMent: 'Create Address',
               widget: createAddressMethod(theme, context),
               buttonName: "Save",
-              callback: () {
-                // context.read<RefundController>().createadd(context);
-                // Navigator.pop(context);
-                // pos.insertCreatenewAddress();
-              },
+              callback: () {},
             ));
       });
 }
@@ -1880,8 +1572,6 @@ class AddressWidget extends StatelessWidget {
               height: custHeight * 0.02,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -1929,8 +1619,6 @@ class AddressWidget extends StatelessWidget {
               height: custHeight * 0.02,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -1940,13 +1628,6 @@ class AddressWidget extends StatelessWidget {
                 cursorColor: Colors.grey,
                 style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black),
                 onChanged: (v) {},
-                // validator: (value) {
-                //   if (value!.isEmpty) {
-                //     return "Please Enter the Address2";
-                //   } else {
-                //     return null;
-                //   }
-                // },
                 decoration: InputDecoration(
                   labelText: "Bill Address2",
                   filled: false,
@@ -1977,8 +1658,6 @@ class AddressWidget extends StatelessWidget {
               height: custHeight * 0.02,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -1988,13 +1667,6 @@ class AddressWidget extends StatelessWidget {
                 cursorColor: Colors.grey,
                 style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black),
                 onChanged: (v) {},
-                // validator: (value) {
-                //   if (value!.isEmpty) {
-                //     return "Please Enter the Address3";
-                //   } else {
-                //     return null;
-                //   }
-                // },
                 decoration: InputDecoration(
                   labelText: "Bill Address3",
                   filled: false,
@@ -2028,7 +1700,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2075,7 +1746,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2131,7 +1801,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2178,7 +1847,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2192,13 +1860,6 @@ class AddressWidget extends StatelessWidget {
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the State";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       hintText: "TZ",
                       filled: false,
@@ -2231,7 +1892,6 @@ class AddressWidget extends StatelessWidget {
               height: custHeight * 0.02,
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
@@ -2248,7 +1908,6 @@ class AddressWidget extends StatelessWidget {
                     onChanged: (val) {
                       st(() {
                         context.read<RefundController>().checkboxx = val!;
-                        // context.read<RefundController>().billToShip(val);
                       });
                     }),
               ],
@@ -2260,14 +1919,11 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: Colors.grey.withOpacity(0.01),
                   ),
                   child: TextFormField(
-                    // autofocus: true,
                     controller:
                         context.read<RefundController>().mycontroller[14],
                     cursorColor: Colors.grey,
@@ -2311,8 +1967,6 @@ class AddressWidget extends StatelessWidget {
                   height: custHeight * 0.02,
                 ),
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: Colors.grey.withOpacity(0.01),
@@ -2325,13 +1979,6 @@ class AddressWidget extends StatelessWidget {
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the Ship Address2";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       labelText: 'Ship Address2',
                       filled: false,
@@ -2362,8 +2009,6 @@ class AddressWidget extends StatelessWidget {
                   height: custHeight * 0.02,
                 ),
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     border: Border.all(
                         color: const Color.fromARGB(255, 240, 235, 235)),
@@ -2378,13 +2023,6 @@ class AddressWidget extends StatelessWidget {
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the Ship Address3";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       labelText: "Ship Address3",
                       filled: false,
@@ -2420,7 +2058,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2467,7 +2104,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2523,7 +2159,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2570,7 +2205,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2584,13 +2218,6 @@ class AddressWidget extends StatelessWidget {
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the State";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       hintText: "TZ",
                       filled: false,
@@ -2664,13 +2291,13 @@ class AddressWidget extends StatelessWidget {
 //           left: custHeight * 0.01,
 //           right: custHeight * 0.01),
 //       width: custWidth,
-//       //height: custHeight,
+//     
 //       child: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
-//         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       
 //         children: [
 //           Container(
-//             // width: custWidth * 0.7,
+//           
 //             width: custWidth * 1,
 //             decoration: BoxDecoration(
 //               border: Border.all(color: Color.fromARGB(255, 240, 235, 235)),
@@ -2710,7 +2337,7 @@ class AddressWidget extends StatelessWidget {
 //                                                     context, prdCD),
 //                                                 buttonName: "Save",
 //                                                 callback: () {
-//                                                   // prdCD.addNewCus(context, 6);
+//                                                 
 //                                                 },
 //                                               ));
 //                                         });
@@ -2719,12 +2346,12 @@ class AddressWidget extends StatelessWidget {
 //                           });
 //                     },
 
-//                     // size: custHeight * 0.08,
+//                   
 //                     color: Colors.grey,
 //                     icon: Icon(Icons.search)),
 //                 hintText: 'Customers',
 //                 hintStyle: theme.textTheme.bodyMedium?.copyWith(
-//                     // color: Colors.grey
+//                   
 //                     ),
 //                 filled: false,
 //                 enabledBorder: InputBorder.none,
@@ -2758,20 +2385,20 @@ class AddressWidget extends StatelessWidget {
 //                   padding: EdgeInsets.symmetric(
 //                       vertical: custHeight * 0.02,
 //                       horizontal: custWidth * 0.02),
-//                   // height: custHeight * 0.75,
+//                 
 //                   child: Column(
 //                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   
 //                     children: [
 //                       Container(
 //                           width: custWidth,
 //                           alignment: Alignment.centerRight,
-//                           // height: custHeight * 0.02,
+//                         
 //                           child: Row(
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
 //                               Container(
-//                                 // color: Colors.green,
+//                               
 //                                 width: custWidth * 0.8,
 //                                 child: Text(
 //                                   prdCD.getselectedcust!.name != null
@@ -2781,54 +2408,54 @@ class AddressWidget extends StatelessWidget {
 //                                       color: Colors.black, fontSize: 20),
 //                                 ),
 //                               ),
-//                               // InkWell(
-//                               //     onTap: () {
-//                               //       prdCD.mapUpdateCustomer(
-//                               //           prdCD.getselectedCustomer);
-//                               //       showDialog(
-//                               //           context: context,
-//                               //           barrierDismissible: false,
-//                               //           builder: (BuildContext context) {
-//                               //             return AlertDialog(
-//                               //                 contentPadding: EdgeInsets.all(0),
-//                               //                 content: AlertBox(
-//                               //                   payMent: 'Update Customer',
-//                               //                   widget: forAddNewBtn(
-//                               //                       context, prdCD),
-//                               //                   buttonName: "Save",
-//                               //                   callback: () {
-//                               //                     showDialog(
-//                               //                         context: context,
-//                               //                         barrierDismissible: false,
-//                               //                         builder: (BuildContext
-//                               //                             context) {
-//                               //                           return AlertDialog(
-//                               //                             contentPadding:
-//                               //                                 EdgeInsets.all(0),
-//                               //                             content: updateType(
-//                               //                                 context, prdCD),
-//                               //                           );
-//                               //                         });
-//                               //                   },
-//                               //                 ));
-//                               //           });
-//                               //     },
-//                               //     child: Container(
-//                               //       width: custWidth * 0.06,
-//                               //       alignment: Alignment.center,
-//                               //       //     color: Colors.red,
-//                               //       child: Icon(Icons.edit),
-//                               //     )),
-//                               // InkWell(
-//                               //     onTap: () {
-//                               //       prdCD.clearpayData();
-//                               //     },
-//                               //     child: Container(
-//                               //       width: custWidth * 0.06,
-//                               //       alignment: Alignment.center,
-//                               //       //     color: Colors.blue,
-//                               //       child: Icon(Icons.close_sharp),
-//                               //     )),
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
 //                             ],
 //                           ) // IconButton(onPressed: (){}, icon: Icon(Icons.close_sharp))
 //                           ),
@@ -2837,19 +2464,19 @@ class AddressWidget extends StatelessWidget {
 //                       ),
 //                       Container(
 //                         width: custWidth,
-//                         // color: Colors.green,
+//                       
 //                         child: Row(
 //                           children: [
 //                             Container(
-//                               // color: Colors.green,
-//                               // height: custHeight * 0.02,
+//                             
+//                             
 //                               child: Row(
 //                                 children: [
 //                                   Container(
 //                                     child: Icon(
 //                                       Icons.phone,
 //                                       color: Colors.black54,
-//                                       // size: custHeight * 0.05,
+//                                     
 //                                     ),
 //                                   ),
 //                                   Container(
@@ -2868,7 +2495,7 @@ class AddressWidget extends StatelessWidget {
 //                                     child: Icon(
 //                                       Icons.mail_outline,
 //                                       color: Colors.black54,
-//                                       // size: custHeight * 0.05,
+//                                     
 //                                     ),
 //                                   ),
 //                                   Container(
@@ -2894,7 +2521,7 @@ class AddressWidget extends StatelessWidget {
 //                           children: [
 //                             Container(
 //                               width: custWidth * 0.465,
-//                               // height: custHeight * 0.02,
+//                             
 //                               child: Row(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 mainAxisAlignment:
@@ -2921,8 +2548,8 @@ class AddressWidget extends StatelessWidget {
 //                             Container(
 //                               alignment: Alignment.centerRight,
 //                               width: custWidth * 0.465,
-//                               //  color: Colors.red,
-//                               // height: custHeight * 0.02,
+//                             
+//                             
 //                               child: Row(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 mainAxisAlignment:
@@ -2943,13 +2570,13 @@ class AddressWidget extends StatelessWidget {
 //                                                   ?.copyWith(
 //                                                       color: Colors.black54))
 //                                           : null
-//                                       // Text(
-//                                       //     prdCD.onAccPayment
-//                                       //         .toString()
-//                                       //         .replaceAll(",", ""),
-//                                       //     style: theme.textTheme.bodyMedium
-//                                       //         ?.copyWith(
-//                                       //             color: Colors.black54)),
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
 //                                       ),
 //                                 ],
 //                               ),
@@ -2962,14 +2589,14 @@ class AddressWidget extends StatelessWidget {
 //                       ),
 //                       Container(
 //                         width: custWidth,
-//                         // color: Colors.green,
+//                       
 //                         child: Row(
 //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                           children: [
 //                             Container(
 //                               width: custWidth * 0.465,
-//                               //  color: Colors.green,
-//                               // height: custHeight * 0.02,
+//                             
+//                             
 //                               child: Row(
 //                                 mainAxisAlignment:
 //                                     MainAxisAlignment.spaceBetween,
@@ -2994,8 +2621,8 @@ class AddressWidget extends StatelessWidget {
 //                             Container(
 //                               alignment: Alignment.centerRight,
 //                               width: custWidth * 0.465,
-//                               // color: Colors.red,
-//                               // height: custHeight * 0.02,
+//                             
+//                             
 //                               child: Row(
 //                                 mainAxisAlignment:
 //                                     MainAxisAlignment.spaceBetween,
@@ -3025,11 +2652,11 @@ class AddressWidget extends StatelessWidget {
 //                         children: [
 //                           InkWell(
 //                             onTap: () {
-//                               // billAddress(context, prdCD);
+//                             
 //                             },
 //                             child: Container(
 //                               width: custWidth * 0.465,
-//                               // color: Colors.red,
+//                             
 //                               child: Column(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 children: [
@@ -3058,7 +2685,7 @@ class AddressWidget extends StatelessWidget {
 //                                   ),
 //                                   Container(
 //                                       child: Text(
-//                                     // [prdCD.getselectedBillAdress!]
+//                                   
 //                                     "${prdCD.getselectedcust!.address![0].address1.toString()}, " + //
 //                                         "${prdCD.getselectedcust!.address![0].address2.toString()}, " +
 //                                         prdCD.getselectedcust!.address![0]
@@ -3099,11 +2726,11 @@ class AddressWidget extends StatelessWidget {
 //                           ),
 //                           InkWell(
 //                             onTap: () {
-//                               // sipaddress(context, prdCD);
+//                             
 //                             },
 //                             child: Container(
 //                               width: custWidth * 0.465,
-//                               //color: Colors.green,
+//                             
 //                               child: Column(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 children: [
@@ -3147,7 +2774,7 @@ class AddressWidget extends StatelessWidget {
 //                                     prdCD
 //                                         .getselectedcust!
 //                                         .address![0]
-//                                         // [prdCD.getselectedBillAdress!]
+//                                       
 //                                         .billCity
 //                                         .toString(),
 //                                     maxLines: 1,
@@ -3234,7 +2861,7 @@ class AddressWidget extends StatelessWidget {
 //                   width: custWidth * 1.1,
 //                   child: ListView.builder(
 //                       itemCount:
-//                           // prdsrcbtn.getselectedModell.length,
+//                         
 //                           prdsrcbtn.getfiltercustList1.length,
 //                       itemBuilder: (context, index) {
 //                         return Card(
@@ -3244,7 +2871,7 @@ class AddressWidget extends StatelessWidget {
 //                                 left: custHeight * 0.01,
 //                                 right: custHeight * 0.01,
 //                                 bottom: custHeight * 0.02),
-//                             // height: custHeight * 0.2,
+//                           
 //                             child: ListTile(
 //                               onTap: () {
 //                                 Navigator.pop(context);
@@ -3294,7 +2921,7 @@ class AddressWidget extends StatelessWidget {
 //                           ),
 //                         );
 //                       })),
-//               // SizedBox(height: custHeight * 0.09),
+//             
 //             ],
 //           ),
 //         ),
@@ -3313,7 +2940,7 @@ class AddressWidget extends StatelessWidget {
 //             bottom: custHeight * 0.02),
 //         width: custWidth * 1.1,
 //         height: custHeight * 1.5,
-//         // color: Colors.red,
+//       
 //         child: SingleChildScrollView(
 //           child: Column(
 //             mainAxisSize: MainAxisSize.min,
@@ -3372,8 +2999,8 @@ class AddressWidget extends StatelessWidget {
 //                       height: custHeight * 0.03,
 //                     ),
 //                     Container(
-//                       // height: custHeight * 0.15,
-//                       // width: custWidth * 1,
+//                     
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3423,7 +3050,7 @@ class AddressWidget extends StatelessWidget {
 //                       height: custHeight * 0.03,
 //                     ),
 //                     Container(
-//                       // width: custWidth * 1,
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3472,8 +3099,8 @@ class AddressWidget extends StatelessWidget {
 //                       height: custHeight * 0.09,
 //                     ),
 //                     Container(
-//                       // height: custHeight * 0.15,
-//                       // width: custWidth * 1,
+//                     
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3520,7 +3147,7 @@ class AddressWidget extends StatelessWidget {
 //                     SizedBox(
 //                       height: custHeight * 0.02,
 //                     ),
-//                     //addreswidget
+//                   
 //                     AddressWidget(
 //                       theme: theme,
 //                       payController: prdadd,
@@ -3532,8 +3159,8 @@ class AddressWidget extends StatelessWidget {
 //                       height: custHeight * 0.02,
 //                     ),
 //                     Container(
-//                       // height: custHeight * 0.15,
-//                       // width: custWidth * 0.65,
+//                     
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3641,7 +3268,7 @@ class AddressWidget extends StatelessWidget {
 //   final theme = Theme.of(context);
 //   return Container(
 //     width: Screens.width(context) * 0.8,
-//     //  height: Screens.padingHeight(context) * 0.4,
+//   
 //     child: Column(
 //       mainAxisSize: MainAxisSize.min,
 //       children: [
@@ -3650,14 +3277,14 @@ class AddressWidget extends StatelessWidget {
 //           height: Screens.padingHeight(context) * 0.05,
 //           decoration: BoxDecoration(
 //             color: theme.primaryColor,
-//             // borderRadius: BorderRadius.only(
-//             //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//           
+//           
 //           ),
 //           child: Row(
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // color: Colors.red,
+//               
 //                 width: Screens.width(context) * 0.4,
 //                 alignment: Alignment.center,
 //                 child: Text(
@@ -3779,15 +3406,15 @@ class AddressWidget extends StatelessWidget {
 //                                       crossAxisAlignment:
 //                                           CrossAxisAlignment.start,
 //                                       children: [
-//                                         //             ListTile(
-//                                         //   title: Text( pos.selectedcust!.address[index].billAddress,
-//                                         //       style: theme.textTheme.bodySmall),
-//                                         //   onTap: () {
-//                                         //     pos.changeBillAddress(index);
-//                                         //     //pos.selectedcust!.address[pos.selectedAdress].billAddress = pos.selectedcust!.address[index].billAddress;
-//                                         //     Navigator.pop(context);
-//                                         //   },
-//                                         // ),
+//                                       
+//                                       
+//                                       
+//                                       
+//                                       
+//                                       
+//                                       
+//                                       
+//                                       
 //                                         Container(
 //                                           child: Text("${pos.getselectedcust!.address![index].address1}," +
 //                                               "${pos.getselectedcust!.address![index].address2}," +
@@ -3856,12 +3483,12 @@ class AddressWidget extends StatelessWidget {
 //                                     "${pos.selectedcust!.address![index].address2!}" +
 //                                     "${pos.selectedcust!.address![index].address3!}",
 //                                 style: theme.textTheme.bodySmall),
-//                             //   onTap: () {
-//                             //     pos.changeShipAddress(index);
-//                             //     // pos.selectedcust!.address[0].shipAddress =
-//                             //     //     pos.selectedcust!.address[index].shipAddress;
-//                             //     Navigator.pop(context);
-//                             //   },
+//                           
+//                           
+//                           
+//                           
+//                           
+//                           
 //                           ),
 //                           Container(
 //                             child: Text(
@@ -3960,8 +3587,8 @@ class AddressWidget extends StatelessWidget {
 //       return Column(
 //         children: [
 //           Container(
-//             // height: custHeight * 0.15,
-//             // width: custWidth * 1,
+//           
+//           
 //             decoration: BoxDecoration(
 //               borderRadius: BorderRadius.circular(3),
 //               color: Colors.grey.withOpacity(0.01),
@@ -4008,8 +3635,8 @@ class AddressWidget extends StatelessWidget {
 //             height: custHeight * 0.02,
 //           ),
 //           Container(
-//             // height: custHeight * 0.15,
-//             // width: custWidth * 1,
+//           
+//           
 //             decoration: BoxDecoration(
 //               borderRadius: BorderRadius.circular(3),
 //               color: Colors.grey.withOpacity(0.01),
@@ -4056,8 +3683,8 @@ class AddressWidget extends StatelessWidget {
 //             height: custHeight * 0.02,
 //           ),
 //           Container(
-//             // height: custHeight * 0.15,
-//             // width: custWidth * 1,
+//           
+//           
 //             decoration: BoxDecoration(
 //               borderRadius: BorderRadius.circular(3),
 //               color: Colors.grey.withOpacity(0.01),
@@ -4107,7 +3734,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4153,7 +3780,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4207,7 +3834,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4253,7 +3880,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4266,13 +3893,13 @@ class AddressWidget extends StatelessWidget {
 //                   style:
 //                       theme.textTheme.bodyMedium?.copyWith(color: Colors.black),
 //                   onChanged: (v) {},
-//                   // validator: (value) {
-//                   //   if (value!.isEmpty) {
-//                   //     return "Please Enter the State";
-//                   //   } else {
-//                   //     return null;
-//                   //   }
-//                   // },
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
 //                   decoration: InputDecoration(
 //                     hintText: "Ind",
 //                     filled: false,
@@ -4305,7 +3932,7 @@ class AddressWidget extends StatelessWidget {
 //             height: custHeight * 0.02,
 //           ),
 //           Row(
-//             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           
 //             children: [
 //               Container(
 //                 alignment: Alignment.centerLeft,
@@ -4335,8 +3962,8 @@ class AddressWidget extends StatelessWidget {
 //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //               children: [
 //                 Container(
-//                   // height: custHeight * 0.15,
-//                   // width: custWidth * 0.65,
+//                 
+//                 
 //                   decoration: BoxDecoration(
 //                     borderRadius: BorderRadius.circular(3),
 //                     color: Colors.grey.withOpacity(0.01),
@@ -4385,8 +4012,8 @@ class AddressWidget extends StatelessWidget {
 //                   height: custHeight * 0.02,
 //                 ),
 //                 Container(
-//                   // height: custHeight * 0.15,
-//                   // width: custWidth * 0.65,
+//                 
+//                 
 //                   decoration: BoxDecoration(
 //                     borderRadius: BorderRadius.circular(3),
 //                     color: Colors.grey.withOpacity(0.01),
@@ -4435,8 +4062,8 @@ class AddressWidget extends StatelessWidget {
 //                   height: custHeight * 0.02,
 //                 ),
 //                 Container(
-//                   // height: custHeight * 0.15,
-//                   // width: custWidth * 0.65,
+//                 
+//                 
 //                   decoration: BoxDecoration(
 //                     border:
 //                         Border.all(color: Color.fromARGB(255, 240, 235, 235)),
@@ -4493,7 +4120,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4539,7 +4166,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4593,7 +4220,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4639,7 +4266,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.45,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4652,13 +4279,13 @@ class AddressWidget extends StatelessWidget {
 //                   style:
 //                       theme.textTheme.bodyMedium?.copyWith(color: Colors.black),
 //                   onChanged: (v) {},
-//                   // validator: (value) {
-//                   //   if (value!.isEmpty) {
-//                   //     return "Please Enter the State";
-//                   //   } else {
-//                   //     return null;
-//                   //   }
-//                   // },
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
 //                   decoration: InputDecoration(
 //                     hintText: "Ind",
 //                     filled: false,
@@ -4692,5 +4319,5 @@ class AddressWidget extends StatelessWidget {
 //     });
 //   }
 
-//   //
+// 
 // }

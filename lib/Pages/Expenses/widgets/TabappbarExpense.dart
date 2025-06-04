@@ -15,12 +15,10 @@ AppBar appbarTabExpense(
   BuildContext context,
 ) {
   final theme = Theme.of(context);
-  // final GlobalKey<ScaffoldState> Key = GlobalKey<ScaffoldState>();
 
   return AppBar(
     backgroundColor: theme.primaryColor,
     automaticallyImplyLeading: false,
-    // centerTitle: true,
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
@@ -32,7 +30,6 @@ AppBar appbarTabExpense(
         );
       },
     ),
-    // toolbarHeight: Screens.padingHeight(context) * 0.08, // Set this height
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -43,13 +40,6 @@ AppBar appbarTabExpense(
               onTap: () async {
                 context.read<ExpenseController>().searchInitMethod();
                 await context.read<ExpenseController>().callSearchHeader();
-                // context.read<ExpenseController>().getSalesDataDatewise(
-                //     context.read<ExpenseController>().config.alignDate(
-                //         context.read<ExpenseController>().config.currentDate()),
-                //     context.read<ExpenseController>().config.alignDate(context
-                //         .read<ExpenseController>()
-                //         .config
-                //         .currentDate()));
 
                 showDialog(
                     context: context,
@@ -65,7 +55,6 @@ AppBar appbarTabExpense(
                                 searchHeight:
                                     Screens.bodyheight(context) * 0.76,
                                 searchWidth: Screens.width(context),
-                                // ExpCon: posController,
                               )));
                     });
               },
@@ -73,7 +62,6 @@ AppBar appbarTabExpense(
                 children: [
                   Container(
                       decoration: BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -156,7 +144,6 @@ AppBar appbarTabExpense(
               onTap: () {
                 context.read<ExpenseController>().mycontroller[4].clear();
 
-                // context.read<ExpenseController>().getdraftindex().then((value) {
                 showDialog(
                     context: context,
                     barrierDismissible: false,
@@ -258,7 +245,6 @@ AppBar appbarTabExpense(
                                                                       .padingHeight(
                                                                           context) *
                                                                   0.0),
-                                                          // height: custHeight * 0.2,
                                                           child: ListTile(
                                                             onTap: () {
                                                               Navigator.pop(
@@ -270,52 +256,6 @@ AppBar appbarTabExpense(
                                                                       index,
                                                                       context,
                                                                       theme);
-
-                                                              // showDialog(
-                                                              //     context: context,
-                                                              //     barrierDismissible: true,
-                                                              //     builder: (BuildContext context) {
-                                                              //       return AlertDialog(
-                                                              //           contentPadding: EdgeInsets.all(0),
-                                                              //           content: AlertBox(
-                                                              //               payMent: 'Alert',
-                                                              //               widget: Container(
-                                                              //                 width: Screens.width(context) * 0.6,
-                                                              //                 padding: EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.04, vertical: Screens.bodyheight(context) * 0.01),
-                                                              //                 child: Column(
-                                                              //                   children: [
-                                                              //                     Container(alignment: Alignment.center, width: Screens.width(context) * 0.8, child: Center(child: Text('You are about to continue the sales transaction this draft will be cleared now..!!'))),
-                                                              //                     SizedBox(
-                                                              //                       height: Screens.bodyheight(context) * 0.01,
-                                                              //                     ),
-                                                              //                     Row(
-                                                              //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              //                       children: [
-                                                              //                         SizedBox(
-                                                              //                           width: Screens.width(context) * 0.15,
-                                                              //                           child: ElevatedButton(
-                                                              //                               onPressed: () {
-                                                              //                                 Navigator.pop(context);
-                                                              //                                 context.read<ExpenseController>().mapHoldValues(index, context, theme);
-                                                              //                                 Navigator.pop(context);
-                                                              //                               },
-                                                              //                               child: Text("Yes")),
-                                                              //                         ),
-                                                              //                         SizedBox(
-                                                              //                           width: Screens.width(context) * 0.15,
-                                                              //                           child: ElevatedButton(
-                                                              //                               onPressed: () {
-                                                              //                                 Navigator.pop(context);
-                                                              //                               },
-                                                              //                               child: Text("No")),
-                                                              //                         ),
-                                                              //                       ],
-                                                              //                     )
-                                                              //                   ],
-                                                              //                 ),
-                                                              //               ),
-                                                              //               buttonName: null));
-                                                              //     });
                                                             },
                                                             title: Column(
                                                               mainAxisAlignment:
@@ -361,18 +301,15 @@ AppBar appbarTabExpense(
                                                         ),
                                                       );
                                                     })),
-                                            //  SizedBox(height:  Screens.padingHeight(context) * 0.09),
                                           ]);
                                     })));
                     });
-                // });
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                       decoration: BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -448,7 +385,6 @@ AppBar appbarTabExpense(
                 children: [
                   Container(
                       decoration: BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -485,10 +421,7 @@ AppBar appbarTabExpense(
               child: Column(
                 children: [
                   Container(
-                      // width: Screens.width(context) * 0.18,
-                      // height: Screens.padingHeight(context) * 0.06,
                       decoration: BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -525,10 +458,7 @@ AppBar appbarTabExpense(
               child: Column(
                 children: [
                   Container(
-                      // width: Screens.width(context) * 0.18,
-                      // height: Screens.padingHeight(context) * 0.06,
                       decoration: BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),

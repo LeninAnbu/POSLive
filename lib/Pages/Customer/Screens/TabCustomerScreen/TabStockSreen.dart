@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:posproject/Pages/Customer/Widget/Search.dart';
-import 'package:posproject/Pages/Customer/Widget/detailsPage.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../Constant/Screen.dart';
@@ -34,14 +33,7 @@ class _TabCustomerScreenState extends State<TabCustomerScreen> {
               right: Screens.width(context) * 0.01),
           width: Screens.width(context),
           height: Screens.bodyheight(context) * 0.95,
-          child:
-              // PageView(
-              //   scrollDirection: Axis.vertical,
-              //   pageSnapping: true,
-              //   controller: context.read<CustomerController>().tappage,
-              //   //  physics: new NeverScrollableScrollPhysics(),
-              // children: [
-              SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -51,14 +43,6 @@ class _TabCustomerScreenState extends State<TabCustomerScreen> {
               ],
             ),
           ),
-          // context.read<CustomerController>().cusList1 != null
-          //     ? CustomerdetailPage(
-          //         searchHeight: Screens.bodyheight(context),
-          //         searchWidth: Screens.width(context),
-          //         // custMaslist:context.read<CustomerController>().cusList1,
-          //       )
-          //     : Container()
-          // ],
         ),
       ),
       Visibility(

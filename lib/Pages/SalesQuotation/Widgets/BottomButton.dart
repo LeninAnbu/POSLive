@@ -253,9 +253,6 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                                 context
                                     .read<SalesQuotationCon>()
                                     .validateAndCallApi(context, widget.theme);
-                                // context
-                                //     .read<SalesQuotationCon>()
-                                //     .validateUpdate(context, widget.theme);
 
                                 context
                                     .read<SalesQuotationCon>()
@@ -283,10 +280,6 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                                 child: GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        // context
-                                        //     .read<SalesQuotationCon>()
-                                        //     .onDisablebutton = true;
-
                                         context
                                             .read<SalesQuotationCon>()
                                             .clickacancelbtn(
@@ -305,22 +298,13 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                                               color: widget.theme.primaryColor,
                                             )),
                                         height: widget.btnheight * 0.15,
-                                        child:
-                                            // context
-                                            //             .watch<SalesQuotationCon>()
-                                            //             .cancelbtn ==
-                                            //         false
-                                            //     ?
-                                            Text("Cancel",
-                                                textAlign: TextAlign.center,
-                                                style: widget
-                                                    .theme.textTheme.bodySmall
-                                                    ?.copyWith(
-                                                  color: Colors.black,
-                                                ))
-                                        // : CircularProgressIndicator(
-                                        // color: widget.theme.primaryColor),
-                                        ))),
+                                        child: Text("Cancel",
+                                            textAlign: TextAlign.center,
+                                            style: widget
+                                                .theme.textTheme.bodySmall
+                                                ?.copyWith(
+                                              color: Colors.black,
+                                            ))))),
                             Container(
                                 padding: EdgeInsets.all(
                                   widget.btnheight * 0.01,
@@ -375,7 +359,6 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                                         ),
                                         color: widget.theme.primaryColor
                                             .withOpacity(0.1),
-                                        // color: Colors.grey[400],
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       height: widget.btnheight * 0.15,
@@ -589,7 +572,6 @@ class SQBottomButtonsState extends State<SQBottomButtons> {
                 padding: EdgeInsets.symmetric(
                     horizontal: widget.btnWidth * 0.02,
                     vertical: widget.btnheight * 0.005),
-                // height: widget.btnheight * 0.2,
                 child: const Center(
                     child: Text(
                         "You about to suspended all information will be unsaved  "))),

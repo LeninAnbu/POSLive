@@ -33,7 +33,6 @@ class _StockOutTabState extends State<StockOutTab> {
         children: [
           Container(
               color: Colors.grey.withOpacity(0.05),
-              // height: Screens.bodyheight(context),
               padding: EdgeInsets.only(
                 top: Screens.bodyheight(context) * 0.02,
                 left: Screens.bodyheight(context) * 0.01,
@@ -45,7 +44,6 @@ class _StockOutTabState extends State<StockOutTab> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   StockOutReqList(
-                    // context,
                     theme: widget.theme,
                     searchHeight: Screens.bodyheight(context) * 0.87,
                     searchWidth: Screens.width(context) * 0.5,
@@ -646,7 +644,6 @@ class _StockOutTabState extends State<StockOutTab> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        // color: Colors.red,
                                         width: Screens.width(context) * 0.32,
                                         child: Text(
                                           context

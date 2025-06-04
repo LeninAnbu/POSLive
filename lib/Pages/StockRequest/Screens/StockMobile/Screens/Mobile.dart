@@ -35,8 +35,6 @@ class StockReqMob extends StatelessWidget {
             ),
             ProductWidget(
               prdsrch: srCon,
-              // ProHeight: Screens.bodyheight(context) * 0.5,
-              // ProWidth: Screens.width(context) * 0.95,
             ),
             SizedBox(
               height: Screens.bodyheight(context) * 0.01,

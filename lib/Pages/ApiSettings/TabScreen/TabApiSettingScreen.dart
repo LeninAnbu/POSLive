@@ -19,14 +19,12 @@ class TabApiSettingsScreen extends StatefulWidget {
 
 class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
   static bool? progress = false;
-  // static String? queueName;
-  // static int? countOfCounsumer;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        // print("Test =========================$queueName");
         context.read<ApiSettingsController>().init();
         receivervb();
       });
@@ -41,13 +39,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
       drawer: naviDrawer(),
       appBar: AppBar(
         title: const Text("Settings"),
-        actions: const [
-          // IconButton(
-          //     onPressed: () {
-          //       // context.read<DashBoardController>().refresh();
-          //     },
-          //     icon: const Icon(Icons.refresh))
-        ],
+        actions: const [],
       ),
       body: Container(
         alignment: Alignment.center,
@@ -60,11 +52,9 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
             color: Colors.white, borderRadius: BorderRadius.circular(5)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
                 width: Screens.width(context) * 0.7,
-                // height: Screens.bodyheight(context) * 0.95,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5),
@@ -92,15 +82,12 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       padding:
                           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
                       height: Screens.bodyheight(context) * 0.09,
-                      // color: Colors.amber,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Item Master",
-                            style: theme.textTheme.titleLarge!.copyWith(
-                                // fontWeight: FontWeight.bold
-                                ),
+                            style: theme.textTheme.titleLarge!.copyWith(),
                           ),
                           Row(
                             children: [
@@ -111,7 +98,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                                   ? SizedBox(
                                       width: Screens.width(context) * 0.02,
                                       height:
-                                          Screens.bodyheight(context) * 0.03,
+                                          Screens.bodyheight(context) * 0.04,
                                       child: CircularProgressIndicator())
                                   : IconButton(
                                       iconSize:
@@ -145,15 +132,12 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       padding:
                           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
                       height: Screens.bodyheight(context) * 0.09,
-                      // color: Colors.amber,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Product Master",
-                            style: theme.textTheme.titleLarge!.copyWith(
-                                // fontWeight: FontWeight.bold
-                                ),
+                            style: theme.textTheme.titleLarge!.copyWith(),
                           ),
                           Row(
                             children: [
@@ -164,7 +148,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                                   ? SizedBox(
                                       width: Screens.width(context) * 0.02,
                                       height:
-                                          Screens.bodyheight(context) * 0.03,
+                                          Screens.bodyheight(context) * 0.04,
                                       child: CircularProgressIndicator())
                                   : IconButton(
                                       iconSize:
@@ -198,15 +182,12 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       padding:
                           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
                       height: Screens.bodyheight(context) * 0.09,
-                      // color: Colors.amber,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Branch Master",
-                            style: theme.textTheme.titleLarge!.copyWith(
-                                // fontWeight: FontWeight.bold
-                                ),
+                            style: theme.textTheme.titleLarge!.copyWith(),
                           ),
                           Row(
                             children: [
@@ -217,7 +198,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                                   ? SizedBox(
                                       width: Screens.width(context) * 0.02,
                                       height:
-                                          Screens.bodyheight(context) * 0.03,
+                                          Screens.bodyheight(context) * 0.04,
                                       child: CircularProgressIndicator())
                                   : IconButton(
                                       iconSize:
@@ -251,15 +232,12 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       padding:
                           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
                       height: Screens.bodyheight(context) * 0.09,
-                      // color: Colors.amber,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Customer Master",
-                            style: theme.textTheme.titleLarge!.copyWith(
-                                // fontWeight: FontWeight.bold
-                                ),
+                            style: theme.textTheme.titleLarge!.copyWith(),
                           ),
                           Row(
                             children: [
@@ -270,7 +248,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                                   ? SizedBox(
                                       width: Screens.width(context) * 0.02,
                                       height:
-                                          Screens.bodyheight(context) * 0.03,
+                                          Screens.bodyheight(context) * 0.04,
                                       child: CircularProgressIndicator())
                                   : IconButton(
                                       iconSize:
@@ -304,15 +282,12 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       padding:
                           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
                       height: Screens.bodyheight(context) * 0.09,
-                      // color: Colors.amber,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Customer Address Master",
-                            style: theme.textTheme.titleLarge!.copyWith(
-                                // fontWeight: FontWeight.bold
-                                ),
+                            style: theme.textTheme.titleLarge!.copyWith(),
                           ),
                           Row(
                             children: [
@@ -323,7 +298,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                                   ? SizedBox(
                                       width: Screens.width(context) * 0.02,
                                       height:
-                                          Screens.bodyheight(context) * 0.03,
+                                          Screens.bodyheight(context) * 0.04,
                                       child: CircularProgressIndicator())
                                   : IconButton(
                                       iconSize:
@@ -354,102 +329,6 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       ),
                     ),
                     Divider(),
-                    // Container(
-                    //   alignment: Alignment.centerLeft,
-                    //   padding:
-                    //       EdgeInsets.all(Screens.bodyheight(context) * 0.01),
-                    //   height: Screens.bodyheight(context) * 0.09,
-                    //   child: Text(
-                    //     "Queue Details",
-                    //     style: theme.textTheme.titleLarge!
-                    //         .copyWith(fontWeight: FontWeight.bold),
-                    //   ),
-                    // ),
-                    //     Container(
-                    //       padding:
-                    //           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
-                    //       height: Screens.bodyheight(context) * 0.09,
-                    //       // color: Colors.amber,
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Text(
-                    //             "Consumer",
-                    //             style: theme.textTheme.titleLarge!.copyWith(
-                    //                 // fontWeight: FontWeight.bold
-                    //                 ),
-                    //           ),
-                    //           context
-                    //                       .watch<ApiSettingsController>()
-                    //                       .countOfCounsumer ==
-                    //                   ""
-                    //               ? CircularProgressIndicator()
-                    //               : Text(
-                    //                   context
-                    //                               .watch<ApiSettingsController>()
-                    //                               .countOfCounsumer ==
-                    //                           null
-                    //                       ? ""
-                    //                       : "${context.watch<ApiSettingsController>().countOfCounsumer}",
-                    //                   textAlign: TextAlign.right,
-                    //                   style: theme.textTheme.titleLarge!.copyWith(
-                    //                       // fontWeight: FontWeight.bold
-                    //                       ),
-                    //                 ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       padding:
-                    //           EdgeInsets.all(Screens.bodyheight(context) * 0.01),
-                    //       height: Screens.bodyheight(context) * 0.09,
-                    //       // color: Colors.amber,
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Text(
-                    //             "Queue Name",
-                    //             style: theme.textTheme.titleLarge!.copyWith(
-                    //                 // fontWeight: FontWeight.bold
-                    //                 ),
-                    //           ),
-                    //           context.watch<ApiSettingsController>().queueName == ""
-                    //               ? CircularProgressIndicator()
-                    //               : Text(
-                    //                   context
-                    //                               .watch<ApiSettingsController>()
-                    //                               .queueName ==
-                    //                           null
-                    //                       ? ""
-                    //                       : "${context.watch<ApiSettingsController>().queueName} ",
-                    //                   textAlign: TextAlign.right,
-                    //                   style: theme.textTheme.titleLarge!.copyWith(
-                    //                       // fontWeight: FontWeight.bold
-                    //                       ),
-                    //                 ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     SizedBox(
-                    //         width: Screens.width(context) * 0.09,
-                    //         child: ElevatedButton(
-                    //             onPressed: context
-                    //                         .read<ApiSettingsController>()
-                    //                         .countOfCounsumer ==
-                    //                     "1"
-                    //                 ? null
-                    //                 : () {
-                    //                     setState(
-                    //                       () {
-                    //                         context
-                    //                             .read<ApiSettingsController>()
-                    //                             .resetClickEvent();
-                    //                         // context.read<ApiSettingsController>().clearmethod();
-                    //                         // receivervb();
-                    //                       },
-                    //                     );
-                    //                   },
-                    //             child: Text("Reset")))
                   ],
                 )),
           ],

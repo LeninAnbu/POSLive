@@ -12,7 +12,6 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
   return AppBar(
     backgroundColor: theme.primaryColor,
     automaticallyImplyLeading: false,
-    // centerTitle: true,
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
@@ -24,16 +23,13 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
         );
       },
     ),
-    // toolbarHeight: Screens.padingHeight(context) * 0.08, // Set this height
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(titles),
       ],
     ),
-
     actions: [
-      //list if widget in appbar actions
       PopupMenuButton(itemBuilder: (context) {
         return [
           PopupMenuItem<int>(
@@ -127,7 +123,6 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(4))),
                       contentPadding: const EdgeInsets.all(0),
-                      // backgroundColor: Colors.transparent,
                       insetPadding:
                           EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                       content: AlertBox(
@@ -139,9 +134,7 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
                               searchHeight: Screens.bodyheight(context) * 0.5,
                               searchWidth: Screens.width(context) * 0.9,
                               stockReq: posController.savedraftBill)));
-                }).then((value) => {
-                  // Navigator.pop(context)
-                });
+                }).then((value) => {});
           }
         } else if (value == 1) {
         } else if (value == 2) {
@@ -174,7 +167,7 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
 //         return IconButton(
 //           icon: const Icon(Icons.menu),
 //           onPressed: () {
-//             //  _Key.currentState!.openDrawer();
+//           
 //             Scaffold.of(context).openDrawer();
 //           },
 //           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -192,7 +185,7 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
 //         width: Screens.width(context) * 0.1,
 //         height: Screens.padingHeight(context) * 0.06,
 //         decoration: BoxDecoration(
-//           // color: Colors.white,
+//         
 //           borderRadius: BorderRadius.only(
 //             topRight: Radius.circular(8),
 //             topLeft: Radius.circular(25),
@@ -234,7 +227,7 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
 //                                   borderRadius:
 //                                       BorderRadius.all(Radius.circular(4))),
 //                               contentPadding: EdgeInsets.all(0),
-//                               // backgroundColor: Colors.transparent,
+//                             
 //                               insetPadding: EdgeInsets.all(
 //                                   Screens.bodyheight(context) * 0.02),
 //                                content: AlertBox(
@@ -312,16 +305,16 @@ AppBar appbarSReqMS(String titles, ThemeData theme, BuildContext context,
 //                   }
 //             }
 //             if (id == 2) {
-//               // Perform action on click on Upload
+//             
 //             }
 //             if (id == 3) {
-//               // Perform action on click on Exit
+//             
 //             }
 //              if (id == 4) {
-//               // Perform action on click on Upload
+//             
 //             }
 //             if (id == 5) {
-//               // Perform action on click on Exit
+//             
 //             }
 //           },
 //         ),

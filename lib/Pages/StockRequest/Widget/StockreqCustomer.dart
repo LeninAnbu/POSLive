@@ -199,7 +199,6 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                     children: [
                       Container(
                         width: widget.custWidth * 0.47,
-                        // color: Colors.grey[300],
                         padding: EdgeInsets.symmetric(
                             vertical: widget.custHeight * 0.01,
                             horizontal: widget.custWidth * 0.02),
@@ -370,7 +369,6 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                       context.watch<StockReqController>().selectedcust2 != null
                           ? Container(
                               padding: EdgeInsets.all(5),
-                              // color: Colors.grey[300],
                               width: widget.custWidth * 0.49,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -572,7 +570,6 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Container(
-                                                // color: Colors.amber,
                                                 width: widget.custWidth * 0.4,
                                                 child: context
                                                             .watch<
@@ -673,7 +670,6 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                                                                   Colors.grey)),
                                                 ),
                                                 Container(
-                                                  // color: Colors.green,
                                                   padding: EdgeInsets.only(
                                                     right:
                                                         widget.custWidth * 0.11,
@@ -703,7 +699,6 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                                             ),
                                           ),
                                           Container(
-                                            // color: Colors.amber,
                                             width: widget.custWidth * 0.21,
                                             child: Row(
                                               mainAxisAlignment:
@@ -711,7 +706,6 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                                                       .spaceBetween,
                                               children: [
                                                 Container(
-                                                  // color: Colors.green,
                                                   width:
                                                       widget.custWidth * 0.08,
                                                   child: Text("Code#",

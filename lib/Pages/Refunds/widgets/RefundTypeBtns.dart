@@ -8,7 +8,6 @@ import '../../../Controller/RefundsController/RefundController.dart';
 class RefundModeTypeBtns extends StatelessWidget {
   RefundModeTypeBtns({
     super.key,
-    // required this.payController,
     required this.theme,
     required this.cashHeight,
     required this.cashWidth,
@@ -16,7 +15,7 @@ class RefundModeTypeBtns extends StatelessWidget {
   double cashHeight;
   double cashWidth;
   final ThemeData theme;
-  // PayreceiptController payController;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,29 +38,7 @@ class RefundModeTypeBtns extends StatelessWidget {
             onTap: () {
               context.read<RefundController>().nullErrorMsg();
 
-              // if (payController.getpayselect!.length < 1) {
-              //   showDialog(
-              //       context: context,
-              //       barrierDismissible: true,
-              //       builder: (BuildContext context) {
-              //         return AlertDialog(
-              //             contentPadding: EdgeInsets.all(0),
-              //             content: AlertBox(
-              //                 payMent: 'Alert',
-              //                 errormsg: true,
-              //                 widget: Center(
-              //                     child: ContentContainer(
-              //                   content: 'Choose Customer..!!',
-              //                   theme: theme,
-              //                 )),
-              //                 buttonName: null));
-              //       });
-              // } else {
               context.read<RefundController>().getselectcust == null
-                  // ?   context.read<RefundController>().foraccselect(context, theme,"")
-                  // : payController.totalduepay == 0
-                  //     ? payController.foracctotaldue(context, theme)
-                  // :
                   ? showDialog(
                       context: context,
                       barrierDismissible: true,
@@ -91,8 +68,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                 height: cashHeight * 0.35,
                 width: cashWidth * 0.25,
                 decoration: BoxDecoration(
-                  // color:Colors.green,
-                  // color: Colors.grey.withOpacity(0.05),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Row(
@@ -113,9 +88,7 @@ class RefundModeTypeBtns extends StatelessWidget {
                         width: cashWidth * 0.05,
                       ),
                       Container(
-                          // color: Colors.red,
                           alignment: Alignment.centerLeft,
-                          // height: cashHeight * 0.13,
                           width: cashWidth * 0.17,
                           child: Text(
                             "Cash",
@@ -127,10 +100,6 @@ class RefundModeTypeBtns extends StatelessWidget {
               onTap: () {
                 context.read<RefundController>().nullErrorMsg();
                 context.read<RefundController>().getselectcust == null
-                    // ?   context.read<RefundController>().foraccselect(context, theme,"")
-                    // : payController.totalduepay == 0
-                    //     ? payController.foracctotaldue(context, theme)
-                    // :
                     ? showDialog(
                         context: context,
                         barrierDismissible: false,
@@ -196,10 +165,6 @@ class RefundModeTypeBtns extends StatelessWidget {
               onTap: () {
                 context.read<RefundController>().nullErrorMsg();
                 context.read<RefundController>().getselectcust == null
-                    // ?   context.read<RefundController>().foraccselect(context, theme,"")
-                    // : payController.totalduepay == 0
-                    //     ? payController.foracctotaldue(context, theme)
-                    // :
                     ? showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -252,8 +217,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                         Container(
                           alignment: Alignment.centerLeft,
                           width: cashWidth * 0.17,
-                          // color: Colors.red,
-
                           child: Text("Transfer",
                               style: theme.textTheme.bodyMedium
                                   ?.copyWith(color: Colors.black)),
@@ -266,7 +229,6 @@ class RefundModeTypeBtns extends StatelessWidget {
 
   forCashDialog(
     BuildContext context,
-    // PayreceiptController posC,
   ) {
     return StatefulBuilder(builder: (context, st) {
       return Container(
@@ -327,8 +289,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                     hintStyle: theme.textTheme.bodyMedium
                         ?.copyWith(color: Colors.grey),
                     filled: false,
-                    // enabledBorder: InputBorder.none,
-                    // focusedBorder: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 25,
@@ -376,12 +336,9 @@ class RefundModeTypeBtns extends StatelessWidget {
                         children: [
                           Container(
                             alignment: Alignment.centerLeft,
-                            // height: cashHeight * 0.1,
-                            // width: Screens.width(context) * 0.18,
                             child: const Text("Cheque No"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: cashWidth * 0.7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -439,22 +396,16 @@ class RefundModeTypeBtns extends StatelessWidget {
                         children: [
                           Container(
                             alignment: Alignment.centerLeft,
-                            // height: cashHeight * 0.1,
                             child: const Text("Cheque Date"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: cashWidth * 0.7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
                               color: Colors.grey.withOpacity(0.01),
                             ),
                             child: GestureDetector(
-                              onTap: () {
-                                // st(() {
-                                //    context.read<RefundController>().getDate2(context, 'Cheque');
-                                // });
-                              },
+                              onTap: () {},
                               child: TextFormField(
                                 onTap: () {
                                   context
@@ -526,7 +477,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                               children: [
                                 Container(
                                   alignment: Alignment.centerLeft,
-                                  // height: cashHeight * 0.1,
                                   child: const Text("Amount"),
                                 ),
                                 IconButton(
@@ -542,7 +492,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: cashWidth * 0.7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -600,11 +549,9 @@ class RefundModeTypeBtns extends StatelessWidget {
                         children: [
                           Container(
                             alignment: Alignment.centerLeft,
-                            // height: cashHeight * 0.1,
                             child: const Text("Remarks"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: cashWidth * 0.7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -647,8 +594,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                                   borderSide:
                                       const BorderSide(color: Colors.grey),
                                 ),
-                                // enabledBorder: InputBorder.none,
-                                // focusedBorder: InputBorder.none,
                                 contentPadding: const EdgeInsets.symmetric(
                                   vertical: 5,
                                   horizontal: 10,
@@ -659,8 +604,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                         ],
                       ),
                     ])),
-
-            // ),
           ],
         ),
       );
@@ -697,7 +640,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
-                          // width: Screens.width(context) * 0.05,
                           child: const Text("Trans Type"),
                         ),
                         Container(
@@ -759,11 +701,9 @@ class RefundModeTypeBtns extends StatelessWidget {
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
-                          // width: Screens.width(context) * 0.05,
                           child: const Text("Trans Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: cashWidth * 0.7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -823,7 +763,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -836,13 +775,11 @@ class RefundModeTypeBtns extends StatelessWidget {
                                   },
                                   icon: const Icon(
                                     Icons.copy,
-                                    // size: cashHeight * 0.15,
                                   )),
                             ],
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: cashWidth * 0.7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -899,317 +836,6 @@ class RefundModeTypeBtns extends StatelessWidget {
     });
   }
 
-  // forCashConfirm(BuildContext context, ) {
-  //   return StatefulBuilder(builder: (context, st) {
-  //     return Container(
-  //       padding: EdgeInsets.only(
-  //         top: cashHeight * 0.01,
-  //         left: cashHeight * 0.09,
-  //         right: cashHeight * 0.09,
-  //       ),
-  //       height: cashHeight * 1,
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           Container(
-  //               height: cashHeight * 0.6,
-  //               alignment: Alignment.center,
-  //               child: Text(
-  //                   "Is full amount (Rs. ${context.watch<RefundController>().config.splitValues(context.watch<RefundController>().getBalancePaid().toStringAsFixed(0))})  as Cash")),
-  //           Container(
-  //             child: Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               children: [
-  //                 GestureDetector(
-  //                     onTap: () {
-  //                       st(
-  //                         () {
-  //                           // context.read<RefundController>().fullamt('Cash', context, theme);
-  //                         },
-  //                       );
-  //                     },
-  //                     child: Container(
-  //                       decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(5),
-  //                         color: Colors.blue,
-  //                       ),
-  //                       alignment: Alignment.center,
-  //                       width: cashWidth * 0.2,
-  //                       height: cashHeight * 0.3,
-  //                       child: Text(
-  //                         "yes",
-  //                         style: theme.textTheme.bodyText2
-  //                             ?.copyWith(color: Colors.white),
-  //                       ),
-  //                     )),
-  //                 GestureDetector(
-  //                     onTap: () {
-  //                       Navigator.pop(context);
-  // context.read<RefundController>().nullErrorMsg();
-  //                       showDialog(
-  //                           context: context,
-  //                           barrierDismissible: true,
-  //                           builder: (BuildContext context) {
-  //                             return StatefulBuilder(builder: (context, st) {
-  //                               return AlertDialog(
-  //                                   contentPadding: EdgeInsets.all(0),
-  //                                   content: AlertBox(
-  //                                     payMent: 'Payment Mode - Cash',
-  //                                     widget: forCashDialog(context, ),
-  //                                     buttonName: 'OK',
-  //                                     callback: () {
-  //                                       st(
-  //                                         () {
-  //                                               // context.read<RefundController>().addEnteredAmtType(
-  //                                               // 'Cash', context, 1, theme);
-  //                                         },
-  //                                       );
-  //                                     },
-  //                                   ));
-  //                             });
-  //                           });
-  //                     },
-  //                     child: Container(
-  //                       decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(5),
-  //                         color: Colors.blue,
-  //                       ),
-  //                       alignment: Alignment.center,
-  //                       width: cashWidth * 0.2,
-  //                       height: cashHeight * 0.3,
-  //                       child: Text(
-  //                         "Partial Amount",
-  //                         style: theme.textTheme.bodyText2
-  //                             ?.copyWith(color: Colors.white),
-  //                       ),
-  //                     ))
-  //               ],
-  //             ),
-  //           )
-  //         ],
-  //       ),
-  //     );
-  //   });
-  // }
-
-  // forDiscount(BuildContext context, payController posC) {
-  //   final theme = Theme.of(context);
-  //   return StatefulBuilder(builder: (context, st) {
-  //     return Container(
-  //       width: cashWidth * 1.1,
-  //       padding: EdgeInsets.only(
-  //           top: cashHeight * 0.02,
-  //           left: cashHeight * 0.1,
-  //           right: cashHeight * 0.1,
-  //           bottom: cashHeight * 0.02),
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           Container(
-  //             child: Text(
-  //               posC.getmsgforAmount == null ? '' : "${posC.getmsgforAmount}",
-  //               style: theme.textTheme.bodyText2?.copyWith(color: Colors.red),
-  //             ),
-  //           ),
-  //           Container(
-  //               child: Form(
-  //             key: posC.formkey[9],
-  //             child: Column(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 children: [
-  //                   Container(
-  //                     child: Row(
-  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                       children: [
-  //                         Container(
-  //                           alignment: Alignment.centerLeft,
-  //                           // width: Screens.width(context) * 0.05,
-  //                           child: Text("Discount Type"),
-  //                         ),
-  //                         Container(
-  //                           width: cashWidth * 0.7,
-  //                           padding: EdgeInsets.only(
-  //                             left: cashHeight * 0.01,
-  //                           ),
-  //                           decoration: BoxDecoration(
-  //                             border: Border.all(color: Colors.grey),
-  //                             borderRadius: BorderRadius.circular(3),
-  //                             color: Colors.grey.withOpacity(0.01),
-  //                           ),
-  //                           child: DropdownButtonHideUnderline(
-  //                             child: DropdownButton(
-  //                               focusColor: Colors.white,
-  //                               hint: Text(
-  //                                 'Select Discount Type',
-  //                                 style: TextStyle(
-  //                                   fontSize: 14,
-  //                                   color: posC.gethintcolor == false
-  //                                       ? Colors.grey
-  //                                       : Colors.red,
-  //                                 ),
-  //                               ),
-  //                               items: posC.getdiscountType
-  //                                   .map((item) => DropdownMenuItem<String>(
-  //                                         value: item,
-  //                                         child: Text(
-  //                                           item,
-  //                                           style: const TextStyle(
-  //                                             fontSize: 14,
-  //                                           ),
-  //                                         ),
-  //                                       ))
-  //                                   .toList(),
-  //                               value: posC.discount,
-  //                               onChanged: (value) {
-  //                                 st(() {
-  //                                   posC.discount = value;
-  //                                 });
-  //                               },
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                   SizedBox(height: cashHeight * 0.05),
-  //                   Container(
-  //                     child: Row(
-  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                       children: [
-  //                         Container(
-  //                           alignment: Alignment.centerLeft,
-  //                           // width: Screens.width(context) * 0.05,
-  //                           child: Text("Discount Reference"),
-  //                         ),
-  //                         Container(
-  //                           // height: cashHeight * 0.2,
-  //                           width: cashWidth * 0.7,
-  //                           decoration: BoxDecoration(
-  //                             borderRadius: BorderRadius.circular(3),
-  //                             color: Colors.grey.withOpacity(0.01),
-  //                           ),
-  //                           child: TextFormField(
-  //                             controller: posC.mycontroller[41],
-  //                             cursorColor: Colors.grey,
-  //                             style: theme.textTheme.bodyText2?.copyWith(),
-  //                             onChanged: (v) {},
-  //                             validator: (value) {
-  //                               if (value!.isEmpty) {
-  //                                 return ' Please Enter the Discount Reference';
-  //                               } else {
-  //                                 return null;
-  //                               }
-  //                             },
-  //                             decoration: InputDecoration(
-  //                               filled: false,
-  //                               focusedErrorBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.red),
-  //                               ),
-  //                               errorBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.red),
-  //                               ),
-  //                               enabledBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.grey),
-  //                               ),
-  //                               focusedBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.grey),
-  //                               ),
-  //                               contentPadding: const EdgeInsets.symmetric(
-  //                                 vertical: 5,
-  //                                 horizontal: 10,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                   SizedBox(height: cashHeight * 0.05),
-  //                   Container(
-  //                     child: Row(
-  //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                       children: [
-  //                         Container(
-  //                           width: cashWidth * 0.35,
-  //                           child: Row(
-  //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                             children: [
-  //                               Container(
-  //                                 alignment: Alignment.centerLeft,
-  //                                 // height: cashHeight * 0.1,
-  //                                 child: Text("Amount"),
-  //                               ),
-  //                               IconButton(
-  //                                   onPressed: () {
-  //                                     posC.cpyBtnclik(42);
-  //                                   },
-  //                                   icon: Icon(
-  //                                     Icons.copy,
-  //                                     size: cashHeight * 0.15,
-  //                                   )),
-  //                             ],
-  //                           ),
-  //                         ),
-  //                         Container(
-  //                           // height: cashHeight * 0.2,
-  //                           width: cashWidth * 0.7,
-  //                           decoration: BoxDecoration(
-  //                             borderRadius: BorderRadius.circular(3),
-  //                             color: Colors.grey.withOpacity(0.01),
-  //                           ),
-  //                           child: TextFormField(
-  //                             controller: posC.mycontroller[42],
-  //                             cursorColor: Colors.grey,
-  //                             style: theme.textTheme.bodyText2?.copyWith(),
-  //                             onChanged: (v) {},
-  //                             validator: (value) {
-  //                               if (value!.isEmpty) {
-  //                                 return ' Please Enter the Amount';
-  //                               } else {
-  //                                 return null;
-  //                               }
-  //                             },
-  //                             decoration: InputDecoration(
-  //                               filled: false,
-  //                               focusedErrorBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.red),
-  //                               ),
-  //                               errorBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.red),
-  //                               ),
-  //                               enabledBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.grey),
-  //                               ),
-  //                               focusedBorder: OutlineInputBorder(
-  //                                 borderRadius: BorderRadius.circular(5),
-  //                                 borderSide: BorderSide(color: Colors.grey),
-  //                               ),
-  //                               contentPadding: const EdgeInsets.symmetric(
-  //                                 vertical: 5,
-  //                                 horizontal: 10,
-  //                               ),
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ),
-  //                 ]),
-  //           )),
-  //         ],
-  //       ),
-  //     );
-  //   });
-  // }
-
   forAccBal(BuildContext context, PayreceiptController posC) {
     final theme = Theme.of(context);
     return StatefulBuilder(builder: (context, st) {
@@ -1238,11 +864,9 @@ class RefundModeTypeBtns extends StatelessWidget {
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
-                          // width: Screens.width(context) * 0.05,
                           child: const Text("Available Balance"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: cashWidth * 0.7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -1296,15 +920,11 @@ class RefundModeTypeBtns extends StatelessWidget {
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
-                          // width: Screens.width(context) * 0.05,
                           child: const Text("Amount to Adjust"),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            // posC.getDate(context);
-                          },
+                          onTap: () {},
                           child: Container(
-                            // height: cashHeight * 0.2,
                             width: cashWidth * 0.7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1324,11 +944,6 @@ class RefundModeTypeBtns extends StatelessWidget {
                                 }
                               },
                               decoration: InputDecoration(
-                                // suffixIcon: IconButton(
-                                //     onPressed: () {
-                                //       posC.getDate(context, 'Credit');
-                                //     },
-                                //     icon: Icon(Icons.date_range)),
                                 filled: false,
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
@@ -1383,11 +998,9 @@ class RefundModeTypeBtns extends StatelessWidget {
             children: [
               Container(
                 alignment: Alignment.centerLeft,
-                // width: Screens.width(context) * 0.05,
                 child: const Text("Amount"),
               ),
               Container(
-                // height: cashHeight * 0.2,
                 width: cashWidth * 0.6,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),

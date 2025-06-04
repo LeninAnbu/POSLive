@@ -11,8 +11,6 @@ import '../../url/url.dart';
 
 class SerlayInwardAPI {
   static Future<SapInwardModel> getData(String sapDocEntry) async {
-    // int? ressCode = 500;
-    // log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.get(
@@ -22,7 +20,7 @@ class SerlayInwardAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("Invoice stscode::${response.statusCode}");
       log("inward::${json.decode(response.body)}");
 
@@ -31,13 +29,10 @@ class SerlayInwardAPI {
             json.decode(response.body), response.statusCode);
       } else {
         throw Exception("Errorrrrr");
-        // return SapSalesOrderModel.issue(
-        //     json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("GetInwardException:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

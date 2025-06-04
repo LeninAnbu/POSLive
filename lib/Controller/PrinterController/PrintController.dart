@@ -108,7 +108,7 @@
 //         address: [
 //           Address(
 //               address1: getDBholddata1[ji]['billaddressid'].toString(),
-//               //
+//             
 //               billCity: getDBholddata1[ji]['city'].toString(),
 //               billCountry: getDBholddata1[ji]['country'].toString(),
 //               billPincode: getDBholddata1[ji]['pinno'].toString(),
@@ -118,7 +118,7 @@
 //           balance: getDBholddata1[ji]['baltopay'] == null ? 0.00 : double.parse(getDBholddata1[ji]['baltopay'].toString()),
 
 //           discount2: getDBholddata1[ji]['docdiscamt'] == null ? 0.00 : double.parse(getDBholddata1[ji]['docdiscamt'].toString()),
-//           // double.parse(getDBholddata1[ji]['docdiscamt'].toString()),
+//         
 //           discount: getDBholddata1[ji]['docdiscamt'] == null ? 0.00 : double.parse(getDBholddata1[ji]['docdiscamt'].toString()),
 //           totalTX: double.parse(getDBholddata1[ji]['taxamount'] == null ? '0' : getDBholddata1[ji]['taxamount'].toString().replaceAll(',', '')),
 
@@ -179,7 +179,7 @@
 //     for (int i = 0; i < salesmodl[ih].item!.length; i++) {
 //       itemsList.add(InvoiceItem(
 //         slNo: '${i + 1}',
-//         //
+//       
 //         descripton: salesmodl[ih].item![i].ItemName,
 //         netTotal: salesmodl[ih].item![i].netvalue.toString(),
 //         unitPrice: salesmodl[ih].item![i].SellPrice.toString(),
@@ -191,7 +191,7 @@
 //     invoice = Invoice(
 //       headerinfo: InvoiceHeader(
 //           companyName: 'companyName',
-//           //
+//         
 //           address: 'address',
 //           area: 'area',
 //           pincode: 'pincode',
@@ -200,7 +200,7 @@
 //           salesOrder: 'salesOrder'),
 //       invoiceMiddle: InvoiceMiddle(
 //         date: salesmodl[ih].createdateTime.toString(),
-//         //
+//       
 //         time: 'time',
 //         customerName: salesmodl[ih].custName ?? '',
 //         mobile: salesmodl[ih].phNo ?? '',
@@ -209,24 +209,24 @@
 //         area: address2[0].address3!.isEmpty ? '' : address2[0].address3.toString(),
 //         pin: address2[0].billPincode.isEmpty ? '' : address2[0].billPincode.toString(),
 //       ),
-//       // invoiceCash: InvoiceCash(
-//       //     upiAmnt: 'upiAmnt',
-//       //     remarks: 'remarks',
-//       //     advance: 'advance',
-//       //     discountamt: 'discountamt',
-//       //     cash: 'cash',
-//       //     card1: 'card1',
-//       //     card2: 'card2',
-//       //     exchange: 'exchange',
-//       //     finance: 'finance',
-//       //     cod: 'cod',
-//       //     credit: 'credit',
-//       //     total: 'total',
-//       //     salesEmployee: 'salesEmployee',
-//       //     deliveryTime: 'deliveryTime',
-//       //     deliverydate: 'deliverydate'),
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
+//     
 //       items: itemsList,
-//       // ]
+//     
 //     );
 
 //     notifyListeners();
@@ -242,9 +242,9 @@
 //     PDFDocument doc = await PDFDocument.fromFile(pdfFile);
 //     ShowPdfs.document = doc;
 //     Navigator.push(context, MaterialPageRoute(builder: (context) => ShowPdf()));
-//     // }
-//     //   }
-//     // }
+//   
+//   
+//   
 //     notifyListeners();
 //   }
 // }

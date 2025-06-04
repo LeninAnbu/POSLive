@@ -623,54 +623,7 @@ class CashWidget extends StatelessWidget {
                             ),
                           ]))),
               GestureDetector(
-                  onTap: () async {
-                    // context.read<PosController>().nullErrorMsg();
-
-                    // if (context.read<PosController>().selectedcust == null) {
-                    //   showDialog(
-                    //       context: context,
-                    //       barrierDismissible: true,
-                    //       builder: (BuildContext context) {
-                    //         return AlertDialog(
-                    //             contentPadding: const EdgeInsets.all(0),
-                    //             content: AlertBox(
-                    //                 payMent: 'Alert',
-                    //                 errormsg: true,
-                    //                 widget: Center(
-                    //                     child: ContentContainer(
-                    //                   content: 'Choose cusotmer..!!',
-                    //                   theme: theme,
-                    //                 )),
-                    //                 buttonName: null));
-                    //       });
-                    // } else if (context
-                    //     .read<PosController>()
-                    //     .getScanneditemData
-                    //     .isEmpty) {
-                    //   showDialog(
-                    //       context: context,
-                    //       barrierDismissible: true,
-                    //       builder: (BuildContext context) {
-                    //         return AlertDialog(
-                    //             contentPadding: const EdgeInsets.all(0),
-                    //             content: AlertBox(
-                    //                 payMent: 'Alert',
-                    //                 errormsg: true,
-                    //                 widget: Center(
-                    //                     child: ContentContainer(
-                    //                   content: 'Choose Product..!!',
-                    //                   theme: theme,
-                    //                 )),
-                    //                 buttonName: null));
-                    //       });
-                    // } else {
-                    //   context.read<PosController>().schemebtnclk = true;
-                    //   await context
-                    //       .read<PosController>()
-                    //       .scehmeapiforckout(context, theme);
-                    // }
-                    // context.read<PosController>().disableKeyBoard(context);
-                  },
+                  onTap: () async {},
                   child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(
@@ -679,21 +632,6 @@ class CashWidget extends StatelessWidget {
                       width: cashWidth * 0.25,
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
-                        // context.read<PosController>().selectedcust !=
-                        //             null &&
-                        //         context
-                        //                 .read<PosController>()
-                        //                 .selectedcust!
-                        //                 .U_CashCust !=
-                        //             null &&
-                        //         context
-                        //                 .read<PosController>()
-                        //                 .selectedcust!
-                        //                 .U_CashCust!
-                        //                 .contains('cash') ==
-                        //             false
-                        //     ? Colors.grey.withOpacity(0.2)
-                        //     : theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Row(
@@ -843,22 +781,7 @@ class CashWidget extends StatelessWidget {
                             ?.copyWith(color: Colors.black))),
               ),
               GestureDetector(
-                onTap:
-                    // context.read<PosController>().selectedcust != null &&
-                    //         context
-                    //                 .read<PosController>()
-                    //                 .selectedcust!
-                    //                 .U_CashCust !=
-                    //             null &&
-                    //         context
-                    //                 .read<PosController>()
-                    //                 .selectedcust!
-                    //                 .U_CashCust!
-                    //                 .contains('cash') ==
-                    //             true
-                    //     ? null
-                    //     :
-                    () {
+                onTap: () {
                   context.read<PosController>().nullErrorMsg();
 
                   if (context.read<PosController>().selectedcust == null) {
@@ -935,22 +858,7 @@ class CashWidget extends StatelessWidget {
                   height: cashHeight * 0.29,
                   width: cashWidth * 0.25,
                   decoration: BoxDecoration(
-                    color:
-                        // context.read<PosController>().selectedcust != null &&
-                        //         context
-                        //                 .read<PosController>()
-                        //                 .selectedcust!
-                        //                 .U_CashCust !=
-                        //             null &&
-                        //         context
-                        //                 .read<PosController>()
-                        //                 .selectedcust!
-                        //                 .U_CashCust!
-                        //                 .contains('cash') ==
-                        //             true
-                        //     ? Colors.grey.withOpacity(0.2)
-                        //     :
-                        theme.primaryColor.withOpacity(0.2),
+                    color: theme.primaryColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text("Account Balance",
@@ -2443,10 +2351,6 @@ class CashWidget extends StatelessWidget {
                             autofocus: true,
                             keyboardType: TextInputType.number,
                             inputFormatters: [DecimalInputFormatter()],
-                            // inputFormatters: [
-                            //   FilteringTextInputFormatter.allow(
-                            //       RegExp(r"[0-9.]")),
-                            // ],
                             controller:
                                 context.read<PosController>().mycontroller[36],
                             cursorColor: Colors.grey,

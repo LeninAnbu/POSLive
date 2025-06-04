@@ -1,4 +1,4 @@
-// // ignore_for_file: non_constant_identifier_names
+//
 
 const String tableReceiptLine2 = "ReceiptLine2";
 
@@ -26,19 +26,19 @@ class ReceiptLine2T {
   static String VouchCode2 = 'VouchCode2';
   static String cardterminal = 'cardterminal';
   static String cardApprno = 'cardApprno';
-  // static String cardref = 'cardref';
+
   static String wallettype = 'wallettype';
   static String walletid = 'walletid';
-  // static String walletref = 'walletref';
+
   static String transtype = 'transtype';
-  // static String transref = 'transref';
+
   static String coupontype = 'coupontype';
   static String couponcode = 'couponcode';
   static String availablept = 'availablept';
   static String redeempoint = 'redeempoint';
   static String discounttype = 'discounttype';
   static String discountcode = 'discountcode';
-  // static String creditref = 'creditref';
+
   static String recoverydate = 'recoverydate';
   static String createdateTime = 'createdateTime';
   static String updatedDatetime = "UpdatedDatetime";
@@ -69,19 +69,19 @@ class ReceiptLine2TDB {
   String? amt;
   String? cardterminal;
   String? cardApprno;
-  // String? cardref;
+
   String? wallettype;
   String? walletid;
-  // String? walletref;
+
   String? transtype;
-  // String? transref;
+
   String? coupontype;
   String? couponcode;
   String? availablept;
   String? redeempoint;
   String? discounttype;
   String? discountcode;
-  // String? creditref;
+
   String? recoverydate;
   String? ref2;
   String? ref3;
@@ -114,22 +114,18 @@ class ReceiptLine2TDB {
       required this.vouchCode2,
       required this.availablept,
       required this.cardApprno,
-      // required this.cardref,
       required this.cardterminal,
       required this.chequedate,
       required this.chequeno,
       required this.couponcode,
       required this.coupontype,
-      // required this.creditref,
       required this.discountcode,
       required this.discounttype,
       required this.recoverydate,
       required this.redeempoint,
       required this.remarks,
-      // required this.transref,
       required this.transtype,
       required this.walletid,
-      // required this.walletref,
       required this.wallettype});
   factory ReceiptLine2TDB.fromjson(Map<String, dynamic> resp) {
     return ReceiptLine2TDB(
@@ -190,22 +186,18 @@ class ReceiptLine2TDB {
         ReceiptLine2T.reference: reference,
         ReceiptLine2T.availablept: availablept,
         ReceiptLine2T.cardApprno: cardApprno,
-        // ReceiptLine2T.cardref: cardref,
         ReceiptLine2T.cardterminal: cardterminal,
         ReceiptLine2T.chequedate: chequedate,
         ReceiptLine2T.chequeno: chequeno,
         ReceiptLine2T.couponcode: couponcode,
         ReceiptLine2T.coupontype: coupontype,
-        // ReceiptLine2T.creditref: creditref,
         ReceiptLine2T.discountcode: discountcode,
         ReceiptLine2T.discounttype: discounttype,
         ReceiptLine2T.recoverydate: recoverydate,
         ReceiptLine2T.redeempoint: redeempoint,
         ReceiptLine2T.remarks: remarks,
-        // ReceiptLine2T.transref: transref,
         ReceiptLine2T.transtype: transtype,
         ReceiptLine2T.walletid: walletid,
-        // ReceiptLine2T.walletref: walletref,
         ReceiptLine2T.Ref2: ref2,
         ReceiptLine2T.Ref3: ref3,
         ReceiptLine2T.Ref4: ref4,
@@ -228,12 +220,12 @@ class ReceiptLine2TDB {
 //   static String ModeofPay = "ModeofPay";
 //   static String Amount = "Amount";
 //   static String TransRef = "TransRef";
-  // static String Ref2 = "Ref2";
-  // static String Ref3 = "Ref3";
-  // static String Ref4 = "Ref4";
-  // static String Ref5 = 'Ref5';
-  // static String VouchCode = 'VouchCode';
-  // static String VouchCode2 = 'VouchCode2';
+
+
+
+
+
+
 //   static String RefAmt = 'RefAmt';
 //   static String PointAmt = 'PointAmt';
 //   static String ReedemAmt = 'ReedemAmt';
@@ -250,12 +242,12 @@ class ReceiptLine2TDB {
 //   String ?ModeofPay;
 //   String ?Amount;
 //   String ?TransRef;
-  // String ?Ref2;
-  // String? Ref3 ;
-  // String? Ref4;
-  // String? Ref5;
-  // String? VouchCode ;
-  // String? VouchCode2 ;
+
+
+
+
+
+
 //   String? RefAmt ;
 //   String? PointAmt;
 //   String? ReedemAmt ;
@@ -276,8 +268,8 @@ class ReceiptLine2TDB {
 //    required this.Ref5,
 //    required this.RefAmt,
 //    required this.TransRef,
-  //  required this.VouchCode,
-  //  required this.VouchCode2,
+
+
 //    required this.createdUserID,
 //    required this.createdateTime,
 //    required this.docentry,
@@ -292,14 +284,14 @@ class ReceiptLine2TDB {
 //       ReceiptLine2T.ModeofPay:ModeofPay,
 //       ReceiptLine2T.PointAmt:PointAmt,
 //       ReceiptLine2T.ReedemAmt:ReedemAmt,
-      // ReceiptLine2T.Ref2:Ref2,
-      // ReceiptLine2T.Ref3:Ref3,
-      // ReceiptLine2T.Ref4:Ref4,
-      // ReceiptLine2T.Ref5:Ref5,
+    
+    
+    
+    
 //       ReceiptLine2T.RefAmt:RefAmt,
 //       ReceiptLine2T.TransRef:TransRef,
-      // ReceiptLine2T.VouchCode:VouchCode,
-      // ReceiptLine2T.VouchCode2:VouchCode2,
+    
+     
 //       ReceiptLine2T.createdUserID:createdUserID,
 //       ReceiptLine2T.createdateTime:createdateTime,
 //       ReceiptLine2T.docentry:docentry,

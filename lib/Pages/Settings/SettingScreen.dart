@@ -31,7 +31,7 @@ class SettingScreensState extends State<SettingScreens> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // final locale = Provider.of<LocaleProvider>(context);
+
     return Scaffold(
         drawer: naviDrawer(),
         body: ChangeNotifierProvider<PosController>(
@@ -71,7 +71,6 @@ class SettingScreensState extends State<SettingScreens> {
                                     log("locale $locale");
 
                                     _selectedLocale = locale;
-                                    // locale.setLocale(locale);
                                   });
                                 },
                               );

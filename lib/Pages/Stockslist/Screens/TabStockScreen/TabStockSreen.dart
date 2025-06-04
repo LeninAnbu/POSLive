@@ -11,7 +11,6 @@ class TabStockScreen extends StatefulWidget {
   const TabStockScreen({
     super.key,
   });
-  // StockController stkCtrl;
 
   @override
   State<TabStockScreen> createState() => _TabStockScreenState();

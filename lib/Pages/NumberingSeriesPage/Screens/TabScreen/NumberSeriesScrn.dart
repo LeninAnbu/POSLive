@@ -48,9 +48,7 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 ),
                 Container(
                   width: widget.searchWidth * 0.15,
-                  //color: Colors.red,
                   alignment: Alignment.center,
-
                   child: Text(
                     'First No',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -60,7 +58,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.2,
                   alignment: Alignment.center,
-                  //color:  Colors.green,
                   child: Text(
                     'Next No',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -70,7 +67,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.25,
                   alignment: Alignment.center,
-                  //color:  Colors.red,
                   child: Text(
                     'last No',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -80,7 +76,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.65,
                   alignment: Alignment.center,
-                  //color:  Colors.green,
                   child: Text(
                     'Prefix',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -90,7 +85,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.3,
                   alignment: Alignment.center,
-                  //color:  Colors.red,
                   child: Text(
                     'Terminal',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -100,7 +94,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.3,
                   alignment: Alignment.center,
-                  //color:  Colors.green,
                   child: Text(
                     'Warehouse',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -110,7 +103,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.33,
                   alignment: Alignment.center,
-                  //color:  Colors.red,
                   child: Text(
                     'From Date',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -120,7 +112,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                 Container(
                   width: widget.searchWidth * 0.33,
                   alignment: Alignment.centerRight,
-                  //color:  Colors.green,
                   child: Text(
                     'To Date',
                     style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -148,16 +139,7 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // Container(
-                          //       //color:  Colors.green,
-                          //                  width: widget.searchWidth*0.13,
-                          //               // alignment: Alignment.centerRight,
-
-                          //   child: Text(  context.watch<NumberSeriesCtrl>().numberSerisList[index].id.toString()),),
                           SizedBox(
-                            // alignment: Alignment.centerRßight,
-
-                            //color: Colors.red,
                             width: widget.searchWidth * 0.35,
                             child: Text(context
                                 .watch<NumberSeriesCtrl>()
@@ -169,7 +151,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                               width: widget.searchWidth * 0.15,
                               height: widget.searchHeight * 0.05,
                               alignment: Alignment.center,
-                              //color:  Colors.green,
                               child: TextFormField(
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.end,
@@ -181,27 +162,21 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                           .read<NumberSeriesCtrl>()
                                           .frstnocontroller[index]
                                           .text =
-                                      // widget
-                                      //     .prdsrch
                                       context
                                           .read<NumberSeriesCtrl>()
                                           .frstnocontroller[index]
                                           .text;
-                                  // widget
-                                  //     .prdsrch
+
                                   context
                                       .read<NumberSeriesCtrl>()
                                       .frstnocontroller[index]
                                       .selection = TextSelection(
                                     baseOffset: 0,
-                                    extentOffset:
-                                        // widget
-                                        //     .prdsrch
-                                        context
-                                            .read<NumberSeriesCtrl>()
-                                            .frstnocontroller[index]
-                                            .text
-                                            .length,
+                                    extentOffset: context
+                                        .read<NumberSeriesCtrl>()
+                                        .frstnocontroller[index]
+                                        .text
+                                        .length,
                                   );
                                 },
                                 onEditingComplete: () {
@@ -241,16 +216,11 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                     horizontal: 10,
                                   ),
                                 ),
-                              )
-
-                              // Text(context.watch<NumberSeriesCtrl>().numberSerisList[index].FirstNo.toString()),
-                              ),
+                              )),
                           Container(
                               width: widget.searchWidth * 0.18,
                               height: widget.searchHeight * 0.05,
                               alignment: Alignment.centerRight,
-
-                              //color: Colors.red,
                               child: TextFormField(
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.end,
@@ -266,27 +236,21 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                           .read<NumberSeriesCtrl>()
                                           .nxtnocontroller[index]
                                           .text =
-                                      // widget
-                                      //     .prdsrch
                                       context
                                           .read<NumberSeriesCtrl>()
                                           .nxtnocontroller[index]
                                           .text;
-                                  // widget
-                                  //     .prdsrch
+
                                   context
                                       .read<NumberSeriesCtrl>()
                                       .nxtnocontroller[index]
                                       .selection = TextSelection(
                                     baseOffset: 0,
-                                    extentOffset:
-                                        // widget
-                                        //     .prdsrch
-                                        context
-                                            .read<NumberSeriesCtrl>()
-                                            .nxtnocontroller[index]
-                                            .text
-                                            .length,
+                                    extentOffset: context
+                                        .read<NumberSeriesCtrl>()
+                                        .nxtnocontroller[index]
+                                        .text
+                                        .length,
                                   );
                                 },
                                 onEditingComplete: () {
@@ -326,16 +290,11 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                     horizontal: 10,
                                   ),
                                 ),
-                              )
-                              // Text(context.watch<NumberSeriesCtrl>().numberSerisList[index].NextNo.toString()),
-                              ),
-
+                              )),
                           Container(
                               width: widget.searchWidth * 0.25,
                               alignment: Alignment.centerRight,
                               height: widget.searchHeight * 0.05,
-
-                              //color:  Colors.red,
                               child: TextFormField(
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.end,
@@ -351,27 +310,21 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                           .read<NumberSeriesCtrl>()
                                           .lstnocontroller[index]
                                           .text =
-                                      // widget
-                                      //     .prdsrch
                                       context
                                           .read<NumberSeriesCtrl>()
                                           .lstnocontroller[index]
                                           .text;
-                                  // widget
-                                  //     .prdsrch
+
                                   context
                                       .read<NumberSeriesCtrl>()
                                       .lstnocontroller[index]
                                       .selection = TextSelection(
                                     baseOffset: 0,
-                                    extentOffset:
-                                        // widget
-                                        //     .prdsrch
-                                        context
-                                            .read<NumberSeriesCtrl>()
-                                            .lstnocontroller[index]
-                                            .text
-                                            .length,
+                                    extentOffset: context
+                                        .read<NumberSeriesCtrl>()
+                                        .lstnocontroller[index]
+                                        .text
+                                        .length,
                                   );
                                 },
                                 onEditingComplete: () {
@@ -411,37 +364,18 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                     horizontal: 10,
                                   ),
                                 ),
-                              )
-                              // Text(context.watch<NumberSeriesCtrl>().numberSerisList[index].LastNo.toString()),
-                              ),
-
+                              )),
                           Container(
                               width: widget.searchWidth * 0.65,
                               alignment: Alignment.centerRight,
                               height: widget.searchHeight * 0.05,
-
-                              //color:  Colors.red,
                               child: TextFormField(
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.end,
                                 controller: context
                                     .read<NumberSeriesCtrl>()
                                     .prfixcontroller[index],
-                                onTap: () {
-                                  // context.read<NumberSeriesCtrl>().prfixcontroller[index].text =
-                                  //     // widget
-                                  //     //     .prdsrch
-                                  //     context.read<NumberSeriesCtrl>().prfixcontroller[index].text;
-                                  // // widget
-                                  // //     .prdsrch
-                                  // context.read<NumberSeriesCtrl>().prfixcontroller[index].selection = TextSelection(
-                                  //   baseOffset: 0,
-                                  //   extentOffset:
-                                  //       // widget
-                                  //       //     .prdsrch
-                                  //       context.read<NumberSeriesCtrl>().prfixcontroller[index].text.length,
-                                  // );
-                                },
+                                onTap: () {},
                                 onEditingComplete: () {
                                   setState(() {
                                     context
@@ -479,15 +413,11 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                     horizontal: 10,
                                   ),
                                 ),
-                              )
-                              // Text(context.watch<NumberSeriesCtrl>().numberSerisList[index].Prefix.toString()),
-                              ),
+                              )),
                           Container(
                             width: widget.searchWidth * 0.3,
                             alignment: Alignment.center,
                             height: widget.searchHeight * 0.05,
-
-                            //color:  Colors.pink,
                             child: Text(
                               context
                                   .watch<NumberSeriesCtrl>()
@@ -502,8 +432,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                             width: widget.searchWidth * 0.3,
                             alignment: Alignment.center,
                             height: widget.searchHeight * 0.05,
-
-                            //color:  Colors.green,
                             child: Text(
                               context
                                   .watch<NumberSeriesCtrl>()
@@ -518,8 +446,6 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                               width: widget.searchWidth * 0.33,
                               alignment: Alignment.center,
                               height: widget.searchHeight * 0.05,
-
-                              //color:  Colors.red,
                               child: TextFormField(
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.end,
@@ -531,27 +457,21 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                           .read<NumberSeriesCtrl>()
                                           .frmdatecontroller[index]
                                           .text =
-                                      // widget
-                                      //     .prdsrch
                                       context
                                           .read<NumberSeriesCtrl>()
                                           .frmdatecontroller[index]
                                           .text;
-                                  // widget
-                                  //     .prdsrch
+
                                   context
                                       .read<NumberSeriesCtrl>()
                                       .frmdatecontroller[index]
                                       .selection = TextSelection(
                                     baseOffset: 0,
-                                    extentOffset:
-                                        // widget
-                                        //     .prdsrch
-                                        context
-                                            .read<NumberSeriesCtrl>()
-                                            .frmdatecontroller[index]
-                                            .text
-                                            .length,
+                                    extentOffset: context
+                                        .read<NumberSeriesCtrl>()
+                                        .frmdatecontroller[index]
+                                        .text
+                                        .length,
                                   );
                                 },
                                 onEditingComplete: () {
@@ -591,15 +511,11 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                     horizontal: 10,
                                   ),
                                 ),
-                              )
-                              // Text(context.watch<NumberSeriesCtrl>().numberSerisList[index].FromDate.toString()),
-                              ),
+                              )),
                           Container(
                               width: widget.searchWidth * 0.33,
                               alignment: Alignment.centerRight,
                               height: widget.searchHeight * 0.05,
-
-                              //color:  Colors.red,
                               child: TextFormField(
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.end,
@@ -611,27 +527,21 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                           .read<NumberSeriesCtrl>()
                                           .todatecontroller[index]
                                           .text =
-                                      // widget
-                                      //     .prdsrch
                                       context
                                           .read<NumberSeriesCtrl>()
                                           .todatecontroller[index]
                                           .text;
-                                  // widget
-                                  //     .prdsrch
+
                                   context
                                       .read<NumberSeriesCtrl>()
                                       .todatecontroller[index]
                                       .selection = TextSelection(
                                     baseOffset: 0,
-                                    extentOffset:
-                                        // widget
-                                        //     .prdsrch
-                                        context
-                                            .read<NumberSeriesCtrl>()
-                                            .todatecontroller[index]
-                                            .text
-                                            .length,
+                                    extentOffset: context
+                                        .read<NumberSeriesCtrl>()
+                                        .todatecontroller[index]
+                                        .text
+                                        .length,
                                   );
                                 },
                                 onEditingComplete: () {
@@ -671,9 +581,7 @@ class _NumberingSeriesPageState extends State<NumberingSeriesPage> {
                                     horizontal: 10,
                                   ),
                                 ),
-                              )
-                              // Text(context.watch<NumberSeriesCtrl>().numberSerisList[index].ToDate.toString()),
-                              ),
+                              )),
                         ],
                       ),
                     ),

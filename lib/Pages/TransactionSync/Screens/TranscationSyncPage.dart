@@ -20,7 +20,6 @@ class _TransactionSyncScreenState extends State<TransactionSyncScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        // context.read<TransactionSyncController>().clearDataAll();
         context.read<TransactionSyncController>().init();
       });
     });
@@ -63,7 +62,6 @@ class _TransactionSyncScreenState extends State<TransactionSyncScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SyncdataListPage(
-                  //
                   searchHeight: Screens.bodyheight(context),
                   searchWidth: Screens.width(context))
             ],

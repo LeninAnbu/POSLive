@@ -27,11 +27,10 @@ class UsersAPI {
       } else {
         log("Error users: ${json.decode(response.body)}");
         throw Exception("Error");
-        // return AccountBalanceModel.exception('Error', ressCode);
       }
     } catch (e) {
       log("Exception user: $e");
-      // throw Exception(e.toString());
+
       return LoginUserModel.exception(e.toString(), ressCode);
     }
   }

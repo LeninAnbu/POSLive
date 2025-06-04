@@ -11,7 +11,6 @@ class TabStockReg extends StatefulWidget {
   const TabStockReg({
     super.key,
     required this.theme,
-    // required this.stRegCon,
   });
 
   final ThemeData theme;
@@ -23,7 +22,6 @@ class TabStockReg extends StatefulWidget {
 class _TabStockRegState extends State<TabStockReg> {
   Configure config = Configure();
 
-  // final StRegCon stRegCon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +34,6 @@ class _TabStockRegState extends State<TabStockReg> {
           children: [
             Container(
                 alignment: Alignment.center,
-                // color: Colors.green,
                 height: Screens.padingHeight(context) * 0.08,
                 width: Screens.width(context) * 0.55,
                 child: Row(
@@ -45,159 +42,124 @@ class _TabStockRegState extends State<TabStockReg> {
                   children: [
                     Form(
                       key: context.read<StRegCon>().formkey[0],
-                      child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Row(children: [
+                        Row(
                           children: [
-                            Row(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Screens.width(context) * 0.08,
-                                  height: Screens.padingHeight(context) * 0.06,
-                                  child: const Text("From Date"),
-                                ),
-                                Container(
-                                  height: Screens.padingHeight(context) * 0.3,
-                                  width: Screens.width(context) * 0.13,
-                                  decoration: const BoxDecoration(
-                                      // //color: Colors.amber,
-                                      //   borderRadius: BorderRadius.circular(4),
-                                      //  border: Border.all(),
-                                      ),
-                                  child:
-                                      // Center(child: Text("2023-03-03"))
-                                      TextFormField(
-                                    controller: context
-                                        .read<StRegCon>()
-                                        .searchcontroller[2],
-                                    readOnly: true,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Required";
-                                      }
-                                      null;
-                                      return null;
-                                    },
-                                    onTap: () {
-                                      context
-                                          .read<StRegCon>()
-                                          .getDate2(context, 'From');
-                                    },
-                                    decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 5.0, horizontal: 5.0),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4)),
-                                        //   labelText: "Date",
-                                        hintText: "",
-                                        hintStyle: widget
-                                            .theme.textTheme.bodyLarge!
-                                            .copyWith(color: Colors.black),
-                                        suffixIcon:
-                                            const Icon(Icons.calendar_today)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: Screens.width(context) * 0.08,
-                                  height: Screens.padingHeight(context) * 0.06,
-                                  child: const Text("To Date"),
-                                ),
-                                Container(
-                                  height: Screens.padingHeight(context) * 0.3,
-                                  width: Screens.width(context) * 0.13,
-                                  decoration: const BoxDecoration(
-                                      // //color: Colors.amber,
-                                      //   borderRadius: BorderRadius.circular(4),
-                                      //  border: Border.all(),
-                                      ),
-                                  child:
-                                      // Center(child: Text("2023-03-03"))
-                                      TextFormField(
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Required";
-                                      }
-                                      null;
-                                      return null;
-                                    },
-                                    readOnly: true,
-                                    controller: context
-                                        .read<StRegCon>()
-                                        .searchcontroller[3],
-                                    onTap: () {
-                                      context
-                                          .read<StRegCon>()
-                                          .getDate2(context, 'To');
-                                    },
-                                    decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 5.0, horizontal: 5.0),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4)),
-                                        //   labelText: "Date",
-                                        hintText: "",
-                                        hintStyle: widget
-                                            .theme.textTheme.bodyLarge!
-                                            .copyWith(color: Colors.black),
-                                        suffixIcon:
-                                            const Icon(Icons.calendar_today)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: Screens.width(context) * 0.03,
+                            Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.08,
+                              height: Screens.padingHeight(context) * 0.06,
+                              child: const Text("From Date"),
                             ),
                             Container(
-                              alignment: Alignment.topCenter,
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    if (context
-                                        .read<StRegCon>()
-                                        .formkey[0]
-                                        .currentState!
-                                        .validate()) {
-                                      context.read<StRegCon>().calSsearchBtn();
-                                      // context.read<SalesQuotationCon>().getSalesDataDatewise(
-                                      //     context
-                                      //         .read<SalesQuotationCon>()
-                                      //         .searchcontroller[100]
-                                      //         .text
-                                      //         .toString(),
-                                      //     context
-                                      //         .read<SalesQuotationCon>()
-                                      //         .searchcontroller[101]
-                                      //         .text
-                                      //         .toString());
-                                    }
-                                  });
+                              height: Screens.padingHeight(context) * 0.3,
+                              width: Screens.width(context) * 0.13,
+                              decoration: const BoxDecoration(),
+                              child: TextFormField(
+                                controller: context
+                                    .read<StRegCon>()
+                                    .searchcontroller[2],
+                                readOnly: true,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Required";
+                                  }
+                                  null;
+                                  return null;
                                 },
-                                child: Container(
-                                  height: Screens.padingHeight(context) * 0.065,
-                                  width: Screens.width(context) * 0.075,
-                                  decoration: BoxDecoration(
-                                      color: widget.theme.primaryColor,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Icon(
-                                    Icons.search,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                                onTap: () {
+                                  context
+                                      .read<StRegCon>()
+                                      .getDate2(context, 'From');
+                                },
+                                decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 5.0),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4)),
+                                    hintText: "",
+                                    hintStyle: widget.theme.textTheme.bodyLarge!
+                                        .copyWith(color: Colors.black),
+                                    suffixIcon:
+                                        const Icon(Icons.calendar_today)),
                               ),
                             ),
-                          ]),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.08,
+                              height: Screens.padingHeight(context) * 0.06,
+                              child: const Text("To Date"),
+                            ),
+                            Container(
+                              height: Screens.padingHeight(context) * 0.3,
+                              width: Screens.width(context) * 0.13,
+                              decoration: const BoxDecoration(),
+                              child: TextFormField(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Required";
+                                  }
+                                  null;
+                                  return null;
+                                },
+                                readOnly: true,
+                                controller: context
+                                    .read<StRegCon>()
+                                    .searchcontroller[3],
+                                onTap: () {
+                                  context
+                                      .read<StRegCon>()
+                                      .getDate2(context, 'To');
+                                },
+                                decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 5.0),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4)),
+                                    hintText: "",
+                                    hintStyle: widget.theme.textTheme.bodyLarge!
+                                        .copyWith(color: Colors.black),
+                                    suffixIcon:
+                                        const Icon(Icons.calendar_today)),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: Screens.width(context) * 0.03,
+                        ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (context
+                                    .read<StRegCon>()
+                                    .formkey[0]
+                                    .currentState!
+                                    .validate()) {
+                                  context.read<StRegCon>().calSsearchBtn();
+                                }
+                              });
+                            },
+                            child: Container(
+                              height: Screens.padingHeight(context) * 0.065,
+                              width: Screens.width(context) * 0.075,
+                              decoration: BoxDecoration(
+                                  color: widget.theme.primaryColor,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: const Icon(
+                                Icons.search,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]),
                     ),
                   ],
                 )),
@@ -217,9 +179,7 @@ class _TabStockRegState extends State<TabStockReg> {
                               .copyWith(color: Colors.black),
                           keyboardType: TextInputType.text,
                           onChanged: (val) {
-                            //  setState(() {
                             context.read<StRegCon>().filterListSearched(val);
-                            //  });
                           },
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -350,9 +310,7 @@ class _TabStockRegState extends State<TabStockReg> {
               child: Text(
                 '${context.watch<StRegCon>().getfiltersalesReg[i].docno}',
                 textAlign: TextAlign.left,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                    //color: theme.primaryColor,
-                    ),
+                style: theme.textTheme.bodyLarge?.copyWith(),
               ),
             ),
           ),
@@ -362,9 +320,7 @@ class _TabStockRegState extends State<TabStockReg> {
           child: Text(
             '${context.watch<StRegCon>().getfiltersalesReg[i].cardcode}\n${context.watch<StRegCon>().getfiltersalesReg[i].cardname}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                // color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -372,9 +328,7 @@ class _TabStockRegState extends State<TabStockReg> {
           child: Text(
             '${context.watch<StRegCon>().getfiltersalesReg[i].itemcode}\n${context.watch<StRegCon>().getfiltersalesReg[i].itemname}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //  color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -383,9 +337,7 @@ class _TabStockRegState extends State<TabStockReg> {
             config.alignDate(
                 context.watch<StRegCon>().getfiltersalesReg[i].date.toString()),
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -393,9 +345,7 @@ class _TabStockRegState extends State<TabStockReg> {
           child: Text(
             '${context.watch<StRegCon>().getfiltersalesReg[i].branch}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                // color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -403,9 +353,7 @@ class _TabStockRegState extends State<TabStockReg> {
           child: Text(
             '${context.watch<StRegCon>().getfiltersalesReg[i].terminal}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //  color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
       ]));

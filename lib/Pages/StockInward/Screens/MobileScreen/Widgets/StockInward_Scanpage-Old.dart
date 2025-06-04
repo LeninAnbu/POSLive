@@ -17,7 +17,6 @@ scanAlertbox(BuildContext context, StockInwrdController stinCon,
           right: stinHeight * 0.01,
           bottom: stinHeight * 0.008),
       child: SingleChildScrollView(
-        //  shrinkWrap: true,
         physics: const BouncingScrollPhysics(), // new
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,13 +40,7 @@ scanAlertbox(BuildContext context, StockInwrdController stinCon,
                   }
                 },
                 onEditingComplete: () {
-                  st(() {
-                    // stinCon.scanmethod(index!, datalist!.serialBatch!, ind!);
-
-                    // StIn_Con.scanmethod(index, StIn_Con.stInController[0].text, list_i);
-                    // StIn_Con.msg="";
-                    // StIn_Con.Scan(TransQty, Stock_i, StList_i);
-                  });
+                  st(() {});
                 },
                 decoration: InputDecoration(
                   hintText: 'Scan here..',
@@ -57,7 +50,6 @@ scanAlertbox(BuildContext context, StockInwrdController stinCon,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(
-                    // vertical: 12,
                     horizontal: 10,
                   ),
                 ),
@@ -92,20 +84,8 @@ scanAlertbox(BuildContext context, StockInwrdController stinCon,
                             padding: EdgeInsets.all(stinHeight * 0.005),
                             child: Container(
                               width: stinHeight * 0.95,
-                              // height: ProHeight * 0.3,
-
                               decoration: BoxDecoration(
-                                  color:
-                                      // datalist.serialbatchList![i].scanbool == true
-                                      //     ? Color(0xFFebfaef)
-                                      //     : Colors.white,
-                                      // border: Border.all(
-                                      //     color:
-                                      //         datalist.serialbatchList![i].scanbool == true
-                                      //             ? Colors.green.withOpacity(0.3)
-                                      //             :
-                                      Colors.white,
-                                  // ),
+                                  color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
@@ -127,7 +107,6 @@ scanAlertbox(BuildContext context, StockInwrdController stinCon,
                                       children: [
                                         SizedBox(
                                           width: Screens.width(context) * 0.38,
-                                          // color: Colors.amber,
                                           child: Text(
                                             datalist
                                                 .serialbatchList![i].itemcode!,
@@ -136,7 +115,6 @@ scanAlertbox(BuildContext context, StockInwrdController stinCon,
                                         ),
                                         SizedBox(
                                           width: Screens.width(context) * 0.38,
-                                          // color: Colors.amber,
                                           child: Text(
                                             datalist.serialbatchList![i]
                                                 .serialbatch!,

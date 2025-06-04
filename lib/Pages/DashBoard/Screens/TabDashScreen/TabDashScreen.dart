@@ -44,12 +44,10 @@ class _TabDashScreenState extends State<TabDashScreen> {
             children: [
               Container(
                 padding: EdgeInsets.only(
-                  // top: Screens.bodyheight(context) * 0.02,
                   left: Screens.bodyheight(context) * 0.01,
                   right: Screens.bodyheight(context) * 0.01,
                   bottom: Screens.bodyheight(context) * 0.01,
                 ),
-                // height: Screens.bodyheight(context) * 0.8,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +62,6 @@ class _TabDashScreenState extends State<TabDashScreen> {
                       theme: widget.theme,
                       salesWidth: Screens.width(context) * 0.49,
                       salesheight: Screens.bodyheight(context) * 0.355,
-                      // salesheight: Screens.bodyheight(context) * 0.35,
                     ),
                     SizedBox(height: Screens.bodyheight(context) * 0.02),
                     Announcement(

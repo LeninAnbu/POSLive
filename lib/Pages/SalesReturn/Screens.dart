@@ -49,19 +49,21 @@ class _SalesReturnScreensState extends State<SalesReturnScreens> {
         return WillPopScope(
           onWillPop: context.read<SalesReturnController>().onbackpress,
           child: Scaffold(
-              resizeToAvoidBottomInset: false,
+              // resizeToAvoidBottomInset: false,
               drawer: naviDrawer(),
-              body: SafeArea(
-                  child: Column(children: [
-                salesReturnappbar(
-                  "Sales Return",
-                  theme,
-                  context,
-                ),
-                SalesReturnTabScreen(
-                  theme: theme,
-                ),
-              ]))),
+              body: SingleChildScrollView(
+                child: SafeArea(
+                    child: Column(children: [
+                  salesReturnappbar(
+                    "Sales Return",
+                    theme,
+                    context,
+                  ),
+                  SalesReturnTabScreen(
+                    theme: theme,
+                  ),
+                ])),
+              )),
         );
       } else {
         return Scaffold(

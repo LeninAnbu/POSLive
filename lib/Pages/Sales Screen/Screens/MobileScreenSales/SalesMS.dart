@@ -15,7 +15,7 @@ class SalesMobile extends StatelessWidget {
     required this.prdCD,
   });
   PosController prdCD;
-  //final GlobalKey<ScaffoldState> scaffoldKey;required this.scaffoldKey
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

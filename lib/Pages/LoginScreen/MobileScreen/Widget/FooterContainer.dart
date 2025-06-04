@@ -6,16 +6,14 @@ import 'package:provider/provider.dart';
 class FooterContainerMob extends StatelessWidget {
   FooterContainerMob({
     super.key,
-    //  required this.logCon,
     required this.height,
   });
-  // LoginController logCon;
+
   double height;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      //  color: Colors.deepOrange,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -32,25 +30,15 @@ class FooterContainerMob extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4))),
                         contentPadding: const EdgeInsets.all(0),
-                        // backgroundColor: Colors.transparent,
                         insetPadding:
                             EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                         content: settings(
                           context,
                         ),
-                        //  AlertBox(
-                        //   payMent: 'Settings',
-                        //   widget: s
-                        //   buttonName: "Save",
-                        //   callback: () {
-                        //     logCon.settingvalidate(context);
-                        //   },
-                        // )
                       );
                     });
               },
               child: SizedBox(
-                  //color: Colors.amber,
                   width: Screens.width(context) * 0.1,
                   child: const Icon(
                     Icons.settings,
@@ -74,7 +62,6 @@ class FooterContainerMob extends StatelessWidget {
             right: Screens.width(context) * 0.03,
             bottom: Screens.padingHeight(context) * 0.01),
         width: Screens.width(context) * 1.1,
-        // color: Colors.red,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -91,7 +78,6 @@ class FooterContainerMob extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -125,18 +111,6 @@ class FooterContainerMob extends StatelessWidget {
                 key: context.read<LoginController>().formkey[1],
                 child: Column(
                   children: [
-                    // TextFormField(
-                    //   controller: logCon.mycontroller[2],
-                    //   decoration: InputDecoration(
-                    //     hintText: 'Host',
-                    //   ),
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'Values Required';
-                    //     }
-                    //   },
-                    // ),
-
                     Container(
                       alignment: Alignment.centerRight,
                       decoration: BoxDecoration(
@@ -250,7 +224,6 @@ class FooterContainerMob extends StatelessWidget {
                         controller:
                             context.read<LoginController>().mycontroller[4],
                         cursorColor: Colors.grey,
-                        //keyboardType: TextInputType.number,
                         onChanged: (v) {},
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -301,7 +274,6 @@ class FooterContainerMob extends StatelessWidget {
                         controller:
                             context.read<LoginController>().mycontroller[5],
                         cursorColor: Colors.grey,
-                        //keyboardType: TextInputType.number,
                         onChanged: (v) {},
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -346,7 +318,6 @@ class FooterContainerMob extends StatelessWidget {
                 onTap: () {
                   st(() {
                     context.read<LoginController>().settingvalidate(context);
-                    //context.read<LoginController>().ClearSp();
                   });
                 },
                 child: Container(

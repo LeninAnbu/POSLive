@@ -18,7 +18,6 @@ class NewReportApi {
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
                 "query": "EXEC BZ_POS_NewReportApi"
-                //  "Select * From [@POS_ORPT]"
               }));
 
       log("New Changed sts: ${response.statusCode}");
@@ -28,7 +27,6 @@ class NewReportApi {
         "constr":
             "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
         "query": "EXEC BZ_POS_NewReportApi"
-        //  "Select * From [@POS_ORPT]"
       }));
       print(response.statusCode);
       if (response.statusCode == 200) {
@@ -42,7 +40,7 @@ class NewReportApi {
       }
     } catch (e) {
       log('NewReportMdl:::$e');
-      //  throw Exception("Exception: $e");
+
       return NewReportMdl.error(e.toString(), 500);
     }
   }

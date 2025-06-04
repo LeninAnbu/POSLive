@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:posproject/Constant/Screen.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../Constant/Configuration.dart';
-import '../../../Constant/ConstantRoutes.dart';
 import '../../../DB Helper/DBOperation.dart';
 import '../../../DB Helper/DBhelper.dart';
 import '../../../DBModel/NotificationModel.dart';
@@ -63,16 +61,10 @@ class _TabNotificationState extends State<TabNotification> {
                     },
                     child: Card(
                         child: Container(
-                      //  color: Colors.red,
                       width: Screens.width(context),
-                      // padding: EdgeInsets.symmetric(
-                      //     vertical: Screens.padingHeight(context) * 0.01,
-                      //     horizontal: Screens.width(context) * 0.01),
-
                       margin: EdgeInsets.symmetric(
                         vertical: Screens.padingHeight(context) * 0.005,
                       ),
-
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             vertical: Screens.padingHeight(context) * 0.01,

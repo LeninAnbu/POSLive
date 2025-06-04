@@ -32,41 +32,29 @@ class NewReportApi2 {
                 "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
             "query": "$reportQeury"
           })}');
-      // log("New Report details: ${json.decode(response.body)}");
 
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
         values = [];
         var responseBody = response.body;
-        // final parsedData = await compute(parseJson, response.body);
-        // log('message33');
 
         Map<String, dynamic> parsedResponse = json.decode(responseBody);
-        // log('message44');
 
         splitdataaa22 = [];
         leadReportTestt = [];
         if (parsedResponse['data'] != "No data found") {
-          // log('message111');
           List<dynamic> leadListReport2 = json.decode(parsedResponse['data']);
 
-          // log('leadListReport2WWWW::${leadListReport2}');
           values.clear();
           separateKeysAndValues(
             json.decode(parsedResponse['data']).cast<Map<String, dynamic>>(),
           );
           if (leadListReport2.length > 0) {
             leadListReport2[0].keys.toList();
-
-            // reportDataList = leadListReport2
-            //     .map((data) => LeadAnalysisReportData.fromJson(data, columnNames))
-            //     .toList();
           }
 
           for (int i = 0; i < leadListReport2.length; i++) {
             values.add(newvaluedynamic(data: leadListReport2[i]));
-            // log("leadListReport2::" + values.length.toString());
-            // log("First Item in List: ${values[0].data}");
           }
 
           return SalesQuotStatus.issue(
@@ -78,39 +66,23 @@ class NewReportApi2 {
           return SalesQuotStatus.fromJson(response.statusCode);
         }
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return SalesQuotStatus.fromJson(response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
+
       return SalesQuotStatus.issue(
           'Restart the app or contact the admin!!..\n', 500);
     }
-    //   } else {
-    //     return "";
-    //   }
-    // } catch (e) {
-    //   log('NewReportApi2:::$e');
-    //   //  throw Exception("Exception: $e");
-    //   return "TestReportMod.error('')";
-    //   // SalesInDay.error(e.toString(), 500);
-    // }
   }
 
   static separateKeysAndValues(
     List<Map<String, dynamic>> data,
   ) {
     for (var map in data) {
-      // Extract keys
       map.keys.toList();
-      // Extract values
-      map.values.toList();
 
-      // Print or process keys and values
-      // print('Keys: $keys');
-      // print('Values: $values');
-      // print('---'); // Separator for clarity
+      map.values.toList();
     }
   }
 }
@@ -144,10 +116,6 @@ class TestReportValues {
     this.titleVal,
     this.reportValues,
   });
-  // Map<String, Object?> toMap() => {
-  //       LeadTestReportDB.title: titleVal,
-  //       LeadTestReportDB.testValues: reportValues,
-  //     };
 }
 
 class LeadAnalysisReportData {
@@ -164,7 +132,6 @@ class LeadAnalysisReportData {
       insertTestValues.add(TestReportValues(
           reportValues: json[titles[i]].toString(),
           titleVal: titles[i].toString()));
-      // print('Answser22:' + json[titles[i]].toString());
     }
     return LeadAnalysisReportData(
       value: json["AssignedTo"],
@@ -227,36 +194,36 @@ class LeadAnalysisReportData {
 
 //         var leadListReport2 = parsedResponse['data'];
 //         log('leadListReport2::${leadListReport2.toString()}');
-//         // var leadListReport2 = leadListReport.toSet().toList();
+//        
 //         for (var i = 0; i < leadListReport2.length; i++) {
-//           // log('message keys::${leadListReport2[i].keys.toString()}');
+//          
 //           if (leadListReport2[i].contains('"":')) {
 //             log('message keys::${leadListReport2[i].keys}');
-//             // if (leadListReport2[i].toString() != '[' ||
-//             //     leadListReport2[i].toString() != '{' ||
-//             //     leadListReport2[i].toString() != '}' ||
-//             //     leadListReport2[i].toString() != ']') {
+//            
+//            
+//            
+//            
 
-//             // splitdataaa.add(SplitLeadData(
-//             //     leadReportData:
-//             //         leadListReport2[i].keys.toString().replaceAll('(', '')));
+//            
+//            
+//            
 //           }
 //         }
-//         // ReportController.tablercolumnzz = leadListReport2;
+//        
 //         List<String> propertiesaa = [];
 //         ReportController.tablerColumn = splitdataaa;
-//         // log('splitdataaas reportdet:${splitdataaa.length}::::${splitdataaa[0].leadReportData.toString()}');
-//         // for (var i = 0; i < splitdataaa.length; i++) {
-//         //   xxx = splitdataaa[i].leadReportData!.toString().replaceAll(']', '');
-//         // }
-//         // String zzz = xxx.toString().replaceAll(',', '').toString();
-//         // List<String> properties = zzz.split('').map((e) => e.trim()).toList();
+//        
+//        
+//        
+//        
+//        
+//        
 
-//         // for (var i = 0; i < properties.length; i++) {
-//         //   splitdataaa55
-//         //       .add(SplitLeadData(leadReportData: properties[i].toString()));
-//         // }
-//         // log('splitdataaa55 reportdet:${splitdataaa55.length}::::${splitdataaa55[0].leadReportData.toString()}');
+//        
+//        
+//        
+//        
+//        
 
 //         for (var i = 0; i < leadListReport2.length; i++) {
 //           splitdataaa22.add(SplitLeadData(
@@ -288,7 +255,7 @@ class LeadAnalysisReportData {
 //       }
 //     } catch (e) {
 //       log('NewReportApi2:::$e');
-//       //  throw Exception("Exception: $e");
+//      
 //       return SalesInDay.error(e.toString(), 500);
 //     }
 //   }
@@ -314,8 +281,8 @@ class LeadAnalysisReportData {
 //     this.titleVal,
 //     this.reportValues,
 //   });
-//   // Map<String, Object?> toMap() => {
-//   //       LeadTestReportDB.title: titleVal,
-//   //       LeadTestReportDB.testValues: reportValues,
-//   //     };
+//  
+//  
+//  
+//  
 // }

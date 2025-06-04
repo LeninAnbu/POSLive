@@ -11,7 +11,6 @@ class TabCashSattement extends StatefulWidget {
   const TabCashSattement({
     super.key,
     required this.theme,
-    // required this.stRegCon,
   });
 
   final ThemeData theme;
@@ -32,7 +31,6 @@ class _TabCashSattementState extends State<TabCashSattement> {
         child: Column(
           children: [
             SizedBox(
-              // color: Colors.green,
               height: Screens.padingHeight(context) * 0.08,
               width: Screens.width(context) * 0.55,
               child: Row(
@@ -47,18 +45,13 @@ class _TabCashSattementState extends State<TabCashSattement> {
                               children: [
                                 Container(
                                   alignment: Alignment.center,
-                                  // color: Colors.blue,
                                   width: Screens.width(context) * 0.08,
                                   height: Screens.padingHeight(context) * 0.06,
                                   child: const Text("From Date"),
                                 ),
                                 Container(
                                   width: Screens.width(context) * 0.13,
-                                  decoration: const BoxDecoration(
-                                      // //color: Colors.amber,
-                                      //   borderRadius: BorderRadius.circular(4),
-                                      //  border: Border.all(),
-                                      ),
+                                  decoration: const BoxDecoration(),
                                   child: TextFormField(
                                     controller: context
                                         .read<CashStateCon>()
@@ -86,7 +79,6 @@ class _TabCashSattementState extends State<TabCashSattement> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(4)),
-                                        //   labelText: "Date",
                                         hintText: "",
                                         hintStyle: widget
                                             .theme.textTheme.bodyLarge!
@@ -101,19 +93,13 @@ class _TabCashSattementState extends State<TabCashSattement> {
                               children: [
                                 Container(
                                   alignment: Alignment.center,
-                                  // color: Colors.blue,
                                   width: Screens.width(context) * 0.08,
                                   height: Screens.padingHeight(context) * 0.06,
                                   child: const Text("To Date"),
                                 ),
                                 Container(
-                                  // height: Screens.padingHeight(context) * 0.3,
                                   width: Screens.width(context) * 0.13,
-                                  decoration: const BoxDecoration(
-                                      // //color: Colors.amber,
-                                      //   borderRadius: BorderRadius.circular(4),
-                                      //  border: Border.all(),
-                                      ),
+                                  decoration: const BoxDecoration(),
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -140,7 +126,6 @@ class _TabCashSattementState extends State<TabCashSattement> {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(4)),
-                                        //   labelText: "Date",
                                         hintText: "",
                                         hintStyle: widget
                                             .theme.textTheme.bodyLarge!
@@ -159,18 +144,6 @@ class _TabCashSattementState extends State<TabCashSattement> {
                                 setState(() {
                                   context.read<CashStateCon>().searchBtn();
                                 });
-
-                                // context.read<SalesQuotationCon>().getSalesDataDatewise(
-                                //     context
-                                //         .read<SalesQuotationCon>()
-                                //         .searchcontroller[100]
-                                //         .text
-                                //         .toString(),
-                                //     context
-                                //         .read<SalesQuotationCon>()
-                                //         .searchcontroller[101]
-                                //         .text
-                                //         .toString());
                               },
                               child: Container(
                                 height: Screens.padingHeight(context) * 0.06,
@@ -200,9 +173,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
                     .copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 onChanged: (val) {
-                  //  setState(() {
                   context.read<CashStateCon>().filterListSearched(val);
-                  //  });
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -335,9 +306,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
             child: Text(
               '${context.watch<CashStateCon>().getfiltersalesReg[i].docno}',
               textAlign: TextAlign.left,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                  //color: theme.primaryColor,
-                  ),
+              style: theme.textTheme.bodyLarge?.copyWith(),
             ),
           ),
         ),
@@ -346,9 +315,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
           child: Text(
             '${context.watch<CashStateCon>().getfiltersalesReg[i].cardcode}\n${context.watch<CashStateCon>().getfiltersalesReg[i].cardname}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                // color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -357,9 +324,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
             config.splitValues(
                 '${context.watch<CashStateCon>().getfiltersalesReg[i].amount}'),
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //  color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -368,9 +333,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
             config.splitValues(
                 '${context.watch<CashStateCon>().getfiltersalesReg[i].expense}'),
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -379,9 +342,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
             config.alignDate(
                 '${context.watch<CashStateCon>().getfiltersalesReg[i].date}'),
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -389,9 +350,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
           child: Text(
             '${context.watch<CashStateCon>().getfiltersalesReg[i].doctype}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //  color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -399,9 +358,7 @@ class _TabCashSattementState extends State<TabCashSattement> {
           child: Text(
             '${context.watch<CashStateCon>().getfiltersalesReg[i].branch}\n${context.watch<CashStateCon>().getfiltersalesReg[i].terminal}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                // color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
       ]));

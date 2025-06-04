@@ -37,7 +37,6 @@ class _MobStockListState extends State<MobStockList> {
                         Border.all(color: theme.primaryColor.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(8)),
                 width: Screens.width(context),
-                //height: Screens.bodyheight(context) * 0.26,
                 padding: EdgeInsets.symmetric(
                     horizontal: Screens.width(context) * 0.015,
                     vertical: Screens.bodyheight(context) * 0.005),
@@ -58,7 +57,6 @@ class _MobStockListState extends State<MobStockList> {
                             onTap: () {
                               setState(() {
                                 isselectedBrand(color!);
-                                // color = 1;
                               });
                             },
                             child: Container(
@@ -84,9 +82,7 @@ class _MobStockListState extends State<MobStockList> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                // color = 1;
-                              });
+                              setState(() {});
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -110,9 +106,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -143,9 +137,7 @@ class _MobStockListState extends State<MobStockList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -168,9 +160,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -193,9 +183,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -226,9 +214,7 @@ class _MobStockListState extends State<MobStockList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -251,9 +237,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -276,9 +260,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -339,7 +321,6 @@ class _MobStockListState extends State<MobStockList> {
                         Border.all(color: theme.primaryColor.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(8)),
                 width: Screens.width(context),
-                //height: Screens.bodyheight(context) * 0.26,
                 padding: EdgeInsets.symmetric(
                     horizontal: Screens.width(context) * 0.015,
                     vertical: Screens.bodyheight(context) * 0.005),
@@ -358,9 +339,7 @@ class _MobStockListState extends State<MobStockList> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                // color = 1;
-                              });
+                              setState(() {});
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -385,9 +364,7 @@ class _MobStockListState extends State<MobStockList> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                // color = 1;
-                              });
+                              setState(() {});
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -411,9 +388,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -444,9 +419,7 @@ class _MobStockListState extends State<MobStockList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -469,9 +442,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -494,9 +465,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -527,9 +496,7 @@ class _MobStockListState extends State<MobStockList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -552,9 +519,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -577,9 +542,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -640,7 +603,6 @@ class _MobStockListState extends State<MobStockList> {
                         Border.all(color: theme.primaryColor.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(8)),
                 width: Screens.width(context),
-                //height: Screens.bodyheight(context) * 0.26,
                 padding: EdgeInsets.symmetric(
                     horizontal: Screens.width(context) * 0.015,
                     vertical: Screens.bodyheight(context) * 0.005),
@@ -659,9 +621,7 @@ class _MobStockListState extends State<MobStockList> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                // color = 1;
-                              });
+                              setState(() {});
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -686,9 +646,7 @@ class _MobStockListState extends State<MobStockList> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                // color = 1;
-                              });
+                              setState(() {});
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -712,9 +670,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -745,9 +701,7 @@ class _MobStockListState extends State<MobStockList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -770,9 +724,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -795,9 +747,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -828,9 +778,7 @@ class _MobStockListState extends State<MobStockList> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -853,9 +801,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -878,9 +824,7 @@ class _MobStockListState extends State<MobStockList> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // color = 1;
-                            },
+                            onTap: () {},
                             child: Container(
                               alignment: Alignment.center,
                               width: Screens.width(context) * 0.27,
@@ -1001,11 +945,8 @@ class _MobStockListState extends State<MobStockList> {
   isselectedBrand(int i) {
     if (i == 0) {
       i = 1;
-      // addBrand(brandList[i].brand);
     } else {
       i = 0;
-      // removeBrand(brandList[i].brand);
     }
-    // notifyListeners();
   }
 }

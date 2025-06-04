@@ -57,13 +57,11 @@ class SalesQuotPostAPi {
       log("http://102.69.167.106:50001/b1s/v1/Quotations");
       final response = await http.post(
         Uri.parse(
-          // URL.url+
           "http://102.69.167.106:50001/b1s/v1/Quotations",
         ),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
@@ -100,16 +98,13 @@ class SalesQuotPostAPi {
             })}",
       );
       log("statucCode: ${response.statusCode}");
-      // log("Quotations post: " +
-      //     json.decode(response.body.toString()).toString());
+
       if (response.statusCode >= 200 && response.statusCode <= 204) {
-        // final dynamic data = json.decode(response.body.toString());
         return Servicrlayerquotation.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
         log("Responce: ${json.decode(response.body)}");
 
-        // throw Exception('Restart the app or contact the admin!!..');
         return Servicrlayerquotation.issue(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
@@ -117,8 +112,6 @@ class SalesQuotPostAPi {
     } catch (e) {
       log(e.toString());
       throw Exception(e);
-      // return Servicrlayerquotation.issue(
-      //     'Restart the app or contact the admin!!..\n');
     }
   }
 }

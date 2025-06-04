@@ -179,7 +179,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                         width: Screens.width(context) * 0.02,
                       ),
                       Container(
-                        // color: Colors.red,
                         width: Screens.width(context) * 0.26,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -255,7 +254,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                       .mycontroller[0]
                                       .text
                                       .isNotEmpty) {
-                                    //loadingscrn
                                     context
                                         .read<ReconciliationCtrl>()
                                         .disableKeyBoard(context);
@@ -296,7 +294,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                   color: theme.primaryColor,
                   width: Screens.width(context),
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           alignment: Alignment.center,
@@ -309,20 +306,7 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                       SizedBox(
                         width: Screens.width(context) * 0.01,
                       ),
-                      // Container(
-                      //     // color: Colors.red,
-                      //     alignment: Alignment.center,
-                      //     width: Screens.width(context) * 0.05,
-                      //     child: Text(
-                      //       'Origin',
-                      //       style: theme.textTheme.bodyMedium
-                      //           ?.copyWith(color: Colors.white),
-                      //     )),
-                      // SizedBox(
-                      //   width: Screens.width(context) * 0.005,
-                      // ),
                       Container(
-                          // color: Colors.red,
                           alignment: Alignment.center,
                           width: Screens.width(context) * 0.06,
                           child: Text(
@@ -401,7 +385,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                       SizedBox(
                         width: Screens.width(context) * 0.01,
                       ),
-
                       Container(
                         alignment: Alignment.center,
                         width: Screens.width(context) * 0.2,
@@ -499,29 +482,12 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
-                                                      // Container(
-                                                      //     // color: Colors.red,
-                                                      //     alignment: Alignment.center,
-                                                      //     height: Screens.padingHeight(
-                                                      //             context) *
-                                                      //         0.02,
-                                                      //     width: Screens.width(context) *
-                                                      //         0.05),
-                                                      // SizedBox(
-                                                      //   width:
-                                                      //       Screens.width(context) * 0.01,
-                                                      // ),
                                                       Container(
-                                                        // height: Screens.padingHeight(
-                                                        //         context) *
-                                                        //     0.02,
-                                                        // color: Colors.red,
                                                         alignment:
                                                             Alignment.center,
                                                         width: Screens.width(
                                                                 context) *
                                                             0.06,
-
                                                         child: Text(
                                                             '${context.watch<ReconciliationCtrl>().recoListItemData[index].ref1}'),
                                                       ),
@@ -531,7 +497,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.005,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         alignment:
                                                             Alignment.center,
                                                         width: Screens.width(
@@ -546,7 +511,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.005,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         alignment:
                                                             Alignment.center,
                                                         width: Screens.width(
@@ -561,7 +525,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.01,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         alignment:
                                                             Alignment.center,
                                                         width: Screens.width(
@@ -576,7 +539,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.005,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         alignment: Alignment
                                                             .centerRight,
                                                         width: Screens.width(
@@ -591,7 +553,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.005,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         alignment: Alignment
                                                             .centerRight,
                                                         width: Screens.width(
@@ -606,7 +567,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.01,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         alignment: Alignment
                                                             .centerRight,
                                                         height: Screens
@@ -626,13 +586,7 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             DecimalInputFormatter()
                                                           ],
                                                           onChanged: (v) {
-                                                            setState(() {
-                                                              // context
-                                                              //     .read<
-                                                              //         ReconciliationCtrl>()
-                                                              //     .doubleDotMethodPayTerms(
-                                                              //         index, v);
-                                                            });
+                                                            setState(() {});
                                                           },
                                                           onTap: () {
                                                             context
@@ -722,8 +676,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             ),
                                                           ),
                                                         ),
-                                                        // child: Text(
-                                                        //     '${context.watch<ReconciliationCtrl>().recoListItemData[index].reconcileAmount}'),
                                                       ),
                                                       SizedBox(
                                                         width: Screens.width(
@@ -731,7 +683,6 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                             0.01,
                                                       ),
                                                       Container(
-                                                        // color: Colors.red,
                                                         width: Screens.width(
                                                                 context) *
                                                             0.21,

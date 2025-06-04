@@ -952,7 +952,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
         .newCashAcc
         .where((item) => item.uMode == "CASH")
         .toList();
-    // log('cashItems::${cashItems[0].uMode}');
+
     return StatefulBuilder(builder: (context, st) {
       return Container(
         width: widget.cashWidth * 1.1,
@@ -978,7 +978,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                 children: [
                   SizedBox(height: widget.cashHeight * 0.05),
                   Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
@@ -987,9 +986,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                       SizedBox(width: widget.cashWidth * 0.165),
                       Container(
                         width: widget.cashWidth * 0.7,
-                        padding: EdgeInsets.only(
-                            // left: widget.cashHeight * 0.01,
-                            ),
+                        padding: EdgeInsets.only(),
                         decoration: BoxDecoration(
                           border: Border.all(
                               color: context
@@ -1004,7 +1001,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton(
                             padding: EdgeInsets.only(left: 12),
-                            // focusColor: Colors.white,
                             hint: Text(
                               ' Select Account Name',
                               style: TextStyle(
@@ -1174,7 +1170,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                     children: [
                       SizedBox(height: widget.cashHeight * 0.05),
                       Row(
-                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             alignment: Alignment.centerLeft,
@@ -1183,9 +1178,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           SizedBox(width: widget.cashWidth * 0.19),
                           Container(
                             width: widget.cashWidth * 0.7,
-                            padding: EdgeInsets.only(
-                                // left: widget.cashHeight * 0.01,
-                                ),
+                            padding: EdgeInsets.only(),
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color: context
@@ -1200,7 +1193,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 padding: EdgeInsets.only(left: 12),
-                                // focusColor: Colors.white,
                                 hint: Text(
                                   ' Select Account Name',
                                   style: TextStyle(
@@ -1639,7 +1631,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                   children: [
                     SizedBox(height: widget.cashHeight * 0.05),
                     Row(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
@@ -1648,9 +1639,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                         SizedBox(width: widget.cashWidth * 0.175),
                         Container(
                           width: widget.cashWidth * 0.7,
-                          padding: EdgeInsets.only(
-                              // left: widget.cashHeight * 0.01,
-                              ),
+                          padding: EdgeInsets.only(),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: context
@@ -1665,7 +1654,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               padding: EdgeInsets.only(left: 12),
-                              // focusColor: Colors.white,
                               hint: Text(
                                 ' Select Account Name',
                                 style: TextStyle(
@@ -1999,7 +1987,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                   children: [
                     SizedBox(height: widget.cashHeight * 0.05),
                     Row(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
@@ -2008,9 +1995,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                         SizedBox(width: widget.cashWidth * 0.16),
                         Container(
                           width: widget.cashWidth * 0.7,
-                          padding: EdgeInsets.only(
-                              // left: widget.cashHeight * 0.01,
-                              ),
+                          padding: EdgeInsets.only(),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: context
@@ -2025,7 +2010,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               padding: EdgeInsets.only(left: 12),
-                              // focusColor: Colors.white,
                               hint: Text(
                                 ' Select Account Name',
                                 style: TextStyle(
@@ -2303,7 +2287,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                   children: [
                     SizedBox(height: widget.cashHeight * 0.05),
                     Row(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           alignment: Alignment.centerLeft,
@@ -2312,9 +2295,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                         SizedBox(width: widget.cashWidth * 0.16),
                         Container(
                           width: widget.cashWidth * 0.7,
-                          padding: EdgeInsets.only(
-                              // left: widget.cashHeight * 0.01,
-                              ),
+                          padding: EdgeInsets.only(),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: context
@@ -2329,7 +2310,6 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               padding: EdgeInsets.only(left: 12),
-                              // focusColor: Colors.white,
                               hint: Text(
                                 ' Select Account Name',
                                 style: TextStyle(

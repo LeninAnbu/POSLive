@@ -16,7 +16,6 @@ class StockOutward extends StatelessWidget {
     return PageView(
       scrollDirection: Axis.horizontal,
       pageSnapping: false,
-      // controller: soutCon.page,
       physics: const NeverScrollableScrollPhysics(),
       onPageChanged: (index) {
         soutCon.PageIndexvalue(index);

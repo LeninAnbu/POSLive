@@ -31,10 +31,10 @@
 //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
 //         content: SizedBox(
 //             width: widget.searchWidth * 2,
-//             //  height:searchHeight*0.9 ,
+//           
 //             child: SingleChildScrollView(
 //               child: Column(
-//                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               
 //                 children: [
 //                   Container(
 //                       alignment: Alignment.centerLeft,
@@ -52,7 +52,7 @@
 //                                     children: [
 //                                       Container(
 //                                         alignment: Alignment.center,
-//                                         // color: Colors.blue,
+//                                       
 //                                         width: widget.searchWidth * 0.08,
 //                                         child: Text("From Date"),
 //                                       ),
@@ -60,12 +60,12 @@
 //                                         height: widget.searchHeight * 0.07,
 //                                         width: widget.searchWidth * 0.15,
 //                                         decoration: BoxDecoration(
-//                                             // //color: Colors.amber,
-//                                             //   borderRadius: BorderRadius.circular(4),
-//                                             //  border: Border.all(),
+//                                           
+//                                           
+//                                           
 //                                             ),
 //                                         child:
-//                                             // Center(child: Text("2023-03-03"))
+//                                           
 //                                             TextFormField(
 //                                           controller: context
 //                                               .read<SOCon>()
@@ -91,7 +91,7 @@
 //                                               border: OutlineInputBorder(
 //                                                   borderRadius:
 //                                                       BorderRadius.circular(4)),
-//                                               //   labelText: "Date",
+//                                             
 //                                               hintText: "",
 //                                               hintStyle: widget
 //                                                   .theme.textTheme.bodyLarge!
@@ -110,7 +110,7 @@
 //                                   children: [
 //                                     Container(
 //                                       alignment: Alignment.center,
-//                                       // color: Colors.blue,
+//                                     
 //                                       width: widget.searchWidth * 0.08,
 //                                       child: Text("To Date"),
 //                                     ),
@@ -118,12 +118,12 @@
 //                                       height: widget.searchHeight * 0.07,
 //                                       width: widget.searchWidth * 0.15,
 //                                       decoration: BoxDecoration(
-//                                           // //color: Colors.amber,
-//                                           //   borderRadius: BorderRadius.circular(4),
-//                                           //  border: Border.all(),
+//                                         
+//                                         
+//                                         
 //                                           ),
 //                                       child:
-//                                           // Center(child: Text("2023-03-03"))
+//                                         
 //                                           TextFormField(
 //                                         validator: (value) {
 //                                           if (value!.isEmpty) {
@@ -149,7 +149,7 @@
 //                                             border: OutlineInputBorder(
 //                                                 borderRadius:
 //                                                     BorderRadius.circular(4)),
-//                                             //   labelText: "Date",
+//                                           
 //                                             hintText: "",
 //                                             hintStyle: widget
 //                                                 .theme.textTheme.bodyLarge!
@@ -208,13 +208,13 @@
 //                                     width: widget.searchWidth * 0.3,
 
 //                                     decoration: BoxDecoration(
-//                                         // //color: Colors.amber,
-//                                         //   borderRadius: BorderRadius.circular(4),
-//                                         //  border: Border.all(),
+//                                       
+//                                       
+//                                       
 //                                         ),
 
 //                                     child: TextFormField(
-//                                       // keyboardType: TextInputType.number,
+//                                     
 //                                       onChanged: (value) {
 //                                         setState(() {
 //                                           context
@@ -223,8 +223,8 @@
 //                                         });
 //                                       },
 
-//                                       // readOnly: true,
-//                                       //  controller: settleCon.mycontroller[1],
+//                                     
+//                                     
 //                                       decoration: InputDecoration(
 //                                           hintText: "Search...",
 //                                           contentPadding: EdgeInsets.symmetric(
@@ -232,12 +232,12 @@
 //                                           border: OutlineInputBorder(
 //                                               borderRadius:
 //                                                   BorderRadius.circular(4)),
-//                                           //   labelText: "Date",
+//                                         
 //                                           hintStyle: widget
 //                                               .theme.textTheme.bodyLarge!
 //                                               .copyWith(color: Colors.black)),
 //                                     ),
-//                                     //Center(child: Text("2000"))
+//                                   
 //                                   ),
 //                                 ],
 //                               ),
@@ -262,7 +262,7 @@
 //                         Container(
 //                           alignment: Alignment.centerLeft,
 //                           width: widget.searchWidth * 0.12,
-//                           //color: Colors.amber,
+//                         
 //                           child: Text(
 //                             "Customer Code",
 //                             style: widget.theme.textTheme.bodyLarge!
@@ -272,7 +272,7 @@
 //                         Container(
 //                           alignment: Alignment.centerLeft,
 //                           width: widget.searchWidth * 0.12,
-//                           //color: Colors.amber,
+//                         
 //                           child: Text(
 //                             "Draft Docentry",
 //                             style: widget.theme.textTheme.bodyLarge!
@@ -282,7 +282,7 @@
 //                         Container(
 //                           alignment: Alignment.center,
 //                           width: widget.searchWidth * 0.08,
-//                           //color: Colors.amber,
+//                         
 //                           child: Text(
 //                             "Doc Date",
 //                             style: widget.theme.textTheme.bodyLarge!
@@ -292,77 +292,77 @@
 //                         Container(
 //                           alignment: Alignment.center,
 //                           width: widget.searchWidth * 0.08,
-//                           //color: Colors.amber,
+//                         
 //                           child: Text(
 //                             "UserName",
 //                             style: widget.theme.textTheme.bodyLarge!
 //                                 .copyWith(color: Colors.white),
 //                           ),
 //                         ),
-//                         // Container(
-//                         //   alignment: Alignment.center,
-//                         //   width: widget.searchWidth * 0.1,
-//                         //   //color: Colors.amber,
-//                         //   child: Text(
-//                         //     "Terminal",
-//                         //     style: widget.theme.textTheme.bodyLarge!.copyWith(color: Colors.white),
-//                         //   ),
-//                         // ),
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
 //                         Container(
 //                           alignment: Alignment.center,
 //                           width: widget.searchWidth * 0.08,
-//                           //color: Colors.amber,
+//                         
 //                           child: Text(
 //                             "SAP DocNo",
 //                             style: widget.theme.textTheme.bodyLarge!
 //                                 .copyWith(color: Colors.white),
 //                           ),
 //                         ),
-//                         // Container(
-//                         //   alignment: Alignment.center,
-//                         //   width: widget.searchWidth * 0.12,
-//                         //   //color: Colors.amber,
-//                         //   child: Text(
-//                         //     "Status",
-//                         //     style: widget.theme.textTheme.bodyLarge!.copyWith(color: Colors.white),
-//                         //   ),
-//                         // ),
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
 //                         Container(
 //                           alignment: Alignment.center,
 //                           width: widget.searchWidth * 0.15,
-//                           //color: Colors.amber,
+//                         
 //                           child: Text(
 //                             "Customer Name",
 //                             style: widget.theme.textTheme.bodyLarge!
 //                                 .copyWith(color: Colors.white),
 //                           ),
 //                         ),
-//                         // Container(
-//                         //   alignment: Alignment.centerRight,
-//                         //   width: widget.searchWidth * 0.12,
-//                         //   //color: Colors.amber,
-//                         //   child: Text(
-//                         //     "Doc Total ",
-//                         //     style: widget.theme.textTheme.bodyLarge!.copyWith(color: Colors.white),
-//                         //   ),
-//                         // ),
-//                         // Container(
-//                         //   alignment: Alignment.center,
-//                         //   width: widget.searchWidth * 0.1,
-//                         //   //color: Colors.amber,
-//                         //   child: Text(
-//                         //     "Type",
-//                         //     style: widget.theme.textTheme.bodyMedium!
-//                         //         .copyWith(color: Colors.white),
-//                         //   ),
-//                         // ),
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
+//                       
 //                       ],
 //                     ),
 //                   ),
 
 //                   Container(
 //                     height: widget.searchHeight * 0.87,
-//                     // color: Colors.green,
+//                   
 //                     decoration: BoxDecoration(
 //                         color: Colors.white,
 //                         borderRadius: BorderRadius.circular(5)),
@@ -392,8 +392,8 @@
 //                                 child: Container(
 //                                   padding: EdgeInsets.only(
 //                                       top: widget.searchHeight * 0.03,
-//                                       // left: widget.searchHeight * 0.02,
-//                                       // right: widget.searchHeight * 0.02,
+//                                     
+//                                     
 //                                       bottom: widget.searchHeight * 0.03),
 //                                   decoration: BoxDecoration(
 //                                       color: Colors.grey.withOpacity(0.05),
@@ -407,7 +407,7 @@
 //                                       Container(
 //                                         alignment: Alignment.center,
 //                                         width: widget.searchWidth * 0.13,
-//                                         //color: Colors.amber,
+//                                       
 //                                         child: Text(
 //                                           "${context.watch<SOCon>().filterAprvlData[index].cardCode}",
 //                                           style: widget
@@ -418,7 +418,7 @@
 //                                       Container(
 //                                         alignment: Alignment.center,
 //                                         width: widget.searchWidth * 0.13,
-//                                         //color: Colors.amber,
+//                                       
 //                                         child: Text(
 //                                           "${context.watch<SOCon>().filterAprvlData[index].docEntry}",
 //                                           style: widget
@@ -429,7 +429,7 @@
 //                                       Container(
 //                                         alignment: Alignment.center,
 //                                         width: widget.searchWidth * 0.08,
-//                                         //color: Colors.amber,
+//                                       
 //                                         child: Text(
 //                                           "${context.watch<SOCon>().config.alignDate(context.read<SOCon>().filterAprvlData[index].DocDate!)}",
 //                                           style: widget
@@ -440,7 +440,7 @@
 //                                       Container(
 //                                         alignment: Alignment.center,
 //                                         width: widget.searchWidth * 0.08,
-//                                         //color: Colors.amber,
+//                                       
 //                                         child: Text(
 //                                           "${context.watch<SOCon>().filterAprvlData[index].FromUser}",
 //                                           style: widget
@@ -448,19 +448,19 @@
 //                                               .copyWith(color: Colors.black),
 //                                         ),
 //                                       ),
-//                                       // Container(
-//                                       //   alignment: Alignment.center,
-//                                       //   width: widget.searchWidth * 0.1,
-//                                       //   //color: Colors.amber,
-//                                       //   child: Text(
-//                                       //     "${context.watch<SOCon>().filterAprvlData[index].terminal}",
-//                                       //     style: widget.theme.textTheme.bodyLarge!.copyWith(color: Colors.black),
-//                                       //   ),
-//                                       // ),
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
 //                                       Container(
 //                                         alignment: Alignment.centerRight,
 //                                         width: widget.searchWidth * 0.08,
-//                                         //color: Colors.amber,
+//                                       
 //                                         child: Text(
 //                                           "${context.watch<SOCon>().filterAprvlData[index].DocNum}",
 //                                           style: widget
@@ -468,19 +468,19 @@
 //                                               .copyWith(color: Colors.black),
 //                                         ),
 //                                       ),
-//                                       // Container(
-//                                       //   alignment: Alignment.center,
-//                                       //   width: widget.searchWidth * 0.14,
-//                                       //   //color: Colors.amber,
-//                                       //   child: Text(
-//                                       //     "${context.watch<SOCon>().filterAprvlData[index].qStatus}",
-//                                       //     style: widget.theme.textTheme.bodyLarge!.copyWith(color: Colors.black),
-//                                       //   ),
-//                                       // ),
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
 //                                       Container(
 //                                         alignment: Alignment.center,
 //                                         width: widget.searchWidth * 0.15,
-//                                         //color: Colors.amber,
+//                                       
 //                                         child: Text(
 //                                           "${context.watch<SOCon>().filterAprvlData[index].cardName}",
 //                                           style: widget
@@ -488,27 +488,27 @@
 //                                               .copyWith(color: Colors.black),
 //                                         ),
 //                                       ),
-//                                       // Container(
-//                                       //   padding: EdgeInsets.only(right: widget.searchWidth * 0.01),
-//                                       //   alignment: Alignment.centerRight,
-//                                       //   width: widget.searchWidth * 0.12,
-//                                       //   //color: Colors.amber,
-//                                       //   child: Text(
-//                                       //     "${context.watch<SOCon>().config.splitValues(context.watch<SOCon>().filterAprvlData[index].doctotal.toString())}",
-//                                       //     style: widget.theme.textTheme.bodyLarge!.copyWith(color: Colors.black),
-//                                       //   ),
-//                                       // ),
-//                                       // Container(
-//                                       //   alignment: Alignment.center,
-//                                       //   width: widget.searchWidth * 0.1,
-//                                       //   //color: Colors.amber,
-//                                       //   child: Text(
-//                                       //     "${widget.SalesCon.filterAprvlData[index].type}",
-//                                       //     style: widget
-//                                       //         .theme.textTheme.bodyMedium!
-//                                       //         .copyWith(color: Colors.black),
-//                                       //   ),
-//                                       // ),
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
+//                                     
 //                                     ],
 //                                   ),
 //                                 ),

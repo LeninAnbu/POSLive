@@ -72,25 +72,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                     payMent: 'Select Customer',
                                     widget: forSearchBtn(context),
                                     buttonName: '',
-                                    // callback: () {
-                                    //   setState(() {
-                                    //     Navigator.pop(context);
-
-                                    //     showDialog(
-                                    //         context: context,
-                                    //         barrierDismissible: false,
-                                    //         builder: (BuildContext context) {
-                                    //           return AlertDialog(
-                                    //               contentPadding:
-                                    //                   const EdgeInsets.all(0),
-                                    //               content: AlertBox(
-                                    //                 payMent: 'New Customer',
-                                    //                 widget: forAddNewBtn(context),
-                                    //                 buttonName: null,
-                                    //               ));
-                                    //         });
-                                    //   });
-                                    // },
                                   ));
                             });
                       }
@@ -343,11 +324,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54),
                                       ),
-                                      // SizedBox(
-                                      //     width: widget.custWidth * 0.04,
-                                      //     child: const Icon(
-                                      //       Icons.arrow_drop_down,
-                                      //     ))
                                     ],
                                   ),
                                 ),
@@ -495,11 +471,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54),
                                       ),
-                                      // SizedBox(
-                                      //     width: widget.custWidth * 0.04,
-                                      //     child: const Icon(
-                                      //       Icons.arrow_drop_down,
-                                      //     ))
                                     ],
                                   ),
                                 ),
@@ -614,7 +585,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                   : Container(
                       color: Colors.grey[50],
                       padding: EdgeInsets.symmetric(
-                          // vertical: widget.custHeight * 0.02,
                           horizontal: widget.custWidth * 0.02),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -730,7 +700,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                                       .grey),
                                                         ),
                                                         hintText: 'Name',
-                                                        // labelText: 'Name',
                                                         hintStyle: widget
                                                             .theme
                                                             .textTheme
@@ -742,7 +711,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                         contentPadding:
                                                             const EdgeInsets
                                                                 .symmetric(
-                                                          // vertical: 10,
                                                           horizontal: 10,
                                                         ),
                                                       ),
@@ -804,15 +772,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                           }
                                                         },
                                                         onEditingComplete: () {
-                                                          // context
-                                                          //         .read<PosController>()
-                                                          //         .selectedcust!
-                                                          //         .name =
-                                                          //     context
-                                                          //         .read<
-                                                          //             PosController>()
-                                                          //         .custNameController
-                                                          //         .text;
                                                           context
                                                               .read<
                                                                   PosController>()
@@ -870,7 +829,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                                         .grey),
                                                           ),
                                                           hintText: 'Tin no',
-                                                          // labelText: 'Tin no',
                                                           hintStyle: widget
                                                               .theme
                                                               .textTheme
@@ -882,7 +840,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                           contentPadding:
                                                               const EdgeInsets
                                                                   .symmetric(
-                                                            // vertical: 10,
                                                             horizontal: 10,
                                                           ),
                                                         ),
@@ -923,15 +880,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                       }
                                                     },
                                                     onEditingComplete: () {
-                                                      // context
-                                                      //         .read<PosController>()
-                                                      //         .selectedcust!
-                                                      //         .name =
-                                                      //     context
-                                                      //         .read<
-                                                      //             PosController>()
-                                                      //         .custNameController
-                                                      //         .text;
                                                       context
                                                           .read<PosController>()
                                                           .disableKeyBoard(
@@ -982,7 +930,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                                     .grey),
                                                       ),
                                                       hintText: 'VAT no',
-                                                      // labelText: 'VAT no',
                                                       hintStyle: widget.theme
                                                           .textTheme.bodyMedium
                                                           ?.copyWith(
@@ -992,7 +939,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                       contentPadding:
                                                           const EdgeInsets
                                                               .symmetric(
-                                                        // vertical: 10,
                                                         horizontal: 10,
                                                       ),
                                                     ),
@@ -1248,19 +1194,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               InkWell(
-                                onTap: () async {
-                                  // context
-                                  //     .read<PosController>()
-                                  //     .clearTextField();
-                                  // billAddress(context);
-                                  // await context
-                                  //     .read<PosController>()
-                                  //     .billaddresslist();
-
-                                  // context
-                                  //     .read<PosController>()
-                                  //     .disableKeyBoard(context);
-                                },
+                                onTap: () async {},
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
                                   child: Column(
@@ -1281,12 +1215,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                   ?.copyWith(
                                                       color: Colors.black54),
                                             ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
                                           ],
                                         ),
                                       ),
@@ -1441,23 +1369,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {
-                                  // setState(
-                                  //   () {
-                                  //     context
-                                  //         .read<PosController>()
-                                  //         .clearTextField();
-                                  //     sipaddress(context);
-                                  //     context
-                                  //         .read<PosController>()
-                                  //         .shippinfaddresslist();
-                                  //   },
-                                  // );
-
-                                  // context
-                                  //     .read<PosController>()
-                                  //     .disableKeyBoard(context);
-                                },
+                                onTap: () {},
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
                                   child: Column(
@@ -1481,12 +1393,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                                   ?.copyWith(
                                                       color: Colors.black54),
                                             ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
                                           ],
                                         ),
                                       ),
@@ -1717,18 +1623,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                           .watch<PosController>()
                                           .getfiltercustList[index]
                                           .cardCode!),
-                                      // Container(
-                                      //   child: Text(
-                                      //     context
-                                      //         .watch<PosController>()
-                                      //         .config
-                                      //         .splitValues(context
-                                      //             .watch<PosController>()
-                                      //             .getfiltercustList[index]
-                                      //             .accBalance!
-                                      //             .toString()),
-                                      //   ),
-                                      // ),
                                     ],
                                   ),
                                   Row(

@@ -19,8 +19,6 @@ class StockCheckMainScreens extends StatefulWidget {
 }
 
 class _StockCheckMainScreensState extends State<StockCheckMainScreens> {
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();
@@ -49,18 +47,11 @@ class _StockCheckMainScreensState extends State<StockCheckMainScreens> {
                     return SafeArea(
                       child: StockCheckScreens(
                         stkCtrl: stkCtrl,
-                        // scaffoldKey: scaffoldKey,
                       ),
                     );
                   });
                 }));
       } else {
-        //300
-        // return ChangeNotifierProvider<StockCheckController>(
-        //     create: (context) => StockCheckController(),
-        //     builder: (context, child) {
-        //       return Consumer<StockCheckController>(
-        //           builder: (BuildContext context, prdSCD, Widget? child) {
         return Scaffold(
             resizeToAvoidBottomInset: false,
             drawer: naviDrawer(),
@@ -68,8 +59,6 @@ class _StockCheckMainScreensState extends State<StockCheckMainScreens> {
             body: const SafeArea(
               child: TabStockCheckScreen(),
             ));
-        //   });
-        // });
       }
     });
   }

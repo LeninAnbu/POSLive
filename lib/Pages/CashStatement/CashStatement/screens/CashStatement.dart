@@ -31,35 +31,10 @@ class SalesRegisterState extends State<CashSatementScreens> {
     final theme = Theme.of(context);
 
     return LayoutBuilder(builder: (context, constraints) {
-      // if (constraints.maxWidth <= 800) {
-      //   return Scaffold(
-      //      drawer: naviDrawerMob(context),
-      //      body: ChangeNotifierProvider<CashStateCon>(
-      //         create: (context) => CashStateCon(),//SOCon
-      //         builder: (context, child) {
-      //           return Consumer<CashStateCon>(
-      //               builder: (BuildContext context, stRegCon, Widget? child) {
-      //           return SafeArea(
-      //             child: Container(),
-      //           );
-      //         }
-      //       );
-      //      }),
-      //   );
-      // }
-
-      // else {//300
       return Scaffold(
         resizeToAvoidBottomInset: false,
         drawer: naviDrawer(),
-        body:
-            // ChangeNotifierProvider<CashStateCon>(
-            //   create: (context) => CashStateCon(),
-            //   builder: (context, child) {
-            //     return Consumer<CashStateCon>(
-            //         builder: (BuildContext context, stRegCon, Widget? child) {
-            //     return
-            SafeArea(
+        body: SafeArea(
           child: Column(children: <Widget>[
             appbarDefault('Cash Statement', theme, context),
             TabCashSattement(
@@ -67,11 +42,7 @@ class SalesRegisterState extends State<CashSatementScreens> {
             )
           ]),
         ),
-        //     }
-        //   );
-        //  }),
       );
-      // }
     });
   }
 }

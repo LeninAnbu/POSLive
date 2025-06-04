@@ -19,7 +19,6 @@ class AmountSelectionWidget extends StatelessWidget {
           right: Screens.width(context) * 0.01,
           bottom: Screens.padingHeight(context) * 0.01),
       width: Screens.width(context),
-      // height: Screens.padingHeight(context) * 0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -32,7 +31,6 @@ class AmountSelectionWidget extends StatelessWidget {
         ],
       ),
       child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
@@ -52,7 +50,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(4))),
                               contentPadding: const EdgeInsets.all(0),
-                              // backgroundColor: Colors.transparent,
                               insetPadding: EdgeInsets.all(
                                   Screens.bodyheight(context) * 0.02),
                               content: ContentWidgetMob(
@@ -71,40 +68,12 @@ class AmountSelectionWidget extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(4))),
                               contentPadding: const EdgeInsets.all(0),
-                              // backgroundColor: Colors.transparent,
                               insetPadding: EdgeInsets.all(
                                   Screens.bodyheight(context) * 0.02),
                               content: forCashDialog(context, prdCD, theme),
-                              //  AlertBox(
-                              //   payMent: 'Payment Mode - Cash',
-                              //   widget: forCashDialog(context, posC,theme),
-                              //   buttonName: 'Ok',
-                              //   callback: () {
-                              //     st(
-                              //       () {
-                              //         posC.addEnteredAmtType(
-                              //             'Cash', context, 1, theme);
-                              //       },
-                              //     );
-                              //   },
-                              // )
                             );
                           });
                         });
-                    // showDialog(
-                    //     context: context,
-                    //     barrierDismissible: true,
-                    //     builder: (BuildContext context) {
-                    //       return AlertDialog(
-                    //           shape: RoundedRectangleBorder(
-                    //               borderRadius:
-                    //                   BorderRadius.all(Radius.circular(4))),
-                    //           contentPadding: EdgeInsets.all(0),
-                    //           // backgroundColor: Colors.transparent,
-                    //           insetPadding: EdgeInsets.all(
-                    //               Screens.bodyheight(context) * 0.02),
-                    //           content: forCashConfirm(context, prdCD, theme));
-                    //     });
                   }
                 },
                 child: Container(
@@ -117,7 +86,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     height: Screens.padingHeight(context) * 0.08,
                     width: Screens.width(context) * 0.3,
                     decoration: BoxDecoration(
-                      // color: Colors.red,
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -164,7 +132,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -183,22 +150,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forCheque(context, prdCD, theme),
-                                // AlertBox(
-                                //     callback: () {
-                                //       st(
-                                //         () {
-                                //           prdCD.addEnteredAmtType(
-                                //               'Cheque', context, 2, theme);
-                                //         },
-                                //       );
-                                //     },
-                                //     payMent: 'Payment Mode - Cheque',
-                                //     widget: forCheque(context, prdCD,theme),
-                                //     buttonName: 'OK')
                               );
                             });
                           });
@@ -214,7 +168,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.yellow,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -259,7 +212,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -279,24 +231,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forCard(context, "Card", prdCD),
-                                // AlertBox(
-                                //   callback: () {
-                                //     st(
-                                //       () {
-                                //         prdCD.addEnteredAmtType(
-                                //             'Card', context, 3, theme);
-                                //       },
-                                //     );
-                                //   },
-                                //   payMent: 'Payment Mode - Card',
-                                //   widget:
-                                //       forCard(context, "Card", prdCD),
-                                //   buttonName: 'OK',
-                                // )
                               );
                             });
                           });
@@ -312,7 +249,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -364,7 +300,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -383,20 +318,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forwallet(context, prdCD, theme),
-                                // AlertBox(
-                                //     callback: () {
-                                //       st(() {
-                                //         prdCD.addEnteredAmtType(
-                                //             'Wallet', context, 5, theme);
-                                //       });
-                                //     },
-                                //     payMent: 'Payment Mode - Wallet',
-                                //     widget: forwallet(context, prdCD,theme),
-                                //     buttonName: 'OK')
                               );
                             });
                           });
@@ -412,7 +336,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -455,7 +378,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -474,20 +396,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forTransfer(context, prdCD, theme),
-                                // AlertBox(
-                                //     callback: () {
-                                //       st(() {
-                                //         prdCD.addEnteredAmtType(
-                                //             'Transfer', context, 4, theme);
-                                //       });
-                                //     },
-                                //     payMent: 'Payment Mode - Transfer',
-                                //     widget: forTransfer(context, prdCD,theme),
-                                //     buttonName: 'OK')
                               );
                             });
                           });
@@ -503,7 +414,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        //  color: Colors.blue,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -547,7 +457,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -566,21 +475,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(4))),
                                   contentPadding: const EdgeInsets.all(0),
-                                  // backgroundColor: Colors.transparent,
                                   insetPadding: EdgeInsets.all(
                                       Screens.bodyheight(context) * 0.02),
-                                  content: forCoupons(context, prdCD)
-                                  //  AlertBox(
-                                  //     callback: () {
-                                  //       st(() {
-                                  //         prdCD.addEnteredAmtType(
-                                  //             'Coupons', context, 7, theme);
-                                  //       });
-                                  //     },
-                                  //     payMent: 'Payment Mode - Coupons',
-                                  //     widget: forCoupons(context, prdCD),
-                                  //     buttonName: 'OK')
-                                  );
+                                  content: forCoupons(context, prdCD));
                             });
                           });
                     }
@@ -595,7 +492,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -645,7 +541,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(4))),
                               contentPadding: const EdgeInsets.all(0),
-                              // backgroundColor: Colors.transparent,
                               insetPadding: EdgeInsets.all(
                                   Screens.bodyheight(context) * 0.02),
                               content: ContentWidgetMob(
@@ -663,7 +558,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(4))),
                               contentPadding: const EdgeInsets.all(0),
-                              // backgroundColor: Colors.transparent,
                               insetPadding: EdgeInsets.all(
                                   Screens.bodyheight(context) * 0.02),
                               content: ContentWidgetMob(
@@ -682,24 +576,12 @@ class AmountSelectionWidget extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             contentPadding: const EdgeInsets.all(0),
-                            // backgroundColor: Colors.transparent,
                             insetPadding: EdgeInsets.all(
                                 Screens.bodyheight(context) * 0.02),
                             content: forPoints(
                               context,
                               prdCD,
                             ),
-                            // AlertBox(
-                            //   callback: () {
-                            //     prdCD.addEnteredAmtType('Points Redemption', context, 8, theme);
-                            //   },
-                            //   buttonName: 'OK',
-                            //   payMent: 'Payment Mode - Points Redemption',
-                            //   widget: forPoints(
-                            //     context,
-                            //     prdCD,
-                            //   ),
-                            // )
                           );
                         });
                   }
@@ -714,7 +596,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     height: Screens.padingHeight(context) * 0.08,
                     width: Screens.width(context) * 0.3,
                     decoration: BoxDecoration(
-                      // color: Colors.red,
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -735,7 +616,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -753,18 +633,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
-                                content: forDiscount(context, prdCD)
-                                //  AlertBox(
-                                //     callback: () {
-                                //       prdCD.addEnteredAmtType('Discount', context, 9, theme);
-                                //     },
-                                //     payMent: 'Payment Mode - Discount',
-                                //     widget: forDiscount(context, prdCD),
-                                //     buttonName: 'OK')
-                                );
+                                content: forDiscount(context, prdCD));
                           });
                     }
                   },
@@ -778,7 +649,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -798,7 +668,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: ContentWidgetMob(
@@ -816,20 +685,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forCredit(context, prdCD),
-                                // AlertBox(
-                                //     callback: () {
-                                //       st(() {
-                                //         prdCD.addEnteredAmtType(
-                                //             'Credit', context, 10, theme);
-                                //       });
-                                //     },
-                                //     payMent: 'Payment Mode - Credit',
-                                //     widget: forCredit(context, prdCD),
-                                //     buttonName: 'OK')
                               );
                             });
                           });
@@ -845,7 +703,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -858,8 +715,6 @@ class AmountSelectionWidget extends StatelessWidget {
       ),
     );
   }
-
-  // for cash
 
   forCashConfirm(BuildContext context, PosController posC, ThemeData theme) {
     return StatefulBuilder(builder: (context, st) {
@@ -885,7 +740,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.4,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -929,9 +783,7 @@ class AmountSelectionWidget extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       st(
-                        () {
-                          // posC.fullamt('Cash', context, theme);
-                        },
+                        () {},
                       );
                     },
                     child: Container(
@@ -962,23 +814,9 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forCashDialog(context, posC, theme),
-                                //  AlertBox(
-                                //   payMent: 'Payment Mode - Cash',
-                                //   widget: forCashDialog(context, posC,theme),
-                                //   buttonName: 'Ok',
-                                //   callback: () {
-                                //     st(
-                                //       () {
-                                //         posC.addEnteredAmtType(
-                                //             'Cash', context, 1, theme);
-                                //       },
-                                //     );
-                                //   },
-                                // )
                               );
                             });
                           });
@@ -1029,7 +867,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -1056,7 +893,6 @@ class AmountSelectionWidget extends StatelessWidget {
                 ],
               ),
             ),
-
             SizedBox(
                 height: posC.getmsgforAmount == null
                     ? 0
@@ -1085,7 +921,6 @@ class AmountSelectionWidget extends StatelessWidget {
                   controller: posC.mycontroller[22],
                   cursorColor: Colors.grey,
                   keyboardType: TextInputType.number,
-                  // textInputAction: TextInputAction.,
                   onChanged: (v) {},
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -1115,8 +950,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     hintStyle: theme.textTheme.bodyMedium
                         ?.copyWith(color: Colors.grey),
                     filled: false,
-                    // enabledBorder: InputBorder.none,
-                    // focusedBorder: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 25,
@@ -1125,28 +958,6 @@ class AmountSelectionWidget extends StatelessWidget {
                 ),
               ),
             ),
-            // SizedBox(height: cashHeight * 0.1),
-            // Container(
-            //   alignment: Alignment.centerRight,
-            //   child: GestureDetector(
-            //       onTap: () {
-            //         st(() {
-            //           posC.addEnteredAmtType('Cash', context, 1);
-            //         });
-            //       },
-            //       child: Container(
-            //         alignment: Alignment.center,
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(5),
-            //             border: Border.all(color: Colors.red)),
-            //         height: cashHeight * 0.2,
-            //         width: cashWidth * 0.18,
-            //         child: Text("OK",
-            //             style: theme.textTheme.bodyText2?.copyWith(
-            //               color: Colors.red,
-            //             )),
-            //       )),
-            // ),
             SizedBox(height: Screens.padingHeight(context) * 0.01),
             InkWell(
               onTap: () {
@@ -1192,7 +1003,6 @@ class AmountSelectionWidget extends StatelessWidget {
             bottom: Screens.padingHeight(context) * 0.01),
         child: SingleChildScrollView(
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1207,7 +1017,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.width(context) * 0.02,
                           right: Screens.width(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -1258,7 +1067,6 @@ class AmountSelectionWidget extends StatelessWidget {
                         children: [
                           Container(
                             alignment: Alignment.centerLeft,
-                            // height: cashHeight * 0.1,
                             width: Screens.width(context) * 0.3,
                             child: Text(
                               "Payment Terminal",
@@ -1268,7 +1076,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           SizedBox(
                               height: Screens.padingHeight(context) * 0.01),
                           Container(
-                            // height: cashHeight * 0.24,
                             width: Screens.width(context) * 0.6,
                             padding: EdgeInsets.only(
                               left: Screens.width(context) * 0.01,
@@ -1318,11 +1125,9 @@ class AmountSelectionWidget extends StatelessWidget {
                           Container(
                             width: Screens.width(context) * 0.3,
                             alignment: Alignment.centerLeft,
-                            // width: Screens.width(context) * 0.05,
                             child: const Text("Approval No"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1380,7 +1185,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             child: const Text("Card Reference"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1439,9 +1243,7 @@ class AmountSelectionWidget extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  //width: Screens.width(context) * 0.3,
                                   alignment: Alignment.centerLeft,
-                                  // height: cashHeight * 0.1,
                                   child: const Text("Amount"),
                                 ),
                                 IconButton(
@@ -1457,7 +1259,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1572,7 +1373,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -1615,12 +1415,9 @@ class AmountSelectionWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
-                              // width: Screens.width(context) * 0.18,
                               child: const Text("Cheque No"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1676,11 +1473,9 @@ class AmountSelectionWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Cheque Date"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1753,7 +1548,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                 children: [
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    // height: cashHeight * 0.1,
                                     child: const Text("Amount"),
                                   ),
                                   InkWell(
@@ -1770,7 +1564,6 @@ class AmountSelectionWidget extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1791,9 +1584,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                   }
                                 },
                                 decoration: InputDecoration(
-                                  // hintText: posController.boolCash == true
-                                  //     ? '${posController.getBalancePaid().toStringAsFixed(2)}'
-                                  //     : '',
                                   filled: false,
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5),
@@ -1830,11 +1620,9 @@ class AmountSelectionWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Remarks"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1846,13 +1634,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                 cursorColor: Colors.grey,
                                 style: theme.textTheme.bodyMedium?.copyWith(),
                                 onChanged: (v) {},
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return '  Please Enter the Remark';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
                                 decoration: InputDecoration(
                                   filled: false,
                                   focusedErrorBorder: OutlineInputBorder(
@@ -1875,8 +1656,6 @@ class AmountSelectionWidget extends StatelessWidget {
                                     borderSide:
                                         const BorderSide(color: Colors.grey),
                                   ),
-                                  // enabledBorder: InputBorder.none,
-                                  // focusedBorder: InputBorder.none,
                                   contentPadding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                     horizontal: 10,
@@ -1913,7 +1692,6 @@ class AmountSelectionWidget extends StatelessWidget {
                   ),
                 ),
               )
-              // ),
             ],
           ),
         ),
@@ -1946,7 +1724,6 @@ class AmountSelectionWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -2055,7 +1832,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             child: const Text("Waller ID"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -2111,11 +1887,9 @@ class AmountSelectionWidget extends StatelessWidget {
                           Container(
                             width: Screens.width(context) * 0.3,
                             alignment: Alignment.centerLeft,
-                            // width: Screens.width(context) * 0.05,
                             child: const Text("Payment Reference"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -2175,7 +1949,6 @@ class AmountSelectionWidget extends StatelessWidget {
                               children: [
                                 Container(
                                   alignment: Alignment.centerLeft,
-                                  // height: cashHeight * 0.1,
                                   child: const Text("Amount"),
                                 ),
                                 IconButton(
@@ -2191,7 +1964,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -2301,7 +2073,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -2410,7 +2181,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Trans Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2468,7 +2238,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -2485,7 +2254,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2593,7 +2361,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -2702,7 +2469,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Coupon Code"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2760,7 +2526,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -2775,7 +2540,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2884,7 +2648,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.width(context) * 0.01,
                         right: Screens.width(context) * 0.01),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.75,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -2940,7 +2703,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Available Points"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2952,15 +2714,7 @@ class AmountSelectionWidget extends StatelessWidget {
                             cursorColor: Colors.grey,
                             style: theme.textTheme.bodyMedium?.copyWith(),
                             onChanged: (v) {},
-                            // validator: (value) {
-                            //   if (value!.isEmpty) {
-                            //     return ' Please Enter the Available Points';
-                            //   } else {
-                            //     return null;
-                            //   }
-                            // },
                             decoration: InputDecoration(
-                              // hintText: posC.getselectedcust!.point,
                               filled: false,
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -2999,7 +2753,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Points to Redeem"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3084,7 +2837,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -3097,7 +2849,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3212,7 +2963,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -3321,7 +3071,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Discount Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3379,7 +3128,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -3394,7 +3142,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3503,7 +3250,6 @@ class AmountSelectionWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -3559,7 +3305,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Credit Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3616,7 +3361,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           child: const Text("Recovery Date"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3685,7 +3429,6 @@ class AmountSelectionWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -3700,7 +3443,6 @@ class AmountSelectionWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),

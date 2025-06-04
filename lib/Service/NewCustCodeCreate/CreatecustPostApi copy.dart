@@ -11,7 +11,6 @@ class PostCustCreateAPi {
     NewCutomerModel newCutomerModel,
   ) async {
     try {
-      //http://102.69.167.106:50001/b1s/v1 URL.sapUrl +
       log("http://102.69.167.106:50001/b1s/v1/BusinessPartners");
       final response = await http.post(
         Uri.parse("${URL.sapUrl}/BusinessPartners"),
@@ -33,8 +32,6 @@ class PostCustCreateAPi {
                 "CreditLimit": newCutomerModel.creditLimit,
                 "Notes": newCutomerModel.notes,
                 "PayTermsGrpCode": newCutomerModel.payTermsGrpCod,
-                // "Valid": "tNO",
-                // "Frozen": "tYES",
                 "Series": newCutomerModel.series,
                 "U_TinCer": newCutomerModel.tincer,
                 "U_VatCer": newCutomerModel.vatcer,
@@ -129,21 +126,19 @@ class PostCustCreateAPi {
                     newCutomerModel.contEmp!.map((e) => e.tojson()).toList()
               }),
       );
-      // log('B1SESSION='+ GetValues.sessionID.toString());
-      // log('odata.maxpagesize=${GetValues.maximumfetchValue}');
+
       log("Customer Code Creation:${json.decode(response.body)}");
       if (response.statusCode == 200) {
         log("Success");
         return CreateCustPostModel.fromJson(response.body, response.statusCode);
       } else {
         log("Exception11");
-        // throw Exception("Error!!...");
+
         return CreateCustPostModel.fromJson(response.body, response.statusCode);
       }
     } catch (e) {
       log("Exception22");
 
-      //  throw Exception("Exception: $e");
       return CreateCustPostModel.fromJson(e.toString(), 500);
     }
   }
@@ -224,7 +219,7 @@ class NewCutomeAdrsModel {
       "AddressName2": addressName2,
       "AddressName3": addressName3
     };
-    // log('data::${data}');
+
     return data;
   }
 }

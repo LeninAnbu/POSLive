@@ -341,24 +341,13 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                         .theme.primaryColor,
                                                   )),
                                               height: widget.btnheight * 0.15,
-                                              child:
-                                                  // context
-                                                  //             .watch<SOCon>()
-                                                  //             .onDisablebutton ==
-                                                  //         false
-                                                  //     ?
-                                                  Text("Cancel",
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: widget.theme
-                                                          .textTheme.bodySmall
-                                                          ?.copyWith(
-                                                        color: Colors.black,
-                                                      ))
-                                              // : CircularProgressIndicator(
-                                              //     color: widget
-                                              //         .theme.primaryColor),
-                                              ))),
+                                              child: Text("Cancel",
+                                                  textAlign: TextAlign.center,
+                                                  style: widget
+                                                      .theme.textTheme.bodySmall
+                                                      ?.copyWith(
+                                                    color: Colors.black,
+                                                  ))))),
                                   Container(
                                       padding: EdgeInsets.all(
                                         widget.btnheight * 0.01,
@@ -411,7 +400,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                             decoration: BoxDecoration(
                                                 color: widget.theme.primaryColor
                                                     .withOpacity(0.1),
-                                                // color: Colors.grey[400],
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 border: Border.all(
@@ -466,7 +454,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                           .read<SOCon>()
                                                           .openQuotLineList = [];
 
-                                                      // log(" context.watch<SOCon>().soSalesmodl.length:::${context.read<SOCon>().soSalesmodl.length}");
                                                       context
                                                           .read<SOCon>()
                                                           .mycontroller[79]
@@ -876,10 +863,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                       .changecheckout(context,
                                                           widget.theme);
                                                 }
-                                                // context
-                                                //     .read<SOCon>()
-                                                //     .changecheckout(
-                                                //         context, widget.theme);
+
                                                 context
                                                     .read<SOCon>()
                                                     .disableKeyBoard(context);
@@ -900,49 +884,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
     );
   }
 
-  // forSuspend(BuildContext context, ThemeData theme) {
-  //   return Container(
-  //       padding: EdgeInsets.symmetric(
-  //           horizontal: Screens.width(context) * 0.04,
-  //           vertical: Screens.bodyheight(context) * 0.01),
-  //       child: Column(
-  //         children: [
-  //           SizedBox(
-  //               height: widget.btnheight * 0.4,
-  //               child: const Center(
-  //                   child: Text(
-  //                       "You about to suspended all information will be unsaved  "))),
-  //           SizedBox(
-  //             height: Screens.bodyheight(context) * 0.01,
-  //           ),
-  //           Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: [
-  //               SizedBox(
-  //                 width: Screens.width(context) * 0.15,
-  //                 child: ElevatedButton(
-  //                     onPressed: () {
-  //                       Navigator.pop(context);
-  //                       context
-  //                           .read<SOCon>()
-  //                           .clearSuspendedData(context, theme);
-  //                     },
-  //                     child: const Text("Yes")),
-  //               ),
-  //               SizedBox(
-  //                 width: Screens.width(context) * 0.15,
-  //                 child: ElevatedButton(
-  //                     onPressed: () {
-  //                       Navigator.pop(context);
-  //                     },
-  //                     child: const Text("No")),
-  //               ),
-  //             ],
-  //           )
-  //         ],
-  //       ));
-  // }
-
   forSuspend(BuildContext context, ThemeData theme) {
     return Container(
         width: widget.btnWidth * 0.7,
@@ -950,7 +891,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              // padding: EdgeInsets.all(5),
               height: widget.btnheight * 0.2,
               color: theme.primaryColor,
               child: Row(
@@ -1068,7 +1008,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                           )),
                     ),
                     Container(
-                      // color: Colors.red,
                       alignment: Alignment.center,
                       width: widget.btnWidth * 0.28,
                       child: Text("Date",
@@ -1088,7 +1027,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                 ),
               ),
               Container(
-                // padding: EdgeInsets.all(widget.btnheight * 0.02),
                 height: widget.btnheight * 2.5,
                 width: widget.btnWidth * 1.8,
                 child: ListView.builder(
@@ -1127,7 +1065,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                     .checkBClr,
                                 title: Container(
                                   padding: EdgeInsets.only(
-                                      // left: widget.btnWidth * 0.01,
                                       right: widget.btnWidth * 0.01),
                                   width: widget.btnWidth * 0.77,
                                   child: Row(
@@ -1136,7 +1073,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                     children: [
                                       Container(
                                           alignment: Alignment.centerRight,
-                                          // color: Colors.red,
                                           width: widget.btnWidth * 0.15,
                                           child: Text(
                                             "${context.watch<SOCon>().openSalesQuot[index].docNum.toString()}",
@@ -1168,7 +1104,6 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                 .copyWith(),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           width: widget.btnWidth * 0.2,
                                           alignment: Alignment.center,
                                           child: Text(
@@ -1360,35 +1295,11 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                         .length,
                                                   );
                                                 },
-
                                                 cursorColor: Colors.grey,
                                                 textDirection:
                                                     TextDirection.ltr,
                                                 keyboardType:
                                                     TextInputType.number,
-
-                                                // inputFormatters: [
-                                                //   context
-                                                //                   .watch<
-                                                //                       SOCon>()
-                                                //                   .openQuotLineList![
-                                                //                       index]
-                                                //                   .uPackSize ==
-                                                //               null ||
-                                                //           context
-                                                //                   .watch<
-                                                //                       SOCon>()
-                                                //                   .openQuotLineList![
-                                                //                       index]
-                                                //                   .uPackSize ==
-                                                //               0.000
-                                                //       ? FilteringTextInputFormatter
-                                                //           .allow(RegExp(
-                                                //               dotAll: true,
-                                                //               r'^\d*\.?\d{0,9}$'))
-                                                //       : FilteringTextInputFormatter
-                                                //           .digitsOnly
-                                                // ],
                                                 onEditingComplete: () {
                                                   setState(() {
                                                     context

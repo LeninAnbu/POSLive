@@ -21,14 +21,11 @@ class StockMainScreens extends StatefulWidget {
 }
 
 class _StockMainScreensState extends State<StockMainScreens> {
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        // context.read<StockReplenishController>().clearDataAll();
         context.read<StockController>().init();
       });
     });
@@ -52,8 +49,6 @@ class _StockMainScreensState extends State<StockMainScreens> {
                         children: [
                           StockMobScreens(
                             stkCtrl: stkCtrl,
-
-                            // scaffoldKey: scaffoldKey,
                           ),
                         ],
                       ),
@@ -61,30 +56,15 @@ class _StockMainScreensState extends State<StockMainScreens> {
                   });
                 }));
       } else if (constraints.maxWidth <= 1300) {
-        //300
         return Scaffold(
           resizeToAvoidBottomInset: false,
           drawer: naviDrawer(),
           appBar: AppBar(
             title: const Text("Stocks List"),
-            actions: const [
-              // IconButton(
-              //     onPressed: () {
-              //       // context.read<DashBoardController>().refresh();
-              //     },
-              //     icon: const Icon(Icons.refresh))
-            ],
+            actions: const [],
           ),
-          // appBar: appbar(
-          //   "Stock Lists ",
-          //   widget.theme,
-          //   context,
-
-          // ),
           body: const SafeArea(
-            child: TabStockScreen(
-                // stkCtrl: prdSCD,
-                ),
+            child: TabStockScreen(),
           ),
         );
       } else {

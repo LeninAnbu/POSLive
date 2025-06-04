@@ -29,9 +29,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
           child: SizedBox(
             height: Screens.padingHeight(context) * 1,
             width: double.infinity,
-            // padding: EdgeInsets.only(left: Screens.width(context) * 0.01),
             child: Column(
-              //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TabBar(isScrollable: true, tabs: [
                   Tab(
@@ -48,21 +46,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                     child: Text("Cheque",
                         style: theme.textTheme.bodyLarge!.copyWith()),
                   ),
-                  // Tab(
-                  //   child: Text("Wallet",
-                  //       style: theme.textTheme.bodyMedium!.copyWith()),
-                  // ),
-                  // Tab(
-
-                  //   child: Text("Coupon",
-                  //       style: theme.textTheme.bodyMedium!.copyWith()),
-                  // ),
                 ]),
                 Expanded(
-                  // color: Colors.amber,
-                  // height: Screens.padingHeight(context)*0.50,
-                  // width: double.infinity,
-
                   child: TabBarView(children: [
                     Padding(
                       padding: EdgeInsets.only(
@@ -81,13 +66,11 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Form(
-                              // key: widget.settleCon.fomkeySet[5],
                               child: Column(
                                 children: [
                                   Row(
                                     children: [
                                       SizedBox(
-                                          //  color: Colors.amber,
                                           width: Screens.width(context) * 0.40,
                                           child: const Text("Amount in Hand")),
                                       SizedBox(
@@ -121,14 +104,10 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                          // color: Colors.amber,
                                           width: Screens.width(context) * 0.40,
                                           child: const Text(
                                               "Amount to Settle off")),
                                       SizedBox(
-                                          // height:
-                                          //     Screens.padingHeight(context) *
-                                          //         0.06,
                                           width: Screens.width(context) * 0.55,
                                           child: TextFormField(
                                             validator: (value) {
@@ -137,7 +116,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                               }
                                               return null;
                                             },
-                                            // readOnly: true,
                                             keyboardType: TextInputType.number,
                                             controller: widget
                                                 .settleCon.mycontroller[5],
@@ -146,12 +124,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                     const EdgeInsets.symmetric(
                                                         vertical: 5.0,
                                                         horizontal: 5.0),
-                                                // border: InputBorder.none,
-                                                // focusedBorder: InputBorder.none,
-                                                // enabledBorder: InputBorder.none,
-                                                // errorBorder: OutlineInputBorder(borderSide: BorderSide()),
-                                                // disabledBorder: InputBorder.none,
-
                                                 border: OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -169,7 +141,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                          //    color: Colors.amber,
                                           width: Screens.width(context) * 0.40,
                                           child:
                                               const Text("Settlement Account")),
@@ -225,8 +196,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                          //   color: Colors.amber,
-
                                           width: Screens.width(context) * 0.40,
                                           child: const Text("Remarks")),
                                       SizedBox(
@@ -288,7 +257,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                           left: Screens.width(context) * 0.01,
                           right: Screens.width(context) * 0.01),
                       child: Form(
-                        // key: widget.settleCon.fomkeySet[2],
                         child: Container(
                           color: Colors.white,
                           child: Padding(
@@ -306,12 +274,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        //   Container(
-                                        //  //  color: Colors.amber, // height: Screens.padingHeight(context)*0.20,
-                                        //     // width: Screens.padingHeight(context)*0.19,
-                                        //     child: Text("Pay Terminal")),
                                         Container(
-                                          // color: Colors.blue,
                                           height:
                                               Screens.padingHeight(context) *
                                                   0.06,
@@ -363,46 +326,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                 },
                                               ),
                                             ),
-                                            // DropdownButtonFormField(
-                                            // isExpanded: true,
-                                            //   validator: (value) =>
-                                            //       value == null
-                                            //           ? 'field required'
-                                            //           : null,
-                                            //   decoration:
-                                            //       InputDecoration.collapsed(
-                                            //     filled: true,
-                                            //     hintText: "payment Terminal",
-                                            //   ),
-                                            // value: widget.settleCon
-                                            //     .paytermvaluechoose,
-                                            //   onChanged: (newvalue) {
-                                            // widget.settleCon
-                                            //     .payTermdropdown(
-                                            //         newvalue);
-                                            //   },
-                                            // items: widget.settleCon
-                                            //     .CardpayTerminallist
-                                            //     .map((valueitem) {
-                                            //     return DropdownMenuItem(
-                                            //       value: valueitem,
-                                            //       child: Padding(
-                                            //         padding: EdgeInsets.only(
-                                            //             left: Screens.width(
-                                            //                     context) *
-                                            //                 0.01),
-                                            //         child: Text(
-                                            //           valueitem,
-                                            //           style: theme.textTheme
-                                            //               .bodyMedium,
-                                            //         ),
-                                            //       ),
-                                            //     );
-                                            //   }).toList(),
-                                            // ),
                                           ),
                                         ),
-
                                         Container(
                                           height:
                                               Screens.padingHeight(context) *
@@ -438,7 +363,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                       height:
                                           Screens.padingHeight(context) * 0.50,
                                       width: Screens.width(context),
-                                      // color: Colors.amber,
                                       child:
                                           widget.settleCon.finalcardsettled
                                                   .isEmpty
@@ -470,17 +394,13 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                             });
                                                           },
                                                           title: Row(
-                                                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                             children: [
                                                               Column(
                                                                 crossAxisAlignment:
                                                                     CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  //width: Screens.width(context)*0.80,
-                                                                  //  color: Colors.amber,
                                                                   SizedBox(
-                                                                    //   color: Colors.amber,
                                                                     width: Screens.width(
                                                                             context) *
                                                                         0.77,
@@ -489,16 +409,12 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        // Container(child: Text("Approval NO:")),
                                                                         Container(
                                                                             padding:
                                                                                 EdgeInsets.only(left: Screens.width(context) * 0.01),
                                                                             child: Text(widget.settleCon.finalcardsettled[index].cardterminal.toString(), style: theme.textTheme.bodyLarge!.copyWith())),
-
-                                                                        // Container(child: Text("Card Ref:")),
                                                                         Row(
                                                                           children: [
-                                                                            //  Text("Amount:"),
                                                                             Text(
                                                                               widget.settleCon.finalcardsettled[index].cardRef.toString(),
                                                                               style: theme.textTheme.bodyLarge!.copyWith(),
@@ -507,7 +423,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                                         ),
                                                                         Row(
                                                                           children: [
-                                                                            // Text("Amount:"),
                                                                             Text(widget.settleCon.finalcardsettled[index].rupees.toString(),
                                                                                 style: theme.textTheme.bodyLarge!.copyWith(fontSize: 15))
                                                                           ],
@@ -515,9 +430,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                                       ],
                                                                     ),
                                                                   ),
-
                                                                   SizedBox(
-                                                                    // color: Colors.deepOrange,
                                                                     width: Screens.width(
                                                                             context) *
                                                                         0.7,
@@ -626,7 +539,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                               widget.settleCon
                                                   .forChequelistorder(context,
                                                       "Cheque", theme, 1);
-                                              // widget.settleCon.ontapisload();
                                             });
                                           },
                                           child: const Text("Load")),
@@ -639,7 +551,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                 SizedBox(
                                   height: Screens.padingHeight(context) * 0.50,
                                   width: double.infinity,
-                                  // color: Colors.amber,
                                   child: ListView.builder(
                                       itemCount: widget
                                           .settleCon.finalchequesettled.length,
@@ -662,11 +573,9 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                 });
                                               },
                                               title: SizedBox(
-                                                // color: Colors.blue,
                                                 width: Screens.width(context) *
                                                     0.03,
                                                 child: Row(
-                                                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Column(
                                                       crossAxisAlignment:
@@ -674,8 +583,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                               .start,
                                                       children: [
                                                         SizedBox(
-                                                          //   color: Colors.amber,
-
                                                           width: Screens.width(
                                                                   context) *
                                                               0.77,
@@ -684,7 +591,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
                                                             children: [
-                                                              // Container(child: Text("Approval NO:")),
                                                               Container(
                                                                   padding: EdgeInsets.only(
                                                                       left: Screens.width(
@@ -707,12 +613,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                                             context) *
                                                                     0.001,
                                                               ),
-
-                                                              // Container(child: Text("Card Ref:")),
-
                                                               Row(
                                                                 children: [
-                                                                  // Text("Amount:"),
                                                                   Text(
                                                                       widget
                                                                           .settleCon
@@ -730,53 +632,6 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
                                                             ],
                                                           ),
                                                         ),
-                                                        // Container(
-                                                        //   // color: Colors.deepOrange,
-                                                        //   width: Screens.width(
-                                                        //           context) *
-                                                        //       0.77,
-                                                        //   child: Row(
-                                                        //     mainAxisAlignment:
-                                                        //         MainAxisAlignment
-                                                        //             .spaceBetween,
-                                                        //     children: [
-                                                        //       Container(
-                                                        //           padding: EdgeInsets.only(
-                                                        //               left: Screens.width(context) *
-                                                        //                   0.01),
-                                                        //           child: Row(
-                                                        //             children: [
-                                                        //               // Text(
-                                                        //               //     "Cheque No:",
-                                                        //               //     style: theme
-                                                        //               //         .textTheme
-                                                        //               //         .bodyMedium!
-                                                        //               //         .copyWith()),
-                                                        //               Container(
-                                                        //                   child:
-                                                        //                       Text(widget.settleCon.finalchequesettled[index].ChequeNo.toString(), style: theme.textTheme.bodyMedium!.copyWith())),
-                                                        //             ],
-                                                        //           )),
-                                                        //       Container(
-                                                        //           child: Row(
-                                                        //         children: [
-                                                        //           // Text(
-                                                        //           //     "Cheque Date:",
-                                                        //           //     style: theme
-                                                        //           //         .textTheme
-                                                        //           //         .bodyMedium!
-                                                        //           //         .copyWith()),
-                                                        //           Container(
-                                                        //               child: Text(
-                                                        //                   widget.settleCon.finalchequesettled[index].ChequeDate
-                                                        //                       .toString(),
-                                                        //                   style:
-                                                        //                       theme.textTheme.bodyMedium!.copyWith())),
-                                                        //         ],
-                                                        //       )),
-                                                        //     ],
-                                                        //   ),
-                                                        // ),
                                                       ],
                                                     ),
                                                   ],
@@ -840,11 +695,11 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                             MainAxisAlignment.spaceBetween,
 //                                         children: [
 //                                           Container(
-//                                               //  color: Colors.amber, // height: Screens.padingHeight(context)*0.20,
-//                                               // width: Screens.padingHeight(context)*0.20,
+//
+//
 //                                               child: Text("Wallet Code")),
 //                                           Container(
-//                                             // color: Colors.blue,
+//
 //                                             height:
 //                                                 Screens.padingHeight(context) *
 //                                                     0.06,
@@ -905,8 +760,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                             context,
 //                                                             "Wallet",
 //                                                             theme);
-//                                                     //
-//                                                     // widget.settleCon.ontapisload();
+//
+//
 
 // //widget.settleCon.finalwalletsettled.clear();
 //                                                   });
@@ -933,7 +788,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                         height: Screens.padingHeight(context) *
 //                                             0.50,
 //                                         width: double.infinity,
-//                                         // color: Colors.amber,
+//
 //                                         child: Visibility(
 //                                           visible: widget.settleCon.isload,
 //                                           child: ListView.builder(
@@ -959,20 +814,20 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                         });
 //                                                       },
 //                                                       title: Container(
-//                                                         // color: Colors.blue,
-//                                                         // width: Screens.width(context)*0.03,
+//
+//
 //                                                         child: Row(
-//                                                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
 //                                                           children: [
 //                                                             Column(
 //                                                               crossAxisAlignment:
 //                                                                   CrossAxisAlignment
 //                                                                       .start,
 //                                                               children: [
-//                                                                 //width: Screens.width(context)*0.80,
-//                                                                 //  color: Colors.amber,
+//
+//
 //                                                                 Container(
-//                                                                   //   color: Colors.amber,
+//
 //                                                                   width: Screens
 //                                                                           .width(
 //                                                                               context) *
@@ -982,7 +837,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                         MainAxisAlignment
 //                                                                             .spaceBetween,
 //                                                                     children: [
-//                                                                       // Container(child: Text("Approval NO:")),
+//
 //                                                                       Container(
 //                                                                           padding: EdgeInsets.only(
 //                                                                               left: Screens.width(context) *
@@ -991,12 +846,12 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                               widget.settleCon.finalwalletsettled[index].walletname.toString(),
 //                                                                               style: theme.textTheme.bodyMedium!.copyWith())),
 
-//                                                                       // Container(child: Text("Card Ref:")),
+//
 //                                                                       Container(
 //                                                                           child:
 //                                                                               Row(
 //                                                                         children: [
-//                                                                           //  Text("Amount:"),
+//
 //                                                                           Text(
 //                                                                             widget.settleCon.finalwalletsettled[index].rupees.toString(),
 //                                                                             style:
@@ -1008,7 +863,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                           child:
 //                                                                               Row(
 //                                                                         children: [
-//                                                                           //     Text("Date:"),
+//
 //                                                                           Text(
 //                                                                               widget.settleCon.finalwalletsettled[index].Date.toString(),
 //                                                                               style: theme.textTheme.bodyMedium!.copyWith())
@@ -1019,7 +874,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                 ),
 
 //                                                                 Container(
-//                                                                   // color: Colors.deepOrange,
+//
 //                                                                   width: Screens
 //                                                                           .width(
 //                                                                               context) *
@@ -1070,8 +925,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                   height: Screens.padingHeight(context) * 0.01,
 //                                 ),
 //                                 Container(
-//                                   //alignment: Alignment.center,
-//                                   // color: Colors.amber,
+//
+//
 //                                   child: Row(
 //                                     mainAxisAlignment: MainAxisAlignment.center,
 //                                     children: [
@@ -1124,12 +979,12 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                         mainAxisAlignment:
 //                                             MainAxisAlignment.spaceBetween,
 //                                         children: [
-//                                           // Container(
-//                                           //     //  color: Colors.amber, // height: Screens.padingHeight(context)*0.20,
-//                                           //     // width: Screens.padingHeight(context)*0.20,
-//                                           //     child: Text("Coupon Code")),
+//
+//
+//
+//
 //                                           Container(
-//                                             // color: Colors.blue,
+//
 //                                             height:
 //                                                 Screens.padingHeight(context) *
 //                                                     0.06,
@@ -1194,8 +1049,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                             context,
 //                                                             "Coupons",
 //                                                             theme);
-//                                                     // widget.settleCon
-//                                                     //     .oncoupontapisload();
+//
+//
 //                                                   });
 //                                                 },
 //                                                 child: Text("Load")),
@@ -1220,7 +1075,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                         height: Screens.padingHeight(context) *
 //                                             0.50,
 //                                         width: double.infinity,
-//                                         // color: Colors.amber,
+//
 //                                         child: Visibility(
 //                                           visible:
 //                                               widget.settleCon.iscouponload,
@@ -1247,20 +1102,20 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                         });
 //                                                       },
 //                                                       title: Container(
-//                                                         // color: Colors.blue,
-//                                                         // width: Screens.width(context)*0.03,
+//
+//
 //                                                         child: Row(
-//                                                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
 //                                                           children: [
 //                                                             Column(
 //                                                               crossAxisAlignment:
 //                                                                   CrossAxisAlignment
 //                                                                       .start,
 //                                                               children: [
-//                                                                 //width: Screens.width(context)*0.80,
-//                                                                 //  color: Colors.amber,
+//
+//
 //                                                                 Container(
-//                                                                   //   color: Colors.amber,
+//
 //                                                                   width: Screens
 //                                                                           .width(
 //                                                                               context) *
@@ -1270,7 +1125,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                         MainAxisAlignment
 //                                                                             .spaceBetween,
 //                                                                     children: [
-//                                                                       // Container(child: Text("Approval NO:")),
+//
 //                                                                       Container(
 //                                                                           padding: EdgeInsets.only(
 //                                                                               left: Screens.width(context) *
@@ -1279,12 +1134,12 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                               widget.settleCon.finalcouponsettled[index].couponname.toString(),
 //                                                                               style: theme.textTheme.bodyMedium!.copyWith())),
 
-//                                                                       // Container(child: Text("Card Ref:")),
+//
 //                                                                       Container(
 //                                                                           child:
 //                                                                               Row(
 //                                                                         children: [
-//                                                                           //  Text("Amount:"),
+//
 //                                                                           Text(
 //                                                                             widget.settleCon.finalcouponsettled[index].rupees.toString(),
 //                                                                             style:
@@ -1296,7 +1151,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                           child:
 //                                                                               Row(
 //                                                                         children: [
-//                                                                           //     Text("Date:"),
+//
 //                                                                           Text(
 //                                                                               widget.settleCon.finalcouponsettled[index].Date.toString(),
 //                                                                               style: theme.textTheme.bodyMedium!.copyWith())
@@ -1307,7 +1162,7 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                                                 ),
 
 //                                                                 Container(
-//                                                                   // color: Colors.deepOrange,
+//
 //                                                                   width: Screens
 //                                                                           .width(
 //                                                                               context) *
@@ -1358,8 +1213,8 @@ class _SettledScecondScreenState extends State<SettledScecondScreen> {
 //                                   height: Screens.padingHeight(context) * 0.01,
 //                                 ),
 //                                 Container(
-//                                   //alignment: Alignment.center,
-//                                   // color: Colors.amber,
+//
+//
 //                                   child: Row(
 //                                     mainAxisAlignment: MainAxisAlignment.center,
 //                                     children: [

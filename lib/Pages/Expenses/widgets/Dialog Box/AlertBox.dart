@@ -28,7 +28,7 @@
 //     return SingleChildScrollView(
 //       child: Container(
 //          color: Colors.white,
-//           // height: Screens.padingHeight(context)*0.8,
+//         
 //           child: Column(
 //               mainAxisSize: MainAxisSize.min,
 //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,7 +47,7 @@
 //                     padding: EdgeInsets.only(
 //                         left: Screens.padingHeight(context) * 0.02,
 //                         right: Screens.padingHeight(context) * 0.02),
-//                     // color: Colors.red,
+//                   
 //                     width: Screens.width(context) * 0.4,
 //                     alignment: Alignment.centerLeft,
 //                     child: Text(
@@ -108,8 +108,8 @@
 //         height: Screens.padingHeight(context) * 0.045,
 //         decoration: BoxDecoration(
 //           color: theme.primaryColor,
-//           // borderRadius: BorderRadius.only(
-//           //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//         
+//         
 //         ),
 //         child: Center(
 //           child: Container(

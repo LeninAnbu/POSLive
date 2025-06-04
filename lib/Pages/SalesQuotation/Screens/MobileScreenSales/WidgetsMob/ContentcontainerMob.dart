@@ -18,7 +18,6 @@ class ContentWidgetMob extends StatelessWidget {
             width: Screens.width(context) * 0.71,
             height: Screens.padingHeight(context) * 0.05,
             color: Colors.red,
-            //theme.primaryColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -26,7 +25,6 @@ class ContentWidgetMob extends StatelessWidget {
                   padding: EdgeInsets.only(
                       left: Screens.padingHeight(context) * 0.02,
                       right: Screens.padingHeight(context) * 0.02),
-                  // color: Colors.red,
                   width: Screens.width(context) * 0.4,
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -57,7 +55,6 @@ class ContentWidgetMob extends StatelessWidget {
             height: Screens.padingHeight(context) * 0.01,
           ),
           Container(
-            // color: Colors.green,
             height: Screens.padingHeight(context) * 0.065,
             alignment: Alignment.center,
             padding: EdgeInsets.only(
@@ -69,31 +66,6 @@ class ContentWidgetMob extends StatelessWidget {
           SizedBox(
             height: Screens.padingHeight(context) * 0.01,
           ),
-          //    InkWell(
-          //   onTap: () {
-          //   Navigator.pop(context);
-          //   },
-          //   child: Container(
-          //     alignment: Alignment.center,
-          //     height: Screens.padingHeight(context) * 0.045,
-          //     decoration: BoxDecoration(
-          //       color: theme.primaryColor,
-          //       // borderRadius: BorderRadius.only(
-          //       //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
-          //     ),
-          //     child: Center(
-          //       child: Container(
-          //         alignment: Alignment.center,
-          //         child: Text(
-          //         "Ok",
-          //           textAlign: TextAlign.center,
-          //           style: theme.textTheme.bodyMedium
-          //               ?.copyWith(color: Colors.white),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );

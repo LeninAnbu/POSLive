@@ -12,7 +12,6 @@ class MobLoadBtns extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.only(top: Screens.bodyheight(context) * 0.004),
       width: Screens.width(context) * 0.95,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -31,7 +30,6 @@ class MobLoadBtns extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                // color: Colofrs.amber,
                 width: Screens.width(context) * 0.4,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -46,8 +44,6 @@ class MobLoadBtns extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.centerRight,
-
-                // color: Colors.orange,
                 width: Screens.width(context) * 0.4,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -66,7 +62,6 @@ class MobLoadBtns extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                // color: Colofrs.amber,
                 width: Screens.width(context) * 0.4,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -81,8 +76,6 @@ class MobLoadBtns extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.centerRight,
-
-                // color: Colors.orange,
                 width: Screens.width(context) * 0.4,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

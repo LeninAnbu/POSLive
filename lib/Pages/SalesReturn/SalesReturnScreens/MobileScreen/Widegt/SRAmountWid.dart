@@ -54,7 +54,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(4))),
                                     contentPadding: const EdgeInsets.all(0),
-                                    // backgroundColor: Colors.transparent,
                                     insetPadding: EdgeInsets.all(
                                         Screens.padingHeight(context) * 0.02),
                                     content: ContentWidgetMob(
@@ -72,7 +71,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(4))),
                                     contentPadding: const EdgeInsets.all(0),
-                                    // backgroundColor: Colors.transparent,
                                     insetPadding: EdgeInsets.all(
                                         Screens.padingHeight(context) * 0.02),
                                     content: forCashConfirm(
@@ -90,7 +88,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                     height: Screens.padingHeight(context) * 0.06,
                     width: Screens.width(context) * 0.3,
                     decoration: BoxDecoration(
-                      // color: Colors.red,
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -143,7 +140,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(4))),
                                       contentPadding: const EdgeInsets.all(0),
-                                      // backgroundColor: Colors.transparent,
                                       insetPadding: EdgeInsets.all(
                                           Screens.padingHeight(context) * 0.02),
                                       content: ContentWidgetMob(
@@ -163,7 +159,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(4))),
                                       contentPadding: const EdgeInsets.all(0),
-                                      // backgroundColor: Colors.transparent,
                                       insetPadding: EdgeInsets.all(
                                           Screens.padingHeight(context) * 0.02),
                                       content: forCheque(context,
@@ -183,7 +178,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.06,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.yellow,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -203,7 +197,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                 child: const Icon(
                                   Icons.credit_card,
                                   color: Colors.white,
-                                  // size: Screens.padingHeight(context) * 0.035,
                                 )),
                             SizedBox(
                               width: Screens.width(context) * 0.02,
@@ -234,7 +227,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(4))),
                                       contentPadding: const EdgeInsets.all(0),
-                                      // backgroundColor: Colors.transparent,
                                       insetPadding: EdgeInsets.all(
                                           Screens.padingHeight(context) * 0.02),
                                       content: ContentWidgetMob(
@@ -254,7 +246,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(4))),
                                         contentPadding: const EdgeInsets.all(0),
-                                        // backgroundColor: Colors.transparent,
                                         insetPadding: EdgeInsets.all(
                                             Screens.padingHeight(context) *
                                                 0.02),
@@ -274,7 +265,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.06,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -340,7 +330,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -373,9 +362,7 @@ class SRAmountSlctWidget extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 child: Text("Is full amount Rs. "
-                    '${srContrl.totalcalculate().toStringAsFixed(2)}'
-                    // '${srContrl.getBalancePaid2()-.toStringAsFixed(2)}' //'${posC.getBalancePaid().toStringAsFixed(2)'}
-                    )),
+                    '${srContrl.totalcalculate().toStringAsFixed(2)}')),
             SizedBox(
               height: Screens.padingHeight(context) * 0.01,
             ),
@@ -418,7 +405,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.padingHeight(context) * 0.02),
                                 content:
@@ -474,7 +460,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -529,7 +514,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                   controller: srContrl.mycontroller[22],
                   cursorColor: Colors.grey,
                   keyboardType: TextInputType.number,
-                  // textInputAction: TextInputAction.,
                   onChanged: (v) {
                     log(v);
                   },
@@ -561,8 +545,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                     hintStyle: theme.textTheme.bodyMedium
                         ?.copyWith(color: Colors.grey),
                     filled: false,
-                    // enabledBorder: InputBorder.none,
-                    // focusedBorder: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 25,
@@ -630,7 +612,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -675,12 +656,9 @@ class SRAmountSlctWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
-                              // width: Screens.width(context) * 0.18,
                               child: const Text("Cheque No"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -736,22 +714,15 @@ class SRAmountSlctWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Cheque Date"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
                                 color: Colors.grey.withOpacity(0.01),
                               ),
                               child: GestureDetector(
-                                // onTap: () {
-                                //   st(() {
-                                //     srContrl.getDate(context, 'Cheque');
-                                //   });
-                                // },
                                 child: TextFormField(
                                   autofocus: true,
                                   readOnly: true,
@@ -820,7 +791,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                 children: [
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    // height: cashHeight * 0.1,
                                     child: const Text("Amount"),
                                   ),
                                   InkWell(
@@ -837,7 +807,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -858,9 +827,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                   }
                                 },
                                 decoration: InputDecoration(
-                                  // hintText: posController.boolCash == true
-                                  //     ? '${posController.getBalancePaid().toStringAsFixed(2)}'
-                                  //     : '',
                                   filled: false,
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5),
@@ -897,11 +863,9 @@ class SRAmountSlctWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Remarks"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -913,13 +877,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                 cursorColor: Colors.grey,
                                 style: theme.textTheme.bodyMedium?.copyWith(),
                                 onChanged: (v) {},
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return '  Please Enter the Remark';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
                                 decoration: InputDecoration(
                                   filled: false,
                                   focusedErrorBorder: OutlineInputBorder(
@@ -942,8 +899,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                                     borderSide:
                                         const BorderSide(color: Colors.grey),
                                   ),
-                                  // enabledBorder: InputBorder.none,
-                                  // focusedBorder: InputBorder.none,
                                   contentPadding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                     horizontal: 10,
@@ -980,7 +935,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                   ),
                 ),
               )
-              // ),
             ],
           ),
         ),
@@ -1013,7 +967,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -1122,7 +1075,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                           child: const Text("Coupon Code"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.55,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -1180,7 +1132,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -1195,7 +1146,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.55,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -1297,7 +1247,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                 padding: EdgeInsets.only(
                     left: Screens.padingHeight(context) * 0.02,
                     right: Screens.padingHeight(context) * 0.02),
-                // color: Colors.red,
                 width: Screens.width(context) * 0.7,
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -1344,7 +1293,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Amount"),
                             ),
                             IconButton(
@@ -1360,7 +1308,6 @@ class SRAmountSlctWidget extends StatelessWidget {
                       )
                     ]),
                 Container(
-                  // height: cashHeight * 0.2,
                   width: Screens.width(context) * 0.55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),

@@ -17,7 +17,6 @@ class SRAmountCaltnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Screens.width(context),
-      // height: Screens.bodyheight(context)*0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -43,7 +42,6 @@ class SRAmountCaltnWidget extends StatelessWidget {
                     right: Screens.width(context) * 0.01,
                     bottom: Screens.padingHeight(context) * 0.01),
                 width: Screens.width(context),
-                // height: paymentHeight * 0.11,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -53,7 +51,6 @@ class SRAmountCaltnWidget extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             salesReturnController.checkstocksetqty();
-                            //   salesReturnController.viewSalesRet();
                           },
                           child: SizedBox(
                             width: Screens.width(context) * 0.3,
@@ -70,12 +67,10 @@ class SRAmountCaltnWidget extends StatelessWidget {
                                 ? const Text(
                                     "0.00",
                                   )
-                                // Container()
                                 : Text(
                                     salesReturnController
                                         .getScanneditemData.length
                                         .toString(),
-                                    // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
                                     style: theme.textTheme.bodyMedium
                                         ?.copyWith())),
                       ],
@@ -105,11 +100,8 @@ class SRAmountCaltnWidget extends StatelessWidget {
                                 ? const Text(
                                     "0.00",
                                   )
-
-                                // Container()
                                 : Text(
                                     "${salesReturnController.totalPayment!.total}",
-                                    // "${prdPmt.totalPayment!.discount!.toStringAsFixed(0)}",
                                     style:
                                         theme.textTheme.bodyMedium?.copyWith()))
                       ],
@@ -132,12 +124,7 @@ class SRAmountCaltnWidget extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: salesReturnController.totalPayment == null
                                 ? const Text("0.00")
-
-                                // Container()
                                 : Text("0.00",
-                                    // salesReturnController.config
-                                    //     .slpitCurrency2(
-                                    //         "${salesReturnController.totalPayment!.discount!.toStringAsFixed(2)}"),
                                     style:
                                         theme.textTheme.bodyMedium?.copyWith()))
                       ],
@@ -160,8 +147,6 @@ class SRAmountCaltnWidget extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: salesReturnController.totalPayment == null
                                 ? const Text("0.00")
-
-                                // Container()
                                 : Text(
                                     salesReturnController.config
                                         .splitValues("0.00"),
@@ -180,62 +165,9 @@ class SRAmountCaltnWidget extends StatelessWidget {
                     right: Screens.width(context) * 0.01,
                     bottom: Screens.padingHeight(context) * 0.01),
                 width: Screens.width(context),
-                // height: paymentHeight * 0.11,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     Container(
-                    //       width: Screens.width(context) * 0.3,
-                    //       child: Text(
-                    //         "Other Amout",
-                    //         style: theme.textTheme.bodyText2?.copyWith(),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       width: Screens.width(context) * 0.6,
-                    //       alignment: Alignment.centerRight,
-                    //       child: salesReturnController.getScanneditemData.isEmpty
-                    //           ? Text("0.00")
-                    //           : Text(
-                    //               (salesReturnController.totalPayment!.totalDue! -
-                    //                       salesReturnController.salesCreditamt)
-                    //                   .toStringAsFixed(2),
-                    //               // "${prdPmt.totalPayment!.subtotal!.toStringAsFixed(2)}",
-                    //               style: theme.textTheme.bodyText2?.copyWith(),
-                    //             ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     Container(
-                    //       width: Screens.width(context) * 0.3,
-                    //       child: Text(
-                    //         "Credited Amout",
-                    //         style: theme.textTheme.bodyText2?.copyWith(),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       width: Screens.width(context) * 0.6,
-                    //       alignment: Alignment.centerRight,
-                    //       child: salesReturnController.getScanneditemData.isEmpty
-                    //           ? Text("0.00")
-                    //           : Text(
-                    //               salesReturnController.salesCreditamt
-                    //                   .toStringAsFixed(2),
-                    //               // "${prdPmt.totalPayment!.subtotal!.toStringAsFixed(2)}",
-                    //               style: theme.textTheme.bodyText2?.copyWith(),
-                    //             ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // SizedBox(
-                    //   height: Screens.padingHeight(context) * 0.02,
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -256,7 +188,6 @@ class SRAmountCaltnWidget extends StatelessWidget {
                                       salesReturnController
                                           .totalPayment!.subtotal!
                                           .toStringAsFixed(2)),
-                                  // "${prdPmt.totalPayment!.subtotal!.toStringAsFixed(2)}",
                                   style: theme.textTheme.bodyMedium?.copyWith(),
                                 ),
                         ),
@@ -391,15 +322,7 @@ class SRAmountCaltnWidget extends StatelessWidget {
                         Container(
                           width: Screens.width(context) * 0.6,
                           alignment: Alignment.centerRight,
-                          child:
-                              // salesReturnController.totalPayment == null
-                              // ? Text("0.00")
-                              // : salesReturnController.getpayment == null
-                              //     ? Container(
-                              //         child: Text("0.00"),
-                              //       )
-                              //     :
-                              Text(
+                          child: Text(
                             salesReturnController.config.splitValues(
                                 salesReturnController
                                     .getBalancePaid2()
@@ -416,10 +339,6 @@ class SRAmountCaltnWidget extends StatelessWidget {
           ),
           SizedBox(
             width: Screens.width(context) * 0.9,
-            // decoration: BoxDecoration(
-            //   borderRadius: BorderRadius.circular(3),
-            //   color: Colors.grey.withOpacity(0.01),
-            // ),
             child: TextFormField(
               controller: salesReturnController.mycontroller[50],
               cursorColor: Colors.grey,

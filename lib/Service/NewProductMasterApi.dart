@@ -15,7 +15,7 @@ class NewProductsApi {
       String branch, String terminal) async {
     try {
       final stopwatch = Stopwatch()..start();
-log("fff::"+"${URL.url}ProductMaster/$branch/$terminal");
+      log("fff::" + "${URL.url}ProductMaster/$branch/$terminal");
       final response = await http.get(
         Uri.parse('${URL.url}ProductMaster/$branch/$terminal'),
         headers: {
@@ -50,29 +50,4 @@ log("fff::"+"${URL.url}ProductMaster/$branch/$terminal");
       return ProductMasterModsl.error(e.toString(), resCode);
     }
   }
-
-  // static Future<List<Map<String, dynamic>>> jsonconvertexamplex(
-  //     String tabularData) async {
-  //   final Database db = (await DBHelper.getInstance())!;
-
-  //   List<String> lines = tabularData.split('\n');
-  //   List<String> headers = lines[0].split('\t');
-  //   List<Map<String, dynamic>> jsonList = [];
-  //   for (int i = 1; i < lines.length; i++) {
-  //     List<String> values = lines[i].split('\t');
-  //     if (values.length == headers.length) {
-  //       // log('headersheaders::${headers.length}');
-  //       Map<String, dynamic> jsonItem = {};
-  //       for (int j = 0; j < headers.length; j++) {
-  //         jsonItem[headers[j]] = values[j];
-  //       }
-  //       jsonList.add(jsonItem);
-  //     }
-  //   }
-  //   log('jsonListjsonList::${jsonList.length}');
-  //   await DBOperation.insertList(db, jsonList).then((value) {
-  //     log("Inserted Product Master");
-  //   });
-  //   return jsonList;
-  // }
 }

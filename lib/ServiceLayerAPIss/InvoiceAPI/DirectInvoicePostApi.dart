@@ -29,10 +29,8 @@ class DirectInvoicePostAPI {
       "CardName": "$cardName",
       "DocumentStatus": "bost_Open",
       "DocDate": "$docDate",
-      // "DocDueDate": "$dueDate",
       "Comments": "$remarks",
-      "U_VAT_NUMBER":"$VATNo",
-      // 'Series': '$seriesType',
+      "U_VAT_NUMBER": "$VATNo",
       'U_TinNO': '$tinNo',
       "U_DeviceTransID": deviceTransID,
       "U_Truck_Internal": uTruckInternal,
@@ -54,17 +52,14 @@ class DirectInvoicePostAPI {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
           "DocType": "$docType",
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
-          // "DocDueDate": "$dueDate",
           "Comments": "$remarks",
-          "U_VAT_NUMBER":"$VATNo",
-          // 'Series': '$seriesType',
+          "U_VAT_NUMBER": "$VATNo",
           'U_TinNO': '$tinNo',
           "U_DeviceTransID": deviceTransID,
           "U_Truck_Internal": uTruckInternal,
@@ -80,9 +75,8 @@ class DirectInvoicePostAPI {
               "CardCode": "$cardCodePost",
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
-              "U_VAT_NUMBER":"$VATNo",
-               'U_TinNO': '$tinNo',
-              // "DocDueDate": "$dueDate",
+              "U_VAT_NUMBER": "$VATNo",
+              'U_TinNO': '$tinNo',
               "Comments": "$remarks",
               "U_DeviceTransID": deviceTransID,
               "U_Truck_Internal": uTruckInternal,
@@ -91,22 +85,21 @@ class DirectInvoicePostAPI {
               "DocumentLines": docLineQout!.map((e) => e.tojson2()).toList(),
             })}",
       );
-      // log("Responce: ${json.decode(response.body)}");
+
       log("statucCode: ${response.statusCode}");
-      // log("Quotations post: "+json.decode(response.body.toString()).toString());
+
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         final dynamic data = json.decode(response.body.toString());
         return SapSalesinvoiceModel.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return SapSalesinvoiceModel.issue(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
+
       return SapSalesinvoiceModel.exceptionn(
           'Restart the app or contact the admin!!..\n', 500);
     }

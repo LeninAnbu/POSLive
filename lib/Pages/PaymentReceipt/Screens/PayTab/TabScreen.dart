@@ -52,7 +52,6 @@ class PaymentTab extends StatelessWidget {
                           ])),
                   SizedBox(
                       width: Screens.width(context) * 0.48,
-                      // color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,12 +72,6 @@ class PaymentTab extends StatelessWidget {
                                   custHeight: Screens.bodyheight(context) * 0.3,
                                   theme: theme,
                                 ),
-                          //         ItemDetails(
-                          //           itemHeight: Screens.bodyheight(context) * 0.08,
-                          //           itemWidth: Screens.width(context) * 0.48,
-                          //           prdPmt: prdSCD,
-                          //           theme: theme,
-                          //         ),
                           context
                                           .watch<PayreceiptController>()
                                           .getselectedcust2 !=

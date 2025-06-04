@@ -19,7 +19,7 @@ class SerlaySalesInvoiceAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("Invoice stscode::${response.statusCode}");
 
       if (response.statusCode == 200) {
@@ -30,13 +30,10 @@ class SerlaySalesInvoiceAPI {
 
         log("Invoice Exception: Error");
         throw Exception("Errorrrrr");
-        // return SapSalesOrderModel.issue(
-        //     json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("GetInvException:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

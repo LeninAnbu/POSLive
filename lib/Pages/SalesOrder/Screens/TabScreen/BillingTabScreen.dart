@@ -22,7 +22,6 @@ class SObillingTabScreen extends StatefulWidget {
 }
 
 class _SObillingTabScreenState extends State<SObillingTabScreen> {
-  // SOCon prdSCD;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

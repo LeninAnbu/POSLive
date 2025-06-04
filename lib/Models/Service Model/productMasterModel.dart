@@ -86,12 +86,15 @@ class ProductMasterModslData {
   double? uPackSize;
   int? uTINSPERBOX;
   String? uPackSizeuom;
+  String? managedby;
+
   double? uSpecificGravity;
   ProductMasterModslData({
     required this.uPackSize,
     required this.uTINSPERBOX,
     required this.itemName,
     required this.uSpecificGravity,
+    required this.managedby,
     this.isserialBatch,
     this.serialBatch,
     required this.uPackSizeuom,
@@ -147,6 +150,8 @@ class ProductMasterModslData {
       createdUserID: json['createdUserID'] ?? '',
       createdateTime: json['createdateTime'] ?? '',
       lastupdateIp: json['lastupdateIp'] ?? '',
+      managedby: json['ManageBy'] ?? '',
+
       brand: json['BRAND'] ?? '',
       brand1: json['BRAND1'] ?? '',
       category: json['category'] ?? '',

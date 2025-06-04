@@ -21,7 +21,6 @@ class Newseriesapi {
                     "BZ_POS_GetUserSeries '${AppConstant.sapUserName}','$objCode'"
               }));
 
-      // log('"constr": "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;", "query": "BZ_POS_GetUserSeries "${AppConstant.branch}","$objCode""');
       log("Newseries Data Res: ${json.decode(response.body)}");
       print(response.statusCode);
       if (response.statusCode == 200) {
@@ -35,7 +34,7 @@ class Newseriesapi {
       }
     } catch (e) {
       log('NewSeriesMdl:::$e');
-      //  throw Exception("Exception: $e");
+
       return NewSeriesMdl.error(e.toString(), 500);
     }
   }

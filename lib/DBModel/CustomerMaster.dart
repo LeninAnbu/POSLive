@@ -22,29 +22,6 @@ class CustomerMasterT {
   static String uCashCust = "U_CASHCUST";
 // customerCode	customername	premiumid	customertype	taxno	createdbybranch	balance	points	snapdatetime	phoneno1
 // 	phoneno2	emalid	createdateTime	updatedDatetime	createdUserID	updateduserid	lastupdateIp	TaxCode	U_CASHCUST
-
-  // static String autoid = "autoid";
-  // static String customerCode = "customercode";
-  // static String customername = "customername";
-  // static String premiumid = "premiumid";
-  // static String customertype = "customertype";
-  // static String taxno = "taxno";
-  // static String taxCode = "taxCode";
-  // static String createdbybranch = 'createdbybranch';
-  // static String balance = "balance";
-  // static String points = "points";
-  // static String snapdatetime = "snapdatetime";
-  // static String phoneno1 = "phoneno1";
-  // static String phoneno2 = "phoneno2";
-  // static String emalid = "emalid";
-  // static String tinNo = 'tinNo';
-  // static String vatregno = 'vatregno';
-  // static String terminal = "terminal";
-  // static String createdateTime = 'createdateTime';
-  // static String updatedDatetime = "UpdatedDatetime";
-  // static String createdUserID = "createdUserID";
-  // static String updateduserid = "updateduserid";
-  // static String lastupdateIp = "lastupdateIp";
 }
 
 class CustomerModelDB {
@@ -124,21 +101,16 @@ class CustomerModelDB {
       );
 
   Map<String, Object?> toMap() => {
-        // CustomerMasterT.autoid: autoid,
-        // CustomerMasterT.tinNo: tinNo,
         CustomerMasterT.TaxCode: taxCode,
-        // CustomerMasterT.vatregno: vatregno,
         CustomerMasterT.customerCode: customerCode,
         CustomerMasterT.balance: balance,
         CustomerMasterT.createdUserID: createdUserID,
         CustomerMasterT.uCashCust: uCashCust,
-
         CustomerMasterT.createdateTime: createdateTime,
         CustomerMasterT.createdbybranch: createdbybranch,
         CustomerMasterT.customername: customername,
         CustomerMasterT.customertype: customertype,
         CustomerMasterT.emalid: emalid,
-        // CustomerMasterT.terminal: terminal,
         CustomerMasterT.lastupdateIp: lastupdateIp,
         CustomerMasterT.phoneno1: phoneno1,
         CustomerMasterT.phoneno2: phoneno2,

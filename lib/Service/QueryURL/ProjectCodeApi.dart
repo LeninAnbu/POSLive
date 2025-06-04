@@ -20,7 +20,6 @@ class NewProjectCodeApi {
                 "query": "BZ_POS_ProjectCode"
               }));
 
-      // log("NewProjectCodeApi Data Res::: ${json.decode(response.body)}");
       print(response.statusCode);
       if (response.statusCode == 200) {
         return ProjectCodeMdl.fromJson(
@@ -33,7 +32,7 @@ class NewProjectCodeApi {
       }
     } catch (e) {
       log('ProjectCodeMdl:::$e');
-      //  throw Exception("Exception: $e");
+
       return ProjectCodeMdl.error(e.toString(), 500);
     }
   }

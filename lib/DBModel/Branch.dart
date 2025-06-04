@@ -10,14 +10,6 @@ class BranchT {
   static String walletAccount = 'WalletAccount';
   static String gitWhs = 'GITWhs';
 
-  // static String priceList = 'PriceList';
-  // static String customerGroup = "CustomerGroup";
-  // static String customerAcct = 'CustomerAcct';
-  // static String disAcct1 = 'DisAcct1';
-  // static String disAcct2 = 'DisAcct2';
-  // static String creditCard = 'CreditCard';
-  // static String stateCode = 'StateCode';
-  // static String gSTNo = 'GSTNo';
   static String location = 'Location';
   static String companyName = 'CompanyName';
   static String companyHeader = 'CompanyHeader';
@@ -35,8 +27,7 @@ class BranchT {
 class BranchTModelDB {
   String? whsCode;
   String? whsName;
-  // String? priceList;
-  // String? customerGroup;
+
   String? cashAccount;
   String? creditAccount;
   String? chequeAccount;
@@ -44,22 +35,10 @@ class BranchTModelDB {
   String? wallerAccount;
   String? gitWhs;
 
-  // String? customerAcct;
-  // String? disAcct1;
-  // String? disAcct2;
-  // String? creditCard;
-  // String? stateCode;
-  // String? gSTNo;
   String? location;
   String? companyName;
   String? companyHeader;
   String? e_Mail;
-  // String? cOGSAcct;
-  // String? pAN;
-  // String? address1;
-  // String? address2;
-  // String? city;
-  // String? pincode;
 
   BranchTModelDB({
     required this.whsCode,
@@ -70,22 +49,10 @@ class BranchTModelDB {
     required this.creditAccount,
     required this.chequeAccount,
     required this.transFerAccount,
-    // required this.customerAcct,
-    // required this.disAcct1,
-    // required this.disAcct2,
-    // required this.creditCard,
-    // required this.stateCode,
-    // required this.gSTNo,
     required this.location,
     required this.companyName,
     required this.companyHeader,
     required this.e_Mail,
-    // required this.cOGSAcct,
-    // required this.pAN,
-    // required this.address1,
-    // required this.address2,
-    // required this.city,
-    // required this.pincode,
   });
 
   Map<String, Object?> toMap() => {
@@ -97,23 +64,10 @@ class BranchTModelDB {
         BranchT.creditAccount: creditAccount,
         BranchT.transFerAccount: transFerAccount,
         BranchT.walletAccount: wallerAccount,
-        // BranchT.address2: address2,
-        // BranchT.cOGSAcct: cOGSAcct,
-        // BranchT.city: city,
         BranchT.companyHeader: companyHeader,
         BranchT.companyName: companyName,
-        // BranchT.creditCard: creditCard,
-        // BranchT.customerAcct: customerAcct,
-        // BranchT.customerGroup: customerGroup,
-        // BranchT.disAcct1: disAcct1,
-        // BranchT.disAcct2: disAcct2,
         BranchT.e_Mail: e_Mail,
-        // BranchT.gSTNo: gSTNo,
         BranchT.location: location,
-        // BranchT.pincode: pincode,
-        // BranchT.pAN: pAN,
-        // BranchT.priceList: priceList,
-        // BranchT.stateCode: stateCode,
       };
 }
 // class BranchT {
@@ -169,8 +123,8 @@ class BranchTModelDB {
 //   int? updateduserid;
 //   String? lastupdateIp;
 
-  // BranchTModelDB(
-  //     {required this.address1,
+
+
 //       required this.address2,
 //       required this.address3,
 //       required this.branchID,

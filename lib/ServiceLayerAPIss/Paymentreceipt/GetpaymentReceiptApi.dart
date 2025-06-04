@@ -11,7 +11,6 @@ import '../../url/url.dart';
 
 class SerlayPayReceiptAPI {
   static Future<GetIncomingReceiptModel> getData(String sapDocEntry) async {
-    // int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
@@ -22,9 +21,8 @@ class SerlayPayReceiptAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("receipt stscode::${response.statusCode}");
-      // log("receipt::${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return GetIncomingReceiptModel.fromJson(
@@ -32,13 +30,10 @@ class SerlayPayReceiptAPI {
       } else {
         log("Invoice Exception: Error");
         throw Exception("Errorrrrr");
-        // return SapSalesOrderModel.issue(
-        //     json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("GetInvException:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

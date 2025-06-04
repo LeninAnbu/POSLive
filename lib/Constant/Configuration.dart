@@ -119,7 +119,7 @@ class Configure {
   }
 
   String alignDateT(String date) {
-    log('datedate::$date');
+    // log('datedate::$date');
     var dates = DateTime.parse(date);
     return "${dates.day.toString().padLeft(2, '0')}-${dates.month.toString().padLeft(2, '0')}-${dates.year}";
   }

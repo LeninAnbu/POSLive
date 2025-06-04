@@ -41,10 +41,7 @@ class _RefundScreensState extends State<RefundScreens> {
               builder: (context, child) {
                 return Consumer<RefundController>(
                     builder: (BuildContext context, prdSCD, Widget? child) {
-                  return SafeArea(child: Container()
-                      //  MobPaymentReceipt(payCD: prdSCD),
-                      // scaffoldKey: scaffoldKey,
-                      );
+                  return SafeArea(child: Container());
                 });
               }),
         );
@@ -52,14 +49,7 @@ class _RefundScreensState extends State<RefundScreens> {
         return Scaffold(
             resizeToAvoidBottomInset: false,
             drawer: naviDrawer(),
-            body:
-                //  ChangeNotifierProvider<RefundController>(
-                //     create: (context) => RefundController(),
-                //     builder: (context, child) {
-                //       return Consumer<RefundController>(
-                //           builder: (BuildContext context, prdSCD, Widget? child) {
-                //         return
-                SafeArea(
+            body: SafeArea(
               child: Column(children: <Widget>[
                 AppBar(
                   title: Row(
@@ -191,7 +181,6 @@ class _RefundScreensState extends State<RefundScreens> {
                                                                                 left: Screens.width(context) * 0.01,
                                                                                 right: Screens.width(context) * 0.01,
                                                                                 bottom: Screens.bodyheight(context) * 0.03),
-                                                                            // height: custHeight * 0.2,
                                                                             child:
                                                                                 ListTile(
                                                                               onTap: () {
@@ -272,7 +261,6 @@ class _RefundScreensState extends State<RefundScreens> {
                               children: [
                                 Container(
                                     decoration: const BoxDecoration(
-                                      // color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(8),
                                         topLeft: Radius.circular(25),
@@ -350,7 +338,6 @@ class _RefundScreensState extends State<RefundScreens> {
                               children: [
                                 Container(
                                     decoration: const BoxDecoration(
-                                      // color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(8),
                                         topLeft: Radius.circular(25),
@@ -389,7 +376,6 @@ class _RefundScreensState extends State<RefundScreens> {
                               children: [
                                 Container(
                                     decoration: const BoxDecoration(
-                                      // color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(8),
                                         topLeft: Radius.circular(25),
@@ -429,7 +415,6 @@ class _RefundScreensState extends State<RefundScreens> {
                               children: [
                                 Container(
                                     decoration: const BoxDecoration(
-                                      // color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(8),
                                         topLeft: Radius.circular(25),
@@ -454,11 +439,7 @@ class _RefundScreensState extends State<RefundScreens> {
                   theme: theme,
                 ),
               ]),
-            )
-            // });
-            // }
-            // ),
-            );
+            ));
       } else {
         return Scaffold(
           body: ChangeNotifierProvider<RefundController>(
@@ -469,7 +450,6 @@ class _RefundScreensState extends State<RefundScreens> {
                   return SafeArea(
                       child: PaymentRecieptPos(
                     theme: theme,
-                    // prdSCD: prdSCD,
                   ));
                 });
               }),

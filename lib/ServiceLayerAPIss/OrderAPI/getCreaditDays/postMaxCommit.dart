@@ -27,21 +27,14 @@ class PostMaxCommitAPi {
       );
 
       if (response.statusCode == 200 || response.statusCode == 204) {
-        ///bedor 201
         log(response.body);
         log("statucCode BusinessPartners: " + response.statusCode.toString());
-        //return SalesQuotStatus.fromJson(response.statusCode.toString());
       } else {
-        //  log(response.body);
         log("Responce: " + (json.decode(response.body).toString()));
         log("statucCode: " + response.statusCode.toString());
-        //throw Exception('Restart the app or contact the admin!!..');
-        //return SalesQuotStatus.errorIN(json.decode(response.body)as Map<String,dynamic>);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
-      //   return SalesQuotStatus.issue('Restart the app or contact the admin!!..\n');//+e.toString()
     }
   }
 }

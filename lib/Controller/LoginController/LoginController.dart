@@ -1,13 +1,19 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:posproject/Constant/Screen.dart';
+import 'package:posproject/Constant/VersionConfiguration.dart';
 // import 'package:platform_device_id/platform_device_id.dart';
 import 'package:posproject/DBModel/UserDBModel.dart';
 import 'package:posproject/Service/loginUserApi.dart';
 import 'package:posproject/Service/UsersAPI.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../Constant/AppConstant.dart';
 import '../../Constant/ConstantRoutes.dart';
 import '../../Constant/SharedPreference.dart';
@@ -18,8 +24,8 @@ import '../../main.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class LoginController extends ChangeNotifier {
-  Future<void> init() async {
-    // isalreadyset=false;
+  Future<void> init(BuildContext context) async {
+    await DefaultCacheManager().emptyCache();
     await SharedPref.clearHost();
     await SharedPref.clearSiteCode();
     await SharedPref.clearDeviceID();
@@ -28,9 +34,10 @@ class LoginController extends ChangeNotifier {
     await SharedPref.clearSapDB();
     await SharedPref.clearDatadonld();
     await SharedPref.clearLoggedINSP();
+    showVersion(context);
+
     disableBtn = false;
     incorrectPwd = '';
-    await DefaultCacheManager().emptyCache();
 
     createDB();
     getDeviceID();
@@ -118,23 +125,6 @@ class LoginController extends ChangeNotifier {
   bool isalreadyset = false;
 
   getDeviceID() async {
-    // int? logRecord = await getUserData();
-    // if (logRecord! < 1) {
-    //   insertDb('U101', 'bala', '1234', 'B1234', 'HOFG', 'T1', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    //   insertDb('U102', 'test', '1234', 'B1234', 'HOFG', 'T2', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    //   insertDb('U103', 'paramesh', '1234', 'B1234', 'HOFG', 'T3', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    //   insertDb('U104', 'anbu', '1234', 'B1234', 'HOFG', 'T4', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    //   insertDb('U105', 'sharmi', '1234', 'B1234', 'ARSFG', 'T1', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    //        insertDb('U107', 'admin', '1234', 'B1234', 'ARSFG', 'T2', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    //         insertDb('U106', 'bala1', '1234', 'B1234', 'HOGIT', 'T1', 'Y', 'user',
-    //       'buson123B', '', '2023-02-01', '2023-02-01', 1, 1, '192.198.182.1');
-    // }
     mycontroller[2].clear();
     mycontroller[3].clear();
     mycontroller[4].clear();
@@ -312,7 +302,7 @@ class LoginController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     if (mycontroller[0].text.isNotEmpty && mycontroller[1].text.isNotEmpty) {
       List<Map<String, Object?>> userData = await DBOperation.getusersvaldata(
-          db, mycontroller[0].text.toString());
+          db, mycontroller[0].text.toString().trim());
       log("userData::" + userData.length.toString());
       if (userData.isNotEmpty) {
         for (int i = 0; i < userData.length; i++) {
@@ -337,13 +327,17 @@ class LoginController extends ChangeNotifier {
           notifyListeners();
         }
 
-        await LoginUserAPI.getData(userdetails[0].usercode.toString(), tokenFCM)
+        await LoginUserAPI.getData(
+                userdetails[0].usercode.toString().trim(), tokenFCM)
             .then((value) async {
           if (value.statuscode >= 200 && value.statuscode <= 210) {
             if (value.loginuserList != null) {
               for (int i = 0; i < value.loginuserList!.length; i++) {
-                if (value.loginuserList![i].userName.toString().toLowerCase() ==
-                        mycontroller[0].text.toLowerCase() &&
+                if (value.loginuserList![i].userName
+                            .toString()
+                            .toLowerCase()
+                            .trim() ==
+                        mycontroller[0].text.toLowerCase().trim() &&
                     value.loginuserList![i].password.toString().toLowerCase() ==
                         mycontroller[1].text.toString().toLowerCase()) {
                   await SharedPref.saveBranchSP(
@@ -377,7 +371,7 @@ class LoginController extends ChangeNotifier {
               disableBtn = false;
 
               settingMsg = 'Invalid Credential..!!';
-              // catchmsg.add("Users details: " + value.exception!);
+
               notifyListeners();
             }
           } else if (value.statuscode >= 400 && value.statuscode <= 410) {
@@ -458,5 +452,195 @@ values
         await db.rawQuery("select * from Users");
 
     log('1 $result');
+  }
+
+  bool visibleLoading = true;
+  String? plyStoreVersionNumber = '';
+  Future<void> showVersion(BuildContext context) async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    AppConstant.version = packageInfo.version;
+
+    bool? netbool = await config.haveInterNet();
+
+    if (netbool == true) {
+      log('messagemmmmm');
+      checkVesionNum(context);
+    } else {
+      showSnackBar('Check your internet !!..', context);
+    }
+  }
+
+  void showSnackBar(String msg, BuildContext context) {
+    final sn = SnackBar(
+      content: Text(
+        "$msg",
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.red,
+    );
+    ScaffoldMessenger.maybeOf(context)!.showSnackBar(sn);
+  }
+
+  void checkVesionNum(BuildContext context) async {
+    CheckVersionConfig checkverConfig = CheckVersionConfig();
+
+    visibleLoading = true;
+    plyStoreVersionNumber =
+        await checkverConfig.getStoreVersion('com.buson.posinsignia');
+    log('versionNumber11::$plyStoreVersionNumber::AppVersionversion11::${AppConstant.version}');
+
+    if (plyStoreVersionNumber != null) {
+      if (plyStoreVersionNumber == AppConstant.version) {
+      } else {
+        log('versionNumber22::$plyStoreVersionNumber::AppVersionversion22::${AppConstant.version}');
+
+        await Future.delayed(
+          const Duration(seconds: 1),
+          () {
+            visibleLoading = true;
+            updateDialog(context);
+          },
+        );
+      }
+    }
+  }
+
+  updateDialog(BuildContext context) {
+    final theme = Theme.of(context);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: SizedBox(
+              width: Screens.width(context) * 0.25,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Update available",
+                    style: theme.textTheme.titleMedium!
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: Screens.bodyheight(context) * 0.01,
+                  ),
+                  Text(
+                    "There is a new version of the app",
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                  IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        Container(
+                          height: Screens.bodyheight(context) * 0.15,
+                          width: Screens.width(context) * 0.10,
+                          padding: EdgeInsets.all(
+                              Screens.bodyheight(context) * 0.008),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.grey[200]),
+                          child: Image.asset(
+                            'assets/SellerSymbol.png',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(
+                              Screens.bodyheight(context) * 0.008),
+                          child: Text(
+                            'Version : ${plyStoreVersionNumber}',
+                            style: theme.textTheme.bodySmall!
+                                .copyWith(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: Screens.bodyheight(context) * 0.01,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: Screens.width(context) * 0.25,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: theme.primaryColor,
+                            ),
+                            onPressed: () async {
+                              clearData(context);
+                              if (Platform.isAndroid || Platform.isIOS) {
+                                final appId = Platform.isAndroid
+                                    ? 'com.buson.posinsignia'
+                                    : 'com.buson.posinsignia';
+
+                                final url = Uri.parse(
+                                  Platform.isAndroid
+                                      ? "https://play.google.com/store/apps/details?id=com.buson.posinsignia"
+                                      : "https://apps.apple.com/app/id$appId",
+                                );
+                                await DefaultCacheManager().emptyCache();
+                                launchUrl(
+                                  url,
+                                  mode: LaunchMode.externalApplication,
+                                ).then((value) {});
+                              }
+                            },
+                            child: Text(
+                              'Update',
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.white),
+                            )),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  clearData(BuildContext context) async {
+    final Database db = (await DBHelper.getInstance())!;
+
+    await DBOperation.truncateItemMaster(db);
+    await DBOperation.truncateStockSnap(db);
+    await DBOperation.truncateBranchMaster(db);
+    await DBOperation.truncateCouponDetailsMaster(db);
+    await DBOperation.truncateCustomerMasterAddress(db);
+    await DBOperation.truncateCustomerMaster(db);
+    await DBOperation.deleteNotifyAll(db);
+    await DBOperation.truncateUserMaster(db);
+    await DBOperation.deleteSalesQuot(db);
+    await DBOperation.deleteSalesOrder(db);
+    await DBOperation.deleteInvoicewholedata(db);
+    await DBOperation.dltsalesret(db);
+    await DBOperation.deletereceipt(db);
+    await DBOperation.deleteStockreq(db);
+    await DBOperation.deleteStOutTable(db);
+    await DBOperation.deleteStkInward(db);
+    await DBOperation.deleteExpense(db);
+    await SharedPref.clearHost();
+    await SharedPref.clearLoggedIN();
+    await SharedPref.clearSiteCode();
+    await SharedPref.clearTerminal();
+    await SharedPref.clrBranchSSP();
+    await SharedPref.clrUserIdSP();
+    await SharedPref.clearDatadonld();
+    await SharedPref.clearLoggedINSP();
+    await SharedPref.clrdsappassword();
+    await SharedPref.clrsapusername();
+    context.read<LoginController>().mycontroller[0].text = '';
+    context.read<LoginController>().mycontroller[1].text = '';
+    context.read<LoginController>().mycontroller[2].text = '';
+    context.read<LoginController>().mycontroller[4].text = '';
+    context.read<LoginController>().mycontroller[5].text = '';
+    notifyListeners();
   }
 }

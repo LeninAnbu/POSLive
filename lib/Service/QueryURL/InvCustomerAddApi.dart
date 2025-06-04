@@ -17,9 +17,7 @@ class InvAddressApi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_InvAddressApi '$docEntry'"
-                    // "Select T1.Address as address, Case When T5.LicTradNum IS Not NULL THEN  T5.LicTradNum Else T1.U_VAT_NUMBER End As  U_VAT_NUMBER, Case When T5.AddID IS Not NULL THEN  T5.AddID Else T1.U_TinNO End As 'U_TinNO' From OINV T1 INNER JOIN INV1 T2 ON T1.DocEntry=T2.DocEntry Left JOIN RDR1 T3 ON T3.DocEntry=T2.BaseEntry  And T2.ItemCode=T3.ItemCode Left JOIN ORDR T4 ON  T4.DocEntry=T3.DocEntry  INNER JOIN OCRD T5 ON T5.CardCode=T1.CardCode WHere T1.DocEntry ='$docEntry'"
+                "query": "EXEC BZ_POS_InvAddressApi '$docEntry'"
               }));
       log('message::${json.encode({
             "constr":
@@ -27,7 +25,6 @@ class InvAddressApi {
             "query":
                 "Select T1.Address as address, Case When T5.LicTradNum IS Not NULL THEN  T5.LicTradNum Else T1.U_VAT_NUMBER End As  U_VAT_NUMBER, Case When T5.AddID IS Not NULL THEN  T5.AddID Else T1.U_TinNO End As 'U_TinNO' From OINV T1 INNER JOIN INV1 T2 ON T1.DocEntry=T2.DocEntry Left JOIN RDR1 T3 ON T3.DocEntry=T2.BaseEntry  And T2.ItemCode=T3.ItemCode Left JOIN ORDR T4 ON  T4.DocEntry=T3.DocEntry  INNER JOIN OCRD T5 ON T5.CardCode=T1.CardCode WHere T1.DocEntry ='$docEntry'"
           })}');
-      // log("InvAddressApi Data Res: ${json.decode(response.body)}");
 
       print(response.statusCode);
       if (response.statusCode == 200) {

@@ -16,9 +16,7 @@ class RecoListApi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_RecoListApi '$cardCode' "
-                    // "Select T0.TransType SrcObjTyp,T0.TransId, T1.Line_ID TransRowId, T0.CreatedBy SrcObjAbs,T0.Memo, T0.Ref1, T2.CardCode , T2.CardName, T0.RefDate ,T0.Ref2, Debit-Credit Amount, T1.BalDueDeb - T1. BalDueCred Balance, T1.BalDueDeb - T1. BalDueCred ReconcileAmount, Case When T1.BalDueDeb > 0 Then 'codDebit' Else 'codCredit' End CreditOrDebitT From OJDT T0 Inner Join JDT1 T1  on T0.TransID = T1.TransId  Inner Join OCRD T2 on T2.CardCode = T1.ShortName Where T1.BalDueCred + T1.BalDueDeb  > 0 And CardCode = '$cardCode' order by T0.RefDate desc"
+                "query": "EXEC BZ_POS_RecoListApi '$cardCode' "
               }));
 
       log('message::${json.encode({
@@ -27,7 +25,7 @@ class RecoListApi {
             "query":
                 "Select T0.TransType SrcObjTyp,T0.TransId, T1.Line_ID TransRowId, T0.CreatedBy SrcObjAbs,T0.Memo, T0.Ref1, T2.CardCode , T2.CardName, T0.RefDate ,T0.Ref2, Debit-Credit Amount, T1.BalDueDeb - T1. BalDueCred Balance, T1.BalDueDeb - T1. BalDueCred ReconcileAmount, Case When T1.BalDueDeb > 0 Then 'codDebit' Else 'codCredit' End CreditOrDebitT From OJDT T0 Inner Join JDT1 T1  on T0.TransID = T1.TransId  Inner Join OCRD T2 on T2.CardCode = T1.ShortName Where T1.BalDueCred + T1.BalDueDeb  > 0 And CardCode = '$cardCode'"
           })}');
-      // log("RecoListApi Res: ${json.decode(response.body)}");
+
 //D1999
       print(response.statusCode);
       if (response.statusCode == 200) {
@@ -41,7 +39,7 @@ class RecoListApi {
       }
     } catch (e) {
       log('RecoModel:::$e');
-      //  throw Exception("Exception: $e");
+
       return RecoModel.exception(e.toString(), 500);
     }
   }

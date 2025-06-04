@@ -49,10 +49,8 @@ class Utils {
   static TextStyle txtHeading = const TextStyle(
       fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black);
 
-  static TextStyle txtContent = const TextStyle(
-      fontSize: 15.0,
-      // fontWeight: FontWeight.bold,
-      color: Colors.black);
+  static TextStyle txtContent =
+      const TextStyle(fontSize: 15.0, color: Colors.black);
 
   static TextStyle txtCard = const TextStyle(
       fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black);
@@ -64,8 +62,8 @@ class Utils {
     fontSize: 15.0,
   );
 
-  static TextStyle dashBoardtxtContent =
-      const TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500);
+  static TextStyle dashBoardtxtContent = const TextStyle(
+      fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500);
 
   static Color leadbookTxtFld = Colors.green;
   static Color leadbookChkBox = Colors.green;

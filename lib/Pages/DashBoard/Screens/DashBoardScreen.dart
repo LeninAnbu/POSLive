@@ -25,8 +25,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<DashBoardController>().init(context);
       context.read<DashBoardController>().requestLocationPermission(context);
-
-      // .getLocation(context);
     });
   }
 
@@ -35,11 +33,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     final theme = Theme.of(context);
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
-        // return ChangeNotifierProvider<DashBoardController>(
-        //     create: (context) => DashBoardController(),
-        //     builder: (context, child) {
-        //       return Consumer<DashBoardController>(
-        //           builder: (BuildContext context, prdDBC, Widget? child) {
         return WillPopScope(
           onWillPop: () async =>
               await context.read<DashBoardController>().onWillPop(context),
@@ -64,10 +57,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             ),
           ),
         );
-        //   });
-        // });
       } else if (constraints.maxWidth <= 1300) {
-        //1300
         return WillPopScope(
           onWillPop: () async =>
               await context.read<DashBoardController>().onWillPop(context),
@@ -77,10 +67,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     Get.toNamed(ConstantRoutes.sales);
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => PosMainScreens()));
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -92,8 +78,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
               )),
         );
-
-        //  }});
       } else {
         return Scaffold(
           floatingActionButton: FloatingActionButton(
@@ -107,8 +91,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 alignment: Alignment.center,
                 child: Image.asset('assets/cart.png'),
               )),
-
-          //  Image.asset('assets/cart.png'),
           body: ChangeNotifierProvider<DashBoardController>(
               create: (context) => DashBoardController(),
               builder: (context, child) {

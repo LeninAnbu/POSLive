@@ -38,32 +38,18 @@ class ProductWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                // margin: EdgeInsets.only(top: ProHeight * 0.003),
-                //  alignment: Alignment.center,
-                // height: Screens.bodyheight(context) * 0.0,
                 width: Screens.width(context) * 0.95,
                 decoration: BoxDecoration(
                   border: Border.all(
                       color: const Color.fromARGB(255, 240, 235, 235)),
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  //  boxShadow: [
-                  //   BoxShadow(
-                  //     color: Colors.white.withOpacity(0.3), //color of shadow
-                  //     spreadRadius: 3, //spread radius
-                  //     blurRadius: 2, // blur radius
-                  //     offset: Offset(0, 2), // changes position of shadow
-                  //   ),
-                  // ],
                 ),
                 child: TextField(
-                  // autofocus: false,
-                  // readOnly: visibleField ? true : false,
                   controller: prdsrch.searchcon,
                   style:
                       theme.textTheme.bodyLarge!.copyWith(color: Colors.black),
                   keyboardType: TextInputType.text,
                   onEditingComplete: () {
-                    //  prdsrch.scannBAtch(context, theme);
                     prdsrch.getAllList(prdsrch.searchcon.text).then((value) {
                       showDialog<dynamic>(
                           context: context,
@@ -72,9 +58,7 @@ class ProductWidget extends StatelessWidget {
                           });
                     });
                   },
-
                   onChanged: (val) {},
-                  // Only numbers can be eentered
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.all(8),
@@ -91,12 +75,9 @@ class ProductWidget extends StatelessWidget {
                                 return const SearchItems();
                               });
                         });
-
-                        //   prdsrch.scannBAtch(context, theme);
                       },
                       icon: const Icon(
                         Icons.search,
-                        // size: 20,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
@@ -128,7 +109,6 @@ class ProductWidget extends StatelessWidget {
                         return Card(
                           child: Container(
                               width: Screens.bodyheight(context) * 0.8,
-                              // height: ProHeight * 0.3,
                               padding: EdgeInsets.only(
                                 top: Screens.bodyheight(context) * 0.01,
                                 left: Screens.width(context) * 0.01,
@@ -137,15 +117,6 @@ class ProductWidget extends StatelessWidget {
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.grey[200],
-                                // boxShadow: [
-                                //   BoxShadow(
-                                //     color: Colors.grey.withOpacity(0.5),
-                                //     spreadRadius: 3,
-                                //     blurRadius: 7,
-                                //     offset: Offset(
-                                //         0, 3), // changes position of shadow
-                                //   ),
-                                // ],
                               ),
                               child: IntrinsicHeight(
                                 child: Column(
@@ -168,17 +139,15 @@ class ProductWidget extends StatelessWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
                                               child: Text(
-                                                // "4N8M14CT100031/4N8M14CT100031/4N8M14CT100031",
                                                 "${prdsrch.getScanneditemData[index].itemName}",
                                                 style: theme
                                                     .textTheme.bodySmall!
                                                     .copyWith(
-                                                  // fontSize: 12,
                                                   color: Colors.grey,
                                                 ),
                                               ),
                                             ),
-                                            //
+
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
@@ -214,13 +183,10 @@ class ProductWidget extends StatelessWidget {
                                                 ),
                                                 Container(
                                                   alignment: Alignment.center,
-                                                  // width: Screens.width(context) * 0.015,
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: Screens.width(
                                                               context) *
                                                           0.005),
-                                                  // height: searchHeight *
-                                                  //     0.025,
                                                   child: Text(
                                                       "${prdsrch.getScanneditemData[index].qty}",
                                                       style: theme
@@ -260,8 +226,6 @@ class ProductWidget extends StatelessWidget {
                                                 ),
                                               ],
                                             ), //
-
-                                            //
                                           ],
                                         ),
                                       ),
@@ -283,16 +247,11 @@ class ProductWidget extends StatelessWidget {
                                                     Screens.bodyheight(
                                                             context) *
                                                         0.005),
-
-                                                // width: ProWidth * 0.44,
                                                 decoration: BoxDecoration(
-                                                    // color: Colors.grey[600],
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4)),
-                                                // color: Colors.blue,
                                                 child: Text(
-                                                  // "4N8M14CT1000312CKD3",
                                                   "${prdsrch.getScanneditemData[index].serialBatch}",
                                                   style: theme
                                                       .textTheme.bodyMedium!
@@ -302,23 +261,18 @@ class ProductWidget extends StatelessWidget {
                                               Container(
                                                 width: Screens.width(context) *
                                                     0.35,
-                                                // width: ProWidth * 0.44,
                                                 decoration:
                                                     const BoxDecoration(),
                                                 child: Text(
-                                                  // "4N8M14CT100031",
                                                   "  |  ${prdsrch.getScanneditemData[index].itemCode}",
                                                   style: theme
                                                       .textTheme.bodyMedium!
-                                                      .copyWith(
-                                                          // color: Colors.blueGrey,
-                                                          ),
+                                                      .copyWith(),
                                                 ),
                                               ),
                                               Container(
                                                 width: Screens.width(context) *
                                                     0.23,
-                                                // color: Colors.blue,
                                                 alignment:
                                                     Alignment.centerRight,
                                                 child: Text(

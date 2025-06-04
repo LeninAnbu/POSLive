@@ -9,11 +9,9 @@ import '../../Models/Service Model/CustomerModel/AddressPachModel.dart';
 import 'CreatecustPostApi copy.dart';
 
 class PostAddressCreateAPi {
-  // static List<NewCutomeAdrsModel>? newCutomerModel;
   static NewAddressModel? newCutomerAddModel;
   static Future<CreatePatchModel> getGlobalData(String? cardCode) async {
     try {
-      //http://102.69.167.106:50001/b1s/v1 URL.sapUrl +
       log("${URL.sapUrl}/BusinessPartners('$cardCode')");
       final response = await http.patch(
           Uri.parse("${URL.sapUrl}/BusinessPartners('$cardCode')"),
@@ -41,14 +39,12 @@ class PostAddressCreateAPi {
         log("Success");
         return CreatePatchModel.fromJson(response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return CreatePatchModel.fromJson2(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("Exception22::$e");
 
-      //  throw Exception("Exception: $e");
       return CreatePatchModel.issue(e.toString(), 500);
     }
   }

@@ -53,14 +53,12 @@ class _SalesInvoiceTabScreenState extends State<SalesInvoiceTabScreen> {
                             ),
                             PaymentDetails(
                               theme: widget.theme,
-                              // prdPmt: prdSCD,
                               paymentWidth: Screens.width(context) * 0.55,
                               paymentHeight: Screens.bodyheight(context) * 0.25,
                             )
                           ])),
                   SizedBox(
                       width: Screens.width(context) * 0.43,
-                      // color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,20 +87,8 @@ class _SalesInvoiceTabScreenState extends State<SalesInvoiceTabScreen> {
                                           .watch<PosController>()
                                           .getselectedcust2 !=
                                       null
-                              ? Container(
-                                  // height: 100,
-                                  // width: 300,
-                                  // child: Center(
-                                  //   child: Base64Image(
-                                  //       base64String: context
-                                  //           .watch<PosController>()
-                                  //           .getselectedcust2!
-                                  //           .U_QRValue
-                                  //           .toString()),
-                                  // ),
-                                  )
+                              ? Container()
                               : CashWidget(
-                                  // posController: prdSCD,
                                   cashWidth: Screens.width(context) * 0.43,
                                   cashHeight: Screens.bodyheight(context) * 0.2,
                                   theme: widget.theme,
@@ -111,7 +97,6 @@ class _SalesInvoiceTabScreenState extends State<SalesInvoiceTabScreen> {
                             theme: widget.theme,
                             btnheight: Screens.bodyheight(context) * 0.28,
                             btnWidth: Screens.width(context) * 0.43,
-                            // posController: prdSCD,
                           )
                         ],
                       )),

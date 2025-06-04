@@ -16,7 +16,6 @@ class ItemSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Screens.width(context),
-      // height: Screens.padingHeight(context)*0.5,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -41,51 +40,21 @@ class ItemSearchWidget extends StatelessWidget {
               ),
               child: TextFormField(
                 autofocus: true,
-
-                // onTap: () async {
-                //   print("object");
-                //   prdCD.source1 = await prdCD.getPathOFDB();
-                //   prdCD.copyTo = await prdCD.getDirectory();
-
-                //   bool permission = await prdCD.getPermissionStorage();
-                //   if (permission == true) {
-                //     if ((await prdCD.copyTo!.exists())) {
-                //       print("EXISTS");
-                //       prdCD.createDBFile(prdCD.copyTo!.path);
-                //     } else {
-                //       print("Not EXISTS");
-                //       prdCD.createDirectory();
-                //     }
-                //   } else if (permission == false) {
-                //     prdCD.showSnackBars(
-                //         'Please give stoage permission to continue!!..',
-                //         Colors.red);
-                //   }
-                // },
-                // readOnly: true,
                 style: theme.textTheme.bodyMedium,
                 cursorColor: Colors.grey,
                 onChanged: (v) {},
                 controller: prdCD.mycontroller[99],
                 focusNode: prdCD.focusnode[0],
-                onEditingComplete: () {
-                  // prdCD.forItemCodecheck(context, theme);
-
-                  // prdCD.scannBAtch(context, theme);
-                },
+                onEditingComplete: () {},
                 decoration: InputDecoration(
                   filled: false,
                   hintText: 'Inventories',
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                      //  color: Colors.grey
-                      //   fontWeight: FontWeight.normal
-                      ),
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   suffixIcon: IconButton(
                     icon: const Icon(
                       Icons.search,
-                      // size: searchHeight * 0.05,
                       color: Colors.grey,
                     ),
                     onPressed: () async {
@@ -113,9 +82,6 @@ class ItemSearchWidget extends StatelessWidget {
                   ),
                 ),
               )),
-
-          //  Expanded(
-          // child:
           ListView.builder(
               itemCount: prdCD.getScanneditemData.length,
               physics: const BouncingScrollPhysics(),
@@ -144,16 +110,13 @@ class ItemSearchWidget extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                      //  color: Colors.red,
                                       width: Screens.width(context) * 0.4,
-                                      // height: searchHeight * 0.02,
                                       alignment: Alignment.centerLeft,
                                       child: TextButton(
                                           onPressed: () {},
                                           child: Text(
                                             "${prdCD.getScanneditemData[index].itemName}",
                                             maxLines: 2,
-                                            // "${prdsrch.getScanneditemData[index].ItemName}",
                                             style: theme.textTheme.bodyMedium
                                                 ?.copyWith(color: Colors.black),
                                           ))),
@@ -162,7 +125,6 @@ class ItemSearchWidget extends StatelessWidget {
                               Container(
                                   width: Screens.width(context) * 0.11,
                                   height: Screens.padingHeight(context) * 0.05,
-                                  // color: Colors.blue,
                                   alignment: Alignment.center,
                                   child: TextFormField(
                                     autofocus: true,
@@ -194,77 +156,9 @@ class ItemSearchWidget extends StatelessWidget {
                                       ),
                                     ),
                                   )),
-                              // Container(
-                              //   // color: Colors.amber,
-                              //   // width: Screens.width(context) * 0.23,
-                              //   child: Row(
-                              //     mainAxisAlignment:
-                              //         MainAxisAlignment.spaceEvenly,
-                              //     children: [
-                              //       InkWell(
-                              //         onTap: () {
-                              //           prdCD.itemdecrement(
-                              //               context, theme, index);
-                              //         },
-                              //         child: Container(
-                              //           alignment: Alignment.center,
-                              //           width: Screens.width(context) * 0.08,
-                              //           height: Screens.padingHeight(context) *
-                              //               0.05,
-                              //           decoration: BoxDecoration(
-                              //             shape: BoxShape.circle,
-                              //             color: Colors.blue,
-                              //           ),
-                              //           child: Icon(
-                              //             Icons.remove,
-                              //             color: Colors.white,
-                              //             size: Screens.padingHeight(context) *
-                              //                 0.03,
-                              //           ),
-                              //         ),
-                              //       ),
-                              //       Container(
-                              //         alignment: Alignment.center,
-                              //         // width: Screens.width(context) * 0.015,
-                              //         padding: EdgeInsets.symmetric(
-                              //             horizontal:
-                              //                 Screens.width(context) * 0.005),
-                              //         // height: searchHeight *
-                              //         //     0.025,
-                              //         child: Text(
-                              //             "${prdCD.getScanneditemData[index].Qty}",
-                              //             style: theme.textTheme.bodyText2
-                              //                 ?.copyWith(color: Colors.black)),
-                              //       ),
-                              //       InkWell(
-                              //         onTap: () {
-                              //           prdCD.itemIncrement(
-                              //               index, context, theme);
-                              //         },
-                              //         child: Container(
-                              //           alignment: Alignment.center,
-                              //           width: Screens.width(context) * 0.08,
-                              //           height: Screens.padingHeight(context) *
-                              //               0.05,
-                              //           decoration: BoxDecoration(
-                              //             shape: BoxShape.circle,
-                              //             color: Colors.blue,
-                              //           ),
-                              //           child: Icon(
-                              //             Icons.add,
-                              //             color: Colors.white,
-                              //             size: Screens.padingHeight(context) *
-                              //                 0.03,
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
                               Container(
                                   width: Screens.width(context) * 0.11,
                                   height: Screens.padingHeight(context) * 0.05,
-                                  // color: Colors.blue,
                                   alignment: Alignment.center,
                                   child: TextFormField(
                                     autofocus: true,
@@ -297,11 +191,8 @@ class ItemSearchWidget extends StatelessWidget {
                                   )),
                               Container(
                                 alignment: Alignment.center,
-                                // width: Screens.width(context) * 0.015,
                                 padding: EdgeInsets.symmetric(
                                     horizontal: Screens.width(context) * 0.005),
-                                // height: searchHeight *
-                                //     0.025,
                                 child: Text(
                                     prdCD.config.slpitCurrency2(
                                         ' ${prdCD.getScanneditemData[index].taxvalue!.toStringAsFixed(2)}'),
@@ -320,8 +211,6 @@ class ItemSearchWidget extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Container(
-                                        // color: Colors.green,
-                                        // width: Screens.width(context) * 0.3,
                                         alignment: Alignment.topLeft,
                                         child: Text(
                                           "${prdCD.getScanneditemData[index].serialBatch}",
@@ -330,22 +219,16 @@ class ItemSearchWidget extends StatelessWidget {
                                               ?.copyWith(),
                                         )),
                                     Container(
-                                      //  color: Colors.blue,
                                       alignment: Alignment.topLeft,
-                                      // width: Screens.width(context) * 0.02,
                                       child: Text(
-                                        // "  |  DC-ABV12K-1YR",
                                         "  |  ",
                                         style: theme.textTheme.bodyMedium
                                             ?.copyWith(),
                                       ),
                                     ),
                                     Container(
-                                      //  color: Colors.red,
                                       alignment: Alignment.topLeft,
-                                      // width: Screens.width(context) * 0.3,
                                       child: Text(
-                                        // "  |  DC-ABV12K-1YR",
                                         "${prdCD.getScanneditemData[index].itemCode}",
                                         style: theme.textTheme.bodyMedium
                                             ?.copyWith(),
@@ -356,7 +239,6 @@ class ItemSearchWidget extends StatelessWidget {
                               ),
                               Container(
                                 width: Screens.width(context) * 0.28,
-                                // color: Colors.blue,
                                 alignment: Alignment.centerRight,
                                 child: Text(
                                   prdCD.config.slpitCurrency2(
@@ -371,7 +253,6 @@ class ItemSearchWidget extends StatelessWidget {
                   ),
                 );
               })
-          //),
         ],
       ),
     );

@@ -17,9 +17,7 @@ class CardCodeApi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_CardCodeApi"
-                    // "Select CardCode, CardName From OCRD Where CardType = 'C'"
+                "query": "EXEC BZ_POS_CardCodeApi"
               }));
       log('CreateCust sts::${response.statusCode}');
       if (response.statusCode == 200) {

@@ -13,7 +13,6 @@ class FooterContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      //  color: Colors.deepOrange,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -30,26 +29,16 @@ class FooterContainer extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4))),
                         contentPadding: const EdgeInsets.all(0),
-                        // backgroundColor: Colors.transparent,
                         insetPadding:
                             EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                         content: settings(
                           context,
                         ),
-                        //  AlertBox(
-                        //   payMent: 'Settings',
-                        //   widget: s
-                        //   buttonName: "Save",
-                        //   callback: () {
-                        //     logCon.settingvalidate(context);
-                        //   },
-                        // )
                       );
                     });
               },
               child: SizedBox(
                   width: Screens.width(context) * 0.05,
-                  // color: Colors.red,
                   child: const Icon(
                     Icons.settings,
                     size: 27,
@@ -75,14 +64,12 @@ class FooterContainer extends StatelessWidget {
             right: Screens.width(context) * 0.03,
             bottom: Screens.padingHeight(context) * 0.01),
         width: Screens.width(context) * 0.6,
-        // color: Colors.red,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // width: Screens.width(context)*0.55,
                 height: Screens.padingHeight(context) * 0.05,
                 color: theme.primaryColor,
                 child: Row(
@@ -92,8 +79,6 @@ class FooterContainer extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
-                      //  width: Screens.width(context) * 0.4,
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Alert",
@@ -126,18 +111,6 @@ class FooterContainer extends StatelessWidget {
                 key: context.read<LoginController>().formkey[1],
                 child: Column(
                   children: [
-                    // TextFormField(
-                    //   controller: logCon.mycontroller[2],
-                    //   decoration: InputDecoration(
-                    //     hintText: 'Host',
-                    //   ),
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'Values Required';
-                    //     }
-                    //   },
-                    // ),
-
                     Container(
                       alignment: Alignment.centerRight,
                       decoration: BoxDecoration(
@@ -149,7 +122,6 @@ class FooterContainer extends StatelessWidget {
                         controller:
                             context.read<LoginController>().mycontroller[2],
                         cursorColor: Colors.grey,
-                        // readOnly: context.read<LoginController>().isalreadyset,
                         keyboardType: TextInputType.number,
                         onChanged: (v) {},
                         validator: (value) {
@@ -248,12 +220,9 @@ class FooterContainer extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.001),
                       ),
                       child: TextFormField(
-                        // autofocus: true,
                         controller:
                             context.read<LoginController>().mycontroller[4],
                         cursorColor: Colors.grey,
-                        // readOnly: context.read<LoginController>().isalreadyset,
-                        //keyboardType: TextInputType.number,
                         onChanged: (v) {},
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -298,12 +267,9 @@ class FooterContainer extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.001),
                       ),
                       child: TextFormField(
-                        // autofocus: true,
                         controller:
                             context.read<LoginController>().mycontroller[5],
                         cursorColor: Colors.grey,
-                        // readOnly: context.read<LoginController>().isalreadyset,
-                        //keyboardType: TextInputType.number,
                         onChanged: (v) {},
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -348,7 +314,6 @@ class FooterContainer extends StatelessWidget {
                 onTap: () {
                   st(() {
                     context.read<LoginController>().settingvalidate(context);
-                    //logCon.ClearSp();
                   });
                 },
                 child: Container(

@@ -15,7 +15,7 @@ class _ReconciliationScreensState extends State<ReconciliationScreens> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // Size size = MediaQuery.of(context).size;
+
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
         return ChangeNotifierProvider<ReconciliationCtrl>(
@@ -23,11 +23,7 @@ class _ReconciliationScreensState extends State<ReconciliationScreens> {
             builder: (context, child) {
               return Consumer<ReconciliationCtrl>(
                   builder: (BuildContext context, penOrdCon, Widget? child) {
-                return
-                    // WillPopScope(
-                    //   onWillPop: () async => await logCon.onWillPop(context),
-                    //   child:
-                    Scaffold(
+                return Scaffold(
                   resizeToAvoidBottomInset: false,
                   body: SafeArea(child: Container()),
                 );
@@ -44,34 +40,9 @@ class _ReconciliationScreensState extends State<ReconciliationScreens> {
             resizeToAvoidBottomInset: true,
             drawer: naviDrawer(),
             body: SafeArea(
-                // child:
-                // SingleChildScrollView(
-                // scrollDirection: Axis.vertical,
                 child: SingleChildScrollView(
-              child:
-                  //  Stack(
-                  //   children: [
-                  RecoTabScreens(),
-              // Visibility(
-              //   visible:
-              //       context.watch<ReconciliationCtrl>().onDisablebutton,
-              //   child: Container(
-              //     width: Screens.width(context),
-              //     height: Screens.bodyheight(context),
-              //     color: Colors.white60,
-              //     child: Center(
-              //       child: SpinKitFadingCircle(
-              //         size: Screens.bodyheight(context) * 0.08,
-              //         color: theme.primaryColor,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              //   ],
-              // ),
+              child: RecoTabScreens(),
             )));
-
-        // );
       } else {
         return ChangeNotifierProvider<ReconciliationCtrl>(
             create: (context) => ReconciliationCtrl(),
@@ -79,11 +50,9 @@ class _ReconciliationScreensState extends State<ReconciliationScreens> {
               return Consumer<ReconciliationCtrl>(
                   builder: (BuildContext context, penOrdCon, Widget? child) {
                 return Scaffold(body: SafeArea(child: Container()));
-                // );
               });
             });
       }
     });
-    // );
   }
 }

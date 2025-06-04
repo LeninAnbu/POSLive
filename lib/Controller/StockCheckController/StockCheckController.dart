@@ -9,12 +9,7 @@ import '../../Models/ReportsModel/StockCheckMdl.dart';
 import '../../Service/ReportsApi/StockCheckApi.dart';
 
 class StockCheckController extends ChangeNotifier {
-  // StockCheckController() {
-  //   getStockSnap();
-  // }
-
   void init() {
-    // getStockSnap();
     callStockCheckApi();
   }
 
@@ -37,7 +32,6 @@ class StockCheckController extends ChangeNotifier {
     List<Map<String, Object?>> getStocksnapData =
         await DBOperation.getStockSnapFullData(db);
     if (getStocksnapData.isNotEmpty) {
-      //log(  "branch::"+ getStocksnapData[0]["branch"].toString());
       for (int i = 0; i < getStocksnapData.length; i++) {
         stockSnapList.add(StockCheckList(
             branch: getStocksnapData[i]["branch"].toString(),
@@ -92,7 +86,6 @@ class StockCheckController extends ChangeNotifier {
   }
 
   filterListSearched(String v) {
-    //y
     listbool = false;
     if (v.isNotEmpty) {
       filterStockSnapList = stockSnapList

@@ -28,32 +28,7 @@ class OrderPostAPi2 {
   static String? slpCode;
 
   static void method(String latitude, String longitude) {
-    // final dat  =  CreateOrderDetailsState.isCameFromqutation == true?
-    //         json.encode ({
-    //         "AppVersion":AppVersion.version,
-    //          "CardCode": "$cardCodePost",
-    //         "CardName":"$cardNamePost",
-    //         "DocumentStatus":"bost_Open",
-    //         "DocDate":"$docDate",
-    //         "DocDueDate":"$dueDate",
-    //         "Comments":"$remarks",
-    //         "U_OrderDate":"$orderDate",
-    //         "U_Order_Type":"$orderType",
-    //         "U_GP_Approval":"$gpApproval",
-    //         "U_Received_Time":"$orderTime",
-    //         "NumAtCard":"$custREfNo",
-    //         'U_DeviceCode':deviceCode,
-    //         'U_DeviceTransID':deviceTransID,
-    //         'SalesPersonCode':'$slpCode',
-    //         'Series':'${GetValues.seriresOrder}',
-    //         "U_latitude ":latitude,
-    //         "U_longitude":longitude,
-
-    //         "DocumentLines": docLineQout!.map((e) => e.tojson()).toList(),
-    //         })
-    //       :
     final datx = json.encode({
-      // "AppVersion":AppVersion.version,
       "CardCode": "$cardCodePost",
       "CardName": "$cardNamePost",
       "DocumentStatus": "bost_Open",
@@ -64,14 +39,12 @@ class OrderPostAPi2 {
       "NumAtCard": "$custREfNo",
       'U_TinNO': '$tinNo',
       "U_VAT_NUMBER": "$vatNo",
-
       "U_OrderDate": "$orderDate",
       "U_Order_Type": "$orderType",
       "U_GP_Approval": "$gpApproval",
       "U_Received_Time": "$orderTime",
       'U_DeviceCode': deviceCode,
       'U_DeviceTransID': deviceTransID,
-      // 'SalesPersonCode': '$slpCode',
       "U_latitude ": latitude,
       "U_longitude": longitude,
       "DocumentLines": copyfromsq == true
@@ -102,7 +75,6 @@ class OrderPostAPi2 {
         'U_DeviceTransID': deviceTransID,
         'U_TinNO': '$tinNo',
         "U_VAT_NUMBER": "$vatNo",
-        // 'SalesPersonCode': '$slpCode',
         "U_latitude ": latitude,
         "U_longitude": longitude,
         "DocumentLines": copyfromsq == true
@@ -135,7 +107,6 @@ class OrderPostAPi2 {
           "NumAtCard": "$custREfNo",
           'U_DeviceCode': deviceCode,
           'U_DeviceTransID': deviceTransID,
-          // 'SalesPersonCode': '$slpCode',
           "U_latitude ": latitude,
           "U_longitude": longitude,
           "U_PosUserCode": UserValues.userCode,
@@ -162,7 +133,6 @@ class OrderPostAPi2 {
         'U_DeviceTransID': deviceTransID,
         'SalesPersonCode': '$slpCode',
         "U_VAT_NUMBER": "$vatNo",
-        // 'Series':'${GetValues.seriresOrder}',
         "U_latitude ": latitude,
         "U_longitude": longitude,
         "U_PosUserCode": UserValues.userCode,
@@ -172,64 +142,18 @@ class OrderPostAPi2 {
             ? docLineQout!.map((e) => e.tojson()).toList()
             : docLineQout!.map((e) => e.tojson2()).toList(),
       }));
-      //  CreateOrderDetailsState.isCameFromqutation== true?
-      //      log( json.encode ({
-      //        "CardCode": "$cardCodePost",
-      //       "CardName":"$cardNamePost",
-      //       "DocumentStatus":"bost_Open",
-      //       "DocDate":"$docDate",
-      //       "DocDueDate":"$dueDate",
-      //       "Comments":"$remarks",
-      //       "U_OrderDate":"$orderDate",
-      //       "U_Order_Type":"$orderType",
-      //       "U_GP_Approval":"$gpApproval",
-      //       "U_Received_Time":"$orderTime",
-      //       "NumAtCard":"$custREfNo",
-      //       'U_DeviceCode':deviceCode,
-      //       'U_DeviceTransID':deviceTransID,
-      //       'SalesPersonCode':'$slpCode',
-      //       'Series':'${GetValues.seriresOrder}',
-      //       "U_latitude ":latitude,
-      //       "U_longitude":longitude,
-      //        "U_Request":data,
-      //       "DocumentLines": docLineQout!.map((e) => e.tojson2()).toList(),
-      //       }),)
-      //     :
-      // log(
-      //   json.encode({
-      //     "CardCode": "$cardCodePost",
-      //     "CardName": "$cardNamePost",
-      //     "DocumentStatus": "bost_Open",
-      //     "DocDate": "$docDate",
-      //     "DocDueDate": "$dueDate",
-      //     "Comments": "$remarks",
-      //     "U_OrderDate": "$orderDate",
-      //     "U_Order_Type": "$orderType",
-      //     "U_GP_Approval": "$gpApproval",
-      //     "U_Received_Time": "$orderTime",
-      //     "NumAtCard": "$custREfNo",
-      //     'U_DeviceCode': deviceCode,
-      //     'U_DeviceTransID': deviceTransID,
-      //     'SalesPersonCode': '$slpCode',
-      //     // 'Series':'${GetValues.seriresOrder}',
-      //     "U_latitude ": latitude,
-      //     "U_longitude": longitude,
-      //     "U_Request": data,
-      //     "DocumentLines": docLineQout!.map((e) => e.tojson()).toList(),
-      //   }),
-      // );
+
       log("statucCode: ${response.statusCode}");
       log("bodyyy post order222: ${response.body}");
       if (response.statusCode >= 200 && response.statusCode <= 210) {
         return SalesQuotStatus.fromJson(response.statusCode);
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return SalesQuotStatus.errorIN(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      //  throw Exception(e);
+
       return SalesQuotStatus.issue(
           'Restart the app or contact the admin!!..\n', 500); //+e.toString()
     }

@@ -17,20 +17,11 @@ class IncomingPaymentDocNumAPi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_IncomingPaymentDocNumAPi '$docNum'"
-                    // "Select docentry, docnum, docdate, taxdate, cardcode, cardname, doctotal, paidtodate paid, doctotal-paidtodate balance from oinv where canceled ='n' and doctotal-paidtodate > 0 and docnum = '$docNum'"
+                "query": "EXEC BZ_POS_IncomingPaymentDocNumAPi '$docNum'"
               }));
 
-      // log("Quot Header Data ${json.encode({
-      //       "constr":
-      //           "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-      //       "query":
-      //           "Select docentry, docnum, docdate, taxdate, cardcode, cardname, doctotal, paidtodate paid, doctotal-paidtodate balance from oinv where canceled ='n' and doctotal-paidtodate > 0 and docnum = '$docNum'"
-      //     })}");
       log("PayReceipt DocNum sts: ${response.statusCode}");
 
-      // log("PayReceipt DocNum Res: ${json.decode(response.body)}");
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
         return IncomingPayCardCodeModel.fromJson(
@@ -43,7 +34,7 @@ class IncomingPaymentDocNumAPi {
       }
     } catch (e) {
       log('IncomingPayCardCodeModel:::$e');
-      //  throw Exception("Exception: $e");
+
       return IncomingPayCardCodeModel.error(e.toString(), 500);
     }
   }

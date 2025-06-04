@@ -29,7 +29,8 @@ class LocalNotificationService {
           msg ?? 'Testing how are you',
           NotificationDetails(
               android: AndroidNotificationDetails(
-            channel.id, channel.name,
+            channel.id,
+            channel.name,
             importance: Importance.high,
             color: Colors.red,
             playSound: true,
@@ -38,7 +39,6 @@ class LocalNotificationService {
             priority: Priority.high,
             icon: '@mipmap/ic_launcher',
             fullScreenIntent: false,
-            // styleInformation: StyleInformation()
           )));
     }
   }
@@ -80,12 +80,9 @@ class LocalNotificationService {
       icon: '@mipmap/ic_launcher',
       fullScreenIntent: false,
     );
-    //   final IOSNotificationDetails iOSPlatformChannelSpecifics = IOSNotificationDetails(
-    //   attachments: [if (picturePath != null) IOSNotificationAttachment(picturePath)],
-    // );
+
     final details = NotificationDetails(
       android: androidPlatformChannelSpecifics,
-      //iOS: iOSPlatformChannelSpecifics,
     );
     return details;
   }

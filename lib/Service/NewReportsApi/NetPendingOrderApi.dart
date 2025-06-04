@@ -24,7 +24,6 @@ class NetpendingorderApi {
                     "[BZ_POS_NetPendingOrder_R1] '$frmDate' , '$toDate' , '${AppConstant.branch}'"
               }));
 
-      // log("AutoSelect Data Res: ${json.decode(response.body)}");
       print(response.statusCode);
       if (response.statusCode == 200) {
         return NetPendingOrderModel.fromJson(
@@ -37,7 +36,7 @@ class NetpendingorderApi {
       }
     } catch (e) {
       log('NetPendingOrderModel:::$e');
-      //  throw Exception("Exception: $e");
+
       return NetPendingOrderModel.error(e.toString(), 500);
     }
   }

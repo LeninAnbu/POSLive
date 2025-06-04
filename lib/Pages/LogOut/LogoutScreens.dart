@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:posproject/Constant/ConstantRoutes.dart';
 import 'package:posproject/Controller/LogoutController/LogOutControllers.dart';
 
-import 'package:posproject/Pages/LoginScreen/LoginScreen.dart';
 import 'package:provider/provider.dart';
 
 import 'LogoutAlert.dart';
@@ -28,7 +26,6 @@ class _LogoutScreenPageState extends State<LogoutScreenPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // final localizations = Localizations.of(context, AppLocalizations);
   }
 
   @override
@@ -71,9 +68,6 @@ class _LogoutScreenPageState extends State<LogoutScreenPage> {
         now.difference(currentBackPressHome!) > const Duration(seconds: 2)) {
       currentBackPressHome = now;
       Get.offAllNamed<dynamic>(ConstantRoutes.dashboard);
-
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
 
       return Future.value(true);
     }

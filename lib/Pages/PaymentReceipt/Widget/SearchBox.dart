@@ -175,19 +175,6 @@ class _PaymentRecieptSearhBoxState extends State<PaymentRecieptSearhBox> {
                                           context
                                               .read<PayreceiptController>()
                                               .callSearchHeaderApi();
-                                          // context
-                                          //     .read<PayreceiptController>()
-                                          //     .getSalesDataDatewise(
-                                          //         context
-                                          //             .read<PayreceiptController>()
-                                          //             .mycontroller[100]
-                                          //             .text
-                                          //             .toString(),
-                                          //         context
-                                          //             .read<PayreceiptController>()
-                                          //             .mycontroller[101]
-                                          //             .text
-                                          //             .toString());
                                         }
                                       });
                                     },
@@ -287,15 +274,6 @@ class _PaymentRecieptSearhBoxState extends State<PaymentRecieptSearhBox> {
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-                            // Container(
-                            //   alignment: Alignment.center,
-                            //   width: widget.searchWidth * 0.08,
-                            //   child: Text(
-                            //     "SAP DocNo",
-                            //     style: widget.theme.textTheme.bodyMedium!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.1,
@@ -437,20 +415,6 @@ class _PaymentRecieptSearhBoxState extends State<PaymentRecieptSearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-                                          //   width: widget.searchWidth * 0.08,
-                                          //   child: Text(
-                                          //     context
-                                          //         .watch<PayreceiptController>()
-                                          //         .filtersearchData[index]
-                                          //         .docStatus!,
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyLarge!
-                                          //         .copyWith(
-                                          //             color: Colors.black),
-                                          //   ),
-                                          // ),
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.08,

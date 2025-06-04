@@ -68,9 +68,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                         onTap: () {
                           setState(
                             () {
-                              // context
-                              //     .read<PayreceiptController>()
-                              // .clearTextField();
                               context
                                   .read<PayreceiptController>()
                                   .refreshfiltercust();
@@ -80,9 +77,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                               onPressed: () {
-                                // context
-                                //     .read<PayreceiptController>()
-                                // .clearTextField();
                                 context
                                     .read<PayreceiptController>()
                                     .refreshfiltercust();
@@ -409,11 +403,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54),
                                       ),
-                                      // SizedBox(
-                                      //     width: widget.custWidth * 0.04,
-                                      //     child: const Icon(
-                                      //       Icons.arrow_drop_down,
-                                      //     ))
                                     ],
                                   ),
                                 ),
@@ -569,11 +558,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54),
                                       ),
-                                      // SizedBox(
-                                      //     width: widget.custWidth * 0.04,
-                                      //     child: const Icon(
-                                      //       Icons.arrow_drop_down,
-                                      //     ))
                                     ],
                                   ),
                                 ),
@@ -972,19 +956,7 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               InkWell(
-                                onTap: () async {
-                                  // context
-                                  //     .read<PayreceiptController>()
-                                  //     .clearTextField();
-                                  // billAddress(context);
-                                  // await context
-                                  //     .read<PayreceiptController>()
-                                  //     .billaddresslist();
-
-                                  // context
-                                  //     .read<PayreceiptController>()
-                                  //     .disableKeyBoard(context);
-                                },
+                                onTap: () async {},
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
                                   child: Column(
@@ -1005,12 +977,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                                                   ?.copyWith(
                                                       color: Colors.black54),
                                             ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
                                           ],
                                         ),
                                       ),
@@ -1182,23 +1148,7 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {
-                                  // setState(
-                                  //   () {
-                                  //     context
-                                  //         .read<PayreceiptController>()
-                                  //         .clearTextField();
-                                  //     sipaddress(context);
-                                  //     context
-                                  //         .read<PayreceiptController>()
-                                  //         .shippinfaddresslist();
-                                  //   },
-                                  // );
-
-                                  // context
-                                  //     .read<PayreceiptController>()
-                                  //     .disableKeyBoard(context);
-                                },
+                                onTap: () {},
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
                                   child: Column(
@@ -1222,12 +1172,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                                                   ?.copyWith(
                                                       color: Colors.black54),
                                             ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
                                           ],
                                         ),
                                       ),
@@ -1478,11 +1422,6 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                                           .watch<PayreceiptController>()
                                           .getfiltercustList1[index]
                                           .cardCode!),
-                                      // Text(context
-                                      //     .watch<PayreceiptController>()
-                                      //     .getfiltercustList1[index]
-                                      //     .accBalance!
-                                      //     .toString()),
                                     ],
                                   ),
                                   Row(

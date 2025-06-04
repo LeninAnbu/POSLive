@@ -155,17 +155,6 @@ class _saleReturnSearhBoxState extends State<saleReturnSearhBox> {
                                         context
                                             .read<SalesReturnController>()
                                             .callSearchHeaderApi();
-                                        // getSalesDataDatewise(
-                                        //     context
-                                        //         .read<SalesReturnController>()
-                                        //         .mycontroller[100]
-                                        //         .text
-                                        //         .toString(),
-                                        //     context
-                                        //         .read<SalesReturnController>()
-                                        //         .mycontroller[101]
-                                        //         .text
-                                        //         .toString());
                                       }
                                     });
                                   },
@@ -267,15 +256,6 @@ class _saleReturnSearhBoxState extends State<saleReturnSearhBox> {
                                   .copyWith(color: Colors.white),
                             ),
                           ),
-                          // Container(
-                          //   alignment: Alignment.center,
-                          //   width: widget.searchWidth * 0.08,
-                          //   child: Text(
-                          //     "SAP DocNo",
-                          //     style: widget.theme.textTheme.bodyMedium!
-                          //         .copyWith(color: Colors.white),
-                          //   ),
-                          // ),
                           Container(
                             alignment: Alignment.center,
                             width: widget.searchWidth * 0.13,
@@ -355,10 +335,6 @@ class _saleReturnSearhBoxState extends State<saleReturnSearhBox> {
                                                 .filtersearchData[index]
                                                 .docEntry
                                                 .toString());
-                                    // fixDataMethod(context
-                                    //     .read<SalesReturnController>()
-                                    //     .filtersearchData[index]
-                                    //     .docEntry);
                                   },
                                   child: Container(
                                     padding: EdgeInsets.only(
@@ -425,19 +401,6 @@ class _saleReturnSearhBoxState extends State<saleReturnSearhBox> {
                                                 .copyWith(color: Colors.black),
                                           ),
                                         ),
-                                        // Container(
-                                        //   alignment: Alignment.centerRight,
-                                        //   padding: EdgeInsets.only(
-                                        //     right: widget.searchWidth * 0.01,
-                                        //   ),
-                                        //   width: widget.searchWidth * 0.08,
-                                        //   child: Text(
-                                        //     "${context.watch<SalesReturnController>().filtersearchData[index].sapNo}",
-                                        //     style: widget
-                                        //         .theme.textTheme.bodyMedium!
-                                        //         .copyWith(color: Colors.black),
-                                        //   ),
-                                        // ),
                                         Container(
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.15,

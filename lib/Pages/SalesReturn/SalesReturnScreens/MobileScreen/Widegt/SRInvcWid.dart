@@ -15,7 +15,6 @@ class SRInvcCusWid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      //customer
       children: [
         Container(
           decoration: BoxDecoration(
@@ -34,7 +33,6 @@ class SRInvcCusWid extends StatelessWidget {
               vertical: Screens.padingHeight(context) * 0.01),
           child: Column(children: [
             Container(
-              // width: Screens.width(context) * 0.7,
               width: Screens.width(context),
               decoration: BoxDecoration(
                 border:
@@ -53,7 +51,6 @@ class SRInvcCusWid extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: const Icon(
                       Icons.search,
-                      // size: Screens.bodyheight(context) * 0.08,
                       color: Colors.grey,
                     ),
                     onPressed: () {
@@ -62,9 +59,7 @@ class SRInvcCusWid extends StatelessWidget {
                     color: theme.primaryColor,
                   ),
                   hintText: 'Invoice Number',
-                  hintStyle: theme.textTheme.bodyLarge?.copyWith(
-                      // color: Colors.grey
-                      ),
+                  hintStyle: theme.textTheme.bodyLarge?.copyWith(),
                   filled: false,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
@@ -75,8 +70,6 @@ class SRInvcCusWid extends StatelessWidget {
                 ),
               ),
             ),
-
-            //
             SizedBox(
               height: Screens.bodyheight(context) * 0.01,
             ),
@@ -91,20 +84,16 @@ class SRInvcCusWid extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         vertical: Screens.bodyheight(context) * 0.02,
                         horizontal: Screens.width(context) * 0.02),
-                    // height: Screens.bodyheight(context) * 0.75,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                             width: Screens.width(context),
                             alignment: Alignment.centerRight,
-                            // height: Screens.bodyheight(context) * 0.02,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  //  color: Colors.green,
                                   width: Screens.width(context) * 0.75,
                                   child: Text(
                                     salesReturnController.getselectedcust!.name
@@ -120,7 +109,6 @@ class SRInvcCusWid extends StatelessWidget {
                                     child: Container(
                                       width: Screens.width(context) * 0.06,
                                       alignment: Alignment.center,
-                                      // color: Colors.blue,
                                       child: const Icon(Icons.close_sharp),
                                     )),
                               ],
@@ -131,7 +119,6 @@ class SRInvcCusWid extends StatelessWidget {
                         ),
                         SizedBox(
                           width: Screens.width(context),
-                          // color: Colors.green,
                           child: Row(
                             children: [
                               Row(
@@ -168,20 +155,16 @@ class SRInvcCusWid extends StatelessWidget {
                         ),
                         SizedBox(
                           width: Screens.width(context),
-                          // color: Colors.green,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
                                 width: Screens.width(context) * 0.44,
-                                // color: Colors.green,
-                                // height: Screens.bodyheight(context) * 0.02,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text("GST",
-                                        // AppLocalizations.of(context)!.gst,
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                     Container(
@@ -200,8 +183,6 @@ class SRInvcCusWid extends StatelessWidget {
                               Container(
                                 alignment: Alignment.centerRight,
                                 width: Screens.width(context) * 0.44,
-                                //color: Colors.red,
-                                // height: Screens.bodyheight(context) * 0.02,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -226,14 +207,11 @@ class SRInvcCusWid extends StatelessWidget {
                         ),
                         SizedBox(
                           width: Screens.width(context),
-                          // color: Colors.green,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
                                 width: Screens.width(context) * 0.44,
-                                //  color: Colors.green,
-                                // height: Screens.bodyheight(context) * 0.02,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -257,8 +235,6 @@ class SRInvcCusWid extends StatelessWidget {
                               Container(
                                 alignment: Alignment.centerRight,
                                 width: Screens.width(context) * 0.44,
-                                // color: Colors.red,
-                                // height: Screens.bodyheight(context) * 0.02,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -286,7 +262,6 @@ class SRInvcCusWid extends StatelessWidget {
                               onTap: () {},
                               child: SizedBox(
                                 width: Screens.width(context) * 0.44,
-                                // color: Colors.red,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -321,7 +296,6 @@ class SRInvcCusWid extends StatelessWidget {
                               onTap: () {},
                               child: SizedBox(
                                 width: Screens.width(context) * 0.44,
-                                //color: Colors.green,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

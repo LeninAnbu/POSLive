@@ -127,7 +127,7 @@ class ReconciliationCtrl extends ChangeNotifier {
     String modifiedString2 = modifiedString.replaceAll("..", ".");
 
     recoAmtcontroller[i].text = modifiedString2.toString();
-    log(recoAmtcontroller[i].text); // Output: example-text-with-double-dots
+    log(recoAmtcontroller[i].text);
     notifyListeners();
   }
 
@@ -194,14 +194,6 @@ class ReconciliationCtrl extends ChangeNotifier {
         notifyListeners();
       });
     }
-    // }
-    // totalRecoAmt = 0;
-    // for (var ik = 0; ik < recoListItemData.length; ik++) {
-    //   if (recoListItemData[ik].listclr == true) {
-    //     totalRecoAmt =
-    //         totalRecoAmt! + double.parse(recoAmtcontroller[ik].text.toString());
-    //   }
-    // }
   }
 
   Future<SharedPreferences> pref = SharedPreferences.getInstance();
@@ -281,11 +273,7 @@ class ReconciliationCtrl extends ChangeNotifier {
     postRecoList = [];
 
     for (var i = 0; i < recoListItemData.length; i++) {
-      // log('message2');
-
       if (recoListItemData[i].listclr == true) {
-        // log('message3');
-
         postRecoList.add(RecoPostModelData(
             cashDiscount: null,
             selected: 'tYES',
@@ -298,13 +286,11 @@ class ReconciliationCtrl extends ChangeNotifier {
             transRowId: int.parse(recoListItemData[i].transRowId.toString())));
       }
     }
-    // log('message4::${postRecoList.length}');
 
     RecoPostAPi.cardCodePost = cardCode;
     RecoPostAPi.docDate = config.alignDate1(mycontroller[1].text);
 
     RecoPostAPi.docLineQout = postRecoList;
-    // log('message5');
 
     RecoPostAPi.method();
     notifyListeners();
@@ -373,7 +359,6 @@ class ReconciliationCtrl extends ChangeNotifier {
           double.parse(recoAmtcontroller[i].text);
       log('totalRecoAmttotalRecoAmt11::${totalRecoAmt}');
 
-      // totalRecoAmt = double.parse(totalduepayx.toString());
       notifyListeners();
     } else if (recoListItemData[i].listclr == true) {
       recoListItemData[i].listclr = false;

@@ -38,7 +38,7 @@ class FetchBatchPdaApi {
       }
     } catch (e) {
       log('FetchBatchFromPdaModel:::$e');
-      //  throw Exception("Exception: $e");
+
       return FetchBatchFromPdaModel.error(e.toString(), 500);
     }
   }

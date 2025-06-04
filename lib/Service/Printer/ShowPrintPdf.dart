@@ -39,11 +39,7 @@ class ShowPdfs extends State<ShowPdf> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return
-        // MaterialApp(
-        //   debugShowCheckedModeBanner: false,
-        //   home:
-        Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text('PDF Viewer'),
@@ -52,14 +48,12 @@ class ShowPdfs extends State<ShowPdf> {
           children: [
             InkWell(
               onTap: () async {
-                // direc: /data/user/0/com.buson.insigniacrm/cache
                 if (notstream) {
                   DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
 
                   files = [];
                   final tempDir =
                       await Directory('/storage/emulated/0/Download');
-                  // await getTemporaryDirectory();
 
                   files.add(
                       XFile('${tempDir.path}/$title-$docNO.pdf', name: title));
@@ -81,18 +75,11 @@ class ShowPdfs extends State<ShowPdf> {
               },
               child: Icon(
                 Icons.file_upload_outlined,
-                // size: width * 0.1,
               ),
             ),
           ],
         ),
       ),
-      //  (width <= 568)
-      //     ? buildPreferredSizeMobile
-      //     : (width <= 968)
-      //         ? buildPreferredSizeTab
-      //         : buildPreferredSizeWeb,
-      //   drawer: naviDrawer(context,companyID,name,imei.toString()),
       key: _scaffoldKey,
       body: document2 == null
           ? Center(
@@ -105,7 +92,6 @@ class ShowPdfs extends State<ShowPdf> {
                 },
               ),
             ),
-      //  ),
     );
   }
 
@@ -114,22 +100,14 @@ class ShowPdfs extends State<ShowPdf> {
       padding: EdgeInsets.only(top: 40, bottom: 10, left: 40, right: 40),
       child: PDFViewer(
         document: document2!,
-        //zoomSteps: 2,
-        // ),
       ),
     );
   }
 
   Center contentOfmobile(BuildContext context) {
-    //pass one agrument build context
     return Center(
-      // child: SizedBox(
-      //   height: height,
-      //   width: width-50,
       child: PDFViewer(
         document: document2!,
-        //zoomSteps: 2,
-        // ),
       ),
     );
   }
@@ -190,15 +168,10 @@ class ShowPdfs extends State<ShowPdf> {
                   leading: Icon(
                     Icons.print,
                   ),
-                  onTap: () {
-                    //  Navigator.pop(context);
-                  },
+                  onTap: () {},
                   title: Visibility(
-                    // visible: _visible,
                     child: Text('Printer Setting'),
                   ),
-                  //  title: animatewith==300 ? Text(
-                  //      "DashBord",):null
                 ),
                 ListTile(
                   leading: Icon(
@@ -218,7 +191,6 @@ class ShowPdfs extends State<ShowPdf> {
                   ),
                   onTap: () {},
                   title: Visibility(
-                    // visible: _visible,
                     child: Text('SalesPerson Details'),
                   ),
                 ),

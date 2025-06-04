@@ -54,7 +54,6 @@ import '../../Models/DataModel/StockReqModel/warehouseModel.dart';
 import '../../Models/QueryUrlModel/CompanyAddModel.dart';
 import '../../Models/QueryUrlModel/DocSeriesMdl.dart';
 import '../../Models/QueryUrlModel/LeadDateMdl.dart';
-import '../../Models/QueryUrlModel/NewCashAccount.dart';
 import '../../Models/QueryUrlModel/NewSeriesMode.dart';
 import '../../Models/QueryUrlModel/OnhandModel.dart';
 import '../../Models/QueryUrlModel/SOCustoAddressModel.dart';
@@ -72,7 +71,6 @@ import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/
 import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/approvals_order_modal.dart';
 import '../../Models/ServiceLayerModel/SapSalesQuotation/SalesQuotPostModel.dart';
 import '../../Pages/Sales Screen/Screens/MobileScreenSales/WidgetsMob/ContentcontainerMob.dart';
-import '../../Service/NewCashAccountApi.dart';
 import '../../Service/NewCustCodeCreate/NewAddCreatePatchApi.dart';
 import '../../Service/Printer/orderPrint.dart';
 import '../../Service/QueryURL/CompanyAddressApi.dart';
@@ -130,7 +128,7 @@ class SOCon extends ChangeNotifier {
       List.generate(500, (i) => TextEditingController());
   List<TextEditingController> pricemycontroller =
       List.generate(500, (i) => TextEditingController());
-  //
+
   List<TextEditingController> qtymycontroller =
       List.generate(500, (ij) => TextEditingController());
   List<TextEditingController> discountcontroller =
@@ -534,33 +532,6 @@ class SOCon extends ChangeNotifier {
     itemListDateCtrl[i].text = datetype2.toString();
   }
 
-  // leadDatePickefr(
-  //   BuildContext context,
-  //   int i,
-  // ) async {
-  //   DateTime? pickedDate = await showDatePicker(
-  //       context: context,
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime.now(),
-  //       lastDate: DateTime(2100));
-  //   if (pickedDate == null) {
-  //     return;
-  //   }
-  //   // String datetype = DateFormat('yyyy-MM-dd').format(pickedDate);
-
-  //   DateTime date1 = DateTime.parse(pickedDate.toString());
-
-  //   log('leadDataList[0].leadDays::${leadDataList[0].leadDays!.toString()}');
-  //   DateTime futureDate = date1
-  //       .add(Duration(days: int.parse(leadDataList[0].leadDays!.toString())));
-
-  //   log("date1 date: $date1");
-  //   log("Date after 90 days: $futureDate");
-  //   String datetype2 = DateFormat('dd-MM-yyyy').format(futureDate);
-
-  //   itemListDateCtrl[i].text = datetype2.toString();
-  // }
-
   leadDatePicker2(
     BuildContext context,
     int i,
@@ -760,11 +731,13 @@ class SOCon extends ChangeNotifier {
     if (double.parse(qtymycontroller[indx].text.toString()) == removeqty ||
         qtymycontroller[indx].text.isEmpty) {
       discountcontroller.removeAt(indx);
-
       itemListDateCtrl.removeAt(indx);
+
+      pricemycontroller.removeAt(indx);
       qtymycontroller.removeAt(indx);
       scanneditemData.removeAt(indx);
-      calCulateDocVal(context, theme);
+
+      await calCulateDocVal(context, theme);
       notifyListeners();
     } else {
       incrementQty(indx, '0', context, theme);
@@ -804,7 +777,7 @@ class SOCon extends ChangeNotifier {
     log('getfilterSearchedData[ind].uPackSize::${getfilterSearchedData[ind].uPackSize.toString()}');
     scanneditemData.add(StocksnapModelData(
         transID: 0,
-        branch: '', //getfilterSearchedData[ind].,
+        branch: '',
         itemCode: getfilterSearchedData.isNotEmpty
             ? getfilterSearchedData[ind].itemcode
             : getfilterSearchedData[ind].itemnameshort,
@@ -1024,13 +997,11 @@ class SOCon extends ChangeNotifier {
                     : getheaderData[ik]['taxamount']
                         .toString()
                         .replaceAll(',', '')),
-
                 subtotal: double.parse(getheaderData[ik]['docbasic'] == null
                     ? '0'
                     : getheaderData[ik]['docbasic']
                         .toString()
-                        .replaceAll(',', '')), //doctotal
-
+                        .replaceAll(',', '')),
                 total: totalPayment == null
                     ? 0
                     : double.parse(totalPayment!.total!.toString()),
@@ -1974,7 +1945,6 @@ class SOCon extends ChangeNotifier {
     List<Map<String, Object?>> getsoheader = await DBOperation.getSoApprovalsts(
         db, approvalDetailsValuess!.uDevicTransId.toString());
     if (approvalDetailsValuess != null && getsoheader.isNotEmpty) {
-      //
       List<Map<String, Object?>> getsoHeaderData =
           await DBOperation.getDocEntrySalesOrderHeaderDB(
               db, int.parse(getsoheader[0]['docentry'].toString()));
@@ -2011,9 +1981,9 @@ class SOCon extends ChangeNotifier {
                   address2: csadresdataDB[k].address2,
                   address3: csadresdataDB[k].address3,
                   custcode: csadresdataDB[k].custcode,
-                  billCity: csadresdataDB[k].city!, //city
-                  billCountry: csadresdataDB[k].countrycode!, //country
-                  billPincode: csadresdataDB[k].pincode!, //pinno
+                  billCity: csadresdataDB[k].city!,
+                  billCountry: csadresdataDB[k].countrycode!,
+                  billPincode: csadresdataDB[k].pincode!,
                   billstate: csadresdataDB[k].statecode)
             ];
           }
@@ -2027,9 +1997,9 @@ class SOCon extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city!, //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city!,
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -2551,9 +2521,9 @@ class SOCon extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city!, //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city!,
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -2565,9 +2535,9 @@ class SOCon extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city!, //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city!,
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -2588,7 +2558,7 @@ class SOCon extends ChangeNotifier {
             address: address2,
             uReceivedTime: value.uReceivedTime,
             uGPApproval: value.uGpApproval.toString(),
-            uOrderDate: value.uOrderDate == 'null' || value.uOrderDate == null
+            uOrderDate: value.uOrderDate == 'null'
                 ? ''
                 : config.alignDateT(value.uOrderDate),
             uOrderType: value.uOrderType != null || value.uOrderType!.isNotEmpty
@@ -2727,31 +2697,6 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
-  // NewCashAccSelect(value) {
-  //   for (var i = 0; i < newCashAcc.length; i++) {
-  //     if (newCashAcc[i].uAcctName == value) {
-  //       if (newCashAcc[i].uMode == 'CASH') {
-  //         cashAccCode = newCashAcc[i].uAcctCode.toString();
-  //         log('step1::${cashAccCode}');
-  //       } else if (newCashAcc[i].uMode == 'CARD') {
-  //         cardAccCode = newCashAcc[i].uAcctCode.toString();
-  //         log('step12::$cardAccCode');
-  //       } else if (newCashAcc[i].uMode == 'CHEQUE') {
-  //         chequeAccCode = newCashAcc[i].uAcctCode.toString();
-  //         log('step13::$chequeAccCode');
-  //       } else if (newCashAcc[i].uMode == 'WALLET') {
-  //         walletAccCode = newCashAcc[i].uAcctCode.toString();
-  //         log('step14::$walletAccCode');
-  //       } else if (newCashAcc[i].uMode == 'TRANSFER') {
-  //         transAccCode = newCashAcc[i].uAcctCode.toString();
-  //         log('step15::$transAccCode');
-  //       }
-  //     }
-  //     notifyListeners();
-  //   }
-  //   notifyListeners();
-  // }
-
   newUpdateFixDataMethod(BuildContext context, ThemeData theme) async {
     await callGetUserType();
 
@@ -2843,8 +2788,8 @@ class SOCon extends ChangeNotifier {
           cardterminal: getDBSalespay[kk]['cardterminal'].toString(),
           chequedate: getDBSalespay[kk]['chequedate'].toString(),
           chequeno: getDBSalespay[kk]['chequeno'].toString(),
-          couponcode: "", //getDBholdSalespay[kk]['couponcode'].toString(),
-          coupontype: "", //getDBholdSalespay[kk]['coupontype'].toString(),
+          couponcode: "",
+          coupontype: "",
           discountcode: getDBSalespay[kk]['discountcode'].toString(),
           discounttype: getDBSalespay[kk]['discounttype'].toString(),
           recoverydate: getDBSalespay[kk]['recoverydate'].toString(),
@@ -2906,8 +2851,7 @@ class SOCon extends ChangeNotifier {
               : double.parse(getDBSalesLine[ik]['liter'].toString()),
           weight: getDBSalesLine[ik]['weight'] == null
               ? 0.0
-              : double.parse(
-                  getDBSalesLine[ik]['weight'].toString()))); //discperc
+              : double.parse(getDBSalesLine[ik]['weight'].toString())));
       totquantity = getDBSalesLine[ik]['quantity'].toString();
 
       notifyListeners();
@@ -2951,9 +2895,9 @@ class SOCon extends ChangeNotifier {
                 address2: csadresdataDB[k].address2,
                 address3: csadresdataDB[k].address3,
                 custcode: csadresdataDB[k].custcode,
-                billCity: csadresdataDB[k].city!, //city
-                billCountry: csadresdataDB[k].countrycode!, //country
-                billPincode: csadresdataDB[k].pincode!, //pinno
+                billCity: csadresdataDB[k].city!,
+                billCountry: csadresdataDB[k].countrycode!,
+                billPincode: csadresdataDB[k].pincode!,
                 billstate: csadresdataDB[k].statecode)
           ];
         }
@@ -2967,9 +2911,9 @@ class SOCon extends ChangeNotifier {
                   address2: csadresdataDB[k].address2,
                   address3: csadresdataDB[k].address3,
                   custcode: csadresdataDB[k].custcode,
-                  billCity: csadresdataDB[k].city!, //city
-                  billCountry: csadresdataDB[k].countrycode!, //country
-                  billPincode: csadresdataDB[k].pincode!, //pinno
+                  billCity: csadresdataDB[k].city!,
+                  billCountry: csadresdataDB[k].countrycode!,
+                  billPincode: csadresdataDB[k].pincode!,
                   billstate: csadresdataDB[k].statecode)
             ];
           }
@@ -3294,8 +3238,8 @@ class SOCon extends ChangeNotifier {
           cardterminal: paymentWay[ij].cardterminal,
           chequedate: paymentWay[ij].chequedate,
           chequeno: paymentWay[ij].chequeno,
-          couponcode: "", //paymentWay[ij].couponcode,
-          coupontype: "", //paymentWay[ij].coupontype,
+          couponcode: "",
+          coupontype: "",
           discountcode: paymentWay[ij].discountcode,
           discounttype: paymentWay[ij].discounttype,
           recoverydate: paymentWay[ij].recoverydate,
@@ -3922,7 +3866,6 @@ class SOCon extends ChangeNotifier {
         : newseries.isNotEmpty
             ? newseries[0].series.toString()
             : '';
-    // newseries
 
     double getcreditLimit;
 
@@ -4466,7 +4409,6 @@ class SOCon extends ChangeNotifier {
     } else {
       log('vvvvvvvvv');
 
-      // await checkSAPsts(context, theme);
       checkSAPsts22(context, theme);
 
       notifyListeners();
@@ -4494,7 +4436,7 @@ class SOCon extends ChangeNotifier {
     newSeriesName = null;
     newSeriesCode = null;
     warehousectrl = List.generate(200, (i) => TextEditingController());
-    // warehousectrl[0].text = '';
+
     notifyListeners();
   }
 
@@ -6432,7 +6374,6 @@ class SOCon extends ChangeNotifier {
   }
 
   pushRabiMqSO(int? docentry) async {
-    //background service
     final Database db = (await DBHelper.getInstance())!;
     List<Map<String, Object?>> getDBSalespay =
         await DBOperation.getdSalesOrderPayDB(db, docentry!);
@@ -6452,23 +6393,18 @@ class SOCon extends ChangeNotifier {
       "SalesOrderPay": salesPAY,
     });
 //log("payload11 : $ddd");
-    //RabitMQ
 
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
 
     MessageProperties properties = MessageProperties();
 
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -6476,7 +6412,6 @@ class SOCon extends ChangeNotifier {
   }
 
   pushRabiMqSO2(int? docentry) async {
-    //background service
     final Database db = (await DBHelper.getInstance())!;
     List<Map<String, Object?>> getDBSalespay =
         await DBOperation.getdSalesOrderPayDB(db, docentry!);
@@ -6496,12 +6431,9 @@ class SOCon extends ChangeNotifier {
       "SalesOrderPay": salesPAY,
     });
 //log("payload22 : $ddd");
-    //RabitMQ
 
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -6509,12 +6441,10 @@ class SOCon extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     client1.close();
   }
@@ -6539,12 +6469,9 @@ class SOCon extends ChangeNotifier {
       "SalesOrderPay": salesPAY,
     });
 //log("payload : $ddd");
-    //RabitMQ
 
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -6552,12 +6479,10 @@ class SOCon extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -6758,7 +6683,7 @@ class SOCon extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: '', //mycontroller[10].text,
+        country: '',
         state: '',
         street: '',
         zipCode: mycontroller[13].text,
@@ -6769,8 +6694,8 @@ class SOCon extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: '', //mycontroller[20].text,
-        state: '', //mycontroller[19].text,
+        country: '',
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -7573,7 +7498,7 @@ class SOCon extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: "TZ", //mycontroller[20].text,
+        country: "TZ",
         state: '',
         street: '',
         zipCode: mycontroller[18].text,
@@ -7626,8 +7551,8 @@ class SOCon extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: "TZ", //mycontroller[13].text,
-        state: '', //mycontroller[12].text,
+        country: "TZ",
+        state: '',
         street: '',
         zipCode: mycontroller[11].text,
       ),
@@ -7680,8 +7605,8 @@ class SOCon extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: "TZ", //mycontroller[13].text,
-        state: '', //mycontroller[12].text,
+        country: "TZ",
+        state: '',
         street: '',
         zipCode: mycontroller[11].text,
       ),
@@ -7691,7 +7616,7 @@ class SOCon extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: "TZ", //mycontroller[20].text,
+        country: "TZ",
         state: '',
         street: '',
         zipCode: mycontroller[18].text,
@@ -7889,13 +7814,13 @@ class SOCon extends ChangeNotifier {
   billToShip(bool dat) {
     notifyListeners();
     if (checkboxx == true) {
-      mycontroller[14].text = mycontroller[7].text; //bill add1
-      mycontroller[15].text = mycontroller[8].text; //bill add2
-      mycontroller[16].text = mycontroller[9].text; //bill add3
-      mycontroller[17].text = mycontroller[10].text; //city
-      mycontroller[18].text = mycontroller[11].text; //pin
-      mycontroller[19].text = mycontroller[12].text; //state
-      mycontroller[20].text = mycontroller[13].text; //country
+      mycontroller[14].text = mycontroller[7].text;
+      mycontroller[15].text = mycontroller[8].text;
+      mycontroller[16].text = mycontroller[9].text;
+      mycontroller[17].text = mycontroller[10].text;
+      mycontroller[18].text = mycontroller[11].text;
+      mycontroller[19].text = mycontroller[12].text;
+      mycontroller[20].text = mycontroller[13].text;
     } else {
       mycontroller[14].clear();
       mycontroller[15].clear();
@@ -7909,16 +7834,15 @@ class SOCon extends ChangeNotifier {
   }
 
   shipToBill(bool dat) {
-    //checkboxx = dat;
     notifyListeners();
     if (checkboxx == true) {
-      mycontroller[7].text = mycontroller[14].text; //bill add1
-      mycontroller[8].text = mycontroller[15].text; //bill add2
-      mycontroller[9].text = mycontroller[16].text; //bill add3
-      mycontroller[10].text = mycontroller[17].text; //city
-      mycontroller[11].text = mycontroller[18].text; //pin
-      mycontroller[12].text = mycontroller[19].text; //state
-      mycontroller[13].text = mycontroller[20].text; //country
+      mycontroller[7].text = mycontroller[14].text;
+      mycontroller[8].text = mycontroller[15].text;
+      mycontroller[9].text = mycontroller[16].text;
+      mycontroller[10].text = mycontroller[17].text;
+      mycontroller[11].text = mycontroller[18].text;
+      mycontroller[12].text = mycontroller[19].text;
+      mycontroller[13].text = mycontroller[20].text;
     } else {
       mycontroller[7].clear();
       mycontroller[8].clear();
@@ -8191,29 +8115,25 @@ class SOCon extends ChangeNotifier {
     newCustAddData.add({
       'customerCode': mycontroller[3].text.isNotEmpty
           ? mycontroller[3].text.toString()
-          : '', //customerCode
-      'customername': mycontroller[6].text.isNotEmpty
-          ? mycontroller[6].text
-          : '', //customerName
-      'premiumid': '', //premiumid
-      'customertype': '', //CustomerType
-      "taxno": mycontroller[5].text.isNotEmpty
-          ? mycontroller[5].text.toString() //taxno
           : '',
-      'createdbybranch': '', //createdbybranch
-      'balance': '0', //balance
-
-      'points': '0', //points
-      'snapdatetime': config.currentDate(), //snapdatetime
-      "phoneno1":
-          mycontroller[4].text.isNotEmpty ? mycontroller[4].text : '', //ph1
-      'phoneno2': '', //ph2
-      'emalid':
-          mycontroller[21].text.isNotEmpty ? mycontroller[21].text : '', //email
+      'customername':
+          mycontroller[6].text.isNotEmpty ? mycontroller[6].text : '',
+      'premiumid': '',
+      'customertype': '',
+      "taxno": mycontroller[5].text.isNotEmpty
+          ? mycontroller[5].text.toString()
+          : '',
+      'createdbybranch': '',
+      'balance': '0',
+      'points': '0',
+      'snapdatetime': config.currentDate(),
+      "phoneno1": mycontroller[4].text.isNotEmpty ? mycontroller[4].text : '',
+      'phoneno2': '',
+      'emalid': mycontroller[21].text.isNotEmpty ? mycontroller[21].text : '',
       'createdateTime': config.currentDate(),
       'updatedDatetime': config.currentDate(),
-      'createdUserID': UserValues.userID.toString(), //createdUserid
-      'updateduserid': UserValues.userID.toString(), //updateduserid
+      'createdUserID': UserValues.userID.toString(),
+      'updateduserid': UserValues.userID.toString(),
       'lastupdateIp': UserValues.lastUpdateIp.toString(),
       'TaxCode': ''
     });
@@ -8945,7 +8865,7 @@ class SOCon extends ChangeNotifier {
         paymt.transtype = selectedType.toString();
         paymt.reference = mycontroller[30].text;
         paymt.amt = double.parse(mycontroller[31].text.toString().trim());
-        paymt.dateTime = config.currentDate(); //mycontroller[30],
+        paymt.dateTime = config.currentDate();
         paymt.type = type;
         transferType = type;
         transpayment = paymt.amt;
@@ -10116,9 +10036,9 @@ class SOCon extends ChangeNotifier {
             address2: csadresdataDB[k].address2 ?? '',
             address3: csadresdataDB[k].address3 ?? '',
             custcode: csadresdataDB[k].custcode ?? '',
-            billCity: csadresdataDB[k].city ?? '', //city
-            billCountry: csadresdataDB[k].countrycode ?? '', //country
-            billPincode: csadresdataDB[k].pincode ?? '', //pinno
+            billCity: csadresdataDB[k].city ?? '',
+            billCountry: csadresdataDB[k].countrycode ?? '',
+            billPincode: csadresdataDB[k].pincode ?? '',
             billstate: csadresdataDB[k].statecode ?? ''));
       }
       notifyListeners();
@@ -10219,13 +10139,11 @@ class SOCon extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      //Buttons
                       SizedBox(
                         height: Screens.bodyheight(context) * 0.05,
                         width: Screens.width(context) * 0.3,
@@ -10286,7 +10204,6 @@ class SOCon extends ChangeNotifier {
           invNum: selectedcust2!.invoicenum,
           vatNo: '',
           companyName: 'companyName',
-          //
           address: cmpnyDetails![0].companyAdd ?? '',
           area: 'area',
           pincode: 'pincode',
@@ -10296,7 +10213,6 @@ class SOCon extends ChangeNotifier {
           salesOrder: selectedcust2!.invoicenum),
       invoiceMiddle: InvoiceMiddle(
         date: selectedcust2!.invoiceDate.toString(),
-        //
         time: 'time',
         customerName: selectedcust2!.name ?? '',
         paymentTerms: selectedcust2!.paymentGroup ?? '',

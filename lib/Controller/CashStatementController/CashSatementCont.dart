@@ -88,16 +88,11 @@ class CashStateCon extends ChangeNotifier {
       toDate = datetype2;
       searchcontroller[3].text = datetype!;
       log('To datetype::$fromDate');
-
-      //log(datetype);
-    } else {
-      //log("Date is not selected");
-    }
+    } else {}
     notifyListeners();
   }
 
   filterListSearched(String v) {
-    //y
     if (v.isNotEmpty) {
       filtersalesReg = salesReg
           .where((e) =>

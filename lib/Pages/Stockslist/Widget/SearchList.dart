@@ -29,20 +29,17 @@ class SearchStockList extends StatelessWidget {
         ),
         height: stkHeight,
         width: stkWidth,
-        // padding: paddings.padding2(context),
         child: Column(
           children: [
             SizedBox(
               height: stkHeight * 0.02,
             ),
             Container(
-              // height: stkHeight * 0.06,
               width: stkWidth * 0.98,
               decoration: BoxDecoration(
                 color: theme.primaryColor.withOpacity(0.08), //Colors.grey[200],
                 borderRadius: BorderRadius.circular(8),
               ),
-              // child: Text("datadatadatadatadata"),
               child: TextField(
                 autocorrect: false,
                 onChanged: (v) {
@@ -85,51 +82,12 @@ class SearchStockList extends StatelessWidget {
                           .watch<StockController>()
                           .getlistPriceAvail
                           .length,
-                      // context
-                      //     .watch<StockListController>()
-                      //     .getlistPriceAvail
-                      //     .length,
                       itemBuilder: (BuildContext context, int i) {
                         return InkWell(
-                          onTap: () {
-                            // print(context.read<StockListController>().getlistPriceAvail[i].itemCode);
-                            // context
-                            // .read<StockListController>()
-                            // .callItemMasterPriceUpdateNew(
-                            //     context
-                            //         .read<StockListController>()
-                            //         .getlistPriceAvail[i]
-                            //         .itemCode!,
-                            //     context
-                            //         .read<StockListController>()
-                            //         .getlistPriceAvail[i]
-                            //         .IMId!,
-                            //     i);
-                          },
+                          onTap: () {},
                           child: Card(
                             elevation: 5,
-                            child:
-                                // context
-                                //             .watch<StockListController>()
-                                //             .getlistPriceAvail[i]
-                                //             .isselected ==
-                                //         1
-                                //     ?
-                                // Container(
-                                //     width: Screens.width(context),
-                                //     padding: EdgeInsets.symmetric(
-                                //         vertical:
-                                //             Screens.bodyheight(context) * 0.05,
-                                //         horizontal:
-                                //             Screens.width(context) * 0.02),
-                                //     child: Center(
-                                //       child: CircularProgressIndicator(
-                                //         strokeWidth: 2,
-                                //       ),
-                                //     ),
-                                //   )
-                                // :
-                                Container(
+                            child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [
@@ -183,16 +141,12 @@ class SearchStockList extends StatelessWidget {
                                   Column(
                                     children: [
                                       SizedBox(
-                                        //  color: Colors.red,
                                         width: stkWidth,
                                         child: Text(
                                             " ${context.watch<StockController>().getlistPriceAvail[i].itemnameshort}",
                                             style: theme.textTheme.bodyLarge
-                                                ?.copyWith(
-                                                    //color: theme.primaryColor
-                                                    )),
+                                                ?.copyWith()),
                                       ),
-                                      // "900RPM HEAVY DUTY EXHAUST FAN"
                                     ],
                                   ),
                                   SizedBox(
@@ -205,9 +159,7 @@ class SearchStockList extends StatelessWidget {
                                       Container(
                                         alignment: Alignment.centerRight,
                                         child: Text(
-                                          // ConstantValues.sapUser=='Manager'?
                                           "Sellprice: ${context.watch<StockController>().getlistPriceAvail[i].sellprice}",
-                                          // :'',
                                           style: theme.textTheme.bodyLarge
                                               ?.copyWith(
                                                   color: theme.primaryColor),
@@ -229,7 +181,6 @@ class SearchStockList extends StatelessWidget {
                             ),
                           ),
                         );
-                        //)));
                       },
                     ),
             )

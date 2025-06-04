@@ -132,7 +132,6 @@ class StockController extends ChangeNotifier {
 
   validateSearch(BuildContext context) async {
     if (formkey[1].currentState!.validate()) {
-      //  log(mycontroller[0].text);
       disableKeyBoard(context);
       mycontroller[0].clear();
       Navigator.pop(context);
@@ -141,15 +140,11 @@ class StockController extends ChangeNotifier {
       await DBOperation.getSearchData(mycontroller[0].text, db).then((resul) {
         listPriceAvail = resul;
         listshow = true;
-        // Get.toNamed(ConstantRoutes.listStockAvailability);
+
         notifyListeners();
       });
     }
   }
-
-  // String subtractDateTime(String datetime) {
-  //   return Jiffy("$datetime", "yyyy-MM-dd hh:mm:ss").fromNow();
-  // }
 
   getrange(RangeValues val) {
     rageValue = val;
@@ -169,8 +164,6 @@ class StockController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // DBHelper dbHelper = DBHelper();
-
   bool searchlist = false;
   showSearchDialogBox(BuildContext context) {
     showDialog<dynamic>(
@@ -181,8 +174,6 @@ class StockController extends ChangeNotifier {
             final theme = Theme.of(context);
             return AlertDialog(
               content: SizedBox(
-                //  color: Colors.black12,
-                // height: Screens.heigth(context) * 0.4,
                 width: Screens.width(context) * 0.3,
                 child: Form(
                   key: formkey[1],
@@ -230,8 +221,6 @@ class StockController extends ChangeNotifier {
     notifyListeners();
   }
 
-  //selection
-
   isselectedBrand(int i) {
     if (brandList[i].isselected == 0) {
       brandList[i].isselected = 1;
@@ -240,7 +229,6 @@ class StockController extends ChangeNotifier {
       brandList[i].isselected = 0;
       removeBrand(brandList[i].brand!);
     }
-    // notifyListeners();
   }
 
   addBrand(String brand) {
@@ -261,7 +249,6 @@ class StockController extends ChangeNotifier {
       productList[i].isselected = 0;
       removeProduct(productList[i].itemcode!);
     }
-    //notifyListeners();
   }
 
   addProduct(String brand) {
@@ -282,7 +269,6 @@ class StockController extends ChangeNotifier {
       segmentList[i].isselected = 0;
       removeSegment(segmentList[i].itemnameshort!);
     }
-    // notifyListeners();
   }
 
   addSegment(String brand) {
@@ -303,24 +289,16 @@ class StockController extends ChangeNotifier {
     viewAllBrandSelected = true;
     viewAllProductSelected = false;
     viewAllSegementSelected = false;
-    // isselectedViewAllString.clear();
+
     viewAll.clear();
     isselectedViewAllString.clear();
     if (isBPSSelected == false) {
       viewAll = await DBOperation.getViewAllData("brand", db);
-      // Get.toNamed(ConstantRoutes.stockListOfDetails)!.then(
-      //   (value) {
-      //     notifyListeners();
-      //   },
-      // );
+
       notifyListeners();
     } else if (isBPSSelected == true) {
       viewAll = brandList;
-      // Get.toNamed(ConstantRoutes.stockListOfDetails)!.then(
-      //   (value) {
-      //     notifyListeners();
-      //   },
-      // );
+
       notifyListeners();
     }
     notifyListeners();
@@ -346,8 +324,6 @@ class StockController extends ChangeNotifier {
     notifyListeners();
   }
 
-  //product viw all
-
   isselectedProductViewAllPage() async {
     final Database db = (await DBHelper.getInstance())!;
 
@@ -356,23 +332,11 @@ class StockController extends ChangeNotifier {
     viewAllSegementSelected = false;
     viewAll.clear();
     isselectedViewAllString.clear();
-    // log(viewAll.length.toString());
 
     if (isBPSSelected == false) {
       viewAll = await DBOperation.getViewAllData("Itemcode", db);
-      // Get.toNamed(ConstantRoutes.stockListOfDetails)!.then(
-      //   (value) {
-      //     notifyListeners();
-      //   },
-      // );
     } else if (isBPSSelected == true) {
       viewAll = productList;
-      // log(viewAll.length.toString());
-      // Get.toNamed(ConstantRoutes.stockListOfDetails)!.then(
-      //   (value) {
-      //     notifyListeners();
-      //   },
-      // );
     }
     notifyListeners();
   }
@@ -409,18 +373,8 @@ class StockController extends ChangeNotifier {
     isselectedViewAllString.clear();
     if (isBPSSelected == false) {
       viewAll = await DBOperation.getViewAllData("itemname_short", db);
-      // Get.toNamed(ConstantRoutes.stockListOfDetails)!.then(
-      //   (value) {
-      //     notifyListeners();
-      //   },
-      // );
     } else if (isBPSSelected == true) {
       viewAll = segmentList;
-      // Get.toNamed(ConstantRoutes.stockListOfDetails)!.then(
-      //   (value) {
-      //     notifyListeners();
-      //   },
-      // );
     }
     notifyListeners();
   }
@@ -443,8 +397,6 @@ class StockController extends ChangeNotifier {
   removeSegmentViewAll(String category) {
     isselectedViewAllString.remove("'$category'");
   }
-
-  ///clear alll
 
   clearAllData() {
     listshow = false;
@@ -478,22 +430,16 @@ class StockController extends ChangeNotifier {
     viewAllProductSelected = false;
     viewAllSegementSelected = false;
 
-    // Get.back();
-    // isselectedViewAllString.clear();
     onSelectedFilter();
-    //notifyListeners();
   }
 
   Future<List<ItemMasterModelDB>> brandViewAllData() async {
     List<ItemMasterModelDB> newBrandList = [];
     if (isselectedViewAllString.isNotEmpty) {
-      // brandList.clear();
-      // isselectedBrandString.clear();
       for (int i = 0; i < viewAll.length; i++) {
         if (viewAll[i].isselected == 1) {
           isBPSSelected = true;
-          //log("selected: ${viewAll[i].brand!}");
-          // log("selected isselected: " + viewAll[i].isselected.toString());
+
           newBrandList.add(ItemMasterModelDB(
               isselected: viewAll[i].isselected,
               autoId: viewAll[i].autoId,
@@ -504,6 +450,7 @@ class StockController extends ChangeNotifier {
               displayQty: viewAll[i].displayQty,
               searchString: viewAll[i].searchString,
               brand: viewAll[i].brand,
+              managedBy: viewAll[i].managedBy,
               category: "null",
               createdUserID: viewAll[i].createdUserID,
               createdateTime: viewAll[i].createdateTime,
@@ -543,8 +490,6 @@ class StockController extends ChangeNotifier {
     List<ItemMasterModelDB> newProductList = [];
 
     if (isselectedViewAllString.isNotEmpty) {
-      // productList.clear();
-      // isselectedProductString.clear();
       for (int i = 0; i < viewAll.length; i++) {
         if (viewAll[i].isselected == 1) {
           isBPSSelected = true;
@@ -553,6 +498,7 @@ class StockController extends ChangeNotifier {
               autoId: viewAll[i].autoId,
               maximumQty: viewAll[i].maximumQty,
               minimumQty: viewAll[i].minimumQty,
+              managedBy: viewAll[i].managedBy,
               weight: viewAll[i].weight,
               liter: viewAll[i].liter,
               displayQty: viewAll[i].displayQty,
@@ -596,12 +542,11 @@ class StockController extends ChangeNotifier {
   Future<List<ItemMasterModelDB>> segmentViewAllData() {
     List<ItemMasterModelDB> newSegmentList = [];
     if (isselectedViewAllString.isNotEmpty) {
-      // segmentList.clear();
-      // isselectedSegmentString.clear();
       for (int i = 0; i < viewAll.length; i++) {
         if (viewAll[i].isselected == 1) {
           isBPSSelected = true;
           newSegmentList.add(ItemMasterModelDB(
+              managedBy: viewAll[i].managedBy,
               uPackSizeuom: viewAll[i].uPackSizeuom,
               uPackSize: viewAll[i].uPackSize,
               uTINSPERBOX: viewAll[i].uTINSPERBOX,
@@ -717,7 +662,7 @@ class StockController extends ChangeNotifier {
       brandList.clear();
       productList.clear();
       segmentList.clear();
-      //  log("dataprice: : "+value.map((e) => e.price.toString()).toList().toString());
+
       listPriceAvail = value;
       filterdataprice = listPriceAvail;
       brandList = await distinctBrand(value);
@@ -749,6 +694,7 @@ class StockController extends ChangeNotifier {
             uPackSizeuom: viewAll[i].uPackSizeuom,
             uPackSize: viewAll[i].uPackSize,
             uTINSPERBOX: viewAll[i].uTINSPERBOX,
+            managedBy: viewAll[i].managedBy,
             uSpecificGravity: viewAll[i].uSpecificGravity,
             isselected: isgot == i ? 1 : 0,
             autoId: 0,
@@ -780,20 +726,7 @@ class StockController extends ChangeNotifier {
             subcategory: "",
             taxrate: "",
             updatedDatetime: "",
-            updateduserid: ""
-            // itemCode: null,
-            // brand: "null",
-            // division: "null",
-            // category: "null",
-            // itemName: "null",
-            // segment: segmentdata[i],
-            // isselected: isgot == i ? 1 : 0,
-            // favorite: "null", // viewAll[i].favorite,
-            // mgrPrice: 0.00, //  viewAll[i].mgrPrice,
-            // slpPrice: 0.00, // viewAll[i].slpPrice,
-            // storeStock: 0.00, // viewAll[i].storeStock,
-            // whsStock: 0.00, //  viewAll[i].whsStock
-            ));
+            updateduserid: ""));
       } else {
         newData.add(ItemMasterModelDB(
             uPackSize: 0.toString(),
@@ -803,6 +736,7 @@ class StockController extends ChangeNotifier {
             isselected: 0,
             autoId: 0,
             maximumQty: '0',
+            managedBy: viewAll[i].managedBy,
             minimumQty: '0',
             displayQty: '0',
             weight: 0.0,
@@ -844,23 +778,16 @@ class StockController extends ChangeNotifier {
       List<ItemMasterModelDB> dataval) async {
     List<ItemMasterModelDB> newData = [];
     var branddata = dataval.map((e) => e.brand).toSet().toList();
-    // log("ssssslength: " + branddata.length.toString());
+
     for (int i = 0; i < branddata.length; i++) {
       int isgot = 0;
       if (selectstringbarndsw.isNotEmpty) {
         for (int j = 0; j < selectstringbarndsw.length; j++) {
-          // log("sssss: "+branddata[i].toString() );
-          // print("selelctedss: "+selectstringbarndsw.toString());
-          //  print("selelctedss length: "+selectstringbarndsw.length.toString());
           if (branddata[i] == selectstringbarndsw[j]) {
-            //  log("branddata: "+branddata[i].toString() );
-            //  log("selectstringbarndsw: "+selectstringbarndsw[j].toString() );
             isgot = i;
-            // log("iiii: "+[i].toString() );
-            //  log("isgot: "+isgot.toString() );
+
             break;
           }
-          //  print("isgiot?: $isgot");
         }
 
         newData.add(ItemMasterModelDB(
@@ -869,6 +796,7 @@ class StockController extends ChangeNotifier {
             uTINSPERBOX: 0,
             uSpecificGravity: '',
             isselected: isgot == i ? 1 : 0,
+            managedBy: viewAll[i].managedBy,
             autoId: 0,
             maximumQty: '0',
             minimumQty: '0',
@@ -898,21 +826,7 @@ class StockController extends ChangeNotifier {
             subcategory: "",
             taxrate: "",
             updatedDatetime: "",
-            updateduserid: ""
-
-            // itemCode: null,
-            // brand: branddata[i],
-            // division: "null",
-            // category: "null",
-            // itemName: "null",
-            // segment: "null",
-            // isselected: isgot == i ? 1 : 0,
-            // favorite: "null",
-            // mgrPrice: 0.0, // viewAll[i].mgrPrice,
-            // slpPrice: 0.0, // viewAll[i].slpPrice,
-            // storeStock: 0.0, //viewAll[i].storeStock,
-            // whsStock: 0.0, //  viewAll[i].whsStock
-            ));
+            updateduserid: ""));
       } else {
         newData.add(ItemMasterModelDB(
             uPackSize: 0.toString(),
@@ -923,6 +837,7 @@ class StockController extends ChangeNotifier {
             autoId: 0,
             maximumQty: '0',
             minimumQty: '0',
+            managedBy: viewAll[i].managedBy,
             displayQty: '0',
             weight: 0.0,
             liter: 0.0,
@@ -949,21 +864,7 @@ class StockController extends ChangeNotifier {
             subcategory: "",
             taxrate: "",
             updatedDatetime: "",
-            updateduserid: ""
-
-            // itemCode: null,
-            // brand: branddata[i],
-            // division: "null",
-            // category: "null",
-            // itemName: "null",
-            // segment: "null",
-            // isselected: 0,
-            // favorite: "null",
-            // mgrPrice: 0.0, // viewAll[i].mgrPrice,
-            // slpPrice: 0.0, // viewAll[i].slpPrice,
-            // storeStock: 0.0, //viewAll[i].storeStock,
-            // whsStock: 0.0, //  viewAll[i].whsStock
-            ));
+            updateduserid: ""));
       }
     }
     return Future.value(newData);
@@ -978,8 +879,6 @@ class StockController extends ChangeNotifier {
       int isgot = 0;
       if (selectstringproductsw.isNotEmpty) {
         for (int j = 0; j < selectstringproductsw.length; j++) {
-          // log("productdata: "+productdata[i].toString() );
-          //  log("selectstringproductsw: "+selectstringproductsw[j].toString() );
           if (productdata[i] == selectstringproductsw[j]) {
             isgot = i;
             break;
@@ -1005,6 +904,7 @@ class StockController extends ChangeNotifier {
             isActive: "",
             isfreeby: "",
             isinventory: "",
+            managedBy: viewAll[i].managedBy,
             issellpricebyscrbat: "",
             isserialBatch: "",
             itemcode: productdata[i],
@@ -1031,6 +931,7 @@ class StockController extends ChangeNotifier {
             weight: 0.0,
             liter: 0.0,
             searchString: "",
+            managedBy: viewAll[i].managedBy,
             brand: "",
             category: "",
             quantity: 0,
@@ -1063,126 +964,11 @@ class StockController extends ChangeNotifier {
     return Future.value(newData);
   }
 
-  ///call price list update api
   String errorMsg = 'Some thing went wrong';
   bool exception = false;
   bool get getException => exception;
   String get getErrorMsg => errorMsg;
 
-  // callItemMasterPriceUpdate(
-  //     String itemcode, int tmid, int indexfromList) async {
-  //   isLoadingListView = true;
-  //   listPriceAvail[indexfromList].isselected = 1;
-  //   notifyListeners();
-  //   await ItemMasterPriceUpdateApi.getData(itemcode).then((value) {
-  //     if (value.stcode! >= 200 && value.stcode! <= 210) {
-  //       exception = false;
-  //       isLoadingListView = false;
-
-  //       if (value.itemPrices != null) {
-  //         if (value.itemPrices!.isNotEmpty) {
-  //           for (int i = 0; i < value.itemPrices!.length; i++) {
-  //             if (value.itemPrices![i].PriceList == 1
-  //                 // ||value.itemValueValue![0].itemPrices![i].PriceList == 2
-  //                 ) {
-  //               listPriceAvail[indexfromList].slpPrice =
-  //                   value.itemPrices![i].price!;
-  //               //   "1200.00";
-  //               // print("list values: "+listPriceAvail[indexfromList].price!+ indexfromList.toString());
-  //               value.itemPrices![i].price!.toStringAsFixed(2);
-  //               listPriceAvail[indexfromList].isselected = 0;
-  //               notifyListeners();
-  //             }
-  //           }
-  //         }
-  //       }
-  //     } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-  //       exception = true;
-  //       isLoadingListView = false;
-  //       errorMsg = '${value.error!.message!.value}';
-  //       notifyListeners();
-  //     } else if (value.stcode == 500) {
-  //       exception = true;
-  //       isLoadingListView = false;
-  //       errorMsg = '${value.exception}';
-  //       notifyListeners();
-  //     }
-  //   });
-  //   notifyListeners();
-  // }
-
-  // callItemMasterPriceUpdateNew(
-  //     String itemcode, int Itmid, int indexfromList) async {
-  //   isLoadingListView = true;
-  //   listPriceAvail[indexfromList].isselected = 1;
-  //   notifyListeners();
-  //   await ItemMasterApiUpdateNew.getData('${ConstantValues.slpcode}', itemcode)
-  //       .then((value) async {
-  //     final Database db = (await DBHelper.getInstance())!;
-
-  //     print("sapuserid: " + ConstantValues.slpcode.toString());
-  //     if (value.stcode! >= 200 && value.stcode! <= 210) {
-  //       exception = false;
-  //       isLoadingListView = false;
-
-  //       if (value.itemdata != null) {
-  //         listPriceAvail[indexfromList].slpPrice = value.itemdata![0].SlpPrice;
-  //         listPriceAvail[indexfromList].mgrPrice = value.itemdata![0].MgrPrice;
-  //         listPriceAvail[indexfromList].storeStock =
-  //             value.itemdata![0].StoreStock;
-  //         listPriceAvail[indexfromList].whsStock = value.itemdata![0].WhsStock;
-  //         listPriceAvail[indexfromList].refreshedRecordDate =
-  //             config.currentDate();
-
-  //         ItemMasterModelDB itemMas = new ItemMasterModelDB(
-  //             itemCode: 'itemCode',
-  //             brand: 'brand',
-  //             division: 'division',
-  //             category: 'category',
-  //             itemName: 'itemName',
-  //             segment: 'segment',
-  //             isselected: 0,
-  //             favorite: 'favorite',
-  //             mgrPrice: listPriceAvail[indexfromList].mgrPrice,
-  //             slpPrice: listPriceAvail[indexfromList].slpPrice,
-  //             storeStock: listPriceAvail[indexfromList].storeStock,
-  //             whsStock: listPriceAvail[indexfromList].whsStock,
-  //             refreshedRecordDate:
-  //                 listPriceAvail[indexfromList].refreshedRecordDate);
-
-  //         await DBOperation.updateItemMaster(Itmid.toString(), itemMas, db)
-  //             .then((value) {
-  //           listPriceAvail[indexfromList].isselected = 0;
-  //           notifyListeners();
-  //         });
-  //       } else if (value.itemdata == null) {
-  //         exception = true;
-  //         isLoadingListView = false;
-  //         errorMsg = 'No data found..!!';
-  //         listPriceAvail[indexfromList].isselected = 0;
-  //         notifyListeners();
-  //       }
-  //     } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-  //       exception = true;
-  //       isLoadingListView = false;
-  //       errorMsg = '${value.exception}';
-  //       listPriceAvail[indexfromList].isselected = 0;
-  //       notifyListeners();
-  //     } else if (value.stcode == 500) {
-  //       exception = true;
-  //       isLoadingListView = false;
-  //       errorMsg = '${value.exception}';
-  //       listPriceAvail[indexfromList].isselected = 0;
-  //       notifyListeners();
-  //     }
-  //   });
-  //   notifyListeners();
-  // }
-
-  /// view all
-
-  ///get files
-  ///
   File? source1;
   Directory? copyTo;
   Future<File> getPathOFDB() async {

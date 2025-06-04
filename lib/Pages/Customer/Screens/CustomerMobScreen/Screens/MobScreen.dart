@@ -27,7 +27,6 @@ class MobCustomerScreens extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         pageSnapping: true,
         controller: stkCtrl.tappage,
-        //  physics: new NeverScrollableScrollPhysics(),
         children: [
           SingleChildScrollView(
             child: Column(

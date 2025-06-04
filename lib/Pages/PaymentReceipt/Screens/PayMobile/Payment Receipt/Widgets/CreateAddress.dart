@@ -6,7 +6,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
   return StatefulBuilder(builder: (context, st) {
     return Container(
       alignment: Alignment.center,
-      // height: CusHeight,
       width: custWidth,
       padding: EdgeInsets.all(
         custHeight * 0.008,
@@ -18,12 +17,10 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // Text("data")
             SizedBox(
               height: custHeight * 0.1,
               width: custWidth * 0.5,
               child: TextFormField(
-                // controller: posController.mycontroller[7],
                 autofocus: true,
                 cursorColor: Colors.grey,
                 style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black),
@@ -37,7 +34,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                 },
                 decoration: InputDecoration(
                   labelText: "Bill Address1",
-                  // filled: false,
                   labelStyle:
                       theme.textTheme.bodySmall!.copyWith(color: Colors.grey),
                   hintStyle:
@@ -58,10 +54,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                     borderRadius: BorderRadius.circular(5),
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
-                  // contentPadding: const EdgeInsets.symmetric(
-                  //   vertical: 5,
-                  //   horizontal: 10,
-                  // ),
                 ),
               ),
             ),
@@ -69,8 +61,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               height: custHeight * 0.008,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -121,8 +111,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               height: custHeight * 0.008,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -176,7 +164,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -226,7 +213,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -284,7 +270,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -334,7 +319,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -347,13 +331,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the State";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       hintText: "Ind",
                       filled: false,
@@ -390,7 +367,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               height: custHeight * 0.008,
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
@@ -419,8 +395,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: Colors.grey.withOpacity(0.01),
@@ -472,8 +446,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                   height: custHeight * 0.02,
                 ),
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: Colors.grey.withOpacity(0.01),
@@ -526,8 +498,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                   height: custHeight * 0.02,
                 ),
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     border: Border.all(
                         color: const Color.fromARGB(255, 240, 235, 235)),
@@ -587,7 +557,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -637,7 +606,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -695,7 +663,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -745,7 +712,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -758,13 +724,6 @@ mobPayCreateAdd(BuildContext context, ThemeData theme,
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the State";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       hintText: "Ind",
                       filled: false,

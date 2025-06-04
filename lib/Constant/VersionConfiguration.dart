@@ -13,10 +13,6 @@ class CheckVersionConfig {
       Document? result2 =
           await playStoreSearchAPI.lookupById(myAppBundleId, country: 'IN');
       if (result2 != null) storeVersion = playStoreSearchAPI.version(result2);
-      // log('PlayStore version: $storeVersion}');
-      // } else if (Platform.isIOS) {
-
-      // log('AppStore version: $storeVersion}');
     } else if (Platform.isIOS) {
       ITunesSearchAPI iTunesSearchAPI = ITunesSearchAPI();
       Map<dynamic, dynamic>? result =

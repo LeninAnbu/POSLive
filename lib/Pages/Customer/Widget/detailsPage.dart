@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:posproject/Service/ReportsApi/ApprovalReqPdfApi.dart';
 import 'package:posproject/main.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +13,6 @@ class CustomerdetailPage extends StatefulWidget {
     super.key,
     required this.searchHeight,
     required this.searchWidth,
-    // required this.custMaslist
   });
 
   double searchHeight;
@@ -25,7 +23,6 @@ class CustomerdetailPage extends StatefulWidget {
 }
 
 class _CustomerdetailPageState extends State<CustomerdetailPage> {
-  // int index2;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -37,8 +34,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
           'Customer Details',
         )),
         body: Container(
-          // height: searchHeight * 0.25,
-          // width: searchWidth*0.95 ,
           padding: EdgeInsets.only(
               top: widget.searchHeight * 0.01,
               left: widget.searchHeight * 0.01,
@@ -63,14 +58,12 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.2,
                               child: Text(
@@ -94,7 +87,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.2,
                               child: Text(
@@ -108,7 +100,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                             ),
                             Container(
                               alignment: Alignment.center,
-                              // color: Colors.red,
                               width: widget.searchWidth * 0.1,
                               child: Text(
                                 "${context.read<CustomerController>().cusList1!.customerCode}",
@@ -120,7 +111,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.15,
                               child: Text(
@@ -148,7 +138,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.22,
                               child: Text(
@@ -173,7 +162,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.1,
                               child: Text(
@@ -205,7 +193,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.2,
                               child: Text(
@@ -227,7 +214,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.2,
                               child: Text(
@@ -248,7 +234,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                         Column(
                           children: [
                             Container(
-                              // color: Colors.amber,
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.2,
                               child: Text(
@@ -294,18 +279,14 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                                   top: widget.searchHeight * 0.01,
                                   left: widget.searchHeight * 0.01,
                                   right: widget.searchHeight * 0.01,
-                                  // bottom: widget.searchHeight * 0.02,
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.grey.withOpacity(0.1),
-                                  // borderRadius: BorderRadius.circular(2),
                                 ),
                                 child: Column(
                                   children: [
                                     Container(
                                         alignment: Alignment.centerLeft,
-                                        // width: searchWidth*0.5,
-                                        // color: Colors.amber,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -388,14 +369,11 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Sub-Group Wise Sales YTD Growth SLP',
                           style: theme.textTheme.bodyMedium?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
-
-                      // ),
                       Icon(
                         Icons.navigate_next_outlined,
                         color: Colors.white,
@@ -426,14 +404,11 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Approval Request Report',
                           style: theme.textTheme.bodyMedium?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
-
-                      // ),
                       Icon(
                         Icons.navigate_next_outlined,
                         color: Colors.white,
@@ -476,14 +451,11 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Aging Report',
                           style: theme.textTheme.bodyMedium?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
-
-                      // ),
                       Icon(
                         Icons.navigate_next_outlined,
                         color: Colors.white,
@@ -526,11 +498,8 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                     children: [
                       Text('View Customer Details',
                           style: theme.textTheme.bodyMedium?.copyWith(
-                              color: Colors.white, fontWeight: FontWeight.bold)
-                          // style: TextStyles.boldPC1(context),
-                          ),
-
-                      // ),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                       Icon(
                         Icons.navigate_next_outlined,
                         color: Colors.white,
@@ -560,7 +529,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
           height: 200,
           padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
           child: Column(
-            // mainAxisAlignment: Ma,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -582,9 +550,7 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                           context
                               .read<CustomerController>()
                               .callSubGroupSalesPdfApi(methodName, context);
-                        } else {
-                          // callCustomerSalesApi("$methodName");
-                        }
+                        } else {}
                       });
                     },
                     child: Text(
@@ -608,9 +574,7 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                             context
                                 .read<CustomerController>()
                                 .callSubGroupSalesExcelApi(methodName, context);
-                          } else {
-                            // callCustomerSalesExcelApi(methodName);
-                          }
+                          } else {}
                         },
                       );
                     },
@@ -642,7 +606,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
           height: 200,
           padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
           child: Column(
-            // mainAxisAlignment: Ma,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -715,11 +678,8 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
   }
 
   void bottomSheet(ThemeData theme) {
-    //nznznz
     showDialog<dynamic>(
       barrierDismissible: false,
-      // isDismissible: false,
-      // isScrollControlled: true,
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
@@ -772,7 +732,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                               ),
                             ),
                             labelText: 'Choose from date',
-                            // labelStyle: TextStyles.bodytextBlack1(context),
                           ),
                         ),
                       ),
@@ -813,7 +772,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                               ),
                             ),
                             labelText: 'Choose to date',
-                            // labelStyle: TextStyles.bodytextBlack1(context),
                           ),
                         ),
                       ),
@@ -836,7 +794,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                               },
                               child: Text(
                                 '  Cancel  ',
-                                // style: TextStyles.whiteText(context),
                               ),
                             ),
                           ),
@@ -859,7 +816,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                               },
                               child: Text(
                                 '  Search  ',
-                                // style: TextStyles.whiteText(context),
                               ),
                             ),
                           ),
@@ -896,8 +852,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
             "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year.toString().padLeft(2, '0')}";
         context.read<CustomerController>().apiFromDate =
             "${date.year}${date.month.toString().padLeft(2, '0')}${date.day.toString().padLeft(2, '0')}";
-        // SalesOnDayAPi.fromDate = apidate;
-        // print(SalesOnDayAPi.fromDate);
       });
     });
   }
@@ -922,18 +876,13 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
             "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year.toString().padLeft(2, '0')}";
         context.read<CustomerController>().apiToDate =
             "${date.year}${date.month.toString().padLeft(2, '0')}${date.day.toString().padLeft(2, '0')}";
-        // GetFollowupApi.fromDate = apidate;
-        //  print(mycontroller[2].text);
       });
     });
   }
 
   void ageingBottomSheet(ThemeData theme, BuildContext context) {
-    //nznznz
     showDialog<dynamic>(
         barrierDismissible: false,
-        // isDismissible: false,
-        // isScrollControlled: true,
         context: context,
         builder: (context) => StatefulBuilder(
               builder: (context, setState) => AlertDialog(
@@ -998,8 +947,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
                                     controller: context
                                         .read<CustomerController>()
                                         .searchmycontroller[4],
-
-                                    // keyboardType: TextInputType.number,
                                     style: TextStyle(fontSize: 15),
                                     validator: (value) {
                                       if (value!.isEmpty) {
@@ -1083,7 +1030,6 @@ class _CustomerdetailPageState extends State<CustomerdetailPage> {
           height: 200,
           padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
           child: Column(
-            // mainAxisAlignment: Ma,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(

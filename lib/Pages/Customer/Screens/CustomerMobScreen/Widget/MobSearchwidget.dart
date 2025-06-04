@@ -51,22 +51,17 @@ class _MobSearchWidgetState extends State<MobSearchWidget> {
                 },
                 cursorColor: Colors.grey,
                 controller: widget.stChCon.mycontroller[0],
-                onEditingComplete: () {
-                  // widget.stChCon.morecusdetail();
-                },
+                onEditingComplete: () {},
                 decoration: InputDecoration(
                   filled: false,
                   hintText: 'Search Here..',
                   hintStyle:
-                      theme.textTheme.bodyMedium?.copyWith(color: Colors.grey
-                          //   fontWeight: FontWeight.normal
-                          ),
+                      theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   suffixIcon: IconButton(
                     icon: const Icon(
                       Icons.search,
-                      // size: searchHeight * 0.05,
                       color: Colors.grey,
                     ),
                     onPressed: () async {},
@@ -117,7 +112,6 @@ class _MobSearchWidgetState extends State<MobSearchWidget> {
                                 ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  // color: Colors.grey.withOpacity(0.05),
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,8 +132,6 @@ class _MobSearchWidgetState extends State<MobSearchWidget> {
                                           height: widget.searchHeight * 0.01,
                                         ),
                                         SizedBox(
-                                            // color: Colors.green,
-                                            // alignment: Alignment.center,
                                             width: widget.searchWidth * 0.4,
                                             child: Text(
                                               "${widget.stChCon.filtercustomerList[index].customername}",
@@ -162,9 +154,7 @@ class _MobSearchWidgetState extends State<MobSearchWidget> {
                                           height: widget.searchHeight * 0.01,
                                         ),
                                         Container(
-                                            // color: Colors.orange,
                                             alignment: Alignment.centerRight,
-                                            // width: searchWidth * 0.5,
                                             child: Text(
                                               "${widget.stChCon.filtercustomerList[index].emalid}",
                                               style: theme.textTheme.bodyMedium

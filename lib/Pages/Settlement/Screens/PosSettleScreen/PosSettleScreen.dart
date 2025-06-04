@@ -10,16 +10,13 @@ class PosSettleScreen extends StatelessWidget {
 
   String? chosenValue;
 
-  // String? _chosenValue;
   DepositsController settleCon;
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-            // color: Colors.amber,
             height: Screens.padingHeight(context) * 0.95,
             width: Screens.width(context) * 0.90,
             child: SettleFirstscreen(

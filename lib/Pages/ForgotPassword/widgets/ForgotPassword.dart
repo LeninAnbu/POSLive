@@ -20,14 +20,11 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // context.read<ForgotPasswordController>().disPosed();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
   }
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body: SafeArea(
@@ -36,12 +33,8 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
             alignment: Alignment.center,
             width: Screens.width(context),
             height: Screens.padingHeight(context),
-            //  decoration: BoxDecoration(
-            //    color: Colors.white
-            //  ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              //  Stack(
               children: [
                 Container(
                   width: widget.forgetwidth * 1,

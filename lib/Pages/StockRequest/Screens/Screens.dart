@@ -24,7 +24,6 @@ class _StockReqScreensState extends State<StockReqScreens> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        // context.read<StockReqController>().searchclear();
         context.read<StockReqController>().init();
       });
     });
@@ -35,17 +34,8 @@ class _StockReqScreensState extends State<StockReqScreens> {
     final theme = Theme.of(context);
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
-        // return ChangeNotifierProvider<StockReqController>(
-        //     create: (context) => StockReqController(),
-        //     builder: (context, child) {
-        //       return Consumer<StockReqController>(
-        //           builder: (BuildContext context, StReq_Con, Widget? child) {
         return WillPopScope(
             onWillPop: (() {
-              //   StIn_Con.page.previousPage(
-              //   duration: Duration(milliseconds: 200),
-              //   curve: Curves.linear,
-              // );
               return Future.value(true);
             }),
             child: Scaffold(
@@ -53,28 +43,16 @@ class _StockReqScreensState extends State<StockReqScreens> {
                     "Inventory Transfer Request", theme, context,
                     posController: context.read<StockReqController>()),
                 drawer: naviDrawerMob(context),
-
-                // drawer: M_naviDrawer(),
                 backgroundColor: Colors.grey[200],
                 body: SafeArea(
                     child: StockReqMob(
                         srCon: context.read<StockReqController>()))));
-        //   });
-        // });
       } else {
         return WillPopScope(
           onWillPop: context.read<StockReqController>().onbackpress,
           child: Scaffold(
               drawer: naviDrawer(),
-              body:
-                  //  ChangeNotifierProvider<StockReqController>(
-                  //     create: (context) => StockReqController(),
-                  //     builder: (context, child) {
-                  //       return Consumer<StockReqController>(
-                  //           builder: (BuildContext context, prdSCD, Widget? child) {
-                  //         return LayoutBuilder(builder: (context, constraints) {
-                  //           return
-                  SafeArea(
+              body: SafeArea(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(children: [
@@ -84,11 +62,7 @@ class _StockReqScreensState extends State<StockReqScreens> {
                     ),
                   ]),
                 ),
-              )
-              // });
-              //   });
-              // })
-              ),
+              )),
         );
       }
     });
@@ -119,9 +93,9 @@ class _StockReqScreensState extends State<StockReqScreens> {
 //                 );
 //               } else
 //                 return StockReqPos( theme: widget.theme,prdSCD: prdSCD,);
-//                 //
-//                 //   prdSCD: prdSCD,
-//                 // );
+//               
+//               
+//               
 //             });
 //           });
 //         }));

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Controller/StockOutwardController/StockOutwardController.dart';
 
@@ -115,17 +114,6 @@ class _StockOutReqListState extends State<StockOutReqList> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      // Text(
-                                      //     context
-                                      //                 .watch<
-                                      //                     StockOutwardController>()
-                                      //                 .StockOutward2[index]
-                                      //                 .docstatus ==
-                                      //             '3'
-                                      //         ? "# Against Stock  "
-                                      //         : "# Against Order ",
-                                      //     style:
-                                      //         widget.theme.textTheme.bodyLarge),
                                       Text(
                                           context
                                               .read<StockOutwardController>()

@@ -21,9 +21,8 @@ class ExpApprovalAPi {
           body: json.encode({
             "constr":
                 "Server=INSIGNIAC03313;Database='$dbname';User Id=sa; Password=Insignia@2021#;",
-            "query": 
-            "EXEC BZ_POS_ExpApprovalAPi '${AppConstant.sapUserName}' ,'$fromDate' ,'$toDate'"
-                // "Select Distinct T0.[WddCode],T0.[WtmCode],T0.[ObjType],T0.[CurrStep],T0.[CreateDate], T0.[CreateTime],T0.[DraftEntry],[USER_CODE] [FromUser], T3.[DocNum], T3.[DocTotal], T3.[DocDate] ,T3.[CardCode], T3.[CardName] ,T3.U_DeviceTransID From [OWDD] T0 Inner Join [WST1] T1 on  T0.[CurrStep] = T1.[WstCode]  Inner Join [OUSR] T2 on T2.[USERID] = T0.[UserSign] Inner Join [OPDF] T3 on   T3.[DocEntry] = T0.[DraftEntry]  Where T0.[Status] = 'Y' And T0.DocEntry is Null And T0.[ObjType] = 46 and Lower([USER_CODE]) = Lower('${AppConstant.sapUserName}') and t3.DocDate between '$fromDate' and '$toDate' order by T3.[DocDate] desc, T3.[DocNum] desc "
+            "query":
+                "EXEC BZ_POS_ExpApprovalAPi '${AppConstant.sapUserName}' ,'$fromDate' ,'$toDate'"
           }));
 
       log(json.encode({
@@ -31,17 +30,12 @@ class ExpApprovalAPi {
             "Server=INSIGNIAC03313;Database='$dbname';User Id=sa; Password=Insignia@2021#;",
         "query":
             "Select Distinct T0.[WddCode],T0.[WtmCode],T0.[ObjType],T0.[CurrStep],T0.[CreateDate], T0.[CreateTime],T0.[DraftEntry],[USER_CODE] [FromUser], T3.[DocNum], T3.[DocTotal], T3.[DocDate] ,T3.[CardCode], T3.[CardName] ,T3.U_DeviceTransID From [OWDD] T0 Inner Join [WST1] T1 on  T0.[CurrStep] = T1.[WstCode]  Inner Join [OUSR] T2 on T2.[USERID] = T0.[UserSign] Inner Join [OPDF] T3 on T3.[DocEntry] = T0.[DraftEntry]  Where T0.[Status] = 'Y' And T0.DocEntry is Null And T0.[ObjType] = 46 and [USER_CODE] = '${AppConstant.sapUserName}' and t3.DocDate  between '$fromDate' and '$toDate' order by T3.[DocDate] desc,T3.[DocNum] desc"
-
-        // "Select DISTINCT T0.[WddCode],T0.[WtmCode],T0.[ObjType],T0.[CurrStep],T0.[CreateDate], T0.[CreateTime],T0.[DraftEntry],[USER_CODE] [FromUser], T3.[DocNum], T3.[DocTotal], T3.[DocDate] ,T3.[CardCode], T3.[CardName] From [OWDD] T0 Inner Join [WST1] T1 on  T0.[CurrStep] = T1.[WstCode] Inner Join [OUSR] T2 on T2.[USERID] = T0.[UserSign] Inner Join [OPDF] T3 on   T3.[DocEntry] = T0.[DraftEntry] Where T0.[Status] = 'Y' And T0.[ObjType] = 46 and   t3.DocDate  between '$fromDate' and '$toDate' order by T3.[DocDate] desc",
       }));
 
       log("exp details Res: ${json.decode(response.body)}");
       log("exp Approvals statusCode::${response.statusCode}");
       return ApprovaldyModel.fromJson(response.body, response.statusCode);
-
-      // throw Exception("Error!!...");
     } catch (e) {
-      //  throw Exception("Exception: $e");
       return ApprovaldyModel.fromJson(e.toString(), 500);
     }
   }

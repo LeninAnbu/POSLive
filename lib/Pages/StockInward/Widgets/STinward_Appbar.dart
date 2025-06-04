@@ -49,17 +49,7 @@ AppBar inwardAppbar(
                             .read<StockInwrdController>()
                             .config
                             .currentDate()));
-                // context.read<StockInwrdController>().getSalesDataDatewise(
-                //     context.read<StockInwrdController>().config.alignDate(
-                //         context
-                //             .read<StockInwrdController>()
-                //             .config
-                //             .currentDate()),
-                //     context.read<StockInwrdController>().config.alignDate(
-                //         context
-                //             .read<StockInwrdController>()
-                //             .config
-                //             .currentDate()));
+
                 context.read<StockInwrdController>().callsearchInwApi();
 
                 showDialog(
@@ -214,7 +204,6 @@ AppBar inwardAppbar(
                       .callPrintApi(context, theme);
                   context.read<StockInwrdController>().setstatemethod();
                 } else {
-                  // .mapCallInwardForPDF(preff, context, theme);
                   showDialog(
                       context: context,
                       barrierDismissible: true,

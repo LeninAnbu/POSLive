@@ -14,7 +14,6 @@ class HeaderLoginTab extends StatelessWidget {
     return SizedBox(
       height: Screens.bodyheight(context) * 0.25,
       width: Screens.width(context) * 1.0,
-      //color: Colors.amber,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

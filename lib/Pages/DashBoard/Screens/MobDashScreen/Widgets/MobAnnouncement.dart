@@ -19,22 +19,20 @@ class MobAnnouncement extends StatelessWidget {
     return Container(
       color: Colors.grey.withOpacity(0.1),
       padding: EdgeInsets.only(
-      left: dbWidth * 0.015,
+        left: dbWidth * 0.015,
         right: dbWidth * 0.015,
         top: dbHeight * 0.01,
         bottom: dbHeight * 0.01,
       ),
       width: dbWidth,
-      // height: dbHeight * 1,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-             padding: EdgeInsets.only(
-       left: dbWidth * 0.015,
-        right: dbWidth * 0.015,
-      
-      ),
+            padding: EdgeInsets.only(
+              left: dbWidth * 0.015,
+              right: dbWidth * 0.015,
+            ),
             child: Text(
               "Announcement",
               style: theme.textTheme.bodyMedium?.copyWith(
@@ -43,15 +41,14 @@ class MobAnnouncement extends StatelessWidget {
               ),
             ),
           ),
-       
           ListView.builder(
-             physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
               itemCount: 8,
               itemBuilder: (context, index) {
                 return Card(
                     child: Container(
-                       decoration: BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
@@ -72,10 +69,10 @@ class MobAnnouncement extends StatelessWidget {
                         "Unilet / Extended Warranty / 1 Year /Directcool >12000 1Yr",
                         style:
                             theme.textTheme.bodyMedium?.copyWith(fontSize: 16),
-                      ),  
-          SizedBox(
-            height: dbHeight * 0.005,
-          ),
+                      ),
+                      SizedBox(
+                        height: dbHeight * 0.005,
+                      ),
                       Text(
                         'DC-ABV12K-1YR',
                         style:

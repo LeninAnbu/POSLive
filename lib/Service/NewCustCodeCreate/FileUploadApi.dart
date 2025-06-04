@@ -28,27 +28,8 @@ class FilePostApi {
         }),
       );
 
-      // log(jsonEncode({
-      //   'files': [
-      //     {
-      //       'imageBytes': '$fileBytes',
-      //       'filePath': 'D:\\Checkout Attachements\\$filename'
-      //     }
-      //   ]
-      // }));
       log('file picker:${response.body}');
 
-      // log("json: " +
-      //     jsonEncode({
-      //       "files": [
-      //         {
-      //           "imageBytes": "$fileBytes",
-      //           "filePath": "C:\\SupportApp\\Profile\\$filename"
-      //         }
-      //       ]
-      //     }).toString());
-
-      // log("file picker:" + response.body.toString());
       if (response.statusCode == 200) {
         return FilePostModel.fromJson(
           response.body,
@@ -56,7 +37,6 @@ class FilePostApi {
         );
       } else {
         log("File Exception11");
-        //  throw Exception("Error");
 
         return FilePostModel.issue(
           'Something went wrong Bad Request..',
@@ -66,7 +46,6 @@ class FilePostApi {
     } catch (e) {
       log("File Exception222");
 
-      // throw Exception(e.toString());
       return FilePostModel.exception('Someting went wrong Try again..', 500);
     }
   }

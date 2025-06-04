@@ -8,18 +8,14 @@ import '../../ForgotPassword/Screens/Screens.dart';
 class BodyLoginTab extends StatelessWidget {
   const BodyLoginTab({
     super.key,
-    //required this.logCon,
     required this.theme,
   });
 
-  //final LoginController logCon;
   final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //  color: Colors.red,
-      // margin: EdgeInsets.symmetric(vertical: 10),
       height: Screens.padingHeight(context) * 0.50,
       padding: EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.02),
       child: Form(
@@ -113,14 +109,8 @@ class BodyLoginTab extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ForgotMainScreen()
-                                  // ForgotPasswordPage(
-                                  //     forgetHeight:
-                                  //         Screens.bodyheight(
-                                  //             context),
-                                  //     forgetwidth:
-                                  //         Screens.width(context)*0.5)
-                                  ));
+                                  builder: (context) =>
+                                      const ForgotMainScreen()));
                         },
                         child: const Text(
                           'Recover Password?',

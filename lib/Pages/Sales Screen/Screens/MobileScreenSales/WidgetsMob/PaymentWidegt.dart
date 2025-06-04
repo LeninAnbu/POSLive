@@ -23,7 +23,6 @@ class PaymentDetailsMob extends StatelessWidget {
                 right: Screens.width(context) * 0.01,
                 bottom: Screens.padingHeight(context) * 0.01),
             width: Screens.width(context),
-            // height: Screens.padingHeight(context) * 0.4,
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -50,8 +49,6 @@ class PaymentDetailsMob extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // SizedBox(height:paymentHeight *0.02),
                 ListView.builder(
                     itemCount: prdCD.getpaymentWay.length,
                     shrinkWrap: true,
@@ -68,11 +65,6 @@ class PaymentDetailsMob extends StatelessWidget {
                                 bottom: Screens.padingHeight(context) * 0.01,
                                 top: Screens.padingHeight(context) * 0.01,
                               ),
-
-                              // decoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(5),
-                              //  // color: Colors.grey.withOpacity(0.04),
-                              // ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [
@@ -91,27 +83,22 @@ class PaymentDetailsMob extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     width: Screens.width(context) * 0.25,
-                                    // color: Colors.red,
                                     child: Text(
                                       '${prdCD.getpaymentWay[index].type}',
-                                      // '${posController.getpaymentWay[index].dateTime}',
                                       style: theme.textTheme.bodyLarge
                                           ?.copyWith(color: Colors.black),
                                     ),
                                   ),
                                   Container(
                                     width: Screens.width(context) * 0.28,
-                                    // color: Colors.green,
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       '${prdCD.getpaymentWay[index].reference}',
-                                      // '${posController.getpaymentWay[index].type}',
                                       style: theme.textTheme.bodyLarge
                                           ?.copyWith(color: Colors.black),
                                     ),
                                   ),
                                   Container(
-                                    // color: Colors.red,
                                     alignment: Alignment.centerRight,
                                     child: Text(
                                       prdCD.config.splitValues(prdCD
@@ -127,7 +114,6 @@ class PaymentDetailsMob extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                       width: Screens.width(context) * 0.05,
-                                      //  color: Colors.blue,
                                       child: const Icon(
                                         Icons.delete,
                                         color: Colors.red,

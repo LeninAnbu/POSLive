@@ -26,9 +26,7 @@ class _TransactionState extends State<Transaction> {
       padding: EdgeInsets.only(
           left: widget.dbHeight * 0.02, top: widget.dbHeight * 0.02),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5), color: Colors.white
-          // color: Colors.grey.withOpacity(0.1),
-          ),
+          borderRadius: BorderRadius.circular(5), color: Colors.white),
       width: widget.dbWidth,
       height: widget.dbHeight * 1,
       child: Column(
@@ -64,16 +62,13 @@ class _TransactionState extends State<Transaction> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(
-                                      color:
-                                          // context.watch<DashBoardController>().syncData1[index].sapNo == 0 &&
-                                          context
-                                                      .watch<
-                                                          DashBoardController>()
-                                                      .syncData1[index]
-                                                      .qStatus !=
-                                                  'C'
-                                              ? Colors.redAccent
-                                              : Colors.green),
+                                      color: context
+                                                  .watch<DashBoardController>()
+                                                  .syncData1[index]
+                                                  .qStatus !=
+                                              'C'
+                                          ? Colors.redAccent
+                                          : Colors.green),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
@@ -87,7 +82,6 @@ class _TransactionState extends State<Transaction> {
                                 padding: EdgeInsets.all(
                                   widget.dbHeight * 0.02,
                                 ),
-                                // height: dbHeight * 0.18,
                                 width: widget.dbWidth * 0.9,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +95,6 @@ class _TransactionState extends State<Transaction> {
                                         Container(
                                           alignment: Alignment.centerLeft,
                                           width: widget.dbWidth * 0.1,
-                                          // color: Colors.grey,
                                           child: Text(
                                             "Doc No",
                                             style: widget
@@ -112,7 +105,6 @@ class _TransactionState extends State<Transaction> {
                                         Container(
                                           alignment: Alignment.centerLeft,
                                           width: widget.dbWidth * 0.24,
-                                          // color: Colors.amber,
                                           child: Text(
                                             "${context.watch<DashBoardController>().syncData1[index].docNo}",
                                             style: widget
@@ -167,7 +159,6 @@ class _TransactionState extends State<Transaction> {
                                         Container(
                                           alignment: Alignment.centerLeft,
                                           width: widget.dbWidth * 0.1,
-                                          // color: Colors.grey,
                                           child: Text(
                                             "SAP No",
                                             style: widget
@@ -177,9 +168,7 @@ class _TransactionState extends State<Transaction> {
                                         ),
                                         Container(
                                           alignment: Alignment.centerLeft,
-
                                           width: widget.dbWidth * 0.24,
-                                          // color: Colors.grey,
                                           child: Text(
                                             "${context.watch<DashBoardController>().syncData1[index].sapNo}",
                                             style: widget
@@ -190,7 +179,6 @@ class _TransactionState extends State<Transaction> {
                                         Container(
                                           alignment: Alignment.center,
                                           width: widget.dbWidth * 0.32,
-                                          // color: Colors.amber,
                                           child: Text(
                                             "${context.watch<DashBoardController>().syncData1[index].customername}",
                                             overflow: TextOverflow.ellipsis,
@@ -204,7 +192,6 @@ class _TransactionState extends State<Transaction> {
                                         Container(
                                           alignment: Alignment.centerLeft,
                                           width: widget.dbWidth * 0.12,
-                                          // color: Colors.amber,
                                           child: Text(
                                             "SAP Date",
                                             style: widget
@@ -215,7 +202,6 @@ class _TransactionState extends State<Transaction> {
                                         Container(
                                           alignment: Alignment.centerRight,
                                           width: widget.dbWidth * 0.15,
-                                          // color: Colors.amber,
                                           child: Text(
                                             context
                                                 .read<DashBoardController>()
@@ -233,28 +219,11 @@ class _TransactionState extends State<Transaction> {
                                         )
                                       ],
                                     ),
-                                    // Text('DC-ABV12K-1YR'),
                                   ],
                                 ),
                               ));
                         }),
           ),
-          // SizedBox(height: dbHeight * 0.02),
-          // Container(
-          //   alignment: Alignment.centerRight,
-          //   child: FloatingActionButton(
-          //     onPressed: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (context) => PosMainScreens(
-          //               theme: theme,
-          //             )));
-          //     },
-          //     child:  Image.asset('assets/cart.png'),
-          //     // Icon(Icons.add),
-          //   ),
-          // )
         ],
       ),
     );

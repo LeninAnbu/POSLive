@@ -11,7 +11,6 @@ class SRPaymentWidget extends StatelessWidget {
     final theme = Theme.of(context);
     return Container(
       width: Screens.width(context),
-      //  height: Screens.bodyheight(context)*0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -45,8 +44,6 @@ class SRPaymentWidget extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // SizedBox(height:paymentHeight *0.02),
               ListView.builder(
                   itemCount: salesReturnController.getpaymentWay.length,
                   shrinkWrap: true,
@@ -63,11 +60,6 @@ class SRPaymentWidget extends StatelessWidget {
                               bottom: Screens.padingHeight(context) * 0.01,
                               top: Screens.padingHeight(context) * 0.01,
                             ),
-
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.circular(5),
-                            //  // color: Colors.grey.withOpacity(0.04),
-                            // ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [
@@ -85,27 +77,22 @@ class SRPaymentWidget extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: Screens.width(context) * 0.25,
-                                  // color: Colors.red,
                                   child: Text(
                                     '${salesReturnController.getpaymentWay[index].type}',
-                                    // '${posController.getpaymentWay[index].dateTime}',
                                     style: theme.textTheme.bodyLarge
                                         ?.copyWith(color: Colors.black),
                                   ),
                                 ),
                                 Container(
                                   width: Screens.width(context) * 0.28,
-                                  // color: Colors.green,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     '${salesReturnController.getpaymentWay[index].reference}',
-                                    // '${posController.getpaymentWay[index].type}',
                                     style: theme.textTheme.bodyLarge
                                         ?.copyWith(color: Colors.black),
                                   ),
                                 ),
                                 Container(
-                                  // color: Colors.red,
                                   alignment: Alignment.centerRight,
                                   child: Text(
                                     salesReturnController.config.splitValues(
@@ -122,7 +109,6 @@ class SRPaymentWidget extends StatelessWidget {
                                   },
                                   child: SizedBox(
                                     width: Screens.width(context) * 0.05,
-                                    //  color: Colors.blue,
                                     child: const Icon(
                                       Icons.delete,
                                       color: Colors.red,

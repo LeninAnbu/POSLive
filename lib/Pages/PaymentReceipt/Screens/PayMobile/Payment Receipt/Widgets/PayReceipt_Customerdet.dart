@@ -32,7 +32,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
           horizontal: Screens.width(context) * 0.02,
           vertical: Screens.padingHeight(context) * 0.01),
       width: Screens.width(context),
-      //  height: Screens.padingHeight(context)*0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -48,7 +47,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            // width: custWidth * 0.7,
             width: Screens.width(context) * 1,
             decoration: BoxDecoration(
               border:
@@ -66,7 +64,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                 suffixIcon: IconButton(
                   icon: const Icon(
                     Icons.search,
-                    // size: custHeight * 0.08,
                     color: Colors.grey,
                   ),
                   onPressed: () {
@@ -79,7 +76,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             contentPadding: const EdgeInsets.all(0),
-                            // backgroundColor: Colors.transparent,
                             insetPadding: EdgeInsets.all(
                                 Screens.bodyheight(context) * 0.02),
                             content: forSearchBtn(context, widget.prdCD),
@@ -89,9 +85,7 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                   color: widget.theme.primaryColor,
                 ),
                 hintText: 'Customers',
-                hintStyle: widget.theme.textTheme.bodyLarge?.copyWith(
-                    // color: Colors.grey
-                    ),
+                hintStyle: widget.theme.textTheme.bodyLarge?.copyWith(),
                 filled: false,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
@@ -124,20 +118,16 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                   padding: EdgeInsets.symmetric(
                       vertical: Screens.padingHeight(context) * 0.02,
                       horizontal: Screens.width(context) * 0.02),
-                  // height: Screens.padingHeight(context) * 0.75,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           width: Screens.width(context),
                           alignment: Alignment.centerRight,
-                          // height: Screens.padingHeight(context) * 0.02,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                //  color: Colors.green,
                                 width: Screens.width(context) * 0.7,
                                 child: Text(
                                   widget.prdCD.getselectedcust!.name != null
@@ -162,7 +152,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                                                     Radius.circular(4))),
                                             contentPadding:
                                                 const EdgeInsets.all(0),
-                                            // backgroundColor: Colors.transparent,
                                             insetPadding: EdgeInsets.all(
                                                 Screens.bodyheight(context) *
                                                     0.02),
@@ -176,7 +165,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                                   child: Container(
                                     width: Screens.width(context) * 0.06,
                                     alignment: Alignment.center,
-                                    //     color: Colors.red,
                                     child: const Icon(Icons.edit),
                                   )),
                               InkWell(
@@ -186,7 +174,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                                   child: Container(
                                     width: Screens.width(context) * 0.06,
                                     alignment: Alignment.center,
-                                    //     color: Colors.blue,
                                     child: const Icon(Icons.close_sharp),
                                   )),
                             ],
@@ -197,7 +184,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                       ),
                       SizedBox(
                         width: Screens.width(context),
-                        // color: Colors.green,
                         child: Row(
                           children: [
                             Row(
@@ -242,28 +228,21 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                       ),
                       SizedBox(
                         width: Screens.width(context) * 0.88,
-                        //   color: Colors.blue,
                         child: Row(
-                          //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: Screens.width(context) * 0.44,
-
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    // color: Colors.green,
                                     width: Screens.width(context) * 0.13,
                                     child: Text("GST",
-                                        // AppLocalizations.of(context)!.gst,
                                         style: widget.theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                   ),
                                   Container(
-                                    // color: Colors.blue,
                                     width: Screens.width(context) * 0.3,
                                     padding: EdgeInsets.only(
                                       right: Screens.width(context) * 0.02,
@@ -282,20 +261,17 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: Screens.width(context) * 0.44,
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     width: Screens.width(context) * 0.17,
-                                    //   color: Colors.blue,
                                     child: Text("Balance",
                                         style: widget.theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                   ),
                                   SizedBox(
-                                    // color: Colors.red,
                                     width: Screens.width(context) * 0.26,
                                     child: Text(
                                         widget.prdCD.config.splitValues(
@@ -314,28 +290,23 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                       ),
                       SizedBox(
                         width: Screens.width(context) * 0.88,
-                        // color: Colors.green,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: Screens.width(context) * 0.44,
-                              //  color: Colors.green,
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     width: Screens.width(context) * 0.15,
-                                    //color: Colors.red,
                                     child: Text("Code#",
                                         style: widget.theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                   ),
                                   Container(
                                     width: Screens.width(context) * 0.28,
-                                    //color: Colors.green,
                                     padding: EdgeInsets.only(
                                       right: Screens.width(context) * 0.02,
                                     ),
@@ -350,8 +321,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: Screens.width(context) * 0.44,
-                              // color: Colors.red,
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -385,7 +354,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                             },
                             child: SizedBox(
                               width: Screens.width(context) * 0.4,
-                              // color: Colors.red,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -490,7 +458,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                             },
                             child: SizedBox(
                               width: Screens.width(context) * 0.465,
-                              //color: Colors.green,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -521,10 +488,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                                   ),
                                   Text(
                                     " ${widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address1 != null ? widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address1.toString() : ""},${widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address2 != null ? widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address2.toString() : ""}, ${widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address3 != null ? widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address3.toString() : ""}",
-
-                                    // "${widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address1.toString()}, " +
-                                    //     "${widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address2.toString()}, " +
-                                    //     "${widget.prdCD.getselectedcust!.address![widget.prdCD.getselectedShipAdress!].address3.toString()}",
                                     maxLines: 1,
                                     style: widget.theme.textTheme.bodyLarge
                                         ?.copyWith(color: Colors.black54),
@@ -621,7 +584,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.4,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -767,7 +729,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                         ),
                       );
                     })),
-            //  SizedBox(height: Screens.padingHeight(context) * 0.09),
             SizedBox(height: Screens.padingHeight(context) * 0.01),
             InkWell(
               onTap: () {
@@ -781,7 +742,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4))),
                         contentPadding: const EdgeInsets.all(0),
-                        // backgroundColor: Colors.transparent,
                         insetPadding:
                             EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                         content:
@@ -826,7 +786,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
             bottom: Screens.padingHeight(context) * 0.01),
         width: Screens.width(context),
         height: Screens.padingHeight(context) * 0.7,
-        // color: Colors.red,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -847,7 +806,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                             padding: EdgeInsets.only(
                                 left: Screens.padingHeight(context) * 0.02,
                                 right: Screens.padingHeight(context) * 0.02),
-                            // color: Colors.red,
                             width: Screens.width(context) * 0.4,
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -926,8 +884,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                       height: Screens.padingHeight(context) * 0.03,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -977,7 +933,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                       height: Screens.padingHeight(context) * 0.03,
                     ),
                     Container(
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1026,8 +981,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                       height: Screens.padingHeight(context) * 0.03,
                     ),
                     Container(
-                      // height: Screens.padingHeight(context) * 0.15,
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1074,20 +1027,16 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                     SizedBox(
                       height: Screens.padingHeight(context) * 0.02,
                     ),
-                    //addreswidget
                     AddressWidget(
                       theme: theme,
                       payreceipt: prdadd,
                       custHeight: Screens.padingHeight(context),
                       custWidth: Screens.width(context),
                     ),
-
                     SizedBox(
                       height: Screens.padingHeight(context) * 0.02,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 0.65,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1137,9 +1086,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                     InkWell(
                       onTap: () {
                         if (title == "New Customer") {
-                          // prdadd.addnewCustomer(context, 6);
-
-                          // prdadd.getCustDetFDB();
                         } else if (title == "Update Customer") {
                           showDialog(
                               context: context,
@@ -1149,7 +1095,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(4))),
                                   contentPadding: const EdgeInsets.all(0),
-                                  // backgroundColor: Colors.transparent,
                                   insetPadding: EdgeInsets.all(
                                       Screens.bodyheight(context) * 0.02),
                                   content: updateType(context, widget.prdCD,
@@ -1163,8 +1108,6 @@ class _PayReceiptCustomerDetailsState extends State<PayReceiptCustomerDetails> {
                         height: Screens.padingHeight(context) * 0.045,
                         decoration: BoxDecoration(
                           color: theme.primaryColor,
-                          // borderRadius: BorderRadius.only(
-                          //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
                         ),
                         child: Center(
                           child: Container(
@@ -1239,8 +1182,6 @@ Widget updateType(BuildContext context, PayreceiptController pos, int i) {
   final theme = Theme.of(context);
   return SizedBox(
     width: Screens.width(context),
-    //  height: Screens.padingHeight(context) * 0.4,
-
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -1249,14 +1190,11 @@ Widget updateType(BuildContext context, PayreceiptController pos, int i) {
           height: Screens.padingHeight(context) * 0.05,
           decoration: BoxDecoration(
             color: theme.primaryColor,
-            // borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // color: Colors.red,
                 width: Screens.width(context) * 0.4,
                 alignment: Alignment.center,
                 child: Text(
@@ -1310,7 +1248,7 @@ Widget updateType(BuildContext context, PayreceiptController pos, int i) {
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context);
-                          // pos.updateCustomer(i,ij);
+
                           Navigator.pop(context);
                         },
                         child: Text(
@@ -1325,7 +1263,7 @@ Widget updateType(BuildContext context, PayreceiptController pos, int i) {
                       child: ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            // pos.updateCustomer(i);
+
                             Navigator.pop(context);
                           },
                           child: Text(
@@ -1354,7 +1292,6 @@ billAddress(BuildContext context, PayreceiptController pos) async {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           contentPadding: const EdgeInsets.all(0),
-          // backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
           content: Container(
             width: Screens.width(context),
@@ -1427,15 +1364,6 @@ billAddress(BuildContext context, PayreceiptController pos) async {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    //             ListTile(
-                                    //   title: Text( pos.selectedcust!.address[index].billAddress,
-                                    //       style: theme.textTheme.bodySmall),
-                                    //   onTap: () {
-                                    //     pos.changeBillAddress(index);
-                                    //     //pos.selectedcust!.address[pos.selectedAdress].billAddress = pos.selectedcust!.address[index].billAddress;
-                                    //     Navigator.pop(context);
-                                    //   },
-                                    // ),
                                     Text(
                                         "${pos.getselectedcust!.address![index].address1},${pos.getselectedcust!.address![index].address2}, ${pos.getselectedcust!.address![index].address3}"),
                                     Text(pos.getselectedcust!.address![index]
@@ -1461,8 +1389,6 @@ billAddress(BuildContext context, PayreceiptController pos) async {
                     height: Screens.padingHeight(context) * 0.045,
                     decoration: BoxDecoration(
                       color: theme.primaryColor,
-                      // borderRadius: BorderRadius.only(
-                      //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
                     ),
                     child: Center(
                       child: Container(
@@ -1480,15 +1406,6 @@ billAddress(BuildContext context, PayreceiptController pos) async {
               ],
             ),
           ),
-          //  AlertBox(
-          //   payMent: 'Address',
-          //   widget:
-          //   buttonName: "Create Address",
-          //   callback: () {
-          //     Navigator.pop(context);
-          //     createAddress(context, theme, pos);
-          //   },
-          // )
         );
       });
 }
@@ -1503,7 +1420,6 @@ shipaddress(BuildContext context, PayreceiptController pos) async {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           contentPadding: const EdgeInsets.all(0),
-          // backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
           content: Container(
             width: Screens.width(context),
@@ -1525,7 +1441,6 @@ shipaddress(BuildContext context, PayreceiptController pos) async {
                         padding: EdgeInsets.only(
                             left: Screens.padingHeight(context) * 0.02,
                             right: Screens.padingHeight(context) * 0.02),
-                        // color: Colors.red,
                         width: Screens.width(context) * 0.4,
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -1554,7 +1469,6 @@ shipaddress(BuildContext context, PayreceiptController pos) async {
                 ),
                 SizedBox(
                   height: Screens.padingHeight(context) * 0.37,
-                  // width: Screens.width(context) * 0.25,
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: pos.getselectedcust!.address!.length,
@@ -1568,16 +1482,6 @@ shipaddress(BuildContext context, PayreceiptController pos) async {
                             child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            //             ListTile(
-                            //   title: Text(pos.selectedcust!.address[index].shipAddress,
-                            //       style: theme.textTheme.bodySmall),
-                            //   onTap: () {
-                            //     pos.changeShipAddress(index);
-                            //     // pos.selectedcust!.address[0].shipAddress =
-                            //     //     pos.selectedcust!.address[index].shipAddress;
-                            //     Navigator.pop(context);
-                            //   },
-                            // ),
                             Text(
                                 "${pos.getselectedcust!.address![index].address1}, ${pos.getselectedcust!.address![index].address2}, ${pos.getselectedcust!.address![index].address3},"),
                             Text(pos.getselectedcust!.address![index].billCity),
@@ -1601,8 +1505,6 @@ shipaddress(BuildContext context, PayreceiptController pos) async {
                     height: Screens.padingHeight(context) * 0.045,
                     decoration: BoxDecoration(
                       color: theme.primaryColor,
-                      // borderRadius: BorderRadius.only(
-                      //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
                     ),
                     child: Center(
                       child: Container(
@@ -1620,15 +1522,6 @@ shipaddress(BuildContext context, PayreceiptController pos) async {
               ],
             ),
           ),
-          // AlertBox(
-          //   payMent: 'Address',
-          //   widget:
-          //   buttonName: "Create Address",
-          //   callback: () {
-          //     Navigator.pop(context);
-          //     createAddress(context, theme, pos);
-          //   },
-          // )
         );
       });
 }
@@ -1643,18 +1536,8 @@ createAddress(BuildContext context, ThemeData theme, PayreceiptController pos) {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           contentPadding: const EdgeInsets.all(0),
-          // backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
-          // contentPadding: EdgeInsets.all(0),
           content: createAddressMethod(theme, context, pos),
-          // AlertBox(
-          //   payMent: 'Create Address',
-          //   widget: createAddressMethod(theme, context, pos),
-          //   buttonName: "Save",
-          //   callback: () {
-          //     pos.addadress(context);
-          //   },
-          // )
         );
       });
 }
@@ -1685,7 +1568,6 @@ Container createAddressMethod(
                   padding: EdgeInsets.only(
                       left: Screens.padingHeight(context) * 0.02,
                       right: Screens.padingHeight(context) * 0.02),
-                  // color: Colors.red,
                   width: Screens.width(context) * 0.4,
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -1725,16 +1607,12 @@ Container createAddressMethod(
             height: Screens.bodyheight(context) * 0.01,
           ),
           InkWell(
-            onTap: () {
-              // pos.createadd(context);
-            },
+            onTap: () {},
             child: Container(
               alignment: Alignment.center,
               height: Screens.padingHeight(context) * 0.045,
               decoration: BoxDecoration(
                 color: theme.primaryColor,
-                // borderRadius: BorderRadius.only(
-                //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
               ),
               child: Center(
                 child: Container(
@@ -1777,8 +1655,6 @@ class AddressWidget extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -1826,8 +1702,6 @@ class AddressWidget extends StatelessWidget {
               height: custHeight * 0.02,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -1874,8 +1748,6 @@ class AddressWidget extends StatelessWidget {
               height: custHeight * 0.02,
             ),
             Container(
-              // height: custHeight * 0.15,
-              // width: custWidth * 1,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
                 color: Colors.grey.withOpacity(0.01),
@@ -1925,7 +1797,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -1971,7 +1842,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2026,7 +1896,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2072,7 +1941,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2085,13 +1953,6 @@ class AddressWidget extends StatelessWidget {
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the State";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       hintText: "Ind",
                       filled: false,
@@ -2150,8 +2011,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: Colors.grey.withOpacity(0.01),
@@ -2200,8 +2059,6 @@ class AddressWidget extends StatelessWidget {
                   height: custHeight * 0.02,
                 ),
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: Colors.grey.withOpacity(0.01),
@@ -2250,8 +2107,6 @@ class AddressWidget extends StatelessWidget {
                   height: custHeight * 0.02,
                 ),
                 Container(
-                  // height: custHeight * 0.15,
-                  // width: custWidth * 0.65,
                   decoration: BoxDecoration(
                     border: Border.all(
                         color: const Color.fromARGB(255, 240, 235, 235)),
@@ -2307,7 +2162,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2353,7 +2207,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2408,7 +2261,6 @@ class AddressWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2454,7 +2306,6 @@ class AddressWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // height: custHeight * 0.15,
                   width: custWidth * 0.35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -2467,13 +2318,6 @@ class AddressWidget extends StatelessWidget {
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(color: Colors.black),
                     onChanged: (v) {},
-                    // validator: (value) {
-                    //   if (value!.isEmpty) {
-                    //     return "Please Enter the State";
-                    //   } else {
-                    //     return null;
-                    //   }
-                    // },
                     decoration: InputDecoration(
                       hintText: "Ind",
                       filled: false,
@@ -2507,8 +2351,6 @@ class AddressWidget extends StatelessWidget {
       );
     });
   }
-
-  //
 }
 
 
@@ -2561,8 +2403,8 @@ class AddressWidget extends StatelessWidget {
 //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //               children: [
 //                 Container(
-//                   // margin: EdgeInsets.only(top: CusHeight * 0.002),
-//                   //  alignment: Alignment.center,
+//                 
+//                 
 //                   height: CusHeight * 0.34,
 //                   width: CusWidth * 0.97,
 //                   decoration: BoxDecoration(
@@ -2581,38 +2423,38 @@ class AddressWidget extends StatelessWidget {
 //                   child: TextFormField(
 //                     onTap: () {
 //                     },
-//                     // readOnly: true,
-//                     // autofocus: false,
+//                   
+//                   
 //                     controller: prdCD.mycontroller[81],
 //                     style: theme.textTheme.bodyText2!
 //                         .copyWith(color: Colors.black),
 //                     keyboardType: TextInputType.text,
-//                     // textCapitalization: TextCapitalization.characters,
+//                   
 //                     onEditingComplete: () {
 //                       prdCD.custcodeScan(context, theme);
-//                       // prdCD.scannBAtch(context, theme);
+//                     
 //                     },
-//                     // onTap: () {
-//                     //   showDialog(
-//                     //       context: context,
-//                     //       barrierDismissible: false,
-//                     //       builder: (BuildContext context) {
-//                     //         return AlertDialog(
-//                     //           shape: RoundedRectangleBorder(
-//                     //               borderRadius:
-//                     //                   BorderRadius.all(Radius.circular(4))),
-//                     //           contentPadding: EdgeInsets.all(0),
-//                     //           // backgroundColor: Colors.transparent,
-//                     //           insetPadding: EdgeInsets.all(
-//                     //               Screens.bodyheight(context) * 0.02),
-//                     //           // content: forSearchBtn(context, prdCD),
-//                     //         );
-//                     //       });
-//                     // },
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
+//                   
 //                     onChanged: (val) {
 //                     },
 
-//                     // Only numbers can be eentered
+//                   
 //                     decoration: InputDecoration(
 //                       border: InputBorder.none,
 //                       filled: false,
@@ -2629,7 +2471,7 @@ class AddressWidget extends StatelessWidget {
 //                           decoration: BoxDecoration(
 //                               borderRadius:
 //                                   BorderRadius.all(Radius.circular(5)),
-//                               // color: Colors.grey[200],
+//                             
 //                               shape: BoxShape.rectangle),
 //                           child: IconButton(
 //                             onPressed: () {
@@ -2642,7 +2484,7 @@ class AddressWidget extends StatelessWidget {
 //                                           borderRadius: BorderRadius.all(
 //                                               Radius.circular(4))),
 //                                       contentPadding: EdgeInsets.all(0),
-//                                       // backgroundColor: Colors.transparent,
+//                                     
 //                                       insetPadding: EdgeInsets.all(
 //                                           Screens.bodyheight(context) * 0.02),
 //                                       content: forSearchBtn(context, prdCD),
@@ -2651,7 +2493,7 @@ class AddressWidget extends StatelessWidget {
 //                             },
 //                             icon: Icon(
 //                               Icons.search,
-//                               // size: 20,
+//                             
 //                             ),
 //                           ),
 //                         ),
@@ -2676,7 +2518,7 @@ class AddressWidget extends StatelessWidget {
 //           prdCD.getselectedcust == null
 //               ? Container(
 //                   alignment: Alignment.centerLeft,
-//                   // height: CusHeight,
+//                 
 //                   width: CusWidth,
 //                   padding: EdgeInsets.all(
 //                     CusHeight * 0.02,
@@ -2684,8 +2526,8 @@ class AddressWidget extends StatelessWidget {
 //                   decoration: BoxDecoration(
 //                     borderRadius: BorderRadius.circular(5),
 //                     color: Colors.white,
-//                     // border:
-//                     //     Border.all(color: theme.primaryColor.withOpacity(0.3))
+//                   
+//                   
 //                   ),
 //                   child: Wrap(
 //                       spacing: Screens.bodyheight(context) * 0.008,
@@ -2698,7 +2540,7 @@ class AddressWidget extends StatelessWidget {
 //                 )
 //               : Container(
 //                   alignment: Alignment.center,
-//                   // height: CusHeight,
+//                 
 //                   width: CusWidth,
 //                   padding: EdgeInsets.all(
 //                     CusHeight * 0.02,
@@ -2718,15 +2560,15 @@ class AddressWidget extends StatelessWidget {
 //                           Container(
 //                             alignment: Alignment.centerLeft,
 //                             width: CusWidth * 0.75,
-//                             // color: Colors.amber,
+//                           
 //                             child: Text(prdCD.getselectedcust!.name.toString(),
 //                                 style: theme.textTheme.subtitle2!
 //                                     .copyWith(fontSize: 20)),
 //                           ),
 //                           InkWell(
 //                             onTap: () {
-//                               // prdCD
-//                               // .mapUpdateCustomer(prdCD.getselectedCustomer);
+//                             
+//                             
 //                               showDialog(
 //                                   context: context,
 //                                   builder: (BuildContext context) {
@@ -2735,7 +2577,7 @@ class AddressWidget extends StatelessWidget {
 //                                           borderRadius: BorderRadius.all(
 //                                               Radius.circular(4))),
 //                                       contentPadding: EdgeInsets.all(0),
-//                                       // backgroundColor: Colors.transparent,
+//                                     
 //                                       insetPadding: EdgeInsets.all(
 //                                           Screens.bodyheight(context) * 0.02),
 //                                       content: forAddNewBtn(
@@ -2754,7 +2596,7 @@ class AddressWidget extends StatelessWidget {
 //                               alignment: Alignment.centerRight,
 //                               width: CusWidth * 0.12,
 //                               height: CusHeight * 0.2,
-//                               // color: Colors.amber,
+//                             
 //                               child: IconButton(
 //                                 onPressed: () {
 //                                   prdCD.clearpayData();
@@ -2770,15 +2612,15 @@ class AddressWidget extends StatelessWidget {
 //                           children: [
 //                             Container(
 //                               alignment: Alignment.centerLeft,
-//                               // width: CusWidth * 0.4,
-//                               // color: Colors.amber,
+//                             
+//                             
 //                               child: Row(
 //                                 children: [
 //                                   Container(
 //                                     child: Icon(
 //                                       Icons.phone,
 //                                       color: Colors.black54,
-//                                       // size: Screens.padingHeight(context) * 0.03,
+//                                     
 //                                     ),
 //                                   ),
 //                                   Text(prdCD.getselectedcust!.phNo.toString(),
@@ -2789,10 +2631,10 @@ class AddressWidget extends StatelessWidget {
 //                             ),
 //                             Container(
 //                               alignment: Alignment.centerRight,
-//                               // width: CusWidth * 0.1,
+//                             
 //                               height: CusHeight * 0.22,
 
-//                               // color: Colors.amber,
+//                             
 //                               child: Text(" | "),
 //                             ),
 //                             Container(
@@ -2805,7 +2647,7 @@ class AddressWidget extends StatelessWidget {
 //                                     color: Colors.grey,
 //                                   ),
 //                                   Container(
-//                                     // width: CusWidth * 0.6,
+//                                   
 //                                     child: Text(
 //                                         prdCD.getselectedcust!.email.toString(),
 //                                         style: theme.textTheme.bodyText2!
@@ -2824,28 +2666,28 @@ class AddressWidget extends StatelessWidget {
 //                           children: [
 //                             Container(
 //                               width: CusWidth * 0.51,
-//                               // color: Colors.amber,
+//                             
 //                               child: Row(
 //                                 mainAxisAlignment:
 //                                     MainAxisAlignment.spaceBetween,
 //                                 children: [
 //                                   Container(
 //                                     width: CusWidth * 0.28,
-//                                     // color: Colors.black,
+//                                   
 //                                     child: Text(
 //                                       "GST#",
-//                                       // "${AppLocalizations.of(context)!.gst}",
+//                                     
 //                                       style:
 //                                           theme.textTheme.bodyText2!.copyWith(
-//                                               // fontWeight: FontWeight.bold,
-//                                               // fontSize: 12
+//                                             
+//                                             
 //                                               color: Colors.black),
 //                                     ),
 //                                   ),
 //                                   Container(
 //                                     alignment: Alignment.centerLeft,
 //                                     width: CusWidth * 0.23,
-//                                     // color: Colors.blue,
+//                                   
 //                                     child: Text(
 //                                       "${prdCD.getselectedcust!.tarNo}",
 //                                       style:
@@ -2857,34 +2699,34 @@ class AddressWidget extends StatelessWidget {
 //                             ),
 //                             Container(
 //                               width: CusWidth * 0.46,
-//                               // color: Colors.amber,
+//                             
 //                               child: Row(
 //                                 mainAxisAlignment:
 //                                     MainAxisAlignment.spaceBetween,
 //                                 children: [
 //                                   Container(
 //                                     width: CusWidth * 0.17,
-//                                     // color: Colors.grey,
+//                                   
 //                                     alignment: Alignment.centerRight,
 //                                     child: Text(
 //                                       "Balance",
 //                                       style:
 //                                           theme.textTheme.bodyText2!.copyWith(
-//                                               // fontWeight: FontWeight.bold,
-//                                               // fontSize: 12
+//                                             
+//                                             
 //                                               color: Colors.black),
 //                                     ),
 //                                   ),
 //                                   Container(
 //                                     child: 
-//                                     // prdCD.onAccPayment == 0
-//                                     //     ? 
+//                                   
+//                                   
 //                                         Text(prdCD.getselectedcust!.accBalance
 //                                             .toString()
 //                                             .replaceAll(",", ""))
-//                                         // : Text(prdCD.onAccPayment
-//                                         //     .toString()
-//                                         //     .replaceAll(",", "")),
+//                                       
+//                                       
+//                                       
 //                                   ),
 //                                 ],
 //                               ),
@@ -2899,27 +2741,27 @@ class AddressWidget extends StatelessWidget {
 //                           children: [
 //                             Container(
 //                               width: CusWidth * 0.51,
-//                               // color: Colors.amber,
+//                             
 //                               child: Row(
 //                                 mainAxisAlignment:
 //                                     MainAxisAlignment.spaceBetween,
 //                                 children: [
 //                                   Container(
 //                                     width: CusWidth * 0.28,
-//                                     // color: Colors.black,
+//                                   
 //                                     child: Text(
 //                                       "Code#",
 //                                       style:
 //                                           theme.textTheme.bodyText2!.copyWith(
-//                                               // fontWeight: FontWeight.bold,
-//                                               // fontSize: 12
+//                                             
+//                                             
 //                                               color: Colors.black),
 //                                     ),
 //                                   ),
 //                                   Container(
 //                                     alignment: Alignment.centerLeft,
 //                                     width: CusWidth * 0.23,
-//                                     // color: Colors.blue,
+//                                   
 //                                     child: Text(
 //                                       "${prdCD.getselectedcust!.cardCode}",
 //                                       style:
@@ -2931,27 +2773,27 @@ class AddressWidget extends StatelessWidget {
 //                             ),
 //                             Container(
 //                               width: CusWidth * 0.46,
-//                               // color: Colors.amber,
+//                             
 //                               child: Row(
 //                                 mainAxisAlignment:
 //                                     MainAxisAlignment.spaceBetween,
 //                                 children: [
 //                                   Container(
 //                                     width: CusWidth * 0.17,
-//                                     // color: Colors.grey,
+//                                   
 //                                     alignment: Alignment.centerRight,
 //                                     child: Text(
 //                                       "Point",
 //                                       style:
 //                                           theme.textTheme.bodyText2!.copyWith(
-//                                               // fontWeight: FontWeight.bold,
-//                                               // fontSize: 12
+//                                             
+//                                             
 //                                               color: Colors.black),
 //                                     ),
 //                                   ),
 //                                   Container(
 //                                     width: CusWidth * 0.23,
-//                                     // color: Colors.blue,
+//                                   
 //                                     alignment: Alignment.centerRight,
 //                                     child: Text(
 //                                       "${prdCD.getselectedcust!.point}",
@@ -2974,7 +2816,7 @@ class AddressWidget extends StatelessWidget {
 //                             },
 //                             child: Container(
 //                               width: Screens.width(context) * 0.4,
-//                               // color: Colors.red,
+//                             
 //                               child: Column(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 children: [
@@ -3050,11 +2892,11 @@ class AddressWidget extends StatelessWidget {
 //                           ),
 //                           InkWell(
 //                             onTap: () {
-//                               // shipaddress(context, prdCD);
+//                             
 //                             },
 //                             child: Container(
 //                               width: Screens.width(context) * 0.465,
-//                               //color: Colors.green,
+//                             
 //                               child: Column(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 children: [
@@ -3164,7 +3006,7 @@ class AddressWidget extends StatelessWidget {
 //                     padding: EdgeInsets.only(
 //                         left: Screens.padingHeight(context) * 0.02,
 //                         right: Screens.padingHeight(context) * 0.02),
-//                     // color: Colors.red,
+//                   
 //                     width: Screens.width(context) * 0.4,
 //                     alignment: Alignment.centerLeft,
 //                     child: Text(
@@ -3307,7 +3149,7 @@ class AddressWidget extends StatelessWidget {
 //                         ),
 //                       );
 //                     })),
-//             //  SizedBox(height: Screens.padingHeight(context) * 0.09),
+//           
 //             SizedBox(height: Screens.padingHeight(context) * 0.01),
 //             InkWell(
 //               onTap: () {
@@ -3321,7 +3163,7 @@ class AddressWidget extends StatelessWidget {
 //                         shape: RoundedRectangleBorder(
 //                             borderRadius: BorderRadius.all(Radius.circular(4))),
 //                         contentPadding: EdgeInsets.all(0),
-//                         // backgroundColor: Colors.transparent,
+//                       
 //                         insetPadding:
 //                             EdgeInsets.all(Screens.bodyheight(context) * 0.02),
 //                         content:
@@ -3366,7 +3208,7 @@ class AddressWidget extends StatelessWidget {
 //             bottom: Screens.padingHeight(context) * 0.01),
 //         width: Screens.width(context),
 //         height: Screens.padingHeight(context) * 0.7,
-//         // color: Colors.red,
+//       
 //         child: SingleChildScrollView(
 //           child: Column(
 //             mainAxisSize: MainAxisSize.min,
@@ -3387,7 +3229,7 @@ class AddressWidget extends StatelessWidget {
 //                             padding: EdgeInsets.only(
 //                                 left: Screens.padingHeight(context) * 0.02,
 //                                 right: Screens.padingHeight(context) * 0.02),
-//                             // color: Colors.red,
+//                           
 //                             width: Screens.width(context) * 0.4,
 //                             alignment: Alignment.centerLeft,
 //                             child: Text(
@@ -3466,8 +3308,8 @@ class AddressWidget extends StatelessWidget {
 //                       height: Screens.padingHeight(context) * 0.03,
 //                     ),
 //                     Container(
-//                       // height: custHeight * 0.15,
-//                       // width: custWidth * 1,
+//                     
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3517,7 +3359,7 @@ class AddressWidget extends StatelessWidget {
 //                       height: Screens.padingHeight(context) * 0.03,
 //                     ),
 //                     Container(
-//                       // width: custWidth * 1,
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3566,8 +3408,8 @@ class AddressWidget extends StatelessWidget {
 //                       height: Screens.padingHeight(context) * 0.03,
 //                     ),
 //                     Container(
-//                       // height: Screens.padingHeight(context) * 0.15,
-//                       // width: custWidth * 1,
+//                     
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3614,7 +3456,7 @@ class AddressWidget extends StatelessWidget {
 //                     SizedBox(
 //                       height: Screens.padingHeight(context) * 0.02,
 //                     ),
-//                     //addreswidget
+//                   
 //                     AddressWidget(
 //                       theme: theme,
 //                       PayreceiptController: prdadd,
@@ -3626,8 +3468,8 @@ class AddressWidget extends StatelessWidget {
 //                       height: Screens.padingHeight(context) * 0.02,
 //                     ),
 //                     Container(
-//                       // height: custHeight * 0.15,
-//                       // width: custWidth * 0.65,
+//                     
+//                     
 //                       decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(3),
 //                         color: Colors.grey.withOpacity(0.01),
@@ -3687,7 +3529,7 @@ class AddressWidget extends StatelessWidget {
 //                                       borderRadius:
 //                                           BorderRadius.all(Radius.circular(4))),
 //                                   contentPadding: EdgeInsets.all(0),
-//                                   // backgroundColor: Colors.transparent,
+//                                 
 //                                   insetPadding: EdgeInsets.all(
 //                                       Screens.bodyheight(context) * 0.02),
 //                                   content: updateType(context, prdCD),
@@ -3700,8 +3542,8 @@ class AddressWidget extends StatelessWidget {
 //                         height: Screens.padingHeight(context) * 0.045,
 //                         decoration: BoxDecoration(
 //                           color: theme.primaryColor,
-//                           // borderRadius: BorderRadius.only(
-//                           //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//                         
+//                         
 //                         ),
 //                         child: Center(
 //                           child: Container(
@@ -3779,7 +3621,7 @@ class AddressWidget extends StatelessWidget {
 //   final theme = Theme.of(context);
 //   return Container(
 //     width: Screens.width(context),
-//     //  height: Screens.padingHeight(context) * 0.4,
+//   
 
 //     child: Column(
 //       mainAxisSize: MainAxisSize.min,
@@ -3789,14 +3631,14 @@ class AddressWidget extends StatelessWidget {
 //           height: Screens.padingHeight(context) * 0.05,
 //           decoration: BoxDecoration(
 //             color: theme.primaryColor,
-//             // borderRadius: BorderRadius.only(
-//             //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//           
+//           
 //           ),
 //           child: Row(
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // color: Colors.red,
+//               
 //                 width: Screens.width(context) * 0.4,
 //                 alignment: Alignment.center,
 //                 child: Text(
@@ -3852,7 +3694,7 @@ class AddressWidget extends StatelessWidget {
 //                     child: ElevatedButton(
 //                         onPressed: () {
 //                           Navigator.pop(context);
-//                           // pos.updateCustomer();
+//                         
 //                           Navigator.pop(context);
 //                         },
 //                         child: Text(
@@ -3867,7 +3709,7 @@ class AddressWidget extends StatelessWidget {
 //                       child: ElevatedButton(
 //                           onPressed: () {
 //                             Navigator.pop(context);
-//                             // pos.updateCustomer();
+//                           
 //                             Navigator.pop(context);
 //                           },
 //                           child: Text(
@@ -3896,7 +3738,7 @@ class AddressWidget extends StatelessWidget {
 //           shape: RoundedRectangleBorder(
 //               borderRadius: BorderRadius.all(Radius.circular(4))),
 //           contentPadding: EdgeInsets.all(0),
-//           // backgroundColor: Colors.transparent,
+//         
 //           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
 //           content: Container(
 //             width: Screens.width(context),
@@ -3918,7 +3760,7 @@ class AddressWidget extends StatelessWidget {
 //                         padding: EdgeInsets.only(
 //                             left: Screens.padingHeight(context) * 0.02,
 //                             right: Screens.padingHeight(context) * 0.02),
-//                         // color: Colors.red,
+//                       
 //                         width: Screens.width(context) * 0.4,
 //                         alignment: Alignment.centerLeft,
 //                         child: Text(
@@ -3970,15 +3812,15 @@ class AddressWidget extends StatelessWidget {
 //                                 child: Column(
 //                                   crossAxisAlignment: CrossAxisAlignment.start,
 //                                   children: [
-//                                     //             ListTile(
-//                                     //   title: Text( pos.selectedcust!.address[index].billAddress,
-//                                     //       style: theme.textTheme.bodySmall),
-//                                     //   onTap: () {
-//                                     // pos.changeBillAddress(index);
-//                                     //     //pos.selectedcust!.address[pos.selectedAdress].billAddress = pos.selectedcust!.address[index].billAddress;
-//                                     //     Navigator.pop(context);
-//                                     //   },
-//                                     // ),
+//                                   
+//                                   
+//                                   
+//                                   
+//                                   
+//                                   
+//                                   
+//                                   
+//                                   
 //                                     Container(
 //                                       child: Text(
 //                                           "${pos.selectcust!.address![index].address1}${pos.selectcust!.address![index].address2}${pos.selectcust!.address![index].address3}"),
@@ -4012,8 +3854,8 @@ class AddressWidget extends StatelessWidget {
 //                     height: Screens.padingHeight(context) * 0.045,
 //                     decoration: BoxDecoration(
 //                       color: theme.primaryColor,
-//                       // borderRadius: BorderRadius.only(
-//                       //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//                     
+//                     
 //                     ),
 //                     child: Center(
 //                       child: Container(
@@ -4031,15 +3873,15 @@ class AddressWidget extends StatelessWidget {
 //               ],
 //             ),
 //           ),
-//           //  AlertBox(
-//           //   payMent: 'Address',
-//           //   widget:
-//           //   buttonName: "Create Address",
-//           //   callback: () {
-//           //     Navigator.pop(context);
-//           //     createAddress(context, theme, pos);
-//           //   },
-//           // )
+//         
+//         
+//         
+//         
+//         
+//         
+//         
+//         
+//         
 //         );
 //       });
 // }
@@ -4054,7 +3896,7 @@ class AddressWidget extends StatelessWidget {
 //           shape: RoundedRectangleBorder(
 //               borderRadius: BorderRadius.all(Radius.circular(4))),
 //           contentPadding: EdgeInsets.all(0),
-//           // backgroundColor: Colors.transparent,
+//         
 //           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
 //           content: Container(
 //             width: Screens.width(context),
@@ -4076,7 +3918,7 @@ class AddressWidget extends StatelessWidget {
 //                         padding: EdgeInsets.only(
 //                             left: Screens.padingHeight(context) * 0.02,
 //                             right: Screens.padingHeight(context) * 0.02),
-//                         // color: Colors.red,
+//                       
 //                         width: Screens.width(context) * 0.4,
 //                         alignment: Alignment.centerLeft,
 //                         child: Text(
@@ -4105,7 +3947,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //                 Container(
 //                   height: Screens.padingHeight(context) * 0.4,
-//                   // width: Screens.width(context) * 0.25,
+//                 
 //                   child: ListView.builder(
 //                     shrinkWrap: true,
 //                     itemCount: pos.selectcust!.address!.length,
@@ -4120,16 +3962,16 @@ class AddressWidget extends StatelessWidget {
 //                                 child: Column(
 //                           crossAxisAlignment: CrossAxisAlignment.start,
 //                           children: [
-//                             //             ListTile(
-//                             //   title: Text(pos.selectedcust!.address[index].shipAddress,
-//                             //       style: theme.textTheme.bodySmall),
-//                             //   onTap: () {
-//                             //     pos.changeShipAddress(index);
-//                             //     // pos.selectedcust!.address[0].shipAddress =
-//                             //     //     pos.selectedcust!.address[index].shipAddress;
-//                             //     Navigator.pop(context);
-//                             //   },
-//                             // ),
+//                           
+//                           
+//                           
+//                           
+//                           
+//                           
+//                           
+//                           
+//                           
+//                           
 //                             Container(
 //                               child: Text(
 //                                   pos.selectcust!.address![index].address1!+ pos.selectcust!.address![index].address2!+ pos.selectcust!.address![index].address3!),
@@ -4163,8 +4005,8 @@ class AddressWidget extends StatelessWidget {
 //                     height: Screens.padingHeight(context) * 0.045,
 //                     decoration: BoxDecoration(
 //                       color: theme.primaryColor,
-//                       // borderRadius: BorderRadius.only(
-//                       //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//                     
+//                     
 //                     ),
 //                     child: Center(
 //                       child: Container(
@@ -4182,15 +4024,15 @@ class AddressWidget extends StatelessWidget {
 //               ],
 //             ),
 //           ),
-//           // AlertBox(
-//           //   payMent: 'Address',
-//           //   widget:
-//           //   buttonName: "Create Address",
-//           //   callback: () {
-//           //     Navigator.pop(context);
-//           //     createAddress(context, theme, pos);
-//           //   },
-//           // )
+//         
+//         
+//         
+//         
+//         
+//         
+//         
+//         
+//         
 //         );
 //       });
 // }
@@ -4206,18 +4048,18 @@ class AddressWidget extends StatelessWidget {
 //           shape: RoundedRectangleBorder(
 //               borderRadius: BorderRadius.all(Radius.circular(4))),
 //           contentPadding: EdgeInsets.all(0),
-//           // backgroundColor: Colors.transparent,
+//         
 //           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
-//           // contentPadding: EdgeInsets.all(0),
+//         
 //           content: createAddressMethod(theme, context, pos),
-//           // AlertBox(
-//           //   payMent: 'Create Address',
-//           //   widget: createAddressMethod(theme, context, pos),
-//           //   buttonName: "Save",
-//           //   callback: () {
-//           //     pos.addadress(context);
-//           //   },
-//           // )
+//         
+//         
+//         
+//         
+//         
+//         
+//         
+//         
 //         );
 //       });
 // }
@@ -4248,7 +4090,7 @@ class AddressWidget extends StatelessWidget {
 //                   padding: EdgeInsets.only(
 //                       left: Screens.padingHeight(context) * 0.02,
 //                       right: Screens.padingHeight(context) * 0.02),
-//                   // color: Colors.red,
+//                 
 //                   width: Screens.width(context) * 0.4,
 //                   alignment: Alignment.centerLeft,
 //                   child: Text(
@@ -4296,8 +4138,8 @@ class AddressWidget extends StatelessWidget {
 //               height: Screens.padingHeight(context) * 0.045,
 //               decoration: BoxDecoration(
 //                 color: theme.primaryColor,
-//                 // borderRadius: BorderRadius.only(
-//                 //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
+//               
+//               
 //               ),
 //               child: Center(
 //                 child: Container(
@@ -4339,8 +4181,8 @@ class AddressWidget extends StatelessWidget {
 //       return Column(
 //         children: [
 //           Container(
-//             // height: custHeight * 0.15,
-//             // width: custWidth * 1,
+//           
+//           
 //             decoration: BoxDecoration(
 //               borderRadius: BorderRadius.circular(3),
 //               color: Colors.grey.withOpacity(0.01),
@@ -4387,8 +4229,8 @@ class AddressWidget extends StatelessWidget {
 //             height: custHeight * 0.02,
 //           ),
 //           Container(
-//             // height: custHeight * 0.15,
-//             // width: custWidth * 1,
+//           
+//           
 //             decoration: BoxDecoration(
 //               borderRadius: BorderRadius.circular(3),
 //               color: Colors.grey.withOpacity(0.01),
@@ -4435,8 +4277,8 @@ class AddressWidget extends StatelessWidget {
 //             height: custHeight * 0.02,
 //           ),
 //           Container(
-//             // height: custHeight * 0.15,
-//             // width: custWidth * 1,
+//           
+//           
 //             decoration: BoxDecoration(
 //               borderRadius: BorderRadius.circular(3),
 //               color: Colors.grey.withOpacity(0.01),
@@ -4486,7 +4328,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4532,7 +4374,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4586,7 +4428,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4632,7 +4474,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4645,13 +4487,13 @@ class AddressWidget extends StatelessWidget {
 //                   style:
 //                       theme.textTheme.bodyMedium?.copyWith(color: Colors.black),
 //                   onChanged: (v) {},
-//                   // validator: (value) {
-//                   //   if (value!.isEmpty) {
-//                   //     return "Please Enter the State";
-//                   //   } else {
-//                   //     return null;
-//                   //   }
-//                   // },
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
 //                   decoration: InputDecoration(
 //                     hintText: "Ind",
 //                     filled: false,
@@ -4711,8 +4553,8 @@ class AddressWidget extends StatelessWidget {
 //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //               children: [
 //                 Container(
-//                   // height: custHeight * 0.15,
-//                   // width: custWidth * 0.65,
+//                 
+//                 
 //                   decoration: BoxDecoration(
 //                     borderRadius: BorderRadius.circular(3),
 //                     color: Colors.grey.withOpacity(0.01),
@@ -4761,8 +4603,8 @@ class AddressWidget extends StatelessWidget {
 //                   height: custHeight * 0.02,
 //                 ),
 //                 Container(
-//                   // height: custHeight * 0.15,
-//                   // width: custWidth * 0.65,
+//                 
+//                 
 //                   decoration: BoxDecoration(
 //                     borderRadius: BorderRadius.circular(3),
 //                     color: Colors.grey.withOpacity(0.01),
@@ -4811,8 +4653,8 @@ class AddressWidget extends StatelessWidget {
 //                   height: custHeight * 0.02,
 //                 ),
 //                 Container(
-//                   // height: custHeight * 0.15,
-//                   // width: custWidth * 0.65,
+//                 
+//                 
 //                   decoration: BoxDecoration(
 //                     border:
 //                         Border.all(color: Color.fromARGB(255, 240, 235, 235)),
@@ -4869,7 +4711,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4915,7 +4757,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -4969,7 +4811,7 @@ class AddressWidget extends StatelessWidget {
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -5015,7 +4857,7 @@ class AddressWidget extends StatelessWidget {
 //                 ),
 //               ),
 //               Container(
-//                 // height: custHeight * 0.15,
+//               
 //                 width: custWidth * 0.35,
 //                 decoration: BoxDecoration(
 //                   borderRadius: BorderRadius.circular(3),
@@ -5028,13 +4870,13 @@ class AddressWidget extends StatelessWidget {
 //                   style:
 //                       theme.textTheme.bodyMedium?.copyWith(color: Colors.black),
 //                   onChanged: (v) {},
-//                   // validator: (value) {
-//                   //   if (value!.isEmpty) {
-//                   //     return "Please Enter the State";
-//                   //   } else {
-//                   //     return null;
-//                   //   }
-//                   // },
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
+//                 
 //                   decoration: InputDecoration(
 //                     hintText: "Ind",
 //                     filled: false,
@@ -5068,6 +4910,6 @@ class AddressWidget extends StatelessWidget {
 //     });
 //   }
 // }
-//   //
+// 
 
 

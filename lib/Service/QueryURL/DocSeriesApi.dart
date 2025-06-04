@@ -33,7 +33,7 @@ class Newsdoceriesapi {
       }
     } catch (e) {
       log('NewDocSeriesMdl:::$e');
-      //  throw Exception("Exception: $e");
+
       return NewDocSeriesMdl.error(e.toString(), 500);
     }
   }

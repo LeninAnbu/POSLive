@@ -25,8 +25,6 @@ class SalesReurnPostAPi {
       "DocDate": "$docDate",
       "DocDueDate": "$dueDate",
       "Comments": "$remarks",
-
-      // 'Series': '$seriesType',
       "U_CN_Type": 5,
       "U_DeviceTransID": deviceTransID,
       "U_PosUserCode": UserValues.userCode,
@@ -54,7 +52,6 @@ class SalesReurnPostAPi {
           "DocDate": "$docDate",
           "DocDueDate": "$dueDate",
           "Comments": "$remarks",
-          // 'Series': '$seriesType',
           "U_CN_Type": 5,
           "U_DeviceTransID": deviceTransID,
           "U_PosUserCode": UserValues.userCode,
@@ -70,7 +67,6 @@ class SalesReurnPostAPi {
               "DocDate": "$docDate",
               "DocDueDate": "$dueDate",
               "Comments": "$remarks",
-              // 'Series': '$seriesType',
               "U_CN_Type": 5,
               "U_DeviceTransID": deviceTransID,
               "U_PosUserCode": UserValues.userCode,
@@ -82,12 +78,11 @@ class SalesReurnPostAPi {
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         return SalesQuotStatus.fromJson(response.statusCode);
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return SalesQuotStatus.fromJson(response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
+
       return SalesQuotStatus.issue(
         'Restart the app or contact the admin!!..\n',
         500,

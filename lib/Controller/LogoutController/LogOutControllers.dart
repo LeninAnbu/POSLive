@@ -48,6 +48,7 @@ class LogoutCtrl extends ChangeNotifier {
 
   clearData(BuildContext context) async {
     final Database db = (await DBHelper.getInstance())!;
+    await DefaultCacheManager().emptyCache();
 
     await DBOperation.truncateItemMaster(db);
     await DBOperation.truncateStockSnap(db);
@@ -81,11 +82,9 @@ class LogoutCtrl extends ChangeNotifier {
     context.read<LoginController>().mycontroller[2].text = '';
     context.read<LoginController>().mycontroller[4].text = '';
     context.read<LoginController>().mycontroller[5].text = '';
-
     await DefaultCacheManager().emptyCache();
+
     Get.offAllNamed(ConstantRoutes.login);
-    // Navigator.push(
-    //     context, MaterialPageRoute(builder: (context) => const LoginScreen()));
 
     notifyListeners();
   }

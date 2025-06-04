@@ -20,7 +20,6 @@ class StockReplenishMainScreens extends StatefulWidget {
 }
 
 class _StockReplenishMainScreensState extends State<StockReplenishMainScreens> {
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -48,19 +47,11 @@ class _StockReplenishMainScreensState extends State<StockReplenishMainScreens> {
                     return SafeArea(
                       child: StockReplenishScreens(
                         stkCtrl: stkCtrl,
-
-                        // scaffoldKey: scaffoldKey,
                       ),
                     );
                   });
                 }));
       } else {
-        //300
-        // return ChangeNotifierProvider<StockReplenishController>(
-        //     create: (context) => StockReplenishController(),
-        //     builder: (context, child) {
-        //       return Consumer<StockReplenishController>(
-        //           builder: (BuildContext context, prdSCD, Widget? child) {
         return Scaffold(
             resizeToAvoidBottomInset: false,
             drawer: naviDrawer(),
@@ -68,8 +59,6 @@ class _StockReplenishMainScreensState extends State<StockReplenishMainScreens> {
             body: const SafeArea(
               child: TabStockReplenishScreen(),
             ));
-        //   });
-        // });
       }
     });
   }

@@ -154,7 +154,6 @@ class RefundBillingOptions extends StatelessWidget {
                                                                     bottom: Screens.padingHeight(
                                                                             context) *
                                                                         0.03),
-                                                                // height: custHeight * 0.2,
                                                                 child: ListTile(
                                                                   onTap: () {
                                                                     showDialog(
@@ -244,7 +243,6 @@ class RefundBillingOptions extends StatelessWidget {
                                                               ),
                                                             );
                                                           })),
-                                                  //  SizedBox(height:  Screens.padingHeight(context) * 0.09),
                                                 ]);
                                           })));
                       });
@@ -252,14 +250,11 @@ class RefundBillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.045,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Draft Bills",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -287,15 +282,11 @@ class RefundBillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.045,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Store Refresh",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -323,14 +314,11 @@ class RefundBillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.045,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Print",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -358,14 +346,11 @@ class RefundBillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.045,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Access Til",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -393,14 +378,11 @@ class RefundBillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.045,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Dual Screen",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,

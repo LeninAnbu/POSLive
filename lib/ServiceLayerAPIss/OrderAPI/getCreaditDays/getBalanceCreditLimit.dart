@@ -25,18 +25,16 @@ class GetBalanceCreditAPi {
       log('CreditLimit.::${response.body}');
 
       if (response.statusCode == 200) {
-        // print("GetBalanceCreditAPi:: "+json.decode(response.body).toString());
         return BalanceCreaditModal.fromJson(
             json.decode(response.body) as Map<String, dynamic>);
       } else {
         log(json.decode(response.body));
         log(response.statusCode.toString());
-        // throw Exception('Restart the app or contact the admin!!..');
+
         return BalanceCreaditModal.issue(
             'Restart the app or contact the admin!!..');
       }
     } catch (e) {
-      // throw Exception(e);
       return BalanceCreaditModal.issue(
           'Restart the app or contact the admin!!..');
     }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 // import 'package:chunked_stream/chunked_stream.dart';
@@ -35,13 +34,10 @@ class SubGroupSalesPdfReportAPi {
       log('SubGroupSalesPdf statusCode::${response.statusCode}');
 
       if (response.statusCode == 200) {
-        //  print("streamm: "+ json.fuse() response.body);
-        //  var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
-        // log('bodyBytes: ${response.bodyBytes}');
         final bytes = response.bodyBytes;
 
         final tempDir = await Directory('/storage/emulated/0/Download');
-        // await getTemporaryDirectory();
+
         log("direc: " + tempDir.path.toString());
         String timestamp = DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
 
@@ -56,7 +52,6 @@ class SubGroupSalesPdfReportAPi {
         ShowPdfs.title = 'YTDGrowthSLP';
         await Get.toNamed<dynamic>(ConstantRoutes.showPdf);
 
-        // SReportsState.isLoading = false;
         return 200;
       } else {
         return 400;
@@ -67,15 +62,4 @@ class SubGroupSalesPdfReportAPi {
       return 500;
     }
   }
-
-  // static Future<void> mainss() async {
-  //   // Open README.md as a byte stream
-  //   final fileStream = File('README.md').openRead();
-
-  //   // Read all bytes from the stream
-  //   final bytes = await readByteStream(fileStream);
-  //   print(bytes);
-  //   // Convert content to string using utf8 codec from dart:convert and print
-  //   print(utf8.decode(bytes));
-  // }
 }

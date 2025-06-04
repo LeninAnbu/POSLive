@@ -20,14 +20,7 @@ class AutoSelectApi {
                 "query":
                     "Pos_AutoBatch_GetFiFoQty',$itemCode,','${AppConstant.branch}'"
               }));
-      log('message::${json.encode({
-            "constr":
-                "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-            "query":
-                "Pos_AutoBatch_GetFiFoQty',$itemCode','${AppConstant.branch}'"
-          })}');
-      // log("AutoSelect Data Res: ${json.decode(response.body)}");
-
+      log('Pos_AutoBatch_GetFiFoQty Response::${response.body}');
       print(response.statusCode);
       if (response.statusCode == 200) {
         return AutoSelectModl.fromJson(
@@ -40,7 +33,7 @@ class AutoSelectApi {
       }
     } catch (e) {
       log('AutoSelectModl:::$e');
-      //  throw Exception("Exception: $e");
+
       return AutoSelectModl.error(e.toString(), 500);
     }
   }

@@ -23,9 +23,7 @@ class UserLoginDetail extends StatelessWidget {
         width: userWidth,
         padding: EdgeInsets.all(userheight * 0.008),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5), color: Colors.white
-            // color: Colors.grey.withOpacity(0.1),
-            ),
+            borderRadius: BorderRadius.circular(5), color: Colors.white),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -47,8 +45,6 @@ class UserLoginDetail extends StatelessWidget {
                           )),
                       Container(
                           width: userWidth * 0.4,
-                          //  height: userheight * 1.2,
-                          //  color: Colors.black,
                           alignment: Alignment.centerLeft,
                           child: Text(
                             '  ${UserValues.username}',
@@ -58,19 +54,13 @@ class UserLoginDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                // SizedBox(
-                //   width: userWidth * 0.0,
-                // ),
                 SizedBox(
                   width: userWidth * 0.4,
-                  // color: Colors.red,
-                  // width: userWidth * 0.22,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                          // color: Colors.blueAccent,
                           alignment: Alignment.centerLeft,
                           width: userWidth * 0.135,
                           child: Text(
@@ -102,10 +92,8 @@ class UserLoginDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  // color: Colors.blueAccent,
                   width: userWidth * 0.56,
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           width: userWidth * 0.16,
@@ -115,11 +103,6 @@ class UserLoginDetail extends StatelessWidget {
                             style: theme.textTheme.bodyMedium
                                 ?.copyWith(fontSize: 16),
                           )),
-                      // Container(
-                      //   alignment: Alignment.center,
-                      //   child:
-                      //       Text(':', style: theme.textTheme.bodyText2?.copyWith()),
-                      // ),
                       Container(
                           width: userWidth * 0.4,
                           alignment: Alignment.centerLeft,
@@ -138,7 +121,6 @@ class UserLoginDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                          // color: Colors.red,
                           width: userWidth * 0.135,
                           alignment: Alignment.centerLeft,
                           child: Text(

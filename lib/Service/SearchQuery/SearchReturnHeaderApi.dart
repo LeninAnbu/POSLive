@@ -19,8 +19,7 @@ class SerachReturnHeaderAPi {
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
                 "query":
-                "EXEC BZ_POS_SerachReturnHeaderAPi  '$fromDate','$toDate','${AppConstant.branch}'"
-                    // "Select distinct  DocEntry,DocNum,DocDate,CardCode,CardName,DocTotal,DocStatus  from ORIN  A  Inner join OUSR B ON A.UserSign=B.USERID LEFT  JOIN [BZ_POS_Users] C ON C.SAPUserName=B.USER_CODE  Where A.DocDate between '$fromDate' and '$toDate' AND C.Branch='${AppConstant.branch}' order by DocDate desc,DocNum desc"
+                    "EXEC BZ_POS_SerachReturnHeaderAPi  '$fromDate','$toDate','${AppConstant.branch}'"
               }));
 
       log("Return Header Res: " + json.decode(response.body).toString());
@@ -29,12 +28,10 @@ class SerachReturnHeaderAPi {
         return OpenSalesOrderHeader.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return OpenSalesOrderHeader.fromJson(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
-      //  throw Exception("Exception: $e");
       log('SalsesOrderHeaderAPi::${e.toString()}');
       return OpenSalesOrderHeader.error(e.toString(), 500);
     }

@@ -19,14 +19,9 @@ class GetPaymentGroupAPi {
           body: json.encode({
             "constr":
                 "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-            "query":
-            "EXEC BZ_POS_GetPaymentGroupAPi"
-            //  "Select GroupNum, PymntGroup from OCTG",
+            "query": "EXEC BZ_POS_GetPaymentGroupAPi"
           }));
 
-      // print('B1SESSION='+ GetValues.sessionID.toString());
-      // print('odata.maxpagesize=${GetValues.maximumfetchValue}');
-      //  log("Terieri : " + json.decode(response.body).toString());
       print(response.statusCode);
       if (response.statusCode == 200) {
         return GetPaymentGroupModel.fromJson(
@@ -38,7 +33,7 @@ class GetPaymentGroupAPi {
       }
     } catch (e) {
       print("pargroupException222: $e");
-      //  throw Exception("Exception: $e");
+
       return GetPaymentGroupModel.fromJson(e.toString(), 500);
     }
   }

@@ -65,6 +65,8 @@ class OpenSalesOrderLineData {
   int lineNum;
   String itemCode;
   String description;
+  String? managedBy;
+
   double openQty;
   double? price;
   double? discPrcnt;
@@ -72,8 +74,11 @@ class OpenSalesOrderLineData {
   double? uPackSize;
   double? stock;
   int? invoiceClr;
+  int? selectindex;
+
   bool? checkBClr;
   bool? valueInsert;
+
 //PriceBefDi
 
   OpenSalesOrderLineData(
@@ -81,6 +86,8 @@ class OpenSalesOrderLineData {
       required this.lineNum,
       required this.docEntry,
       required this.uPackSize,
+      this.selectindex,
+      this.managedBy,
       this.stock,
       required this.description,
       required this.openQty,

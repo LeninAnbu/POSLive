@@ -44,26 +44,15 @@ class SalesRegisterState extends State<SalesRegisterScreens> {
               }),
         );
       } else {
-        //300
         return Scaffold(
           resizeToAvoidBottomInset: false,
           drawer: naviDrawer(),
-          body:
-              //  ChangeNotifierProvider<StRegCon>(
-              //     create: (context) => StRegCon(),
-              //     builder: (context, child) {
-              //       return Consumer<StRegCon>(
-              //           builder: (BuildContext context, stRegCon, Widget? child) {
-              //       return
-              SafeArea(
+          body: SafeArea(
             child: Column(children: <Widget>[
               appbarDefault('Sales Register', theme, context),
               TabStockReg(theme: theme)
             ]),
           ),
-          //     }
-          //   );
-          //  }),
         );
       }
     });

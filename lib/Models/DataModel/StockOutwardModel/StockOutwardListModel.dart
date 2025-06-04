@@ -106,6 +106,8 @@ class StockOutwardDetails {
   int? createdUserID;
   int? updateduserid;
   String? lastupdateIp;
+  String? managedBy;
+
   double? balQty;
   double? stock;
   double? Scanned_Qty = 0;
@@ -123,6 +125,7 @@ class StockOutwardDetails {
       this.listClr,
       this.balQty,
       this.insertValue,
+      this.managedBy,
       this.stock,
       this.baseDocline,
       this.dscription,

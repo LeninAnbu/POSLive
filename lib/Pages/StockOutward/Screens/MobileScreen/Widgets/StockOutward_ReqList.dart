@@ -30,9 +30,7 @@ class StockOut_ListWidget extends StatelessWidget {
           sOutHeigh * 0.008,
         ),
         decoration: const BoxDecoration(
-          // borderRadius: BorderRadius.circular(5),
           color: Colors.white,
-          // border: Border.all(color: theme.primaryColor.withOpacity(0.3))
         ),
         child: SizedBox(
           width: sOutWidth,
@@ -47,15 +45,6 @@ class StockOut_ListWidget extends StatelessWidget {
                         .copyWith(color: Colors.black),
                   ),
                 )
-              // : stOutCon.StockOutward.isEmpty &&
-              //         stOutCon.savedraftBill.isNotEmpty
-              //     ? Center(
-              //         child: Text(
-              //           "Data Save as Draft Bill..!!",
-              //           style: theme.textTheme.bodyMedium!
-              //               .copyWith(color: Colors.black),
-              //         ),
-              //       )
               : stOutCon.StockOutward.isEmpty && stOutCon.dbDataTrue == false
                   ? const Center(
                       child: CircularProgressIndicator(),
@@ -100,7 +89,6 @@ class StockOut_ListWidget extends StatelessWidget {
                             },
                             child: Container(
                                 width: sOutHeigh * 0.95,
-                                // height: sOutHeigh * 0.3,
                                 padding: EdgeInsets.all(
                                   sOutHeigh * 0.01,
                                 ),
@@ -110,19 +98,14 @@ class StockOut_ListWidget extends StatelessWidget {
                                                     .totalscannedqty(index) &&
                                             stOutCon.totalValdationqty(index) !=
                                                 0)
-                                        ?
-                                        // Colors.red
-                                        const Color(0xFFfcedee)
-                                        // Color(0xFFebfaef)
+                                        ? const Color(0xFFfcedee)
                                         : (stOutCon.totalqty(index) ==
                                                     stOutCon.totalscannedqty(
                                                         index) &&
                                                 stOutCon.totalValdationqty(
                                                         index) !=
                                                     0)
-                                            ?
-                                            // Colors.green
-                                            const Color(0xFFebfaef)
+                                            ? const Color(0xFFebfaef)
                                             : (stOutCon.totalqty(index) ==
                                                         stOutCon
                                                             .totalscannedqty(
@@ -148,19 +131,14 @@ class StockOut_ListWidget extends StatelessWidget {
                                               stOutCon.totalValdationqty(
                                                       index) !=
                                                   0)
-                                          ?
-                                          // Colors.red
-                                          Colors.red.withOpacity(0.3)
-                                          // Color(0xFFebfaef)
+                                          ? Colors.red.withOpacity(0.3)
                                           : (stOutCon.totalqty(index) ==
                                                       stOutCon.totalscannedqty(
                                                           index) &&
                                                   stOutCon.totalValdationqty(
                                                           index) !=
                                                       0)
-                                              ?
-                                              // Colors.green
-                                              Colors.green.withOpacity(0.3)
+                                              ? Colors.green.withOpacity(0.3)
                                               : (stOutCon.totalqty(index) ==
                                                           stOutCon
                                                               .totalscannedqty(
@@ -178,22 +156,15 @@ class StockOut_ListWidget extends StatelessWidget {
                                       children: [
                                         Container(
                                           width: sOutWidth,
-                                          // color: Colors.amber,
                                           padding:
                                               EdgeInsets.all(sOutHeigh * 0.006),
                                           decoration: BoxDecoration(
-                                              // color: Colors.grey[200],
                                               borderRadius:
                                                   BorderRadius.circular(4)),
                                           child: Text(
                                             "Request From ${stOutCon.StockOutward[index].reqfromWhs}",
-                                            // "${stOutCon.getScanneditemData[index].ItemName}",
                                             style: theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                                    // fontSize: 12,
-                                                    // color: Colors.grey,
-                                                    // fontWeight: FontWeight.bold
-                                                    ),
+                                                .copyWith(),
                                           ),
                                         ),
                                         SizedBox(
@@ -210,48 +181,29 @@ class StockOut_ListWidget extends StatelessWidget {
                                                 Container(
                                                   padding: EdgeInsets.all(
                                                       sOutHeigh * 0.005),
-
-                                                  // width: sOutWidth * 0.3,
                                                   decoration: BoxDecoration(
-                                                      // color: Colors.grey[600],
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4)),
-                                                  // color: Colors.blue,
                                                   child: Text(
                                                     stOutCon.StockOutward[index]
                                                                 .docstatus ==
                                                             '3'
                                                         ? "# Stock Against "
                                                         : "# Stock Order ",
-                                                    // "${stOutCon.getScanneditemData[index].SerialBatch}",
                                                     style: theme
                                                         .textTheme.bodyMedium!
-                                                        .copyWith(
-                                                            // color: Colors.green,
-                                                            // fontSize: 10,
-                                                            // fontWeight:
-                                                            //     FontWeight.bold
-                                                            ),
+                                                        .copyWith(),
                                                   ),
                                                 ),
                                                 Container(
-                                                  // width: sOutWidth * 0.6,
                                                   decoration:
-                                                      const BoxDecoration(
-                                                          // color: Colors.amber,
-                                                          ),
+                                                      const BoxDecoration(),
                                                   child: Text(
                                                     "${stOutCon.StockOutward[index].reqtransdate}",
-                                                    // "${stOutCon.getScanneditemData[index].ItemCode}",
                                                     style: theme
                                                         .textTheme.bodyMedium!
-                                                        .copyWith(
-                                                            // color: Colors.blueGrey,
-                                                            // fontSize: 12,
-                                                            // fontWeight:
-                                                            //     FontWeight.bold
-                                                            ),
+                                                        .copyWith(),
                                                   ),
                                                 ),
                                               ],

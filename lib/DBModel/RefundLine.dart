@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 const String tableRefundLine1 = "RefundLine1";
 
 class RefundLineT {

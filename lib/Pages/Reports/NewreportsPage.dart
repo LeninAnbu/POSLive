@@ -48,22 +48,12 @@ class _NewChangesReportState extends State<NewChangesReport> {
                       color: Colors.white,
                     ))
                 : Container(),
-            // IconButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => CollectionReceiptPdf()));
-            //   },
-            //   icon: Icon(Icons.picture_as_pdf),
-            // )
           ],
         ),
         body: Container(
             padding: EdgeInsets.only(top: Screens.padingHeight(context) * 0.02),
             child: context.watch<ReportController>().reportsList.isNotEmpty
                 ? Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
@@ -123,14 +113,8 @@ class _NewChangesReportState extends State<NewChangesReport> {
                               );
                             }),
                       ),
-                      // context.watch<ReportController>().valuesddd.isNotEmpty &&
-                      //         context.watch<ReportController>().loadingscrn ==
-                      //             false
-                      //     ?
                       Container(
-                        child:
-                            // SalesInDayReport()
-                            ShowReportDet(),
+                        child: ShowReportDet(),
                       )
                     ],
                   )

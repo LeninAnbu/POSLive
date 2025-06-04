@@ -9,19 +9,11 @@ import '../../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_mod
 import '../../../url/url.dart';
 
 class ApprovalsExpPostAPi {
-  // static String? docDueDate;
   static String? docEntry;
-  // static String? orderDate;
-  // static String? orderType;
-  // static String? gpApproval;
-  // static String? uDeviceId;
 
-  // static String? orderTime;
-  // static String? custREfNo;
   static Future<ApprovalstoDocModal> getGlobalData() async {
     final data = json.encode({
       "Document": {
-        // "DocDueDate": "$docDueDate",
         "DocEntry": "$docEntry",
       }
     });
@@ -38,7 +30,6 @@ class ApprovalsExpPostAPi {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),
-          // "Prefer":"return-no-content"
         },
       );
       log("statucCode: " + response.statusCode.toString());
@@ -48,7 +39,6 @@ class ApprovalsExpPostAPi {
           response.statusCode,
         );
       } else {
-        //  throw Exception('Restart the app or contact the admin!!..');
         return ApprovalstoDocModal.fromJson2(
           response.statusCode,
           json.decode(response.body),
@@ -56,7 +46,6 @@ class ApprovalsExpPostAPi {
       }
     } catch (e) {
       throw Exception(e);
-      // return ApprovalstoDocModal.issue('Restart the app or contact the admin!!..');
     }
   }
 }

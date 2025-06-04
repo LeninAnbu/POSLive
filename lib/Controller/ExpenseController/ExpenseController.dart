@@ -310,25 +310,49 @@ class ExpenseController extends ChangeNotifier {
     depitAcc = '';
     creditAcc = '';
     double expval = double.parse(mycontroller[1].text.toString());
-    log("pettyCashAmtpettyCashAmt:::$pettyCashAmt");
-    for (var i = 0; i < pettyCashListt!.length; i++) {
-      if (pettyCashListt![i].name == displayExpanseValue) {
-        log('kkkkkkkkkkk');
-        if (expval <= double.parse(pettyCashListt![i].currTotal.toString())) {
-          depitAcc = pettyCashListt![i].debitAcc.toString();
-          creditAcc = pettyCashListt![i].creditAcc.toString();
-          mycontroller[1].text = expval.toString();
-          notifyListeners();
-          saveValuesTODB("save", context, theme);
-        } else {
-          Get.defaultDialog(
-                  title: 'Alert',
-                  middleText: 'Kindly enter the correct amount..!!')
-              .then((value) {});
-          mycontroller[1].text = '';
+    log("pettyCashAmtpettyCashAmt:::$expval");
 
-          onDisablebutton = false;
-          notifyListeners();
+    if (availableAmt! <= expval) {
+      Get.defaultDialog(
+          title: 'Alert',
+          middleText: 'Expense amount is greater than available amount.',
+          actions: [
+            TextButton(
+                onPressed: () {
+                  mycontroller[1].text = '';
+
+                  onDisablebutton = false;
+                  Get.back();
+                },
+                child: Text('Close'))
+          ]).then((value) {});
+    } else {
+      for (var i = 0; i < pettyCashListt!.length; i++) {
+        if (pettyCashListt![i].name == displayExpanseValue) {
+          log('kkkkkkkkkkk');
+          if (expval <= double.parse(pettyCashListt![i].currTotal.toString())) {
+            depitAcc = pettyCashListt![i].debitAcc.toString();
+            creditAcc = pettyCashListt![i].creditAcc.toString();
+            mycontroller[1].text = expval.toString();
+            notifyListeners();
+            saveValuesTODB("save", context, theme);
+          } else {
+            Get.defaultDialog(
+                title: 'Alert',
+                middleText: 'Kindly enter the correct amount..!!',
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        mycontroller[1].text = '';
+
+                        onDisablebutton = false;
+                        Get.back();
+                      },
+                      child: Text('Close'))
+                ]).then((value) {});
+
+            notifyListeners();
+          }
         }
       }
     }
@@ -909,11 +933,8 @@ class ExpenseController extends ChangeNotifier {
     PostExpenseAPi.cashSum = mycontroller[1].text;
     PostExpenseAPi.remarks = mycontroller[3].text.toString();
     PostExpenseAPi.paymentAccounts = itemsDocDetails;
-    // PostExpenseAPi.projectCode = uRvcController[1].text;
+
     PostExpenseAPi.uRvc = uRvcController[0].text;
-    // PostExpenseAPi.OcrCode = profitCode;
-    // PostExpenseAPi.vatGroup = taxCode;
-    // PostExpenseAPi.projectCode = projectCode;
 
     await PostExpenseAPi.method(uuiDeviceId);
 
@@ -1354,10 +1375,6 @@ class ExpenseController extends ChangeNotifier {
             onholdfilter[i].uRVC!.isEmpty
         ? ''
         : onholdfilter[i].uRVC.toString();
-    // mycontroller[19].text = onholdfilter[i].taxCode.toString();
-
-    // mycontroller[20].text = onholdfilter[i].distRule.toString();
-    // uRvcController[3].text = onholdfilter[i].projectName.toString();
 
     selectProjectCode2(onholdfilter[i].projectName.toString());
     selectProfitCode2(onholdfilter[i].distRule.toString());

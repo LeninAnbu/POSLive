@@ -45,9 +45,7 @@ class MobPayReceiptDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          // prdPmt.insertpaymentreceipt();
-                        },
+                        onTap: () {},
                         child: Text(
                           "Total Document",
                           style: theme.textTheme.bodyMedium?.copyWith(),
@@ -60,10 +58,8 @@ class MobPayReceiptDetails extends StatelessWidget {
                               ? const Text(
                                   "0",
                                 )
-                              // Container()
                               : Text(
                                   prdPmt.getScanneditemData.length.toString(),
-                                  // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
                                   style:
                                       theme.textTheme.bodyMedium?.copyWith())),
                     ],
@@ -73,14 +69,12 @@ class MobPayReceiptDetails extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
-                        // width: Screens.width(context) * 0.15,
                         child: Text(
                           "Total Due",
                           style: theme.textTheme.bodyMedium?.copyWith(),
                         ),
                       ),
                       Container(
-                        // width: Screens.width(context) * 0.17,
                         alignment: Alignment.centerRight,
                         child: prdPmt.getScanneditemData.isEmpty
                             ? Text(
@@ -98,8 +92,6 @@ class MobPayReceiptDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        // width: Screens.width(context) * 0.15,
-                        // height: paymentHeight * 0.03,
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Total Paid",
@@ -122,8 +114,6 @@ class MobPayReceiptDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        // width: Screens.width(context) * 0.15,
-                        // height: paymentHeight * 0.03,
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Balance",
@@ -132,14 +122,12 @@ class MobPayReceiptDetails extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        // width:Screens.width(context)* 0.17,
                         alignment: Alignment.centerRight,
                         child: prdPmt.getScanneditemData.isEmpty
                             ? const Text("0.00")
                             : prdPmt.totalduepay == 0
                                 ? Text(prdPmt.config
                                     .splitValues(prdPmt.totalduepay.toString()))
-                                // Container()
                                 : Text(
                                     prdPmt.getBalancePaid().toStringAsFixed(2),
                                     style:
@@ -153,10 +141,6 @@ class MobPayReceiptDetails extends StatelessWidget {
             ),
             SizedBox(
               width: Screens.width(context) * 0.9,
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(3),
-              //   color: Colors.grey.withOpacity(0.01),
-              // ),
               child: TextFormField(
                 controller: prdPmt.mycontroller[50],
                 cursorColor: Colors.grey,

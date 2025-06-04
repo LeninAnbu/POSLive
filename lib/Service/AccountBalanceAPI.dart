@@ -17,7 +17,7 @@ class AccountBalApi {
         },
       );
       ressCode = response.statusCode;
-      // log('AccBal sts::::${response.statusCode}');
+
       log("AccBal Res::${json.decode(response.body)}");
       if (response.statusCode == 200) {
         return AccountBalanceModel.fromJson(
@@ -25,11 +25,10 @@ class AccountBalApi {
       } else {
         log("Error AccBal: ${json.decode(response.body)}");
         throw Exception("Error");
-        // return AccountBalanceModel.exception('Error', ressCode);
       }
     } catch (e) {
       log("Exception AB: $e");
-      //  throw Exception(e.toString());
+
       return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }

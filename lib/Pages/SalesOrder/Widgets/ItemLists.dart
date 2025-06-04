@@ -83,43 +83,6 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                         log('context.read<SOCon>().searchcon.text::${context.read<SOCon>().searchcon.text}');
                       },
                       onEditingComplete: () async {
-                        // await context.read<SOCon>().getAllList(
-                        //     context.read<SOCon>().searchcon.text.trim());
-
-                        // if (context.read<SOCon>().getSearchedData.isEmpty) {
-                        //   showDialog(
-                        //       context: context,
-                        //       barrierDismissible: true,
-                        //       builder: (BuildContext context) {
-                        //         return AlertDialog(
-                        //             contentPadding: const EdgeInsets.all(0),
-                        //             content: AlertBox(
-                        //               payMent: 'Alert',
-                        //               errormsg: true,
-                        //               widget: Center(
-                        //                   child: ContentContainer(
-                        //                 content: 'Wrong Itemcode scanned..!!',
-                        //                 theme: theme,
-                        //               )),
-                        //               buttonName: null,
-                        //             ));
-                        //       });
-                        // } else if (context
-                        //         .read<SOCon>()
-                        //         .getSearchedData
-                        //         .length ==
-                        //     1) {
-                        // context
-                        //     .read<SOCon>()
-                        //     .singleitemsearch(context, theme, 0);
-                        // } else {
-                        //   showDialog<dynamic>(
-                        //       context: context,
-                        //       builder: (_) {
-                        //         return const SearchItemsSO();
-                        //       });
-                        // }
-
                         context.read<SOCon>().disableKeyBoard(context);
                       },
                       decoration: InputDecoration(
@@ -161,7 +124,6 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
               padding: EdgeInsets.only(
                 top: widget.searchHeight * 0.01,
                 left: widget.searchWidth * 0.01,
-                // right: widget.searchWidth * 0.01,
                 bottom: widget.searchHeight * 0.01,
               ),
               decoration: BoxDecoration(
@@ -254,10 +216,8 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                             child: Container(
                                 width: Screens.bodyheight(context) * 0.8,
                                 padding: EdgeInsets.only(
-                                  // top: Screens.bodyheight(context) * 0.01,
                                   left: Screens.width(context) * 0.01,
                                   right: Screens.width(context) * 0.01,
-                                  // bottom: Screens.bodyheight(context) * 0.005,
                                 ),
                                 decoration: BoxDecoration(
                                   color: Colors.grey[200],
@@ -440,7 +400,6 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                   children: [
                                     Container(
                                       alignment: Alignment.centerLeft,
-                                      // color: Colors.green,
                                       width: widget.searchWidth * 0.5,
                                       child: Text(
                                         "${context.watch<SOCon>().getScanneditemData2[index].itemName}",
@@ -473,20 +432,6 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                         onEditingComplete: () {},
                                         onTap: () {},
                                         decoration: InputDecoration(
-                                          // suffixIcon: IconButton(
-                                          // onPressed: () {
-                                          // setState(() {
-                                          //   context
-                                          //       .read<SOCon>()
-                                          //       .leadDatePicker(
-                                          //         context,
-                                          //         index,
-                                          //       );
-                                          // });
-                                          // },
-                                          // color: Colors.grey,
-                                          // icon: const Icon(
-                                          //     Icons.calendar_month)),
                                           hintStyle: theme.textTheme.bodyLarge
                                               ?.copyWith(),
                                           filled: false,
@@ -648,24 +593,6 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                           inputFormatters: [
                                                             DecimalInputFormatter()
                                                           ],
-                                                          // inputFormatters: [
-                                                          //   context.watch<SOCon>().getScanneditemData[index].uPackSize ==
-                                                          //               null ||
-                                                          //           context
-                                                          //                   .watch<
-                                                          //                       SOCon>()
-                                                          //                   .getScanneditemData[
-                                                          //                       index]
-                                                          //                   .uPackSize ==
-                                                          //               0.000
-                                                          //       ? FilteringTextInputFormatter
-                                                          //           .allow(RegExp(
-                                                          //               dotAll:
-                                                          //                   true,
-                                                          //               r'^\d*\.?\d{0,9}$'))
-                                                          //       : FilteringTextInputFormatter
-                                                          //           .digitsOnly
-                                                          // ],
                                                           onEditingComplete:
                                                               () {
                                                             if (context
@@ -1192,7 +1119,6 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                   .black)),
                                                 ),
                                                 Container(
-                                                  // color: Colors.green,
                                                   width:
                                                       widget.searchWidth * 0.18,
                                                   alignment:

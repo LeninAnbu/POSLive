@@ -37,57 +37,46 @@ class Routes {
         page: () => const DashBoardScreen(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.sales,
         page: () => const PosMainScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.salesReturn,
         page: () => const SalesReturnScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.paymentReciept,
         page: () => const PaymentReceiptScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.stockRequest,
         page: () => const StockReqScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.stockInward,
         page: () => const StockInwardScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
-    //Resource
-
     GetPage<dynamic>(
         name: ConstantRoutes.stockOutward,
         page: () => const StockOutwardScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.expence,
         page: () => const ExpenseScreen(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.deposits,
         page: () => const DepositScreen(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-
     GetPage<dynamic>(
         name: ConstantRoutes.salesOrder,
         page: () => const SalesOrderScreens(),
@@ -98,13 +87,11 @@ class Routes {
         page: () => const StockCheckMainScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-    // StockReplenishMainScreens
     GetPage<dynamic>(
         name: ConstantRoutes.stockReplenish,
         page: () => const StockReplenishMainScreens(),
         transition: Transition.fade,
         transitionDuration: const Duration(seconds: 1)),
-    // DownloadPage
     GetPage<dynamic>(
         name: ConstantRoutes.downloadPage,
         page: () => const DownloadScreen(),

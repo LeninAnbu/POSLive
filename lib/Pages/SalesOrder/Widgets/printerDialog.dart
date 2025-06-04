@@ -8,12 +8,12 @@
 // }
 
 // class MyDialogState extends State<MyDialog> {
-  // static String? docEntry;
-  // bool _isLoading = true;
-  // bool showMSG = false;
-  // String? message;
-  // // List<SalesOderInfoData> printerData = [];
-  // double? grandTotalpdf;
+
+
+
+
+
+
 //   @override
 //   void initState() {
 //     super.initState();
@@ -26,12 +26,12 @@
 //     SalesOrderinfoApi.userID = preff.getString("userID")!;
 //     SalesOrderinfoApi.docEntry = docEntry;
 //     mycontroller[0].text = preff.getString("printerIP")!;
-//     //  print("deviceId"+ SalesOrderinfoApi.deviceId!);
-//     //  print("userID"+ SalesOrderinfoApi.userID!);
-//     // Future.delayed(const Duration(seconds: 2), () {
-//     //   setState(() => _isLoading = false);
-//     //   // Get.offAllNamed<dynamic>(FurneyRoutes.home);
-//     // });
+//   
+//   
+//   
+//   
+//   
+//   
 //     SalesOrderinfoApi.getApiData().then((value) {
 //       if (value.data != null) {
 //         setState(() => _isLoading = false);
@@ -53,78 +53,78 @@
 
 //   List<TextEditingController> mycontroller = List.generate(15, (i) => TextEditingController());
 //   @override
-  // Widget build(BuildContext context) {
-  //   final width = MediaQuery.of(context).size.width;
-  //   final heigth = MediaQuery.of(context).size.height;
-  //   final theme = Theme.of(context);
-  //   return AlertDialog(
-  //     content: Container(
-  //       //  color: Colors.black12,
-  //       //  height: heigth * 0.4,
-  //       width: width * 0.8,
-  //       child: _isLoading == true
-  //           ? Column(
-  //               mainAxisSize: MainAxisSize.min,
-  //               children: [
-  //                 Center(child: CircularProgressIndicator()),
-  //               ],
-  //             )
-  //           : showMSG == true
-  //               ? Column(
-  //                   mainAxisSize: MainAxisSize.min,
-  //                   children: [
-  //                     Center(
-  //                         child: Container(
-  //                       child: Text(message!),
-  //                     )),
-  //                   ],
-  //                 )
-  //               : Column(
-  //                   mainAxisSize: MainAxisSize.min,
-  //                   children: [
-  //                     Container(
-  //                       height: heigth * 0.06,
-  //                       decoration: BoxDecoration(
-  //                         color: theme.hintColor.withOpacity(.05),
-  //                         borderRadius: BorderRadius.circular(8),
-  //                       ),
-  //                       child: TextField(
-  //                         controller: mycontroller[0],
-  //                         autocorrect: false,
-  //                         style: theme.textTheme.bodyText2,
-  //                         decoration: InputDecoration(
-  //                           hintText: 'Enter Printer IP',
-  //                           enabledBorder: InputBorder.none,
-  //                           focusedBorder: InputBorder.none,
-  //                           contentPadding: const EdgeInsets.symmetric(
-  //                             vertical: 15,
-  //                             horizontal: 5,
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //     ),
-  //     actions: <Widget>[
-  //       TextButton(
-  //         onPressed: () {
-  //           Navigator.pop(context);
-  //           setState(() => showMSG = false);
-  //         },
-  //         child: Text("Cancel"),
-  //       ),
-  //       TextButton(
-  //         onPressed: btnActive == true
-  //             ? () {
-  //                 clickToPrinter();
-  //               }
-  //             : null,
-  //         child: Text("Print"),
-  //       ),
-  //     ],
-  //   );
-  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //   bool btnActive = true;
 //   clickToPrinter() async {
@@ -156,7 +156,7 @@
 //       if (res.msg == 'Success') {
 //         setState(() {
 //           _isLoading = false;
-//           // btnActive= true;
+//         
 //           message = '${res.msg}';
 //           showMSG = true;
 //         });
@@ -193,8 +193,8 @@
 //           width: PosTextSize.size1,
 //         ));
 
-//     //  printer.text('Date: ${printerData[0].docDate} Time: ${printerData[0].docTime}',
-//     //   styles: PosStyles(align: PosAlign.left));
+//   
+//   
 //     printer.text('Mr./Mrs./Ms: ${printerData[0].cardName}', styles: PosStyles(align: PosAlign.left));
 //     printer.text('Mobile: ${printerData[0].phone1}', styles: PosStyles(align: PosAlign.left));
 //     printer.row([
@@ -206,14 +206,14 @@
 //     ]);
 //     printer.hr();
 //     printer.row([
-//       //  PosColumn(text: 'S.NO', width: 1,styles: PosStyles(bold: true)),
+//     
 //       PosColumn(text: 'Descriprion', width: 8, styles: PosStyles(bold: true)),
 //       PosColumn(text: 'Qty', width: 2, styles: PosStyles(align: PosAlign.right, bold: true)),
 //       PosColumn(text: 'Price', width: 3, styles: PosStyles(align: PosAlign.right, bold: true)),
 //     ]);
 //     for (int i = 0; i < printerData.length; i++) {
 //       printer.row([
-//         // PosColumn(text: '${data[i].lineNum}', width: 1,),
+//       
 //         PosColumn(
 //           text: '${printerData[i].scription.toString()}',
 //           width: 8,
@@ -225,9 +225,9 @@
 
 //     printer.hr();
 // //  printer.text('Date: ${printerData[0].docDate}\nTime: ${printerData[0].docTime}',
-//     //       styles: PosStyles(align: PosAlign.left));
+//   
 //     if (printerData[0].cash != 0) {
-//       //    printer.text('Cash:     Rs:${printerData[0].cash}',styles: PosStyles(align: PosAlign.left));
+//     
 //       printer.row([
 //         PosColumn(
 //           text: 'Cash:',
@@ -244,7 +244,7 @@
 //         ),
 //         PosColumn(text: '${printerData[0].card1Amt + printerData[0].card2Amt}', width: 8, styles: PosStyles(align: PosAlign.right)),
 //       ]);
-//       // printer.text('Card:     Rs:${printerData[0].card1Amt+printerData[0].card2Amt}',styles: PosStyles(align: PosAlign.left));
+//     
 //     }
 //     if (printerData[0].exchangeAmt != 0) {
 //       printer.row([
@@ -254,7 +254,7 @@
 //         ),
 //         PosColumn(text: '${printerData[0].exchangeAmt}', width: 8, styles: PosStyles(align: PosAlign.right)),
 //       ]);
-//       //  printer.text('Exchange: Rs:${printerData[0].exchangeAmt}',styles: PosStyles(align: PosAlign.left));
+//     
 //     }
 //     if (printerData[0].financeamt != 0) {
 //       printer.row([
@@ -264,7 +264,7 @@
 //         ),
 //         PosColumn(text: '${printerData[0].financeamt}', width: 8, styles: PosStyles(align: PosAlign.right)),
 //       ]);
-//       //   printer.text('Finance:  Rs:${printerData[0].financeamt}',styles: PosStyles(align: PosAlign.left));
+//     
 //     }
 //     if (printerData[0].codAmt != 0) {
 //       printer.row([
@@ -274,7 +274,7 @@
 //         ),
 //         PosColumn(text: '${printerData[0].codAmt}', width: 8, styles: PosStyles(align: PosAlign.right)),
 //       ]);
-//       //   printer.text('COD:      Rs:${printerData[0].codAmt}',styles: PosStyles(align: PosAlign.left));
+//     
 //     }
 //     if (printerData[0].creditAmt != 0) {
 //       printer.row([
@@ -284,7 +284,7 @@
 //         ),
 //         PosColumn(text: '${printerData[0].creditAmt}', width: 8, styles: PosStyles(align: PosAlign.right)),
 //       ]);
-//       //   printer.text('Credit:   Rs:${printerData[0].creditAmt}',styles: PosStyles(align: PosAlign.left));
+//     
 //     }
 
 //     printer.text(' ',
@@ -315,7 +315,7 @@
 //           height: PosTextSize.size1,
 //           width: PosTextSize.size1,
 //         ));
-//     //last---
+//   
 //     printer.feed(2);
 //     printer.cut();
 //     printer.disconnect();

@@ -372,10 +372,7 @@ class _SalesReturnItemState extends State<SalesReturnItem> {
                                               textDirection: TextDirection.rtl,
                                               keyboardType:
                                                   TextInputType.number,
-                                              inputFormatters: [
-                                                // FilteringTextInputFormatter
-                                                //     .digitsOnly
-                                              ],
+                                              inputFormatters: [],
                                               onEditingComplete: () {
                                                 setState(() {
                                                   log('lllll');

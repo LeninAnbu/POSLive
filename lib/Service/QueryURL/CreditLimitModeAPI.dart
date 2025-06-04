@@ -19,32 +19,22 @@ class CustCreditLimitAPi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_CustCreditLimitAPi '$cardCode'"
-                    // "Select CreditLine from OCRD  where CardCode='$cardCode'"
+                "query": "EXEC BZ_POS_CustCreditLimitAPi '$cardCode'"
               }));
 //${AppConstant.sapDB}
 
-      // log("CashCardAccount Data::: ${json.encode({
-      //       "constr":
-      //           "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-      //       "query": "Select CreditLine from OCRD  where CardCode='$cardCode'"
-      //     })}");
-
-      // log("CashCard Acc Res: ${json.decode(response.body)}");
       if (response.statusCode == 200) {
         return CreditLimitModel.fromJson(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return CreditLimitModel.fromJson(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       }
     } catch (e) {
       log('exp::${e.toString()}');
-      //  throw Exception("Exception: $e");
+
       return CreditLimitModel.exception(e.toString(), 500);
     }
   }

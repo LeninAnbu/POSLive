@@ -121,11 +121,7 @@ class StockInwardPageviewerLeft extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: Colors.green)),
                     child: IntrinsicHeight(
-                      child:
-                          //  Row(
-                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //     children: [
-                          SizedBox(
+                      child: SizedBox(
                         width: stockInWidth * 0.5,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +196,6 @@ class StockInwardPageviewerLeft extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // ]),
                     ),
                   ),
                 ),

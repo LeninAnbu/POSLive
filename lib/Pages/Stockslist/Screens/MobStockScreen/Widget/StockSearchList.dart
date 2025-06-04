@@ -59,63 +59,14 @@ class StockSearchList extends StatelessWidget {
                   height: Screens.bodyheight(context) * 0.005,
                 ),
                 Expanded(
-                  child:
-                      // context
-                      //             .watch<StockListController>()
-                      //             .getisLoadingListView ==
-                      //         true
-                      //     ? SkeletonListView(
-                      //         itemCount: 10,
-                      //         scrollable: true,
-                      //       )
-                      //     :
-                      ListView.builder(
+                  child: ListView.builder(
                     itemCount: 10,
-                    // context
-                    //     .watch<StockListController>()
-                    //     .getlistPriceAvail
-                    //     .length,
                     itemBuilder: (BuildContext context, int i) {
                       return InkWell(
-                        onTap: () {
-                          // print(context.read<StockListController>().getlistPriceAvail[i].itemCode);
-                          // context
-                          // .read<StockListController>()
-                          // .callItemMasterPriceUpdateNew(
-                          //     context
-                          //         .read<StockListController>()
-                          //         .getlistPriceAvail[i]
-                          //         .itemCode!,
-                          //     context
-                          //         .read<StockListController>()
-                          //         .getlistPriceAvail[i]
-                          //         .IMId!,
-                          //     i);
-                        },
+                        onTap: () {},
                         child: Card(
                           elevation: 5,
-                          child:
-                              // context
-                              //             .watch<StockListController>()
-                              //             .getlistPriceAvail[i]
-                              //             .isselected ==
-                              //         1
-                              //     ?
-                              // Container(
-                              //     width: Screens.width(context),
-                              //     padding: EdgeInsets.symmetric(
-                              //         vertical:
-                              //             Screens.bodyheight(context) * 0.05,
-                              //         horizontal:
-                              //             Screens.width(context) * 0.02),
-                              //     child: Center(
-                              //       child: CircularProgressIndicator(
-                              //         strokeWidth: 2,
-                              //       ),
-                              //     ),
-                              //   )
-                              // :
-                              Container(
+                          child: Container(
                             width: Screens.width(context),
                             padding: EdgeInsets.symmetric(
                                 vertical: Screens.bodyheight(context) * 0.01,
@@ -158,16 +109,12 @@ class StockSearchList extends StatelessWidget {
                                 Column(
                                   children: [
                                     SizedBox(
-                                      //  color: Colors.red,
                                       width: Screens.width(context),
                                       child: Text(
                                           " CROMPTON FAN 900RPM HEAVY DUTY EXHAUST FAN",
                                           style: theme.textTheme.bodyLarge
-                                              ?.copyWith(
-                                                  //color: theme.primaryColor
-                                                  )),
+                                              ?.copyWith()),
                                     ),
-                                    // "900RPM HEAVY DUTY EXHAUST FAN"
                                   ],
                                 ),
                                 SizedBox(
@@ -180,9 +127,7 @@ class StockSearchList extends StatelessWidget {
                                     Container(
                                       alignment: Alignment.centerRight,
                                       child: Text(
-                                        // ConstantValues.sapUser=='Manager'?
                                         "Whs:0",
-                                        // :'',
                                         style: theme.textTheme.bodyLarge
                                             ?.copyWith(
                                                 color: theme.primaryColor),
@@ -204,7 +149,6 @@ class StockSearchList extends StatelessWidget {
                           ),
                         ),
                       );
-                      //)));
                     },
                   ),
                 )

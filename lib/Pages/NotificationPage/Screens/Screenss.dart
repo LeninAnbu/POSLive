@@ -18,16 +18,6 @@ class NotificationMainScreens extends StatefulWidget {
 
 class _NotificationMainScreensState extends State<NotificationMainScreens> {
   @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     // Safe to access context-dependent APIs here
-
-  //     FocusScope.of(context).unfocus(); // Example
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -43,21 +33,11 @@ class _NotificationMainScreensState extends State<NotificationMainScreens> {
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
         return Scaffold(
-            drawer: naviDrawerMob(context),
-            body: SafeArea(child: Container()
-                // SalesMobile(prdCD: context.read<PosController>()),
-                ));
-      }
-      // }),
-
-      else
-      // if (constraints.maxWidth <= 1300)
-      {
-        //300
+            drawer: naviDrawerMob(context), body: SafeArea(child: Container()));
+      } else {
         return WillPopScope(
           onWillPop: context.read<PosController>().onbackpress,
           child: Scaffold(
-              // resizeToAvoidBottomInset: false,
               drawer: naviDrawer(),
               body: SafeArea(
                 child: SingleChildScrollView(
@@ -69,26 +49,7 @@ class _NotificationMainScreensState extends State<NotificationMainScreens> {
                 ),
               )),
         );
-        // });
-        // }));
       }
-      // else {
-      //   return Scaffold(
-      //     body: ChangeNotifierProvider<PosController>(
-      //         create: (context) => PosController(),
-      //         builder: (context, child) {
-      //           return Consumer<PosController>(
-      //               builder: (BuildContext context, prdSCD, Widget? child) {
-      //             return SafeArea(
-      //               child: PosScreen(
-      //                 theme: theme,
-      //                 prdSCD: prdSCD,
-      //               ),
-      //             );
-      //           });
-      //         }),
-      //   );
-      // }
     });
   }
 }

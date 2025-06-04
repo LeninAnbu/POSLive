@@ -22,7 +22,7 @@ class PostApprovalExpenseAPi {
   static String? cashSum;
 
   static String? uRvc;
-  // static String? projectCode;
+
   static List<ExpenseListMoel>? paymentAccounts;
 
   static method(String? deviceTransID) {
@@ -38,10 +38,7 @@ class PostApprovalExpenseAPi {
       "CashSum": "$cashSum",
       "U_PosUserCode": UserValues.userCode,
       "U_PosTerminal": AppConstant.terminal,
-      // "ProjectCode": "$projectCode",
-
       "U_RVC": '$uRvc',
-      // 'Series': '$seriesType',
       "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList(),
     });
     log('PostApprovalExpenseAPi::$data');
@@ -70,18 +67,14 @@ class PostApprovalExpenseAPi {
                 "U_PosUserCode": UserValues.userCode,
                 "U_PosTerminal": AppConstant.terminal,
                 "CounterReference": "$reference",
-
                 "U_RVC": '$uRvc',
-                // 'Series': '$seriesType',
                 "PaymentAccounts":
                     paymentAccounts!.map((e) => e.tojson()).toList(),
               }));
 
-      // log('response.statusCode::${response.body}');
       log(json.encode({
         "DocDate": "$docDate",
         "DocType": "$docType",
-        // 'Series': '$seriesType',
         "CashAccount": "$cashAccount",
         "JournalRemarks": "$remarks",
         "Address": "$payTo",
@@ -98,12 +91,12 @@ class PostApprovalExpenseAPi {
         return SalesQuotStatus.fromJson(response.statusCode);
       } else {
         log("Approva Request sts stcode22 ::${response.statusCode}");
-        // throw Exception("Error");
+
         return SalesQuotStatus.fromJson(response.statusCode);
       }
     } catch (e) {
       log('Exception PostRequestAPi: $e');
-      // throw Exception('Exception PostRequestAPi: $e');
+
       return SalesQuotStatus.issue(
           'Restart the app or contact the admin!!..', 500);
     }

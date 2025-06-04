@@ -97,15 +97,6 @@ class _OpenInwardListPageState extends State<OpenInwardListPage> {
                           );
                         }),
                   )
-
-                // : context.watch<StockInwrdController>().savedraftBill.isNotEmpty
-                //     ? Center(
-                //         child: Text(
-                //           "Data Save as Draft Bill..!!",
-                //           style: theme.textTheme.bodyMedium!
-                //               .copyWith(color: Colors.black),
-                //         ),
-                //       )
                 : context.watch<StockInwrdController>().stockInward.isEmpty &&
                         context.watch<StockInwrdController>().loadingscrn ==
                             false &&
@@ -195,10 +186,6 @@ class _OpenInwardListPageState extends State<OpenInwardListPage> {
                                                 .read<StockInwrdController>()
                                                 .selecetAllItems(
                                                     context, theme);
-                                            // context
-                                            //     .read<
-                                            //         StockInwrdController>()
-                                            //     .setstatemethod();
                                           },
                                           child: Container(
                                               decoration: BoxDecoration(

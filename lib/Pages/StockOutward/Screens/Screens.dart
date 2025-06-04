@@ -36,8 +36,6 @@ class _StockOutwardScreensState extends State<StockOutwardScreens> {
 
   @override
   void dispose() {
-    // context.read<StockOutwardController>().pageController.dispose();
-    // context.read<StockOutwardController>().disposmethod();
     super.dispose();
   }
 
@@ -57,7 +55,6 @@ class _StockOutwardScreensState extends State<StockOutwardScreens> {
                     appBar:
                         stOutAppbar("Stock Outward", theme, context, stOutCon),
                     drawer: naviDrawerMob(context),
-                    // drawer: M_naviDrawer(),
                     backgroundColor: Colors.grey[200],
                     body: SafeArea(
                       child: StockOutward(theme: theme, soutCon: stOutCon),
@@ -69,27 +66,8 @@ class _StockOutwardScreensState extends State<StockOutwardScreens> {
           onWillPop: context.read<StockOutwardController>().onbackpress3,
           child: Scaffold(
               drawer: naviDrawer(),
-              body:
-                  // ChangeNotifierProvider<StockOutwardController>(
-                  //     create: (context) => StockOutwardController(),
-                  //     builder: (context, child) {
-                  //       return Consumer<StockOutwardController>(
-                  //           builder: (BuildContext context, prdSCD, Widget? child) {
-                  //         return LayoutBuilder(builder: (context, constraints) {
-                  //           return
-                  SingleChildScrollView(
+              body: SingleChildScrollView(
                 child: Column(
-                  // scrollDirection: Axis.horizontal,
-                  // pageSnapping: true,
-                  // controller: context.read<StockOutwardController>().pageController,
-                  // physics: new NeverScrollableScrollPhysics(),
-                  // onPageChanged: (index) {
-                  //   log("index: $index");
-                  //   setState(() {
-                  //     context.read<StockOutwardController>().currentPage = index;
-                  //   });
-                  //   // print(context.read<StockOutwardController>().currentPage);
-                  // },
                   children: [
                     context.watch<StockOutwardController>().isselect == false
                         ? SingleChildScrollView(
@@ -118,32 +96,10 @@ class _StockOutwardScreensState extends State<StockOutwardScreens> {
                           ])
                         : Container(),
                   ],
-                  // ),
-                  // });
-                  //   });
-                  // }
                 ),
               )),
         );
       }
-      // else {
-      //   return Scaffold(
-      //       body: ChangeNotifierProvider<StockOutwardController>(
-      //           create: (context) => StockOutwardController(),
-      //           builder: (context, child) {
-      //             return Consumer<StockOutwardController>(
-      //                 builder: (BuildContext context, prdSCD, Widget? child) {
-      //               return LayoutBuilder(builder: (context, constraints) {
-      //                 return SafeArea(
-      //                   child: StockOutPos(
-      //                     theme: theme,
-      //                     StOut_Con: prdSCD,
-      //                   ),
-      //                 );
-      //               });
-      //             });
-      //           }));
-      // }
     });
   }
 }

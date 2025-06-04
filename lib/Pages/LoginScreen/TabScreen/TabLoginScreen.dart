@@ -10,24 +10,20 @@ import '../Widgets/HeadLoginTab.dart';
 class TabLoginScreen extends StatelessWidget {
   const TabLoginScreen({
     super.key,
-    // required this.logCon,
   });
 
-  // LoginController logCon;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return SizedBox(
       width: Screens.width(context),
       height: Screens.fullHeight(context),
-      // color: Colors.yellow,
       child: Row(children: [
         Container(
           width: Screens.width(context) * 0.50,
           color: Theme.of(context).primaryColor,
         ),
         Container(
-          //color: Colors.green,
           width: Screens.width(context) * 0.50,
           padding: EdgeInsets.only(left: 20, right: 20, top: 30),
           child: SingleChildScrollView(

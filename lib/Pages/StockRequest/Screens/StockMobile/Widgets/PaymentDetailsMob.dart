@@ -40,7 +40,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colofrs.amber,
                   width: proWidth * 0.4,
                   child: const Text("Total Items"),
                 ),
@@ -49,7 +48,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colors.orange,
                   width: proWidth * 0.4,
                   child: prdsrch.calCulteStReq == null
                       ? const Text(
@@ -68,7 +66,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colors.amber,
                   width: proWidth * 0.4,
                   child: const Text("Qty"),
                 ),
@@ -77,7 +74,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colors.orange,
                   width: proWidth * 0.4,
                   child: prdsrch.calCulteStReq == null
                       ? const Text(
@@ -85,9 +81,7 @@ class MobReqpaymentDeltails extends StatelessWidget {
                         )
                       : Text(
                           prdsrch.getNoOfQty().toStringAsFixed(0),
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                              // color: Colors.grey[600],
-                              ),
+                          style: theme.textTheme.bodyMedium?.copyWith(),
                         ),
                 )
               ],
@@ -99,7 +93,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colors.amber,
                   width: proWidth * 0.4,
                   child: const Text("Total Weight"),
                 ),
@@ -108,7 +101,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colors.orange,
                   width: proWidth * 0.4,
                   child: prdsrch.calCulteStReq == null
                       ? Text("0.00 kg", style: theme.textTheme.bodyMedium)
@@ -125,7 +117,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                   padding: EdgeInsets.all(
                     proHeight * 0.05,
                   ),
-                  // color: Colors.amber,
                   width: proWidth * 0.4,
                   child: const Text("Total Ltr"),
                 ),
@@ -134,7 +125,6 @@ class MobReqpaymentDeltails extends StatelessWidget {
                     proHeight * 0.05,
                   ),
                   alignment: Alignment.centerRight,
-                  // color: Colors.orange,
                   width: proWidth * 0.4,
                   child: prdsrch.calCulteStReq == null
                       ? Text(
@@ -143,9 +133,7 @@ class MobReqpaymentDeltails extends StatelessWidget {
                         )
                       : Text(
                           "${prdsrch.calCulteStReq!.totalLiter!.toStringAsFixed(0)}.00kg",
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                              // color: Colors.grey[600],
-                              ),
+                          style: theme.textTheme.bodyMedium?.copyWith(),
                         ),
                 )
               ],

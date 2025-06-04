@@ -29,7 +29,6 @@ class _StockReqBottomBtnState extends State<StockReqBottomBtn> {
         top: widget.btnheight * 0.06,
         left: widget.btnheight * 0.06,
         right: widget.btnheight * 0.06,
-        // bottom: widget.btnheight * 0.06,
       ),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
@@ -129,33 +128,6 @@ class _StockReqBottomBtnState extends State<StockReqBottomBtn> {
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    // SizedBox(
-                    //   height: widget.btnheight * 0.4,
-                    //   width: widget.btnWidth * 0.2,
-                    //   child: ElevatedButton(
-                    //     style: ElevatedButton.styleFrom(
-                    //       backgroundColor: Colors.grey[300],
-                    //     ),
-                    //     onPressed: () {
-                    //       setState(() {
-                    //         context.read<StockReqController>().cancelbtn = true;
-                    //         context
-                    //             .read<StockReqController>()
-                    //             .clickcancelbtn(context, widget.theme);
-                    //       });
-                    //     },
-                    //     child: context.read<StockReqController>().cancelbtn ==
-                    //             false
-                    //         ? Text("Cancel",
-                    //             textAlign: TextAlign.center,
-                    //             style:
-                    //                 widget.theme.textTheme.bodySmall?.copyWith(
-                    //               color: Colors.black,
-                    //             ))
-                    //         : CircularProgressIndicator(
-                    //             color: widget.theme.primaryColor),
-                    //   ),
-                    // ),
                     SizedBox(
                       height: widget.btnheight * 0.4,
                       width: widget.btnWidth * 0.2,

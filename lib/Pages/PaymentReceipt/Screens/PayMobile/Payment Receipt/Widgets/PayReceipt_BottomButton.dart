@@ -46,8 +46,8 @@ class PayReceiptBottomButton extends StatelessWidget {
                   width: Screens.width(context) * 0.3,
                   child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.red),
-                      ),
+                          // backgroundColor: WidgetStateProperty.all(Colors.red),
+                          ),
                       onPressed: () {
                         showDialog(
                             context: context,

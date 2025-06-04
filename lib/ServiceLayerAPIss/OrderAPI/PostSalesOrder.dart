@@ -46,7 +46,6 @@ class SalesOrderPostAPi {
       'U_DeviceCode': deviceCode,
       'U_DeviceTransID': deviceTransID,
       'U_TinNO': '$tinNo',
-      // 'SalesPersonCode': '$slpCode',
       "U_latitude ": latitude,
       "U_longitude": longitude,
       'Series': '$seriesType',
@@ -70,7 +69,6 @@ class SalesOrderPostAPi {
       'U_DeviceTransID': deviceTransID,
       "U_VAT_NUMBER": "$vatNo",
       'U_TinNO': '$tinNo',
-      // 'SalesPersonCode': '$slpCode',
       "U_latitude ": latitude,
       "U_longitude": longitude,
       "U_PosUserCode": UserValues.userCode,
@@ -106,7 +104,6 @@ class SalesOrderPostAPi {
         'U_DeviceCode': deviceCode,
         'U_DeviceTransID': deviceTransID,
         'U_TinNO': '$tinNo',
-        // 'SalesPersonCode': '$slpCode',
         "U_latitude ": latitude,
         "U_longitude": longitude,
         'Series': '$seriesType',
@@ -123,7 +120,6 @@ class SalesOrderPostAPi {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${sessionID!}',
-          // "Prefer": "return-no-content"
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
@@ -139,10 +135,8 @@ class SalesOrderPostAPi {
           "NumAtCard": "$custREfNo",
           'U_DeviceCode': deviceCode,
           'U_DeviceTransID': deviceTransID,
-
           "U_VAT_NUMBER": "$vatNo",
           'U_TinNO': '$tinNo',
-          // 'SalesPersonCode': '$slpCode',
           "U_latitude ": latitude,
           "U_longitude": longitude,
           "U_PosUserCode": UserValues.userCode,
@@ -161,7 +155,6 @@ class SalesOrderPostAPi {
             "CardName": "$cardNamePost",
             "DocumentStatus": "bost_Open",
             "DocDate": "$docDate",
-
             "U_VAT_NUMBER": "$vatNo",
             'U_TinNO': '$tinNo',
             "DocDueDate": "$dueDate",
@@ -173,12 +166,8 @@ class SalesOrderPostAPi {
             "NumAtCard": "$custREfNo",
             'U_DeviceCode': deviceCode,
             'U_DeviceTransID': deviceTransID,
-            // 'SalesPersonCode': '$slpCode',
             "U_PosUserCode": UserValues.userCode,
             "U_PosTerminal": AppConstant.terminal,
-            // 'Series': '$seriesType',
-
-            // 'Series':'${GetValues.seriresOrder}',
             "U_latitude ": latitude,
             "U_longitude": longitude,
             "U_Request": data,
@@ -187,13 +176,9 @@ class SalesOrderPostAPi {
                 : docLineQout!.map((e) => e.tojson3()).toList(),
           }));
 
-      // print("ABCD: "+response.statusCode.toString());
       log("statucCode: ${response.statusCode}");
-      // log("bodyyy post order: ${response.body}");
+
       if (response.statusCode >= 200 && response.statusCode <= 210) {
-        ///bedor 201
-        // log("save : "+response.body.toString());
-        // print("statucCode: "+response.statusCode.toString());
         return SapSalesOrderModel.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
@@ -205,7 +190,7 @@ class SalesOrderPostAPi {
       }
     } catch (e) {
       log(e.toString());
-      //  throw Exception(e);
+
       return SapSalesOrderModel.expError(
           'Restart the app or contact the admin!!..\n', 500); //+e.toString()
     }

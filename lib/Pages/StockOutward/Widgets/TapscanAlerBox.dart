@@ -51,15 +51,15 @@
 //                         cursorColor: Colors.grey,
 //                         controller: widget.StOut_Con.StOutController[0],
 //                         onEditingComplete: () {
-//                           // setState(() {
-//                           //   widget.StOut_Con.scanmethod(widget.index!,
-//                           //       widget.datalist!.serialBatch!, widget.ind!);
+//                         
+//                         
+//                         
                                 
-//                           //   widget.StOut_Con.disableKeyBoard(context);
-//                             // widget.StOut_Con.scanmethod(widget.index, widget.datalist!.serialBatch!, ind!,);
-//                             // widget.StOut_Con.scan3(widget.datalist,
-//                             //     widget.StOut_Con.StOutController[0].text, Stock_i, StList_i);
-//                          // });
+//                         
+//                           
+//                           
+//                           
+//                        
 //                         },
 //                         onChanged: (v) {
 //                           if (v.isNotEmpty) {
@@ -72,8 +72,8 @@
 //                           filled: false,
 //                           hintText: 'Scan Here..',
 //                           hintStyle: theme.textTheme.bodyText2?.copyWith(
-//                               //  color: Colors.grey
-//                               //   fontWeight: FontWeight.normal
+//                             
+//                             
 //                               ),
 //                           enabledBorder: InputBorder.none,
 //                           focusedBorder: InputBorder.none,
@@ -96,7 +96,7 @@
 //                   Container(
 //                     width: Screens.width(context) * 1.18,
 //                     height: Screens.bodyheight(context) * 0.6,
-//                     // color: Colors.red,
+//                   
 //                     child: widget.datalist!.serialbatchList == null
 //                         ? Center(
 //                             child: Text("Scan Item.."),
@@ -115,17 +115,17 @@
 //                                   ),
 //                                   decoration: BoxDecoration(
 //                                       color:
-//                                           //  widget.datalist.serialbatchList![i].scanbool ==
-//                                           //         true
-//                                           //     ? Color(0xFFebfaef)
-//                                           //     :
+//                                         
+//                                         
+//                                         
+//                                         
 //                                           Colors.white,
 //                                       border: Border.all(
 //                                           color:
-//                                               // widget.datalist.serialbatchList![i].scanbool ==
-//                                               //         true
-//                                               //     ? Colors.green.withOpacity(0.3)
-//                                               //     :
+//                                             
+//                                             
+//                                             
+//                                             
 //                                               Colors.white),
 //                                       boxShadow: [
 //                                         BoxShadow(
@@ -144,7 +144,7 @@
 //                                               MainAxisAlignment.spaceBetween,
 //                                           children: [
 //                                             Container(
-//                                               // color: Colors.amber,
+//                                             
 
 //                                               width:
 //                                                   Screens.width(context) * 0.2,
@@ -154,18 +154,18 @@
 //                                                     theme.textTheme.bodyMedium,
 //                                               ),
 //                                             ),
-//                                             // Container(
-//                                             //   alignment: Alignment.center,
-//                                             //   // color: Colors.amber,
-//                                             //   width:  Screens.width(context) * 0.35,
-//                                             //   child: Text(
-//                                             //     "${widget.datalist.serialbatchList![i].docentry}",
-//                                             //     style: theme.textTheme.bodyMedium,
-//                                             //   ),
-//                                             // ),
+//                                           
+//                                           
+//                                           
+//                                           
+//                                           
+//                                           
+//                                           
+//                                           
+//                                           
 //                                             Container(
 //                                               alignment: Alignment.centerRight,
-//                                               // color: Colors.amber,
+//                                             
 //                                               width:
 //                                                   Screens.width(context) * 0.2,
 //                                               child: Text(
@@ -181,7 +181,7 @@
 //                                         children: [
 //                                           Container(
 //                                             alignment: Alignment.centerLeft,
-//                                             // color: Colors.amber,
+//                                           
 //                                             width: Screens.width(context) * 0.2,
 //                                             child: Text(
 //                                               "Scanned Qty : ${widget.datalist!.Scanned_Qty}",
@@ -190,7 +190,7 @@
 //                                           ),
 //                                           Container(
 //                                               alignment: Alignment.center,
-//                                               // color: Colors.amber,
+//                                             
 //                                               height:
 //                                                   Screens.bodyheight(context) *
 //                                                       0.06,
@@ -226,13 +226,13 @@
 //                   ),
 //                   GestureDetector(
 //                       onTap: () {
-//                         // widget.StOut_Con.AcceptButton(ind!, widget.index!, context);
+//                       
 //                         widget.StOut_Con.stoutLineRefersh(
 //                             widget.index!, widget.ind!);
 //                         Navigator.pop(context);
-//                         // widget.StOut_Con.AcceptButton(ind!, widget.index, context);
-//                         // widget.StOut_Con.AcceptValidation(
-//                         //     context, data, datatotal, widget.index, Stock_i);
+//                       
+//                       
+//                       
 //                       },
 //                       child: Container(
 //                         padding: EdgeInsets.only(
@@ -242,7 +242,7 @@
 //                             bottom: Screens.bodyheight(context) * 0.01),
 //                         alignment: Alignment.center,
 //                         decoration: BoxDecoration(
-//                             // color: Colors.grey[200],
+//                           
 //                             borderRadius: BorderRadius.circular(5),
 //                             border: Border.all(
 //                               color: theme.primaryColor,

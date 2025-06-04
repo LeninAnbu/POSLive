@@ -52,21 +52,12 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                                       ?.copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 Container(
-                                  // height: Screens.padingHeight(context) *
-                                  //     0.07,
                                   width: Screens.width(context) * 0.50,
-                                  decoration: const BoxDecoration(
-
-                                      //color: Colors.amber,
-
-                                      ),
+                                  decoration: const BoxDecoration(),
                                   child: DropdownButtonFormField<String>(
                                       validator: (value) => value == null
                                           ? 'field required'
                                           : null,
-
-                                      //           hint: Text('Expense code'),
-
                                       decoration: InputDecoration(
                                         errorBorder: OutlineInputBorder(
                                           borderRadius:
@@ -137,8 +128,6 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                                 ),
                                 SizedBox(
                                   width: Screens.width(context) * 0.50,
-                                  // height: Screens.padingHeight(context) *
-                                  //     0.06,
                                   child: TextFormField(
                                     controller:
                                         widget.ExpenseCon.mycontroller[0],
@@ -187,13 +176,7 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                                       ?.copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
-                                  //   color: Colors.amber,
-
                                   width: Screens.width(context) * 0.50,
-
-                                  // height: Screens.padingHeight(context) *
-                                  //     0.06,
-
                                   child: TextFormField(
                                     controller:
                                         widget.ExpenseCon.mycontroller[1],
@@ -243,8 +226,6 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                                 ),
                                 SizedBox(
                                   width: Screens.width(context) * 0.50,
-                                  // height: Screens.padingHeight(context) *
-                                  //     0.06,
                                   child: TextFormField(
                                     controller:
                                         widget.ExpenseCon.mycontroller[2],
@@ -291,34 +272,12 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                                     style: theme.textTheme.bodyLarge?.copyWith(
                                         fontWeight: FontWeight.bold)),
                                 Container(
-                                  // height: Screens.padingHeight(context) *
-                                  //     0.07,
-
                                   width: Screens.width(context) * 0.50,
-
-                                  //   padding: EdgeInsets.only(
-
-                                  //     //top:Screens.padingHeight(context)*0.03,
-
-                                  //  //   left:Screens.width(context)*0.03 ,
-
-                                  //              //   right:Screens.width(context)*0.03
-
-                                  //   ),
-
-                                  decoration: const BoxDecoration(
-
-                                      //color: Colors.amber,
-
-                                      ),
-
+                                  decoration: const BoxDecoration(),
                                   child: DropdownButtonFormField<String>(
                                       validator: (value) => value == null
                                           ? 'field required'
                                           : null,
-
-                                      //           hint: Text('Expense code'),
-
                                       decoration: InputDecoration(
                                         errorBorder: OutlineInputBorder(
                                           borderRadius:
@@ -377,29 +336,6 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                                 ),
                               ],
                             ),
-                            // SizedBox(
-                            //   height:
-                            //       Screens.padingHeight(context) * 0.07,
-                            // ),
-                            // Row(
-                            //   //  mainAxisAlignment: MainAxisAlignment.center,
-
-                            //   children: [
-                            //     Text(
-                            //       'Rs.35000',
-                            //       style: theme.textTheme.bodyMedium
-                            //           ?.copyWith(
-                            //               fontWeight: FontWeight.bold),
-                            //     ),
-                            //     SizedBox(
-                            //       width: Screens.width(context) * 0.03,
-                            //     ),
-                            //     Text('Main Cash',
-                            //         style: theme.textTheme.bodyMedium
-                            //             ?.copyWith(
-                            //                 fontWeight: FontWeight.bold)),
-                            //   ],
-                            // ),
                           ],
                         ),
                         Row(
@@ -407,10 +343,7 @@ class _PosExpenseScreenState extends State<PosExpenseScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ElevatedButton(
-                              onPressed: () {
-                                // widget.ExpenseCon.insertExpenseTable(
-                                //     "suspend", context, theme);
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   fixedSize: const Size(150, 50),
                                   backgroundColor:

@@ -21,7 +21,6 @@ class AmtCalCulationWidget extends StatelessWidget {
           right: Screens.width(context) * 0.01,
           bottom: Screens.padingHeight(context) * 0.01),
       width: Screens.width(context),
-      // height: Screens.padingHeight(context) * 0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -39,21 +38,6 @@ class AmtCalCulationWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //           Container(
-              // padding: EdgeInsets.only(
-
-              //       left: Screens.width(context) * 0.01,
-              //       right: Screens.width(context) * 0.01,
-              //       bottom: Screens.padingHeight(context) * 0.01),
-              // child: Text(
-              //   "Payment Details",
-              //   textAlign: TextAlign.start,
-              //   style: theme.textTheme.bodyMedium?.copyWith(
-              //     color: theme.primaryColor,
-              //   ),
-              // ),
-              //             ),
-
               Container(
                 padding: EdgeInsets.only(
                     top: Screens.padingHeight(context) * 0.01,
@@ -61,7 +45,6 @@ class AmtCalCulationWidget extends StatelessWidget {
                     right: Screens.width(context) * 0.01,
                     bottom: Screens.padingHeight(context) * 0.01),
                 width: Screens.width(context),
-                // height: paymentHeight * 0.11,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -82,10 +65,8 @@ class AmtCalCulationWidget extends StatelessWidget {
                                 ? const Text(
                                     "0.00",
                                   )
-                                // Container()
                                 : Text(
                                     prdCD.getScanneditemData.length.toString(),
-                                    // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
                                     style: theme.textTheme.bodyMedium
                                         ?.copyWith())),
                       ],
@@ -110,10 +91,7 @@ class AmtCalCulationWidget extends StatelessWidget {
                                 ? const Text(
                                     "0.00",
                                   )
-
-                                // Container()
                                 : Text("${prdCD.totalPayment!.total!}",
-                                    // "${prdPmt.totalPayment!.discount!.toStringAsFixed(0)}",
                                     style:
                                         theme.textTheme.bodyMedium?.copyWith()))
                       ],
@@ -136,8 +114,6 @@ class AmtCalCulationWidget extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: prdCD.totalPayment == null
                                 ? const Text("0.00")
-
-                                // Container()
                                 : Text(("0.00"),
                                     style:
                                         theme.textTheme.bodyMedium?.copyWith()))
@@ -161,8 +137,6 @@ class AmtCalCulationWidget extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: prdCD.totalPayment == null
                                 ? const Text("0.00")
-
-                                // Container()
                                 : Text("0.00",
                                     style:
                                         theme.textTheme.bodyMedium?.copyWith()))
@@ -179,7 +153,6 @@ class AmtCalCulationWidget extends StatelessWidget {
                     right: Screens.width(context) * 0.01,
                     bottom: Screens.padingHeight(context) * 0.01),
                 width: Screens.width(context),
-                // height: paymentHeight * 0.11,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -202,7 +175,6 @@ class AmtCalCulationWidget extends StatelessWidget {
                                   prdCD.config.splitValues(prdCD
                                       .totalPayment!.subtotal!
                                       .toStringAsFixed(2)),
-                                  // "${prdPmt.totalPayment!.subtotal!.toStringAsFixed(2)}",
                                   style: theme.textTheme.bodyMedium?.copyWith(),
                                 ),
                         ),
@@ -351,8 +323,6 @@ class AmtCalCulationWidget extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.center,
-
-            // height: cashHeight * 0.2,
             width: Screens.width(context) * 0.9,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),

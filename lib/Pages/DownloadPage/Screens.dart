@@ -24,35 +24,14 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
-        return const Scaffold(
-            // drawer: naviDrawerMob(context),
-            body:
-                // ChangeNotifierProvider<DownLoadController>(
-                //     create: (context) => DownLoadController(),
-                //     builder: (context, child) {
-                //       return Consumer<DownLoadController>(
-                //           builder: (BuildContext context, ExpenseCon, Widget? child) {
-                SafeArea(child: DownloadPage()));
-        //   });
-        // }),
+        return const Scaffold(body: SafeArea(child: DownloadPage()));
       } else {
         return Scaffold(
             backgroundColor: Colors.grey[300],
             resizeToAvoidBottomInset: false,
-            // drawer: naviDrawer(),
-            body:
-                // ChangeNotifierProvider<DownLoadController>(
-                //     create: (context) => DownLoadController(),
-                //     builder: (context, child) {
-                //     return Consumer<DownLoadController>(
-                //     builder: (BuildContext context, ExpenseCon, Widget? child) {
-                const SafeArea(child: DownloadPage())
-            //   });
-            // }),
-            );
+            body: const SafeArea(child: DownloadPage()));
       }
     });
   }

@@ -43,7 +43,7 @@ class ReportController extends ChangeNotifier {
 
   GlobalKey<FormState> frmFormkey = GlobalKey<FormState>();
   GlobalKey<FormState> toFormkey = GlobalKey<FormState>();
-  // List<SalesInDayData> tablerColumn = [];
+
   static List<SplitLeadData> tablerColumn = [];
   static List<String> tablerColumn55 = [];
 
@@ -107,12 +107,9 @@ class ReportController extends ChangeNotifier {
         lastDate: DateTime(2100));
 
     var datetype = DateFormat('yyyy-MM-dd').format(pickedDate!);
-    // if (reportFieldList[indx].uParamDesc == 'From Date') {
+
     frmController[indx].text = datetype;
-    //  config.alignDate(datetype);
-    // } else if (reportFieldList[indx].uParamDesc == 'To Date') {
-    // frmController[indx].text = datetype;
-    // }
+
     log('frmController[indx].text::${frmController[indx].text}');
     notifyListeners();
   }
@@ -136,24 +133,6 @@ class ReportController extends ChangeNotifier {
   String reportQeury = '';
   String compoBoxQeury = '';
 
-  // callReportDetailsApi() async {
-  //   loadingscrn = true;
-
-  //   await NewReportApi2.getGlobalData(
-  //     reportQeury,
-  //   ).then((value) {
-  //     // if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-  //     //   // tablerColumn = value.openOutwardData!;
-  //     //   loadingscrn = false;
-  //     //   notifyListeners();
-  //     // } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-  //     //   loadingscrn = false;
-  //     // } else {
-  //     //   loadingscrn = false;
-  //     // }
-  //   });
-  //   notifyListeners();
-  // }
   List<newvaluedynamic> valuesddd = [];
   List<String> valuesheader = [];
   Map<String, dynamic> entryList = {};
@@ -293,7 +272,6 @@ class ReportController extends ChangeNotifier {
                               child: ListView.builder(
                                   itemCount: reportFieldList.length,
                                   itemBuilder: (context, index) {
-                                    // log('reportFieldList[index].uParamDesc::${reportFieldList[index].uParamDesc}');
                                     return Container(
                                       child: Column(
                                         crossAxisAlignment:
@@ -478,7 +456,6 @@ class ReportController extends ChangeNotifier {
                                                               0.07,
                                                       alignment:
                                                           Alignment.center,
-                                                      // color: Colors.red,
                                                       width: Screens.width(
                                                               context) *
                                                           0.25,
@@ -486,7 +463,6 @@ class ReportController extends ChangeNotifier {
                                                         controller:
                                                             frmController[
                                                                 index],
-                                                        // readOnly: true,
                                                         onChanged: (val) {
                                                           setState(
                                                             () {
@@ -644,7 +620,6 @@ class ReportController extends ChangeNotifier {
       } else {
         reportQeury = reportQeury + ",'" + frmController[i].text + "'";
       }
-      // log('reportQeuryreportQeury::$reportQeury');
     }
 
     if (frmController[0].text.isNotEmpty || toController[1].text.isNotEmpty) {
@@ -668,12 +643,10 @@ class ReportController extends ChangeNotifier {
 
   Future<void> requestStoragePermissionxx(BuildContext context, ThemeData theme,
       List<newvaluedynamic> valuesddd1, List<dynamic> keysList1) async {
-    // Check if storage permission is granted
     if (await Permission.storage.isGranted) {
       saveAllExcel(context, theme, valuesddd1, keysList1);
       log('Storage permission is already granted.');
     } else {
-      // Request storage permission
       var status = await Permission.storage.request();
 
       if (status.isGranted) {
@@ -694,9 +667,7 @@ class ReportController extends ChangeNotifier {
       List<newvaluedynamic> valuesddd1, List<dynamic> keysList1) async {
     var status = await Permission.storage.request();
     if (status.isGranted) {
-      // Permission granted, proceed with file creation
-      saveAllExcel(
-          context, theme, valuesddd1, keysList1); // Or your desired function
+      saveAllExcel(context, theme, valuesddd1, keysList1);
     } else {
       await Permission.storage.request();
       log("Storage permission denied.");
@@ -722,15 +693,10 @@ class ReportController extends ChangeNotifier {
           return DoubleCellValue(value);
         }
         return null;
-        // return value;
       }).toList();
       sheetObject.appendRow(row);
     }
 
-    // Directory? directory = await Directory('/storage/emulated/0/Download');
-    // getDownloadsDirectory();
-    // log('directory::${directory.toString()}');
-    // String filePath = '${directory.path}/posreport.xlsx';
     String timestamp = DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
 
     final directory = await Directory('/storage/emulated/0/Download');
@@ -787,13 +753,11 @@ class ReportController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-                      // const SizedBox(height: 15),
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      //Buttons
                       SizedBox(
                         height: Screens.bodyheight(context) * 0.05,
                         width: Screens.width(context) * 0.3,
@@ -827,152 +791,4 @@ class ReportController extends ChangeNotifier {
       ),
     );
   }
-
-  // static var excelValues;
-  // List<dynamic> pendingexcelvaluers = [];
-  // Future<void> createExcelForPending(
-  //     BuildContext context, ThemeData theme) async {
-  //   pendingexcelvaluers = [];
-  //   if (keysList.isNotEmpty) {
-  //     // for (var i = 0; i < keysList.length; i++) {
-  //     //   pendingexcelvaluers.add(keysList[i]);
-  //     // }
-  //     final xcel.Workbook workbook = xcel.Workbook();
-  //     final xcel.Worksheet sheet = workbook.worksheets[0];
-
-  //     for (var i = 0; i < keysList.length; i++) {
-  //       log('keysListkeysList:::${keysList[i].toString()}');
-
-  //       sheet.getRangeByIndex(1, i + 1).setText(keysList[i].toString());
-  //     }
-  //     log('valuesdddvaluesddd::${valuesddd.length}');
-  //     log('valuesddd[ik].data::${valuesddd[0].data.values.toString().split(',').toList().toString()}');
-
-  //     for (var ik = 0; ik < valuesddd.length; ik++) {
-  //       log('valuesddd[ik].data::${valuesddd[ik].data.values.toString().split(',').toList().toString()}');
-  //       var item = valuesddd[ik]
-  //           .data
-  //           .values
-  //           .toString()
-  //           .split(', ')
-  //           .toList()
-  //           .toString();
-
-  //       log('itemitemitem22::${item}');
-  //       sheet.getRangeByIndex(ik + 2, 1).setText(item);
-  //     }
-
-  //     final List<int> bytes = workbook.saveAsStream();
-  //     workbook.dispose();
-
-  //     path = await getExternalDocumentPath();
-  //     var id = DateTime.now().millisecondsSinceEpoch;
-  //     log('pathpathpathexcel33:::$path');
-  //     final String fileName = Platform.isIOS
-  //         ? '$path\/posReports.xlsx'
-  //         : '$path/$id-posReports.xlsx';
-  //     final File file = File(fileName);
-  //     log('fileName::${fileName.toString()}');
-  //     await file.writeAsBytes(bytes, flush: true);
-  //   }
-  // }
-
-  // static Future<String> getExternalDocumentPath() async {
-  //   // To check whether permission is given for this app or not.
-  //   var status = await Permission.storage.status;
-  //   if (!status.isGranted) {
-  //     // If not we will ask for permission first
-  //     await Permission.storage.request();
-  //     await Permission.manageExternalStorage.request();
-  //   }
-  //   // Directory directory = Directory("");
-  //   Directory directory = Directory('/storage/emulated/0/Download');
-  //   // if (Platform.isAndroid) {
-  //   //   // Redirects it to download folder in android
-
-  //   //   // directory = (await getExternalStorageDirectory())!;
-  //   // } else {
-  //   //   directory = await getApplicationSupportDirectory();
-  //   // }
-
-  //   final exPath = directory.path;
-  //   await Directory(exPath).create(recursive: true);
-  //   log('exPathexPath:${exPath}');
-  //   return exPath;
-  // }
-
-  // saveAllExcel(
-  //   BuildContext context,
-  //   ThemeData theme,
-  // ) {
-  //   pendingexcelvaluers = [];
-  //   createExcelForPending(context, theme);
-  //   if (pendingexcelvaluers.isNotEmpty) {
-  //     Get.dialog(
-  //       Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Padding(
-  //             padding: const EdgeInsets.symmetric(horizontal: 20),
-  //             child: Container(
-  //               width: Screens.width(context) * 0.25,
-  //               decoration: const BoxDecoration(
-  //                 color: Colors.white,
-  //                 borderRadius: BorderRadius.all(
-  //                   Radius.circular(20),
-  //                 ),
-  //               ),
-  //               child: Padding(
-  //                 padding: const EdgeInsets.all(20.0),
-  //                 child: Material(
-  //                   child: Column(
-  //                     children: [
-  //                       const SizedBox(height: 10),
-  //                       Text("Successfull Saved..",
-  //                           textAlign: TextAlign.center,
-  //                           style: theme.textTheme.bodyLarge!.copyWith(
-  //                             color: Colors.green,
-  //                           )),
-  //                       // const SizedBox(height: 15),
-  //                       Text(
-  //                         "Path Name:$path",
-  //                         textAlign: TextAlign.center,
-  //                       ),
-  //                       const SizedBox(height: 20),
-  //                       //Buttons
-  //                       SizedBox(
-  //                         height: Screens.bodyheight(context) * 0.05,
-  //                         width: Screens.width(context) * 0.3,
-  //                         child: ElevatedButton(
-  //                           style: ElevatedButton.styleFrom(
-  //                             foregroundColor: Colors.white,
-  //                             backgroundColor: Theme.of(context)
-  //                                 .colorScheme
-  //                                 .primary
-  //                                 .withOpacity(0.5),
-  //                             minimumSize: const Size(0, 45),
-  //                             shape: RoundedRectangleBorder(
-  //                               borderRadius: BorderRadius.circular(8),
-  //                             ),
-  //                           ),
-  //                           onPressed: () {
-  //                             Get.back();
-  //                           },
-  //                           child: const Text(
-  //                             'Close',
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     );
-  //   }
-  //   notifyListeners();
-  // }
 }

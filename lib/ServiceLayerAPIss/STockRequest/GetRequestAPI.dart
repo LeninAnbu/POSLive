@@ -11,7 +11,6 @@ import '../../url/url.dart';
 
 class SerlayStkRequestAPI {
   static Future<SapStkrequestModel> getData(String sapDocEntry) async {
-    // int? ressCode = 500;
     log('${URL.sapUrl}/InventoryTransferRequests($sapDocEntry)');
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
@@ -22,23 +21,21 @@ class SerlayStkRequestAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("request stscode::${response.statusCode}");
-      // log("request::${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return SapStkrequestModel.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
         log("request Exception: Error");
-        // throw Exception("Errorrrrr");
+
         return SapStkrequestModel.issue(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("Stkreq Exception:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

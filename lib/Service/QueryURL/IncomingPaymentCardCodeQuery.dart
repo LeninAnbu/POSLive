@@ -17,17 +17,8 @@ class IncomingPaymentCardCodeAPi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_IncomingPaymentCardCodeAPi '$cardCode'"
-                    // "Select docentry, docnum, docdate, taxdate, cardcode, cardname, doctotal, paidtodate paid, doctotal-paidtodate balance from oinv where canceled ='n' and doctotal-paidtodate > 0 and cardcode = '$cardCode'"
+                "query": "EXEC BZ_POS_IncomingPaymentCardCodeAPi '$cardCode'"
               }));
-
-      // log("Quot Header Data ${json.encode({
-      //       "constr":
-      //           "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-      //       "query":
-      //           "Select docentry, docnum, docdate, taxdate, cardcode, cardname, doctotal, paidtodate paid, doctotal-paidtodate balance from oinv where canceled ='n' and doctotal-paidtodate > 0 and cardcode = '$cardCode'"
-      //     })}");
 
       log("PayReceipt Data Res: ${json.decode(response.body)}");
       print(response.statusCode);
@@ -42,7 +33,7 @@ class IncomingPaymentCardCodeAPi {
       }
     } catch (e) {
       log('IncomingPayCardCodeModel:::$e');
-      //  throw Exception("Exception: $e");
+
       return IncomingPayCardCodeModel.error(e.toString(), 500);
     }
   }

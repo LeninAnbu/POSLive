@@ -45,9 +45,7 @@ class SalesQuotPutAPi {
         'HandWritten': quotputaval!.handWritten,
         'Printed': quotputaval!.printed,
         'DocDate': quotputaval!.docDate,
-        // "${docDate.year.toString().padLeft(4, '0')}-${docDate.month.toString().padLeft(2, '0')}-${docDate.day.toString().padLeft(2, '0')}",
         'DocDueDate': quotputaval!.docDueDate,
-        //  "${docDueDate.year.toString().padLeft(4, '0')}-${docDueDate.month.toString().padLeft(2, '0')}-${docDueDate.day.toString().padLeft(2, '0')}",
         'CardCode': '$cardCodePost',
         'CardName': quotputaval!.cardName,
         'Address': quotputaval!.address,
@@ -71,7 +69,6 @@ class SalesQuotPutAPi {
         'ShowSCN': quotputaval!.showScn,
         'Series': quotputaval!.series,
         'TaxDate': quotputaval!.taxDate,
-        // ${taxDate.year.toString().padLeft(4, '0')}-${taxDate.month.toString().padLeft(2, '0')}-${taxDate.day.toString().padLeft(2, '0')}",
         'PartialSupply': quotputaval!.partialSupply,
         'DocObjectCode': quotputaval!.docObjectCode,
         'ShipToCode':
@@ -297,7 +294,6 @@ class SalesQuotPutAPi {
         'DANFELgTxt': quotputaval!.danfeLgTxt,
         'IndFinal': quotputaval!.indFinal,
         'DataVersion': quotputaval!.dataVersion,
-
         'U_Purchase_Type': quotputaval!.uPurchaseType,
         'U_AP_Approve': quotputaval!.uApApprove,
         'U_Final_Del': quotputaval!.uFinalDel,
@@ -394,14 +390,12 @@ class SalesQuotPutAPi {
 
       log('${URL.url}Quotations($docentry)');
       final response = await http.put(
-        //instead of patch
         Uri.parse(
           '${URL.url}Quotations($docentry)',
         ),
         headers: {
           'content-type': 'application/json',
           'cookie': 'B1SESSION=${AppConstant.sapSessionID}',
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           'odata.metadata': quotputaval!.odataMetadata,
@@ -412,9 +406,7 @@ class SalesQuotPutAPi {
           'HandWritten': quotputaval!.handWritten,
           'Printed': quotputaval!.printed,
           'DocDate': quotputaval!.docDate,
-          // "${docDate.year.toString().padLeft(4, '0')}-${docDate.month.toString().padLeft(2, '0')}-${docDate.day.toString().padLeft(2, '0')}",
           'DocDueDate': quotputaval!.docDueDate,
-          //  "${docDueDate.year.toString().padLeft(4, '0')}-${docDueDate.month.toString().padLeft(2, '0')}-${docDueDate.day.toString().padLeft(2, '0')}",
           'CardCode': '$cardCodePost',
           'CardName': quotputaval!.cardName,
           'Address': quotputaval!.address,
@@ -438,7 +430,6 @@ class SalesQuotPutAPi {
           'ShowSCN': quotputaval!.showScn,
           'Series': quotputaval!.series,
           'TaxDate': quotputaval!.taxDate,
-          // ${taxDate.year.toString().padLeft(4, '0')}-${taxDate.month.toString().padLeft(2, '0')}-${taxDate.day.toString().padLeft(2, '0')}",
           'PartialSupply': quotputaval!.partialSupply,
           'DocObjectCode': quotputaval!.docObjectCode,
           'ShipToCode': quotputaval!.shipToCode == null ||
@@ -773,9 +764,7 @@ class SalesQuotPutAPi {
               'HandWritten': quotputaval!.handWritten,
               'Printed': quotputaval!.printed,
               'DocDate': quotputaval!.docDate,
-              // "${docDate.year.toString().padLeft(4, '0')}-${docDate.month.toString().padLeft(2, '0')}-${docDate.day.toString().padLeft(2, '0')}",
               'DocDueDate': quotputaval!.docDueDate,
-              //  "${docDueDate.year.toString().padLeft(4, '0')}-${docDueDate.month.toString().padLeft(2, '0')}-${docDueDate.day.toString().padLeft(2, '0')}",
               'CardCode': '$cardCodePost',
               'CardName': quotputaval!.cardName,
               'Address': quotputaval!.address,
@@ -799,8 +788,6 @@ class SalesQuotPutAPi {
               'ShowSCN': quotputaval!.showScn,
               'Series': quotputaval!.series,
               'TaxDate': quotputaval!.taxDate,
-              // config2.currentDate(),
-              // ${taxDate.year.toString().padLeft(4, '0')}-${taxDate.month.toString().padLeft(2, '0')}-${taxDate.day.toString().padLeft(2, '0')}",
               'PartialSupply': quotputaval!.partialSupply,
               'DocObjectCode': quotputaval!.docObjectCode,
               'ShipToCode': quotputaval!.shipToCode,
@@ -1025,7 +1012,6 @@ class SalesQuotPutAPi {
               'DANFELgTxt': quotputaval!.danfeLgTxt,
               'IndFinal': quotputaval!.indFinal,
               'DataVersion': quotputaval!.dataVersion,
-
               'U_Purchase_Type': quotputaval!.uPurchaseType,
               'U_AP_Approve': quotputaval!.uApApprove,
               'U_Final_Del': quotputaval!.uFinalDel,
@@ -1111,7 +1097,6 @@ class SalesQuotPutAPi {
               'U_Request': quotputaval!.uRequest,
               'U_PosDocNo': quotputaval!.uPosDocNo,
               'TaxExtension': quotputaval!.taxExtension,
-
               'AddressExtension': quotputaval!.addressExtension,
               'Document_ApprovalRequests': [],
               'ElectronicProtocols': [],
@@ -1135,7 +1120,7 @@ class SalesQuotPutAPi {
       }
     } catch (e) {
       log(e.toString());
-      //  throw Exception(e);
+
       return SalesQuotStatus.issue(
         'Restart the app or contact the admin!!..\n',
         500,

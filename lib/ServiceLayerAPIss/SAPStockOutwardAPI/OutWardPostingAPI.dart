@@ -21,7 +21,6 @@ class PostStkOutwardAPi {
   static void method(String? deviceCode) {
     final dat = json.encode({
       "CardCode": "$cardCodePost",
-
       "DocumentStatus": "bost_Open",
       "DocDate": "$docDate",
       "DueDate": "$dueDate",
@@ -31,7 +30,6 @@ class PostStkOutwardAPi {
       "Comments": "$comments",
       "U_PosUserCode": UserValues.userCode,
       "U_PosTerminal": AppConstant.terminal,
-      // 'Series': '$seriesType',
       "StockTransferLines": stockTransferLines!.map((e) => e.toJson()).toList(),
     });
 
@@ -46,18 +44,15 @@ class PostStkOutwardAPi {
               headers: {
                 "content-type": "application/json",
                 "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-                // "Prefer":"return-no-content"
               },
               body: json.encode({
                 "DocumentStatus": "bost_Open",
                 "CardCode": "$cardCodePost",
-
                 "DocDate": "$docDate",
                 "DueDate": "$dueDate",
                 "FromWarehouse": "$fromWarehouse",
                 "ToWarehouse": "$toWarehouse",
                 "Comments": "$comments",
-                // 'Series': '$seriesType',
                 "U_DeviceTransID": deviceTransID,
                 'U_ReqWhs': "$ureqWarehouse",
                 "U_PosUserCode": UserValues.userCode,
@@ -67,14 +62,12 @@ class PostStkOutwardAPi {
               }));
       log(json.encode({
         "CardCode": "$cardCodePost",
-
         "DocumentStatus": "bost_Open",
         "DocDate": "$docDate",
         "DueDate": "$dueDate",
         "FromWarehouse": "$fromWarehouse",
         "ToWarehouse": "$toWarehouse",
         "Comments": "$comments",
-        // 'Series': '$seriesType',
         'U_ReqWhs': "$ureqWarehouse",
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
@@ -82,8 +75,6 @@ class PostStkOutwardAPi {
             stockTransferLines!.map((e) => e.toJson()).toList(),
       }));
       log("Postoutward stcode11 ::${response.statusCode}");
-
-      // log("StkOutwardAPi: ${json.decode(response.body)}");
 
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         log("Step22");
@@ -94,7 +85,7 @@ class PostStkOutwardAPi {
       } else {
         log("StkOutwardAPi: ${json.decode(response.body)}");
         log("Postoutward stcode22 ::${response.statusCode}");
-        // throw Exception("Error");
+
         return SapOutwardModel.issue(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
@@ -102,7 +93,6 @@ class PostStkOutwardAPi {
     } catch (e) {
       log('Exception StkOutwardAPiAPi: $e');
       throw Exception('Exception StkOutwardAPiAPi: $e');
-      // return SapOutwardModel.issue(json.decode('Restart the app or contact the admin!!..'), 500);
     }
   }
 }

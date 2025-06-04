@@ -81,22 +81,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                 payMent: 'Select Customer',
                                                 widget: forSearchBtn(context),
                                                 buttonName: '',
-                                                // callback: () {
-                                                //   Navigator.pop(context);
-                                                //   showDialog(
-                                                //       context: context,
-                                                //       barrierDismissible: false,
-                                                //       builder: (BuildContext context) {
-                                                //         return AlertDialog(
-                                                //             contentPadding:
-                                                //                 const EdgeInsets.all(0),
-                                                //             content: AlertBox(
-                                                //               payMent: 'New Customer',
-                                                //               widget: forAddNewBtn(context),
-                                                //               buttonName: null,
-                                                //             ));
-                                                //       });
-                                                // },
                                               ));
                                         });
                                   }
@@ -234,15 +218,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                               }
                                             },
                                             onEditingComplete: () {
-                                              // context
-                                              //         .read<PosController>()
-                                              //         .selectedcust!
-                                              //         .name =
-                                              //     context
-                                              //         .read<
-                                              //             PosController>()
-                                              //         .custNameController
-                                              //         .text;
                                               context
                                                   .watch<SOCon>()
                                                   .disableKeyBoard(context);
@@ -277,8 +252,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                     color: Colors.grey),
                                               ),
                                               hintText: 'Tin no',
-
-                                              // labelText: 'Tin no',
                                               hintStyle: widget
                                                   .theme.textTheme.bodyMedium
                                                   ?.copyWith(
@@ -286,7 +259,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                               filled: false,
                                               contentPadding:
                                                   const EdgeInsets.symmetric(
-                                                // vertical: 10,
                                                 horizontal: 10,
                                               ),
                                             ),
@@ -318,15 +290,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                       }
                                     },
                                     onEditingComplete: () {
-                                      // context
-                                      //         .read<PosController>()
-                                      //         .selectedcust!
-                                      //         .name =
-                                      //     context
-                                      //         .read<
-                                      //             PosController>()
-                                      //         .custNameController
-                                      //         .text;
                                       context
                                           .read<SOCon>()
                                           .disableKeyBoard(context);
@@ -361,7 +324,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                       filled: false,
                                       contentPadding:
                                           const EdgeInsets.symmetric(
-                                        // vertical: 10,
                                         horizontal: 10,
                                       ),
                                     ),
@@ -625,12 +587,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                 ?.copyWith(
                                                     color: Colors.black54),
                                           ),
-                                          // SizedBox(
-                                          //     width: widget.custWidth * 0.04,
-                                          //     child: const Icon(
-                                          //       Icons.arrow_drop_down,
-                                          //       size: 30,
-                                          //     ))
                                         ],
                                       ),
                                     ),
@@ -770,12 +726,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                 ?.copyWith(
                                                     color: Colors.black54),
                                           ),
-                                          // SizedBox(
-                                          //     width: widget.custWidth * 0.04,
-                                          //     child: const Icon(
-                                          //       Icons.arrow_drop_down,
-                                          //       size: 30,
-                                          //     ))
                                         ],
                                       ),
                                     ),
@@ -902,7 +852,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                     : Container(
                         color: Colors.grey[50],
                         padding: EdgeInsets.symmetric(
-                            // vertical: widget.custHeight * 0.02,
                             horizontal: widget.custWidth * 0.02),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -995,7 +944,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                                   Colors.grey),
                                                     ),
                                                     hintText: 'Name',
-                                                    // labelText: 'Name',
                                                     hintStyle: widget.theme
                                                         .textTheme.bodyMedium
                                                         ?.copyWith(
@@ -1055,22 +1003,13 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                       }
                                                     },
                                                     onEditingComplete: () {
-                                                      // context
-                                                      //         .read<PosController>()
-                                                      //         .selectedcust!
-                                                      //         .name =
-                                                      //     context
-                                                      //         .read<
-                                                      //             PosController>()
-                                                      //         .custNameController
-                                                      //         .text;
                                                       context
-                                                          .watch<SOCon>()
+                                                          .read<SOCon>()
                                                           .disableKeyBoard(
                                                               context);
                                                     },
                                                     controller: context
-                                                        .watch<SOCon>()
+                                                        .read<SOCon>()
                                                         .tinNoController,
                                                     decoration: InputDecoration(
                                                       errorBorder:
@@ -1114,7 +1053,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                                     .grey),
                                                       ),
                                                       hintText: 'Tin no',
-                                                      // labelText: 'Tin no',
                                                       hintStyle: widget.theme
                                                           .textTheme.bodyMedium
                                                           ?.copyWith(
@@ -1124,7 +1062,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                       contentPadding:
                                                           const EdgeInsets
                                                               .symmetric(
-                                                        // vertical: 10,
                                                         horizontal: 10,
                                                       ),
                                                     ),
@@ -1193,15 +1130,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                   }
                                                 },
                                                 onEditingComplete: () {
-                                                  // context
-                                                  //         .read<PosController>()
-                                                  //         .selectedcust!
-                                                  //         .name =
-                                                  //     context
-                                                  //         .read<
-                                                  //             PosController>()
-                                                  //         .custNameController
-                                                  //         .text;
                                                   context
                                                       .read<SOCon>()
                                                       .disableKeyBoard(context);
@@ -1247,7 +1175,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                             color: Colors.grey),
                                                   ),
                                                   hintText: 'VAT no',
-                                                  // labelText: 'VAT no',
                                                   hintStyle: widget.theme
                                                       .textTheme.bodyMedium
                                                       ?.copyWith(
@@ -1256,7 +1183,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                   contentPadding:
                                                       const EdgeInsets
                                                           .symmetric(
-                                                    // vertical: 10,
                                                     horizontal: 10,
                                                   ),
                                                 ),
@@ -1550,14 +1476,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 InkWell(
-                                  onTap: () async {
-                                    // context.read<SOCon>().clearTextField();
-                                    // billAddress(context);
-                                    // await context.read<SOCon>().billaddresslist();
-                                    // context
-                                    //     .read<SOCon>()
-                                    //     .disableKeyBoard(context);
-                                  },
+                                  onTap: () async {},
                                   child: SizedBox(
                                     width: widget.custWidth * 0.465,
                                     child: Column(
@@ -1578,12 +1497,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                     ?.copyWith(
                                                         color: Colors.black54),
                                               ),
-                                              // SizedBox(
-                                              //     width: widget.custWidth * 0.04,
-                                              //     child: const Icon(
-                                              //       Icons.arrow_drop_down,
-                                              //       size: 30,
-                                              //     ))
                                             ],
                                           ),
                                         ),
@@ -1716,16 +1629,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () async {
-                                    // context.read<SOCon>().clearTextField();
-                                    // sipaddress(context);
-                                    // await context
-                                    //     .read<SOCon>()
-                                    //     .shippinfaddresslist();
-                                    // context
-                                    //     .read<SOCon>()
-                                    //     .disableKeyBoard(context);
-                                  },
+                                  onTap: () async {},
                                   child: SizedBox(
                                     width: widget.custWidth * 0.465,
                                     child: Column(
@@ -1749,12 +1653,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                                     ?.copyWith(
                                                         color: Colors.black54),
                                               ),
-                                              // SizedBox(
-                                              //     width: widget.custWidth * 0.04,
-                                              //     child: const Icon(
-                                              //       Icons.arrow_drop_down,
-                                              //       size: 30,
-                                              //     ))
                                             ],
                                           ),
                                         ),
@@ -1975,14 +1873,6 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                           .watch<SOCon>()
                                           .getfiltercustList[index]
                                           .cardCode!),
-                                      // Text(context
-                                      //     .watch<SOCon>()
-                                      //     .config
-                                      //     .splitValues(context
-                                      //         .watch<SOCon>()
-                                      //         .getfiltercustList[index]
-                                      //         .accBalance!
-                                      //         .toString())),
                                     ],
                                   ),
                                   Row(

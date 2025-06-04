@@ -61,12 +61,10 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
               controller: widget.prdsrch.mycontroller[80],
               style: theme.textTheme.bodySmall!.copyWith(color: Colors.black),
               keyboardType: TextInputType.number,
-
               onChanged: (val) {},
               onEditingComplete: () {
                 widget.prdsrch.invoiceScan(context, theme);
               },
-              // Only numbers can be entered
               decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(8),
@@ -82,15 +80,7 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         shape: BoxShape.rectangle),
                     child: IconButton(
-                      onPressed: () {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: ((context) =>
-                        //               SettingScreens())));
-
-                        //   // Get.toNamed(ConstantRoutes.SettingScreens);
-                      },
+                      onPressed: () {},
                       icon: const Icon(
                         Icons.search,
                       ),
@@ -127,9 +117,7 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                       decoration: BoxDecoration(
                           border: Border.all(color: theme.primaryColor),
                           borderRadius: BorderRadius.circular(5),
-                          color: theme.primaryColor
-                          // color: Colors.grey.withOpacity(0.05),
-                          ),
+                          color: theme.primaryColor),
                       height: widget.proHeight * 0.1,
                       width: widget.proWidth * 0.2,
                       child: Text(
@@ -152,7 +140,6 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                             shrinkWrap: true,
                             physics: const BouncingScrollPhysics(),
                             itemCount: widget.prdsrch.getScanneditemData.length,
-                            // widget.prdsrch.getselectcust!.payItem!.length,
                             itemBuilder: (context, index) {
                               return Card(
                                   child: Container(
@@ -168,9 +155,6 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                                     color: widget
                                                     .prdsrch
                                                     .getScanneditemData[index]
-                                                    // .getselectcust!
-
-                                                    // .payItem![index]
                                                     .checkbx ==
                                                 1 &&
                                             widget
@@ -230,12 +214,9 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                                               width: widget.proWidth * 0.22,
                                               height: widget.proHeight * 0.08,
                                               alignment: Alignment.center,
-                                              // width: Screens.width(context) * 0.015,
                                               padding: EdgeInsets.symmetric(
                                                   horizontal:
                                                       widget.proWidth * 0.005),
-                                              // height: searchHeight *
-                                              //     0.025,
                                               child: TextFormField(
                                                 style: theme
                                                     .textTheme.bodyMedium
@@ -311,7 +292,6 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                                         border: Border.all(
                                             color: theme.primaryColor),
                                         borderRadius: BorderRadius.circular(5),
-                                        // color: Colors.red
                                         color: Colors.grey.withOpacity(0.05),
                                       ),
                                       height: widget.proHeight * 0.08,
@@ -336,7 +316,6 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                                         border: Border.all(
                                             color: theme.primaryColor),
                                         borderRadius: BorderRadius.circular(5),
-                                        // color: Colors.red
                                         color: Colors.grey.withOpacity(0.05),
                                       ),
                                       height: widget.proHeight * 0.08,
@@ -355,7 +334,6 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                             InkWell(
                               onTap: () {
                                 setState(() {
-                                  // widget.prdsrch.forOnAccPaid("Advance",context,theme);
                                   widget.prdsrch.deSelectalladv(
                                       "Advance", context, theme);
                                 });
@@ -368,9 +346,7 @@ class _PayReceipt_ProWidgetState extends State<PayReceipt_ProWidget> {
                                     border:
                                         Border.all(color: theme.primaryColor),
                                     borderRadius: BorderRadius.circular(5),
-                                    color: theme.primaryColor
-                                    // color: Colors.grey.withOpacity(0.05),
-                                    ),
+                                    color: theme.primaryColor),
                                 height: widget.proHeight * 0.08,
                                 width: widget.proWidth * 0.22,
                                 child: Text(

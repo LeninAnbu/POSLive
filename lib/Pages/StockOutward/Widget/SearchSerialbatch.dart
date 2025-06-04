@@ -21,7 +21,6 @@ class SearchSearialBatch extends StatefulWidget {
 class _SearchItemsState extends State<SearchSearialBatch> {
   @override
   Widget build(BuildContext context) {
-    // StockOutwardDetails? datalist;
     final theme = Theme.of(context);
     return AlertDialog(
         insetPadding: const EdgeInsets.all(10),
@@ -103,8 +102,6 @@ class _SearchItemsState extends State<SearchSearialBatch> {
               ),
               Expanded(
                 child: ListView.builder(
-                    //  shrinkWrap: true,
-                    //  physics: const BouncingScrollPhysics(), // new
                     itemCount: context
                         .read<StockOutwardController>()
                         .getfilterSearchedData
@@ -125,17 +122,13 @@ class _SearchItemsState extends State<SearchSearialBatch> {
                                   .getfilterSearchedData[index]
                                   .itemcode
                                   .toString());
-                          // widget.prdsrch. onseletFst(context,
-                          // theme,
-                          // widget.prdsrch.getfilterSearchedData[index]
-                          // );
+
                           log("dattaa down");
                           Navigator.pop(context);
                         },
                         child: Card(
                           child: Container(
                               width: Screens.bodyheight(context) * 0.8,
-                              // height: ProHeight * 0.3,
                               padding: EdgeInsets.only(
                                 top: Screens.bodyheight(context) * 0.01,
                                 left: Screens.width(context) * 0.01,

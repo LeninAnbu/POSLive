@@ -10,16 +10,12 @@ class BodyContainerMob extends StatelessWidget {
     super.key, //required this.logCon
   });
 
-  //LoginController logCon;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Builder(builder: (context) {
       return Builder(builder: (context) {
         return Container(
-          //color: Colors.red,
-          // height: Screens.bodyheight(context) * 0.50,
-          // margin: EdgeInsets.symmetric(vertical: 10),
           padding: EdgeInsets.symmetric(
               vertical: Screens.padingHeight(context) * 0.02,
               horizontal: Screens.width(context) * 0.03),
@@ -47,7 +43,7 @@ class BodyContainerMob extends StatelessWidget {
                           ),
                     SizedBox(
                       width: Screens.width(context), //* 0.80,
-                      //color: Colors.amber,
+
                       child: TextFormField(
                         controller:
                             context.read<LoginController>().mycontroller[0],
@@ -131,9 +127,7 @@ class BodyContainerMob extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: ((context) =>
-                                              const ForgotMainScreen()
-                                          // RegisterPage()
-                                          )));
+                                          const ForgotMainScreen())));
                             },
                             child: const Text(
                               'Recover Password?',

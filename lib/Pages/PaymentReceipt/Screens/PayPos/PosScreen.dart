@@ -12,11 +12,9 @@ class PaymentRecieptPos extends StatelessWidget {
   const PaymentRecieptPos({
     super.key,
     required this.theme,
-    // required this.prdSCD
   });
 
   final ThemeData theme;
-  // PayreceiptController prdSCD;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,6 @@ class PaymentRecieptPos extends StatelessWidget {
                 child: Column(
                   children: [
                     PayBillingOptions(
-                      // payController: prdSCD,
                       theme: theme,
                     ),
                     const QuickOptions(),

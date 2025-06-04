@@ -25,11 +25,7 @@ class _MobileConfirmPasswordState extends State<MobileConfirmPassword> {
     return WillPopScope(
         onWillPop: () {
           onbackpresslogin();
-          // if (LoginController.loginPageScrn == true) {
-          //   onbackpresslogin();
-          // } else {
-          //   onbackpressprofile();
-          // }
+
           return Future.value(false);
         },
         child: Scaffold(
@@ -76,13 +72,6 @@ class _MobileConfirmPasswordState extends State<MobileConfirmPassword> {
 
                                       return null;
                                     },
-                                    //  validator: (value) {
-                                    //   if (value!.isEmpty) {
-                                    //     return "Please Enter new Password";
-                                    //   }
-
-                                    //   return null;
-                                    // },
                                     obscureText: true,
                                     controller: prdconf.mycontroller[4],
                                     decoration: InputDecoration(
@@ -131,13 +120,6 @@ class _MobileConfirmPasswordState extends State<MobileConfirmPassword> {
                                 duration: const Duration(milliseconds: 900),
                                 child: SizedBox(
                                   child: TextFormField(
-                                    // validator: (value) {
-                                    //   if (value!.isEmpty) {
-                                    //     return "Please Enter Confirm Password";
-                                    //   }
-
-                                    //   return null;
-                                    // },
                                     validator: (value) {
                                       if (prdconf.mycontroller[4].text !=
                                           prdconf.mycontroller[5].text) {
@@ -214,7 +196,7 @@ class _MobileConfirmPasswordState extends State<MobileConfirmPassword> {
     if (currentBackPressprofile == null ||
         now.difference(currentBackPressprofile!) > const Duration(seconds: 2)) {
       currentBackPressprofile = now;
-      // Get.offAllNamed(ConstantRoutes.newprofile);
+
       return Future.value(false);
     }
     return Future.value(false);
@@ -229,7 +211,7 @@ class _MobileConfirmPasswordState extends State<MobileConfirmPassword> {
       currentBackPressLogin = now;
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const LoginScreen()));
-      // Get.offAllNamed(ConstantRoutes.login);
+
       return Future.value(false);
     }
     return Future.value(false);

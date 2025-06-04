@@ -26,52 +26,14 @@ class StockReqPos extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Container(
-              //   child: RequestItem(
-              //     searchHeight: Screens.padingHeight(context) * 0.92,
-              //     searchWidth: Screens.width(context) * 0.48,
-              //     theme: theme,
-              //     prdsrch: prdSCD,
-              //   ),
-              // ),
               const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // StockReqCustomer(
-                      //   custWidth: Screens.width(context) * 0.4,
-                      //   custHeight: Screens.padingHeight(context) * 0.8,
-                      //   theme: theme,
-                      //   SR_Con: prdSCD,
-                      // ),
-                      // SizedBox(
-                      //   height: Screens.padingHeight(context) * 0.05,
-                      // ),
-                      // ItemDetails(
-                      //   itemHeight: Screens.padingHeight(context) * 0.07,
-                      //   itemWidth: Screens.width(context) * 0.4,
-                      //   theme: theme,
-                      //   prdPmt: prdSCD,
-                      // ),
-                      // SizedBox(
-                      //   height: Screens.padingHeight(context) * 0.05,
-                      // ),
-                      // LoadButtons(
-                      //   SRCon:prdSCD ,
-                      //   loadheight: Screens.padingHeight(context) * 0.14,
-                      //   loadWidth: Screens.width(context) * 0.4,
-                      // ),
-                    ],
+                    children: [],
                   ),
-                  // StockReqBottomBtn(
-                  //   theme: theme,
-                  //   btnheight: Screens.padingHeight(context) * 0.1,
-                  //   btnWidth: Screens.width(context) * 0.4,
-                  //   SR_Con: prdSCD,
-                  // )
                 ],
               ),
               SingleChildScrollView(

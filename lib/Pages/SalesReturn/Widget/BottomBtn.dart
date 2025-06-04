@@ -228,37 +228,6 @@ class _BottomBtnState extends State<BottomBtn> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // GestureDetector(
-                      //     onTap: () {
-                      //       setState(() {
-                      //         context.read<SalesReturnController>().cancelbtn =
-                      //             true;
-                      //         context
-                      //             .read<SalesReturnController>()
-                      //             .clickacancelbtn(context, widget.theme);
-                      //       });
-                      //     },
-                      //     child: Container(
-                      //       width: widget.btnWidth * 0.28,
-                      //       alignment: Alignment.center,
-                      //       decoration: BoxDecoration(
-                      //         color: widget.theme.primaryColor,
-                      //         borderRadius: BorderRadius.circular(5),
-                      //       ),
-                      //       height: widget.btnheight * 0.2,
-                      //       child: context
-                      //                   .read<SalesReturnController>()
-                      //                   .cancelbtn ==
-                      //               false
-                      //           ? Text("Cancel",
-                      //               textAlign: TextAlign.center,
-                      //               style: widget.theme.textTheme.bodySmall
-                      //                   ?.copyWith(
-                      //                 color: Colors.white,
-                      //               ))
-                      //           : CircularProgressIndicator(
-                      //               color: widget.theme.primaryColor),
-                      //     )),
                       context.read<SalesReturnController>().isApprove == true
                           ? GestureDetector(
                               onTap: () {

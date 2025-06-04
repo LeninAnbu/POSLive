@@ -59,12 +59,9 @@ class MobTransaction extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   padding: EdgeInsets.all(
                     dbHeight * 0.01,
                   ),
-                  // height: dbHeight * 0.18,
-                  // width: dbWidth * 0.9,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +89,6 @@ class MobTransaction extends StatelessWidget {
                         style:
                             theme.textTheme.bodyMedium?.copyWith(fontSize: 16),
                       ),
-                      // Text('DC-ABV12K-1YR'),
                     ],
                   ),
                 ));

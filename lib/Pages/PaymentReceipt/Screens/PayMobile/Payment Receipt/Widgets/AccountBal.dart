@@ -29,7 +29,6 @@ StatefulBuilder forAccBal(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    // height: cashHeight * 0.2,
                     width: Screens.width(context) * 0.7,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
@@ -75,13 +74,9 @@ StatefulBuilder forAccBal(
                     ),
                   ),
                   SizedBox(height: Screens.bodyheight(context) * 0.02),
-                  // Text("Amount to Adjust"),
                   GestureDetector(
-                    onTap: () {
-                      // posC.getDate(context);
-                    },
+                    onTap: () {},
                     child: Container(
-                      // height: cashHeight * 0.2,
                       width: Screens.width(context) * 0.7,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
@@ -101,11 +96,6 @@ StatefulBuilder forAccBal(
                         },
                         decoration: InputDecoration(
                           hintText: "Amount to Adjust",
-                          // suffixIcon: IconButton(
-                          //     onPressed: () {
-                          //       posC.getDate(context, 'Credit');
-                          //     },
-                          //     icon: Icon(Icons.date_range)),
                           filled: false,
                           focusedErrorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),

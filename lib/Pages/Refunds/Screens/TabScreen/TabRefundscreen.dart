@@ -38,18 +38,15 @@ class RefundTabScreen extends StatelessWidget {
                         searchHeight: Screens.bodyheight(context) * 0.7,
                         searchWidth: Screens.width(context) * 0.48,
                         theme: theme,
-                        // prdsrch: prdSCD,
                       ),
                       RefundPayDetails(
                         theme: theme,
-                        // prdPmt: prdSCD,
                         paymentWidth: Screens.width(context) * 0.48,
                         paymentHeight: Screens.bodyheight(context) * 0.15,
                       )
                     ])),
             SizedBox(
                 width: Screens.width(context) * 0.48,
-                // color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,16 +55,8 @@ class RefundTabScreen extends StatelessWidget {
                       custWidth: Screens.width(context) * 0.48,
                       custHeight: Screens.bodyheight(context) * 0.48,
                       theme: theme,
-                      // prdCD: prdSCD,
                     ),
-                    //         ItemDetails(
-                    //           itemHeight: Screens.bodyheight(context) * 0.08,
-                    //           itemWidth: Screens.width(context) * 0.48,
-                    //           prdPmt: prdSCD,
-                    //           theme: theme,
-                    //         ),
                     RefundModeTypeBtns(
-                      // payController: prdSCD,
                       cashWidth: Screens.width(context) * 0.48,
                       cashHeight: Screens.bodyheight(context) * 0.15,
                       theme: theme,
@@ -76,7 +65,6 @@ class RefundTabScreen extends StatelessWidget {
                       theme: theme,
                       btnheight: Screens.bodyheight(context) * 0.33,
                       btnWidth: Screens.width(context) * 0.48,
-                      // payController: prdSCD,
                     )
                   ],
                 )),

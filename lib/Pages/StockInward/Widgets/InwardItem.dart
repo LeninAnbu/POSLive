@@ -413,7 +413,6 @@ class _StockInwardState extends State<StockInward> {
               top: widget.stockInheight * 0.0,
               left: widget.stockInheight * 0.01,
               right: widget.stockInheight * 0.01,
-              // bottom: widget.stockInheight * 0.01,
             ),
             decoration: BoxDecoration(
                 color: widget.theme.primaryColor,
@@ -501,7 +500,6 @@ class _StockInwardState extends State<StockInward> {
                           onTap: () {},
                           child: Container(
                             padding: EdgeInsets.only(
-                              // top: widget.stockInheight * 0.008,
                               left: widget.stockInheight * 0.01,
                               right: widget.stockInheight * 0.01,
                               bottom: widget.stockInheight * 0.01,
@@ -515,13 +513,7 @@ class _StockInwardState extends State<StockInward> {
                               ),
                             ),
                             child: IntrinsicHeight(
-                              child:
-                                  // Row(
-                                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                                  //     mainAxisAlignment:
-                                  //         MainAxisAlignment.spaceBetween,
-                                  //     children: [
-                                  SizedBox(
+                              child: SizedBox(
                                 width: widget.stockInWidth * 0.5,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -582,7 +574,6 @@ class _StockInwardState extends State<StockInward> {
                                   ],
                                 ),
                               ),
-                              // ]),
                             ),
                           ),
                         ),
@@ -749,7 +740,6 @@ class _StockInwardState extends State<StockInward> {
                                 },
                                 child: Container(
                                   padding: EdgeInsets.only(
-                                    // top: widget.stockInheight * 0.008,
                                     left: widget.stockInWidth * 0.01,
                                     right: widget.stockInWidth * 0.01,
                                     bottom: widget.stockInheight * 0.01,
@@ -842,14 +832,7 @@ class _StockInwardState extends State<StockInward> {
                                                     : Colors.white),
                                   ),
                                   child: IntrinsicHeight(
-                                    child:
-                                        // Row(
-                                        //     crossAxisAlignment:
-                                        //         CrossAxisAlignment.start,
-                                        //     mainAxisAlignment:
-                                        //         MainAxisAlignment.spaceBetween,
-                                        //     children: [
-                                        SizedBox(
+                                    child: SizedBox(
                                       width: widget.stockInWidth,
                                       child: Column(
                                           crossAxisAlignment:
@@ -931,7 +914,6 @@ class _StockInwardState extends State<StockInward> {
           ),
           Container(
             padding: EdgeInsets.only(
-              // top: widget.stockInheight * 0.01,
               left: widget.stockInheight * 0.01,
               right: widget.stockInheight * 0.01,
               bottom: widget.stockInheight * 0.01,
@@ -1043,35 +1025,6 @@ class _StockInwardState extends State<StockInward> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // GestureDetector(
-                      //     onTap: () {
-                      //       setState(() {
-                      //         context
-                      //             .read<StockInwrdController>()
-                      //             .clickcancelbtn(context, widget.theme);
-                      //       });
-                      //     },
-                      //     child: Container(
-                      //       alignment: Alignment.center,
-                      //       decoration: BoxDecoration(
-                      //         color: Colors.grey[400],
-                      //         borderRadius: BorderRadius.circular(5),
-                      //       ),
-                      //       height: widget.stockInheight * 0.9,
-                      //       width: widget.stockInWidth * 0.25,
-                      //       child: context
-                      //                   .watch<StockInwrdController>()
-                      //                   .cancelbtn ==
-                      //               false
-                      //           ? Text("Cancel",
-                      //               textAlign: TextAlign.center,
-                      //               style: widget.theme.textTheme.bodySmall
-                      //                   ?.copyWith(
-                      //                 color: Colors.black,
-                      //               ))
-                      //           : CircularProgressIndicator(
-                      //               color: widget.theme.primaryColor),
-                      //     )),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -1107,7 +1060,6 @@ class _StockInwardState extends State<StockInward> {
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              // color: Colors.grey[400],
                               borderRadius: BorderRadius.circular(5),
                             ),
                             height: widget.stockInheight * 0.9,
@@ -1386,6 +1338,7 @@ class _StockInwardState extends State<StockInward> {
                                             .onClickDisable = false;
                                       });
                                     } else {
+                                      log('passdatapassdataxx::${context.read<StockInwrdController>().passdata!.length}');
                                       await context
                                           .read<StockInwrdController>()
                                           .submitbutton(
@@ -1486,8 +1439,6 @@ class _StockInwardState extends State<StockInward> {
                         child: Container(
                           padding: EdgeInsets.only(
                               top: Screens.padingHeight(context) * 0.01,
-                              // left: Screens.width(context) * 0.01,
-                              // right: Screens.width(context) * 0.01,
                               bottom: Screens.padingHeight(context) * 0.01),
                           child: StatefulBuilder(builder: (context, st) {
                             return ListTile(
@@ -1521,7 +1472,6 @@ class _StockInwardState extends State<StockInward> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        // color: Colors.red,
                                         width: Screens.width(context) * 0.32,
                                         child: Text(
                                           context

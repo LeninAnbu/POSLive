@@ -31,8 +31,6 @@ class _StockInscanPageState extends State<StockInscanPage> {
     return Container(
         padding: EdgeInsets.only(
           top: widget.searchHeight * 0.02,
-          // left: widget.searchWidth * 0.01,
-          // right: widget.searchWidth * 0.01,
           bottom: widget.searchHeight * 0.01,
         ),
         decoration: BoxDecoration(
@@ -143,8 +141,6 @@ class _StockInscanPageState extends State<StockInscanPage> {
                                         child: Container(
                                           padding: EdgeInsets.only(
                                             top: widget.searchHeight * 0.01,
-                                            // left: widget.searchHeight * 0.01,
-                                            // right: widget.searchHeight * 0.01,
                                             bottom: widget.searchHeight * 0.01,
                                           ),
                                           decoration: BoxDecoration(
@@ -163,7 +159,6 @@ class _StockInscanPageState extends State<StockInscanPage> {
                                                           .spaceBetween,
                                                   children: [
                                                     Container(
-                                                      // color: Colors.red,
                                                       width:
                                                           widget.searchWidth *
                                                               0.7,
@@ -194,7 +189,6 @@ class _StockInscanPageState extends State<StockInscanPage> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      // color: Colors.red,
                                                       alignment:
                                                           Alignment.centerRight,
                                                       width:
@@ -286,10 +280,6 @@ class _StockInscanPageState extends State<StockInscanPage> {
                                                         keyboardType:
                                                             TextInputType
                                                                 .number,
-                                                        // inputFormatters: [
-                                                        //   FilteringTextInputFormatter
-                                                        //       .digitsOnly
-                                                        // ],
                                                         onEditingComplete: () {
                                                           setState(() {
                                                             context.read<StockInwrdController>().stkInEditQty(
@@ -387,18 +377,6 @@ class _StockInscanPageState extends State<StockInscanPage> {
                           width: widget.searchWidth,
                           child: ElevatedButton(
                               onPressed: () {
-                                // context
-                                //     .read<StockInwrdController>()
-                                //     .stInLineRefersh(
-                                //         widget.index!,
-                                //         widget.ind!,
-                                //         context
-                                //             .read<StockInwrdController>()
-                                //             .stockInward[widget.index!]
-                                //             .data![widget.ind!]
-                                //             .serialbatchList);
-                                // context.read<StockInwrdController>().passData(
-                                //     widget.theme, context, widget.index!);
                                 context
                                     .read<StockInwrdController>()
                                     .isselectmethod();

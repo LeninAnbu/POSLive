@@ -20,23 +20,19 @@ class SerlaySalesQuoAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
-      // log("SalesQuo stscode::${response.statusCode}");
-      // log("SalesQuo::${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return Servicrlayerquotation.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
         log("SalesQuo Exception: Error");
-        // throw Exception("Errorrrrr");
+
         return Servicrlayerquotation.issue(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("GetQuotException:: $e");
       throw Exception("Error");
-      // return Servicrlayerquotation.issue("Exception", ressCode!);
     }
   }
 }

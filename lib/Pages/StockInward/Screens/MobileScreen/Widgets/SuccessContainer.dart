@@ -15,18 +15,6 @@ class StIn_SuccessAlertbox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container(
-            //     alignment: Alignment.center,
-            //     height: Screens.padingHeight(context) * 0.1,
-            //     width: Screens.width(context) * 0.1,
-            //     decoration: BoxDecoration(
-            //       image: DecorationImage(
-            //           image: AssetImage("assets/AlertIcon.png"),
-            //          ),
-            //     )),
-            // SizedBox(
-            //   width: Screens.width(context) * 0.02,
-            // ),
             Text(content, style: theme.textTheme.bodyMedium),
           ],
         ),

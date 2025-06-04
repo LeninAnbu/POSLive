@@ -18,25 +18,21 @@ class CustomersReportApi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_CustomersReportApi"
-                    // "SELECT A.CARDNAME[Customer Name],A.CARDCODE [CustomerCode],A.Balance [Balance],''[Points],A.E_Mail [Email id],A.Cellular [Phone No],A.VatGroup [TaxCode],A.CardType [Customer Type],A.Address [Customer Address]FROM OCRD A  where CardType='C'"
+                "query": "EXEC BZ_POS_CustomersReportApi"
               }));
 
-      // log("Cusotmer Repprt Res: ${json.decode(response.body)}");
       log("CustomersReport Res: ${response.statusCode}");
 
       if (response.statusCode == 200) {
         return CustomersReportModel.fromJson(
             response.body, response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return CustomersReportModel.fromJson(
             response.body, response.statusCode);
       }
     } catch (e) {
       log('exp::${e.toString()}');
-      //  throw Exception("Exception: $e");
+
       return CustomersReportModel.error(e.toString(), 500);
     }
   }

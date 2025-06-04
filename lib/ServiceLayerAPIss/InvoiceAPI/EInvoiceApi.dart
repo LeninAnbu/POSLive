@@ -28,14 +28,13 @@ class AREinvoiceAPI {
         return AREinvoiceModel.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return AREinvoiceModel.fromJson(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
+
       return AREinvoiceModel.error(
           'Restart the app or contact the admin!!..\n', 500);
     }

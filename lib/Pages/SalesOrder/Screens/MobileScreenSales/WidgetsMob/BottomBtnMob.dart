@@ -41,27 +41,6 @@ class BottomButtonMob extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // GestureDetector(
-              //     onTap: () {
-              //       prdCD.salesOrderClicked(context, theme);
-              //     },
-              //     child: Container(
-              //       alignment: Alignment.center,
-              //       decoration: BoxDecoration(
-              //           // color: Colors.grey[200],
-              //           borderRadius: BorderRadius.circular(5),
-              //           border: Border.all(
-              //             color: theme.primaryColor,
-              //           )),
-              //       height: Screens.padingHeight(context) * 0.06,
-              //       width: Screens.width(context) * 0.4,
-              //       child: Text("Save as Order",
-              //           textAlign: TextAlign.center,
-              //           style: theme.textTheme.bodyLarge?.copyWith(
-              //             color: theme.primaryColor,
-              //           )),
-              //     )),
-
               GestureDetector(
                   onTap: () {
                     showDialog(
@@ -73,15 +52,9 @@ class BottomButtonMob extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             contentPadding: const EdgeInsets.all(0),
-                            // backgroundColor: Colors.transparent,
                             insetPadding: EdgeInsets.all(
                                 Screens.bodyheight(context) * 0.02),
                             content: forSuspend(context, prdCD, theme),
-                            //  AlertBox(
-                            //   payMent: 'Suspended',
-                            //   widget: forSuspend(context),
-                            //   buttonName: null,
-                            // )
                           );
                         });
                   },
@@ -111,12 +84,10 @@ class BottomButtonMob extends StatelessWidget {
               GestureDetector(
                   onTap: () {
                     prdCD.onHoldClicked(context, theme);
-                    // prdCD.getdraft();
                   },
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        // color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
                           color: theme.primaryColor,
@@ -176,7 +147,6 @@ class BottomButtonMob extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -223,7 +193,6 @@ class BottomButtonMob extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                         posController.saveValuesTODB("suspend", context, theme);
-                        // posController.clearAllData();
                       },
                       child: const Text("Yes")),
                 ),

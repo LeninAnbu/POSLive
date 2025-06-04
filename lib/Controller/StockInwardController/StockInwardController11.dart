@@ -32,16 +32,16 @@
 // import '../../Widgets/ContentContainer.dart';
 
 // class StockInwardController extends ChangeNotifier {
-//   // StockInwardController() {
-//   //   // deletereq();
-//   //   getStockOutData();
-//   //   gethold();
-//   // }
+// 
+// 
+// 
+// 
+// 
 //   void init() {
-//     // deletereq();
+//   
 //     clear();
 //     tappage = PageController(initialPage: 0);
-//     // getStockReqData();
+//   
 //     getStockOutData();
 //     gethold();
 //   }
@@ -80,22 +80,22 @@
 //   }
 
 //   pagePlus() {
-//     // log('----' + tappage.toString());
-//     // log('----' + tappageIndex.toString());
+//   
+//   
 //     tappageIndex = 0;
 //     tappage.jumpToPage(1);
-//     // tappage.animateToPage(++tappageIndex,
-//     //     duration: Duration(milliseconds: 400), curve: Curves.linearToEaseOut);
+//   
+//   
 //     notifyListeners();
-//     // log('--a--' + tappage.toString());
-//     // log('--a--' + tappageIndex.toString());
+//   
+//   
 //   }
 
 //   pageminus() {
 //     tappageIndex = 1;
-//     // tappage.previousPage(duration:  Duration(milliseconds: 400), curve: Curves.linearToEaseOut);
-//     // log('--a--' + tappage.toString());
-//     // tappage.jumpToPage(0);
+//   
+//   
+//   
 
 //     tappage.animateToPage(--tappageIndex,
 //         duration: const Duration(milliseconds: 400),
@@ -104,7 +104,7 @@
 //   }
 
 //   clearDataAll() {
-//     // log('---sasas-' + tappageIndex.toString());
+//   
 //     page = PageController(initialPage: 0);
 //     tappage = PageController(initialPage: 0);
 //     pageIndex = 0;
@@ -114,15 +114,15 @@
 //     selectIndex;
 //     OnclickDisable = false;
 //     notifyListeners();
-//     // formkey.clear();
-//     // StOutController.clear();
-//     // StOutController2.clear();
-//     // // i_value = 0;
-//     // ScannigVal = 0;
-//     // dbDataTrue = false;
-//     // // StockOutward.clear();
-//     // StockOutward2.clear();
-//     // passdata!.clear();
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
 //   }
 
 //   deletereq() async {
@@ -169,43 +169,43 @@
 //     notifyListeners();
 //   }
 
-//   // disableKeyBoard(BuildContext context) {
-//   //   FocusScopeNode focus = FocusScope.of(context);
-//   //   if (!focus.hasPrimaryFocus) {
-//   //     focus.unfocus();
-//   //   }
-//   // }
+// 
+// 
+// 
+// 
+// 
+// 
 //   List<StockInwardDetails>? Scandata;
 //   List<String> ScandSerial = [];
-//   // int i = 0;
+// 
 //   List<List<String>>? test2;
 //   int scannvalue2 = 0;
-//   // List<StockInSerialbatch> batchList = [];
-//   // getBatchData(int index, int list_i) async {
-//   //   log("BaseDocentry::::${StockInward[index].data.length}::" + StockInward[index].data[list_i].baseDocentry.toString());
-//   //   final Database db = (await DBHelper.getInstance())!;
-//   //   List<Map<String, Object?>> getDBStInBatchData = await DBOperation.GetStInCheckScanData2(db, StockInward[index].data[list_i].baseDocentry, StockInward[index].data[list_i].lineNo, StockInward[index].data[list_i].itemcode);
-//   //   // print(getDBStInBatchData.length);
-//   //   if (getDBStInBatchData.isNotEmpty) {
-//   //     log("Test::" + list_i.toString());
-//   //     StockInward[index].data[list_i].serialbatchList = [];
-//   //     for (int i = 0; i < getDBStInBatchData.length; i++) {
-//   //       StockInward[index].data[list_i].serialbatchList!.add(StockInSerialbatch(
-//   //             lineno: getDBStInBatchData[i]["lineno"].toString(),
-//   //             baseDocentry: getDBStInBatchData[i]["baseDocentry"].toString(),
-//   //             itemcode: getDBStInBatchData[i]["itemcode"].toString(),
-//   //             qty: getDBStInBatchData[i]["quantity"] == null ? 0 : int.parse(getDBStInBatchData[i]["quantity"].toString()),
-//   //             scanbool: true,
-//   //             serialbatch: getDBStInBatchData[i]["serialBatch"].toString(),
-//   //           ));
-//   //     }
-//   //     // print("ascmkasckmascas" +
-//   //     // StockInward[index].data[list_i].serialbatchList![0].qty.toString());
-//   //   } else {
-//   //     StockInward[index].data[list_i].serialbatchList = [];
-//   //   }
-//   //   notifyListeners();
-//   // }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 //   searchInitMethod() {
 //     StInController[100].text = config.alignDate(config.currentDate());
@@ -232,8 +232,8 @@
 
 //   bool searchbool = false;
 //   getSalesDataDatewise(String fromdate, String todate) async {
-//     // log(fromdate);
-//     // log(todate);
+//   
+//   
 
 //     searchbool = true;
 //     final Database db = (await DBHelper.getInstance())!;
@@ -249,9 +249,9 @@
 //         searchdata2.add(searchModel(
 //             username: UserValues.username,
 //             terminal: AppConstant.terminal,
-//             // sapDocNo: getStockinHeader[i]["sapDocNo"] == null
-//             //     ? 0
-//             //     : int.parse(getStockinHeader[i]["sapDocNo"].toString()),
+//           
+//           
+//           
 //             qStatus: getStockinHeader[i]["qStatus"] == null
 //                 ? ""
 //                 : getStockinHeader[i]["qStatus"].toString(),
@@ -279,7 +279,7 @@
 //       searchData.addAll(searchdata2);
 //       filtersearchData = searchData;
 //     } else {
-//       // log("aasdasdasda");
+//     
 //       searchbool = false;
 //       searchData.clear();
 //       notifyListeners();
@@ -304,10 +304,10 @@
 //         await DBOperation.StInLineDB(db, docentry);
 //     List<StockInwardList> StockOutDATA2 = [];
 //     List<StockInwardDetails> stockDetails2 = [];
-//     // List<StockInSerialbatch> stockSerialBatch2 = [];
-//     // log("Header" + getDB_StInHeader.length.toString());
-//     // log("line" + getDB_StInLine[0]["itemcode"].toString());
-//     // log("Batch");
+//   
+//   
+//   
+//   
 // //  List<StockInwardDetails> stoutDetails = [];
 // //     List<StockInwardList> stoutList = [];
 
@@ -351,37 +351,37 @@
 //     StockOutDATA2.add(StockInwardList(
 //         remarks: getDB_StInHeader[0]["remarks"].toString(),
 //         branch: getDB_StInHeader[0]["branch"].toString(),
-//         // createdUserID: StockOut[index].createdUserID,
-//         // createdateTime: StockOut[index].createdateTime,
+//       
+//       
 //         docentry: getDB_StInHeader[0]["docentry"].toString(),
 //         baceDocentry: getDB_StInHeader[0]["baceDocentry"].toString(),
 //         docstatus: getDB_StInHeader[0]["baceDocentry"].toString(),
 //         documentno: getDB_StInHeader[0]["documentno"] == null
 //             ? "0"
 //             : getDB_StInHeader[0]["documentno"].toString(),
-//         // isagainstorder: StockOut[index].isagainstorder,
-//         // isagainststock: StockOut[index].isagainststock,
-//         // lastupdateIp: StockOut[index].lastupdateIp,
-//         // reqdocno: StockOut[index].reqdocno,
-//         // reqdocseries: StockOut[index].reqdocseries,
-//         // reqdocseriesno: StockOut[index].reqdocseriesno,
-//         // reqdoctime: StockOut[index].reqdoctime,
+//       
+//       
+//       
+//       
+//       
+//       
+//       
 //         reqfromWhs: getDB_StInHeader[0]["reqfromWhs"].toString(),
-//         // reqsystime: StockOut[index].reqsystime,
+//       
 //         reqtoWhs: getDB_StInHeader[0]["reqtoWhs"].toString(),
 //         reqtransdate: getDB_StInHeader[0]["transdate"].toString(),
-//         // salesexec: StockOut[index].salesexec,
-//         // seresid: StockOut[index].seresid,
-//         // seriesnum: StockOut[index].seriesnum,
-//         // sysdatetime: StockOut[index].sysdatetime,
-//         // totalitems: StockOut[index].totalitems,
-//         // totalltr: StockOut[index].totalltr,
-//         // totalqty: StockOut[index].totalqty,
-//         // totalweight: StockOut[index].totalweight,
-//         // transactiondate: StockOut[index].transactiondate,
-//         // transtime: StockOut[index].transtime,
-//         // updatedDatetime: StockOut[index].updatedDatetime,
-//         // updateduserid: StockOut[index].updateduserid,
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
 //         data: stockDetails2));
 //     SapDocentry = getDB_StInHeader[0]["sapDocentry"].toString();
 //     SapDocuNumber = getDB_StInHeader[0]["sapDocNo"].toString();
@@ -392,99 +392,99 @@
 //   List<GlobalKey<FormState>> formkey =
 //       List.generate(50, (i) => GlobalKey<FormState>());
 
-//   // List<TextEditingController> StInController =
-//   //     List.generate(150, (i) => TextEditingController());
-//   // List<StockOutwardList> StockOutward = [];
+// 
+// 
+// 
 
-//   // getStockReqData() async {
-//   //   log("step1");
-//   //   StockOutward.clear();
-//   //   final Database db = (await DBHelper.getInstance())!;
-//   //   List<Map<String, Object?>> getStockReqValues =
-//   //       await DBOperation.getStockReq(db);
-//   //   List<StockOutwardList> StockOutDATA = [];
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //   if (getStockReqValues.isNotEmpty) {
-//   //     for (int i = 0; i < getStockReqValues.length; i++) {
-//   //       if (getStockReqValues[i]["reqtoWhs"].toString() == AppConstant.branch) {
-//   //         dbDataTrue = false;
+// 
+// 
+// 
+// 
 
-//   //         List<Map<String, Object?>> getStockReqLineData =
-//   //             await DBOperation.getTrasferQty(
-//   //                 db, int.parse(getStockReqValues[i]["docentry"].toString()));
-//   //         print("stock docE::" + getStockReqValues.toString());
-//   //         List<StockOutwardDetails> stockDetails = [];
-//   //         for (int j = 0; j < getStockReqLineData.length; j++) {
-//   //           if (getStockReqValues[i]["reqfromWhs"].toString() ==
-//   //               getStockReqLineData[j]["branch"].toString()) {
-//   //             print("loop 1");
-//   //             stockDetails.add(StockOutwardDetails(
-//   //                 baseDocentry:
-//   //                     int.parse(getStockReqLineData[j]["docentry"].toString()),
-//   //                 baseDocline:
-//   //                     int.parse(getStockReqLineData[j]["lineNo"].toString()),
-//   //                 createdUserID: int.parse(
-//   //                     getStockReqLineData[j]["createdUserID"].toString()),
-//   //                 createdateTime:
-//   //                     getStockReqLineData[j]["createdateTime"].toString(),
-//   //                 docentry:
-//   //                     int.parse(getStockReqLineData[j]["docentry"].toString()),
-//   //                 dscription: "",
-//   //                 itemcode: getStockReqLineData[j]["itemcode"].toString(),
-//   //                 lastupdateIp:
-//   //                     getStockReqLineData[j]["lastupdateIp"].toString(),
-//   //                 lineNo:
-//   //                     int.parse(getStockReqLineData[j]["lineNo"].toString()),
-//   //                 qty: int.parse(getStockReqLineData[j]["quantity"].toString()),
-//   //                 status: "",
-//   //                 updatedDatetime:
-//   //                     getStockReqLineData[j]["UpdatedDatetime"].toString(),
-//   //                 updateduserid: int.parse(
-//   //                     getStockReqLineData[j]["createdUserID"].toString()),
-//   //                 price:
-//   //                     double.parse(getStockReqLineData[j]["price"].toString()),
-//   //                 serialBatch: getStockReqLineData[j]["serialBatch"].toString(),
-//   //                 taxRate: 0.0,
-//   //                 Scanned_Qty:
-//   //                     int.parse(getStockReqLineData[j]["scanndQty"].toString()),
-//   //                 trans_Qty:
-//   //                     int.parse(getStockReqLineData[j]["balqty"].toString()),
-//   //                 taxType: ""));
-//   //           }
-//   //         }
-//   //         print("line length ::" + stockDetails.length.toString());
-//   //         StockOutDATA.add(StockOutwardList(
-//   //             branch: getStockReqValues[i]["branch"].toString(),
-//   //             docentry: getStockReqValues[i]["docentry"].toString(),
-//   //             baceDocentry: getStockReqValues[i]["docentry"].toString(),
-//   //             docstatus: getStockReqValues[i]["docstatus"].toString(),
-//   //             documentno: getStockReqValues[i]["documentno"].toString(),
-//   //             reqfromWhs: getStockReqValues[i]["reqfromWhs"].toString(),
-//   //             reqtoWhs: getStockReqValues[i]["reqtoWhs"].toString(),
-//   //             reqtransdate: getStockReqValues[i]["reqtransdate"].toString(),
-//   //             data: stockDetails));
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //         StockOutward.addAll(StockOutDATA);
-//   //         log('StockOutward length::' + StockOutward.length.toString());
+// 
+// 
 
-//   //         stkreqfromwhs = getStockReqValues[i]["reqfromWhs"].toString();
-//   //       }
-//   //       //else {
-//   //       //   dbDataTrue = true;
-//   //       //   notifyListeners();
-//   //       // }
-//   //     }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //     print("object::" + StockOutward.length.toString());
-//   //     notifyListeners();
-//   //   }
-//   //   // else {
-//   //   //   dbDataTrue = true;
-//   //   //   notifyListeners();
-//   //   // }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //   notifyListeners();
-//   // }
+// 
+// 
 
 //   getDate2(BuildContext context, datetype) async {
 //     DateTime? pickedDate = await showDatePicker(
@@ -494,17 +494,17 @@
 //         lastDate: DateTime(2100));
 
 //     if (pickedDate != null && datetype == "From") {
-//       // print(pickedDate);
+//     
 //       datetype = DateFormat('dd-MM-yyyy').format(pickedDate);
 //       StInController[100].text = datetype!;
-//       // print(datetype);
+//     
 //     } else if (pickedDate != null && datetype == "To") {
-//       // print(pickedDate);
+//     
 //       datetype = DateFormat('dd-MM-yyyy').format(pickedDate);
 //       StInController[101].text = datetype!;
-//       // print(datetype);
+//     
 //     } else {
-//       // print("Date is not selected");
+//     
 //     }
 //   }
 
@@ -521,7 +521,7 @@
 //       StockInward[index].data[list_i].serialbatchList = serialbatchList2;
 //       StockInward[index].data[list_i].Scanned_Qty = totalscannedQty;
 //     }
-//     // print("test111::" + serialbatchList2![0].serialbatch!.toString());
+//   
 
 //     StInController[0].clear();
 //     notifyListeners();
@@ -535,18 +535,18 @@
 //     log("StockOutward[index].data length:" +
 //         StockInward[index].data.length.toString());
 //     if (StockInward[index].data.isNotEmpty) {
-//       // Selectindex(index);
-//       // passINDEX(index);
-//       // passList(StockOutward[index].data);
-//       // tappageIndex = 0;
-//       // log('----tapindex' + tappageIndex.toString());
+//     
+//     
+//     
+//     
+//     
 //       selectIndex = index;
 //       i_value = index;
 
 //       passdata = StockInward[index].data;
 //       notifyListeners();
 
-//       // StOut_Con.clearTotal();
+//     
 //     } else if (StockInward[index].data.isEmpty) {
 //       showDialog(
 //           context: context,
@@ -570,20 +570,20 @@
 
 //   Future scanqtyRemove(int index, int list_i, int batchI) async {
 //     final Database db = (await DBHelper.getInstance())!;
-//     // print("object" + batchI.toString());
-//     // print(StockInward[index].data[list_i].serialbatchList!.length);
+//   
+//   
 
-//     // print("docentr:" + StockInward[index].data[list_i].baseDocentry.toString());
-//     // print("qty:" + StockInward[index].data[list_i].Scanned_Qty.toString());
-//     // print("itemcode:" +
-//     // StockInward[index]
-//     //     .data[list_i]
-//     //     .serialbatchList![batchI]
-//     //     .itemcode
-//     //     .toString());
+//   
+//   
+//   
+//   
+//   
+//   
+//   
+//   
 
-//     // int qty = StockInward[index].data[list_i].serialbatchList![batchI].qty!;
-//     // qty = qty - 1;
+//   
+//   
 
 //     if (StockInward[index].data[list_i].trans_Qty! !=
 //         StockInward[index].data[list_i].serialbatchList![batchI].qty!) {
@@ -592,12 +592,12 @@
 //       msg = "";
 //       notifyListeners();
 //       if (StockInward[index].data[list_i].serialbatchList![batchI].qty! == 0) {
-//         // print("object-Delete" +
-//         // StockInward[index]
-//         //     .data[list_i]
-//         //     .serialbatchList![batchI]
-//         //     .docentry!
-//         //     .toString());
+//       
+//       
+//       
+//       
+//       
+//       
 
 //         await DBOperation.deleteBatch_StIn(
 //             db,
@@ -622,7 +622,7 @@
 //               .serialbatchList![batchI]
 //               .qty! >=
 //           1) {
-//         // print("object-Minus");
+//       
 //         await DBOperation.UpdateQTYBatch_StIn(
 //             db,
 //             int.parse(StockInward[index]
@@ -643,7 +643,7 @@
 //       }
 //     } else if (StockInward[index].data[list_i].trans_Qty ==
 //         StockInward[index].data[list_i].serialbatchList![batchI].qty) {
-//       // print("No More Qty to add...!!");
+//     
 //       msg = 'Alreaty This Item is Submited...!!';
 //     } // return StockInward[index].data[list_i].serialbatchList![batchI].qty;
 //     notifyListeners();
@@ -653,13 +653,13 @@
 //     OnScanDisable = true;
 //     String serialBatch = "";
 //     int qty = 0;
-//     // StockInward[i].data.length;
+//   
 //     final Database db = (await DBHelper.getInstance())!;
 
-//     // print(list_i);
-//     // print(index);
-//     //
-//     //
+//   
+//   
+//   
+//   
 //     if (StInController[0].text.isNotEmpty) {
 //       for (int k = 0; k < data!.StOutSerialbatchList!.length; k++) {
 //         if (data.StOutSerialbatchList![k].serialbatch ==
@@ -741,7 +741,7 @@
 //               notifyListeners();
 //             }
 //           } else {
-//             // print("No More Qty to add...!!");
+//           
 //             msg = 'No More Qty to add...!!';
 //           }
 //         } else {
@@ -761,8 +761,8 @@
 //       } else {
 //         msg = 'Wrong BatchCode Scan...!!';
 //       }
-//       // log("scanl length::" +
-//       // StockInward[index].data[list_i].serialbatchList!.length.toString());
+//     
+//     
 
 //       notifyListeners();
 //     } else {
@@ -785,8 +785,8 @@
 //       totalReqQty = totalReqQty! + data[i].qty!;
 //       notifyListeners();
 //     }
-//     // log(scannedtottal!.toString());
-//     // log(totalReqQty!.toString());
+//   
+//   
 
 //     if (scannedtottal == 0) {
 //       Get.defaultDialog(
@@ -808,8 +808,8 @@
 //           ],
 //           radius: 5);
 //     } else if (scannedtottal != 0) {
-//       // await DBOperation.deleteSuspendBatchStIn(
-//       //     db, int.parse(StockInward[index].baceDocentry!));
+//     
+//     
 
 //       for (int i = 0; i < StockInward[index].data.length; i++) {
 //         StockInward[index].data[i].Scanned_Qty = 0;
@@ -818,9 +818,9 @@
 //       }
 //       i_value = index;
 
-//       // passdata!.clear();
-//       // getStockOutData();
-//       // SuspendDBInsert('suspend', context, theme, index, data, datatotal);
+//     
+//     
+//     
 //     }
 //     notifyListeners();
 //   }
@@ -866,8 +866,8 @@
 //         totalscanqty = totalscanqty! + data[i].Scanned_Qty!;
 //         notifyListeners();
 //       }
-//       // log(scannedtottal!.toString());
-//       // log(totalTransQty!.toString());
+//     
+//     
 
 //       if (totalscanqty == 0) {
 //         Get.defaultDialog(
@@ -921,16 +921,16 @@
 //         });
 //       } else if (totalscanqty == totalTransQty) {
 //         await DBOperation.deletAlreadyHoldData_StIN(
-//             //com
+//           
 //             db,
 //             int.parse(StockInward[index].baceDocentry.toString()));
 
 //         savepartialData('submit', context, theme, index, data, datatotal);
-//         // if (holddocentry.isNotEmpty) {
-//         //   await DBOperation.deleteHoldStIn(db, holddocentry.toString());
-//         //   // StockOut.removeAt(index);
-//         // }
-//         // holddocentry = '';
+//       
+//       
+//       
+//       
+//       
 //       }
 //     }
 //   }
@@ -957,13 +957,13 @@
 //     final Database db = (await DBHelper.getInstance())!;
 //     List<StockInHeaderDataDB> StInHeader = [];
 //     List<StockInLineDataDB> StInLine = [];
-//     // log("Save Data Process");
-//     // int? docEntryCreated =
-//     //     await DBOperation.generateDocentr(db, "docentry", "StockInHeaderDB");
+//   
+//   
+//   
 //     int? counofData =
 //         await DBOperation.getcountofTable(db, "docentry", "StockInHeaderDB");
 //     int? docEntryCreated = 0;
-//     //  await DBOperation.generateDocentr(db, "docentry", "SalesHeader");
+//   
 //     if (counofData == 0) {
 //       if (AppConstant.terminal == 'T1') {
 //         docEntryCreated = 1000000;
@@ -1010,37 +1010,37 @@
 //         branch: UserValues.branch,
 //         docentry: docEntryCreated.toString(),
 //         baseDocentry: StockInward[index].baceDocentry,
-//         // StockInward[index].branch,//
+//       
 //         createdUserID: UserValues.userID,
-//         // StockInward[index].createdUserID,//
+//       
 //         createdateTime: config.currentDate(),
 //         docstatus: "3",
 //         lastupdateIp: UserValues.lastUpdateIp,
-//         // StockInward[index].lastupdateIp,//
+//       
 //         reqdocno: StockInward[index].documentno.toString(),
-//         // StockInward[index].reqdocno,//
+//       
 //         docseries: "",
-//         //  StockInward[index].reqdocseries,//
+//       
 //         docseriesno: 0,
-//         // StockInward[index].reqdocseriesno,//
+//       
 //         doctime: config.currentDate(),
 //         reqfromWhs: "HOGIT",
-//         //StockInward[index].reqfromWhs,
+//       
 //         systime: config.currentDate(),
 //         reqtoWhs: stkreqfromwhs,
-//         // StockInward[index].reqtoWhs,
-//         // StockInward[index].reqtoWhs,//
+//       
+//       
 //         transdate: config.currentDate(),
 //         salesexec: "",
-//         //  StockInward[index].salesexec,//
+//       
 //         totalitems: 0,
-//         // StockInward[index].totalitems,//
+//       
 //         totalltr: 0,
-//         //  StockInward[index].totalltr,//
+//       
 //         totalqty: 0,
-//         //  StockInward[index].totalqty,//
+//       
 //         updatedDatetime: config.currentDate(),
-//         //  StockInward[index].updatedDatetime,//
+//       
 //         updateduserid: UserValues.userID,
 //         terminal: UserValues.terminal,
 //         sapDocNo: null,
@@ -1052,32 +1052,32 @@
 //         sapStockReqdocnum:
 //             sapdetails.isEmpty ? "" : sapdetails[0]['sapDocNo'].toString(),
 //         remarks: StInController[50].text.toString()
-//         //  StockInward[index].updateduserid,//
+//       
 //         ));
 //     int? docentry2 = await DBOperation.insertStockInheader(db, StInHeader);
 //     await DBOperation.updatenextno(db, 6, nextno);
 
 //     for (int i = 0; i < StockInward[index].data.length; i++) {
-//       // print("scanqty-----" + StockInward[index].data[i].Scanned_Qty.toString());
-//       // print("qty-----" + StockInward[index].data[i].qty.toString());
-//       // String concatenatedText = '';
+//     
+//     
+//     
 
 //       await DBOperation.UpdateBatchTableDocentry_STIN(
-//         //New
-//         //comp
+//       
+//       
 //         db,
 //         docentry2!,
 //         int.parse(StockInward[index].data[i].baseDocentry.toString()),
 //         StockInward[index].data[i].itemcode.toString(),
 //       );
 //       await DBOperation.deletAlreadyHoldDataLine_STIN(
-//           //com
+//         
 //           db,
 //           int.parse(StockInward[index].baceDocentry.toString()),
 //           StockInward[index].data[i].itemcode.toString());
-//       // if (StockInward[index].data[i].Scanned_Qty! !=
-//       //         StockInward[index].data[i].qty &&
-//       //     StockInward[index].data[i].Scanned_Qty != 0) {
+//     
+//     
+//     
 //       StInLine.add(StockInLineDataDB(
 //           lineno: StockInward[index].data[i].lineNo.toString(),
 //           docentry: docentry2.toString(),
@@ -1096,10 +1096,10 @@
 
 //     await DBOperation.insertStInLine(db, StInLine);
 
-//     // log("batch list length" + StInBatch.length.toString());
+//   
 //     bool? netbool = await config.haveInterNet();
 
-//     // log("config.haveInterNet():::" + netbool.toString());
+//   
 //     if (netbool == true) {
 //       await PostRabitMq(docentry2!, int.parse(StockInward[index].baceDocentry!),
 //           StockInward[index].reqtoWhs.toString());
@@ -1121,7 +1121,7 @@
 //               child: const Text("Close"),
 //               onPressed: () => Get.offAllNamed(ConstantRoutes.dashboard),
 
-//               // Get.back(),
+//             
 //             ),
 //           ],
 //         ),
@@ -1173,8 +1173,8 @@
 //         totalscanqty = totalscanqty! + data[i].Scanned_Qty!;
 //         notifyListeners();
 //       }
-//       // log(scannedtottal!.toString());
-//       // log(totalTransQty!.toString());
+//     
+//     
 
 //       if (totalscanqty == 0) {
 //         Get.defaultDialog(
@@ -1199,7 +1199,7 @@
 //         await Future.delayed(const Duration(seconds: 2));
 //         Navigator.of(context).push(
 //             MaterialPageRoute(builder: (context) => const DashBoardScreen()));
-//         // Get.toNamed(ConstantRoutes.dashboard);
+//       
 //       } else if (totalscanqty != totalTransQty) {
 //         Get.defaultDialog(
 //             title: "Alert",
@@ -1237,8 +1237,8 @@
 //       totalReqQty = totalReqQty! + data[i].qty!;
 //       notifyListeners();
 //     }
-//     // log(scannedtottal!.toString());
-//     // log(totalReqQty!.toString());
+//   
+//   
 
 //     if (scannedtottal == 0) {
 //       Get.defaultDialog(
@@ -1266,16 +1266,16 @@
 //       });
 //     } else if (scannedtottal != 0) {
 //       await DBOperation.deletAlreadyHoldData_StIN(
-//           //com
+//         
 //           db,
 //           int.parse(StockInward[index].baceDocentry.toString()));
 
 //       await HoldValueInsertToDB('hold', context, theme, index, data, datatotal);
-//       // if (holddocentry.isNotEmpty) {
-//       //   await DBOperation.deleteHoldStIn(db, holddocentry.toString());
-//       //   // StockOut.removeAt(index);
-//       // }
-//       // holddocentry = '';
+//     
+//     
+//     
+//     
+//     
 //       notifyListeners();
 //     }
 //     notifyListeners();
@@ -1292,8 +1292,8 @@
 //     List<StockInHeaderDataDB> StInHeader = [];
 //     List<StockInLineDataDB> StInLine = [];
 
-//     // log("Save Data Process");
-//     // log("Save Data Process" + StockInward[index].baceDocentry.toString());
+//   
+//   
 //     int? docEntryCreated =
 //         await DBOperation.generateDocentr(db, "docentry", "StockInHeaderDB");
 
@@ -1302,32 +1302,32 @@
 //         docentry: docEntryCreated.toString(),
 //         createdUserID: UserValues.userID,
 //         baseDocentry: StockInward[index].baceDocentry,
-//         // StockInward[index].createdUserID,//
+//       
 //         createdateTime: config.currentDate(),
 //         docstatus: '1',
 //         lastupdateIp: UserValues.lastUpdateIp,
-//         // StockInward[index].lastupdateIp,//
+//       
 //         reqdocno: StockInward[index].documentno,
-//         // StockInward[index].reqdocno,//
+//       
 //         docseries: "",
-//         //  StockInward[index].reqdocseries,//
+//       
 //         docseriesno: 0,
-//         // StockInward[index].reqdocseriesno,//
+//       
 //         doctime: config.currentDate(),
 //         reqfromWhs: StockInward[index].reqfromWhs,
 //         systime: config.currentDate(),
 //         reqtoWhs: StockInward[index].reqtoWhs, //
 //         transdate: config.currentDate(),
 //         salesexec: "",
-//         //  StockInward[index].salesexec,//
+//       
 //         totalitems: 0,
-//         // StockInward[index].totalitems,//
+//       
 //         totalltr: 0,
-//         //  StockInward[index].totalltr,//
+//       
 //         totalqty: 0,
-//         //  StockInward[index].totalqty,//
+//       
 //         updatedDatetime: config.currentDate(),
-//         //  StockInward[index].updatedDatetime,//
+//       
 //         updateduserid: UserValues.userID,
 //         terminal: UserValues.terminal,
 //         sapDocNo: null,
@@ -1336,7 +1336,7 @@
 //         sapStockReqdocentry: '', //checkkkkkkk
 //         sapStockReqdocnum: '',
 //         remarks: StInController[50].text.toString()
-//         //  StockInward[index].updateduserid,//
+//       
 //         ));
 //     int? docentry2 = await DBOperation.insertStockInheader(db, StInHeader);
 
@@ -1365,7 +1365,7 @@
 //       }
 //       await DBOperation.insertStInBatch(db, stInbatch);
 //       await DBOperation.deletAlreadyHoldDataLine_STIN(
-//           //com
+//         
 //           db,
 //           int.parse(StockInward[index].baceDocentry.toString()),
 //           StockInward[index].data[i].itemcode.toString());
@@ -1385,10 +1385,10 @@
 //           terminal: UserValues.terminal));
 //     }
 //     await DBOperation.insertStInLine(db, StInLine);
-//     // log("Inside Hold Process");
+//   
 
 //     getHoldValues(db);
-//     // log("AlertDialogBox");
+//   
 //     await Get.defaultDialog(
 //       title: "Alert",
 //       middleText: "Saved as draft",
@@ -1412,7 +1412,7 @@
 //       StockInward.remove(datatotal);
 //       data!.clear();
 //       OnclickDisable = false;
-//       // StockInward[index].data.clear();
+//     
 //     });
 
 //     notifyListeners();
@@ -1433,42 +1433,42 @@
 //       StockInwardList? datatotal) async {
 //     final Database db = (await DBHelper.getInstance())!;
 //     List<StockInHeaderDataDB> StInHeader = [];
-//     // List<StockInLineDataDB> StInLine = [];
-//     // List<StockInBatchDataDB> StInBatch = [];
-//     // log("Save Data Process");
+//   
+//   
+//   
 
 //     StInHeader.add(StockInHeaderDataDB(
 //         branch: UserValues.branch,
 //         terminal: UserValues.terminal,
-//         // StockInward[index].branch,//
+//       
 //         createdUserID: UserValues.userID,
 //         baseDocentry: StockInward[index].baceDocentry,
-//         // StockInward[index].createdUserID,//
+//       
 //         createdateTime: config.currentDate(),
 //         docstatus: "0",
 //         lastupdateIp: UserValues.lastUpdateIp,
-//         // StockInward[index].lastupdateIp,//
+//       
 //         reqdocno: "0",
-//         // StockInward[index].reqdocno,//
+//       
 //         docseries: "",
-//         //  StockInward[index].reqdocseries,//
+//       
 //         docseriesno: 0,
-//         // StockInward[index].reqdocseriesno,//
+//       
 //         doctime: config.currentDate(),
 //         reqfromWhs: StockInward[index].reqfromWhs,
 //         systime: config.currentDate(),
 //         reqtoWhs: StockInward[index].reqtoWhs, //
 //         transdate: config.currentDate(),
 //         salesexec: "",
-//         //  StockInward[index].salesexec,//
+//       
 //         totalitems: 0,
-//         // StockInward[index].totalitems,//
+//       
 //         totalltr: 0,
-//         //  StockInward[index].totalltr,//
+//       
 //         totalqty: 0,
-//         //  StockInward[index].totalqty,//
+//       
 //         updatedDatetime: config.currentDate(),
-//         //  StockInward[index].updatedDatetime,//
+//       
 //         updateduserid: UserValues.userID,
 //         sapDocNo: null,
 //         sapDocentry: null,
@@ -1476,7 +1476,7 @@
 //         sapStockReqdocentry: '', //checkkkkkkk
 //         sapStockReqdocnum: '',
 //         remarks: ''
-//         //  StockInward[index].updateduserid,//
+//       
 //         ));
 //     int? docentry2 = await DBOperation.insertStockInheader(db, StInHeader);
 //     await DBOperation.deleteSuspendBatchStIn(
@@ -1484,7 +1484,7 @@
 
 //     for (int i = 0; i < StockInward[index].data.length; i++) {
 //       StockInward[index].data[i].Scanned_Qty = 0;
-//       // StockInward[index].data[i].serialbatchList!.clear();
+//     
 //       notifyListeners();
 //     }
 //     await Get.defaultDialog(
@@ -1540,11 +1540,11 @@
 //         await DBOperation.getHoldStInHeadDB(db);
 //     savedraftBill = [];
 
-//     // List<StockInHeaderDataDB> StIn_Head = [];
+//   
 //     List<StockInwardDetails> StIn_Line = [];
 //     List<StockInSerialbatch> StIn_Batch = [];
 //     for (int i = 0; i < getDBStInHead.length; i++) {
-//       // log("get head doc:" + getDBStInHead[i]["baseDocentry"].toString());
+//     
 
 //       List<Map<String, Object?>> getDBStInLine =
 //           await DBOperation.holdStInLineDB(
@@ -1559,8 +1559,8 @@
 //                 db,
 //                 int.parse(getDBStInLine[j]["baseDocentry"].toString()),
 //                 getDBStInLine[j]["itemcode"].toString());
-//         // if (getDBStInHead[i]["docstatus"].toString() == '1') {
-//         // log("1---");
+//       
+//       
 //         StIn_Batch=[];
 //         if (int.parse(getDBStInLine[j]["scannedQty"].toString()) != 0) {
 //           for (int k = 0; k < getDBStInBatch.length; k++) {
@@ -1573,8 +1573,8 @@
 //                 itemcode: getDBStInBatch[k]["itemcode"].toString(),
 //                 qty: int.parse(getDBStInBatch[k]["quantity"].toString()),
 //                 serialbatch: getDBStInBatch[k]["serialBatch"].toString(),
-//                 // scannedQty:
-//                 //     int.parse(getDBStInBatch[k]["scannedQty"].toString()),
+//               
+//               
 //               ),
 //             );
 //           }
@@ -1583,8 +1583,8 @@
 //         }
 
 // //---------------------------
-//         // log("DDRAFT1111::" + StIn_Batch.length.toString());
-//         //// log("DDRAFT2::" + StIn_Line.length.toString());
+//       
+//       
 
 //         StIn_Line.add(StockInwardDetails(
 //             lineNo: int.parse(getDBStInLine[j]["lineno"].toString()),
@@ -1615,49 +1615,49 @@
 //         docentry: getDBStInHead[i]["docentry"].toString(),
 //         baceDocentry: getDBStInHead[i]["baseDocentry"].toString(),
 //         branch: getDBStInHead[i]["branch"].toString(),
-//         // createdUserID: int.parse(getDBStInHead[i]["createdUserID"].toString()),
-//         // createdateTime: getDBStInHead[i]["createdateTime"].toString(),
+//       
+//       
 //         docstatus: getDBStInHead[i]["docstatus"].toString(),
-//         // lastupdateIp: getDBStInHead[i]["lastupdateIp"].toString(),
-//         // reqdocno: int.parse(getDBStInHead[i]["reqdocno"].toString()),
-//         // reqdocseries: getDBStInHead[i]["docseries"].toString(),
-//         // reqdocseriesno: int.parse(getDBStInHead[i]["docseriesno"].toString()),
-//         // reqdoctime: getDBStInHead[i]["doctime"].toString(),
+//       
+//       
+//       
+//       
+//       
 //         reqfromWhs: getDBStInHead[i]["reqfromWhs"].toString(),
-//         // reqsystime: getDBStInHead[i]["systime"].toString(),
+//       
 //         reqtoWhs: getDBStInHead[i]["reqtoWhs"].toString(),
 //         reqtransdate: getDBStInHead[i]["transdate"].toString(),
-//         // salesexec: getDBStInHead[i]["salesexec"].toString(),
-//         // totalitems: int.parse(getDBStInHead[i]["totalitems"].toString()),
-//         // totalltr: double.parse(getDBStInHead[i]["totalltr"].toString()),
-//         // totalqty: double.parse(getDBStInHead[i]["totalqty"].toString()),
-//         // updatedDatetime: getDBStInHead[i]["UpdatedDatetime"].toString(),
-//         // updateduserid: int.parse(
-//         //   getDBStInHead[i]["updateduserid"].toString(),
-//         // ),
-//         // seresid: 0,
-//         // seriesnum: 0,
-//         // sysdatetime: "",
-//         // scanToatal: 0,
-//         // totalweight: 0,
-//         // transactiondate: "",
-//         // transtime: "",
-//         // transTotal: 0,
-//         // isagainstorder: "",
-//         // isagainststock: "",
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
 //         documentno: getDBStInHead[i]["reqdocno"].toString(),
 //         data: StIn_Line,
 //       ));
 //     }
-//     // log("StIn_Batch::" + StIn_Batch.length.toString());
-//     //// log("StIn_Batch.qty::" + StIn_Batch[0].qty!.toString());
-//     // log("StIn_Line::" + StIn_Line.length.toString());
-//     // log("savedraftBill::" + savedraftBill.length.toString());
+//   
+//   
+//   
+//   
 //   }
 
 //   valPass(int scanQty) {
 //     msg = "";
-//     // ScannigVal = scanQty;
+//   
 //     notifyListeners();
 //   }
 
@@ -1680,26 +1680,26 @@
 //     int? i,
 //     StockInwardDetails? datalist,
 //   ) {
-//     // listI = 0;
+//   
 //     listI = index!;
 //     batch_i = i;
-//     // selectedBaceDocentry = baceDocentry;
+//   
 //     batch_datalist = datalist;
 //     notifyListeners();
 //   }
 
 //   Future<bool> onbackpress() async {
-//     // DateTime now = DateTime.now();
+//   
 //     if (pageIndex == 1) {
-//       // print("object");
+//     
 
 //       page.animateToPage(--pageIndex,
 //           duration: const Duration(milliseconds: 250), curve: Curves.bounceIn);
 //     } else if (pageIndex == 2) {
-//       // log("object");
-//       // StInLineRefersh(listI!, batch_i!);
-//       // getBatchData(int index, int list_i);
-//       // await StInLineRefersh(listI!);
+//     
+//     
+//     
+//     
 //       notifyListeners();
 //       page.animateToPage(--pageIndex,
 //           duration: const Duration(milliseconds: 250), curve: Curves.bounceIn);
@@ -1710,12 +1710,12 @@
 //   List<StockInwardDetails>? passdata = [];
 //   passList(List<StockInwardDetails>? data) {
 //     passdata = data!;
-//     // getBatchData(index, list_i);
-//     // for (int i = 0; i < data.length; i++) {
-//     //   for (int j = 0; j < data[i].serialbatchList!.length; j++) {
-//     //     data[i].Scanned_Qty = data[i].serialbatchList![j].qty;
-//     //   }
-//     // }
+//   
+//   
+//   
+//   
+//   
+//   
 //     notifyListeners();
 //   }
 
@@ -1724,7 +1724,7 @@
 
 //   clearmsg() {
 //     msg = "";
-//     // ScannigVal = 0;
+//   
 //     notifyListeners();
 //   }
 
@@ -1859,7 +1859,7 @@
 //         } else {
 //           log("Error11");
 
-//           // custserieserrormsg = value.message!.toString();
+//         
 //         }
 //       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
 //         log("Error22");
@@ -1894,7 +1894,7 @@
 //       } else {
 //         log("Error33");
 
-//         // custserieserrormsg = value.message!.toString();
+//       
 //       }
 //     });
 //   }
@@ -2008,81 +2008,81 @@
 //     }
 //   }
 
-//   // callSerlaySalesCancelQuoAPI(BuildContext context, ThemeData theme) async {
-//   //   int? ressCode = 500;
+// 
+// 
 
-//   //   try {
-//   //     log("http://102.69.167.106:50001/b1s/v1/InventoryTransferRequests($SapDocentry)/Cancel");
-//   //     final response = await http.post(
-//   //       Uri.parse(
-//   //           URL.sapUrl + '/InventoryTransferRequests(${SapDocentry})/Cancel'),
-//   //       headers: {
-//   //         "content-type": "application/json",
-//   //         "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),
-//   //       },
-//   //     );
-//   //     ressCode = response.statusCode;
-//   //     log("Invoice stscode::${response.statusCode}");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //     if (response.statusCode == 204) {
-//   //       log("Successfully Cancelled");
-//   //       showDialog(
-//   //           context: context,
-//   //           barrierDismissible: true,
-//   //           builder: (BuildContext context) {
-//   //             return AlertDialog(
-//   //                 contentPadding: EdgeInsets.all(0),
-//   //                 content: AlertBox(
-//   //                   payMent: 'Alert',
-//   //                   errormsg: true,
-//   //                   widget: Center(
-//   //                       child: ContentContainer(
-//   //                     content: 'Document is closed successfully..!!',
-//   //                     theme: theme,
-//   //                   )),
-//   //                   buttonName: null,
-//   //                 ));
-//   //           }).then((value) {
-//   //         SapDocentry = '';
-//   //         SapDocuNumber = '';
-//   //       });
-//   //       // return Cancelmodel.fromJson(
-//   //       //     json.decode(response.body), response.statusCode);
-//   // } else {
-//   //       print("Invoicecancel Exception: Error");
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //       showDialog(
-//   //           context: context,
-//   //           barrierDismissible: true,
-//   //           builder: (BuildContext context) {
-//   //             return AlertDialog(
-//   //                 contentPadding: EdgeInsets.all(0),
-//   //                 content: AlertBox(
-//   //                   payMent: 'Alert',
-//   //                   errormsg: true,
-//   //                   widget: Center(
-//   //                       child: ContentContainer(
-//   //                     content: 'Document is already closed',
-//   //                     theme: theme,
-//   //                   )),
-//   //                   buttonName: null,
-//   //                 ));
-//   //           }).then((value) {
-//   //         SapDocentry = '';
-//   //         SapDocuNumber = '';
-//   //       });
-//   //       notifyListeners();
-//   //       // throw Exception("Error");
-//   //       // return Servicrlayerquotation.issue(
-//   //       //     json.decode(response.body), response.statusCode);
-//   //     }
-//   //   } catch (e) {
-//   //     log("Exception:: $e");
-//   //     // throw Exception("Error");
-//   //     // return AccountBalanceModel.exception(e.toString(), ressCode);
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
-//   //   }
-//   // }
+// 
+// 
 
 //   mapvalue(List<StockInwardList> StockOut, int index) async {
 //     OndDisablebutton = false;
@@ -2108,16 +2108,16 @@
 //         for (int k = 0;
 //             k < StockOut[index].data[j].serialbatchList!.length;
 //               k++) {
-//         // if (StockOut[index].data[j].Scanned_Qty != 0) {
+//       
 //           print("Hold bAtch:"+StockOut[index].data[j].serialbatchList![k].serialbatch.toString());
 //         StInSeralBatchList.add(StockInSerialbatch(
 //             lineno: StockOut[index].data[j].lineNo.toString(),
 //             baseDocentry: StockOut[index].data[j].baseDocentry.toString(),
 //             itemcode: StockOut[index].data[j].itemcode.toString(),
 //             qty: StockOut[index].data[j].serialbatchList![k].qty,
-//             // scannedQty: StockOut[index].data[j].Scanned_Qty,
+//           
 //             serialbatch: StockOut[index].data[j].serialbatchList![k].serialbatch.toString()));
-//         // }
+//       
 //               }
 //           }
       
@@ -2169,35 +2169,35 @@
 
 //     StInList.add(StockInwardList(
 //         branch: StockOut[index].branch,
-//         // createdUserID: StockOut[index].createdUserID,
-//         // createdateTime: StockOut[index].createdateTime,
+//       
+//       
 //         docentry: StockOut[index].docentry,
 //         baceDocentry: StockOut[index].baceDocentry,
 //         docstatus: StockOut[index].docstatus,
 //         documentno: StockOut[index].documentno,
-//         // isagainstorder: StockOut[index].isagainstorder,
-//         // isagainststock: StockOut[index].isagainststock,
-//         // lastupdateIp: StockOut[index].lastupdateIp,
-//         // reqdocno: StockOut[index].reqdocno,
-//         // reqdocseries: StockOut[index].reqdocseries,
-//         // reqdocseriesno: StockOut[index].reqdocseriesno,
-//         // reqdoctime: StockOut[index].reqdoctime,
+//       
+//       
+//       
+//       
+//       
+//       
+//       
 //         reqfromWhs: StockOut[index].reqfromWhs,
-//         // reqsystime: StockOut[index].reqsystime,
+//       
 //         reqtoWhs: StockOut[index].reqtoWhs,
 //         reqtransdate: StockOut[index].reqtransdate,
-//         // salesexec: StockOut[index].salesexec,
-//         // seresid: StockOut[index].seresid,
-//         // seriesnum: StockOut[index].seriesnum,
-//         // sysdatetime: StockOut[index].sysdatetime,
-//         // totalitems: StockOut[index].totalitems,
-//         // totalltr: StockOut[index].totalltr,
-//         // totalqty: StockOut[index].totalqty,
-//         // totalweight: StockOut[index].totalweight,
-//         // transactiondate: StockOut[index].transactiondate,
-//         // transtime: StockOut[index].transtime,
-//         // updatedDatetime: StockOut[index].updatedDatetime,
-//         // updateduserid: StockOut[index].updateduserid,
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
+//       
 //         data: StInDetails,
 //         remarks: StockOut[index].remarks));
 //     int? count = await dupilicateHoldDataCheck(StInList);
@@ -2210,31 +2210,31 @@
 
 //       StockInward.removeAt(count);
 //       StockInward.addAll(StInList);
-//       // await DBOperation.UpdateSTOUT_HeaderDocstatus(
-//       //     db, int.parse(StockOut[index].baceDocentry.toString()));
+//     
+//     
 //     } else {
 //       log("message");
 //       log("Remove I::" + count.toString());
 
 //       StockInward.addAll(StInList);
-//       // await DBOperation.UpdateSTOUT_HeaderDocstatus(
-//       //     db, int.parse(StockOut[index].baceDocentry.toString()));
+//     
+//     
 //     }
 //     log(StockInward.length.toString());
 //     passdata = StockInward[StockInward.length - 1].data;
 //     i_value = StockInward.length - 1;
 //     selectIndex = StockInward.length - 1;
 
-//     // holddocentry = StockOut[index].baceDocentry.toString();
-//     // if(holddocentry.isNotEmpty){
-//     // await DBOperation.deleteHoldStIn(
-//     //     db, holddocentry.toString());
-//     // // StockOut.removeAt(index);
+//   
+//   
+//   
+//   
+//   
 
-//     // }
-//     // print("befoe" + StockOut.length.toString());
-//     // StockOut.removeAt(index);
-//     // print("after" + StockOut.length.toString());
+//   
+//   
+//   
+//   
 //     getHoldValues(db);
 //     notifyListeners();
 //   }
@@ -2250,14 +2250,14 @@
 //     }
 //     return Future.value(null);
 //   }
-//   // savedraft(List<StockInwardList> datatotal, int i) {
-//   //   savedraftBill.add(StockInwardList(
-//   //       req_date: datatotal[i].req_date,
-//   //       Branch_No: datatotal[i].Branch_No,
-//   //       scanToatal: datatotal[i].scanToatal,
-//   //       transTotal: datatotal[i].transTotal,
-//   //       data: datatotal[i].data));
-//   // }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 //   int mainTranTotal = 0;
 //   int mainScannedTotal = 0;
@@ -2273,14 +2273,14 @@
 
 //       notifyListeners();
 //     }
-//     // Stock.scanToatal = mainScannedTotal;
-//     // Stock.transTotal = mainTranTotal;
-//     // // print(Stock.scanToatal);
-//     // // print(Stock.transTotal);
+//   
+//   
+//   
+//   
 //     notifyListeners();
 //   }
 
-//   // List<StockInwardList> StockInDATA = [];
+// 
 //   List<StockInwardList> savedraftBill = [];
 //   List<StockInwardList> SaveBill = [];
 //   List<StockInwardList> StockOutDATA = [];
@@ -2288,19 +2288,19 @@
 //   bool? scandbDataTrue = false;
 //   bool? scanListTrue = false;
 
-//   //
-//   //
+// 
+// 
 
 //   getStockOutData() async {
 //     StockInward.clear();
 //     StockOutDATA.clear();
 //     List<StOutSerialbatch>? StOutSerialbatchList2 = [];
 //     final Database db = (await DBHelper.getInstance())!;
-//     // await DBOperation.testBatchSTIN(db, );
+//   
 //     List<Map<String, Object?>> getStockReqValues =
 //         await DBOperation.getStockOut(db);
 //     if (getStockReqValues.isNotEmpty) {
-//       //// log( "stock len::"+getStockReqValues.length.toString());
+//     
 //       for (int i = 0; i < getStockReqValues.length; i++) {
 //         StockOutDATA = [];
 //         stkreqfromwhs = getStockReqValues[i]["reqfromWhs"].toString();
@@ -2321,7 +2321,7 @@
 //           for (int j = 0; j < getStockReqLineData.length; j++) {
 //             StOutSerialbatchList2 = [];
 //             if (getStockReqValues[i]["reqtoWhs"].toString() == "HOGIT") {
-//               // getStockReqLineData[j]["branch"].toString()) {
+//             
 
 //               List<Map<String, Object?>> getStockOutBatchListData =
 //                   await DBOperation.getBatchInOutward_StIn2(
@@ -2388,16 +2388,16 @@
 //                   StOutSerialbatchList2.length.toString());
 //             }
 
-//             // log("stock Details data::" + stockDetails.length.toString());
+//           
 //           }
 
 //           log("step--5");
 
 //           StockOutDATA.add(StockInwardList(
 //               branch: getStockReqValues[i]["branch"].toString(),
-//               // createdUserID:getStockReqValues[i]["createdUserID"].toString().isEmpty?0:
-//               // int.parse(getStockReqValues[i]["createdUserID"].toString()),
-//               // createdateTime: getStockReqValues[i]["createdateTime"].toString(),
+//             
+//             
+//             
 
 //               docentry: getStockReqValues[i]["docentry"].toString(),
 //               baceDocentry: getStockReqValues[i]["docentry"].toString(),
@@ -2405,41 +2405,41 @@
 //               documentno: getStockReqValues[i]["reqdocno"] == null
 //                   ? "0"
 //                   : getStockReqValues[i]["reqdocno"].toString(),
-//               // isagainstorder: getStockReqValues[i]["isagainstorder"].toString(),
-//               // isagainststock: getStockReqValues[i]["isagainststock"].toString(),
-//               // lastupdateIp: getStockReqValues[i]["lastupdateIp"].toString(),
-//               // reqdocno: int.parse(getStockReqValues[i]["reqdocno"].toString()),
-//               // reqdocseries: getStockReqValues[i]["reqdocseries"].toString(),
-//               // reqdocseriesno:
-//               //     int.parse(getStockReqValues[i]["reqdocseriesno"].toString()),
-//               // reqdoctime: getStockReqValues[i]["reqdoctime"].toString(),
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
 //               reqfromWhs: getStockReqValues[i]["reqfromWhs"].toString(),
-//               // reqsystime: getStockReqValues[i]["reqsystime"].toString(),
+//             
 //               reqtoWhs: getStockReqValues[i]["branch"].toString(),
 //               reqtransdate: getStockReqValues[i]["transdate"].toString(),
-//               // salesexec: getStockReqValues[i]["salesexec"].toString(),
-//               // seresid: int.parse(getStockReqValues[i]["seresid"].toString()),
-//               // seriesnum: int.parse(getStockReqValues[i]["seriesnum"].toString()),
-//               // sysdatetime: getStockReqValues[i]["sysdatetime"].toString(),
-//               // totalitems: int.parse(getStockReqValues[i]["totalitems"].toString()),
-//               // totalltr: double.parse(getStockReqValues[i]["totalltr"].toString()),
-//               // totalqty: double.parse(getStockReqValues[i]["totalqty"].toString()),
-//               // totalweight:
-//               //     double.parse(getStockReqValues[i]["totalweight"].toString()),
-//               // transactiondate: getStockReqValues[i]["transactiondate"].toString(),
-//               // transtime: getStockReqValues[i]["transtime"].toString(),
-//               // updatedDatetime: getStockReqValues[i]["UpdatedDatetime"].toString(),
-//               // updateduserid:
-//               //     int.parse(getStockReqValues[i]["updateduserid"].toString()),
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
 //               data: stockDetails));
-//           // log("stock out data::" + StockOutDATA[i].data.length.toString());
-//           // stockDetails//;
+//         
+//         
 //           log("step--6");
 
 //           log("StockOutDATA lenght::" + StockOutDATA.length.toString());
 
 //           StockInward.addAll(StockOutDATA);
-//           // StockInward = StockOutDATA;
+//         
 
 //           log("StockInward::" + StockInward.length.toString());
 //         } else {
@@ -2448,7 +2448,7 @@
 //         }
 //       }
 
-//       // print("object" + StockInward.length.toString());
+//     
 //       notifyListeners();
 //     } else {
 //       dbDataTrue = true;
@@ -2485,11 +2485,11 @@
 //     });
 //     log("payload : $ddd");
 
-//     //RabitMQ
+//   
 //     Client client = Client();
 //     ConnectionSettings settings = ConnectionSettings(
 //         host: AppConstant.ip.toString().trim(), //"102.69.167.106"
-//         //AppConstant.ip
+//       
 //         port: 5672,
 //         authProvider: const PlainAuthenticator("buson", "BusOn123"));
 //     Client client1 = Client(settings: settings);
@@ -2502,7 +2502,7 @@
 //         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
 //     exchange.publish(ddd, "", properties: properties);
 
-//     //cs
+//   
 
 //     properties.headers = {"Branch": "Server"};
 //     exchange.publish(ddd, "", properties: properties);
@@ -2531,13 +2531,13 @@
 //       "StockInwardLine": StInLine,
 //       "StockInwardBatch": StInBatch,
 //     });
-//     // log("payload : $ddd");
+//   
 
-//     //RabitMQ
+//   
 //     Client client = Client();
 //     ConnectionSettings settings = ConnectionSettings(
 //         host: AppConstant.ip.toString().trim(), //"102.69.167.106"
-//         //AppConstant.ip
+//       
 //         port: 5672,
 //         authProvider: const PlainAuthenticator("buson", "BusOn123"));
 //     Client client1 = Client(settings: settings);
@@ -2550,7 +2550,7 @@
 //         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
 //     exchange.publish(ddd, "", properties: properties);
 
-//     //cs
+//   
 
 //     properties.headers = {"Branch": "Server"};
 //     exchange.publish(ddd, "", properties: properties);

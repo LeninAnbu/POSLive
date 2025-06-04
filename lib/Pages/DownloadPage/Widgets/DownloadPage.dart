@@ -61,10 +61,6 @@ class DownloadPageState extends State<DownloadPage> {
               style: theme.textTheme.bodyLarge
                   ?.copyWith(color: Colors.black, fontSize: 15),
             ),
-
-            // LinearProgressIndicator(
-            //   backgroundColor: Colors.white,
-            // )
           )
         ],
       ),

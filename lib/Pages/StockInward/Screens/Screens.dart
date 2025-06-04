@@ -35,12 +35,6 @@ class _StockInwardScreensState extends State<StockInwardScreens> {
 
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
-        //     return ChangeNotifierProvider<StockInwrdController>(
-        //         create: (context) => StockInwrdController(),
-        //         builder: (context, child) {
-        //           return Consumer<StockInwrdController>(
-        //               builder: (BuildContext context, stinCon, Widget? child) {
-
         return WillPopScope(
             onWillPop: (() {
               context.watch<StockInwrdController>().page.previousPage(
@@ -60,8 +54,6 @@ class _StockInwardScreensState extends State<StockInwardScreens> {
                       theme: theme,
                       stInCon: context.watch<StockInwrdController>()),
                 )));
-        // });
-        // });
       } else {
         return WillPopScope(
           onWillPop: context.read<StockInwrdController>().onbackpress3,

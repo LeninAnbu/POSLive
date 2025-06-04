@@ -26,7 +26,6 @@ class _NetPendingOrderState extends State<NetPendingOrder> {
       fromDate = '';
       toDate = '';
       branch = '';
-      // callTestApi();
     });
   }
 
@@ -115,9 +114,7 @@ class _NetPendingOrderState extends State<NetPendingOrder> {
       cells.add(DataCell(Container(
           alignment: Alignment.center,
           child: Text(item.soElapsedDays.toString()))));
-      cells.add(DataCell(Container(
-          // width: Screens.width(context) * 0.2,
-          child: Text(item.notes.toString()))));
+      cells.add(DataCell(Container(child: Text(item.notes.toString()))));
       cells.add(DataCell(Container(
           alignment: Alignment.centerRight,
           child: Text(item.cardName.toString().replaceAll('.0', '')))));
@@ -130,7 +127,7 @@ class _NetPendingOrderState extends State<NetPendingOrder> {
       cells.add(DataCell(Container(
           alignment: Alignment.centerRight,
           child: Text(item.subGroup.toString()))));
-      // "Discount Amount\":0.000000,\"After Disc%\":266814.000000,\"Tax Amt\":48026.520000,\"Net Amount\":314840.520000},
+
       cells.add(DataCell(Container(
           alignment: Alignment.centerRight,
           child: Text(item.salesOrderQty.toString()))));

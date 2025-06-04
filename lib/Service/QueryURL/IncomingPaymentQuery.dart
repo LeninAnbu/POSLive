@@ -34,7 +34,7 @@
 //         return IncomingPayCardCodeModel.fromJson(
 //             json.decode(response.body) as Map<String, dynamic>,
 //             response.statusCode);
-//         //24-22620
+//       
 //       } else {
 //         return IncomingPayCardCodeModel.fromJson(
 //             json.decode(response.body) as Map<String, dynamic>,
@@ -42,7 +42,7 @@
 //       }
 //     } catch (e) {
 //       log('IncomingPayCardCodeModel:::$e');
-//       //  throw Exception("Exception: $e");
+//     
 //       return IncomingPayCardCodeModel.error(e.toString(), 500);
 //     }
 //   }

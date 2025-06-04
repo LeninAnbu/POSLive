@@ -41,17 +41,7 @@ AppBar outwardAppbar(
                 context.read<StockOutwardController>().loadingScrn = false;
                 context.read<StockOutwardController>().searchOutData = [];
                 context.read<StockOutwardController>().filtersearchData = [];
-                // context.read<StockOutwardController>().getSalesDataDatewise(
-                //     context.read<StockOutwardController>().config.alignDate(
-                //         context
-                //             .read<StockOutwardController>()
-                //             .config
-                //             .currentDate()),
-                //     context.read<StockOutwardController>().config.alignDate(
-                //         context
-                //             .read<StockOutwardController>()
-                //             .config
-                //             .currentDate()));
+
                 await context.read<StockOutwardController>().callSearchOutApi();
 
                 await showDialog(
@@ -202,8 +192,6 @@ AppBar outwardAppbar(
                       .callPrintApi(context, theme);
                   context.read<StockOutwardController>().setstatemethod();
                 } else {
-                  // .mapCallOutwardForPDF(preff, context, theme);
-
                   showDialog(
                       context: context,
                       barrierDismissible: true,

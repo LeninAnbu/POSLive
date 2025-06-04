@@ -44,18 +44,10 @@ class SalesRegisterState extends State<RetRegisterScreens> {
               }),
         );
       } else {
-        //300
         return Scaffold(
           resizeToAvoidBottomInset: false,
           drawer: naviDrawer(),
-          body:
-              //  ChangeNotifierProvider<RetnRegCon>(
-              //     create: (context) => RetnRegCon(),
-              //     builder: (context, child) {
-              //       return Consumer<RetnRegCon>(
-              //           builder: (BuildContext context, stRegCon, Widget? child) {
-              //       return
-              SafeArea(
+          body: SafeArea(
             child: Column(children: <Widget>[
               appbarDefault('Return Register', theme, context),
               TabReturnReg(
@@ -63,9 +55,6 @@ class SalesRegisterState extends State<RetRegisterScreens> {
               )
             ]),
           ),
-          //     }
-          //   );
-          //  }),
         );
       }
     });

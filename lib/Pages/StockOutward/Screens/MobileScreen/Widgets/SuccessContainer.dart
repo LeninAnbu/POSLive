@@ -21,18 +21,6 @@ class _StInSSuccessAlertboxState extends State<StInSSuccessAlertbox> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container(
-            //     alignment: Alignment.center,
-            //     height: Screens.padingHeight(context) * 0.1,
-            //     width: Screens.width(context) * 0.1,
-            //     decoration: BoxDecoration(
-            //       image: DecorationImage(
-            //           image: AssetImage("assets/AlertIcon.png"),
-            //          ),
-            //     )),
-            // SizedBox(
-            //   width: Screens.width(context) * 0.02,
-            // ),
             Text(widget.content, style: widget.theme.textTheme.bodyMedium),
           ],
         ),

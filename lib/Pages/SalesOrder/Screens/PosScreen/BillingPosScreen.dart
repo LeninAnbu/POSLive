@@ -47,7 +47,6 @@ class SOPosScreen extends StatelessWidget {
             ),
             SizedBox(
                 width: Screens.width(context) * 0.39,
-                //  color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

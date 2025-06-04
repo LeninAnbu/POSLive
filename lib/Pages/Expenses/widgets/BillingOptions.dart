@@ -12,11 +12,10 @@ class BillingOptions extends StatelessWidget {
   const BillingOptions({
     super.key,
     required this.theme,
-    // required this.posController
   });
 
   final ThemeData theme;
-  // final ExpenseController posController;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -156,7 +155,6 @@ class BillingOptions extends StatelessWidget {
                                                                     bottom: Screens.padingHeight(
                                                                             context) *
                                                                         0.03),
-                                                                // height: custHeight * 0.2,
                                                                 child: ListTile(
                                                                   onTap: () {
                                                                     showDialog(
@@ -222,12 +220,6 @@ class BillingOptions extends StatelessWidget {
                                                                               .watch<ExpenseController>()
                                                                               .onholdfilter[index]
                                                                               .expensecode!),
-                                                                          // Container(
-                                                                          //   child:Text (posController.config.currentDate().toString())
-                                                                          //   // Text(posController
-                                                                          //   //     .onHoldFilter![index]
-                                                                          //   //     .invoceDate!),
-                                                                          // ),
                                                                         ],
                                                                       ),
                                                                       Row(
@@ -248,7 +240,6 @@ class BillingOptions extends StatelessWidget {
                                                               ),
                                                             );
                                                           })),
-                                                  //  SizedBox(height:  Screens.padingHeight(context) * 0.09),
                                                 ]);
                                           })));
                       });
@@ -256,14 +247,11 @@ class BillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.06,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Draft Bills",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -291,14 +279,11 @@ class BillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.06,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Store Refresh",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -326,14 +311,11 @@ class BillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.06,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Print",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -361,14 +343,11 @@ class BillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.06,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Access Till",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,
@@ -396,14 +375,11 @@ class BillingOptions extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      // color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
                         color: theme.primaryColor,
                       )),
-
                   height: Screens.padingHeight(context) * 0.06,
-                  // width: Screens.width(context)*0.15,
                   child: Text("Dual Screen",
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.primaryColor,

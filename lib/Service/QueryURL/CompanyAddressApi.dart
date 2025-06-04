@@ -17,16 +17,13 @@ class CompanyAddressApii {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query": 
-                "EXEC BZ_POS_CompanyAddressApi"
-                // "Select CompnyAddr from OADM"
+                "query": "EXEC BZ_POS_CompanyAddressApi"
               }));
       log('message::${json.encode({
             "constr":
                 "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
             "query": "Select CompnyAddr from OADM"
           })}');
-      // log("InvAddressApi Data Res: ${json.decode(response.body)}");
 
       print(response.statusCode);
       if (response.statusCode == 200) {

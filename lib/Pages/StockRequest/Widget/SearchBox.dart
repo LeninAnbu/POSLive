@@ -154,17 +154,6 @@ class _StRequestSearhBoxState extends State<StRequestSearhBox> {
                                         context
                                             .read<StockReqController>()
                                             .callSearchReqApi();
-                                        // .getSalesDataDatewise(
-                                        //     context
-                                        //         .read<StockReqController>()
-                                        //         .mycontroller[100]
-                                        //         .text
-                                        //         .toString(),
-                                        //     context
-                                        //         .read<StockReqController>()
-                                        //         .mycontroller[101]
-                                        //         .text
-                                        //         .toString());
                                       }
                                     });
                                   },
@@ -262,15 +251,6 @@ class _StRequestSearhBoxState extends State<StRequestSearhBox> {
                                   .copyWith(color: Colors.white),
                             ),
                           ),
-                          // Container(
-                          //   alignment: Alignment.center,
-                          //   width: widget.searchWidth * 0.08,
-                          //   child: Text(
-                          //     "SAP DocNo",
-                          //     style: widget.theme.textTheme.bodyMedium!
-                          //         .copyWith(color: Colors.white),
-                          //   ),
-                          // ),
                           Container(
                             alignment: Alignment.center,
                             width: widget.searchWidth * 0.08,
@@ -345,28 +325,7 @@ class _StRequestSearhBoxState extends State<StRequestSearhBox> {
                                                   .docEntry
                                                   .toString(),
                                               index);
-                                      // context
-                                      //     .read<StockReqController>()
-                                      //     .soCustAddressApi(context
-                                      //         .read<StockReqController>()
-                                      //         .filtersearchData[index]
-                                      //         .docEntry
-                                      //         .toString());
                                     });
-
-                                    // await context
-                                    //     .read<StockReqController>()
-                                    // .fixDataMethod(context
-                                    // .read<StockReqController>()
-                                    // .filtersearchData[index]
-                                    // .docEntry);
-
-                                    // await context
-                                    //     .read<StockReqController>()
-                                    //     .callSerlaySalesQuoAPI(
-                                    //       context,
-                                    //       widget.theme,
-                                    //     );
 
                                     Navigator.pop(context);
                                   },
@@ -433,16 +392,6 @@ class _StRequestSearhBoxState extends State<StRequestSearhBox> {
                                                 .copyWith(color: Colors.black),
                                           ),
                                         ),
-                                        // Container(
-                                        //   alignment: Alignment.center,
-                                        //   width: widget.searchWidth * 0.08,
-                                        //   child: Text(
-                                        //     "${context.watch<StockReqController>().filtersearchData[index].sapNo}",
-                                        //     style: widget
-                                        //         .theme.textTheme.bodyMedium!
-                                        //         .copyWith(color: Colors.black),
-                                        //   ),
-                                        // ),
                                         Container(
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.08,

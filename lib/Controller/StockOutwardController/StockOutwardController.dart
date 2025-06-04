@@ -5,6 +5,7 @@ import 'package:dart_amqp/dart_amqp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:posproject/Constant/Screen.dart';
+import 'package:posproject/DBModel/ItemMaster.dart';
 import 'package:posproject/Models/ServiceLayerModel/ErrorModell/ErrorModelSl.dart';
 import 'package:posproject/Service/Printer/TransferReqPrint.dart';
 import 'package:posproject/Widgets/AlertBox.dart';
@@ -536,13 +537,11 @@ class StockOutwardController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      //Buttons
                       SizedBox(
                         height: Screens.bodyheight(context) * 0.05,
                         width: Screens.width(context) * 0.3,
@@ -936,7 +935,7 @@ class StockOutwardController extends ChangeNotifier {
     OnScanDisable = true;
 
     for (var ix = 0; ix < passdata!.length; ix++) {
-      if (passdata![ix].listClr == true) {
+      if (passdata![ix].listClr == true && passdata![ix].managedBy != 'NONE') {
         await AutoSelectApi.getGlobalData(passdata![ix].itemcode.toString())
             .then((value) async {
           if (value.statusCode! >= 200 && value.statusCode! <= 210) {
@@ -989,6 +988,21 @@ class StockOutwardController extends ChangeNotifier {
               break;
             }
           }
+        }
+      } else {
+        if (passdata![ix].listClr == true &&
+            passdata![ix].managedBy == 'NONE') {
+          serialbatchList!.add(StockOutSerialbatch(
+            lineno: passdata![ix].lineNo.toString(),
+            baseDocentry: passdata![ix].baseDocentry.toString(),
+            itemcode: passdata![ix].itemcode,
+            qty: double.parse(qtymycontroller[ix].text.toString()),
+            serialbatch: '',
+            docstatus: null,
+            docentry: '',
+          ));
+
+          notifyListeners();
         }
       }
     }
@@ -1166,16 +1180,18 @@ class StockOutwardController extends ChangeNotifier {
       qtymycontroller[i].text = '';
 
       passdata![i].listClr = false;
+
       log('message22222');
       notifyListeners();
     } else if (passdata![i].listClr == false) {
       qtymycontroller[i].text = passdata![i].balQty.toString();
 
       passdata![i].listClr = true;
+      mapItemCodeWiseSoItemData(i);
+
       notifyListeners();
       log('message111');
     }
-    mapItemCodeWiseSoItemData(i);
     notifyListeners();
   }
 
@@ -1195,7 +1211,6 @@ class StockOutwardController extends ChangeNotifier {
     autoselectbtndisable = false;
     manualselectbtndisable = false;
     batchselectbtndisable = false;
-
     filterSerialbatchList = [];
     log('soScanItemsoScanItem length::${serialbatchList!.length}');
     for (var i = 0; i < serialbatchList!.length; i++) {
@@ -1242,8 +1257,8 @@ class StockOutwardController extends ChangeNotifier {
       }
 
       for (var ixx = 0; ixx < filterSerialbatchList!.length; ixx++) {
-        if (passdata![ixx].itemcode == filterSerialbatchList![ixx].itemcode &&
-            passdata![ixx].lineNo.toString() ==
+        if (passdata![ix].itemcode == filterSerialbatchList![ixx].itemcode &&
+            passdata![ix].lineNo.toString() ==
                 filterSerialbatchList![ixx].lineno.toString()) {
           filterSerialbatchList!.removeAt(ixx);
         }
@@ -1253,297 +1268,324 @@ class StockOutwardController extends ChangeNotifier {
     }
     balQty = double.parse(qtymycontroller[ix].text.toString());
 
-    await AutoSelectApi.getGlobalData(passdata![ix].itemcode.toString())
-        .then((value) async {
-      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-        openAutoSelect = value.openOutwardData!;
-        log('openAutoSelectopenAutoSelect::${openAutoSelect!.length}');
-        if (openAutoSelect!.isNotEmpty) {
-          showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  contentPadding: EdgeInsets.zero,
-                  insetPadding: EdgeInsets.zero,
-                  title: Container(
-                    width: Screens.width(context) * 0.5,
-                    padding: EdgeInsets.only(
-                      left: Screens.width(context) * 0.02,
+    if (passdata![ix].managedBy != 'NONE') {
+      await AutoSelectApi.getGlobalData(passdata![ix].itemcode.toString())
+          .then((value) async {
+        if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+          openAutoSelect = value.openOutwardData!;
+          log('openAutoSelectopenAutoSelect::${openAutoSelect!.length}');
+          if (openAutoSelect!.isNotEmpty) {
+            showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    contentPadding: EdgeInsets.zero,
+                    insetPadding: EdgeInsets.zero,
+                    title: Container(
+                      width: Screens.width(context) * 0.5,
+                      padding: EdgeInsets.only(
+                        left: Screens.width(context) * 0.02,
+                      ),
+                      alignment: Alignment.centerRight,
+                      height: Screens.padingHeight(context) * 0.05,
+                      color: theme.primaryColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Requested Qty ${passdata![ix].balQty!}',
+                            style: theme.textTheme.bodyMedium
+                                ?.copyWith(color: Colors.white),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                autoselectbtndisable = false;
+                                manualselectbtndisable = false;
+                                batchselectbtndisable = false;
+                                Get.back();
+                                notifyListeners();
+                              },
+                              icon: Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              )),
+                        ],
+                      ),
                     ),
-                    alignment: Alignment.centerRight,
-                    height: Screens.padingHeight(context) * 0.05,
-                    color: theme.primaryColor,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Requested Qty ${passdata![ix].balQty!}',
-                          style: theme.textTheme.bodyMedium
-                              ?.copyWith(color: Colors.white),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              autoselectbtndisable = false;
-                              manualselectbtndisable = false;
-                              batchselectbtndisable = false;
-                              Get.back();
-                              notifyListeners();
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.white,
-                            )),
-                      ],
-                    ),
-                  ),
-                  content: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          height: Screens.padingHeight(context) * 0.55,
-                          width: Screens.width(context) * 0.5,
-                          child: ListView.builder(
-                              itemCount: openAutoSelect!.length,
-                              itemBuilder: (context, index) {
-                                return Card(
-                                  child: GestureDetector(
-                                    onTap: () async {},
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 3, right: 3),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(openAutoSelect![index]
-                                                    .itemCode),
-                                                Text(openAutoSelect![index]
-                                                    .qty
-                                                    .toString()),
-                                                Container(
-                                                    width:
-                                                        Screens.width(context) *
-                                                            0.056,
-                                                    height:
-                                                        Screens.padingHeight(
-                                                                context) *
-                                                            0.053,
-                                                    child: TextFormField(
-                                                      onTap: () {
-                                                        manualQtyCtrl[index]
-                                                                .text =
-                                                            manualQtyCtrl[index]
-                                                                .text;
-
-                                                        manualQtyCtrl[index]
-                                                                .selection =
-                                                            TextSelection(
-                                                          baseOffset: 0,
-                                                          extentOffset:
+                    content: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            height: Screens.padingHeight(context) * 0.55,
+                            width: Screens.width(context) * 0.5,
+                            child: ListView.builder(
+                                itemCount: openAutoSelect!.length,
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                    child: GestureDetector(
+                                      onTap: () async {},
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.only(left: 3, right: 3),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(openAutoSelect![index]
+                                                      .itemCode),
+                                                  Text(openAutoSelect![index]
+                                                      .qty
+                                                      .toString()),
+                                                  Container(
+                                                      width: Screens.width(
+                                                              context) *
+                                                          0.056,
+                                                      height:
+                                                          Screens.padingHeight(
+                                                                  context) *
+                                                              0.053,
+                                                      child: TextFormField(
+                                                        onTap: () {
+                                                          manualQtyCtrl[index]
+                                                                  .text =
                                                               manualQtyCtrl[
                                                                       index]
-                                                                  .text
-                                                                  .length,
-                                                        );
-                                                      },
-                                                      keyboardType:
-                                                          TextInputType.number,
-                                                      onChanged: (val) {
-                                                        doubleDotMethodManualselect(
-                                                            index, val);
-                                                      },
-                                                      inputFormatters: [
-                                                        DecimalInputFormatter()
-                                                      ],
-                                                      onEditingComplete: () {
-                                                        disableKeyBoard(
-                                                            context);
-                                                      },
-                                                      controller:
-                                                          manualQtyCtrl[index],
-                                                      decoration:
-                                                          InputDecoration(
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                                horizontal: 15),
-                                                        hintText: "",
-                                                        hintStyle: theme
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                                color: Colors
-                                                                    .grey[600]),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          borderSide:
-                                                              const BorderSide(
+                                                                  .text;
+
+                                                          manualQtyCtrl[index]
+                                                                  .selection =
+                                                              TextSelection(
+                                                            baseOffset: 0,
+                                                            extentOffset:
+                                                                manualQtyCtrl[
+                                                                        index]
+                                                                    .text
+                                                                    .length,
+                                                          );
+                                                        },
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        onChanged: (val) {
+                                                          doubleDotMethodManualselect(
+                                                              index, val);
+                                                        },
+                                                        inputFormatters: [
+                                                          DecimalInputFormatter()
+                                                        ],
+                                                        onEditingComplete: () {
+                                                          disableKeyBoard(
+                                                              context);
+                                                        },
+                                                        controller:
+                                                            manualQtyCtrl[
+                                                                index],
+                                                        decoration:
+                                                            InputDecoration(
+                                                          contentPadding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      15),
+                                                          hintText: "",
+                                                          hintStyle: theme
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
                                                                   color: Colors
-                                                                      .grey),
+                                                                          .grey[
+                                                                      600]),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
                                                         ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          borderSide:
-                                                              const BorderSide(
-                                                                  color: Colors
-                                                                      .grey),
-                                                        ),
-                                                      ),
-                                                    )),
-                                              ],
+                                                      )),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Container(
-                                              child: Row(
-                                            children: [
-                                              Text(
-                                                  '${openAutoSelect![index].batchNum}  |  '),
-                                              Text(openAutoSelect![index]
-                                                  .itemName
-                                                  .toString()),
-                                            ],
-                                          )),
-                                        ],
+                                            Container(
+                                                child: Row(
+                                              children: [
+                                                Text(
+                                                    '${openAutoSelect![index].batchNum}  |  '),
+                                                Text(openAutoSelect![index]
+                                                    .itemName
+                                                    .toString()),
+                                              ],
+                                            )),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              }),
-                        ),
-                        ElevatedButton(
-                            onPressed: () async {
-                              double scnQty = 0;
-                              await onTapSoBtn(ih);
-                              log('extraqtyextraqty222::$extraqty');
-                              if (extraqty == true) {
-                                await showDialog(
-                                    context: context,
-                                    barrierDismissible: false,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                          contentPadding:
-                                              const EdgeInsets.all(0),
-                                          content: AlertBox(
-                                            payMent: 'Alert',
-                                            errormsg: true,
-                                            widget: Center(
-                                                child: ContentContainer(
-                                              content:
-                                                  'Allocation qty is grater than requested qty',
-                                              theme: theme,
-                                            )),
-                                            buttonName: null,
-                                          ));
-                                    }).then((value) {
-                                  extraqty = false;
-                                });
-                                notifyListeners();
-                              } else {
-                                for (var xx = 0;
-                                    xx < openAutoSelect!.length;
-                                    xx++) {
-                                  log('manualQtyCtrl[xx].text::${manualQtyCtrl[xx].text}');
-                                  if (manualQtyCtrl[xx].text.isNotEmpty) {
-                                    if (manualQtyCtrl[xx].text != '0') {
-                                      serialbatchList!.add(StockOutSerialbatch(
-                                        lineno: StockOutward[ih]
+                                  );
+                                }),
+                          ),
+                          ElevatedButton(
+                              onPressed: () async {
+                                double scnQty = 0;
+                                await onTapSoBtn(ih);
+                                log('extraqtyextraqty222::$extraqty');
+                                if (extraqty == true) {
+                                  await showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                            contentPadding:
+                                                const EdgeInsets.all(0),
+                                            content: AlertBox(
+                                              payMent: 'Alert',
+                                              errormsg: true,
+                                              widget: Center(
+                                                  child: ContentContainer(
+                                                content:
+                                                    'Allocation qty is grater than requested qty',
+                                                theme: theme,
+                                              )),
+                                              buttonName: null,
+                                            ));
+                                      }).then((value) {
+                                    extraqty = false;
+                                  });
+                                  notifyListeners();
+                                } else {
+                                  for (var xx = 0;
+                                      xx < openAutoSelect!.length;
+                                      xx++) {
+                                    log('manualQtyCtrl[xx].text::${manualQtyCtrl[xx].text}');
+                                    if (manualQtyCtrl[xx].text.isNotEmpty) {
+                                      if (manualQtyCtrl[xx].text != '0') {
+                                        serialbatchList!
+                                            .add(StockOutSerialbatch(
+                                          lineno: StockOutward[ih]
+                                              .data[ix]
+                                              .lineNo
+                                              .toString(),
+                                          baseDocentry: StockOutward[ih]
+                                              .data[ix]
+                                              .baseDocentry
+                                              .toString(),
+                                          itemcode: StockOutward[ih]
+                                              .data[ix]
+                                              .itemcode,
+                                          qty: double.parse(
+                                              manualQtyCtrl[xx].text),
+                                          serialbatch: openAutoSelect![xx]
+                                              .batchNum
+                                              .toString(),
+                                          docstatus: null,
+                                          docentry: '',
+                                        ));
+                                        StockOutward[ih]
                                             .data[ix]
-                                            .lineNo
-                                            .toString(),
-                                        baseDocentry: StockOutward[ih]
-                                            .data[ix]
-                                            .baseDocentry
-                                            .toString(),
-                                        itemcode:
-                                            StockOutward[ih].data[ix].itemcode,
-                                        qty: double.parse(
-                                            manualQtyCtrl[xx].text),
-                                        serialbatch: openAutoSelect![xx]
-                                            .batchNum
-                                            .toString(),
-                                        docstatus: null,
-                                        docentry: '',
-                                      ));
-                                      StockOutward[ih]
-                                          .data[ix]
-                                          .serialbatchList = serialbatchList;
-                                      balQty = balQty - openAutoSelect![xx].qty;
-                                      notifyListeners();
+                                            .serialbatchList = serialbatchList;
+                                        balQty =
+                                            balQty - openAutoSelect![xx].qty;
+                                        notifyListeners();
+                                      }
                                     }
                                   }
-                                }
-                                mapItemCodeWiseSoItemData(ix);
+                                  await mapItemCodeWiseSoItemData(ix);
 
-                                if (serialbatchList!.isNotEmpty) {
-                                  for (var iz = 0;
-                                      iz < serialbatchList!.length;
-                                      iz++) {
-                                    if (serialbatchList![iz].itemcode ==
-                                            passdata![ix].itemcode &&
-                                        serialbatchList![iz]
-                                                .lineno
-                                                .toString() ==
-                                            StockOutward[ih]
-                                                .data[ix]
-                                                .lineNo
-                                                .toString()) {
-                                      scnQty = scnQty +
-                                          double.parse(serialbatchList![iz]
-                                              .qty
-                                              .toString());
-                                      passdata![ix].Scanned_Qty = scnQty;
-                                      passdata![ix].insertValue = true;
+                                  if (serialbatchList!.isNotEmpty) {
+                                    for (var iz = 0;
+                                        iz < serialbatchList!.length;
+                                        iz++) {
+                                      if (serialbatchList![iz].itemcode ==
+                                              passdata![ix].itemcode &&
+                                          serialbatchList![iz]
+                                                  .lineno
+                                                  .toString() ==
+                                              StockOutward[ih]
+                                                  .data[ix]
+                                                  .lineNo
+                                                  .toString()) {
+                                        scnQty = scnQty +
+                                            double.parse(serialbatchList![iz]
+                                                .qty
+                                                .toString());
+                                        passdata![ix].Scanned_Qty = scnQty;
+                                        passdata![ix].insertValue = true;
 
-                                      qtymycontroller[ix].text =
-                                          scnQty.toString();
-                                      passdata![ix].serialbatchList =
-                                          serialbatchList;
-                                      log(' passdata![ix].Scanned_Qty::${passdata![ix].Scanned_Qty}::qtymycontroller::${qtymycontroller[iz].text}');
+                                        qtymycontroller[ix].text =
+                                            scnQty.toString();
+                                        passdata![ix].serialbatchList =
+                                            serialbatchList;
+                                        log(' passdata![ix].Scanned_Qty::${passdata![ix].Scanned_Qty}::qtymycontroller::${qtymycontroller[iz].text}');
+                                      }
                                     }
                                   }
+                                  disableKeyBoard(context);
                                 }
-                                disableKeyBoard(context);
-                              }
-                              Get.back();
-                            },
-                            child: Container(
-                                width: Screens.width(context) * 0.5,
-                                alignment: Alignment.center,
-                                height: Screens.padingHeight(context) * 0.05,
-                                child: const Text('OK')))
-                      ],
+                                Get.back();
+                              },
+                              child: Container(
+                                  width: Screens.width(context) * 0.5,
+                                  alignment: Alignment.center,
+                                  height: Screens.padingHeight(context) * 0.05,
+                                  child: const Text('OK')))
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              });
-        } else {
-          msg = "No Qty Does Not Have...!!";
-          for (int im = 0;
-              im < StockOutward[ih].data[ix].serialbatchList!.length;
-              im++) {
-            if (StockOutward[ih].data[ix].serialbatchList![im].serialbatch ==
-                serialBatch) {
-              qtymycontroller[im].text = 1.toString();
+                  );
+                });
+          } else {
+            msg = "No Qty Does Not Have...!!";
+            for (int im = 0;
+                im < StockOutward[ih].data[ix].serialbatchList!.length;
+                im++) {
+              if (StockOutward[ih].data[ix].serialbatchList![im].serialbatch ==
+                  serialBatch) {
+                qtymycontroller[im].text = 1.toString();
+              }
             }
           }
+        } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+          autoselectbtndisable = false;
         }
-      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-        autoselectbtndisable = false;
-      }
-    });
+      });
+    } else {
+      serialbatchList!.add(StockOutSerialbatch(
+        lineno: StockOutward[ih].data[ix].lineNo.toString(),
+        baseDocentry: StockOutward[ih].data[ix].baseDocentry.toString(),
+        itemcode: StockOutward[ih].data[ix].itemcode,
+        qty: double.parse(qtymycontroller[ix].text),
+        serialbatch: '',
+        docstatus: null,
+        docentry: '',
+      ));
+      passdata![ix].Scanned_Qty = double.parse(qtymycontroller[ix].text);
+      passdata![ix].insertValue = true;
 
+      passdata![ix].serialbatchList = serialbatchList;
+      StockOutward[ih].data[ix].serialbatchList = serialbatchList;
+      await mapItemCodeWiseSoItemData(ix);
+    }
     notifyListeners();
 
     OnScanDisable = false;
@@ -1587,7 +1629,6 @@ class StockOutwardController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     List<Map<String, Object?>> getDBStOutBatchData =
         await DBOperation.stOutCheckScanData(
-            //com
             db,
             StockOutward[index].data[list_i].baseDocentry,
             StockOutward[index].data[list_i].docentry,
@@ -1873,7 +1914,7 @@ class StockOutwardController extends ChangeNotifier {
       if (StockOutward[index].data[list_i].itemcode ==
           StockOutward[index].data[list_i].serialbatchList![im].itemcode) {
         qqqttyy = qqqttyy + int.parse(qtymycontroller[im].text);
-        //log("qqqttyyqqqttyy:::${qqqttyy}");
+
         notifyListeners();
       }
     }
@@ -1885,9 +1926,7 @@ class StockOutwardController extends ChangeNotifier {
     final Database db = (await DBHelper.getInstance())!;
     msg = '';
     List<Map<String, Object?>> serailbatchCheck =
-        await DBOperation.serialBatchCheck(
-            db,
-            serialBatch.toString().trim(), //com
+        await DBOperation.serialBatchCheck(db, serialBatch.toString().trim(),
             StockOutward[index].data[list_i].itemcode.toString());
     if (serailbatchCheck.isNotEmpty) {
       if (int.parse(serailbatchCheck[0]["quantity"].toString()) != 0) {
@@ -1939,9 +1978,7 @@ class StockOutwardController extends ChangeNotifier {
       final Database db = (await DBHelper.getInstance())!;
       msg = "";
       List<Map<String, Object?>> serailbatchCheck =
-          await DBOperation.serialBatchCheck(
-              db,
-              serialBatch.toString().trim(), //com
+          await DBOperation.serialBatchCheck(db, serialBatch.toString().trim(),
               StockOutward[index].data[list_i].itemcode.toString());
       if (serailbatchCheck.isNotEmpty) {
         if (int.parse(serailbatchCheck[0]["quantity"].toString()) != 0) {
@@ -1949,8 +1986,7 @@ class StockOutwardController extends ChangeNotifier {
 
           int totalqty = int.parse(serailbatchCheck[0]["quantity"].toString());
           double separateBatchQty = 0;
-          double totalscanqty =
-              StockOutward[index].data[list_i].trans_Qty!; //newchange
+          double totalscanqty = StockOutward[index].data[list_i].trans_Qty!;
           bool AlreadyScan = false;
 
           if (StockOutward[index].data[list_i].serialbatchList != null) {
@@ -2246,9 +2282,7 @@ class StockOutwardController extends ChangeNotifier {
         bool? netbool = await config.haveInterNet();
 
         await DBOperation.deletAlreadyHoldData(
-            //com
-            db,
-            int.parse(StockOutward[index].baceDocentry.toString()));
+            db, int.parse(StockOutward[index].baceDocentry.toString()));
 
         if (netbool == true) {
           log('StockOutward[index]1111:::${StockOutward[index].data.length}');
@@ -2379,7 +2413,7 @@ class StockOutwardController extends ChangeNotifier {
       StockOutwardList? datatotal) async {
     OnclickDisable = true;
     final Database db = (await DBHelper.getInstance())!;
-    List<StockOutHeaderDataDB> StOutHeader = []; //headersss
+    List<StockOutHeaderDataDB> StOutHeader = [];
     List<StockOutLineDataDB> StOutLine = [];
     List<StockOutBatchDataDB> StOutBatch = [];
     submitBool = false;
@@ -2609,16 +2643,19 @@ class StockOutwardController extends ChangeNotifier {
       if (passdata![index].itemcode == serialbatchList![ik].itemcode &&
           passdata![index].lineNo.toString() ==
               serialbatchList![ik].lineno.toString()) {
-        batchTable!.add(StockOutbatch(
-            quantity: double.parse(serialbatchList![ik].qty.toString()),
-            batchNumberProperty: serialbatchList![ik].serialbatch.toString()));
-        notifyListeners();
+        if (serialbatchList![ik].serialbatch!.isNotEmpty) {
+          batchTable!.add(StockOutbatch(
+              quantity: double.parse(serialbatchList![ik].qty.toString()),
+              batchNumberProperty:
+                  serialbatchList![ik].serialbatch.toString()));
+          notifyListeners();
+        }
+        log('s batch qty' + serialbatchList![ik].qty.toString());
       }
-      log('s batch qty' + serialbatchList![ik].qty.toString());
-    }
 
-    log('batchTablebatchTable::${batchTable!.length.toString()}');
-    notifyListeners();
+      log('batchTablebatchTable::${batchTable!.length.toString()}');
+      notifyListeners();
+    }
   }
 
   addOutLinedata(int index) {
@@ -2704,6 +2741,7 @@ class StockOutwardController extends ChangeNotifier {
 
     PostStkOutwardAPi.method(uuidg);
     notifyListeners();
+
     await PostStkOutwardAPi.getGlobalData(uuidg).then((value) async {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
         sapDocentry = value.docEntry.toString();
@@ -2958,6 +2996,18 @@ class StockOutwardController extends ChangeNotifier {
     });
   }
 
+  List<ItemMasterModelDB> getItemSearchedData = [];
+  List<ItemMasterModelDB> getfilterItemSearchedData = [];
+  Future<List<ItemMasterModelDB>> getAllItemList(String data) async {
+    getItemSearchedData = [];
+    getfilterSearchedData = [];
+    final Database db = (await DBHelper.getInstance())!;
+    getItemSearchedData = await DBOperation.itemmastercheckitemcode(db, data);
+    getfilterItemSearchedData = getItemSearchedData;
+
+    return getItemSearchedData;
+  }
+
   callOpenReqLineAPi(BuildContext context, ThemeData theme, String docEntry,
       String cardCode) async {
     final Database db = (await DBHelper.getInstance())!;
@@ -3017,6 +3067,17 @@ class StockOutwardController extends ChangeNotifier {
         }
         if (passdata!.isNotEmpty) {
           for (var i = 0; i < passdata!.length; i++) {
+            await getAllItemList(passdata![i].itemcode.toString());
+
+            for (var ix = 0; ix < getfilterItemSearchedData.length; ix++) {
+              if (getfilterItemSearchedData[ix].itemcode.toString() ==
+                  passdata![i].itemcode.toString()) {
+                if (getfilterItemSearchedData[ix].managedBy == 'NONE') {
+                  passdata![i].managedBy =
+                      getfilterItemSearchedData[ix].managedBy;
+                }
+              }
+            }
             if (selectAll == true) {
               notifyListeners();
               selectAllItem();
@@ -4127,7 +4188,7 @@ class StockOutwardController extends ChangeNotifier {
 
     Client client = Client();
     ConnectionSettings settings = ConnectionSettings(
-        host: AppConstant.ip.toString().trim(), //"102.69.167.106"
+        host: AppConstant.ip.toString().trim(),
         port: 5672,
         authProvider: PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -4139,8 +4200,6 @@ class StockOutwardController extends ChangeNotifier {
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
-
-    //to
 
     client1.close();
   }
@@ -4169,7 +4228,7 @@ class StockOutwardController extends ChangeNotifier {
 
     Client client = Client();
     ConnectionSettings settings = ConnectionSettings(
-        host: AppConstant.ip.toString().trim(), //"102.69.167.106"
+        host: AppConstant.ip.toString().trim(),
         port: 5672,
         authProvider: PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -4180,8 +4239,6 @@ class StockOutwardController extends ChangeNotifier {
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     properties.headers = {"Branch": toWhs};
     exchange.publish(ddd, "", properties: properties);
@@ -4256,8 +4313,6 @@ class StockOutwardController extends ChangeNotifier {
         time: 'time',
         customerName: selectedcust2!.name ?? '',
         address: '',
-        //custDetails[0].address ?? '',
-
         mobile:
             selectedcust2!.phNo!.isEmpty ? '' : selectedcust2!.phNo.toString(),
       ),

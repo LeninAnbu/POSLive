@@ -21,7 +21,6 @@ class GettCreditDaysAPi {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),
           'Prefer': 'odata.maxpagesize=20'
-          // ${GetValues.maximumfetchValue}'
         },
       );
       log('CreditDays.statusCode::${response.statusCode}');
@@ -34,11 +33,9 @@ class GettCreditDaysAPi {
         print("GettCreditDaysAPi:: " + json.decode(response.body).toString());
         print(response.statusCode);
         throw Exception('Restart the app or contact the admin!!..');
-        // return ApprovalsOrdersModal.issue('Restart the app or contact the admin!!..');
       }
     } catch (e) {
       throw Exception(e);
-      // return ApprovalsOrdersModal.issue('Restart the app or contact the admin!!..');
     }
   }
 }

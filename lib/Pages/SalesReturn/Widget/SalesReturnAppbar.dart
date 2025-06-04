@@ -41,17 +41,6 @@ AppBar salesReturnappbar(
               onTap: () async {
                 context.read<SalesReturnController>().searchInitMethod();
 
-                // context.read<SalesReturnController>().getSalesDataDatewise(
-                //     context.read<SalesReturnController>().config.alignDate(
-                //         context
-                //             .read<SalesReturnController>()
-                //             .config
-                //             .currentDate()),
-                //     context.read<SalesReturnController>().config.alignDate(
-                //         context
-                //             .read<SalesReturnController>()
-                //             .config
-                //             .currentDate()));
                 await context
                     .read<SalesReturnController>()
                     .callSearchHeaderApi();

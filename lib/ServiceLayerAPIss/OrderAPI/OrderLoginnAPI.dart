@@ -15,14 +15,12 @@ class PostOrderLoginAPi {
       log("Step11:::$password");
       final response = await http.post(Uri.parse("${URL.sapUrl}/Login"),
           headers: {'Content-Type': 'application/json'},
-          //{"CompanyDB":"MRP T1","UserName":"mwanza","Password":"8765"}
           body: json.encode({
             "CompanyDB": "${AppConstant.sapDB}",
             "UserName": "$username", //"api"
             "Password": "$password"
           }));
-      // "UserName": "api",
-      // "Password": "1234"
+
       log("S Order:::${json.encode({
             "CompanyDB": "${AppConstant.sapDB}",
             "UserName": "$username",
@@ -42,13 +40,10 @@ class PostOrderLoginAPi {
         log("saplogin: ${json.decode(response.body)}");
         log("saplogin stcode22 ::${response.statusCode}");
         throw Exception("Error");
-        // return Logindata.error(
-        //     json.decode(response.body) as Map<String, dynamic>,
-        //     response.statusCode);
       }
     } catch (e) {
       log('Exception saplogin: $e');
-      // throw Exception('Exception saplogin: $e');
+
       return Logindata.issue('Restart the app or contact the admin!!..', 500);
     }
   }

@@ -43,7 +43,6 @@ import '../../Models/ServiceLayerModel/SapSalesReturnModel/ReturnPostingListMode
 import '../../Models/ServiceLayerModel/SapSalesReturnModel/SapSaleReturnmodel.dart';
 import '../../Pages/Sales Screen/Screens/MobileScreenSales/WidgetsMob/ContentcontainerMob.dart';
 import '../../Service/Printer/SalesreturnPrintApi.dart';
-import '../../Service/Printer/orderPrint.dart';
 import '../../Service/QueryURL/CreditDaysModelAPI.dart';
 import '../../Service/QueryURL/CreditLimitModeAPI.dart';
 import '../../Service/QueryURL/ReturnCardCodeApi.dart';
@@ -764,7 +763,9 @@ class SalesReturnController extends ChangeNotifier {
               itemCode: value.activitiesData![i].itemCode,
               itemName: value.activitiesData![i].itemName,
               serialBatch: value.activitiesData![i].batchNum,
-              openRetQty: value.activitiesData![i].Qty,
+              openRetQty: value.activitiesData![i].Qty != 0
+                  ? value.activitiesData![i].Qty
+                  : value.activitiesData![i].openQty,
               taxRate: 0,
               mrp: value.activitiesData![i].price,
               sellPrice: value.activitiesData![i].price,
@@ -773,7 +774,9 @@ class SalesReturnController extends ChangeNotifier {
               baselineid: value.activitiesData![i].lineNum.toString(),
               basedocentry: value.activitiesData![i].docEntry.toString(),
             ));
-            qtymycontroller[i].text = value.activitiesData![i].Qty.toString();
+            qtymycontroller[i].text = value.activitiesData![i].Qty != 0
+                ? value.activitiesData![i].Qty.toString()
+                : value.activitiesData![i].openQty.toString();
 
             serialbatchTable!.add(Invbatch(
                 batchNumberProperty: value.activitiesData![i].batchNum,
@@ -3486,7 +3489,6 @@ class SalesReturnController extends ChangeNotifier {
       BuildContext context, ThemeData theme, String docEntry) async {
     freezeScrn = true;
 
-    // SalesReturnPrintAPii.docEntry = sapDocentry;
     SalesReturnPrintAPii.slpCode = AppConstant.slpCode;
 
     await SalesReturnPrintAPii.getGlobalData(docEntry).then((value) {
@@ -3627,10 +3629,12 @@ class SalesReturnController extends ChangeNotifier {
               serialbatchTable![i].lineId.toString() &&
           scanneditemData[ik].serialBatch.toString() ==
               serialbatchTable![i].batchNumberProperty.toString()) {
-        batchTable!.add(Invbatch(
-            quantity: double.parse(qtymycontroller[ik].text),
-            batchNumberProperty: serialbatchTable![i].batchNumberProperty));
-        break;
+        if (serialbatchTable![i].batchNumberProperty.isNotEmpty) {
+          batchTable!.add(Invbatch(
+              quantity: double.parse(qtymycontroller[ik].text),
+              batchNumberProperty: serialbatchTable![i].batchNumberProperty));
+          break;
+        }
       }
       log('batchTable::${batchTable!.length}');
       notifyListeners();
@@ -4416,7 +4420,6 @@ class SalesReturnController extends ChangeNotifier {
         await DBOperation.getReturnApprovalsts(
             db, approvalDetailsValue!.uDevicTransId.toString());
     if (approvalDetailsValue != null && getsoheader.isNotEmpty) {
-      //
       localDocentry = getsoheader[0]['docentry'].toString();
       tbDocEntry = int.parse(getsoheader[0]['docentry'].toString());
       List<Map<String, Object?>> getdbSaleretline =
@@ -4522,9 +4525,9 @@ class SalesReturnController extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city ?? '', //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city ?? '',
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -4538,9 +4541,9 @@ class SalesReturnController extends ChangeNotifier {
                       address2: csadresdataDB[k].address2,
                       address3: csadresdataDB[k].address3,
                       custcode: csadresdataDB[k].custcode,
-                      billCity: csadresdataDB[k].city!, //city
-                      billCountry: csadresdataDB[k].countrycode!, //country
-                      billPincode: csadresdataDB[k].pincode!, //pinno
+                      billCity: csadresdataDB[k].city!,
+                      billCountry: csadresdataDB[k].countrycode!,
+                      billPincode: csadresdataDB[k].pincode!,
                       billstate: csadresdataDB[k].statecode)
                 ];
               }

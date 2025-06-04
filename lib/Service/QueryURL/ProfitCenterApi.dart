@@ -20,8 +20,6 @@ class ProfitCenterApii {
                 "query": "[BZ_POS_ProfitCenter]"
               }));
 
-      // log("ProfitCenterApii Data Res: ${json.decode(response.body)}");
-
       print(response.statusCode);
       if (response.statusCode == 200) {
         return ProfitCentermdl.fromJson(

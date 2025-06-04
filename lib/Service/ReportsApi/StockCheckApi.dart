@@ -18,9 +18,7 @@ class StockcheckAPi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_StockcheckAPi"
-                    // "SELECT distinct A.ItemCode,A.ItemName,ISNULL( C.DistNumber,D.BatchNum) [SERIAL/BATCH],Sum(b.Quantity) Over (Partition by ISNULL( C.DistNumber,D.BatchNum),A.LocCode Order by ISNULL( C.DistNumber,D.BatchNum)) [QUANTITY],A.LocCode [BRANCH] ,E.AvgPrice [PRICE]FROM OITL A INNER JOIN ITL1 B ON A.LogEntry = B.LogEntry  lEFT  JOIN  OSRN C ON B.ItemCode = C.ItemCode AND B.SysNumber = C.SysNumber Left Outer Join IBT1 D (nolock)  On D.BaseEntry=A.DocEntry  AND  D.ItemCode=b.ItemCode and D.WhsCode=A.LocCode LEFT OUTER JOIN OITW E(NOLOCK) ON E.ItemCode=A.ItemCode AND E.WhsCode=A.LocCode WHERE E.OnHand <>'0'"
+                "query": "EXEC BZ_POS_StockcheckAPi"
               }));
 
       log("StockCheckModel Res: ${response.body}");
@@ -29,12 +27,11 @@ class StockcheckAPi {
         log('datadatadata length::${data.length}');
         return StockCheckModel.fromJson(response.body, response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return StockCheckModel.fromJson(response.body, response.statusCode);
       }
     } catch (e) {
       log('exp::${e.toString()}');
-      //  throw Exception("Exception: $e");
+
       return StockCheckModel.error(e.toString(), 500);
     }
   }

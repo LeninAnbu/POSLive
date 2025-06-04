@@ -34,13 +34,12 @@ class SchemeQuteAPi {
             response.statusCode);
       } else {
         print(json.decode(response.body));
-        // throw Exception("Error!!...");
+
         return SchemeQuotModal.issue(
           response.statusCode,
         );
       }
     } catch (e) {
-      //  throw Exception("Exceptionsss: $e");
       return SchemeQuotModal.exception(
           'Restart the app or contact the admin!!..', 500);
     }

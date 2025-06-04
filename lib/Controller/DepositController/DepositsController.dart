@@ -6,6 +6,8 @@ import 'package:dart_amqp/dart_amqp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:posproject/Models/QueryUrlModel/DepositsQueryModel/depositsdetModel.dart';
+import 'package:posproject/Service/QueryURL/DepositsQuery/depositsDetailsQuery.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -29,6 +31,7 @@ import '../../Service/QueryURL/DepositsQuery/CashDepositQueryApi.dart';
 import '../../Service/QueryURL/DepositsQuery/ChequeDeposits.dart';
 import '../../Service/QueryURL/cashcardaccountdetailsApi.dart';
 import '../../ServiceLayerAPIss/BankListApi/BankListsApi.dart';
+import '../../ServiceLayerAPIss/Deposits/postdepositapi.dart';
 import '../../ServiceLayerAPIss/InvoiceAPI/InvoiceLoginnAPI.dart';
 
 class DepositsController extends ChangeNotifier {
@@ -36,10 +39,12 @@ class DepositsController extends ChangeNotifier {
 
   init(BuildContext context) async {
     clearAllData();
+    await callDepositDetailsApi();
 
-    await callDepositsApi();
+    // await callDepositsApi();
     await callBankmasterApi(context);
     await callCashCardAccApi();
+
     notifyListeners();
   }
 
@@ -51,7 +56,7 @@ class DepositsController extends ChangeNotifier {
     DepositsQueryAPi.getGlobalData(AppConstant.branch).then((value) {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
         activitiesData = value.activitiesData!;
-        //
+
         if (activitiesData.isNotEmpty) {
           for (var i = 0; i < activitiesData.length; i++) {
             mycontroller[4].text = activitiesData[i].cashBal.toString();
@@ -163,8 +168,45 @@ class DepositsController extends ChangeNotifier {
   }
 
   List<CashCardAccDetailData>? cardAccDetailaData;
+//DepositsDetailsQueryAPi
+//
+  List<DepositDetailsQueryData> depositDetData = [];
+  callDepositDetailsApi() async {
+    double unsettle = 0;
+    double settle = 0;
+    double collection = 0;
+
+    depositDetData = [];
+    await DepositsDetailsQueryAPi.getGlobalData(AppConstant.branch)
+        .then((value) async {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        depositDetData = value.data;
+
+        for (var i = 0; i < depositDetData.length; i++) {
+          if (depositDetData[i].acctName.toString() == "Cash in Hand (UB)") {
+            mycontroller[7].text = depositDetData[i].collected.toString();
+            mycontroller[8].text = depositDetData[i].setteled.toString();
+            mycontroller[4].text = depositDetData[i].unSettled.toString();
+          }
+          unsettle = unsettle + (depositDetData[i].unSettled);
+          collection = collection + (depositDetData[i].collected);
+          settle = settle + (depositDetData[i].setteled);
+          mycontroller[1].text = collection.toString();
+          mycontroller[2].text = settle.toString();
+          log('mycontroller[4].text ::${mycontroller[4].text}');
+          mycontroller[3].text = unsettle.toString();
+        }
+
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        notifyListeners();
+      } else {}
+    });
+    notifyListeners();
+  }
 
   callCashCardAccApi() async {
+    cardAccDetailaData = [];
     await CashCardAccountAPi.getGlobalData(AppConstant.branch)
         .then((value) async {
       if (value.statusCode! >= 200 && value.statusCode! <= 210) {
@@ -299,14 +341,11 @@ class DepositsController extends ChangeNotifier {
     if (tappageIndex == 0) {
       Get.offAllNamed(ConstantRoutes.dashboard);
     } else {
-      //log("objectbbbbbbbbbb:::::" + tappageIndex.toString());
       await tappage.animateToPage(--tappageIndex,
           duration: const Duration(milliseconds: 250), curve: Curves.bounceIn);
 
       mycontroller[0].clear();
       notifyListeners();
-
-      //log("object:::::" + tappageIndex.toString());
     }
 
     notifyListeners();
@@ -370,11 +409,14 @@ class DepositsController extends ChangeNotifier {
   bool isSelectedAllCheque = false;
 
   clearAllData() {
+    depositDetData = [];
+
     mycontroller[1].text = "";
     mycontroller[2].text = "";
     mycontroller[3].text = "";
     mycontroller[4].text = "";
     mycontroller[5].text = "";
+    onDisablebutton = false;
 
     mycontroller = List.generate(100, (i) => TextEditingController());
     tabcontroller = null;
@@ -421,8 +463,6 @@ class DepositsController extends ChangeNotifier {
     selectbankCode = '';
     notifyListeners();
     mycontroller[0].text = currentDate();
-
-    //exectueSql();
   }
 
   clearTxtField() {
@@ -519,8 +559,6 @@ class DepositsController extends ChangeNotifier {
           int mycontrol8;
           int? walletcontrol = 0;
 
-          //
-
           mycontroller[19].text =
               getDBforfirstpage[i]["commissionamount"].toString().isEmpty
                   ? "0"
@@ -539,8 +577,6 @@ class DepositsController extends ChangeNotifier {
           double? mycontrol9;
           double? mycontrol10;
           double? couponcontrol = 0;
-
-          //
 
           mycontroller[16].text =
               getDBforfirstpage[i]["commissionamount"].toString().isEmpty
@@ -683,7 +719,6 @@ class DepositsController extends ChangeNotifier {
   validateCardSave(ThemeData theme, BuildContext context) {
     if (cardvalidate.currentState!.validate()) {
       if (cardData.isNotEmpty && totalCardAmt > 0 && cardSaveClicked == false) {
-        //! ch finalcardsettled
         cardSaveClicked = true;
         insertsettledheader("Card", theme, context);
       } else {
@@ -740,7 +775,7 @@ class DepositsController extends ChangeNotifier {
         docEntryCreated = await DBOperation.generateDocentr(
             db, "docentry", "tableDepositHeader");
       }
-      //log("docEntryCreateddocEntryCreated::" + docEntryCreated.toString());
+
       if (depositetype == "Cash") {
         values.add(DepositHeaderTDB(
             docentry: docEntryCreated,
@@ -784,7 +819,7 @@ class DepositsController extends ChangeNotifier {
             toaccountcode: "",
             amountsettled: depositetype == 'Card'
                 ? totalCardAmt.toStringAsFixed(2)
-                : totalChequeAmt.toStringAsFixed(2), //change
+                : totalChequeAmt.toStringAsFixed(2),
             remarks: "",
             createdatetime: config.currentDate(),
             updatedDatetime: config.currentDate(),
@@ -796,10 +831,10 @@ class DepositsController extends ChangeNotifier {
             qStatus: "",
             sapDocentry: null));
       }
-      //await DBOperation.insertDepositHeader(db, values);
+
       int? docentry2 = await DBOperation.insertDepositHeader(db, values);
       await DBOperation.updatenextno(db, 9, nextno);
-      //log("docAAAAA" + docentry2.toString());
+
       if (depositetype == "Cash") {
         for (int iq = 0; iq < finalcashsettled.length; iq++) {
           depositLine.add(DepositLineTDB(
@@ -910,7 +945,6 @@ class DepositsController extends ChangeNotifier {
         Get.defaultDialog(
           title: "Success",
           middleText: "Card Successfully Saved..!!",
-          //
           backgroundColor: Colors.white,
           titleStyle: theme.textTheme.bodyLarge!.copyWith(color: Colors.red),
           middleTextStyle: theme.textTheme.bodyLarge,
@@ -951,8 +985,7 @@ class DepositsController extends ChangeNotifier {
                 paymodetype: depositetype,
                 payentry: forpayentry,
                 paylineno: "",
-                payamount:
-                    totalChequeAmt.toString(), //chequecollection.toString(),
+                payamount: totalChequeAmt.toString(),
                 ref1: "",
                 ref2: "",
                 ref3: "",
@@ -1075,6 +1108,119 @@ class DepositsController extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool onDisablebutton = false;
+  void callDepositPostApi(
+      BuildContext context, ThemeData theme, String dtType) async {
+    onDisablebutton = true;
+
+    sapLoginApi(context);
+    notifyListeners();
+    PostDepositAPi.depType = dtType;
+    PostDepositAPi.totAmount =
+        dtType == 'dtCash' ? double.parse(mycontroller[5].text) : 0;
+
+    PostDepositAPi.depAccount = cardAccDetailaData![0].uDepAcct;
+    PostDepositAPi.allocationAcc = dtType == 'dtCash'
+        ? cardAccDetailaData![0].uCashAcct
+        : dtType == 'dtCheque'
+            ? cardAccDetailaData![0].uChequeAcct
+            : '';
+    PostDepositAPi.remarks =
+        dtType == 'dtCash' ? mycontroller[6].text : jurnelRemarks.text;
+    PostDepositAPi.depDate = config.currentDate();
+
+    await PostDepositAPi.getGlobalData().then((value) async {
+      if (value.statusCode! >= 200 && value.statusCode! <= 204) {
+        // sapDocentry = value.absEntry.toString();
+        // sapDocuNumber = value.depositNumber.toString();
+        notifyListeners();
+
+        await Get.defaultDialog(
+                title: "Success",
+                middleText: 'Successfully Done',
+                backgroundColor: Colors.white,
+                titleStyle: const TextStyle(color: Colors.red),
+                middleTextStyle: const TextStyle(color: Colors.black),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text("Close"),
+                        onPressed: () => Get.back(),
+                      ),
+                    ],
+                  ),
+                ],
+                radius: 5)
+            .then((value) {
+          selectbankCode = '';
+          selectedBankType = null;
+          bankhintcolor = false;
+          mycontroller[5].text = '';
+
+          // Get.offAllNamed(ConstantRoutes.dashboard);
+          onDisablebutton = false;
+          init(context);
+          Get.back();
+          notifyListeners();
+        });
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        await Get.defaultDialog(
+                title: "Alert",
+                middleText: "${value.erorrs!.message!.value}",
+                backgroundColor: Colors.white,
+                titleStyle: const TextStyle(color: Colors.red),
+                middleTextStyle: const TextStyle(color: Colors.black),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text("Close"),
+                        onPressed: () => Get.back(),
+                      ),
+                    ],
+                  ),
+                ],
+                radius: 5)
+            .then((value) {
+          onDisablebutton = false;
+          notifyListeners();
+        });
+        onDisablebutton = false;
+      } else {
+        await Get.defaultDialog(
+                title: "Alert",
+                middleText: "${value.exception}",
+                backgroundColor: Colors.white,
+                titleStyle: const TextStyle(color: Colors.red),
+                middleTextStyle: const TextStyle(color: Colors.black),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text("Close"),
+                        onPressed: () => Get.back(),
+                      ),
+                    ],
+                  ),
+                ],
+                radius: 5)
+            .then((value) {
+          onDisablebutton = false;
+          notifyListeners();
+        });
+      }
+    });
+    notifyListeners();
+  }
+
+  setst() {
+    notifyListeners();
+  }
+
   postRabitMqSettle(int docentry, String mode) async {
     final Database db = (await DBHelper.getInstance())!;
     List<Map<String, Object?>> getDBDepositHeader =
@@ -1087,11 +1233,8 @@ class DepositsController extends ChangeNotifier {
 
     String ddd = pushContent(mode, depositHeader, depositLine);
 
-    //RabitMQ
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -1099,12 +1242,10 @@ class DepositsController extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -1123,11 +1264,8 @@ class DepositsController extends ChangeNotifier {
 
     String ddd = pushContent(mode, depositHeader, depositLine);
 
-    //RabitMQ
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -1135,12 +1273,10 @@ class DepositsController extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -1156,7 +1292,6 @@ class DepositsController extends ChangeNotifier {
         "DepositCashHeader": depositHeader,
         "DepositCashLine": depositLine,
       });
-      //log("payload : $result");
     } else if (mode == 'Card') {
       result = json.encode({
         "ObjectType": 11,
@@ -1164,7 +1299,6 @@ class DepositsController extends ChangeNotifier {
         "DepositCardHeader": depositHeader,
         "DepositCardLine": depositLine,
       });
-      //log("payload : $result");
     } else {
       result = json.encode({
         "ObjectType": 12,
@@ -1172,7 +1306,6 @@ class DepositsController extends ChangeNotifier {
         "DepositChequeHeader": depositHeader,
         "DepositChequeLine": depositLine,
       });
-      //log("payload : $rsult");
     }
     return result;
   }
@@ -1181,7 +1314,7 @@ class DepositsController extends ChangeNotifier {
       BuildContext context, String rcmode, ThemeData theme) async {
     if (fomkeySet2.currentState!.validate()) {
       notifyListeners();
-      //log("SAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
 //log("aagafgafgsf:"+"$indx");
 //if(indx !=null){
 
@@ -1384,7 +1517,7 @@ class DepositsController extends ChangeNotifier {
 
     List<Map<String, Object?>> getDBsalespaysettle5 =
         await DBOperation.finalforDeposit(db, rcmode);
-    finalcardsettled2.clear(); //getHoldSalesPayDB
+    finalcardsettled2.clear();
     finalchequesettled2.clear();
     finalcardsettled.clear();
     finalcashsettled.clear();
@@ -1414,12 +1547,9 @@ class DepositsController extends ChangeNotifier {
             rcdocentry: getDBsalespaysettle5[i]["rcdocentry"].toString(),
             rcdoctno: getDBsalespaysettle5[i]["rcnumber"].toString(),
           );
-          //log("Cashhhhhhrccc:" + rccash.toString());
-          //log("Methooodddddd2:" +
 
           finalcashsettled.add(cashsettled);
-          //log("Methooodddddd2:" + finalcashsettled.length.toString());
-          //log("Cashhhhhh:" + rccash.toString());
+
           mycontroller[4].text = rccash.toString();
 
           notifyListeners();
@@ -1428,8 +1558,6 @@ class DepositsController extends ChangeNotifier {
         if (rcmode == "Card") {
           if (paytermvaluechoose ==
               getDBsalespaysettle5[i]["cardterminal"].toString()) {
-            //log("Card inside::::::");
-
             getAllCardTransactions(getDBsalespaysettle5[i]);
             notifyListeners();
           }
@@ -1639,8 +1767,6 @@ class DepositsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  //DateTime datetime=DateTime.now();
-
   String currentDate() {
     DateTime now = DateTime.now();
 
@@ -1662,8 +1788,6 @@ class DepositsController extends ChangeNotifier {
     mycontroller[0].text = datetype!;
     final Database db = (await DBHelper.getInstance())!;
     notifyListeners();
-
-    //log("OOOOOOOOOOOOOOOOOOOOO" + currentDate());
 
     mycontroller[1].text = "";
     mycontroller[2].text = "";
@@ -1740,8 +1864,6 @@ class DepositsController extends ChangeNotifier {
     mycontroller[1].text = salesAmt.toStringAsFixed(2);
     notifyListeners();
   }
-
-  //totalSettledCash
 
   Future calculateSettleAmount(
       List<Map<String, Object?>> netAmout, int num) async {

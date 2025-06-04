@@ -35,14 +35,10 @@ class SchemeOrderAPi {
 
         log("error: ");
         throw Exception("Error!!...");
-        // return SchemeOrderModal.issue(
-        //   response.statusCode,
-        // );
       }
     } catch (e) {
       log("SchemeOrder catch: $e");
 
-      // throw Exception("Exceptionsss: $e");
       return SchemeOrderModal.exception(
           'Restart the app or contact the admin!!..', 500);
     }

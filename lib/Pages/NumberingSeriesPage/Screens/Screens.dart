@@ -37,7 +37,6 @@ class _NumberingScreensState extends State<NumberingScreens> {
                 searchHeight: Screens.bodyheight(context) * 0.3,
                 theme: theme,
               ),
-              // scaffoldKey: scaffoldKey,
             ));
       } else {
         return Scaffold(
@@ -49,11 +48,9 @@ class _NumberingScreensState extends State<NumberingScreens> {
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Column(children: <Widget>[
-                  // appbar("Numbering Series ", theme, context),
                   SizedBox(
                     height: Screens.bodyheight(context) * 0.02,
                   ),
-
                   Container(
                     padding: EdgeInsets.only(
                         right: Screens.width(context) * 0.005,
@@ -68,23 +65,6 @@ class _NumberingScreensState extends State<NumberingScreens> {
               ),
             ));
       }
-      // else {
-      //   return Scaffold(
-      //     body: ChangeNotifierProvider<PosController>(
-      //         create: (context) => PosController(),
-      //         builder: (context, child) {
-      //           return Consumer<PosController>(
-      //               builder: (BuildContext context, prdSCD, Widget? child) {
-      //             return SafeArea(
-      //               child: PosScreen(
-      //                 theme: theme,
-      //                 prdSCD: prdSCD,
-      //               ),
-      //             );
-      //           });
-      //         }),
-      //   );
-      // }
     });
   }
 }

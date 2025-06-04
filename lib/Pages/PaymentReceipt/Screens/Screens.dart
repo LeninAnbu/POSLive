@@ -52,7 +52,6 @@ class _PaymentReceiptScreensState extends State<PaymentReceiptScreens> {
         return WillPopScope(
           onWillPop: context.read<PayreceiptController>().onbackpress,
           child: Scaffold(
-              // resizeToAvoidBottomInset: false,
               drawer: naviDrawer(),
               body: SafeArea(
                 child: SingleChildScrollView(

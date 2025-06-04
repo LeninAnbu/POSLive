@@ -247,45 +247,6 @@ class BottomButtonsState extends State<BottomButtons> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Container(
-                      //     decoration: BoxDecoration(
-                      //       color: widget.theme.primaryColor,
-                      //       borderRadius: BorderRadius.circular(5),
-                      //     ),
-                      //     padding: EdgeInsets.all(
-                      //       widget.btnheight * 0.01,
-                      //     ),
-                      //     child: GestureDetector(
-                      //         onTap: () {
-                      //           setState(() {
-                      //             context.read<PosController>().cancelbtn =
-                      //                 true;
-                      //             context
-                      //                 .read<PosController>()
-                      //                 .clickcancelbtn(context, widget.theme);
-                      //           });
-                      //         },
-                      //         child: Container(
-                      //           width: widget.btnWidth * 0.2,
-                      //           alignment: Alignment.center,
-                      //           decoration: BoxDecoration(
-                      //             // color: Colors.grey[400],
-                      //             borderRadius: BorderRadius.circular(5),
-                      //           ),
-                      //           height: widget.btnheight * 0.15,
-                      //           child: context
-                      //                       .watch<PosController>()
-                      //                       .cancelbtn ==
-                      //                   false
-                      //               ? Text("Cancel",
-                      //                   textAlign: TextAlign.center,
-                      //                   style: widget.theme.textTheme.bodySmall
-                      //                       ?.copyWith(
-                      //                     color: Colors.white,
-                      //                   ))
-                      //               : CircularProgressIndicator(
-                      //                   color: widget.theme.primaryColor),
-                      //         ))),
                       Container(
                           decoration: BoxDecoration(
                             color: widget.theme.primaryColor,
@@ -312,7 +273,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                 width: widget.btnWidth * 0.2,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  // color: Colors.grey[400],
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 height: widget.btnheight * 0.15,
@@ -377,7 +337,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                 width: widget.btnWidth * 0.2,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  // color: Colors.grey[400],
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 height: widget.btnheight * 0.15,
@@ -847,50 +806,6 @@ class BottomButtonsState extends State<BottomButtons> {
     );
   }
 
-  // forSuspend(BuildContext context, ThemeData theme) {
-  //   return Container(
-  //       padding: EdgeInsets.symmetric(
-  //           horizontal: widget.btnWidth * 0.03,
-  //           vertical: widget.btnheight * 0.01),
-  //       child: Column(
-  //         children: [
-  //           SizedBox(
-  //               height: widget.btnheight * 0.4,
-  //               child: Center(
-  //                   child: Text(
-  //                       "You about to suspended all information will be unsaved"))),
-  //           SizedBox(
-  //             height: widget.btnheight * 0.01,
-  //           ),
-  //           Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: [
-  //               SizedBox(
-  //                 width: widget.btnWidth * 0.15,
-  //                 child: ElevatedButton(
-  //                     onPressed: () {
-  //                       Navigator.pop(context);
-
-  //                       context
-  //                           .read<PosController>()
-  //                           .clearSuspendedData(context, theme);
-  //                     },
-  //                     child: const Text("Yes")),
-  //               ),
-  //               SizedBox(
-  //                 width: widget.btnWidth * 0.15,
-  //                 child: ElevatedButton(
-  //                     onPressed: () {
-  //                       Navigator.pop(context);
-  //                     },
-  //                     child: const Text("No")),
-  //               ),
-  //             ],
-  //           )
-  //         ],
-  //       ));
-  // }
-
   forSuspend(BuildContext context, ThemeData theme) {
     return Container(
         width: widget.btnWidth * 0.7,
@@ -934,7 +849,6 @@ class BottomButtonsState extends State<BottomButtons> {
                 padding: EdgeInsets.symmetric(
                     horizontal: widget.btnWidth * 0.02,
                     vertical: widget.btnheight * 0.005),
-                // height: widget.btnheight * 0.2,
                 child: const Center(
                     child: Text(
                         "You about to suspended all information will be unsaved  "))),
@@ -1480,9 +1394,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                           ? Colors.blue.withOpacity(0.35)
                                           : Colors.grey.withOpacity(0.2)),
                                   child: CheckboxListTile(
-
-                                      // secondary: Container(width: 0),
-
                                       contentPadding: EdgeInsets.zero,
                                       controlAffinity:
                                           ListTileControlAffinity.leading,
@@ -1500,12 +1411,11 @@ class BottomButtonsState extends State<BottomButtons> {
                                           context
                                               .read<PosController>()
                                               .selectAll = false;
-                                          context
-                                              .read<PosController>()
-                                              .selectIndex = index;
+
                                           context
                                               .read<PosController>()
                                               .noMsgText = '';
+
                                           context
                                               .read<PosController>()
                                               .selectSameItemCode(context
@@ -1513,14 +1423,23 @@ class BottomButtonsState extends State<BottomButtons> {
                                                   .openOrdLineList![index]
                                                   .itemCode);
                                         });
-                                        // context
-                                        //     .read<PosController>()
-                                        //     .additemlistcount(
-                                        //         index,
-                                        //         context
-                                        //             .read<PosController>()
-                                        //             .openOrdLineList![index]
-                                        //             .itemCode);
+                                        for (var i = 0;
+                                            i <
+                                                context
+                                                    .read<PosController>()
+                                                    .openOrdLineList!
+                                                    .length;
+                                            i++) {
+                                          if (context
+                                                  .read<PosController>()
+                                                  .openOrdLineList![i]
+                                                  .checkBClr ==
+                                              true) {
+                                            context
+                                                .read<PosController>()
+                                                .selectIndex = i;
+                                          }
+                                        }
                                       },
                                       value: context
                                           .watch<PosController>()
@@ -1645,29 +1564,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                                               .length,
                                                         );
                                                       },
-                                                      // inputFormatters: [
-                                                      //   context
-                                                      //                   .watch<
-                                                      //                       PosController>()
-                                                      //                   .openOrdLineList![
-                                                      //                       index]
-                                                      //                   .uPackSize ==
-                                                      //               null ||
-                                                      //           context
-                                                      //                   .watch<
-                                                      //                       PosController>()
-                                                      //                   .openOrdLineList![
-                                                      //                       index]
-                                                      //                   .uPackSize ==
-                                                      //               0.000
-                                                      //       ? FilteringTextInputFormatter
-                                                      //           .allow(RegExp(
-                                                      //               dotAll:
-                                                      //                   true,
-                                                      //               r'^\d*\.?\d{0,9}$'))
-                                                      //       : FilteringTextInputFormatter
-                                                      //           .digitsOnly
-                                                      // ],
                                                       cursorColor: Colors.grey,
                                                       textAlign:
                                                           TextAlign.right,
@@ -1914,18 +1810,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                             context,
                                           );
                                     });
-                                    // } else if (context
-                                    //         .read<PosController>()
-                                    //         .selectIndex !=
-                                    //     null) {
-                                    //   context
-                                    //       .read<PosController>()
-                                    //       .newAutoselectItemMethod(
-                                    //           // context
-                                    //           //     .read<PosController>()
-                                    //           //     .selectIndex!,
-                                    //           theme,
-                                    //           context);
                                   } else {
                                     showDialog(
                                         context: context,
@@ -2019,61 +1903,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                               ));
                                         });
                                   }
-                                  // if (context.read<PosController>().selectAll ==
-                                  //     false) {
-                                  //   if (context
-                                  //           .read<PosController>()
-                                  //           .selectIndex !=
-                                  //       null) {
-                                  // context
-                                  //     .read<PosController>()
-                                  //     .manualselectItemMethod(
-                                  //         context
-                                  //             .read<PosController>()
-                                  //             .selectIndex!,
-                                  //         theme,
-                                  //         context);
-                                  //   } else {
-                                  // showDialog(
-                                  //     context: context,
-                                  //     barrierDismissible: true,
-                                  //     builder: (BuildContext context) {
-                                  //       return AlertDialog(
-                                  //           contentPadding:
-                                  //               const EdgeInsets.all(0),
-                                  //           content: AlertBox(
-                                  //             payMent: 'Alert',
-                                  //             errormsg: true,
-                                  //             widget: Center(
-                                  //                 child: ContentContainer(
-                                  //               content: 'Select Item List',
-                                  //               theme: theme,
-                                  //             )),
-                                  //             buttonName: null,
-                                  //           ));
-                                  //     });
-                                  //   }
-                                  // } else {
-                                  //   showDialog(
-                                  //       context: context,
-                                  //       barrierDismissible: true,
-                                  //       builder: (BuildContext context) {
-                                  //         return AlertDialog(
-                                  //             contentPadding:
-                                  //                 const EdgeInsets.all(0),
-                                  //             content: AlertBox(
-                                  //               payMent: 'Alert',
-                                  //               errormsg: true,
-                                  //               widget: Center(
-                                  //                   child: ContentContainer(
-                                  //                 content:
-                                  //                     'Kindly deselect the all items',
-                                  //                 theme: theme,
-                                  //               )),
-                                  //               buttonName: null,
-                                  //             ));
-                                  //       });
-                                  // }
                                 },
                           child: Text('Manual Select')),
                     ],
@@ -2199,7 +2028,6 @@ class BottomButtonsState extends State<BottomButtons> {
                                                       Container(
                                                           alignment: Alignment
                                                               .centerRight,
-                                                          // color: Colors.red,
                                                           width:
                                                               widget.btnWidth *
                                                                   0.25,

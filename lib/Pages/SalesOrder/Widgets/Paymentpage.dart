@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Constant/Screen.dart';
@@ -46,21 +45,18 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
             top: widget.paymentHeight * 0.01,
             left: widget.paymentWidth * 0.01,
             right: widget.paymentWidth * 0.02,
-            // bottom: widget.paymentHeight * 0.02,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // color: Colors.red,
                 width: widget.paymentWidth * 0.5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      // color: Colors.red,
                       width: widget.paymentWidth * 0.35,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -289,7 +285,6 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                               readOnly: true,
                               decoration: InputDecoration(
                                 filled: false,
-                                // labelText: "Warehouse code",
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide:
@@ -319,8 +314,6 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                           )
                         : context.read<SOCon>().userTypes == 'corporate'
                             ? Container(
-                                // padding: EdgeInsets.only(
-                                //     left: widget.paymentHeight * 0.05),
                                 height: Screens.padingHeight(context) * 0.057,
                                 width: widget.paymentWidth * 0.5,
                                 decoration: const BoxDecoration(),
@@ -399,7 +392,6 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                               readOnly: true,
                               decoration: InputDecoration(
                                 filled: false,
-                                // labelText: "series code",
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                   borderSide:
@@ -429,8 +421,6 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                           )
                         : context.read<SOCon>().userTypes == 'corporate'
                             ? Container(
-                                // padding: EdgeInsets.only(
-                                //     left: widget.paymentHeight * 0.05),
                                 height: Screens.padingHeight(context) * 0.057,
                                 width: widget.paymentWidth * 0.5,
                                 decoration: const BoxDecoration(),
@@ -780,15 +770,6 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                                   style: widget.theme.textTheme.bodyMedium
                                       ?.copyWith(),
                                 )
-                              // : context.watch<SOCon>().tottpaid != null
-                              //     ? Text(context
-                              //         .watch<SOCon>()
-                              //         .config
-                              //         .splitValues(context
-                              //             .watch<SOCon>()
-                              //             .tottpaid!
-                              //             .toStringAsFixed(2)))
-                              //     : const Text("0.00")
                               : context.watch<SOCon>().totalPayment != null &&
                                       context
                                           .watch<SOCon>()
@@ -803,14 +784,6 @@ class _SOPaymentDetailsState extends State<SOPaymentDetails> {
                                       style: widget.theme.textTheme.bodyMedium
                                           ?.copyWith(),
                                     )
-                                  // : context.watch<SOCon>().tottpaid != null
-                                  //     ? Text(context
-                                  //         .watch<SOCon>()
-                                  //         .config
-                                  //         .splitValues(context
-                                  //             .watch<SOCon>()
-                                  //             .tottpaid!
-                                  //             .toStringAsFixed(2)))
                                   : const Text("0.00"),
                         ),
                       ],

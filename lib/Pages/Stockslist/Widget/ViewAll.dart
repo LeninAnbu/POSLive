@@ -24,37 +24,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
   Paddings paddings = Paddings();
   DateTime? currentBackPressTime;
 
-  // Future<bool> onbackpress() {
-  //   DateTime now = DateTime.now(); //StockController
-  //   if (currentBackPressTime == null ||
-  //       now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
-  //     currentBackPressTime = now;
-  //     print("are you sure");
-  //     //if(context.read<StockController>().getviewAll[0].brand != 'null'){
-  //     if (context.read<StockController>().getviewAllBrandSelected == true) {
-  //       print("Brand");
-  //       context.read<StockController>().brandViewAllData().then((value) {
-  //         context.read<StockController>().clearViewAllData();
-  //       });
-  //     } else if (context
-  //             .read<StockController>()
-  //             .getviewAllProductSelected ==
-  //         true) {
-  //       print("category");
-  //       context.read<StockController>().productViewAllData().then((value) {
-  //         context.read<StockController>().clearViewAllData();
-  //       });
-  //     } else {
-  //       print("segment");
-  //       context.read<StockController>().segmentViewAllData().then((value) {
-  //         context.read<StockController>().clearViewAllData();
-  //       });
-  //     }
-  //   }
-  //   ScaffoldMessenger.of(context).removeCurrentSnackBar();
-  //   return Future.value(true);
-  // }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -69,7 +38,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
         alignment: Alignment.center,
         width: widget.stkWidth,
         height: widget.stkHeight,
-        // padding: paddings.padding3(context),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,12 +61,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    // Navigator.push(
-                    //     context,
-                    // MaterialPageRoute(
-                    //     builder: ((context) => StockMainScreens(
-                    //           theme: theme,
-                    //         ))));
                     if (context
                             .read<StockController>()
                             .getviewAllBrandSelected ==
@@ -140,11 +102,9 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
     ThemeData theme,
     List<ItemMasterModelDB> content,
   ) {
-    // if(content[0].brand != 'null'){
     if (context.read<StockController>().getviewAllBrandSelected == true) {
       return List.generate(
         context.read<StockController>().getviewAll.length,
-        //    content.length,
         (index) => GestureDetector(
           onTap: () {
             context.read<StockController>().isselectedBrandViewAll(index);
@@ -160,7 +120,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
                             .getviewAll[index]
                             .isselected ==
                         1
-                    //     content[index].isselected == 1
                     ? theme.primaryColor
                     : Colors.white,
                 border: Border.all(color: theme.primaryColor, width: 1),
@@ -178,7 +137,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
                                   .getviewAll[index]
                                   .isselected ==
                               1
-                          //content[index].isselected == 1
                           ? Colors.white
                           : theme.primaryColor,
                     ))
@@ -187,10 +145,7 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
           ),
         ),
       );
-    }
-    // else if(content[0].category != 'null'){
-
-    else if (context.read<StockController>().getviewAllProductSelected ==
+    } else if (context.read<StockController>().getviewAllProductSelected ==
         true) {
       return List.generate(
         content.length,
@@ -209,7 +164,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
                             .getviewAll[index]
                             .isselected ==
                         1
-                    // content[index].isselected == 1
                     ? theme.primaryColor
                     : Colors.white,
                 border: Border.all(color: theme.primaryColor, width: 1),
@@ -227,7 +181,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
                                   .getviewAll[index]
                                   .isselected ==
                               1
-                          // content[index].isselected == 1
                           ? Colors.white
                           : theme.primaryColor,
                     ))
@@ -238,8 +191,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
       );
     }
 
-    /// ELSE
-    ///
     return List.generate(
       content.length,
       (index) => GestureDetector(
@@ -257,7 +208,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
                           .getviewAll[index]
                           .isselected ==
                       1
-                  //content[index].isselected == 1
                   ? theme.primaryColor
                   : Colors.white,
               border: Border.all(color: theme.primaryColor, width: 1),
@@ -275,7 +225,6 @@ class ViewAllDetailsState extends State<ViewAllDetails> {
                                 .getviewAll[index]
                                 .isselected ==
                             1
-                        //content[index].isselected == 1
                         ? Colors.white
                         : theme.primaryColor,
                   ))

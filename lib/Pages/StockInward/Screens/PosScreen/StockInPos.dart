@@ -28,61 +28,13 @@ class StockInPos extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Container(
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            // StockInReqList(
-            //   searchHeight: Screens.padingHeight(context) * 0.92,
-            //   searchWidth: Screens.width(context) * 0.48,
-            //   theme: theme,
-            //   prdsrch: prdSCD,
-            // ),
-            // SalesReturnPayment(
-            //   theme: theme,
-            //   prdPmt: prdSCD,
-            //   paymentWidth: Screens.width(context) * 0.48,
-            //   paymentHeight: Screens.padingHeight(context) * 0.45,
-            // ),
-            // ],
-            //   ),
-            // ),
             SizedBox(
                 width: Screens.width(context) * 0.39,
                 child: const SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // StockInward(
-                      //   theme: theme,
-                      //   stockInWidth: Screens.width(context) * 0.39,
-                      //   stockInheight: Screens.padingHeight(context) * 0.92,
-                      //   posC: prdSCD,
-                      //   data: prdSCD.passdata,
-                      //   index: prdSCD.get_i_value,
-                      //   datatotal: prdSCD.StockInward,
-                      // ),
-                      //  InvoiceInfo(
-                      //           theme: theme,
-                      //           posController: prdSCD,
-                      //          cashWidth: Screens.width(context) * 0.39,
-                      //           cashHeight: Screens.padingHeight(context) * 0.2,
-                      //         ),
-                      //         PaymentModeBtn(
-                      //           theme: theme,
-                      //           posController: prdSCD,
-                      //           cashWidth: Screens.width(context) * 0.39,
-                      //           cashHeight: Screens.padingHeight(context) * 0.09,
-                      //         ),
-                      // StockInwardBottomBtn(
-                      //   theme: theme,
-                      //   btnheight: Screens.padingHeight(context) * 0.05,
-                      //   btnWidth: Screens.width(context) * 0.38,
-                      //   posController: prdSCD,
-                      //   data: prdSCD.passdata,
-                      // )
-                    ],
+                    children: [],
                   ),
                 )),
             SingleChildScrollView(

@@ -79,24 +79,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                 payMent: 'Select Customer',
                                                 widget: forSearchBtn(context),
                                                 buttonName: '',
-                                                // callback: () {
-                                                //   Navigator.pop(context);
-
-                                                //   showDialog(
-                                                //       context: context,
-                                                //       barrierDismissible: false,
-                                                //       builder: (BuildContext context) {
-                                                //         return AlertDialog(
-                                                //             contentPadding:
-                                                //                 const EdgeInsets.all(0),
-                                                //             content: AlertBox(
-                                                //               payMent: 'New Customer',
-                                                //               widget:
-                                                //                   forAddNewBtn(context),
-                                                //               buttonName: null,
-                                                //             ));
-                                                //       });
-                                                // },
                                               ));
                                         });
                                       });
@@ -295,7 +277,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                   contentPadding:
                                                       const EdgeInsets
                                                           .symmetric(
-                                                    // vertical: 10,
                                                     horizontal: 10,
                                                   ),
                                                 ),
@@ -345,15 +326,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                     }
                                                   },
                                                   onEditingComplete: () {
-                                                    // context
-                                                    //         .read<PosController>()
-                                                    //         .selectedcust!
-                                                    //         .name =
-                                                    //     context
-                                                    //         .read<
-                                                    //             PosController>()
-                                                    //         .custNameController
-                                                    //         .text;
                                                     context
                                                         .read<
                                                             SalesQuotationCon>()
@@ -413,7 +385,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                     contentPadding:
                                                         const EdgeInsets
                                                             .symmetric(
-                                                      // vertical: 10,
                                                       horizontal: 10,
                                                     ),
                                                   ),
@@ -450,15 +421,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                 }
                                               },
                                               onEditingComplete: () {
-                                                // context
-                                                //         .read<PosController>()
-                                                //         .selectedcust!
-                                                //         .name =
-                                                //     context
-                                                //         .read<
-                                                //             PosController>()
-                                                //         .custNameController
-                                                //         .text;
                                                 context
                                                     .read<SalesQuotationCon>()
                                                     .disableKeyBoard(context);
@@ -502,7 +464,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                 filled: false,
                                                 contentPadding:
                                                     const EdgeInsets.symmetric(
-                                                  // vertical: 10,
                                                   horizontal: 10,
                                                 ),
                                               ),
@@ -1150,7 +1111,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                                     .grey),
                                                       ),
                                                       hintText: 'Name',
-                                                      // labelText: 'Name',
                                                       hintStyle: widget.theme
                                                           .textTheme.bodyMedium
                                                           ?.copyWith(
@@ -1160,7 +1120,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                       contentPadding:
                                                           const EdgeInsets
                                                               .symmetric(
-                                                        // vertical: 10,
                                                         horizontal: 10,
                                                       ),
                                                     ),
@@ -1220,15 +1179,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                         }
                                                       },
                                                       onEditingComplete: () {
-                                                        // context
-                                                        //         .read<PosController>()
-                                                        //         .selectedcust!
-                                                        //         .name =
-                                                        //     context
-                                                        //         .read<
-                                                        //             PosController>()
-                                                        //         .custNameController
-                                                        //         .text;
                                                         context
                                                             .read<
                                                                 SalesQuotationCon>()
@@ -1282,7 +1232,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                                       .grey),
                                                         ),
                                                         hintText: 'Tin no',
-                                                        // labelText: 'Tin no',
                                                         hintStyle: widget
                                                             .theme
                                                             .textTheme
@@ -1294,7 +1243,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                         contentPadding:
                                                             const EdgeInsets
                                                                 .symmetric(
-                                                          // vertical: 10,
                                                           horizontal: 10,
                                                         ),
                                                       ),
@@ -1335,15 +1283,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                     }
                                                   },
                                                   onEditingComplete: () {
-                                                    // context
-                                                    //         .read<PosController>()
-                                                    //         .selectedcust!
-                                                    //         .name =
-                                                    //     context
-                                                    //         .read<
-                                                    //             PosController>()
-                                                    //         .custNameController
-                                                    //         .text;
                                                     context
                                                         .read<
                                                             SalesQuotationCon>()
@@ -1395,7 +1334,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                                   Colors.grey),
                                                     ),
                                                     hintText: 'VAT no',
-                                                    // labelText: 'VAT no',
                                                     hintStyle: widget.theme
                                                         .textTheme.bodyMedium
                                                         ?.copyWith(
@@ -1404,7 +1342,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                     contentPadding:
                                                         const EdgeInsets
                                                             .symmetric(
-                                                      // vertical: 10,
                                                       horizontal: 10,
                                                     ),
                                                   ),
@@ -1660,18 +1597,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               InkWell(
-                                onTap: () async {
-                                  // context
-                                  //     .read<SalesQuotationCon>()
-                                  //     .clearTextField();
-                                  // await billAddress(context);
-                                  // await context
-                                  //     .read<SalesQuotationCon>()
-                                  //     .billaddresslist();
-                                  // await context
-                                  //     .read<SalesQuotationCon>()
-                                  //     .disableKeyBoard(context);
-                                },
+                                onTap: () async {},
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
                                   child: Column(
@@ -1692,12 +1618,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                   ?.copyWith(
                                                       color: Colors.black54),
                                             ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
                                           ],
                                         ),
                                       ),
@@ -1845,18 +1765,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () async {
-                                  // context
-                                  //     .read<SalesQuotationCon>()
-                                  //     .clearTextField();
-                                  // sipaddress(context);
-                                  // await context
-                                  //     .read<SalesQuotationCon>()
-                                  //     .shippinfaddresslist();
-                                  // context
-                                  //     .read<SalesQuotationCon>()
-                                  //     .disableKeyBoard(context);
-                                },
+                                onTap: () async {},
                                 child: SizedBox(
                                   width: widget.custWidth * 0.465,
                                   child: Column(
@@ -1880,12 +1789,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                   ?.copyWith(
                                                       color: Colors.black54),
                                             ),
-                                            // SizedBox(
-                                            //     width: widget.custWidth * 0.04,
-                                            //     child: const Icon(
-                                            //       Icons.arrow_drop_down,
-                                            //       size: 30,
-                                            //     ))
                                           ],
                                         ),
                                       ),
@@ -2116,14 +2019,6 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                           .watch<SalesQuotationCon>()
                                           .getfiltercustList[index]
                                           .cardCode!),
-                                      // Text(context
-                                      //     .watch<SalesQuotationCon>()
-                                      //     .config
-                                      //     .splitValues(context
-                                      //         .watch<SalesQuotationCon>()
-                                      //         .getfiltercustList[index]
-                                      //         .accBalance!
-                                      //         .toString())),
                                     ],
                                   ),
                                   Row(

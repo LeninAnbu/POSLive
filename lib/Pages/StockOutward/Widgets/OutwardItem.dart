@@ -425,36 +425,6 @@ stockOutward(
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    // GestureDetector(
-                    //     onTap: () {
-                    //       st(() {
-                    //         context.read<StockOutwardController>().cancelbtn =
-                    //             true;
-                    //         context
-                    //             .read<StockOutwardController>()
-                    //             .clickcancelbtn(context, theme);
-                    //       });
-                    //     },
-                    //     child: Container(
-                    //       alignment: Alignment.center,
-                    //       decoration: BoxDecoration(
-                    //         color: Colors.grey[400],
-                    //         borderRadius: BorderRadius.circular(5),
-                    //       ),
-                    //       height: stockInheight * 0.9,
-                    //       width: stockInWidth * 0.25,
-                    //       child: context
-                    //                   .watch<StockOutwardController>()
-                    //                   .cancelbtn ==
-                    //               false
-                    //           ? Text("Cancel",
-                    //               textAlign: TextAlign.center,
-                    //               style: theme.textTheme.bodySmall?.copyWith(
-                    //                 color: Colors.black,
-                    //               ))
-                    //           : CircularProgressIndicator(
-                    //               color: theme.primaryColor),
-                    //     )),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,

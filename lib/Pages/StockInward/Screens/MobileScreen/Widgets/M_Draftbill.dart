@@ -21,10 +21,8 @@ class M_StockInDraftbill extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: searchWidth * 1,
-        //  height:searchHeight*0.9 ,
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 alignment: Alignment.centerLeft,
@@ -34,7 +32,6 @@ class M_StockInDraftbill extends StatelessWidget {
               ),
               Container(
                 height: searchHeight,
-                // color: Colors.green,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5)),

@@ -17,9 +17,7 @@ class CompanyTinVatApii {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query":
-                "EXEC BZ_POS_CompanyTinVatApi"
-                    // "select TaxIdNum3 as tinNo, TaxIdNum2 as vatNo from OADM"
+                "query": "EXEC BZ_POS_CompanyTinVatApi"
               }));
       log('message::${json.encode({
             "constr":

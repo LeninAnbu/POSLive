@@ -43,15 +43,6 @@ AppBar soAppbar(String titles, ThemeData theme, BuildContext context) {
                 context.read<SOCon>().selectedcust2 = null;
                 context.read<SOCon>().selectedcust25 = null;
 
-                // context.read<SOCon>().getSalesDataDatewise(
-                //     context
-                //         .read<SOCon>()
-                //         .config
-                //         .alignDate(context.read<SOCon>().config.currentDate()),
-                //     context
-                //         .read<SOCon>()
-                //         .config
-                //         .alignDate(context.read<SOCon>().config.currentDate()));
                 context.read<SOCon>().clickAprList = false;
 
                 context.read<SOCon>().setstate1();
@@ -159,159 +150,156 @@ AppBar soAppbar(String titles, ThemeData theme, BuildContext context) {
                           content: AlertBox(
                               payMent: 'Draft bills',
                               buttonName: null,
-                              widget:
-                                  context.watch<SOCon>().fileterHoldData.isEmpty
-                                      ? ContentContainer(
-                                          content: " No Draft bills",
-                                          theme: theme)
-                                      : StatefulBuilder(builder: (context, st) {
-                                          return Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  width:
-                                                      Screens.width(context) *
-                                                          1.1,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: const Color
-                                                            .fromARGB(255, 240,
-                                                            235, 235)),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            3),
-                                                    color: Colors.grey
-                                                        .withOpacity(0.01),
-                                                  ),
-                                                  child: TextFormField(
-                                                    controller: context
+                              widget: context
+                                      .watch<SOCon>()
+                                      .fileterHoldData
+                                      .isEmpty
+                                  ? ContentContainer(
+                                      content: " No Draft bills", theme: theme)
+                                  : StatefulBuilder(builder: (context, st) {
+                                      return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Container(
+                                              width:
+                                                  Screens.width(context) * 1.1,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: const Color.fromARGB(
+                                                        255, 240, 235, 235)),
+                                                borderRadius:
+                                                    BorderRadius.circular(3),
+                                                color: Colors.grey
+                                                    .withOpacity(0.01),
+                                              ),
+                                              child: TextFormField(
+                                                controller: context
+                                                    .read<SOCon>()
+                                                    .mycontroller[2],
+                                                cursorColor: Colors.grey,
+                                                onChanged: (v) {
+                                                  st(() {
+                                                    context
                                                         .read<SOCon>()
-                                                        .mycontroller[2],
-                                                    cursorColor: Colors.grey,
-                                                    onChanged: (v) {
-                                                      st(() {
-                                                        context
-                                                            .read<SOCon>()
-                                                            .filterListOnHold(
-                                                                v);
-                                                      });
-                                                    },
-                                                    decoration: InputDecoration(
-                                                      hintText:
-                                                          'Search hold bills..!!',
-                                                      hintStyle: theme
-                                                          .textTheme.bodyLarge
-                                                          ?.copyWith(
-                                                              color:
-                                                                  Colors.grey),
-                                                      filled: false,
-                                                      enabledBorder:
-                                                          InputBorder.none,
-                                                      focusedBorder:
-                                                          InputBorder.none,
-                                                      contentPadding:
-                                                          const EdgeInsets
-                                                              .symmetric(
-                                                        vertical: 12,
-                                                        horizontal: 25,
-                                                      ),
-                                                    ),
+                                                        .filterListOnHold(v);
+                                                  });
+                                                },
+                                                decoration: InputDecoration(
+                                                  hintText:
+                                                      'Search hold bills..!!',
+                                                  hintStyle: theme
+                                                      .textTheme.bodyLarge
+                                                      ?.copyWith(
+                                                          color: Colors.grey),
+                                                  filled: false,
+                                                  enabledBorder:
+                                                      InputBorder.none,
+                                                  focusedBorder:
+                                                      InputBorder.none,
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                          .symmetric(
+                                                    vertical: 12,
+                                                    horizontal: 25,
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                    height:
-                                                        Screens.padingHeight(
-                                                                context) *
-                                                            0.02),
-                                                SizedBox(
-                                                    height:
-                                                        Screens.padingHeight(
-                                                                context) *
-                                                            0.7,
-                                                    width:
-                                                        Screens.width(context) *
-                                                            1.1,
-                                                    child: ListView.builder(
-                                                        itemCount: context
-                                                            .watch<SOCon>()
-                                                            .fileterHoldData
-                                                            .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          return Card(
-                                                            child: Container(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      // top: Screens.padingHeight(
-                                                                      //         context) *
-                                                                      //     0.01,
-                                                                      left: Screens.width(
-                                                                              context) *
-                                                                          0.01,
-                                                                      right: Screens.width(
-                                                                              context) *
-                                                                          0.01,
-                                                                      bottom: Screens.padingHeight(
-                                                                              context) *
-                                                                          0.01),
-                                                              child: ListTile(
-                                                                onTap: () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                  context
-                                                                      .read<
-                                                                          SOCon>()
-                                                                      .mapHoldSelectedValues(
-                                                                          context
-                                                                              .read<SOCon>()
-                                                                              .fileterHoldData[index],
-                                                                          context,
-                                                                          theme);
-                                                                },
-                                                                title: Column(
+                                              ),
+                                            ),
+                                            SizedBox(
+                                                height: Screens.padingHeight(
+                                                        context) *
+                                                    0.02),
+                                            SizedBox(
+                                                height: Screens.padingHeight(
+                                                        context) *
+                                                    0.7,
+                                                width: Screens.width(context) *
+                                                    1.1,
+                                                child: ListView.builder(
+                                                    itemCount: context
+                                                        .watch<SOCon>()
+                                                        .fileterHoldData
+                                                        .length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return Card(
+                                                        child: Container(
+                                                          padding: EdgeInsets.only(
+                                                              left: Screens.width(
+                                                                      context) *
+                                                                  0.01,
+                                                              right: Screens.width(
+                                                                      context) *
+                                                                  0.01,
+                                                              bottom: Screens
+                                                                      .padingHeight(
+                                                                          context) *
+                                                                  0.01),
+                                                          child: ListTile(
+                                                            onTap: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              context
+                                                                  .read<SOCon>()
+                                                                  .mapHoldSelectedValues(
+                                                                      context
+                                                                          .read<
+                                                                              SOCon>()
+                                                                          .fileterHoldData[index],
+                                                                      context,
+                                                                      theme);
+                                                            },
+                                                            title: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Row(
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .spaceBetween,
                                                                   children: [
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Text(context
+                                                                    Text(context
+                                                                        .read<
+                                                                            SOCon>()
+                                                                        .fileterHoldData[
+                                                                            index]
+                                                                        .cardcode!),
+                                                                    Text(context
+                                                                        .read<
+                                                                            SOCon>()
+                                                                        .config
+                                                                        .aligntimeDate(context
                                                                             .read<SOCon>()
                                                                             .fileterHoldData[index]
-                                                                            .cardcode!),
-                                                                        Text(context
-                                                                            .read<SOCon>()
-                                                                            .config
-                                                                            .aligntimeDate(context.read<SOCon>().fileterHoldData[index].date!)),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Text(context
-                                                                            .read<SOCon>()
-                                                                            .fileterHoldData[index]
-                                                                            .cardName!),
-                                                                        const Text(
-                                                                            ""),
-                                                                      ],
-                                                                    )
+                                                                            .date!)),
                                                                   ],
                                                                 ),
-                                                              ),
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Text(context
+                                                                        .read<
+                                                                            SOCon>()
+                                                                        .fileterHoldData[
+                                                                            index]
+                                                                        .cardName!),
+                                                                    const Text(
+                                                                        ""),
+                                                                  ],
+                                                                )
+                                                              ],
                                                             ),
-                                                          );
-                                                        })),
-                                              ]);
-                                        })));
+                                                          ),
+                                                        ),
+                                                      );
+                                                    })),
+                                          ]);
+                                    })));
                     });
               },
               child: Column(
@@ -377,13 +365,11 @@ AppBar soAppbar(String titles, ThemeData theme, BuildContext context) {
             GestureDetector(
               onTap: () async {
                 SharedPreferences preff = await SharedPreferences.getInstance();
-                // context.read<SOCon>().callPrintApi(context, theme);
+
                 if (context.read<SOCon>().scanneditemData2.isNotEmpty) {
                   context.read<SOCon>().callPrintApi(context, theme);
                   context.read<SOCon>().setstate1();
                 } else {
-                  // .mapCallOutwardForPDF(preff, context, theme);
-
                   showDialog(
                       context: context,
                       barrierDismissible: true,
@@ -399,7 +385,6 @@ AppBar soAppbar(String titles, ThemeData theme, BuildContext context) {
                             ));
                       });
                 }
-                // .mapCallSalesOrderForPDF(preff, context, theme);
               },
               child: Column(
                 children: [

@@ -23,17 +23,14 @@ class PettyCashModelAPI {
       log(response.statusCode.toString());
       log("Petty cash response:::${json.decode(response.body)}");
       if (response.statusCode == 200) {
-        // Map data = json.decode(response.body);
         return PettyCashModel.fromJson(json.decode(response.body), ressCode);
       } else {
         log("Error userlogin: ${json.decode(response.body)}");
         throw Exception("Error");
-        // return AccountBalanceModel.exception('Error', ressCode);
       }
     } catch (e) {
       log("Exception userlogin: $e");
       throw Exception(e.toString());
-      // return PettyCashModel.exception(e.toString(), ressCode);
     }
   }
 }

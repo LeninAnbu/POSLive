@@ -41,8 +41,6 @@ class _naviDrawerState extends State<naviDrawer> {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            // shrinkWrap: true,
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
                 height: Screens.bodyheight(context) * 0.04,
@@ -55,20 +53,16 @@ class _naviDrawerState extends State<naviDrawer> {
                     border: Border.all(
                         color: theme.primaryColor,
                         width: Screens.width(context) * 0.01),
-                    // borderRadius: BorderRadius.circular(6),
                     shape: BoxShape.circle),
                 child: Text(
                   "POS",
                   style: theme.textTheme.titleLarge!
                       .copyWith(color: theme.primaryColor, shadows: [
                     Shadow(
-                        // bottomLeft
                         offset: const Offset(-1.5, -1.5),
                         color: Colors.grey[200]!),
                     const Shadow(
-                        // bottomRight
-                        offset: Offset(1.5, -1.5),
-                        color: Colors.white),
+                        offset: Offset(1.5, -1.5), color: Colors.white),
                   ]),
                 ),
               ),
@@ -79,20 +73,14 @@ class _naviDrawerState extends State<naviDrawer> {
                     fit: BoxFit.fill,
                     height: Screens.bodyheight(context) * 0.035,
                     width: Screens.width(context) * 0.02,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
 
                     Get.toNamed(ConstantRoutes.dashboard);
-
-                    // Navigator.pop(context);
-                    // Get.toNamed(ConstantRoutes.NewReminder);
                   },
                   title: const Text(
                     "Dashboard",
-                    // style: GoogleFonts.poppins(
-                    //     color: Colors.black, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -135,10 +123,8 @@ class _naviDrawerState extends State<naviDrawer> {
                   leading: Image.asset(
                     'assets/Drawer/sales.png',
                     fit: BoxFit.fill,
-
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.024,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
@@ -146,8 +132,6 @@ class _naviDrawerState extends State<naviDrawer> {
                   },
                   title: const Text(
                     "Sales",
-                    // style: GoogleFonts.poppins(
-                    //     color: Colors.black, fontWeight: FontWeight.w500),
                   ),
                 );
               }),
@@ -156,21 +140,15 @@ class _naviDrawerState extends State<naviDrawer> {
                   leading: Image.asset(
                     'assets/Drawer/exchange.png',
                     fit: BoxFit.fill,
-
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.024,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.salesReturn);
-
-                    // Navigator.pop(context);
                   },
                   title: const Text(
                     "Sales Return",
-                    // style: GoogleFonts.poppins(
-                    //     color: Colors.black, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -181,15 +159,10 @@ class _naviDrawerState extends State<naviDrawer> {
                     fit: BoxFit.fill,
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.024,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.paymentReciept);
-
-                    //  Navigator.pop(context);
-                    // paymentReceiptScreens(theme: theme),
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Payment Receipt",
@@ -201,17 +174,12 @@ class _naviDrawerState extends State<naviDrawer> {
                   leading: Image.asset(
                     'assets/Drawer/demand.png',
                     fit: BoxFit.fill,
-
                     height: Screens.bodyheight(context) * 0.045,
                     width: Screens.width(context) * 0.026,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.stockRequest);
-
-                    // Navigator.pop(context);
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Inventory Transfer Request",
@@ -223,17 +191,12 @@ class _naviDrawerState extends State<naviDrawer> {
                   leading: Image.asset(
                     'assets/Drawer/just-in-time.png',
                     fit: BoxFit.fill,
-
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.024,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.stockOutward);
-
-                    //  Navigator.pop(context);
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Stock Outward",
@@ -245,18 +208,12 @@ class _naviDrawerState extends State<naviDrawer> {
                   leading: Image.asset(
                     'assets/Drawer/receive.png',
                     fit: BoxFit.fill,
-
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.024,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.stockInward);
-
-                    // Navigator.pop(context);
-
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Stock Inward",
@@ -268,10 +225,8 @@ class _naviDrawerState extends State<naviDrawer> {
                   leading: Image.asset(
                     'assets/Drawer/stocklist.png',
                     fit: BoxFit.fill,
-
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.022,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
@@ -281,9 +236,6 @@ class _naviDrawerState extends State<naviDrawer> {
                             builder: (context) => StockMainScreens(
                                   theme: theme,
                                 )));
-                    // Navigator.pop(context);
-
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Stock Lists",
@@ -297,15 +249,11 @@ class _naviDrawerState extends State<naviDrawer> {
                     fit: BoxFit.fill,
                     height: Screens.bodyheight(context) * 0.03,
                     width: Screens.width(context) * 0.02,
-                    // color: drawercolor.Dcolor,
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    //RefundScreens
-                    //  Get.toNamed(ConstantRoutes.Login);
-                    // Navigator.push(context,
+
                     Get.toNamed(ConstantRoutes.refunds);
-                    // MaterialPageRoute(builder: (context) => RefundScreens()));
                   },
                   title: const Text(
                     "Refunds",
@@ -324,9 +272,6 @@ class _naviDrawerState extends State<naviDrawer> {
                     Navigator.pop(context);
 
                     Get.toNamed(ConstantRoutes.expence);
-
-                    //  Get.toNamed(ConstantRoutes.Login);
-                    //  Navigator.pop(context);
                   },
                   title: const Text(
                     "Expenses",
@@ -361,7 +306,6 @@ class _naviDrawerState extends State<naviDrawer> {
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.deposits);
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Deposits",
@@ -388,91 +332,6 @@ class _naviDrawerState extends State<naviDrawer> {
                   ),
                 ),
               ),
-              // Builder(
-              //   builder: (context) => ListTile(
-              //     leading: Image.asset(
-              //       'assets/Drawer/stockcheck.png',
-              //       fit: BoxFit.fill,
-              //       height: Screens.bodyheight(context) * 0.038,
-              //       width: Screens.width(context) * 0.024,
-              //     ),
-              //     onTap: () {
-              //       setState(() {
-              //         toggleViewList();
-              //       });
-              //       log('viewListviewList11::${reports[0].toString()}');
-              //       log('viewListviewList22::${viewList}');
-              //     },
-              //     title: Row(
-              //       children: [
-              //         Text(
-              //           "Reports",
-              //         ),
-              //         viewList == true
-              //             ? Icon(Icons.keyboard_arrow_up)
-              //             : Icon(Icons.keyboard_arrow_down)
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // Visibility(
-              //   visible: viewList,
-              //   child: Container(
-              //     height: Screens.fullHeight(context) * 0.4,
-              //     padding:
-              //         EdgeInsets.only(left: Screens.width(context) * 0.015),
-              //     child: ListView.builder(
-              //       // shrinkWrap: true, // Prevents infinite height
-              //       // physics: NeverScrollableScrollPhysics(), // Disable scroll
-              //       itemCount: reports.length,
-              //       itemBuilder: (context, index) {
-              //         return ListTile(
-              //           leading: Image.asset(
-              //             'assets/Drawer/stockcheck.png',
-              //             fit: BoxFit.fill,
-              //             height: Screens.bodyheight(context) * 0.038,
-              //             width: Screens.width(context) * 0.024,
-              //           ),
-              //           title: Text("${reports[index].toString()}"),
-              //           onTap: () {
-              //             if (reports[index].toString() ==
-              //                 'TRA Invoices user specific-1') {
-              //               Navigator.pop(context);
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (context) =>
-              //                           TRAInvoicesUserSpecific()));
-              //             } else if (reports[index].toString() ==
-              //                 'NetPendingOrder_R1') {
-              //               Navigator.pop(context);
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (context) => NetPendingOrder()));
-              //             } else if (reports[index].toString() ==
-              //                 'CONSOLIDATED SALES IN DAY_R1') {
-              //               Navigator.pop(context);
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (context) => SalesInDayReport()));
-              //             } else if (reports[index].toString() ==
-              //                 'DAILY COLLECTION REPORT_R1') {
-              //               Navigator.pop(context);
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (context) =>
-              //                           CollectionReportScreen()));
-              //             }
-              //           },
-              //         );
-              //       },
-              //     ),
-              //   ),
-              // ),
-
               Builder(
                 builder: (context) => ListTile(
                   leading: Image.asset(
@@ -501,7 +360,6 @@ class _naviDrawerState extends State<naviDrawer> {
                   ),
                   onTap: () {
                     Get.toNamed(ConstantRoutes.customer);
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Customers",
@@ -536,7 +394,6 @@ class _naviDrawerState extends State<naviDrawer> {
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.pendingOrders);
-                    //  Get.toNamed(ConstantRoutes.Login);
                   },
                   title: const Text(
                     "Pending Order",
@@ -595,40 +452,6 @@ class _naviDrawerState extends State<naviDrawer> {
                   ),
                 ),
               ),
-              //  Builder(
-              //   builder: (context) => ListTile(
-              //     leading: Image.asset(
-              //       'assets/Drawer/numseries.png',
-              //       fit: BoxFit.fill,
-              //       height: Screens.bodyheight(context) * 0.038,
-              //       width: Screens.width(context) * 0.024,
-              //     ),
-              //     onTap: () {
-              //       Navigator.pop(context);
-              //       Get.toNamed(ConstantRoutes.numberSeris);
-              //     },
-              //     title: Text(
-              //       "Numbering Series",
-              //     ),
-              //   ),
-              // ),
-              // Builder(
-              //   builder: (context) => ListTile(
-              //     leading: Image.asset(
-              //       'assets/Drawer/sync.png',
-              //       fit: BoxFit.fill,
-              //       height: Screens.bodyheight(context) * 0.038,
-              //       width: Screens.width(context) * 0.024,
-              //     ),
-              //     onTap: () {
-              //       Navigator.pop(context);
-              //       Get.toNamed(ConstantRoutes.syncdataPage);
-              //     },
-              //     title: Text(
-              //       "Transaction Sync",
-              //     ),
-              //   ),
-              // ),
               Builder(
                 builder: (context) => ListTile(
                   leading: Image.asset(
@@ -654,10 +477,6 @@ class _naviDrawerState extends State<naviDrawer> {
                     height: Screens.bodyheight(context) * 0.038,
                     width: Screens.width(context) * 0.024,
                   ),
-                  //   ImageIcon(
-                  //   AssetImage('assets/power-button.png'),
-                  //   size: 20,
-                  // ),
                   onTap: () {
                     Navigator.pop(context);
                     Get.toNamed(ConstantRoutes.logout);

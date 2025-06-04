@@ -29,39 +29,11 @@ class SalesQuotationScreensState extends State<SalesQuotationScreens> {
     final theme = Theme.of(context);
 
     return LayoutBuilder(builder: (context, constraints) {
-      // if (constraints.maxWidth <= 800) {
-      //   return Scaffold(
-      //      drawer: naviDrawerMob(context),
-      //      body:
-      //      ChangeNotifierProvider<SOCon>(
-      //         create: (context) => SOCon(),//SOCon
-      //         builder: (context, child) {
-      //           return Consumer<SOCon>(
-      //               builder: (BuildContext context, prdSCD, Widget? child) {
-      //         return   SafeArea(
-      //             child: SOSalesMobile(prdCD: prdSCD,
-      //                    // scaffoldKey: scaffoldKey,
-      //                   ),
-      //           );
-      //         }
-      //       );
-      //      }),
-      //   );
-      // } else
-
-      //  if (constraints.maxWidth <= 1300) {
       return WillPopScope(
         onWillPop: context.read<SalesQuotationCon>().onbackpress,
         child: Scaffold(
-            // resizeToAvoidBottomInset: false,
             drawer: naviDrawer(),
-            body:
-                // ChangeNotifierProvider<SOCon>(
-                //     create: (context) => SOCon(),
-                //     builder: (context, child) {
-                //       return Consumer<SOCon>(
-                //           builder: (BuildContext context, prdSCD, Widget? child) {
-                SafeArea(
+            body: SafeArea(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(children: <Widget>[
@@ -73,30 +45,6 @@ class SalesQuotationScreensState extends State<SalesQuotationScreens> {
               ),
             )),
       );
-      //     }
-      //   );
-      //  }),
-      // );
-      // }
-      // else{
-      //    return Scaffold(
-      //      body: ChangeNotifierProvider<SalesQuotationCon>(
-      //         create: (context) => SalesQuotationCon(),
-      //         builder: (context, child) {
-      //           return Consumer<SalesQuotationCon>(
-      //               builder: (BuildContext context, prdSCD, Widget? child) {
-      //          return SafeArea(
-      //            child: SOPosScreen(
-      //                     theme: theme,
-      //                     prdSCD: prdSCD,
-      //                   ),
-      //          );
-      //         }
-      //       );
-      //      }),
-      //   );
-
-      // }
     });
   }
 }

@@ -13,13 +13,11 @@ class ExpenseSearhBox extends StatefulWidget {
     required this.theme,
     required this.searchHeight,
     required this.searchWidth,
-    // required this.ExpCon
   });
 
   final ThemeData theme;
   double searchHeight;
   double searchWidth;
-  // ExpenseController ExpCon;
 
   @override
   State<ExpenseSearhBox> createState() => _stConSearhBoxState();
@@ -37,10 +35,8 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             content: SizedBox(
                 width: widget.searchWidth * 2,
-                //  height:searchHeight*0.9 ,
                 child: SingleChildScrollView(
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           alignment: Alignment.centerLeft,
@@ -60,21 +56,14 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                       children: [
                                         Container(
                                           alignment: Alignment.center,
-                                          // color: Colors.blue,
                                           width: widget.searchWidth * 0.08,
                                           child: const Text("From Date"),
                                         ),
                                         Container(
                                           height: widget.searchHeight * 0.07,
                                           width: widget.searchWidth * 0.15,
-                                          decoration: const BoxDecoration(
-                                              // color: Colors.amber,
-                                              //   borderRadius: BorderRadius.circular(4),
-                                              //  border: Border.all(),
-                                              ),
-                                          child:
-                                              // Center(child: Text("2023-03-03"))
-                                              TextFormField(
+                                          decoration: const BoxDecoration(),
+                                          child: TextFormField(
                                             controller: context
                                                 .watch<ExpenseController>()
                                                 .mycontroller[100],
@@ -100,7 +89,6 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4)),
-                                                //   labelText: "Date",
                                                 hintText: "",
                                                 hintStyle: widget
                                                     .theme.textTheme.bodyLarge!
@@ -117,21 +105,14 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                     children: [
                                       Container(
                                         alignment: Alignment.center,
-                                        // color: Colors.blue,
                                         width: widget.searchWidth * 0.08,
                                         child: const Text("To Date"),
                                       ),
                                       Container(
                                         height: widget.searchHeight * 0.07,
                                         width: widget.searchWidth * 0.15,
-                                        decoration: const BoxDecoration(
-                                            // color: Colors.amber,
-                                            //   borderRadius: BorderRadius.circular(4),
-                                            //  border: Border.all(),
-                                            ),
-                                        child:
-                                            // Center(child: Text("2023-03-03"))
-                                            TextFormField(
+                                        decoration: const BoxDecoration(),
+                                        child: TextFormField(
                                           validator: (value) {
                                             if (value!.isEmpty) {
                                               return "Required";
@@ -156,7 +137,6 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              //   labelText: "Date",
                                               hintText: "",
                                               hintStyle: widget
                                                   .theme.textTheme.bodyLarge!
@@ -179,23 +159,6 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                           context
                                               .read<ExpenseController>()
                                               .callSearchHeader();
-                                          // StOut_Con.tappage.animateToPage(
-                                          //     ++StOut_Con.tappageIndex,
-                                          //     duration: Duration(milliseconds: 400),
-                                          //     curve: Curves.linearToEaseOut);
-                                          // context
-                                          //     .read<ExpenseController>()
-                                          //     .getSalesDataDatewise(
-                                          //         context
-                                          //             .read<ExpenseController>()
-                                          //             .mycontroller[100]
-                                          //             .text
-                                          //             .toString(),
-                                          //         context
-                                          //             .read<ExpenseController>()
-                                          //             .mycontroller[101]
-                                          //             .text
-                                          //             .toString());
                                         }
                                       });
                                     },
@@ -217,15 +180,8 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                       Container(
                                         height: widget.searchHeight * 0.07,
                                         width: widget.searchWidth * 0.3,
-
-                                        decoration: const BoxDecoration(
-                                            // color: Colors.amber,
-                                            //   borderRadius: BorderRadius.circular(4),
-                                            //  border: Border.all(),
-                                            ),
-
+                                        decoration: const BoxDecoration(),
                                         child: TextFormField(
-                                          // keyboardType: TextInputType.number,
                                           onChanged: (value) {
                                             setState(() {
                                               context
@@ -234,9 +190,6 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                                       value.trim());
                                             });
                                           },
-
-                                          // readOnly: true,
-                                          //  controller: settleCon.mycontroller[1],
                                           decoration: InputDecoration(
                                               hintText: "Search...",
                                               contentPadding:
@@ -246,13 +199,11 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              //   labelText: "Date",
                                               hintStyle: widget
                                                   .theme.textTheme.bodyLarge!
                                                   .copyWith(
                                                       color: Colors.black)),
                                         ),
-                                        //Center(child: Text("2000"))
                                       ),
                                     ],
                                   ),
@@ -274,7 +225,6 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.08,
-                              // color: Colors.amber,
                               child: Text(
                                 "Doc No",
                                 style: widget.theme.textTheme.bodyLarge!
@@ -283,9 +233,7 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                             ),
                             Container(
                               alignment: Alignment.center,
-
                               width: widget.searchWidth * 0.1,
-                              // color: Colors.amber,
                               child: Text(
                                 "Doc Date",
                                 style: widget.theme.textTheme.bodyLarge!
@@ -294,88 +242,38 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                             ),
                             Container(
                               alignment: Alignment.center,
-
                               width: widget.searchWidth * 0.08,
-                              // color: Colors.amber,
                               child: Text(
                                 "UserName",
                                 style: widget.theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-                            // Container(
-                            //   alignment: Alignment.center,
-
-                            //   width: widget.searchWidth * 0.1,
-                            //   // color: Colors.amber,
-                            //   child: Text(
-                            //     "Terminal",
-                            //     style: widget.theme.textTheme.bodyLarge!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
-                            // Container(
-                            //   alignment: Alignment.center,
-
-                            //   width: widget.searchWidth * 0.08,
-                            //   // color: Colors.amber,
-                            //   child: Text(
-                            //     "SAP DocNo",
-                            //     style: widget.theme.textTheme.bodyMedium!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
                             Container(
                               alignment: Alignment.center,
-
                               width: widget.searchWidth * 0.08,
-                              // color: Colors.amber,
                               child: Text(
                                 "Status",
                                 style: widget.theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-                            // Container(
-                            //   alignment: Alignment.center,
-
-                            //   width: widget.searchWidth * 0.15,
-                            //   // color: Colors.amber,
-                            //   child: Text(
-                            //     "Customer Name",
-                            //     style: widget.theme.textTheme.bodyMedium!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
                             Container(
                               padding: EdgeInsets.only(
                                   right: Screens.width(context) * 0.01),
                               alignment: Alignment.centerRight,
                               width: widget.searchWidth * 0.15,
-                              // color: Colors.amber,
                               child: Text(
                                 "Doc Total ",
                                 style: widget.theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-                            // Container(
-                            //   alignment: Alignment.center,
-                            //   width: widget.searchWidth * 0.1,
-                            //   // color: Colors.amber,
-                            //   child: Text(
-                            //     "Type",
-                            //     style: widget.theme.textTheme.bodyMedium!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
                           ],
                         ),
                       ),
-
                       Container(
                         height: widget.searchHeight,
-                        // color: Colors.green,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(5)),
@@ -407,19 +305,11 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                                     .docEntry
                                                     .toString(),
                                                 context);
-                                        // context
-                                        //     .read<ExpenseController>()
-                                        // .fixDataMethod(context
-                                        //     .read<ExpenseController>()
-                                        //     .filtersearchData[index]
-                                        //     .docentry);
                                       });
                                     },
                                     child: Container(
                                       padding: EdgeInsets.only(
                                           top: widget.searchHeight * 0.03,
-                                          // left: widget.searchHeight * 0.02,
-                                          // right: widget.searchHeight * 0.02,
                                           bottom: widget.searchHeight * 0.03),
                                       decoration: BoxDecoration(
                                           color: Colors.grey.withOpacity(0.05),
@@ -433,9 +323,7 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                         children: [
                                           Container(
                                             alignment: Alignment.center,
-
                                             width: widget.searchWidth * 0.08,
-                                            // color: Colors.amber,
                                             child: Text(
                                               "${context.watch<ExpenseController>().filtersearchData[index].docNum}",
                                               style: widget
@@ -446,9 +334,7 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                           ),
                                           Container(
                                             alignment: Alignment.center,
-
                                             width: widget.searchWidth * 0.1,
-                                            // color: Colors.amber,
                                             child: Text(
                                               context
                                                   .watch<ExpenseController>()
@@ -467,9 +353,7 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                           ),
                                           Container(
                                             alignment: Alignment.center,
-
                                             width: widget.searchWidth * 0.08,
-                                            // color: Colors.amber,
                                             child: Text(
                                               "${UserValues.username}",
                                               style: widget
@@ -478,24 +362,9 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-
-                                          //   width: widget.searchWidth * 0.1,
-                                          //   // color: Colors.amber,
-                                          //   child: Text(
-                                          //     "${context.watch<ExpenseController>().filtersearchData[index].terminal}",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyLarge!
-                                          //         .copyWith(color: Colors.black),
-                                          //   ),
-                                          // ),
-
                                           Container(
                                             alignment: Alignment.center,
-
                                             width: widget.searchWidth * 0.08,
-                                            // color: Colors.amber,
                                             child: Text(
                                               context
                                                   .watch<ExpenseController>()
@@ -507,25 +376,12 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-
-                                          //   width: widget.searchWidth * 0.15,
-                                          //   // color: Colors.amber,
-                                          //   child: Text(
-                                          //     "${widget.ExpCon.filtersearchData[index].customeraName}",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyMedium!
-                                          //         .copyWith(color: Colors.black),
-                                          //   ),
-                                          // ),
                                           Container(
                                             padding: EdgeInsets.only(
                                                 right: Screens.width(context) *
                                                     0.01),
                                             alignment: Alignment.centerRight,
                                             width: widget.searchWidth * 0.15,
-                                            // color: Colors.amber,
                                             child: Text(
                                               "${config.splitValues(context.watch<ExpenseController>().filtersearchData[index].cashSum.toStringAsFixed(2))}",
                                               style: widget
@@ -534,25 +390,12 @@ class _stConSearhBoxState extends State<ExpenseSearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-                                          //   width: widget.searchWidth * 0.1,
-                                          //   // color: Colors.amber,
-                                          //   child: Text(
-                                          //     "Type",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyMedium!
-                                          //         .copyWith(color: Colors.black),
-                                          //   ),
-                                          // ),
                                         ],
                                       ),
                                     ),
                                   );
                                 }),
                       )
-
-                      // Container(),
                     ],
                   ),
                 ))),

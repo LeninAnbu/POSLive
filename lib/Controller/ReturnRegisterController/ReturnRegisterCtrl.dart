@@ -13,7 +13,6 @@ import '../../Service/ReportsApi/RetrunRegisterApi.dart';
 class RetnRegCon extends ChangeNotifier {
   init() async {
     clearalldata();
-    // await getStockReg();
   }
 
   List<ReturnRegisterList> salesReg = [];
@@ -69,14 +68,10 @@ class RetnRegCon extends ChangeNotifier {
     if (datetype == "From") {
       datetype = DateFormat('dd-MM-yyyy').format(pickedDate!);
       searchcontroller[2].text = datetype!;
-      //log(datetype);
     } else if (datetype == "To") {
       datetype = DateFormat('dd-MM-yyyy').format(pickedDate!);
       searchcontroller[3].text = datetype!;
-      //log(datetype);
-    } else {
-      //log("Date is not selected");
-    }
+    } else {}
   }
 
   Future<void> getStockReg() async {
@@ -100,7 +95,6 @@ class RetnRegCon extends ChangeNotifier {
   }
 
   filterListSearched(String v) {
-    //y
     if (v.isNotEmpty) {
       filtersalesReg = salesReg
           .where((e) =>

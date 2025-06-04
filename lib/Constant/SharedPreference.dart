@@ -75,15 +75,6 @@ class SharedPref {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(spStgIP);
   }
-  // static Future<bool> saveLocaleSP(String locale) async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   return await preferences.setString(sPLocale, locale);
-  // }
-
-  // static Future<String?> getLocaleSP() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   return await preferences.getString(sPLocale);
-  // }
 
   static Future<bool> saveHostSP(String spHost1) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();

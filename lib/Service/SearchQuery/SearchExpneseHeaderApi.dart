@@ -22,16 +22,7 @@ class SerachExpHeaderAPi {
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
                 "query":
                     "EXEC BZ_POS_SerachExpHeaderAPi '$fromDate','$toDate' , '${AppConstant.branch}'"
-                // "Select DocNum, DocEntry, DocDate, CashSum,Status, A.Address,  JrnlMemo from ovpm  A  Inner join OUSR B ON A.UserSign=B.USERID LEFT  JOIN [BZ_POS_Users] C ON C.SAPUserName=B.USER_CODE  Where A.DocDate between '$fromDate' and '$toDate' AND C.Branch='${AppConstant.branch}' order by DocDate desc,DocNum desc"
               }));
-
-      // log("SerachExpHeader " +
-      //     json.encode({
-      //       "constr":
-      //           "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-      //       "query":
-      //           "Select DocNum, DocEntry, DocDate, CashSum,Status, A.Address,  JrnlMemo from ovpm  A  Inner join OUSR B ON A.UserSign=B.USERID LEFT  JOIN [BZ_POS_Users] C ON C.SAPUserName=B.USER_CODE  Where A.DocDate between '$fromDate' and '$toDate' AND C.Branch='${AppConstant.branch}' order by DocDate desc,DocNum desc"
-      //          }));
 
       log("Serach Exp Header Res: " + json.decode(response.body).toString());
       print(response.statusCode);
@@ -39,12 +30,10 @@ class SerachExpHeaderAPi {
         return SearchExpHeaderMdl.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
-        // throw Exception("Error!!...");
         return SearchExpHeaderMdl.fromJson(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
-      //  throw Exception("Exception: $e");
       log('SerachExpHeader::${e.toString()}');
       return SearchExpHeaderMdl.error(e.toString(), 500);
     }

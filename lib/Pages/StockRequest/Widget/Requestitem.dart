@@ -55,10 +55,6 @@ class _RequestItemState extends State<RequestItem> {
                     style: theme.textTheme.bodyMedium,
                     cursorColor: Colors.grey,
                     onChanged: (v) {
-                      // context
-                      //     .read<StockReqController>()
-                      //     .removeEmptyList(context);
-
                       setState(() {
                         if (v.isNotEmpty &&
                             context
@@ -84,62 +80,6 @@ class _RequestItemState extends State<RequestItem> {
                       context
                           .read<StockReqController>()
                           .disableKeyBoard(context);
-                      // setState(() {
-                      // context
-                      //     .read<StockReqController>()
-                      //     .removeEmptyList(context);
-                      // context
-                      //     .read<StockReqController>()
-                      //     .disableKeyBoard(context);
-
-                      // context
-                      //     .read<StockReqController>()
-                      //     .getAllList(context
-                      //         .read<StockReqController>()
-                      //         .searchcon
-                      //         .text
-                      //         .trim())
-                      //       .then((value) {
-                      //     if (value.length == 1) {
-                      //       context.read<StockReqController>().onseletFst(
-                      //           context,
-                      //           theme,
-                      //           context
-                      //               .read<StockReqController>()
-                      //               .getfilterSearchedData[0]);
-                      //     } else {
-                      //       if (context
-                      //               .read<StockReqController>()
-                      //               .whssSlectedList ==
-                      //           null) {
-                      //         showDialog(
-                      //             context: context,
-                      //             barrierDismissible: true,
-                      //             builder: (BuildContext context) {
-                      //               return AlertDialog(
-                      //                   contentPadding: const EdgeInsets.all(0),
-                      //                   content: AlertBox(
-                      //                     payMent: 'Alert',
-                      //                     errormsg: true,
-                      //                     widget: Center(
-                      //                         child: ContentContainer(
-                      //                       content:
-                      //                           'Choose warehuse address..!!',
-                      //                       theme: theme,
-                      //                     )),
-                      //                     buttonName: null,
-                      //                   ));
-                      //             });
-                      //       } else {
-                      //         showDialog<dynamic>(
-                      //             context: context,
-                      //             builder: (_) {
-                      //               return const SearchItems();
-                      //             });
-                      //       }
-                      //     }
-                      //   });
-                      // });
                     },
                     decoration: InputDecoration(
                       hintText: 'Inventories',
@@ -266,8 +206,6 @@ class _RequestItemState extends State<RequestItem> {
                       return InkWell(
                         onTap: () {
                           setState(() {
-                            // log('kkkkkkkkkk::${context.read<StockReqController>().getfilterSearchedData[index]}');
-
                             context
                                 .read<StockReqController>()
                                 .onselectVisibleItem(
@@ -284,10 +222,8 @@ class _RequestItemState extends State<RequestItem> {
                           child: Container(
                               width: Screens.bodyheight(context) * 0.8,
                               padding: EdgeInsets.only(
-                                // top: Screens.bodyheight(context) * 0.01,
                                 left: Screens.width(context) * 0.01,
                                 right: Screens.width(context) * 0.01,
-                                // bottom: Screens.bodyheight(context) * 0.005,
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.grey[200],
@@ -449,7 +385,6 @@ class _RequestItemState extends State<RequestItem> {
                                     return Card(
                                       child: Container(
                                           padding: EdgeInsets.only(
-                                            // top: widget.searchHeight * 0.01,
                                             left: widget.searchHeight * 0.01,
                                             right: widget.searchHeight * 0.01,
                                             bottom: widget.searchHeight * 0.01,
@@ -516,24 +451,6 @@ class _RequestItemState extends State<RequestItem> {
                                                                   .doubleDotMethod(
                                                                       index,
                                                                       value);
-                                                              // setState(() {
-                                                              //   if (value ==
-                                                              //       "0") {
-                                                              //     context
-                                                              //         .read<
-                                                              //             StockReqController>()
-                                                              //         .qtyCont
-                                                              //         .removeAt(
-                                                              //             index);
-
-                                                              //     context
-                                                              //         .read<
-                                                              //             StockReqController>()
-                                                              //         .scanneditemData
-                                                              //         .removeAt(
-                                                              //             index);
-                                                              //   }
-                                                              // });
                                                             }),
                                                             onTap: () {
                                                               context
@@ -573,16 +490,9 @@ class _RequestItemState extends State<RequestItem> {
                                                             keyboardType:
                                                                 TextInputType
                                                                     .number,
-                                                            // onChanged: (val) {
-
-                                                            // },
                                                             inputFormatters: [
                                                               DecimalInputFormatter()
                                                             ],
-                                                            // inputFormatters: [
-                                                            //   FilteringTextInputFormatter
-                                                            //       .digitsOnly
-                                                            // ],
                                                             textAlign:
                                                                 TextAlign.right,
                                                             onEditingComplete:

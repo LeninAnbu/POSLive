@@ -21,10 +21,8 @@ class M_StockReqDraftbill extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: searchWidth * 1,
-        //  height:searchHeight*0.9 ,
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 alignment: Alignment.centerLeft,
@@ -34,7 +32,6 @@ class M_StockReqDraftbill extends StatelessWidget {
               ),
               Container(
                 height: searchHeight,
-                // color: Colors.green,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5)),
@@ -45,9 +42,6 @@ class M_StockReqDraftbill extends StatelessWidget {
                         onTap: () {
                           Navigator.pop(context);
                           prdsrch.mapData(stockReq, index, context, theme);
-                          // prdsrch.StockReqward.addAll(StockReq);
-                          // StockReq.removeAt(index);
-                          // prdsrch.callList();
                         },
                         child: Card(
                           child: Container(

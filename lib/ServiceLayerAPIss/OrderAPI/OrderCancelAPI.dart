@@ -10,7 +10,6 @@ import '../QuotationAPI/QuotationCancelAPI.dart';
 class SerlayOrderCancelAPI {
 // /https://102.69.167.106:50000/b1s/v1/Quotations(48386)/Cancel
   static Future<Cancelmodel> getData(String sapDocEntry) async {
-    // int? ressCode = 500;
     Cancelmodel cancelmdl = Cancelmodel();
 
     log("Order sapSessionID:::${AppConstant.sapSessionID}");
@@ -23,7 +22,7 @@ class SerlayOrderCancelAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       cancelmdl.statusCode = response.statusCode;
       log("Order stscode::${response.statusCode}");
 
@@ -33,13 +32,10 @@ class SerlayOrderCancelAPI {
       } else {
         log("Ordercancel Exception: Error");
         throw Exception("Error");
-        // return Servicrlayerquotation.issue(
-        //     json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("OrdCalcelException:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

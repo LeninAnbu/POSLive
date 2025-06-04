@@ -55,12 +55,8 @@ class ReqPrintLayout extends StatelessWidget {
       build: (pw.Context context) {
         return <pw.Widget>[
           buildContainer(),
-          // carryover(),
         ];
       },
-      // footer: (context) {
-      //   // return footerContainer();
-      // }
     ));
 
     return pdf.save();
@@ -91,7 +87,6 @@ class ReqPrintLayout extends StatelessWidget {
             pw.TableRow(children: [
               pw.Container(
                 alignment: pw.Alignment.centerLeft,
-                // color: PdfColors.blue100,
                 padding:
                     const pw.EdgeInsets.symmetric(vertical: 4, horizontal: 1),
                 child: pw.Text(
@@ -99,7 +94,6 @@ class ReqPrintLayout extends StatelessWidget {
                   style: pw.TextStyle(
                     fontWeight: pw.FontWeight.bold,
                     fontSize: 8,
-                    // color: PdfColors.blue100,
                   ),
                   textAlign: pw.TextAlign.center,
                 ),
@@ -107,7 +101,6 @@ class ReqPrintLayout extends StatelessWidget {
               pw.Container(
                 width: 3 * PdfPageFormat.cm,
                 alignment: pw.Alignment.center,
-                // color: PdfColors.blue100,
                 padding:
                     const pw.EdgeInsets.symmetric(vertical: 4, horizontal: 5),
                 child: pw.Text(
@@ -121,7 +114,6 @@ class ReqPrintLayout extends StatelessWidget {
               ),
               pw.Container(
                 alignment: pw.Alignment.center,
-                // color: PdfColors.blue100,
                 padding:
                     const pw.EdgeInsets.symmetric(vertical: 4, horizontal: 3),
                 child: pw.Text(
@@ -135,8 +127,6 @@ class ReqPrintLayout extends StatelessWidget {
               ),
               pw.Container(
                 alignment: pw.Alignment.centerRight,
-
-                // color: PdfColors.blue100,
                 padding:
                     const pw.EdgeInsets.symmetric(vertical: 4, horizontal: 1),
                 child: pw.Text(
@@ -199,7 +189,6 @@ class ReqPrintLayout extends StatelessWidget {
                       textAlign: pw.TextAlign.right,
                       style: pw.TextStyle(
                         fontSize: 8,
-                        // fontWeight: pw.FontWeight.bold,
                       ),
                     ),
                   ),
@@ -215,7 +204,6 @@ class ReqPrintLayout extends StatelessWidget {
           'Remarks',
           style: pw.TextStyle(
             fontSize: 9,
-            // fontWeight: pw.FontWeight.bold,
           ),
         ),
         pw.Container(
@@ -232,7 +220,6 @@ class ReqPrintLayout extends StatelessWidget {
         height: 1 * PdfPageFormat.cm,
       ),
       pw.Container(
-          // width: 10 * PdfPageFormat.cm,
           child: pw.Row(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
@@ -384,7 +371,6 @@ class ReqPrintLayout extends StatelessWidget {
                               pw.BarcodeWidget(
                                   data:
                                       " ${iinvoicee!.headerinfo!.docEntry}-1250000001",
-                                  // ${iinvoicee!.headerinfo!.docEntry}-17",
                                   barcode: pw.Barcode.qrCode(),
                                   width: 80,
                                   height: 65),

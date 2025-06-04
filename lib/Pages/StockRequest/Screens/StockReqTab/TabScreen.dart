@@ -30,7 +30,6 @@ class StockReqTab extends StatelessWidget {
                 top: Screens.bodyheight(context) * 0.01,
                 left: Screens.bodyheight(context) * 0.01,
                 right: Screens.bodyheight(context) * 0.01,
-                // bottom: Screens.bodyheight(context) * 0.01,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,14 +44,12 @@ class StockReqTab extends StatelessWidget {
                       )),
                   SizedBox(
                       width: Screens.width(context) * 0.48,
-                      // color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               StockReqCustomer(
                                 custWidth: Screens.width(context) * 0.48,

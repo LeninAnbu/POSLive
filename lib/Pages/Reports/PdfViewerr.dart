@@ -34,7 +34,6 @@ class CollectionReceiptPdfState extends State<CollectionReceiptPdf> {
       body: PdfPreview(
           initialPageFormat: PdfPageFormat.a4,
           dynamicLayout: true,
-          // pages: [1,2],
           onPageFormatChanged: (PdfPageFormat) {},
           build: (format) {
             return CollectionReceiptPdfHelper.generatePdff(

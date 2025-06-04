@@ -53,26 +53,13 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                       .filterListSearched(v);
                 },
                 cursorColor: Colors.grey,
-                // controller: stChCon.mycontroller[99],
                 onEditingComplete: () {},
                 decoration: InputDecoration(
                   filled: false,
                   hintText: 'Search Here..',
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                      //  color: Colors.grey
-                      //   fontWeight: FontWeight.normal
-                      ),
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  // suffixIcon: IconButton(
-                  //   icon: Icon(
-                  //     Icons.search,
-                  //     // size: searchHeight * 0.05,
-                  //     color: Colors.grey,
-                  //   ),
-                  //   onPressed: () async {},
-                  //   color: theme.primaryColor,
-                  // ),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 15,
                     horizontal: 10,
@@ -83,7 +70,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
             height: widget.searchHeight * 0.01,
           ),
           SizedBox(
-            // color: Color.fromARGB(255, 227, 103, 155),
             height: widget.searchHeight * 0.89,
             child: context.watch<TransactionSyncController>().loadingbtn == true
                 ? Center(
@@ -92,7 +78,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                   ))
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: Ma,
                     children: [
                       Container(
                         padding: EdgeInsets.only(
@@ -109,7 +94,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                //color: Colors.red,
                                 alignment: Alignment.center,
                                 width: widget.searchWidth * 0.05,
                                 child: Text(
@@ -118,7 +102,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                       ?.copyWith(color: Colors.white),
                                 )),
                             Container(
-                                //color: Colors.red,
                                 alignment: Alignment.center,
                                 width: widget.searchWidth * 0.15,
                                 child: Text(
@@ -127,10 +110,8 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                       ?.copyWith(color: Colors.white),
                                 )),
                             Container(
-                                //color: Colors.red,
                                 alignment: Alignment.center,
                                 width: widget.searchWidth * 0.2,
-                                // color: Colors.amber,
                                 child: Text(
                                   "Doc Type",
                                   style: theme.textTheme.bodyMedium
@@ -139,12 +120,10 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                             GestureDetector(
                               onTap: () {},
                               child: Container(
-                                  //color: Colors.red,
                                   alignment: Alignment.center,
                                   width: widget.searchWidth * 0.18,
                                   child: Text(
                                     "Customer",
-                                    // overflow: over,
                                     style: theme.textTheme.bodyMedium
                                         ?.copyWith(color: Colors.white),
                                   )),
@@ -152,7 +131,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                             GestureDetector(
                               onTap: () {},
                               child: Container(
-                                  //color: Colors.red,
                                   alignment: Alignment.centerRight,
                                   width: widget.searchWidth * 0.12,
                                   child: Text(
@@ -164,7 +142,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                             GestureDetector(
                               onTap: () {},
                               child: Container(
-                                  // color: Colors.red,
                                   alignment: Alignment.center,
                                   width: widget.searchWidth * 0.1,
                                   child: Text(
@@ -176,7 +153,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                             GestureDetector(
                               onTap: () {},
                               child: Container(
-                                  //color: Colors.red,
                                   alignment: Alignment.center,
                                   width: widget.searchWidth * 0.15,
                                   child: Text(
@@ -278,7 +254,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                         .spaceBetween,
                                                 children: [
                                                   Container(
-                                                      //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
                                                       width:
@@ -293,7 +268,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                                     .black),
                                                       )),
                                                   Container(
-                                                      //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
                                                       width:
@@ -308,7 +282,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                                     .black),
                                                       )),
                                                   Container(
-                                                      // color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
                                                       width:
@@ -323,7 +296,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                                     .black),
                                                       )),
                                                   Container(
-                                                      //color: Colors.red,
                                                       alignment:
                                                           Alignment.centerLeft,
                                                       width:
@@ -340,7 +312,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                                     .black),
                                                       )),
                                                   Container(
-                                                      //color: Colors.red,
                                                       alignment:
                                                           Alignment.centerRight,
                                                       width:
@@ -357,14 +328,12 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                                     .black),
                                                       )),
                                                   Container(
-                                                      //color: Colors.red,
                                                       alignment:
                                                           Alignment.centerRight,
                                                       width:
                                                           widget.searchWidth *
                                                               0.1,
                                                       child: Text(
-                                                        // ignore: unnecessary_string_interpolations
                                                         "${context.watch<TransactionSyncController>().config.alignDate(context.watch<TransactionSyncController>().filtersyncData1[index].sapDate.toString())}",
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -375,7 +344,6 @@ class _SyncdataListPageState extends State<SyncdataListPage> {
                                                                     .black),
                                                       )),
                                                   Container(
-                                                      //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
                                                       width:

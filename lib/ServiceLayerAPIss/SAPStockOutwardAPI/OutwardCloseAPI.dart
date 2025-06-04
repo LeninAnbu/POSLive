@@ -8,7 +8,6 @@ import '../../url/url.dart';
 
 class SerlayReturnOutwardCancelAPI {
   static Future getData(String sapDocEntry) async {
-    // int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
@@ -19,23 +18,18 @@ class SerlayReturnOutwardCancelAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("Invoiceclose stscode::${response.statusCode}");
       log("Invoiceclose::${json.decode(response.body)}");
 
       if (response.statusCode == 204) {
         log("Successfully closed");
-        // return Servicrlayerquotation.fromJson(
-        //     json.decode(response.body), response.statusCode);
       } else {
         throw Exception("Error");
-        // return Servicrlayerquotation.issue(
-        //     json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("InwCloseException:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

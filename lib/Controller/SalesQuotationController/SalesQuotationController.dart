@@ -268,7 +268,7 @@ class SalesQuotationCon extends ChangeNotifier {
 
   TextEditingController searchcon = TextEditingController();
   List<CustSeriesModelData> seriesData = [];
-  //CustSeriesModelData
+
   List<ErrorModel> sererrorlist = [];
   double? tottpaid;
   String? baltopay;
@@ -336,7 +336,7 @@ class SalesQuotationCon extends ChangeNotifier {
     await getBrachDetails();
     await getdraftindex();
     await custSeriesApi();
-    // Newsdoceriesapi.getGlobalData('17');
+
     await callSeriesApi(context);
     notifyListeners();
   }
@@ -1342,7 +1342,7 @@ class SalesQuotationCon extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: '', //mycontroller[10].text,
+        country: '',
         state: '',
         street: '',
         zipCode: mycontroller[13].text,
@@ -1353,8 +1353,8 @@ class SalesQuotationCon extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: '', //mycontroller[20].text,
-        state: '', //mycontroller[19].text,
+        country: '',
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -1883,8 +1883,8 @@ class SalesQuotationCon extends ChangeNotifier {
         cardterminal: payment[i]['cardterminal'].toString(),
         chequedate: payment[i]['chequedate'].toString(),
         chequeno: payment[i]['chequeno'].toString(),
-        couponcode: "", //getDBholdSalespay[i]['couponcode'].toString(),
-        coupontype: "", //getDBholdSalespay[i]['coupontype'].toString(),
+        couponcode: "",
+        coupontype: "",
         discountcode: payment[i]['discountcode'].toString(),
         discounttype: payment[i]['discounttype'].toString(),
         recoverydate: payment[i]['recoverydate'].toString(),
@@ -3696,8 +3696,6 @@ class SalesQuotationCon extends ChangeNotifier {
       mycontroller[1].text = contentitemsDetails[ij].price!.toString();
       mycontroller[3].text = contentitemsDetails[ij].discount!.toString();
       mycontroller[2].text = contentitemsDetails[ij].qty!.toString();
-
-      //
     }
   }
 
@@ -4214,9 +4212,9 @@ class SalesQuotationCon extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city!, //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city!,
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -4228,9 +4226,9 @@ class SalesQuotationCon extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city!, //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city!,
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -4518,13 +4516,9 @@ class SalesQuotationCon extends ChangeNotifier {
       totalTX: double.parse(getDBSalesQuoHeader[0]['taxamount'] == null
           ? '0'
           : getDBSalesQuoHeader[0]['taxamount'].toString().replaceAll(',', '')),
-
       subtotal: double.parse(getDBSalesQuoHeader[0]['docbasic'] == null
           ? '0'
-          : getDBSalesQuoHeader[0]['docbasic']
-              .toString()
-              .replaceAll(',', '')), //doctotal
-
+          : getDBSalesQuoHeader[0]['docbasic'].toString().replaceAll(',', '')),
       total: totalQuantity,
       totalDue: double.parse(getDBSalesQuoHeader[0]['doctotal'] == null
           ? '0'
@@ -4552,9 +4546,9 @@ class SalesQuotationCon extends ChangeNotifier {
                 address2: csadresdataDB[k].address2,
                 address3: csadresdataDB[k].address3,
                 custcode: csadresdataDB[k].custcode,
-                billCity: csadresdataDB[k].city!, //city
-                billCountry: csadresdataDB[k].countrycode!, //country
-                billPincode: csadresdataDB[k].pincode!, //pinno
+                billCity: csadresdataDB[k].city!,
+                billCountry: csadresdataDB[k].countrycode!,
+                billPincode: csadresdataDB[k].pincode!,
                 billstate: csadresdataDB[k].statecode)
           ];
         }
@@ -4568,9 +4562,9 @@ class SalesQuotationCon extends ChangeNotifier {
                   address2: csadresdataDB[k].address2,
                   address3: csadresdataDB[k].address3,
                   custcode: csadresdataDB[k].custcode,
-                  billCity: csadresdataDB[k].city!, //city
-                  billCountry: csadresdataDB[k].countrycode!, //country
-                  billPincode: csadresdataDB[k].pincode!, //pinno
+                  billCity: csadresdataDB[k].city!,
+                  billCountry: csadresdataDB[k].countrycode!,
+                  billPincode: csadresdataDB[k].pincode!,
                   billstate: csadresdataDB[k].statecode)
             ];
           }
@@ -4607,9 +4601,7 @@ class SalesQuotationCon extends ChangeNotifier {
       docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
       taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
       U_CashCust: '',
-
-      cardCode: getDBSalesQuoHeader[0]["customercode"]
-          .toString(), //customercode!.cardCode
+      cardCode: getDBSalesQuoHeader[0]["customercode"].toString(),
       accBalance:
           double.parse(getDBSalesQuoHeader[0]["customeraccbal"].toString()),
       point: getDBSalesQuoHeader[0]["customerpoint"].toString(),
@@ -4629,17 +4621,14 @@ class SalesQuotationCon extends ChangeNotifier {
       phNo: getDBSalesQuoHeader[0]["customerphono"].toString(),
       docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
       U_CashCust: '',
-
       taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
-
-      cardCode: getDBSalesQuoHeader[0]["customercode"]
-          .toString(), //customercode!.cardCode
-      accBalance: double.parse(
-          getDBSalesQuoHeader[0]["customeraccbal"].toString()), //customeraccbal
-      point: getDBSalesQuoHeader[0]["customerpoint"].toString(), //customerpoint
+      cardCode: getDBSalesQuoHeader[0]["customercode"].toString(),
+      accBalance:
+          double.parse(getDBSalesQuoHeader[0]["customeraccbal"].toString()),
+      point: getDBSalesQuoHeader[0]["customerpoint"].toString(),
       address: address25,
-      tarNo: getDBSalesQuoHeader[0]["taxno"].toString(), //taxno
-      email: getDBSalesQuoHeader[0]["customeremail"].toString(), //customeremail
+      tarNo: getDBSalesQuoHeader[0]["taxno"].toString(),
+      email: getDBSalesQuoHeader[0]["customeremail"].toString(),
       invoicenum: getDBSalesQuoHeader[0]["documentno"].toString(),
       invoiceDate: getDBSalesQuoHeader[0]["createdateTime"].toString(),
       totalPayment: getDBSalesQuoHeader[0]["doctotal"] == null
@@ -4771,7 +4760,6 @@ class SalesQuotationCon extends ChangeNotifier {
                 ? 0.0
                 : double.parse(getDBSalesquotLine[ik]['weight'].toString())));
 
-        //discperc
         totquantity = getDBSalesquotLine[ik]['quantity'].toString();
         qtymycontroller[ik].text = getDBSalesquotLine[ik]['quantity'] == null
             ? "0"
@@ -4810,13 +4798,11 @@ class SalesQuotationCon extends ChangeNotifier {
             : getDBSalesQuoHeader[0]['taxamount']
                 .toString()
                 .replaceAll(',', '')),
-
         subtotal: double.parse(getDBSalesQuoHeader[0]['docbasic'] == null
             ? '0'
             : getDBSalesQuoHeader[0]['docbasic']
                 .toString()
-                .replaceAll(',', '')), //doctotal
-
+                .replaceAll(',', '')),
         total: totalQuantity,
         totalDue: double.parse(getDBSalesQuoHeader[0]['doctotal'] == null
             ? '0'
@@ -4845,9 +4831,9 @@ class SalesQuotationCon extends ChangeNotifier {
                   address2: csadresdataDB[k].address2,
                   address3: csadresdataDB[k].address3,
                   custcode: csadresdataDB[k].custcode,
-                  billCity: csadresdataDB[k].city!, //city
-                  billCountry: csadresdataDB[k].countrycode!, //country
-                  billPincode: csadresdataDB[k].pincode!, //pinno
+                  billCity: csadresdataDB[k].city!,
+                  billCountry: csadresdataDB[k].countrycode!,
+                  billPincode: csadresdataDB[k].pincode!,
                   billstate: csadresdataDB[k].statecode)
             ];
           }
@@ -4861,9 +4847,9 @@ class SalesQuotationCon extends ChangeNotifier {
                     address2: csadresdataDB[k].address2,
                     address3: csadresdataDB[k].address3,
                     custcode: csadresdataDB[k].custcode,
-                    billCity: csadresdataDB[k].city!, //city
-                    billCountry: csadresdataDB[k].countrycode!, //country
-                    billPincode: csadresdataDB[k].pincode!, //pinno
+                    billCity: csadresdataDB[k].city!,
+                    billCountry: csadresdataDB[k].countrycode!,
+                    billPincode: csadresdataDB[k].pincode!,
                     billstate: csadresdataDB[k].statecode)
               ];
             }
@@ -4873,23 +4859,17 @@ class SalesQuotationCon extends ChangeNotifier {
       selectedcust = CustomerDetals(
         autoId: getDBSalesQuoHeader[0]["billaddressid"].toString(),
         taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
-
         name: getDBSalesQuoHeader[0]["customername"].toString(),
         U_CashCust: '',
-
-        phNo:
-            getDBSalesQuoHeader[0]["customerphono"].toString(), //customerphono
+        phNo: getDBSalesQuoHeader[0]["customerphono"].toString(),
         docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
-        cardCode: getDBSalesQuoHeader[0]["customercode"]
-            .toString(), //customercode!.cardCode
-        accBalance: double.parse(getDBSalesQuoHeader[0]["customeraccbal"]
-            .toString()), //customeraccbal
-        point:
-            getDBSalesQuoHeader[0]["customerpoint"].toString(), //customerpoint
+        cardCode: getDBSalesQuoHeader[0]["customercode"].toString(),
+        accBalance:
+            double.parse(getDBSalesQuoHeader[0]["customeraccbal"].toString()),
+        point: getDBSalesQuoHeader[0]["customerpoint"].toString(),
         address: address2,
-        tarNo: getDBSalesQuoHeader[0]["taxno"].toString(), //taxno
-        email:
-            getDBSalesQuoHeader[0]["customeremail"].toString(), //customeremail
+        tarNo: getDBSalesQuoHeader[0]["taxno"].toString(),
+        email: getDBSalesQuoHeader[0]["customeremail"].toString(),
         invoicenum: getDBSalesQuoHeader[0]['documentno'] != null
             ? getDBSalesQuoHeader[0]['documentno'].toString()
             : "",
@@ -4902,21 +4882,16 @@ class SalesQuotationCon extends ChangeNotifier {
         autoId: getDBSalesQuoHeader[0]["shipaddresid"].toString(),
         taxCode: getDBSalesQuoHeader[0]["taxCode"].toString(),
         U_CashCust: '',
-
         name: getDBSalesQuoHeader[0]["customername"].toString(),
-        phNo:
-            getDBSalesQuoHeader[0]["customerphono"].toString(), //customerphono
+        phNo: getDBSalesQuoHeader[0]["customerphono"].toString(),
         docentry: getDBSalesQuoHeader[0]["docentry"].toString(),
-        cardCode: getDBSalesQuoHeader[0]["customercode"]
-            .toString(), //customercode!.cardCode
-        accBalance: double.parse(getDBSalesQuoHeader[0]["customeraccbal"]
-            .toString()), //customeraccbal
-        point:
-            getDBSalesQuoHeader[0]["customerpoint"].toString(), //customerpoint
+        cardCode: getDBSalesQuoHeader[0]["customercode"].toString(),
+        accBalance:
+            double.parse(getDBSalesQuoHeader[0]["customeraccbal"].toString()),
+        point: getDBSalesQuoHeader[0]["customerpoint"].toString(),
         address: address25,
-        tarNo: getDBSalesQuoHeader[0]["taxno"].toString(), //taxno
-        email:
-            getDBSalesQuoHeader[0]["customeremail"].toString(), //customeremail
+        tarNo: getDBSalesQuoHeader[0]["taxno"].toString(),
+        email: getDBSalesQuoHeader[0]["customeremail"].toString(),
         invoicenum: getDBSalesQuoHeader[0]["documentno"].toString(),
         invoiceDate: getDBSalesQuoHeader[0]["createdateTime"].toString(),
         totalPayment: getDBSalesQuoHeader[0]["doctotal"] == null
@@ -4924,7 +4899,6 @@ class SalesQuotationCon extends ChangeNotifier {
             : double.parse(getDBSalesQuoHeader[0]["doctotal"].toString()),
       );
       notifyListeners();
-      //log("selectedcust25!.address!length::" +
 
       notifyListeners();
       selectedBillAdress = selectedcust!.address!.length - 1;
@@ -5272,7 +5246,6 @@ class SalesQuotationCon extends ChangeNotifier {
         taxCode: selectedcust!.taxCode,
         unitPrice: scanneditemData[i].sellPrice!.toStringAsFixed(2),
         whsCode: AppConstant.branch,
-        // whsCode == null || whsCode!.isEmpty ? AppConstant.branch : whsCode,
         itemName: scanneditemData[i].itemName.toString(),
       ));
     }
@@ -5292,7 +5265,7 @@ class SalesQuotationCon extends ChangeNotifier {
       String docstatus, String documentNum) async {
     final Database db = (await DBHelper.getInstance())!;
     addDocLine();
-    // SalesQuotPostAPi.seriesType = seriesType;
+
     SalesQuotPostAPi.cardCodePost = selectedcust!.cardCode;
     SalesQuotPostAPi.cardNamePost = custNameController.text.isNotEmpty
         ? custNameController.text
@@ -5381,8 +5354,6 @@ class SalesQuotationCon extends ChangeNotifier {
             notifyListeners();
           });
         } else {
-          //log("Error11");
-
           custserieserrormsg = value.error!.message!.value.toString();
           onDisablebutton = true;
           loadingscrn = false;
@@ -5641,7 +5612,6 @@ class SalesQuotationCon extends ChangeNotifier {
   }
 
   pushRabiMqSO(int? docentry) async {
-    //background service
     final Database db = (await DBHelper.getInstance())!;
 
     List<Map<String, Object?>> getDBSalesquotLine =
@@ -5660,19 +5630,15 @@ class SalesQuotationCon extends ChangeNotifier {
 
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
 
     MessageProperties properties = MessageProperties();
 
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -5696,12 +5662,8 @@ class SalesQuotationCon extends ChangeNotifier {
       "SalesQuotationLine": salesQuotLine,
     });
 
-    //RabitMQ
-
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -5709,18 +5671,15 @@ class SalesQuotationCon extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     client1.close();
   }
 
   pushRabiMqSO3(int? docentry) async {
-    //background service
     final Database db = (await DBHelper.getInstance())!;
 
     List<Map<String, Object?>> getDBSalesquotLine =
@@ -5739,8 +5698,6 @@ class SalesQuotationCon extends ChangeNotifier {
     Client client = Client();
     ConnectionSettings settings = ConnectionSettings(
         host: AppConstant.ip.toString().trim(),
-
-        //"102.69.167.106"
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -5748,12 +5705,10 @@ class SalesQuotationCon extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -6033,7 +5988,6 @@ class SalesQuotationCon extends ChangeNotifier {
           notifyListeners();
         });
       } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-        //log("Error22");
         cancelbtn = false;
         onDisablebutton = false;
 
@@ -6358,11 +6312,9 @@ class SalesQuotationCon extends ChangeNotifier {
 
   billaddresslist() {
     billadrrssItemlist = [];
-    //log("selectedcust address lenght ZZZZ:::${selectedcust!.address!.length}");
+
     if (selectedcust != null) {
       for (int i = 0; i < selectedcust!.address!.length; i++) {
-        //log("selectedcust!.address!.type AAAA::${selectedcust!.address![i].addresstype}");
-
         billadrrssItemlist.add(Address(
             addresstype: selectedcust!.address![i].addresstype,
             address1: selectedcust!.address![i].address1,
@@ -6383,11 +6335,7 @@ class SalesQuotationCon extends ChangeNotifier {
 
     if (selectedcust55 != null) {
       for (int i = 0; i < selectedcust55!.address!.length; i++) {
-        //log("selectedcust55!.address![i].addresstype::${selectedcust55!.address![i].addresstype.toString()}");
-
         if (selectedcust55!.address![i].addresstype == "S") {
-          //log("selectedcust55!.address!.typeXXbbb::${selectedcust55!.address!.length.toString()}");
-
           shipadrrssItemlist.add(Address(
               addresstype: selectedcust55!.address![i].addresstype,
               address1: selectedcust55!.address![i].address1,
@@ -6461,7 +6409,7 @@ class SalesQuotationCon extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: "TZ", //mycontroller[20].text,
+        country: "TZ",
         state: '',
         street: '',
         zipCode: mycontroller[18].text,
@@ -6511,8 +6459,8 @@ class SalesQuotationCon extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: "TZ", //mycontroller[13].text,
-        state: '', //mycontroller[12].text,
+        country: "TZ",
+        state: '',
         street: '',
         zipCode: mycontroller[11].text,
       ),
@@ -6564,8 +6512,8 @@ class SalesQuotationCon extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: "TZ", //mycontroller[13].text,
-        state: '', //mycontroller[12].text,
+        country: "TZ",
+        state: '',
         street: '',
         zipCode: mycontroller[11].text,
       ),
@@ -6575,7 +6523,7 @@ class SalesQuotationCon extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: "TZ", //mycontroller[20].text,
+        country: "TZ",
         state: '',
         street: '',
         zipCode: mycontroller[18].text,
@@ -6600,7 +6548,6 @@ class SalesQuotationCon extends ChangeNotifier {
         await getcustshipaddresslist(
           context,
         );
-        //log('JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ:::${shipcreateNewAddress.length}');
 
         addLoadingBtn = false;
         config.showDialogSucessB(
@@ -6821,13 +6768,13 @@ class SalesQuotationCon extends ChangeNotifier {
     shipcreateNewAddress = [];
     notifyListeners();
     if (checkboxx == true) {
-      mycontroller[14].text = mycontroller[7].text; //bill add1
-      mycontroller[15].text = mycontroller[8].text; //bill add2
-      mycontroller[16].text = mycontroller[9].text; //bill add3
-      mycontroller[17].text = mycontroller[10].text; //city
-      mycontroller[18].text = mycontroller[11].text; //pin
-      mycontroller[19].text = mycontroller[12].text; //state
-      mycontroller[20].text = mycontroller[13].text; //country
+      mycontroller[14].text = mycontroller[7].text;
+      mycontroller[15].text = mycontroller[8].text;
+      mycontroller[16].text = mycontroller[9].text;
+      mycontroller[17].text = mycontroller[10].text;
+      mycontroller[18].text = mycontroller[11].text;
+      mycontroller[19].text = mycontroller[12].text;
+      mycontroller[20].text = mycontroller[13].text;
     } else {
       mycontroller[14].clear();
       mycontroller[15].clear();
@@ -6843,13 +6790,13 @@ class SalesQuotationCon extends ChangeNotifier {
   shipToBill(bool dat) async {
     notifyListeners();
     if (checkboxx == true) {
-      mycontroller[7].text = mycontroller[14].text; //bill add1
-      mycontroller[8].text = mycontroller[15].text; //bill add2
-      mycontroller[9].text = mycontroller[16].text; //bill add3
-      mycontroller[10].text = mycontroller[17].text; //city
-      mycontroller[11].text = mycontroller[18].text; //pin
-      mycontroller[12].text = mycontroller[19].text; //state
-      mycontroller[13].text = mycontroller[20].text; //country
+      mycontroller[7].text = mycontroller[14].text;
+      mycontroller[8].text = mycontroller[15].text;
+      mycontroller[9].text = mycontroller[16].text;
+      mycontroller[10].text = mycontroller[17].text;
+      mycontroller[11].text = mycontroller[18].text;
+      mycontroller[12].text = mycontroller[19].text;
+      mycontroller[13].text = mycontroller[20].text;
     } else {
       mycontroller[7].clear();
       mycontroller[8].clear();
@@ -7026,7 +6973,7 @@ class SalesQuotationCon extends ChangeNotifier {
           address: []);
       notifyListeners();
     }
-    //log('step:1.1');
+
     if (newaddrssdataDB.isNotEmpty) {
       for (int ik = 0; ik < newaddrssdataDB.length; ik++) {
         if (newaddrssdataDB[ik]['addresstype'].toString() == "B") {
@@ -7107,29 +7054,25 @@ class SalesQuotationCon extends ChangeNotifier {
     newCustAddData.add({
       'customerCode': mycontroller[3].text.isNotEmpty
           ? mycontroller[3].text.toString()
-          : '', //customerCode
-      'customername': mycontroller[6].text.isNotEmpty
-          ? mycontroller[6].text
-          : '', //customerName
-      'premiumid': '', //premiumid
-      'customertype': '', //CustomerType
-      "taxno": mycontroller[5].text.isNotEmpty
-          ? mycontroller[5].text.toString() //taxno
           : '',
-      'createdbybranch': '', //createdbybranch
-      'balance': '0', //balance
-
-      'points': '0', //points
-      'snapdatetime': config.currentDate(), //snapdatetime
-      "phoneno1":
-          mycontroller[4].text.isNotEmpty ? mycontroller[4].text : '', //ph1
-      'phoneno2': '', //ph2
-      'emalid':
-          mycontroller[21].text.isNotEmpty ? mycontroller[21].text : '', //email
+      'customername':
+          mycontroller[6].text.isNotEmpty ? mycontroller[6].text : '',
+      'premiumid': '',
+      'customertype': '',
+      "taxno": mycontroller[5].text.isNotEmpty
+          ? mycontroller[5].text.toString()
+          : '',
+      'createdbybranch': '',
+      'balance': '0',
+      'points': '0',
+      'snapdatetime': config.currentDate(),
+      "phoneno1": mycontroller[4].text.isNotEmpty ? mycontroller[4].text : '',
+      'phoneno2': '',
+      'emalid': mycontroller[21].text.isNotEmpty ? mycontroller[21].text : '',
       'createdateTime': config.currentDate(),
       'updatedDatetime': config.currentDate(),
-      'createdUserID': UserValues.userID.toString(), //createdUserid
-      'updateduserid': UserValues.userID.toString(), //updateduserid
+      'createdUserID': UserValues.userID.toString(),
+      'updateduserid': UserValues.userID.toString(),
       'lastupdateIp': UserValues.lastUpdateIp.toString(),
       'TaxCode': ''
     });
@@ -7601,7 +7544,7 @@ class SalesQuotationCon extends ChangeNotifier {
       notifyListeners();
     }
     FocusScopeNode focus = FocusScope.of(context);
-    //log("taxRate:${scanneditemData[iss].taxRate}");
+
     if (!focus.hasPrimaryFocus) {
       focus.unfocus();
     }
@@ -7874,7 +7817,6 @@ class SalesQuotationCon extends ChangeNotifier {
   Future<int?> checkCredit(String typpe) {
     for (int i = 0; i < paymentWay.length; i++) {
       if (paymentWay[i].type == typpe) {
-        //log('Serial batch:$typpe');
         return Future.value(i);
       }
     }
@@ -8112,7 +8054,7 @@ class SalesQuotationCon extends ChangeNotifier {
       return;
     }
 
-    String datetype = DateFormat('dd-MM-yyyy').format(pickedDate!);
+    String datetype = DateFormat('dd-MM-yyyy').format(pickedDate);
     postingDatecontroller.text = datetype;
   }
 
@@ -8225,9 +8167,9 @@ class SalesQuotationCon extends ChangeNotifier {
             address2: csadresdataDB[k].address2 ?? '',
             address3: csadresdataDB[k].address3 ?? '',
             custcode: csadresdataDB[k].custcode ?? '',
-            billCity: csadresdataDB[k].city ?? '', //city
-            billCountry: csadresdataDB[k].countrycode ?? '', //country
-            billPincode: csadresdataDB[k].pincode ?? '', //pinno
+            billCity: csadresdataDB[k].city ?? '',
+            billCountry: csadresdataDB[k].countrycode ?? '',
+            billPincode: csadresdataDB[k].pincode ?? '',
             billstate: csadresdataDB[k].statecode ?? ''));
       }
       notifyListeners();

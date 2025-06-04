@@ -16,7 +16,6 @@ class SRBottomBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Screens.width(context),
-      //height: Screens.bodyheight(context) * 0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -47,7 +46,6 @@ class SRBottomBtn extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             contentPadding: const EdgeInsets.all(0),
-                            // backgroundColor: Colors.transparent,
                             insetPadding: EdgeInsets.all(
                                 Screens.bodyheight(context) * 0.02),
                             content: forSuspend(context, salesReturnController),
@@ -69,8 +67,6 @@ class SRBottomBtn extends StatelessWidget {
                           color: theme.primaryColor,
                         )),
                   )),
-
-              //
               GestureDetector(
                   onTap: () {
                     salesReturnController.onHoldClicked(context, theme);
@@ -78,7 +74,6 @@ class SRBottomBtn extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        // color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
                           color: theme.primaryColor,
@@ -146,7 +141,6 @@ class SRBottomBtn extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -192,9 +186,6 @@ class SRBottomBtn extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        // salesReturnController.saveSalRetValuesTODB(
-                        //     'suspend', context, theme);
-                        // salesReturnController.clearAllData();
                       },
                       child: const Text("Yes")),
                 ),

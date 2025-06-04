@@ -25,23 +25,20 @@ class SalesDetailsQtAPi {
       );
       log("SalesDetails rescode::" + response.statusCode.toString());
 
-      // log("SalesQDetails res::" + response.body);
-
       if (response.statusCode == 200) {
         return ApprovalDetailsPutValue.fromJson(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       } else {
         log(json.decode(response.body));
-        //  print(response.statusCode);
-        // throw Exception('Restart the app or contact the admin!!..');
+
         return ApprovalDetailsPutValue.issue(
           'Restart the app or contact the admin!!..',
         );
       }
     } catch (e) {
       log("EXXXX: $e");
-      //  throw Exception('$e');
+
       return ApprovalDetailsPutValue.issue(
         'Restart the app or contact the admin!!..',
       );

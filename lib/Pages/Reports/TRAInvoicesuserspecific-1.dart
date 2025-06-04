@@ -27,7 +27,6 @@ class _TRAInvoicesUserSpecificState extends State<TRAInvoicesUserSpecific> {
       fromDate = '';
       toDate = '';
       branch = '';
-      // callTestApi();
     });
   }
 

@@ -17,9 +17,7 @@ class NewFieldReportApi {
               body: json.encode({
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
-                "query": 
-                "EXEC BZ_POS_NewFieldReportApi '$code'"
-                // "Select * From [@POS_RPT1] Where Code = '$code'"
+                "query": "EXEC BZ_POS_NewFieldReportApi '$code'"
               }));
 
       log("New report field Res: ${json.decode(response.body)}");
@@ -36,7 +34,7 @@ class NewFieldReportApi {
       }
     } catch (e) {
       log('NewReportFieldMdl:::$e');
-      //  throw Exception("Exception: $e");
+
       return NewReportFieldMdl.error(e.toString(), 500);
     }
   }

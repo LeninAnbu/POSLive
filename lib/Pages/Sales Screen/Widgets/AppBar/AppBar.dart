@@ -13,12 +13,10 @@ AppBar appbar(
   BuildContext context,
 ) {
   final theme = Theme.of(context);
-  // final GlobalKey<ScaffoldState> Key = GlobalKey<ScaffoldState>();
 
   return AppBar(
     backgroundColor: theme.primaryColor,
     automaticallyImplyLeading: false,
-    // centerTitle: true,
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
@@ -30,7 +28,6 @@ AppBar appbar(
         );
       },
     ),
-    // toolbarHeight: Screens.padingHeight(context) * 0.08, // Set this height
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -43,24 +40,6 @@ AppBar appbar(
                 context.read<PosController>().callSearchHeaderApi();
                 context.read<PosController>().loadSearch = false;
 
-                // context.read<PosController>().getSalesDataDatewise(
-                //     context.read<PosController>().config.alignDate(
-                //         context.read<PosController>().config.currentDate()),
-                //     context.read<PosController>().config.alignDate(
-                //         context.read<PosController>().config.currentDate()));
-
-                // posController.setstate1();
-                // showDialog<dynamic>(
-                //     context: context,
-                //     builder: (_) {
-                //       // return StatefulBuilder(builder: (context, st) {
-                //       return SearhBox(
-                //           theme: theme,
-                //           searchHeight: Screens.bodyheight(context) * 0.9,
-                //           searchWidth: Screens.width(context) * 0.49,
-                //           SalesCon: posController);
-                //       // });
-                //     }).then((value) {});
                 showDialog(
                     context: context,
                     barrierDismissible: false,
@@ -82,7 +61,6 @@ AppBar appbar(
                 children: [
                   Container(
                       decoration: const BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -201,7 +179,6 @@ AppBar appbar(
                                                                       .padingHeight(
                                                                           context) *
                                                                   0.03),
-                                                          // height: custHeight * 0.2,
                                                           child: ListTile(
                                                             onTap: () {
                                                               Navigator.pop(
@@ -213,57 +190,6 @@ AppBar appbar(
                                                                       context,
                                                                       theme,
                                                                       index);
-                                                              // Navigator.pop(
-                                                              //     context);
-
-                                                              // showDialog(
-                                                              //     context:
-                                                              //         context,
-                                                              //     barrierDismissible:
-                                                              //         true,
-                                                              //     builder:
-                                                              //         (BuildContext context) {
-                                                              //       return AlertDialog(
-                                                              //           contentPadding: EdgeInsets.all(0),
-                                                              //           content: AlertBox(
-                                                              //               payMent: 'Alert',
-                                                              //               widget: Container(
-                                                              //                 width: Screens.width(context) * 0.6,
-                                                              //                 padding: EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.04, vertical: Screens.bodyheight(context) * 0.01),
-                                                              //                 child: Column(
-                                                              //                   children: [
-                                                              //                     Container(alignment: Alignment.center, width: Screens.width(context) * 0.8, child: Center(child: Text('You are about to continue the sales transaction this draft will be cleared now..!!'))),
-                                                              //                     SizedBox(
-                                                              //                       height: Screens.bodyheight(context) * 0.01,
-                                                              //                     ),
-                                                              //                     Row(
-                                                              //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                              //                       children: [
-                                                              //                         SizedBox(
-                                                              //                           width: Screens.width(context) * 0.15,
-                                                              //                           child: ElevatedButton(
-                                                              //                               onPressed: () {
-                                                              //                                 Navigator.pop(context);
-                                                              //                                 context.read<PosController>().mapHoldValues(context, theme, index);
-                                                              //                                 Navigator.pop(context);
-                                                              //                               },
-                                                              //                               child: Text("Yes")),
-                                                              //                         ),
-                                                              //                         SizedBox(
-                                                              //                           width: Screens.width(context) * 0.15,
-                                                              //                           child: ElevatedButton(
-                                                              //                               onPressed: () {
-                                                              //                                 Navigator.pop(context);
-                                                              //                               },
-                                                              //                               child: Text("No")),
-                                                              //                         ),
-                                                              //                       ],
-                                                              //                     )
-                                                              //                   ],
-                                                              //                 ),
-                                                              //               ),
-                                                              //               buttonName: null));
-                                                              //     });
                                                             },
                                                             title: Column(
                                                               mainAxisAlignment:
@@ -281,16 +207,15 @@ AppBar appbar(
                                                                         .onHoldFilter[
                                                                             index]
                                                                         .cardCode!),
-                                                                    Text(
-                                                                        context.watch<PosController>().config.aligntimeDate(context
+                                                                    Text(context
+                                                                        .watch<
+                                                                            PosController>()
+                                                                        .config
+                                                                        .aligntimeDate(context
                                                                             .watch<PosController>()
                                                                             .onHoldFilter[index]
                                                                             .invoceDate
-                                                                            .toString())
-                                                                        // posController
-                                                                        //   .onHoldFilter![index]
-                                                                        //   .invoceDate!
-                                                                        ),
+                                                                            .toString())),
                                                                   ],
                                                                 ),
                                                                 Row(
@@ -314,7 +239,6 @@ AppBar appbar(
                                                         ),
                                                       );
                                                     })),
-                                            //  SizedBox(height:  Screens.padingHeight(context) * 0.09),
                                           ]);
                                     })));
                     });
@@ -324,7 +248,6 @@ AppBar appbar(
                 children: [
                   Container(
                       decoration: const BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -386,8 +309,6 @@ AppBar appbar(
                   context.read<PosController>().callPrintApi(context, theme);
                   context.read<PosController>().setstate1();
                 } else {
-                  // .mapCallOutwardForPDF(preff, context, theme);
-
                   showDialog(
                       context: context,
                       barrierDismissible: true,
@@ -403,13 +324,11 @@ AppBar appbar(
                             ));
                       });
                 }
-                // .mapCallSalesInfoApiForPDF(preff, context, theme);
               },
               child: Column(
                 children: [
                   Container(
                       decoration: const BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -446,10 +365,7 @@ AppBar appbar(
               child: Column(
                 children: [
                   Container(
-                      // width: Screens.width(context) * 0.18,
-                      // height: Screens.padingHeight(context) * 0.06,
                       decoration: const BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),
@@ -486,10 +402,7 @@ AppBar appbar(
               child: Column(
                 children: [
                   Container(
-                      // width: Screens.width(context) * 0.18,
-                      // height: Screens.padingHeight(context) * 0.06,
                       decoration: const BoxDecoration(
-                        // color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8),
                           topLeft: Radius.circular(25),

@@ -30,13 +30,12 @@ class NewCashCardAccountAPi {
       } else {
         log("New CashCard Acc Res: ${json.decode(response.body)}");
 
-        // throw Exception("Error!!...");
         return NewCashCardAccDetailsModel.fromJson(
             response.body, response.statusCode);
       }
     } catch (e) {
       log('new cash exp::${e.toString()}');
-      //  throw Exception("Exception: $e");
+
       return NewCashCardAccDetailsModel.fromJson(e.toString(), 500);
     }
   }

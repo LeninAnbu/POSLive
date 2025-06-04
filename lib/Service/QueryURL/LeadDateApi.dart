@@ -33,7 +33,7 @@ class NewLeadDateApi {
       }
     } catch (e) {
       log('LeadDateMdl:::$e');
-      //  throw Exception("Exception: $e");
+
       return LeadDateMdl.error(e.toString(), 500);
     }
   }

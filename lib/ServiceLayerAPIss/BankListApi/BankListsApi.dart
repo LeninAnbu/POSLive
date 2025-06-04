@@ -9,7 +9,6 @@ import '../../Models/ServiceLayerModel/BankListModel/BankListsModels.dart';
 
 class GetBankListAPI {
   static Future<BankListModels> getData() async {
-    // log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       final response = await http.get(
         Uri.parse('http://102.69.167.106:50001/b1s/v1/Banks'),
@@ -18,22 +17,21 @@ class GetBankListAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("GetBankListAPI stscode::${response.statusCode}");
-      // log("GetBankLiApprovalsAPistAPI::${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return BankListModels.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
         log("GetBankListAPI Exception: Error");
-        // throw Exception("Errorrrrr");
+
         return BankListModels.issue(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("GetBankListAPI exp:: $e");
-      // throw Exception("Error");
+
       return BankListModels.issue("Exception", 500);
     }
   }

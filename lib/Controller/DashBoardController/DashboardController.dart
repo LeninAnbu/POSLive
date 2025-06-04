@@ -40,21 +40,18 @@ class DashBoardController extends ChangeNotifier {
   List<String> catchmsg = [];
 
   void init(BuildContext context) async {
-    // await callCashCardAccApi();
     await getApppDefaultVal();
-    getuserVlues(); //23-22810
+    getuserVlues();
     insterNumberingSeries();
-    // reievervb2();
+
     getOutOfStockItems();
-    // chartMethod();
+
     getNotification();
     checkpaidfrom();
     refreshQueue();
     await deleteholdmethod();
     showVersion(context);
     log('UserValues.userIDUserValues.userID::${UserValues.userCode}');
-
-    // userloginapi();
   }
 
   insertNotify() async {
@@ -94,10 +91,8 @@ class DashBoardController extends ChangeNotifier {
       checkAndPromptLocationService(context);
     } else {
       getLocation(context);
-      // checkAndEnableLocation(context);
     }
-    // source1 = await getPathOFDB();
-    // copyTo = await getDirectory();
+
     await requestLocationPermission2(context);
   }
 
@@ -106,27 +101,6 @@ class DashBoardController extends ChangeNotifier {
       Permission.accessMediaLocation,
     ].request();
     log('storage request11$statuses');
-    // var status = await Permission.storage.status;
-    // log('storage request22::$status');
-
-    // // Permission.storage.request()
-    // if (status.isDenied) {
-    //   log('storage request33::$status');
-    //   try {
-    //     await Permission.storage.request();
-    //     notifyListeners();
-    //   } catch (e) {
-    //     log("eeee::" + e.toString());
-    //     notifyListeners();
-    //   }
-
-    //   // checkAndPromptLocationService(context);
-    // } else if (status.isPermanentlyDenied) {
-    //   // checkAndPromptLocationService(context);
-    // } else {
-    //   // getLocation(context);
-    //   // checkAndEnableLocation(context);
-    // }
   }
 
   Future<Position?> checkAndEnableLocation(BuildContext context) async {
@@ -165,7 +139,6 @@ class DashBoardController extends ChangeNotifier {
   }
 
   Future<void> copyDatabaseToExternalStorage() async {
-    // Request permissions first
     await getPermissionStorage();
 
     final internalDbPath = await getDatabasesPath();
@@ -283,11 +256,6 @@ class DashBoardController extends ChangeNotifier {
     });
     notifyListeners();
   }
-  // reievervb2() async {
-  //   String? ip = await getIP();
-  //   String? branch = await getBranch();
-  //   String? terminal = await getTerminal();
-  // }
 
   List<NotificationModel> notify = [];
   List<NotificationModel> get getnotify => notify;
@@ -334,7 +302,6 @@ class DashBoardController extends ChangeNotifier {
                   'SalesHeader');
               notifyListeners();
             }
-            //
           } else if (getQstatusData[i]["doctype"].toString() == "Sales Order") {
             if (getQstatusData[i]["sapDocentry"] != null &&
                 getQstatusData[i]["sapDocNo"] != null &&
@@ -347,7 +314,6 @@ class DashBoardController extends ChangeNotifier {
                   'SalesOrderHeader');
               notifyListeners();
             }
-            //
           } else if (getQstatusData[i]["doctype"].toString() ==
               "Sales Quotation") {
             if (getQstatusData[i]["sapDocentry"] != null &&
@@ -375,7 +341,6 @@ class DashBoardController extends ChangeNotifier {
                   'SalesReturnHeader');
               notifyListeners();
             }
-            //
           } else if (getQstatusData[i]["doctype"].toString() ==
               "Payment Receipt") {
             if (getQstatusData[i]["sapDocentry"] != null &&
@@ -391,10 +356,6 @@ class DashBoardController extends ChangeNotifier {
             }
           } else if (getQstatusData[i]["doctype"].toString() ==
               "Stock Request") {
-            // StockReqController stockReq = new StockReqController();
-            // String? whsCode = await DBOperation.getStockReq_WhsCode(
-            //     db, int.parse(getQstatusData[i]["docentry"].toString()));
-
             if (getQstatusData[i]["sapDocentry"] != null &&
                 getQstatusData[i]["sapDocNo"] != null &&
                 getQstatusData[i]["qStatus"] == "Y") {
@@ -447,8 +408,6 @@ class DashBoardController extends ChangeNotifier {
               notifyListeners();
             }
           } else if (getQstatusData[i]["doctype"].toString() == "Settlement") {
-            // DepositsController Settle = new DepositsController();
-
             if (getQstatusData[i]["sapDocentry"] != null &&
                 getQstatusData[i]["sapDocNo"] != null &&
                 getQstatusData[i]["qStatus"] == "Y") {
@@ -519,7 +478,6 @@ class DashBoardController extends ChangeNotifier {
   }
 
   refresh() async {
-    // reievervb2();
     await getOutOfStockItems();
     await chartMethod();
     await refreshQueue();
@@ -895,7 +853,7 @@ class DashBoardController extends ChangeNotifier {
                                 final appId = Platform.isAndroid
                                     ? 'com.buson.posinsignia'
                                     : 'com.buson.posinsignia';
-                                //com.buson.posinsignia
+
                                 final url = Uri.parse(
                                   Platform.isAndroid
                                       ? "https://play.google.com/store/apps/details?id=com.buson.posinsignia"
@@ -928,14 +886,10 @@ class DashBoardController extends ChangeNotifier {
     AppConstant.branch = (await SharedPref.getBranchSSP())!;
     AppConstant.terminal = (await SharedPref.getTerminal())!;
     AppConstant.sapDB = (await SharedPref.getSapDB())!;
-    // 'InsigniaLimited';
+
     AppConstant.slpCode = (await SharedPref.getslpCode())!;
-    AppConstant.sapPassword =
-        //  "ub@17";
-        await SharedPref.getSapPassword();
-    AppConstant.sapUserName =
-        // 'Ubongo';
-        await SharedPref.getSapUserName();
+    AppConstant.sapPassword = await SharedPref.getSapPassword();
+    AppConstant.sapUserName = await SharedPref.getSapUserName();
 
     notifyListeners();
   }
@@ -984,8 +938,6 @@ class SyncData {
   String? sapDocentry;
   String? reqfromwhs;
   String? reqtowhs;
-
-  // String? customerCode;
 
   SyncData(
       {this.docNo,

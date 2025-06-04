@@ -20,9 +20,7 @@ class SalesDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5), color: Colors.white
-          // color: Colors.grey.withOpacity(0.1),
-          ),
+          borderRadius: BorderRadius.circular(5), color: Colors.white),
       padding: EdgeInsets.only(
         top: salesheight * 0.01,
         left: salesheight * 0.05,
@@ -30,7 +28,6 @@ class SalesDetails extends StatelessWidget {
         bottom: salesheight * 0.01,
       ),
       width: salesWidth * 1,
-      // height: salesheight *0.6,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,21 +41,6 @@ class SalesDetails extends StatelessWidget {
                 child: Container(
                   height: salesheight * 0.22,
                   width: salesWidth * 0.4,
-                  //  decoration: BoxDecoration(
-                  //      color: Colors.blue.withOpacity(0.05),
-                  // borderRadius: BorderRadius.circular(5),
-
-                  //               // color: Colors.white,
-                  //               boxShadow: [
-                  //                 BoxShadow(
-                  //                   color: Colors.grey.withOpacity(0.5),
-                  //                   spreadRadius: 3,
-                  //                   blurRadius: 7,
-                  //                   offset: Offset(
-                  //                       0, 3), // changes position of shadow
-                  //                 ),
-                  //               ],
-                  //             ),
                   decoration: BoxDecoration(
                     color: Colors.blue.withOpacity(0.05),
                     borderRadius: BorderRadius.circular(5),
@@ -116,9 +98,6 @@ class SalesDetails extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: theme.primaryColor,
-                            // borderRadius: BorderRadius.only(
-                            //     bottomLeft: Radius.circular(4),
-                            //     bottomRight: Radius.circular(4)),
                           ),
                           child: Text(
                             "Orders",
@@ -135,24 +114,7 @@ class SalesDetails extends StatelessWidget {
             height: salesheight * 0.008,
           ),
           Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Container(
-              //     height: salesheight * 0.8,
-              //     width: salesWidth * 0.63,
-              //     child: charts.BarChart(
-              //       behaviors: [
-              //         charts.ChartTitle(
-              //           'Sales',
-              //           behaviorPosition: charts.BehaviorPosition.bottom,
-              //           titleOutsideJustification:
-              //               charts.OutsideJustification.middleDrawArea,
-              //         ),
-              //       ],
-              //       context.read<DashBoardController>().createSampleData(),
-              //       animate: true,
-              //       barGroupingType: charts.BarGroupingType.grouped,
-              //     )),
               SizedBox(
                 height: salesheight * 0.9,
                 child: Column(
@@ -186,9 +148,6 @@ class SalesDetails extends StatelessWidget {
                             Container(
                                 decoration: BoxDecoration(
                                   color: theme.primaryColor,
-                                  // borderRadius: BorderRadius.only(
-                                  //     bottomLeft: Radius.circular(4),
-                                  //     bottomRight: Radius.circular(4)),
                                 ),
                                 alignment: Alignment.center,
                                 child: Text(
@@ -203,7 +162,6 @@ class SalesDetails extends StatelessWidget {
                     Card(
                       elevation: 5,
                       child: Container(
-                        // padding: EdgeInsets.only(bottom:salesheight * 0.05, ),
                         height: salesheight * 0.22,
                         width: salesWidth * 0.3,
                         decoration: BoxDecoration(
@@ -225,9 +183,6 @@ class SalesDetails extends StatelessWidget {
                             Container(
                                 decoration: BoxDecoration(
                                   color: theme.primaryColor,
-                                  //   borderRadius: BorderRadius.only(
-                                  //       bottomLeft: Radius.circular(4),
-                                  //       bottomRight: Radius.circular(4)),
                                 ),
                                 alignment: Alignment.center,
                                 child: Text(

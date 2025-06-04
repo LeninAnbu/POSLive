@@ -29,15 +29,13 @@ class PostReturnLoginAPi {
       }));
       log("saplogin stcode11 ::${response.statusCode}");
 
-      // log("// saplogin: ${json.decode(response.body)}");
-
       if (response.statusCode == 200) {
         return Logindata.fromJson(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       } else {
         log("saplogin stcode22 ::${response.statusCode}");
-        // throw Exception("Error");
+
         return Logindata.error(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
@@ -45,7 +43,6 @@ class PostReturnLoginAPi {
     } catch (e) {
       log('Exception // saplogin: $e');
       throw Exception('Exception // saplogin: $e');
-      // return Logindata.issue('Restart the app or contact the admin!!..', 500);
     }
   }
 }

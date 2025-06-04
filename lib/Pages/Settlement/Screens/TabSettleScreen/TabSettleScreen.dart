@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:posproject/Controller/DepositController/DepositsController.dart';
 import 'package:provider/provider.dart';
 
@@ -11,23 +13,20 @@ class TabSettleScreen extends StatelessWidget {
     super.key,
   });
 // DepositsController settleCon;
-  // String? _chosenValue;
 
   String? chosenValue;
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
+    final theme = Theme.of(context);
     return SizedBox(
       width: Screens.width(context),
       height: Screens.bodyheight(context) * 0.95,
       child: PageView(
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          // pageSnapping: false,
           controller: context.read<DepositsController>().tappage,
           children: [
-            //  children: [
             Column(
               children: [
                 SettleFirstscreen(
@@ -41,8 +40,6 @@ class TabSettleScreen extends StatelessWidget {
               custWidth: Screens.width(context) * 0.90,
             )
           ]),
-      // ),
-      // ]
     );
   }
 }

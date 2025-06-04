@@ -19,9 +19,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ///expenseModel
-    });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
   }
 
   @override
@@ -117,7 +115,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
                                             width:
@@ -131,9 +128,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         Container(
                                           color: Colors.grey[300],
-
                                           width: Screens.width(context) * 0.50,
-                                          //  height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -185,7 +180,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
                                             width:
@@ -200,7 +194,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                           width: Screens.width(context) * 0.50,
                                           color: Colors.grey[300],
-                                          //  height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -248,7 +241,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
-                                      // mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                       children: [
                                         SizedBox(
                                             width:
@@ -315,7 +307,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Date',
                                               style: theme.textTheme.bodyLarge
@@ -325,9 +316,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         Container(
                                           color: Colors.grey[300],
-
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             readOnly: true,
                                             controller: context
@@ -384,7 +373,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Remarks',
                                               style: theme.textTheme.bodyLarge
@@ -395,7 +383,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                           width: Screens.width(context) * 0.50,
                                           color: Colors.grey[300],
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -588,7 +575,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                           color: Colors.grey[300],
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -636,7 +622,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                     Row(
                                       children: [
                                         Container(
-                                            // color: Colors.grey[300],
                                             width:
                                                 Screens.width(context) * 0.30,
                                             child: Text(
@@ -649,7 +634,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                           color: Colors.grey[300],
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -699,7 +683,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Receipt Verification Code',
                                               style: theme.textTheme.bodyLarge
@@ -817,7 +800,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Attachment',
                                               style: theme.textTheme.bodyLarge
@@ -828,19 +810,12 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         Container(
                                           width: Screens.width(context) * 0.50,
                                           color: Colors.grey[300],
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
                                                 .mycontroller[15],
                                             readOnly: true,
-                                            onTap: () {
-                                              // setState(() {
-                                              // context
-                                              //     .read<ExpenseController>()
-                                              //     .selectattachment();
-                                              // });
-                                            },
+                                            onTap: () {},
                                             decoration: InputDecoration(
                                               contentPadding:
                                                   EdgeInsets.symmetric(
@@ -966,9 +941,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               ),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  // context
-                                                  //     .read<ExpenseController>()
-                                                  //     .codeValue = value.toString();
                                                   context
                                                       .read<ExpenseController>()
                                                       .selectedCode(value!);
@@ -996,7 +968,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
                                             width:
@@ -1010,7 +981,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
-                                          //  height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -1062,7 +1032,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
                                             width:
@@ -1076,7 +1045,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
-                                          //  height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -1128,10 +1096,8 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           Screens.padingHeight(context) * 0.01,
                                     ),
                                     Row(
-                                      // mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                                       children: [
                                         SizedBox(
-                                            // color: Colors.amber,
                                             width:
                                                 Screens.width(context) * 0.30,
                                             child: Text(
@@ -1142,9 +1108,7 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                           FontWeight.bold),
                                             )),
                                         SizedBox(
-                                          //   color: Colors.amber,
                                           width: Screens.width(context) * 0.50,
-                                          //height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -1165,9 +1129,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                               return null;
                                             },
                                             onEditingComplete: () {
-                                              // context
-                                              //     .read<ExpenseController>()
-                                              //     .pettyCashValidation();
                                               context
                                                   .read<ExpenseController>()
                                                   .disableKeyBoard(context);
@@ -1217,7 +1178,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Date',
                                               style: theme.textTheme.bodyLarge
@@ -1290,7 +1250,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Remarks',
                                               style: theme.textTheme.bodyLarge
@@ -1301,19 +1260,9 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
                                           child: TextFormField(
-                                            // inputFormatters: [
-                                            //   DecimalInputFormatter()
-                                            // ],
-                                            // onChanged: (valu) {
-                                            //   context
-                                            //       .read<ExpenseController>()
-                                            //       .doubleDotMethod(3, valu);
-                                            // },
-
                                             controller: context
                                                 .read<ExpenseController>()
                                                 .mycontroller[3],
-
                                             decoration: InputDecoration(
                                               contentPadding:
                                                   EdgeInsets.symmetric(
@@ -1680,10 +1629,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                           width: Screens.width(context) * 0.50,
                                           decoration: const BoxDecoration(),
                                           child: DropdownButtonFormField(
-                                              // validator: (value) =>
-                                              //     value == null
-                                              //         ? 'Required*'
-                                              //         : null,
                                               decoration: InputDecoration(
                                                 contentPadding:
                                                     EdgeInsets.symmetric(
@@ -1771,7 +1716,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Receipt Verification Code',
                                               style: theme.textTheme.bodyLarge
@@ -1781,7 +1725,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -1831,7 +1774,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                         SizedBox(
                                             width:
                                                 Screens.width(context) * 0.30,
-                                            //color: Colors.amber,
                                             child: Text(
                                               'Attachment',
                                               style: theme.textTheme.bodyLarge
@@ -1841,7 +1783,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             )),
                                         SizedBox(
                                           width: Screens.width(context) * 0.50,
-                                          // height: Screens.padingHeight(context) * 0.06,
                                           child: TextFormField(
                                             controller: context
                                                 .read<ExpenseController>()
@@ -1907,47 +1848,11 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                           SizedBox(
                             height: Screens.padingHeight(context) * 0.03,
                           ),
-                          // SizedBox(
-                          //   height: Screens.padingHeight(context) * 0.05,
-                          // ),
                           context.read<ExpenseController>().expBool == true
                               ? Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    // ElevatedButton(
-                                    //   onPressed: () {
-                                    //     setState(() {
-                                    //       context
-                                    //           .read<ExpenseController>()
-                                    //           .cancelbtn = true;
-
-                                    //       context
-                                    //           .read<ExpenseController>()
-                                    //           .clickcancelbtn(context, theme);
-                                    //     });
-                                    //   },
-                                    //   style: ElevatedButton.styleFrom(
-                                    //       fixedSize: const Size(150, 50),
-                                    //       foregroundColor: Colors.white,
-                                    //       // backgroundColor: Colors.grey[300],
-                                    //       shape: RoundedRectangleBorder(
-                                    //         borderRadius:
-                                    //             BorderRadius.circular(6),
-                                    //       )),
-                                    //   child: context
-                                    //               .watch<ExpenseController>()
-                                    //               .cancelbtn ==
-                                    //           false
-                                    //       ? Text("Cancel",
-                                    //           textAlign: TextAlign.center,
-                                    //           style: theme.textTheme.bodySmall
-                                    //               ?.copyWith(
-                                    //             color: Colors.white,
-                                    //           ))
-                                    //       : CircularProgressIndicator(
-                                    //           color: theme.primaryColor),
-                                    // ),
                                     context
                                                 .read<ExpenseController>()
                                                 .isApprove ==
@@ -1968,8 +1873,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                             style: ElevatedButton.styleFrom(
                                                 fixedSize: const Size(150, 50),
                                                 foregroundColor: Colors.white,
-
-                                                // backgroundColor: Colors.grey[300],
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(6),
@@ -1991,7 +1894,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                       },
                                       style: ElevatedButton.styleFrom(
                                           fixedSize: const Size(150, 50),
-                                          // backgroundColor: Colors.grey[300],
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(6),
@@ -2023,8 +1925,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                   .read<ExpenseController>()
                                                   .clearSuspendedData(
                                                       context, theme);
-                                              //  context.read<ExpenseController>().insertExpense(
-                                              //       "suspend", context, theme);
                                             },
                                       style: ElevatedButton.styleFrom(
                                           fixedSize: const Size(150, 50),
@@ -2052,8 +1952,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                     .saveValuesTODB(
                                                         "hold", context, theme);
                                               });
-
-                                              // context.read<ExpenseController>().insertExpenseTable("hold", context, theme);
                                             },
                                       style: ElevatedButton.styleFrom(
                                           fixedSize: const Size(150, 50),
@@ -2084,10 +1982,6 @@ class _TabExpenseScreenState extends State<TabExpenseScreen> {
                                                     .read<ExpenseController>()
                                                     .pettyCashValidation(
                                                         context, theme);
-                                                // context
-                                                //     .read<ExpenseController>()
-                                                //     .insertExpenseTable(
-                                                //         "submit", context, theme);
                                               }
                                             },
                                       style: ElevatedButton.styleFrom(

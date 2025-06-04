@@ -9,11 +9,9 @@ import '../../../Models/ExpenseModel/paidfrom.dart';
 class MobScreen extends StatefulWidget {
   const MobScreen({
     super.key,
-    // required this.ExpenseCon,
   });
 
   @override
-  // ExpenseController ExpenseCon;
   State<MobScreen> createState() => _MobScreenState();
 }
 
@@ -46,16 +44,7 @@ class _MobScreenState extends State<MobScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        //width: Screens.width(context)*0.80,
-                        // padding: EdgeInsets.only(
-                        //     left: Screens.width(context) * 0.03,
-                        //     right: Screens.width(context) * 0.03),
-
-                        decoration: const BoxDecoration(
-                            // color: Colors.amber,
-                            // border: Border.all(
-                            //     color: theme.primaryColor, width: 1)
-                            ),
+                        decoration: const BoxDecoration(),
                         child: DropdownButtonFormField(
                           decoration: InputDecoration(
                               errorBorder: OutlineInputBorder(
@@ -185,8 +174,6 @@ class _MobScreenState extends State<MobScreen> {
                           return null;
                         },
                         decoration: InputDecoration(
-                          //     fillColor: Colors.grey[100],
-                          //   filled: true,
                           labelText: 'Paid to',
                           errorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -211,15 +198,8 @@ class _MobScreenState extends State<MobScreen> {
                         height: Screens.padingHeight(context) * 0.03,
                       ),
                       Container(
-                        //width: Screens.width(context)*0.80,
-                        // padding: EdgeInsets.only(
-                        //     left: Screens.width(context) * 0.03,
-                        //     right: Screens.width(context) * 0.03),
-                        // color: Colors.amber,
                         decoration: const BoxDecoration(),
-
                         child: DropdownButtonFormField<String>(
-                            //           hint: Text('Expense code'),
                             validator: (value) =>
                                 value == null ? 'field required' : null,
                             decoration: InputDecoration(
@@ -272,24 +252,6 @@ class _MobScreenState extends State<MobScreen> {
                       SizedBox(
                         height: Screens.padingHeight(context) * 0.03,
                       ), //dropdown
-
-                      //       Row(
-                      //         //mainAxisAlignment: MainAxisAlignment.center,
-
-                      //         children: [
-                      //           Text(
-                      //             'Rs.35000',
-                      //             style: theme.textTheme.bodyMedium
-                      //                 ?.copyWith(fontWeight: FontWeight.bold),
-                      //           ),
-                      //           SizedBox(
-                      //             width: Screens.width(context) * 0.03,
-                      //           ),
-                      //           Text('Main Cash',
-                      //               style: theme.textTheme.bodyMedium
-                      //                   ?.copyWith(fontWeight: FontWeight.bold)),
-                      //         ],
-                      //       ),
                     ],
                   ), //dropdown
 
@@ -298,7 +260,6 @@ class _MobScreenState extends State<MobScreen> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ElevatedButton(
                         onPressed: () {

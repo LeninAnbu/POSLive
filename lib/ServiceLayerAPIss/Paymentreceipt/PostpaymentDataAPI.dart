@@ -19,7 +19,7 @@ class ReceiptPostAPi {
   static List<PostPaymentCheck>? docPaymentChecks;
   static List<PostPaymentInvoice>? docPaymentInvoices;
   static List<PostPaymentCard>? docPaymentCards;
-  // static String? journalRemarks;
+
   static String? transferReference;
   static String? checkAccount;
   static String? transferAccount;
@@ -37,8 +37,7 @@ class ReceiptPostAPi {
       "CashAccount": cashAccount,
       "CashSum": cashSum,
       "DocType": docType,
-      "CounterReference": counterRef,
-      // 'Series': '$seriesType',
+      "Reference2": counterRef,
       "CheckAccount": checkAccount,
       "TransferAccount": transferAccount,
       "TransferSum": transferSum,
@@ -62,7 +61,7 @@ class ReceiptPostAPi {
         "CashSum": cashSum,
         "DocType": docType,
         "JournalRemarks": remarks,
-        // 'Series': '$seriesType',
+        "CounterReference": counterRef,
         "CheckAccount": checkAccount,
         "TransferAccount": transferAccount,
         "TransferSum": transferSum,
@@ -81,7 +80,6 @@ class ReceiptPostAPi {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
@@ -91,8 +89,8 @@ class ReceiptPostAPi {
           "CashSum": cashSum,
           "DocType": docType,
           "JournalRemarks": remarks,
+          "Reference2": counterRef,
           "CounterReference": counterRef,
-          // 'Series': '$seriesType',
           "CheckAccount": checkAccount,
           "TransferAccount": transferAccount,
           "TransferSum": transferSum,
@@ -116,8 +114,8 @@ class ReceiptPostAPi {
               "CashAccount": cashAccount,
               "CashSum": cashSum,
               "DocType": docType,
+              "Reference2": counterRef,
               "CounterReference": counterRef,
-              // 'Series': '$seriesType',
               "CheckAccount": checkAccount,
               "TransferAccount": transferAccount,
               "TransferSum": transferSum,
@@ -134,23 +132,20 @@ class ReceiptPostAPi {
             })}",
       );
       log("ReceiptPost statucCode: ${response.statusCode}");
-      // log("SapReceiptModel res: " + response.body.toString());
 
       if (response.statusCode >= 200 && response.statusCode <= 204) {
-        // final dynamic data = json.decode(response.body.toString());
         return SapReceiptModel.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
         log("SapReceiptModel res: " + response.body.toString());
 
-        // throw Exception('Restart the app or contact the admin!!..');
         return SapReceiptModel.issue(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);'Restart the app or contact the admin!!..\n'
+
       return SapReceiptModel.exception(e.toString(), 500);
     }
   }

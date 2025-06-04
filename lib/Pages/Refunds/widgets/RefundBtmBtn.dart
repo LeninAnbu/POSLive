@@ -33,12 +33,6 @@ class RefundBtmBtn extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // payController.getpaymentWay.isEmpty
-          //     ? Container(
-          //         color: Colors.red,
-          //         child: Text("getpaymentWay"),
-          //       )
-          //     :
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,10 +49,7 @@ class RefundBtmBtn extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // SizedBox(height:paymentHeight *0.02),
               SizedBox(
-                // color: Colors.green,
                 height: btnheight * 0.65,
                 child: ListView.builder(
                     itemCount:
@@ -75,11 +66,6 @@ class RefundBtmBtn extends StatelessWidget {
                                 bottom: btnheight * 0.03,
                                 top: btnheight * 0.03,
                               ),
-
-                              // decoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(5),
-                              //  // color: Colors.grey.withOpacity(0.04),
-                              // ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [
@@ -98,17 +84,14 @@ class RefundBtmBtn extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     width: btnWidth * 0.25,
-                                    // color: Colors.red,
                                     child: Text(
                                       '${context.watch<RefundController>().getpaymentWay[index].type}',
-                                      // '${posController.getpaymentWay[index].dateTime}',
                                       style: theme.textTheme.bodyMedium
                                           ?.copyWith(color: Colors.black),
                                     ),
                                   ),
                                   Container(
                                     width: btnWidth * 0.28,
-                                    // color: Colors.green,
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       context
@@ -118,13 +101,11 @@ class RefundBtmBtn extends StatelessWidget {
                                               null
                                           ? '${context.watch<RefundController>().getpaymentWay[index].reference}'
                                           : '',
-                                      // '${posController.getpaymentWay[index].type}',
                                       style: theme.textTheme.bodyMedium
                                           ?.copyWith(color: Colors.black),
                                     ),
                                   ),
                                   Container(
-                                    // color: Colors.red,
                                     alignment: Alignment.centerRight,
                                     child: Text(
                                       context
@@ -147,7 +128,6 @@ class RefundBtmBtn extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                       width: btnWidth * 0.05,
-                                      //  color: Colors.blue,
                                       child: const Icon(
                                         Icons.delete,
                                         color: Colors.red,
@@ -208,7 +188,6 @@ class RefundBtmBtn extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        // color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
                           color: theme.primaryColor,
@@ -227,7 +206,6 @@ class RefundBtmBtn extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        // color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
                           color: theme.primaryColor,
@@ -263,7 +241,6 @@ class RefundBtmBtn extends StatelessWidget {
                   context
                       .read<RefundController>()
                       .clearSuspendedData(context, theme);
-                  // context.read<RefundController>().clearpayData();
                 },
                 child: Container(
                   width: btnWidth * 0.2,

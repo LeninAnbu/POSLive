@@ -64,10 +64,13 @@ class CashCardAccDetailData {
   String uWalletAcc;
   String uCogsAcc;
   String uGlAcc;
+  String uDepAcct;
 
+//U_DepAcct\":\"_SYS00000001023
   CashCardAccDetailData({
     required this.uCashAcct,
     required this.uChequeAcct,
+    required this.uDepAcct,
     required this.uCogsAcc,
     required this.uGlAcc,
     required this.uCreditAcct,
@@ -84,6 +87,7 @@ class CashCardAccDetailData {
       uWalletAcc: jsons['U_WalletAcct'] ?? '',
       uCogsAcc: jsons['U_COGS_Account'] ?? '',
       uGlAcc: jsons['U_GL_Account'] ?? '',
+      uDepAcct: jsons['U_DepAcct'] ?? '',
 
       //
     );

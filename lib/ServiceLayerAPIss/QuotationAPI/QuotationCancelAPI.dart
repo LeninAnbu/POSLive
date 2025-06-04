@@ -12,7 +12,6 @@ class SerlayCancelQuoAPI {
 
 // /http://102.69.167.106:50001/b1s/v1/Quotations(48386)/Cancel
   static Future<Cancelmodel> getData(String sapDocEntry) async {
-    // Cancelmodel canlmdl = Cancelmodel();
     int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
@@ -34,14 +33,11 @@ class SerlayCancelQuoAPI {
       if (response.statusCode == 204) {
         return Cancelmodel.fromJson(response.body, response.statusCode);
       } else {
-        // print("SalesQuocancel Exception: Error");
-        // throw Exception("Error");
         return Cancelmodel.exception(json.decode(response.body), ressCode);
       }
     } catch (e) {
       log("QuotCancelException:: $e");
       throw Exception("Error");
-      // return Cancelmodel.exception(json.decode(e.toString()), ressCode!);
     }
   }
 }
@@ -58,9 +54,6 @@ class Cancelmodel {
 
   factory Cancelmodel.fromJson(dynamic jsons, int statuscode) {
     if (statuscode == 204) {
-      // var list = jsonDecode(jsons['data'] as String) as List;
-      // List<AccountBalanceModelData> dataList =
-      //     list.map((data) => AccountBalanceModelData.fromJson(data)).toList();
       log("jsonsjsons::$jsons");
       return Cancelmodel(
         statusCode: statuscode,

@@ -14,7 +14,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
   return AppBar(
     backgroundColor: theme.primaryColor,
     automaticallyImplyLeading: false,
-    // centerTitle: true,
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
@@ -26,14 +25,12 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
         );
       },
     ),
-    // toolbarHeight: Screens.padingHeight(context) * 0.08, // Set this height
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(titles),
       ],
     ),
-
     actions: [
       PopupMenuButton(itemBuilder: (context) {
         return [
@@ -114,7 +111,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4))),
                     contentPadding: const EdgeInsets.all(0),
-                    // backgroundColor: Colors.transparent,
                     insetPadding:
                         EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                     content: payController.onHoldFilter!.isEmpty
@@ -123,8 +119,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                             return SizedBox(
                               width: Screens.width(context),
                               child: Column(
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Container(
@@ -144,7 +138,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                                                 right: Screens.padingHeight(
                                                         context) *
                                                     0.02),
-                                            // color: Colors.red,
                                             width: Screens.width(context) * 0.7,
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -175,7 +168,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                                         ],
                                       ),
                                     ),
-
                                     Container(
                                       padding: EdgeInsets.symmetric(
                                           vertical:
@@ -256,7 +248,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                                                                     .padingHeight(
                                                                         context) *
                                                                 0.03),
-                                                        // height: custHeight * 0.2,
                                                         child: ListTile(
                                                           onTap: () {
                                                             showDialog(
@@ -275,8 +266,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                                                                       content: AlertBox(
                                                                           payMent: 'Alert',
                                                                           widget: Container(
-                                                                            // width:
-                                                                            //     Screens.width(context) * 0.6,
                                                                             padding:
                                                                                 EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.04, vertical: Screens.bodyheight(context) * 0.01),
                                                                             child:
@@ -373,8 +362,6 @@ AppBar payappbarMS(String titles, ThemeData theme, BuildContext context,
                                         ],
                                       ),
                                     ),
-
-                                    //  SizedBox(height:  Screens.padingHeight(context) * 0.09),
                                   ]),
                             );
                           }));

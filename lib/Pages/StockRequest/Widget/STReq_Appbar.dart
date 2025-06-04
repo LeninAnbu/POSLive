@@ -41,15 +41,7 @@ AppBar sReqAppbar(
                 context.read<StockReqController>().searchInitMethod();
 
                 await context.read<StockReqController>().callSearchReqApi();
-                // getSalesDataDatewise(
-                //     context.read<StockReqController>().config.alignDate(context
-                //         .read<StockReqController>()
-                //         .config
-                //         .currentDate()),
-                //     context.read<StockReqController>().config.alignDate(context
-                //         .read<StockReqController>()
-                //         .config
-                //         .currentDate()));
+
                 context.read<StockReqController>().loadSearch = false;
                 await showDialog(
                     context: context,
@@ -198,8 +190,6 @@ AppBar sReqAppbar(
                       .read<StockReqController>()
                       .callPrintApi(context, theme);
                 } else {
-                  // .mapCallOutwardForPDF(preff, context, theme);
-
                   showDialog(
                       context: context,
                       barrierDismissible: true,
@@ -215,21 +205,6 @@ AppBar sReqAppbar(
                             ));
                       });
                 }
-
-                // .mapCallOutwardForPDF(preff, context, theme);
-                // showDialog(
-                //     context: context,
-                //     barrierDismissible: true,
-                //     builder: (BuildContext context) {
-                //       return AlertDialog(
-                //           contentPadding: const EdgeInsets.all(0),
-                //           content: AlertBox(
-                //             payMent: 'Print',
-                //             buttonName: null,
-                //             widget: ContentContainer(
-                //                 content: "Print", theme: theme),
-                //           ));
-                //     });
               },
               child: Column(
                 children: [

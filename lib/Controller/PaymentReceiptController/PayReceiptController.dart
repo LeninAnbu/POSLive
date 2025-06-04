@@ -112,7 +112,7 @@ class PayreceiptController extends ChangeNotifier {
   String? sameInvNum;
   CustomerDetals? topselectedcust;
   CustomerDetals? get gettopselectedcust => topselectedcust;
-  // TextEditingController remarkcontroller3 = TextEditingController();
+
   CustomerDetals? selectedcust55;
   CustomerDetals? get getselectedcust55 => selectedcust55;
   CustomerDetals? selectedcust;
@@ -234,7 +234,7 @@ class PayreceiptController extends ChangeNotifier {
     newCustValues = [];
     selectedCustomer = 0;
     filtersearchData.clear();
-    // remarkcontroller3 = TextEditingController();
+
     searchData.clear();
     selectedBillAdress = 0;
     checkboxx = false;
@@ -721,7 +721,7 @@ class PayreceiptController extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: '', //mycontroller[10].text,
+        country: '',
         state: '',
         street: '',
         zipCode: mycontroller[13].text,
@@ -732,8 +732,8 @@ class PayreceiptController extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: '', //mycontroller[20].text,
-        state: '', //mycontroller[19].text,
+        country: '',
+        state: '',
         street: '',
         zipCode: mycontroller[18].text,
       ),
@@ -1072,9 +1072,9 @@ class PayreceiptController extends ChangeNotifier {
                   address2: csadresdataDB[k].address2,
                   address3: csadresdataDB[k].address3,
                   custcode: csadresdataDB[k].custcode,
-                  billCity: csadresdataDB[k].city!, //city
-                  billCountry: csadresdataDB[k].countrycode!, //country
-                  billPincode: csadresdataDB[k].pincode!, //pinno
+                  billCity: csadresdataDB[k].city!,
+                  billCountry: csadresdataDB[k].countrycode!,
+                  billPincode: csadresdataDB[k].pincode!,
                   billstate: csadresdataDB[k].statecode)
             ];
           }
@@ -1086,9 +1086,9 @@ class PayreceiptController extends ChangeNotifier {
                   address2: csadresdataDB[k].address2,
                   address3: csadresdataDB[k].address3,
                   custcode: csadresdataDB[k].custcode,
-                  billCity: csadresdataDB[k].city!, //city
-                  billCountry: csadresdataDB[k].countrycode!, //country
-                  billPincode: csadresdataDB[k].pincode!, //pinno
+                  billCity: csadresdataDB[k].city!,
+                  billCountry: csadresdataDB[k].countrycode!,
+                  billPincode: csadresdataDB[k].pincode!,
                   billstate: csadresdataDB[k].statecode)
             ];
           }
@@ -1199,12 +1199,12 @@ class PayreceiptController extends ChangeNotifier {
   billToShip(bool dat) {
     notifyListeners();
     if (checkboxx == true) {
-      mycontroller[14].text = mycontroller[7].text; //bill add1
-      mycontroller[15].text = mycontroller[8].text; //bill add2
-      mycontroller[16].text = mycontroller[9].text; //bill add3
-      mycontroller[17].text = mycontroller[10].text; //city
-      mycontroller[18].text = mycontroller[11].text; //pin
-      mycontroller[19].text = mycontroller[12].text; //state
+      mycontroller[14].text = mycontroller[7].text;
+      mycontroller[15].text = mycontroller[8].text;
+      mycontroller[16].text = mycontroller[9].text;
+      mycontroller[17].text = mycontroller[10].text;
+      mycontroller[18].text = mycontroller[11].text;
+      mycontroller[19].text = mycontroller[12].text;
       mycontroller[20].text = mycontroller[13].text;
     } else {
       mycontroller[14].clear();
@@ -1220,13 +1220,13 @@ class PayreceiptController extends ChangeNotifier {
   shipToBill(bool dat) {
     notifyListeners();
     if (checkboxx == true) {
-      mycontroller[7].text = mycontroller[14].text; //bill add1
-      mycontroller[8].text = mycontroller[15].text; //bill add2
-      mycontroller[9].text = mycontroller[16].text; //bill add3
-      mycontroller[10].text = mycontroller[17].text; //city
-      mycontroller[11].text = mycontroller[18].text; //pin
-      mycontroller[12].text = mycontroller[19].text; //state
-      mycontroller[13].text = mycontroller[20].text; //country
+      mycontroller[7].text = mycontroller[14].text;
+      mycontroller[8].text = mycontroller[15].text;
+      mycontroller[9].text = mycontroller[16].text;
+      mycontroller[10].text = mycontroller[17].text;
+      mycontroller[11].text = mycontroller[18].text;
+      mycontroller[12].text = mycontroller[19].text;
+      mycontroller[13].text = mycontroller[20].text;
     } else {
       mycontroller[7].clear();
       mycontroller[8].clear();
@@ -1488,9 +1488,8 @@ class PayreceiptController extends ChangeNotifier {
       address1: mycontroller[14].text,
       address2: mycontroller[15].text,
       address3: mycontroller[16].text,
-
       billCity: mycontroller[10].text,
-      billCountry: mycontroller[13].text, //'ind'
+      billCountry: mycontroller[13].text,
       billPincode: mycontroller[11].text,
       billstate: mycontroller[12].text,
     ));
@@ -1653,8 +1652,8 @@ class PayreceiptController extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: "TZ", //mycontroller[13].text,
-        state: '', //mycontroller[12].text,
+        country: "TZ",
+        state: '',
         street: '',
         zipCode: mycontroller[11].text,
       ),
@@ -1703,7 +1702,7 @@ class PayreceiptController extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: "TZ", //mycontroller[20].text,
+        country: "TZ",
         state: '',
         street: '',
         zipCode: mycontroller[18].text,
@@ -1754,8 +1753,8 @@ class PayreceiptController extends ChangeNotifier {
         addressName3: mycontroller[9].text,
         addressType: 'bo_BillTo',
         city: mycontroller[10].text,
-        country: "TZ", //mycontroller[13].text,
-        state: '', //mycontroller[12].text,
+        country: "TZ",
+        state: '',
         street: '',
         zipCode: mycontroller[11].text,
       ),
@@ -1765,7 +1764,7 @@ class PayreceiptController extends ChangeNotifier {
         addressName3: mycontroller[16].text,
         addressType: 'bo_ShipTo',
         city: mycontroller[17].text,
-        country: "TZ", //mycontroller[20].text,
+        country: "TZ",
         state: '',
         street: '',
         zipCode: mycontroller[18].text,
@@ -1861,7 +1860,6 @@ class PayreceiptController extends ChangeNotifier {
           csadresdataDB[ia]['custcode'].toString()) {
         if (csadresdataDB[ia]['addresstype'].toString() == "S") {
           selectedcust55!.address!.add(
-            //autoid
             Address(
               autoId: int.parse(csadresdataDB[ia]['autoid'].toString()),
               addresstype: csadresdataDB[ia]['addresstype'].toString(),
@@ -3864,12 +3862,9 @@ class PayreceiptController extends ChangeNotifier {
             totalTX: double.parse(getDBholddata1[i]['taxamount'] == null
                 ? '0'
                 : getDBholddata1[i]['taxamount'].toString()),
-
             subtotal: double.parse(getDBholddata1[i]['docbasic'] == null
                 ? '0'
-                : getDBholddata1[i]['docbasic']
-                    .toString()
-                    .replaceAll(',', '')), //doctotal
+                : getDBholddata1[i]['docbasic'].toString().replaceAll(',', '')),
             discount2: double.parse(getDBholddata1[i]['docdiscamt'] != null
                 ? getDBholddata1[i]['docdiscamt'].toString()
                 : '0'),
@@ -3985,13 +3980,12 @@ class PayreceiptController extends ChangeNotifier {
                 getDBholdPayReceiptLine22[ik]['taxamount'] == null
                     ? '0'
                     : getDBholdPayReceiptLine22[ik]['taxamount'].toString()),
-
             subtotal: double.parse(
                 getDBholdPayReceiptLine22[ik]['docbasic'] == null
                     ? '0'
                     : getDBholdPayReceiptLine22[ik]['docbasic']
                         .toString()
-                        .replaceAll(',', '')), //doctotal
+                        .replaceAll(',', '')),
             discount2: double.parse(
                 getDBholdPayReceiptLine22[ik]['docdiscamt'] != null
                     ? getDBholdPayReceiptLine22[ik]['docdiscamt'].toString()
@@ -4000,7 +3994,6 @@ class PayreceiptController extends ChangeNotifier {
                 getDBholdPayReceiptLine22[ik]['docdiscamt'] != null
                     ? getDBholdPayReceiptLine22[ik]['docdiscamt'].toString()
                     : '0'),
-
             totalDue: double.parse(
                 getDBholdPayReceiptLine22[ik]['doctotal'] == null
                     ? '0'
@@ -4067,7 +4060,7 @@ class PayreceiptController extends ChangeNotifier {
     List<ReceiptHeaderTDB> receiptHeader = [];
     List<ReceiptLineTDB> receiptLine1 = [];
     List<ReceiptLine2TDB> receiptLine2 = [];
-    final Database db = (await DBHelper.getInstance())!; //
+    final Database db = (await DBHelper.getInstance())!;
     int? counofData =
         await DBOperation.getcountofTable(db, "docentry", "ReceiptHeader");
     int? docEntryCreated = 0;
@@ -4467,13 +4460,6 @@ class PayreceiptController extends ChangeNotifier {
         referencemycontroller[5].text +
         " " +
         wallwtType;
-    // ReceiptPostAPi.journalRemarks = mycontroller[50].text +
-    //     " " +
-    //     mycontroller[32].text +
-    //     " " +
-    //     mycontroller[33].text +
-    //     " " +
-    //     wallwtType;
 
     for (int i = 0; i < paymentWay.length; i++) {
       if (paymentWay[i].type == 'Cash') {
@@ -4832,22 +4818,18 @@ class PayreceiptController extends ChangeNotifier {
       "ReceiptPay": receiptPAY,
     });
 //log("payload11 : $ddd");
-    //RabitMQ
+
     ConnectionSettings settings = ConnectionSettings(
-        host: AppConstant.ip.toString().trim(), //"102.69.167.106"
-        //"102.69.167.106"
-        //AppConstant.ip
+        host: AppConstant.ip.toString().trim(),
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
 
     MessageProperties properties = MessageProperties();
 
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
-
-    //cs
 
     properties.headers = {"Branch": "Server"};
     exchange.publish(ddd, "", properties: properties);
@@ -4873,12 +4855,9 @@ class PayreceiptController extends ChangeNotifier {
       "ReceiptPay": receiptPAY,
     });
 //log("payload22 :$ddd");
-    //RabitMQ
 
     ConnectionSettings settings = ConnectionSettings(
-        host: AppConstant.ip.toString().trim(), //"102.69.167.106"
-        //"102.69.167.106"
-        //AppConstant.ip
+        host: AppConstant.ip.toString().trim(),
         port: 5672,
         authProvider: const PlainAuthenticator("buson", "BusOn123"));
     Client client1 = Client(settings: settings);
@@ -4886,12 +4865,10 @@ class PayreceiptController extends ChangeNotifier {
     MessageProperties properties = MessageProperties();
 
     properties.headers = {"Branch": UserValues.branch};
-    Channel channel = await client1.channel(); //Server_CS
+    Channel channel = await client1.channel();
     Exchange exchange =
         await channel.exchange("POS", ExchangeType.HEADERS, durable: true);
     exchange.publish(ddd, "", properties: properties);
-
-    //cs
 
     client1.close();
   }

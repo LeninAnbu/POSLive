@@ -42,14 +42,12 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  // behavior: HitTestBehavior.translucent,
                   onTap: () {
                     paycon.nullErrorMsg();
 
@@ -84,14 +82,11 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(4))),
                                       contentPadding: const EdgeInsets.all(0),
-                                      // backgroundColor: Colors.transparent,
                                       insetPadding: EdgeInsets.all(
                                           Screens.bodyheight(context) * 0.02),
                                       content: forCashDialog(
                                           context, paycon, theme));
-                                  // forCashConfirm(context, paycon theme));
                                 });
-                    // }
                   },
                   child: Container(
                       alignment: Alignment.center,
@@ -103,7 +98,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                       height: Screens.padingHeight(context) * 0.08,
                       width: Screens.width(context) * 0.3,
                       decoration: BoxDecoration(
-                        // color: Colors.red,
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -163,8 +157,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               })
                           : paycon.getselectedcust == null
                               ? paycon.foraccselect(context, theme, "")
-                              // : paycon.totalduepay == 0
-                              //     ? paycon.foracctotaldue(context, theme)
                               : showDialog(
                                   context: context,
                                   barrierDismissible: false,
@@ -174,7 +166,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(4))),
                                       contentPadding: const EdgeInsets.all(0),
-                                      // backgroundColor: Colors.transparent,
                                       insetPadding: EdgeInsets.all(
                                           Screens.bodyheight(context) * 0.02),
                                       content:
@@ -192,7 +183,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                         height: Screens.padingHeight(context) * 0.08,
                         width: Screens.width(context) * 0.3,
                         decoration: BoxDecoration(
-                          // color: Colors.yellow,
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -216,7 +206,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               ),
                             ]))),
                 GestureDetector(
-                    // behavior: HitTestBehavior.translucent,
                     onTap: () {
                       paycon.nullErrorMsg();
 
@@ -242,8 +231,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               })
                           : paycon.getselectedcust == null
                               ? paycon.foraccselect(context, theme, "")
-                              // : paycon.totalduepay == 0
-                              // ? paycon.foracctotaldue(context, theme)
                               : showDialog(
                                   context: context,
                                   barrierDismissible: false,
@@ -253,24 +240,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(4))),
                                       contentPadding: const EdgeInsets.all(0),
-                                      // backgroundColor: Colors.transparent,
                                       insetPadding: EdgeInsets.all(
                                           Screens.bodyheight(context) * 0.02),
                                       content: forCard(context, "Card", paycon),
-                                      // AlertBox(
-                                      //   callback: () {
-                                      //     st(
-                                      //       () {
-                                      //         prdCD.addEnteredAmtType(
-                                      //             'Card', context, 3, theme);
-                                      //       },
-                                      //     );
-                                      //   },
-                                      //   payMent: 'Payment Mode - Card',
-                                      //   widget:
-                                      //       forCard(context, "Card", prdCD),
-                                      //   buttonName: 'OK',
-                                      // )
                                     );
                                   });
                     },
@@ -284,7 +256,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                         height: Screens.padingHeight(context) * 0.08,
                         width: Screens.width(context) * 0.3,
                         decoration: BoxDecoration(
-                          // color: Colors.red,
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -315,8 +286,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             ]))),
               ],
             ),
-            //
-            //
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -346,8 +315,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               })
                           : paycon.getselectedcust == null
                               ? paycon.foraccselect(context, theme, "")
-                              // : paycon.totalduepay == 0
-                              //     ? paycon.foracctotaldue(context, theme)
                               : showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -358,21 +325,10 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(4))),
                                         contentPadding: const EdgeInsets.all(0),
-                                        // backgroundColor: Colors.transparent,
                                         insetPadding: EdgeInsets.all(
                                             Screens.bodyheight(context) * 0.02),
                                         content:
                                             forwallet(context, paycon, theme),
-                                        // AlertBox(
-                                        //     callback: () {
-                                        //       st(() {
-                                        //         prdCD.addEnteredAmtType(
-                                        //             'Wallet', context, 5, theme);
-                                        //       });
-                                        //     },
-                                        //     payMent: 'Payment Mode - Wallet',
-                                        //     widget: forwallet(context, prdCD,theme),
-                                        //     buttonName: 'OK')
                                       );
                                     });
                                   });
@@ -387,7 +343,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                         height: Screens.padingHeight(context) * 0.08,
                         width: Screens.width(context) * 0.3,
                         decoration: BoxDecoration(
-                          // color: Colors.red,
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -418,7 +373,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               ),
                             ]))),
                 GestureDetector(
-                    // behavior: HitTestBehavior.translucent,
                     onTap: () {
                       paycon.nullErrorMsg();
 
@@ -444,8 +398,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               })
                           : paycon.getselectedcust == null
                               ? paycon.foraccselect(context, theme, "")
-                              // : paycon.totalduepay == 0
-                              //     ? paycon.foracctotaldue(context, theme)
                               : showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -456,21 +408,10 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(4))),
                                         contentPadding: const EdgeInsets.all(0),
-                                        // backgroundColor: Colors.transparent,
                                         insetPadding: EdgeInsets.all(
                                             Screens.bodyheight(context) * 0.02),
                                         content:
                                             forTransfer(context, paycon, theme),
-                                        // AlertBox(
-                                        //     callback: () {
-                                        //       st(() {
-                                        //         prdCD.addEnteredAmtType(
-                                        //             'Transfer', context, 4, theme);
-                                        //       });
-                                        //     },
-                                        //     payMent: 'Payment Mode - Transfer',
-                                        //     widget: forTransfer(context, prdCD,theme),
-                                        //     buttonName: 'OK')
                                       );
                                     });
                                   });
@@ -485,7 +426,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                         height: Screens.padingHeight(context) * 0.08,
                         width: Screens.width(context) * 0.3,
                         decoration: BoxDecoration(
-                          //  color: Colors.blue,
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -544,8 +484,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                   })
                               : paycon.getselectedcust == null
                                   ? paycon.foraccselect(context, theme, "")
-                                  // : paycon.totalduepay == 0
-                                  //     ? paycon.foracctotaldue(context, theme)
                                   : showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
@@ -560,23 +498,11 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                                                   4))),
                                               contentPadding:
                                                   const EdgeInsets.all(0),
-                                              // backgroundColor: Colors.transparent,
                                               insetPadding: EdgeInsets.all(
                                                   Screens.bodyheight(context) *
                                                       0.02),
                                               content:
-                                                  forCoupons(context, paycon)
-                                              //  AlertBox(
-                                              //     callback: () {
-                                              //       st(() {
-                                              //         prdCD.addEnteredAmtType(
-                                              //             'Coupons', context, 7, theme);
-                                              //       });
-                                              //     },
-                                              //     payMent: 'Payment Mode - Coupons',
-                                              //     widget: forCoupons(context, prdCD),
-                                              //     buttonName: 'OK')
-                                              );
+                                                  forCoupons(context, paycon));
                                         });
                                       });
                         },
@@ -590,7 +516,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             height: Screens.padingHeight(context) * 0.08,
                             width: Screens.width(context) * 0.3,
                             decoration: BoxDecoration(
-                              // color: Colors.red,
                               color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(5),
                             ),
@@ -625,22 +550,11 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                       ),
               ],
             ),
-            //
-            //
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-
-            //   ],
-            // ),
-            // //
-            //
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 paycon.getScanneditemData.isNotEmpty
                     ? GestureDetector(
-                        // behavior: HitTestBehavior.translucent,
                         onTap: () {
                           paycon.nullErrorMsg();
 
@@ -668,12 +582,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                 .getselectedcust!.point
                                 .toString()
                                 .replaceAll(",", "");
-                            //  posController.getselectedcust!.point!;
 
                             paycon.getselectedcust == null
                                 ? paycon.foraccselect(context, theme, "")
-                                // : paycon.totalduepay == 0
-                                //     ? paycon.foracctotaldue(context, theme)
                                 : showDialog(
                                     context: context,
                                     barrierDismissible: true,
@@ -683,7 +594,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(4))),
                                         contentPadding: const EdgeInsets.all(0),
-                                        // backgroundColor: Colors.transparent,
                                         insetPadding: EdgeInsets.all(
                                             Screens.bodyheight(context) * 0.02),
                                         content: forPoints(context, paycon),
@@ -701,7 +611,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             height: Screens.padingHeight(context) * 0.08,
                             width: Screens.width(context) * 0.3,
                             decoration: BoxDecoration(
-                              // color: Colors.red,
                               color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(5),
                             ),
@@ -710,115 +619,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                     ?.copyWith(color: Colors.black))),
                       )
                     : Container(),
-                // GestureDetector(
-                //     onTap: () {
-                //       paycon.nullErrorMsg();
-                //       paycon.onAccPayment != 0
-                //           ? paycon.mycontroller[55].text =
-                //               paycon.onAccPayment.toString().replaceAll(",", "")
-                //           : paycon.mycontroller[55].text = Paycon
-                //               .getselectedcust!.accBalance
-                //               .toString()
-                //               .replaceAll(",", "");
-                //       paycon.getselectedcust == null
-                //           ? paycon.foraccselect(context, theme, "")
-                //           // : paycon.totalduepay == 0
-                //           // ? paycon.foracctotaldue(context, theme)
-                //           : showDialog(
-                //               context: context,
-                //               builder: (BuildContext context) {
-                //                 return AlertDialog(
-                //                     contentPadding: EdgeInsets.all(0),
-                //                     content: AlertBox(
-                //                         callback: () {
-                //                           paycon.addEnteredAmtType(
-                //                               'Account Balance',
-                //                               context,
-                //                               9,
-                //                               theme);
-                //                         },
-                //                         payMent: 'Account Balance',
-                //                         widget: forAccBal(context, paycon),
-                //                         buttonName: 'Accept'));
-                //               });
-                //       // paycon.onAccPayment != 0
-                //       //     ? paycon.mycontroller[55].text =
-                //       //         paycon.onAccPayment.toString()
-                //       //                       .replaceAll(",", "")
-                //       //     :
-                //       // paycon.mycontroller[55].text = paycon.getselectedcust!.accBalance
-                //       //                       .toString()
-                //       //                       .replaceAll(",", "");
-                //       // paycon.getselectcust!.accBalance.toString();
-                //     },
-                //     child: Container(
-                //         alignment: Alignment.center,
-                //         padding: EdgeInsets.only(
-                //             top: Screens.padingHeight(context) * 0.01,
-                //             left: Screens.width(context) * 0.01,
-                //             right: Screens.width(context) * 0.01,
-                //             bottom: Screens.padingHeight(context) * 0.01),
-                //         height: Screens.padingHeight(context) * 0.08,
-                //         width: Screens.width(context) * 0.3,
-                //         decoration: BoxDecoration(
-                //           // color: Colors.red,
-                //           color: Colors.grey[200],
-                //           borderRadius: BorderRadius.circular(5),
-                //         ),
-                //         child: Text("Account Balance",
-                //             style: theme.textTheme.bodyText2
-                //                 ?.copyWith(color: Colors.black)))),
-                // GestureDetector(
-                //     onTap: () {
-                //       paycon.nullErrorMsg();
-
-                //       paycon.getselectedcust == null
-                //           ? paycon.foraccselect(context, theme, "")
-                //           : showDialog(
-                //               context: context,
-                //               barrierDismissible: false,
-                //               builder: (BuildContext context) {
-                //                 return StatefulBuilder(builder: (context, st) {
-                //                   return AlertDialog(
-                //                       contentPadding: EdgeInsets.all(0),
-                //                       content: AlertBox(
-                //                         callback: () {
-                //                           st(
-                //                             () {
-                //                               // paycon.forOnAccPaid(
-                //                               //   'On Account',
-                //                               //   context,
-                //                               //   theme,
-                //                               //   10,
-                //                               // );
-                //                             },
-                //                           );
-                //                         },
-                //                         payMent: 'Payment Mode - On Account',
-                //                         widget:
-                //                             forOnAcc(context, theme, paycon),
-                //                         buttonName: 'Accept',
-                //                       ));
-                //                 });
-                //               });
-                //     },
-                //     child: Container(
-                //         alignment: Alignment.center,
-                //         padding: EdgeInsets.only(
-                //             top: Screens.padingHeight(context) * 0.01,
-                //             left: Screens.width(context) * 0.01,
-                //             right: Screens.width(context) * 0.01,
-                //             bottom: Screens.padingHeight(context) * 0.01),
-                //         height: Screens.padingHeight(context) * 0.08,
-                //         width: Screens.width(context) * 0.3,
-                //         decoration: BoxDecoration(
-                //           // color: Colors.red,
-                //           color: Colors.grey[200],
-                //           borderRadius: BorderRadius.circular(5),
-                //         ),
-                //         child: Text("On Account",
-                //             style: theme.textTheme.bodyText2
-                //                 ?.copyWith(color: Colors.black)))),
               ],
             ),
           ],
@@ -852,7 +652,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.4,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -929,7 +728,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(4))),
                                 contentPadding: const EdgeInsets.all(0),
-                                // backgroundColor: Colors.transparent,
                                 insetPadding: EdgeInsets.all(
                                     Screens.bodyheight(context) * 0.02),
                                 content: forCashDialog(context, posC, theme),
@@ -984,7 +782,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -1011,7 +808,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                 ],
               ),
             ),
-
             SizedBox(
                 height: posC.getmsgforAmount == null
                     ? 0
@@ -1040,7 +836,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                   controller: posC.mycontroller[22],
                   cursorColor: Colors.grey,
                   keyboardType: TextInputType.number,
-                  // textInputAction: TextInputAction.,
                   onChanged: (v) {},
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -1070,8 +865,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     hintStyle: theme.textTheme.bodyMedium
                         ?.copyWith(color: Colors.grey),
                     filled: false,
-                    // enabledBorder: InputBorder.none,
-                    // focusedBorder: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 25,
@@ -1080,28 +873,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                 ),
               ),
             ),
-            // SizedBox(height: cashHeight * 0.1),
-            // Container(
-            //   alignment: Alignment.centerRight,
-            //   child: GestureDetector(
-            //       onTap: () {
-            //         st(() {
-            //           posC.addEnteredAmtType('Cash', context, 1);
-            //         });
-            //       },
-            //       child: Container(
-            //         alignment: Alignment.center,
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(5),
-            //             border: Border.all(color: Colors.red)),
-            //         height: cashHeight * 0.2,
-            //         width: cashWidth * 0.18,
-            //         child: Text("OK",
-            //             style: theme.textTheme.bodyText2?.copyWith(
-            //               color: Colors.red,
-            //             )),
-            //       )),
-            // ),
             SizedBox(height: Screens.padingHeight(context) * 0.01),
             InkWell(
               onTap: () {
@@ -1147,7 +918,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
             bottom: Screens.padingHeight(context) * 0.01),
         child: SingleChildScrollView(
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1162,7 +932,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.width(context) * 0.02,
                           right: Screens.width(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -1213,7 +982,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                         children: [
                           Container(
                             alignment: Alignment.centerLeft,
-                            // height: cashHeight * 0.1,
                             width: Screens.width(context) * 0.3,
                             child: Text(
                               "Payment Terminal",
@@ -1223,7 +991,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           SizedBox(
                               height: Screens.padingHeight(context) * 0.01),
                           Container(
-                            // height: cashHeight * 0.24,
                             width: Screens.width(context) * 0.6,
                             padding: EdgeInsets.only(
                               left: Screens.width(context) * 0.01,
@@ -1273,11 +1040,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           Container(
                             width: Screens.width(context) * 0.3,
                             alignment: Alignment.centerLeft,
-                            // width: Screens.width(context) * 0.05,
                             child: const Text("Approval No"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1335,7 +1100,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             child: const Text("Card Reference"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1394,9 +1158,7 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  //width: Screens.width(context) * 0.3,
                                   alignment: Alignment.centerLeft,
-                                  // height: cashHeight * 0.1,
                                   child: const Text("Amount"),
                                 ),
                                 IconButton(
@@ -1412,7 +1174,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -1527,7 +1288,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -1570,12 +1330,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
-                              // width: Screens.width(context) * 0.18,
                               child: const Text("Cheque No"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1631,11 +1388,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Cheque Date"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1715,7 +1470,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                 children: [
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    // height: cashHeight * 0.1,
                                     child: const Text("Amount"),
                                   ),
                                   InkWell(
@@ -1732,7 +1486,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1753,9 +1506,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                   }
                                 },
                                 decoration: InputDecoration(
-                                  // hintText: posController.boolCash == true
-                                  //     ? '${posController.getBalancePaid().toStringAsFixed(2)}'
-                                  //     : '',
                                   filled: false,
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5),
@@ -1792,11 +1542,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              // height: cashHeight * 0.1,
                               child: const Text("Remarks"),
                             ),
                             Container(
-                              // height: cashHeight * 0.2,
                               width: Screens.width(context) * 0.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
@@ -1808,13 +1556,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                 cursorColor: Colors.grey,
                                 style: theme.textTheme.bodyMedium?.copyWith(),
                                 onChanged: (v) {},
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return '  Please Enter the Remark';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
                                 decoration: InputDecoration(
                                   filled: false,
                                   focusedErrorBorder: OutlineInputBorder(
@@ -1837,8 +1578,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                                     borderSide:
                                         const BorderSide(color: Colors.grey),
                                   ),
-                                  // enabledBorder: InputBorder.none,
-                                  // focusedBorder: InputBorder.none,
                                   contentPadding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                     horizontal: 10,
@@ -1875,7 +1614,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                   ),
                 ),
               )
-              // ),
             ],
           ),
         ),
@@ -1908,7 +1646,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02,
                           right: Screens.padingHeight(context) * 0.02),
-                      // color: Colors.red,
                       width: Screens.width(context) * 0.7,
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -2017,7 +1754,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             child: const Text("Waller ID"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -2073,11 +1809,9 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           Container(
                             width: Screens.width(context) * 0.3,
                             alignment: Alignment.centerLeft,
-                            // width: Screens.width(context) * 0.05,
                             child: const Text("Payment Reference"),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -2137,7 +1871,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                               children: [
                                 Container(
                                   alignment: Alignment.centerLeft,
-                                  // height: cashHeight * 0.1,
                                   child: const Text("Amount"),
                                 ),
                                 IconButton(
@@ -2153,7 +1886,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -2264,7 +1996,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -2373,7 +2104,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Trans Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2431,7 +2161,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -2448,7 +2177,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2556,7 +2284,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -2621,37 +2348,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(3),
                             color: Colors.grey.withOpacity(0.01),
                           ),
-                          // child: DropdownButtonHideUnderline(
-                          // child: DropdownButton(
-                          //   focusColor: Colors.white,
-                          //   hint: Text(
-                          //     'Select Coupons  Type',
-                          //     style: TextStyle(
-                          //       fontSize: 14,
-                          //       color: posC.gethintcolor == false
-                          //           ? Colors.grey
-                          //           : Colors.red,
-                          //     ),
-                          //   ),
-                          //   items: posC.getcouponlist
-                          //       .map((item) => DropdownMenuItem<String>(
-                          //             value: item,
-                          //             child: Text(
-                          //               item,
-                          //               style: const TextStyle(
-                          //                 fontSize: 14,
-                          //               ),
-                          //             ),
-                          //           ))
-                          //       .toList(),
-                          //   value: posC.coupon,
-                          //   onChanged: (value) {
-                          //     st(() {
-                          //       posC.coupon = value;
-                          //     });
-                          //   },
-                          // ),
-                          // ),
                         ),
                       ],
                     ),
@@ -2665,7 +2361,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Coupon Code"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2723,7 +2418,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -2738,7 +2432,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2848,7 +2541,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.width(context) * 0.01,
                         right: Screens.width(context) * 0.01),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.75,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -2904,7 +2596,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Available Points"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -2916,15 +2607,7 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             cursorColor: Colors.grey,
                             style: theme.textTheme.bodyMedium?.copyWith(),
                             onChanged: (v) {},
-                            // validator: (value) {
-                            //   if (value!.isEmpty) {
-                            //     return ' Please Enter the Available Points';
-                            //   } else {
-                            //     return null;
-                            //   }
-                            // },
                             decoration: InputDecoration(
-                              // hintText: posC.getselectedcust!.point,
                               filled: false,
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -2963,7 +2646,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Points to Redeem"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3048,7 +2730,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -3061,7 +2742,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3176,7 +2856,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -3285,7 +2964,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Discount Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3343,7 +3021,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -3358,7 +3035,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3467,7 +3143,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.7,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -3523,7 +3198,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Credit Reference"),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
@@ -3580,11 +3254,8 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           child: const Text("Recovery Date"),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            // posC.getDate(context);
-                          },
+                          onTap: () {},
                           child: Container(
-                            // height: cashHeight * 0.2,
                             width: Screens.width(context) * 0.6,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
@@ -3651,7 +3322,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                // height: cashHeight * 0.1,
                                 child: const Text("Amount"),
                               ),
                               IconButton(
@@ -3666,7 +3336,6 @@ class PayReceipt_PayTypeWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // height: cashHeight * 0.2,
                           width: Screens.width(context) * 0.6,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),

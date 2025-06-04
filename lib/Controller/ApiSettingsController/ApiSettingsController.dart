@@ -22,7 +22,6 @@ import '../../Service/StockSnapApi.dart';
 
 class ApiSettingsController extends ChangeNotifier {
   init() {
-    // reievervb();
     clearAllData();
 
     getqueueDetails();
@@ -45,11 +44,9 @@ class ApiSettingsController extends ChangeNotifier {
   String? queueName;
   String? countOfCounsumer;
   getqueueDetails() async {
-    // await SharedPref.getConsumerCount();
-    // await SharedPref.getQueueName();
     queueName = "";
     countOfCounsumer = "";
-    // log(qname.toString());
+
     queueName = await SharedPref.getQueueName();
     countOfCounsumer = await SharedPref.getConsumerCount();
 
@@ -69,28 +66,26 @@ class ApiSettingsController extends ChangeNotifier {
     notifyListeners();
   }
 
-//ItemMaster Api-StockSnap Table
   int itemMasterCount = 0;
   int get getitemMasterCount => itemMasterCount;
   bool progressItemMaster = false;
   bool get getprogressItemMaster => progressItemMaster;
 
-//Product Master Api - ItemMaster Table
   int productMasterCount = 0;
   int get getproductMasterCount => productMasterCount;
   bool progressProductMaster = false;
   bool get getprogressProductMaster => progressProductMaster;
-//branch Master Api - BranchMaster Table
+
   int branchMasterCount = 0;
   int get getBranchMasterCount => branchMasterCount;
   bool progressBranchMaster = false;
   bool get getprogressBranchMaster => progressBranchMaster;
-//customer Master Api - customerMaster Table
+
   int customerMasterCount = 0;
   int get getCustomerMasterCount => customerMasterCount;
   bool progressCustomerMaster = false;
   bool get getprogressCustomerMaster => progressCustomerMaster;
-//customerAddress Master Api - customerAddressMaster Table
+
   int customerAddressMasterCount = 0;
   int get getCustomerAddressMasterCount => customerAddressMasterCount;
   bool progressCustomerAddressMaster = false;
@@ -107,19 +102,15 @@ class ApiSettingsController extends ChangeNotifier {
 
     itemMasterCount = (await DBOperation.getItemMasterCount(db))!;
 
-    // List<ItemMasterModelDB> productmaster =
-    //     await DBOperation.getItemMasterData(db);
     List<Map<String, Object?>> getItemMaster =
         await DBOperation.getItemMasterData2(db);
     productMasterCount = getItemMaster.length;
 
-    //  (await DBOperation.getProductMasterCount(db))!;
     branchMasterCount = (await DBOperation.getBranchMasterCount(db))!;
 
     List<CustomerModelDB> newcusdataDB = await DBOperation.getCstmMasDB(db);
     customerMasterCount = newcusdataDB.length;
 
-    // (await DBOperation.getCustomerMasterCount(db))!;
     customerAddressMasterCount =
         (await DBOperation.getCustomerAddressMasterCount(db))!;
     notifyListeners();
@@ -171,7 +162,7 @@ class ApiSettingsController extends ChangeNotifier {
               uPackSizeuom: value.stocksnapitemdata![i].uPackSizeuom.toString(),
             ));
           }
-          // percent = 0.1;
+
           notifyListeners();
         } else if (value.stocksnapitemdata == null) {
           var snackBar = SnackBar(
@@ -180,7 +171,6 @@ class ApiSettingsController extends ChangeNotifier {
               backgroundColor: Colors.grey,
               behavior: SnackBarBehavior.floating,
               duration: const Duration(seconds: 1),
-              // duration: Duration(seconds: 2),
               content: Text('${value.exception}..'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           progressItemMaster = false;
@@ -192,7 +182,6 @@ class ApiSettingsController extends ChangeNotifier {
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         progressItemMaster = false;
@@ -203,7 +192,6 @@ class ApiSettingsController extends ChangeNotifier {
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
@@ -231,16 +219,6 @@ class ApiSettingsController extends ChangeNotifier {
         '',
         msg,
       );
-      // ignore: prefer_const_constructors
-      // var snackBar = SnackBar(
-      //     elevation: 1.9,
-      //     width: Screens.width(context) * 0.7,
-      //     backgroundColor: Colors.grey,
-      //     behavior: SnackBarBehavior.floating,
-      //     duration: const Duration(seconds: 1),
-      //     // duration: Duration(seconds: 2),
-      //     content: const Text('ItemMaster Already Synced..'));
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
     notifyListeners();
   }
@@ -264,7 +242,6 @@ class ApiSettingsController extends ChangeNotifier {
               content: Container(
                   padding: EdgeInsets.zero,
                   width: Screens.width(context) * 0.4,
-                  //  height: Screens.bodyheight(context)*0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -310,7 +287,6 @@ class ApiSettingsController extends ChangeNotifier {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02),
                       child: Container(
-                        // padding: const EdgeInsets.all(8),
                         child: Text(msg),
                       ),
                     ),
@@ -326,8 +302,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -350,8 +324,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -399,7 +371,6 @@ class ApiSettingsController extends ChangeNotifier {
               content: Container(
                   padding: EdgeInsets.zero,
                   width: Screens.width(context) * 0.4,
-                  //  height: Screens.bodyheight(context)*0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -445,7 +416,6 @@ class ApiSettingsController extends ChangeNotifier {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02),
                       child: Container(
-                        // padding: const EdgeInsets.all(8),
                         child: Text(msg),
                       ),
                     ),
@@ -461,8 +431,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -485,8 +453,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -531,7 +497,6 @@ class ApiSettingsController extends ChangeNotifier {
               content: Container(
                   padding: EdgeInsets.zero,
                   width: Screens.width(context) * 0.4,
-                  //  height: Screens.bodyheight(context)*0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -577,7 +542,6 @@ class ApiSettingsController extends ChangeNotifier {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02),
                       child: Container(
-                        // padding: const EdgeInsets.all(8),
                         child: Text(msg),
                       ),
                     ),
@@ -593,8 +557,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -617,8 +579,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -663,7 +623,6 @@ class ApiSettingsController extends ChangeNotifier {
               content: Container(
                   padding: EdgeInsets.zero,
                   width: Screens.width(context) * 0.4,
-                  //  height: Screens.bodyheight(context)*0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -709,7 +668,6 @@ class ApiSettingsController extends ChangeNotifier {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02),
                       child: Container(
-                        // padding: const EdgeInsets.all(8),
                         child: Text(msg),
                       ),
                     ),
@@ -725,8 +683,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -749,8 +705,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -795,7 +749,6 @@ class ApiSettingsController extends ChangeNotifier {
               content: Container(
                   padding: EdgeInsets.zero,
                   width: Screens.width(context) * 0.4,
-                  //  height: Screens.bodyheight(context)*0.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -841,7 +794,6 @@ class ApiSettingsController extends ChangeNotifier {
                       padding: EdgeInsets.only(
                           left: Screens.padingHeight(context) * 0.02),
                       child: Container(
-                        // padding: const EdgeInsets.all(8),
                         child: Text(msg),
                       ),
                     ),
@@ -857,8 +809,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -881,8 +831,6 @@ class ApiSettingsController extends ChangeNotifier {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: theme.primaryColor,
-
-                                // primary: theme.primaryColor,
                                 textStyle: const TextStyle(color: Colors.white),
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -916,97 +864,8 @@ class ApiSettingsController extends ChangeNotifier {
     await DBOperation.truncateItemMaster(db);
 
     await NewProductsApi.getData(AppConstant.branch, AppConstant.terminal)
-        .then((value) {
-      // if (value.stcode! >= 200 && value.stcode! <= 210) {
-      //   if (value.productItemData.isNotEmpty) {
-      //     for (int i = 0; i < value.productItemData.length; i++) {
-      //       itemMasterDB.add(ItemMasterModelDB(
-      //         isselected: 0,
-      //         autoId: value.productItemData[i].autoId,
-      //         maximumQty: value.productItemData[i].maximumQty,
-      //         minimumQty: value.productItemData[i].minimumQty,
-      //         weight: value.productItemData[i].weight,
-      //         liter: value.productItemData[i].liter,
-      //         displayQty: value.productItemData[i].displayQty,
-      //         searchString: value.productItemData[i].searchString,
-      //         brand: UserValues.branch,
-      //         category: value.productItemData[i].category,
-      //         createdUserID: value.productItemData[i].createdUserID.toString(),
-      //         createdateTime: value.productItemData[i].createdateTime,
-      //         hsnsac: value.productItemData[i].hsnsac,
-      //         isActive: value.productItemData[i].isActive,
-      //         isfreeby: value.productItemData[i].isfreeby,
-      //         isinventory: value.productItemData[i].isinventory,
-      //         issellpricebyscrbat: value.productItemData[i].issellpricebyscrbat,
-      //         // isserialBatch: value.productItemData[i].serialBatch,
-      //         itemcode: value.productItemData[i].itemcode,
-      //         itemnamelong: value.productItemData[i].itemnamelong,
-      //         itemnameshort: value.productItemData[i].itemnameshort,
-      //         lastupdateIp: UserValues.lastUpdateIp,
-      //         maxdiscount: value.productItemData[i].maxdiscount == null
-      //             ? 0.00
-      //             : double.parse(
-      //                 value.productItemData[i].maxdiscount.toString()),
-      //         skucode: value.productItemData[i].skucode,
-      //         subcategory: value.productItemData[i].subcategory,
-      //         taxrate: value.productItemData[i].taxrate.toString(),
-      //         updatedDatetime: value.productItemData[i].updatedDatetime,
-      //         updateduserid: value.productItemData[i].updateduserid.toString(),
-      //         mrpprice: value.productItemData[i].mrpprice!.toString(),
-      //         sellprice: value.productItemData[i].sellprice!.toString(),
-      //         quantity: value.productItemData[i].quantity == null
-      //             ? 0
-      //             : double.parse(value.productItemData[i].quantity.toString()),
-      //         uPackSize: value.productItemData[i].uPackSize.toString(),
-      //         uPackSizeuom: value.productItemData[i].uPackSizeuom.toString(),
-      //         uTINSPERBOX: value.productItemData[i].uTINSPERBOX != null
-      //             ? value.productItemData[i].uTINSPERBOX!
-      //             : 0,
-      //         uSpecificGravity:
-      //             value.productItemData[i].uSpecificGravity != null
-      //                 ? value.productItemData[i].uSpecificGravity.toString()
-      //                 : '',
-      //       ));
-      //     }
-      //     notifyListeners();
-      //   } else if (value.productItemData.isNotEmpty) {
-      //     progressProductMaster = false;
+        .then((value) {});
 
-      //     var snackBar = SnackBar(
-      //         elevation: 1.9,
-      //         width: Screens.width(context) * 0.7,
-      //         backgroundColor: Colors.grey,
-      //         behavior: SnackBarBehavior.floating,
-      //         duration: const Duration(seconds: 1),
-      //         // duration: Duration(seconds: 2),
-      //         content: Text('${value.exception}..'));
-      //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      //   }
-      // } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-      //   progressProductMaster = false;
-
-      //   var snackBar = SnackBar(
-      //       elevation: 1.9,
-      //       width: Screens.width(context) * 0.7,
-      //       backgroundColor: Colors.grey,
-      //       behavior: SnackBarBehavior.floating,
-      //       duration: const Duration(seconds: 1),
-      //       // duration: Duration(seconds: 2),
-      //       content: Text('${value.exception}..'));
-      //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      // } else {
-      //   var snackBar = SnackBar(
-      //       elevation: 1.9,
-      //       width: Screens.width(context) * 0.7,
-      //       backgroundColor: Colors.grey,
-      //       behavior: SnackBarBehavior.floating,
-      //       duration: const Duration(seconds: 1),
-      //       // duration: Duration(seconds: 2),
-      //       content: Text('${value.exception}..'));
-      //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      //   progressProductMaster = false;
-      // }
-    });
     await DBOperation.insertItemMaster(db, jsonList).then((value) async {
       log("Inserted Product Master");
       List<Map<String, Object?>> getItemMaster =
@@ -1015,10 +874,12 @@ class ApiSettingsController extends ChangeNotifier {
 
       notifyListeners();
     });
+    progressProductMaster = false;
   }
 
   getProductMasterData(BuildContext context, ThemeData theme) async {
     if (productMasterCount == 0) {
+      notifyListeners();
       callProductMasterApi(context, theme);
     } else {
       String msg =
@@ -1029,17 +890,9 @@ class ApiSettingsController extends ChangeNotifier {
         theme,
         msg,
       );
-      // var snackBar = SnackBar(
-      //     elevation: 1.9,
-      //     width: Screens.width(context) * 0.7,
-      //     backgroundColor: Colors.grey,
-      //     behavior: SnackBarBehavior.floating,
-      //     duration: const Duration(seconds: 1),
-      //     // duration: Duration(seconds: 2),
-      //     content: const Text('Product Master Already Synced..'));
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
       progressProductMaster = false;
+      notifyListeners();
     }
     notifyListeners();
   }
@@ -1068,25 +921,9 @@ class ApiSettingsController extends ChangeNotifier {
               creditAccount: value.branchdata![i].creditAccount,
               chequeAccount: value.branchdata![i].chequeAccount,
               transFerAccount: value.branchdata![i].transFerAccount,
-              // customerAcct: value.branchdata![i].customerAcct,
-              // disAcct1: value.branchdata![i].disAcct1,
-              // disAcct2: value.branchdata![i].disAcct2,
-              // creditCard: value.branchdata![i].creditCard,
-              // stateCode: value.branchdata![i].stateCode,
-              // gSTNo: value.branchdata![i].gSTNo,
-              // location: value.branchdata![i].location,
-              // companyName: value.branchdata![i].companyName,
-              // companyHeader: value.branchdata![i].companyHeader,
-              // e_Mail: value.branchdata![i].e_Mail,
-              // cOGSAcct: value.branchdata![i].cOGSAcct,
-              // pAN: value.branchdata![i].pAN,
-              // address1: value.branchdata![i].address1,
-              // address2: value.branchdata![i].address2,
-              // city: value.branchdata![i].city,
-              // pincode: value.branchdata![i].pincode
             ));
           }
-          // percent = 0.3;
+
           notifyListeners();
         } else if (value.branchdata == null) {
           progressBranchMaster = false;
@@ -1097,7 +934,6 @@ class ApiSettingsController extends ChangeNotifier {
               backgroundColor: Colors.grey,
               behavior: SnackBarBehavior.floating,
               duration: const Duration(seconds: 1),
-              // duration: Duration(seconds: 2),
               content: Text('${value.exception}..'));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
@@ -1110,12 +946,9 @@ class ApiSettingsController extends ChangeNotifier {
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-        // exception = value.exception!;
       } else {
         progressBranchMaster = false;
 
@@ -1125,7 +958,6 @@ class ApiSettingsController extends ChangeNotifier {
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -1141,20 +973,12 @@ class ApiSettingsController extends ChangeNotifier {
 
   getBranchMasterData(BuildContext context, ThemeData theme) async {
     if (branchMasterCount == 0) {
+      progressBranchMaster = true;
       callBranchMasterApi(context, theme);
     } else {
       String msg =
           "Branch Master Already Synced.\nClick 'Continue' to proceed with this data or 'Reset' to start a new process.";
       branchMasterDialog(context, theme, msg);
-      // var snackBar = SnackBar(
-      //     elevation: 1.9,
-      //     width: Screens.width(context) * 0.7,
-      //     backgroundColor: Colors.grey,
-      //     behavior: SnackBarBehavior.floating,
-      //     duration: const Duration(seconds: 1),
-      //     // duration: Duration(seconds: 2),
-      //     content: const Text('Branch Master Already Synced..'));
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
     notifyListeners();
   }
@@ -1168,7 +992,6 @@ class ApiSettingsController extends ChangeNotifier {
     for (int i = 1; i < lines.length; i++) {
       List<String> values = lines[i].split('\t');
       if (values.length == headers.length) {
-        // log('headersheaders::${headers.length}');
         Map<String, dynamic> jsonItem = {};
         for (int j = 0; j < headers.length; j++) {
           jsonItem[headers[j]] = values[j];
@@ -1190,7 +1013,6 @@ class ApiSettingsController extends ChangeNotifier {
     for (int i = 1; i < lines.length; i++) {
       List<String> values = lines[i].split('\t');
       if (values.length == headers.length) {
-        // log('headersheaders::${headers.length}');
         Map<String, dynamic> jsonItem = {};
         for (int j = 0; j < headers.length; j++) {
           jsonItem[headers[j]] = values[j];
@@ -1209,85 +1031,8 @@ class ApiSettingsController extends ChangeNotifier {
     progressCustomerMaster = true;
     customerapisetting = true;
     await DBOperation.truncateCustomerMaster(db);
-    await CustomerMasterApi.getData().then((value) async {
-      // if (value.stcode! >= 200 && value.stcode! <= 210) {
-      // log("value.customerdata length:::${value.customerdata!.length}");
+    await CustomerMasterApi.getData().then((value) async {});
 
-      // if (value.customerdata != null) {
-      //   for (int i = 0; i < value.customerdata!.length; i++) {
-      //     custValues.add(CustomerModelDB(
-      //       taxCode: value.customerdata![i].taxCode!,
-      //       customerCode: value.customerdata![i].cardCode,
-      //       createdUserID: value.customerdata![i].createdUserID,
-      //       createdateTime: value.customerdata![i].createdateTime,
-      //       updatedDatetime: value.customerdata![i].updatedDatetime,
-      //       updateduserid:
-      //           int.parse(value.customerdata![i].updateduserid.toString()),
-      //       balance: value.customerdata![i].accBalance!,
-      //       createdbybranch: UserValues.branch.toString(),
-      //       customername: value.customerdata![i].name,
-      //       customertype: value.customerdata![i].customertype,
-      //       emalid: value.customerdata![i].email,
-      //       phoneno1: value.customerdata![i].phNo,
-      //       phoneno2: value.customerdata![i].Phno2,
-      //       points: double.parse(value.customerdata![i].point.toString()),
-      //       lastupdateIp: value.customerdata![i].lastupdateIp.toString(),
-      //       // != null
-      //       //     ? int.parse(value.customerdata![i].lastupdateIp!.toString())
-      //       //     : 0,
-      //       premiumid: value.customerdata![i].premiumid,
-      //       snapdatetime: value.customerdata![i].snapdatetime,
-      //       taxno: value.customerdata![i].taxNo,
-      //       terminal: UserValues.terminal, tinNo: '', vatregno: '',
-      // ));
-      // }
-      // percent = 0.5;
-      //   notifyListeners();
-      // } else if (value.customerdata == null) {
-      //   progressCustomerMaster = false;
-
-      //   var snackBar = SnackBar(
-      //       elevation: 1.9,
-      //       width: Screens.width(context) * 0.7,
-      //       backgroundColor: Colors.grey,
-      //       behavior: SnackBarBehavior.floating,
-      //       duration: const Duration(seconds: 1),
-      //       // duration: Duration(seconds: 2),
-      //       content: Text('${value.exception}..'));
-
-      //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      // }
-      //   } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-      //     progressCustomerMaster = false;
-
-      //     var snackBar = SnackBar(
-      //         elevation: 1.9,
-      //         width: Screens.width(context) * 0.7,
-      //         backgroundColor: Colors.grey,
-      //         behavior: SnackBarBehavior.floating,
-      //         duration: const Duration(seconds: 1),
-      //         // duration: Duration(seconds: 2),
-      //         content: Text('${value.exception}..'));
-
-      //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      //   } else {
-      //     progressCustomerMaster = false;
-
-      //     var snackBar = SnackBar(
-      //         elevation: 1.9,
-      //         width: Screens.width(context) * 0.7,
-      //         backgroundColor: Colors.grey,
-      //         behavior: SnackBarBehavior.floating,
-      //         duration: const Duration(seconds: 1),
-      //         // duration: Duration(seconds: 2),
-      //         content: Text('${value.exception}..'));
-
-      //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      //   }
-    });
-    // await DBOperation.insertCustomer(db, custValues).then((value) async {
-    //   log("inseted CustomerMaster");
-    //   progressCustomerMaster = false;
     await DBOperation.insertCustomer(db, jsonCusotmerList).then((value) async {
       log("Inserted Product Master");
       notifyListeners();
@@ -1295,7 +1040,6 @@ class ApiSettingsController extends ChangeNotifier {
       List<CustomerModelDB> newcusdataDB = await DBOperation.getCstmMasDB(db);
       customerMasterCount = newcusdataDB.length;
 
-      // customerMasterCount = (await DBOperation.getCustomerMasterCount(db))!;
       notifyListeners();
     });
   }
@@ -1310,15 +1054,6 @@ class ApiSettingsController extends ChangeNotifier {
           "Customer Master Already Synced.\nClick 'Continue' to proceed with this data or 'Reset' to start a new process.";
 
       customerMasterDialog(context, theme, msg);
-      // var snackBar = SnackBar(
-      //     elevation: 1.9,
-      //     width: Screens.width(context) * 0.7,
-      //     backgroundColor: Colors.grey,
-      //     behavior: SnackBarBehavior.floating,
-      //     duration: const Duration(seconds: 1),
-      //     // duration: Duration(seconds: 2),
-      //     content: const Text('Customer Master Already Synced..'));
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
     progressCustomerMaster = false;
     notifyListeners();
@@ -1332,8 +1067,7 @@ class ApiSettingsController extends ChangeNotifier {
     await AddressMasterApi.getData().then((value) async {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
         log("value.addressdata length:::${value.addressdata!.length}");
-        // print(
-        //     " UserValues.branch  address table" + UserValues.branch.toString());
+
         if (value.addressdata != null) {
           for (int i = 0; i < value.addressdata!.length; i++) {
             addrsvalue.add(CustomerAddressModelDB(
@@ -1359,48 +1093,42 @@ class ApiSettingsController extends ChangeNotifier {
               addresstype: value.addressdata![i].addresstype,
             ));
           }
-          // percent = 0.4;
+
           notifyListeners();
         }
       } else if (value.addressdata == null) {
         progressCustomerAddressMaster = false;
 
-        // exception = value.message!;
         var snackBar = SnackBar(
             elevation: 1.9,
             width: Screens.width(context) * 0.7,
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else if (value.stcode! >= 400 && value.stcode! <= 410) {
         progressCustomerAddressMaster = false;
 
-        // exception = value.exception!;
         var snackBar = SnackBar(
             elevation: 1.9,
             width: Screens.width(context) * 0.7,
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         progressCustomerAddressMaster = false;
 
-        // exception = value.exception!;
         var snackBar = SnackBar(
             elevation: 1.9,
             width: Screens.width(context) * 0.7,
             backgroundColor: Colors.grey,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 1),
-            // duration: Duration(seconds: 2),
             content: Text('${value.exception}..'));
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -1429,15 +1157,6 @@ class ApiSettingsController extends ChangeNotifier {
           "Address Master Already Synced.\nClick 'Continue' to proceed with this data or 'Reset' to start a new process.";
 
       addressMasterDialog(context, theme, msg);
-      // var snackBar = SnackBar(
-      //     elevation: 1.9,
-      //     width: Screens.width(context) * 0.7,
-      //     backgroundColor: Colors.grey,
-      //     behavior: SnackBarBehavior.floating,
-      //     duration: const Duration(seconds: 1),
-      //     // duration: Duration(seconds: 2),
-      //     content: const Text('Customer Address Master Already Synced..'));
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
     progressCustomerAddressMaster = false;
     notifyListeners();

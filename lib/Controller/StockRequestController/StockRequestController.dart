@@ -2812,13 +2812,11 @@ class StockReqController extends ChangeNotifier {
                           style: theme.textTheme.bodyLarge!.copyWith(
                             color: Colors.green,
                           )),
-
                       Text(
                         "Path Name:$path",
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
-                      //Buttons
                       SizedBox(
                         height: Screens.bodyheight(context) * 0.05,
                         width: Screens.width(context) * 0.3,

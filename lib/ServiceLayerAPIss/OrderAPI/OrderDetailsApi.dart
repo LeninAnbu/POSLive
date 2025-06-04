@@ -17,22 +17,22 @@ class GetOrderDetailsAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("SalesOrder stscode::${response.statusCode}");
-      // log("SalesQuo::${response.body}");
+      log("SalesOrder res::${response.body}");
 
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         return GetOrderDetails.fromJson(
             json.decode(response.body), response.statusCode);
       } else {
         log("SalesQuo Exception: Error");
-        // throw Exception("Errorrrrr");
+
         return GetOrderDetails.issue(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("GetOrderException:: $e");
-      // throw Exception("Error");
+
       return GetOrderDetails.issue(json.decode(e.toString()), 500);
     }
   }

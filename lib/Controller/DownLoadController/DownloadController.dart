@@ -48,15 +48,10 @@ class DownLoadController extends ChangeNotifier {
     String? branch = await getBranch();
     String? terminal = await getTerminal();
     String? slpCode = await getSlpCode();
-    String? sapPassword =
-        // 'ub@17';
-        await getSapPassword();
+    String? sapPassword = await getSapPassword();
 
-    String? sapUserName =
-        // 'Ubongo';
-        await getSapUserName();
+    String? sapUserName = await getSapUserName();
     String? sapDB = await getSapDBB();
-    // 'InsigniaLimited';
 
     if (ip != null &&
         ip != 'null' &&
@@ -89,8 +84,8 @@ class DownLoadController extends ChangeNotifier {
     for (int i = 1; i < lines.length; i++) {
       List<String> values = lines[i].split('\t');
       if (values.length == headers.length) {
-        // log('headersheaders::${headers.length}');
         Map<String, dynamic> jsonItem = {};
+
         for (int j = 0; j < headers.length; j++) {
           jsonItem[headers[j]] = values[j];
         }
@@ -107,13 +102,10 @@ class DownLoadController extends ChangeNotifier {
       String tabularData) async {
     List<String> lines = tabularData.split('\n');
     List<String> headers = lines[0].split('\t');
-    // log('headersheaders::${headers.toString()}');
 
     jsonCusotmerList = [];
     for (int i = 1; i < lines.length; i++) {
       List<String> values = lines[i].split('\t');
-
-      // log('valuesvalues::${values.length}');
 
       if (values.length == headers.length) {
         Map<String, dynamic> jsonItem = {};
@@ -208,90 +200,15 @@ class DownLoadController extends ChangeNotifier {
           }
           percent = 0.1;
           notifyListeners();
-        } else if (value.stocksnapitemdata == null) {
-          // catchmsg.add("Stock details: " + value.message!);
-        }
+        } else if (value.stocksnapitemdata == null) {}
       } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-        // catchmsg.add("Stock details: " + value.exception!);
-      } else {
-        // catchmsg.add("Stcok details: " + value.exception!);
-      }
+      } else {}
     });
     loadingMsg = "Loading Product Master";
 
     await NewProductsApi.getData(AppConstant.branch, AppConstant.terminal)
-        .then((value) {
-      // Stopwatch s = Stopwatch();
-      // sleep(const Duration(seconds: 1));
-      // s.start();
-      // sleep(const Duration(seconds: 1));
-// //jsonList
+        .then((value) {});
 
-//       for (var i = 0; i < jsonList.length; i++) {}
-      //   if (value.stcode! >= 200 && value.stcode! <= 210) {
-      //     if (value.productItemData.isNotEmpty) {
-      //       for (int i = 0; i < value.productItemData.length; i++) {
-      //         itemMasterDB.add(ItemMasterModelDB(
-      //           isselected: 0,
-      //           autoId: value.productItemData[i].autoId,
-      //           maximumQty: value.productItemData[i].maximumQty,
-      //           minimumQty: value.productItemData[i].minimumQty,
-      //           weight: value.productItemData[i].weight,
-      //           liter: value.productItemData[i].liter,
-      //           displayQty: value.productItemData[i].displayQty,
-      //           searchString: value.productItemData[i].searchString,
-      //           brand: value.productItemData[i].brand,
-      //           category: value.productItemData[i].category,
-      //           createdUserID: value.productItemData[i].createdUserID.toString(),
-      //           createdateTime: value.productItemData[i].createdateTime,
-      //           hsnsac: value.productItemData[i].hsnsac,
-      //           isActive: value.productItemData[i].isActive,
-      //           isfreeby: value.productItemData[i].isfreeby,
-      //           isinventory: value.productItemData[i].isinventory,
-      //           issellpricebyscrbat: value.productItemData[i].issellpricebyscrbat,
-      //       // isserialBatch: value.productItemData[i].serialBatch,
-      //           itemcode: value.productItemData[i].itemcode,
-      //           itemnamelong: value.productItemData[i].itemnamelong,
-      //           itemnameshort: value.productItemData[i].itemnameshort,
-      //           lastupdateIp: UserValues.lastUpdateIp,
-      //           maxdiscount: value.productItemData[i].maxdiscount == null
-      //               ? 0.00
-      //               : double.parse(
-      //                   value.productItemData[i].maxdiscount.toString()),
-      //           skucode: value.productItemData[i].skucode,
-      //           subcategory: value.productItemData[i].subcategory,
-      //           taxrate: value.productItemData[i].taxrate.toString(),
-      //           updatedDatetime: value.productItemData[i].updatedDatetime,
-      //           updateduserid: value.productItemData[i].updateduserid.toString(),
-      //           mrpprice: value.productItemData[i].mrpprice!.toString(),
-      //           sellprice: value.productItemData[i].sellprice!.toString(),
-      //           quantity: value.productItemData[i].quantity == null
-      //               ? 0
-      //               : int.parse(value.productItemData[i].quantity.toString()),
-      //           uPackSize: value.productItemData[i].uPackSize.toString(),
-      //           uPackSizeuom: value.productItemData[i].uPackSizeuom.toString(),
-      //           uTINSPERBOX: value.productItemData[i].uTINSPERBOX != null
-      //               ? value.productItemData[i].uTINSPERBOX!
-      //               : 0,
-      //           uSpecificGravity:
-      //               value.productItemData[i].uSpecificGravity != null
-      //                   ? value.productItemData[i].uSpecificGravity.toString()
-      //                   : '',
-      //         ));
-      //       }
-      //       percent = 0.2;
-      //       notifyListeners();
-      //     } else if (value.productItemData == null) {
-      //       // exception = value.message!;
-      //       catchmsg.add("Product details: ${value.exception!}");
-      //     }
-      //   } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-      //     catchmsg.add("Product details: ${value.exception!}");
-      //   } else {
-      //     catchmsg.add("Product details: ${value.exception!}");
-      //   }
-    });
-    //
     loadingMsg = "Loading Branch Master";
     await BranchMasterApi.getData().then((value) async {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
@@ -328,7 +245,6 @@ class DownLoadController extends ChangeNotifier {
     for (int i = 0; i < coupondetails.length; i++) {
       coupondetlsMaster.add(CouponDetailDB(
           status: coupondetails[i].status,
-          //
           doctype: coupondetails[i].doctype,
           cardcode: coupondetails[i].cardcode,
           coupontype: coupondetails[i].coupontype,
@@ -336,7 +252,6 @@ class DownLoadController extends ChangeNotifier {
           couponamt: coupondetails[i].couponamt));
     }
 
-    //
     loadingMsg = "Loading Address Master";
 
     await AddressMasterApi.getData().then((value) async {
@@ -381,45 +296,7 @@ class DownLoadController extends ChangeNotifier {
     loadingMsg = "Loading Customer Master";
 
     await CustomerMasterApi.getData().then((value) async {
-      if (value.stcode! >= 200 && value.stcode! <= 210) {
-        //   if (value.customerdata != null) {
-        //     for (int i = 0; i < value.customerdata!.length; i++) {
-        //       custValues.add(CustomerModelDB(
-        //         customerCode: value.customerdata![i].cardCode,
-        //         createdUserID: value.customerdata![i].createdUserID,
-        //         createdateTime: value.customerdata![i].createdateTime,
-        //         updatedDatetime: value.customerdata![i].updatedDatetime,
-        //         updateduserid:
-        //             int.parse(value.customerdata![i].updateduserid.toString()),
-        //         balance: value.customerdata![i].accBalance!,
-        //         createdbybranch: UserValues.branch.toString(),
-        //         customername: value.customerdata![i].name,
-        //         customertype: value.customerdata![i].customertype,
-        //         emalid: value.customerdata![i].email,
-        //         phoneno1: value.customerdata![i].phNo,
-        //         phoneno2: value.customerdata![i].Phno2,
-        //         points: double.parse(value.customerdata![i].point.toString()),
-        //         lastupdateIp: value.customerdata![i].lastupdateIp.toString(),
-        //         premiumid: value.customerdata![i].premiumid,
-        //         snapdatetime: value.customerdata![i].snapdatetime,
-        //         taxno: value.customerdata![i].taxNo,
-        //         taxCode: value.customerdata![i].taxCode!,
-        //         terminal: UserValues.terminal,
-        //         tinNo: '',
-        //         vatregno: '',
-        //       ));
-        //     }
-        //     percent = 0.5;
-
-        //     notifyListeners();
-        //   } else if (value.customerdata == null) {
-        //     catchmsg.add("CustomerMaster details: ${value.exception!}");
-        //   }
-        // } else if (value.stcode! >= 400 && value.stcode! <= 410) {
-        //   catchmsg.add("CustomerMaster details: ${value.exception!}");
-        // } else {
-        //   catchmsg.add("CustomerMaster details: ${value.exception!}");
-      }
+      if (value.stcode! >= 200 && value.stcode! <= 210) {}
     });
     loadingMsg = "Loading Users Masters";
 

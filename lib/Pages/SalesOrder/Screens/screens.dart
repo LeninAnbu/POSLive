@@ -22,7 +22,7 @@ class SalesOrderScreensState extends State<SalesOrderScreens> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Safely obtain the provider and cache it for later use
+
     cachedProvider = Provider.of<SOCon>(context, listen: false);
   }
 
@@ -32,7 +32,6 @@ class SalesOrderScreensState extends State<SalesOrderScreens> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<SOCon>().init(context, Theme.of(context));
       context.read<SOCon>().requestLocationPermission(context);
-      // context.read<SOCon>().getLocation(context);
     });
   }
 
@@ -52,28 +51,17 @@ class SalesOrderScreensState extends State<SalesOrderScreens> {
                   return SafeArea(
                     child: SOSalesMobile(
                       prdCD: prdSCD,
-                      // scaffoldKey: scaffoldKey,
                     ),
                   );
                 });
               }),
         );
-      } else
-      //  if (constraints.maxWidth <= 1300)
-      {
-        //300
+      } else {
         return WillPopScope(
           onWillPop: context.read<SOCon>().onbackpress,
           child: Scaffold(
-              // resizeToAvoidBottomInset: false,
               drawer: naviDrawer(),
-              body:
-                  // ChangeNotifierProvider<SOCon>(
-                  //     create: (context) => SOCon(),
-                  //     builder: (context, child) {
-                  //       return Consumer<SOCon>(
-                  //           builder: (BuildContext context, prdSCD, Widget? child) {
-                  SafeArea(
+              body: SafeArea(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(children: <Widget>[
@@ -85,30 +73,7 @@ class SalesOrderScreensState extends State<SalesOrderScreens> {
                 ),
               )),
         );
-        //     }
-        //   );
-        //  }),
-        // );
       }
-      // else{
-      //    return Scaffold(
-      //      body: ChangeNotifierProvider<SOCon>(
-      //         create: (context) => SOCon(),
-      //         builder: (context, child) {
-      //           return Consumer<SOCon>(
-      //               builder: (BuildContext context, prdSCD, Widget? child) {
-      //          return SafeArea(
-      //            child: SOPosScreen(
-      //                     theme: theme,
-      //                     prdSCD: prdSCD,
-      //                   ),
-      //          );
-      //         }
-      //       );
-      //      }),
-      //   );
-
-      // }
     });
   }
 }

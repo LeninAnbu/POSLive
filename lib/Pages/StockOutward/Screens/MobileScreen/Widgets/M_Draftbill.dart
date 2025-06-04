@@ -21,20 +21,11 @@ class M_StockOutDraftbill extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: searchWidth * 1,
-        //  height:searchHeight*0.9 ,
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Container(
-              //   alignment: Alignment.centerLeft,
-              //   child: Text("Pending Inwards",
-              //       style: theme.textTheme.bodyMedium
-              //           ?.copyWith(fontWeight: FontWeight.bold)),
-              // ),
               Container(
                 height: searchHeight,
-                // color: Colors.green,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5)),

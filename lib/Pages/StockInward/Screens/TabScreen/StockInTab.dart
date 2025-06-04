@@ -18,15 +18,11 @@ class StockInTab extends StatefulWidget {
 class _StockInTabState extends State<StockInTab> {
   @override
   Widget build(BuildContext context) {
-    // return Provider<StockInwrdController>(
-    //     create: (_) => StockInwrdController(),
-    //     builder: (context, child) {
     return SingleChildScrollView(
       child: Stack(
         children: [
           Container(
               color: Colors.grey.withOpacity(0.05),
-              // height: Screens.bodyheight(context),
               padding: EdgeInsets.only(
                 top: Screens.padingHeight(context) * 0.01,
                 left: Screens.padingHeight(context) * 0.01,
@@ -38,11 +34,6 @@ class _StockInTabState extends State<StockInTab> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const OpenInwardListPage(),
-                  // StockInReqList(
-                  //   searchHeight: Screens.bodyheight(context) * 0.9,
-                  //   searchWidth: Screens.width(context) * 0.5,
-                  //   theme: widget.theme,
-                  // ),
                   SizedBox(
                       width: Screens.width(context) * 0.48,
                       child: SingleChildScrollView(
@@ -52,7 +43,6 @@ class _StockInTabState extends State<StockInTab> {
                           stockInheight: Screens.bodyheight(context) * 0.907,
                           index:
                               context.watch<StockInwrdController>().get_i_value,
-                          // data: context.watch<StockInwrdController>().passdata,
                           datatotal:
                               context.watch<StockInwrdController>().stockInward,
                         ),
@@ -76,6 +66,5 @@ class _StockInTabState extends State<StockInTab> {
         ],
       ),
     );
-    // });
   }
 }

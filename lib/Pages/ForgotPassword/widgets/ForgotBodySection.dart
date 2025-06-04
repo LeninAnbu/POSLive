@@ -47,25 +47,19 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                 ?.copyWith(color: theme.primaryColor),
                           ),
                         ),
-
                         Form(
                           key: prdfpw.formkey[0],
-                          // child: Visibility(
-                          //   visible: prdfpw.managertimmervisible,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(
                                   height: widget.forgetHeight * 0.04,
-                                  // Screens.padingHeight(context) * 0.04,
                                 ),
                                 Center(
                                   child: Container(
                                       padding: EdgeInsets.all(
                                           widget.forgetHeight * 0.02),
-                                      // padding: constant.padding2(context),
                                       width: widget.forgetwidth * 0.65,
-                                      // height: Screens.padingHeight(context) * 0.08,
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                             color:
@@ -90,9 +84,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                           ),
                                           SizedBox(
                                             height: widget.forgetHeight * 0.03,
-                                            // Screens.padingHeight(
-                                            //         context) *
-                                            //     0.03
                                           ),
                                           PinCodeTextField(
                                             autoFocus: true,
@@ -115,9 +106,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                                   BorderRadius.circular(5),
                                               fieldHeight:
                                                   widget.forgetHeight * 0.07,
-                                              // Screens.padingHeight(
-                                              //         context) *
-                                              //     0.07,
                                               fieldWidth:
                                                   widget.forgetwidth * 0.12,
                                               inactiveFillColor: Colors.white,
@@ -153,34 +141,11 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                               prdfpw.managerpincodecompleted(
                                                   context);
                                             },
-                                            onChanged: (manvalue) {
-                                              //        if (prdfpw.mycontroller[4].text !=
-                                              //     prdfpw.mycontroller[5].text) {
-                                              //   return "*Not Match";
-                                              // } else if (prdfpw
-                                              //     .mycontroller[5].text.isEmpty) {
-                                              //   return "Please Enter Password";
-                                              // }
-
-                                              // return null;
-                                            },
+                                            onChanged: (manvalue) {},
                                             beforeTextPaste: (text) {
                                               return true;
                                             },
                                           ),
-                                          // Visibility(
-                                          // visible:
-                                          //     prdfpw.getmanagerhasError,
-                                          //  child: showOtpNotMatchedtDialog(context)
-                                          // Text(
-                                          //   "*User OTP is not matched",
-                                          //   style: theme
-                                          //       .textTheme.bodyText2
-                                          //       ?.copyWith(
-                                          //           color: theme
-                                          //               .primaryColor),
-                                          // )
-                                          // ),
                                           Visibility(
                                             visible:
                                                 prdfpw.getmanagertimmervisible,
@@ -194,9 +159,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                                     end: Duration.zero),
                                                 onEnd: () {
                                                   prdfpw.onTime();
-                                                  // .resentTimer(context);
-                                                  //   print('Timer ended');
-                                                  // Get.back();
                                                 },
                                                 builder: (BuildContext context,
                                                     Duration value,
@@ -230,20 +192,15 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                           ),
                                           SizedBox(
                                             height: widget.forgetHeight * 0.03,
-                                            // Screens.padingHeight(
-                                            //     context) *
-                                            // 0.03,
                                           ),
                                           CustomSpinkitdButton(
-                                            onTap:
-                                                //  () {
-                                                prdfpw.getisButtonDisabled ==
-                                                        true
-                                                    ? null
-                                                    : () {
-                                                        prdfpw.userwhatsappOTP(
-                                                            context);
-                                                      },
+                                            onTap: prdfpw.getisButtonDisabled ==
+                                                    true
+                                                ? null
+                                                : () {
+                                                    prdfpw.userwhatsappOTP(
+                                                        context);
+                                                  },
                                             label: prdfpw.getresendOTP == false
                                                 ? 'Send OTP'
                                                 : "Resend OTP",
@@ -262,21 +219,14 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                 ),
                               ]),
                         ),
-                        SizedBox(height: widget.forgetHeight * 0.08
-                            // Screens.padingHeight(context) * 0.08,
-                            ),
-                        // ),
-
+                        SizedBox(height: widget.forgetHeight * 0.08),
                         Form(
                             key: prdfpw.formkey[1],
                             child: Center(
                               child: Container(
-                                  // padding: constant.padding2(context),
-                                  // width: widget.forgetwidth * 0.85,
                                   width: widget.forgetwidth * 0.65,
                                   padding: EdgeInsets.all(
                                       widget.forgetHeight * 0.02),
-                                  // height: Screens.padingHeight(context) * 0.08,
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                         color: prdfpw.getusergray == true
@@ -297,8 +247,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                       ),
                                       SizedBox(
                                           height: widget.forgetHeight * 0.03),
-                                      // Screens.padingHeight(context) *
-                                      //     0.03),
                                       PinCodeTextField(
                                         autoFocus: true,
                                         enablePinAutofill: true,
@@ -320,8 +268,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                               BorderRadius.circular(5),
                                           fieldHeight:
                                               widget.forgetHeight * 0.07,
-                                          // Screens.padingHeight(context) *
-                                          //     0.07,
                                           fieldWidth: widget.forgetwidth * 0.12,
                                           inactiveFillColor: Colors.white,
                                           inactiveColor:
@@ -358,15 +304,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                           return true;
                                         },
                                       ),
-                                      // Visibility(
-                                      //     visible: prdfpw.getuserhasError,
-                                      //     child: Text(
-                                      //       "*Manager OTP is not matched",
-                                      // style: theme.textTheme.bodyText2
-                                      //     ?.copyWith(
-                                      //         color:
-                                      //             theme.primaryColor),
-                                      //     )),
                                       Visibility(
                                         visible: prdfpw.getusertimmervisible,
                                         child: TweenAnimationBuilder<Duration>(
@@ -377,8 +314,6 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                                     const Duration(seconds: 60),
                                                 end: Duration.zero),
                                             onEnd: () {
-                                              //   print('Timer ended');
-                                              // Get.back();
                                               prdfpw.useronTime();
                                             },
                                             builder: (BuildContext context,
@@ -407,9 +342,7 @@ class _ForgotBodySectionState extends State<ForgotBodySection> {
                                             }),
                                       ),
                                       SizedBox(
-                                          height: widget.forgetHeight *
-                                              // Screens.padingHeight(context) *
-                                              0.03),
+                                          height: widget.forgetHeight * 0.03),
                                       CustomSpinkitdButton(
                                           onTap:
                                               prdfpw.getuserisButtonDisabled ==

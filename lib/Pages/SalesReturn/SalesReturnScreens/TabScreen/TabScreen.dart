@@ -25,10 +25,7 @@ class _SalesReturnTabScreenState extends State<SalesReturnTabScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // context.read<SalesReturnController>().clearAllData();
-      // context.read<SalesReturnController>().init();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
   }
 
 //return Stack(
@@ -53,7 +50,6 @@ class _SalesReturnTabScreenState extends State<SalesReturnTabScreen> {
                 children: [
                   SizedBox(
                       width: Screens.width(context) * 0.5,
-                      // color:Colors.red,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -61,17 +57,9 @@ class _SalesReturnTabScreenState extends State<SalesReturnTabScreen> {
                             searchHeight: Screens.bodyheight(context) * 0.65,
                             searchWidth: Screens.width(context) * 0.48,
                             theme: widget.theme,
-                            // prdsrch: prdSR,
                           ),
-                          // PaymentDetails(
-                          //   theme: theme,
-                          //   prdPmt: prdSCD,
-                          //   paymentWidth: Screens.width(context) * 0.48,
-                          //   paymentHeight: Screens.bodyheight(context) * 0.5,
-                          // )
                           SalesReturnPayment(
                             theme: widget.theme,
-                            // prdSR: prdSR,
                             paymentWidth: Screens.width(context) * 0.48,
                             paymentHeight: Screens.bodyheight(context) * 0.25,
                           )
@@ -79,7 +67,6 @@ class _SalesReturnTabScreenState extends State<SalesReturnTabScreen> {
                       )),
                   SizedBox(
                       width: Screens.width(context) * 0.48,
-                      //  color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,29 +75,16 @@ class _SalesReturnTabScreenState extends State<SalesReturnTabScreen> {
                             custWidth: Screens.width(context) * 0.48,
                             custHeight: Screens.bodyheight(context) * 0.46,
                             theme: widget.theme,
-                            // prdSR: prdSR,
                           ),
                           InvoiceInfo(
                             theme: widget.theme,
-                            // posSR: prdSR,
                             cashWidth: Screens.width(context) * 0.48,
                             cashHeight: Screens.bodyheight(context) * 0.24,
                           ),
-                          //  prdSR.scanneditemData2.isNotEmpty
-                          //     ? Container()
-                          //     : PaymentModeBtn(
-                          //   theme: theme,
-                          //   salesReturnController: prdSR,
-                          //   cashWidth: Screens.width(context) * 0.48,
-                          //   cashHeight: Screens.bodyheight(context) * 0.08,
-                          //   dialogheight: Screens.bodyheight(context) * 0.3,
-                          //   dialogwidth:  Screens.width(context) * 0.48,
-                          // ),
                           BottomBtn(
                             theme: widget.theme,
                             btnheight: Screens.bodyheight(context) * 0.3,
                             btnWidth: Screens.width(context) * 0.48,
-                            // posSR: prdSR,
                           )
                         ],
                       )),

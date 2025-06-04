@@ -13,13 +13,11 @@ class SearhBox extends StatefulWidget {
     required this.theme,
     required this.searchHeight,
     required this.searchWidth,
-    // required this.SalesCon
   });
 
   final ThemeData theme;
   double searchHeight;
   double searchWidth;
-  // PosController SalesCon;
 
   @override
   State<SearhBox> createState() => SearhBoxState();
@@ -37,10 +35,8 @@ class SearhBoxState extends State<SearhBox> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             content: SizedBox(
                 width: widget.searchWidth * 2,
-                //  height:searchHeight*0.9 ,
                 child: SingleChildScrollView(
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           alignment: Alignment.centerLeft,
@@ -62,7 +58,6 @@ class SearhBoxState extends State<SearhBox> {
                                           children: [
                                             Container(
                                               alignment: Alignment.center,
-                                              // color: Colors.blue,
                                               width: widget.searchWidth * 0.08,
                                               child: const Text("From Date"),
                                             ),
@@ -70,14 +65,8 @@ class SearhBoxState extends State<SearhBox> {
                                               height:
                                                   widget.searchHeight * 0.07,
                                               width: widget.searchWidth * 0.15,
-                                              decoration: const BoxDecoration(
-                                                  //color: Colors.amber,
-                                                  //   borderRadius: BorderRadius.circular(4),
-                                                  //  border: Border.all(),
-                                                  ),
-                                              child:
-                                                  // Center(child: Text("2023-03-03"))
-                                                  TextFormField(
+                                              decoration: const BoxDecoration(),
+                                              child: TextFormField(
                                                 controller: context
                                                     .watch<PosController>()
                                                     .mycontroller[100],
@@ -105,7 +94,6 @@ class SearhBoxState extends State<SearhBox> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(4)),
-                                                    //   labelText: "Date",
                                                     hintText: "",
                                                     hintStyle: widget.theme
                                                         .textTheme.bodyLarge!
@@ -122,7 +110,6 @@ class SearhBoxState extends State<SearhBox> {
                                           children: [
                                             Container(
                                               alignment: Alignment.center,
-                                              // color: Colors.blue,
                                               width: widget.searchWidth * 0.08,
                                               child: const Text("To Date"),
                                             ),
@@ -130,14 +117,8 @@ class SearhBoxState extends State<SearhBox> {
                                               height:
                                                   widget.searchHeight * 0.07,
                                               width: widget.searchWidth * 0.15,
-                                              decoration: const BoxDecoration(
-                                                  //color: Colors.amber,
-                                                  //   borderRadius: BorderRadius.circular(4),
-                                                  //  border: Border.all(),
-                                                  ),
-                                              child:
-                                                  // Center(child: Text("2023-03-03"))
-                                                  TextFormField(
+                                              decoration: const BoxDecoration(),
+                                              child: TextFormField(
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
                                                     return "Required";
@@ -164,7 +145,6 @@ class SearhBoxState extends State<SearhBox> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(4)),
-                                                    //   labelText: "Date",
                                                     hintText: "",
                                                     hintStyle: widget.theme
                                                         .textTheme.bodyLarge!
@@ -212,15 +192,8 @@ class SearhBoxState extends State<SearhBox> {
                                       Container(
                                         height: widget.searchHeight * 0.07,
                                         width: widget.searchWidth * 0.3,
-
-                                        decoration: const BoxDecoration(
-                                            //color: Colors.amber,
-                                            //   borderRadius: BorderRadius.circular(4),
-                                            //  border: Border.all(),
-                                            ),
-
+                                        decoration: const BoxDecoration(),
                                         child: TextFormField(
-                                          // keyboardType: TextInputType.number,
                                           onChanged: (value) {
                                             setState(() {
                                               context
@@ -229,9 +202,6 @@ class SearhBoxState extends State<SearhBox> {
                                                       value.trim());
                                             });
                                           },
-
-                                          // readOnly: true,
-                                          //  controller: settleCon.mycontroller[1],
                                           decoration: InputDecoration(
                                               hintText: "Search...",
                                               contentPadding:
@@ -241,13 +211,11 @@ class SearhBoxState extends State<SearhBox> {
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(4)),
-                                              //   labelText: "Date",
                                               hintStyle: widget
                                                   .theme.textTheme.bodyLarge!
                                                   .copyWith(
                                                       color: Colors.black)),
                                         ),
-                                        //Center(child: Text("2000"))
                                       ),
                                     ],
                                   ),
@@ -281,7 +249,6 @@ class SearhBoxState extends State<SearhBox> {
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.07,
-                              //color: Colors.amber,
                               child: Text(
                                 "Doc Date",
                                 style: widget.theme.textTheme.bodyLarge!
@@ -291,7 +258,6 @@ class SearhBoxState extends State<SearhBox> {
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.08,
-                              //color: Colors.amber,
                               child: Text(
                                 "UserName",
                                 style: widget.theme.textTheme.bodyLarge!
@@ -301,18 +267,15 @@ class SearhBoxState extends State<SearhBox> {
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.1,
-                              //color: Colors.amber,
                               child: Text(
                                 "Terminal",
                                 style: widget.theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.14,
-                              //color: Colors.amber,
                               child: Text(
                                 "Status",
                                 style: widget.theme.textTheme.bodyLarge!
@@ -322,7 +285,6 @@ class SearhBoxState extends State<SearhBox> {
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.1,
-                              //color: Colors.amber,
                               child: Text(
                                 "Customer Code",
                                 style: widget.theme.textTheme.bodyMedium!
@@ -332,7 +294,6 @@ class SearhBoxState extends State<SearhBox> {
                             Container(
                               alignment: Alignment.center,
                               width: widget.searchWidth * 0.15,
-                              //color: Colors.amber,
                               child: Text(
                                 "Customer Name",
                                 style: widget.theme.textTheme.bodyLarge!
@@ -342,32 +303,18 @@ class SearhBoxState extends State<SearhBox> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: widget.searchWidth * 0.12,
-                              //color: Colors.amber,
                               child: Text(
                                 "Doc Total ",
                                 style: widget.theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.white),
                               ),
                             ),
-                            // Container(
-                            //   alignment: Alignment.center,
-                            //   width: widget.searchWidth * 0.1,
-                            //   //color: Colors.amber,
-                            //   child: Text(
-                            //     "Type",
-                            //     style: widget.theme.textTheme.bodyMedium!
-                            //         .copyWith(color: Colors.white),
-                            //   ),
-                            // ),
                           ],
                         ),
                       ),
-
                       Container(
                         height: widget.searchHeight * 0.87,
                         decoration: BoxDecoration(
-                            // color: Colors.green,
-
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(5)),
                         child: context
@@ -406,15 +353,6 @@ class SearhBoxState extends State<SearhBox> {
                                                         .toString(),
                                                     context,
                                                     widget.theme);
-                                            // await context
-                                            //     .read<PosController>()
-                                            //     .invCustAddressApi(
-                                            //       context
-                                            //           .read<PosController>()
-                                            //           .filtersearchData[index]
-                                            //           .docEntry
-                                            //           .toString(),
-                                            // );
                                           },
                                     child: Container(
                                       padding: EdgeInsets.only(
@@ -450,7 +388,6 @@ class SearhBoxState extends State<SearhBox> {
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.07,
-                                            //color: Colors.amber,
                                             child: Text(
                                               context
                                                   .watch<PosController>()
@@ -468,7 +405,6 @@ class SearhBoxState extends State<SearhBox> {
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.08,
-                                            //color: Colors.amber,
                                             child: Text(
                                               "${UserValues.username}",
                                               style: widget
@@ -480,7 +416,6 @@ class SearhBoxState extends State<SearhBox> {
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.1,
-                                            //color: Colors.amber,
                                             child: Text(
                                               "${AppConstant.terminal}",
                                               style: widget
@@ -489,11 +424,9 @@ class SearhBoxState extends State<SearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.15,
-                                            //color: Colors.amber,
                                             child: Text(
                                               context
                                                   .watch<PosController>()
@@ -512,7 +445,6 @@ class SearhBoxState extends State<SearhBox> {
                                                 right:
                                                     widget.searchWidth * 0.005),
                                             width: widget.searchWidth * 0.11,
-                                            //color: Colors.amber,
                                             child: Text(
                                               "${context.watch<PosController>().filtersearchData[index].cardCode}",
                                               style: widget
@@ -524,7 +456,6 @@ class SearhBoxState extends State<SearhBox> {
                                           Container(
                                             alignment: Alignment.center,
                                             width: widget.searchWidth * 0.15,
-                                            //color: Colors.amber,
                                             child: Text(
                                               context
                                                   .watch<PosController>()
@@ -542,7 +473,6 @@ class SearhBoxState extends State<SearhBox> {
                                                     widget.searchWidth * 0.005),
                                             alignment: Alignment.centerRight,
                                             width: widget.searchWidth * 0.12,
-                                            //color: Colors.amber,
                                             child: Text(
                                               "${context.watch<PosController>().filtersearchData[index].docTotal}",
                                               style: widget
@@ -551,25 +481,12 @@ class SearhBoxState extends State<SearhBox> {
                                                       color: Colors.black),
                                             ),
                                           ),
-                                          // Container(
-                                          //   alignment: Alignment.center,
-                                          //   width: widget.searchWidth * 0.1,
-                                          //   //color: Colors.amber,
-                                          //   child: Text(
-                                          //     "${  context.watch<PosController>().filtersearchData[index].type}",
-                                          //     style: widget
-                                          //         .theme.textTheme.bodyMedium!
-                                          //         .copyWith(color: Colors.black),
-                                          //   ),
-                                          // ),
                                         ],
                                       ),
                                     ),
                                   );
                                 }),
                       )
-
-                      // Container(),
                     ],
                   ),
                 ))),

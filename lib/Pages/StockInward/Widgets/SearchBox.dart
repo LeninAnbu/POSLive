@@ -166,19 +166,6 @@ class _stConSearhBoxState extends State<StInConSearhBox> {
                                         context
                                             .read<StockInwrdController>()
                                             .callsearchInwApi();
-                                        // context
-                                        //     .read<StockInwrdController>()
-                                        //     .getSalesDataDatewise(
-                                        //         context
-                                        //             .read<StockInwrdController>()
-                                        //             .stInController[100]
-                                        //             .text
-                                        //             .toString(),
-                                        //         context
-                                        //             .read<StockInwrdController>()
-                                        //             .stInController[101]
-                                        //             .text
-                                        //             .toString());
                                       }
                                     });
                                   },
@@ -343,24 +330,6 @@ class _stConSearhBoxState extends State<StInConSearhBox> {
                                                   .docEntry
                                                   .toString(),
                                               index);
-                                      // context
-                                      // .read<StockInwrdController>()
-                                      // .soCustAddressApi(
-                                      //   context
-                                      //       .read<StockInwrdController>()
-                                      //       .filtersearchData[index]
-                                      //       .docEntry
-                                      //       .toString(),
-                                      // );
-                                      // await context
-                                      //     .read<StockInwrdController>()
-                                      //     .callgetStkinwardAPI(context, widget.theme);
-                                      // await context
-                                      //     .read<StockInwrdController>()
-                                      // .fixDataMethod(context
-                                      //     .read<StockInwrdController>()
-                                      //     .filtersearchData[index]
-                                      //     .docEntry);
                                     });
 
                                     if (context

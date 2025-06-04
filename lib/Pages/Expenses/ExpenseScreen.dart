@@ -36,26 +36,16 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       if (constraints.maxWidth <= 800) {
         return Scaffold(
           drawer: naviDrawerMob(context),
-          body:
-              // ChangeNotifierProvider<ExpenseController>(
-              //     create: (context) => ExpenseController(),
-              //     builder: (context, child) {
-              //       return Consumer<ExpenseController>(
-              //           builder: (BuildContext context, ExpenseCon, Widget? child) {
-              SafeArea(
+          body: SafeArea(
             child: SingleChildScrollView(
                 child: Column(
               children: [
                 appbarMSExpense("Expense ", theme, context,
                     context.read<ExpenseController>()),
-                const MobScreen(
-                    // ExpenseCon: context.read<ExpenseController>(),
-                    ),
+                const MobScreen(),
               ],
             )),
           ),
-          //   });
-          // }),
         );
       } else //if (constraints.maxWidth <= 1300)
       {
@@ -65,13 +55,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             backgroundColor: Colors.grey[300],
             resizeToAvoidBottomInset: true,
             drawer: naviDrawer(),
-            body:
-                // ChangeNotifierProvider<ExpenseController>(
-                //     create: (context) => ExpenseController(),
-                //     builder: (context, child) {
-                //       return Consumer<ExpenseController>(
-                //           builder: (BuildContext context, ExpenseCon, Widget? child) {
-                SafeArea(
+            body: SafeArea(
               child: SingleChildScrollView(
                 child: Column(children: <Widget>[
                   appbarTabExpense(
@@ -79,49 +63,20 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                     theme,
                     context,
                   ),
-
-                  //  padding: EdgeInsets.only(
-                  //             top: Screens.padingHeight(context) * 0.03,
-                  //             left: Screens.width(context) * 0.02,
-                  //             right: Screens.width(context) * 0.02,
-                  //             bottom: Screens.padingHeight(context)*0.01
-                  //             ),
                   Container(
                     padding: EdgeInsets.only(
                         top: Screens.padingHeight(context) * 0.02,
                         left: Screens.width(context) * 0.02,
                         right: Screens.width(context) * 0.02,
                         bottom: Screens.padingHeight(context) * 0.02),
-                    child: const TabExpenseScreen(
-                        // ExpenseCon: context.read<ExpenseController>(),
-                        ),
+                    child: const TabExpenseScreen(),
                   ),
                 ]),
               ),
             ),
-            //   });
-            // }),
           ),
         );
       }
-      // else {
-      //   return Scaffold(
-      //     body:
-      //         // ChangeNotifierProvider<ExpenseController>(
-      //         //     create: (context) => ExpenseController(),
-      //         //     builder: (context, child) {
-      //         //       return Consumer<ExpenseController>(
-      //         //           builder: (BuildContext context, ExpenseCon, Widget? child) {
-      //         //         return
-      //         SafeArea(
-      //       child: PosExpenseScreen(
-      //         ExpenseCon: context.read<ExpenseController>(),
-      //       ),
-      //     ),
-      //     //   });
-      //     // }),
-      //   );
-      // }
     });
   }
 }

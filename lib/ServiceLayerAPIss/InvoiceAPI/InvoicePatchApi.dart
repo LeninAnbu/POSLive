@@ -37,7 +37,6 @@ class InvoicePatchAPI {
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-          // "Prefer":"return-no-content"
         },
         body: json.encode({
           "U_rctCde": U_rctCde,
@@ -63,17 +62,16 @@ class InvoicePatchAPI {
       );
       log("E-Responce: ${json.decode(response.body)}");
       log("statucCode: ${response.statusCode}");
-      // log("Quotations post: "+json.decode(response.body.toString()).toString());
+
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         return ApprovalstoDocModal.fromJson(response.statusCode);
       } else {
-        // throw Exception('Restart the app or contact the admin!!..');
         return ApprovalstoDocModal.issue(
             response.body.toString(), response.statusCode);
       }
     } catch (e) {
       log(e.toString());
-      // throw Exception(e);
+
       return ApprovalstoDocModal.issue(
           'Restart the app or contact the admin!!..\n', 500);
     }

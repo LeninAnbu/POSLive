@@ -43,26 +43,13 @@ class Search_Widget extends StatelessWidget {
                   context.read<StockCheckController>().filterListSearched(v);
                 },
                 cursorColor: Colors.grey,
-                // controller: stChCon.mycontroller[99],
                 onEditingComplete: () {},
                 decoration: InputDecoration(
                   filled: false,
                   hintText: 'Search Here..',
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                      //  color: Colors.grey
-                      //   fontWeight: FontWeight.normal
-                      ),
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  // suffixIcon: IconButton(
-                  //   icon: Icon(
-                  //     Icons.search,
-                  //     // size: searchHeight * 0.05,
-                  //     color: Colors.grey,
-                  //   ),
-                  //   onPressed: () async {},
-                  //   color: theme.primaryColor,
-                  // ),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 15,
                     horizontal: 10,
@@ -82,12 +69,10 @@ class Search_Widget extends StatelessWidget {
             decoration: BoxDecoration(
               color: theme.primaryColor,
             ),
-            //  height: searchHeight * 0.06,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                    //  color: Colors.red,
                     alignment: Alignment.center,
                     width: searchWidth * 0.05,
                     child: Text(
@@ -96,7 +81,6 @@ class Search_Widget extends StatelessWidget {
                           ?.copyWith(color: Colors.white),
                     )),
                 Container(
-                    //  color: Colors.red,
                     alignment: Alignment.center,
                     width: searchWidth * 0.29,
                     child: Text(
@@ -105,7 +89,6 @@ class Search_Widget extends StatelessWidget {
                           ?.copyWith(color: Colors.white),
                     )),
                 Container(
-                    // color: Colors.red,
                     alignment: Alignment.center,
                     width: searchWidth * 0.12,
                     child: Text(
@@ -114,7 +97,6 @@ class Search_Widget extends StatelessWidget {
                           ?.copyWith(color: Colors.white),
                     )),
                 Container(
-                    // color: Colors.red,
                     alignment: Alignment.center,
                     width: searchWidth * 0.10,
                     child: Text(
@@ -125,7 +107,6 @@ class Search_Widget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                      // color: Colors.red,
                       alignment: Alignment.center,
                       width: searchWidth * 0.08,
                       child: Text(
@@ -137,7 +118,6 @@ class Search_Widget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                      // color: Colors.red,
                       alignment: Alignment.center,
                       width: searchWidth * 0.08,
                       child: Text(
@@ -149,7 +129,6 @@ class Search_Widget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                      // color: Colors.red,
                       alignment: Alignment.center,
                       width: searchWidth * 0.08,
                       child: Text(
@@ -203,7 +182,6 @@ class Search_Widget extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.05,
                                           child: Text(
@@ -212,7 +190,6 @@ class Search_Widget extends StatelessWidget {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.29,
                                           child: Text(
@@ -221,7 +198,6 @@ class Search_Widget extends StatelessWidget {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.12,
                                           child: Text(
@@ -230,17 +206,14 @@ class Search_Widget extends StatelessWidget {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.10,
                                           child: Text(
                                             "${context.watch<StockCheckController>().filterStockSnapList[index].serialbatch}",
-                                            // textAlign: TextAlign.left,
                                             style: theme.textTheme.bodyMedium
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.08,
                                           child: Text(
@@ -249,7 +222,6 @@ class Search_Widget extends StatelessWidget {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.08,
                                           child: Text(
@@ -258,7 +230,6 @@ class Search_Widget extends StatelessWidget {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: searchWidth * 0.08,
                                           child: Text(

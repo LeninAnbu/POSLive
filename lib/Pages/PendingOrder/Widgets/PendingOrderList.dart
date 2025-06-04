@@ -10,7 +10,6 @@ class PendingorderTab extends StatefulWidget {
     required this.theme,
     required this.btnWidth,
     required this.btnheight,
-    // required this.posController
   });
 
   final ThemeData theme;
@@ -22,7 +21,6 @@ class PendingorderTab extends StatefulWidget {
 }
 
 class _PendingorderTabState extends State<PendingorderTab> {
-  // final PendingOrderController posController;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -49,7 +47,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                                 children: [
                                   Container(
                                     alignment: Alignment.center,
-                                    // color: Colors.blue,
                                     width: widget.btnWidth * 0.2,
                                     child: const Text("From Date"),
                                   ),
@@ -153,18 +150,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                           setState(() {
                             context.read<PendingOrderController>().searchBtn();
                           });
-
-                          // context.read<SalesQuotationCon>().getSalesDataDatewise(
-                          //     context
-                          //         .read<SalesQuotationCon>()
-                          //         .searchcontroller[100]
-                          //         .text
-                          //         .toString(),
-                          //     context
-                          //         .read<SalesQuotationCon>()
-                          //         .searchcontroller[101]
-                          //         .text
-                          //         .toString());
                         },
                         child: Container(
                           height: widget.btnheight * 0.25,
@@ -183,7 +168,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
               SizedBox(
                 height: widget.btnheight * 0.07,
               ),
-
               Container(
                 width: widget.btnWidth * 2.05,
                 decoration: BoxDecoration(
@@ -205,7 +189,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                       .searchcontroller[4],
                   style: widget.theme.textTheme.bodyMedium!
                       .copyWith(color: Colors.black),
-
                   onChanged: (val) {
                     setState(() {
                       context
@@ -214,7 +197,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                     });
                   },
                   onEditingComplete: () {},
-                  // Only numbers can be entered
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.all(8),
@@ -241,7 +223,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
               SizedBox(
                 height: widget.btnheight * 0.05,
               ),
-
               Container(
                 padding: EdgeInsets.all(widget.btnheight * 0.02),
                 child: Column(
@@ -257,7 +238,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                         children: [
                           SizedBox(
                             width: widget.btnWidth * 0.15,
-                            // color: Colors.green,
                             child: Text("S.O Number",
                                 style:
                                     widget.theme.textTheme.bodyMedium?.copyWith(
@@ -265,7 +245,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                                 )),
                           ),
                           Container(
-                            // color: Colors.green,
                             width: widget.btnWidth * 0.4,
                             alignment: Alignment.center,
                             child: Text("Customer Name",
@@ -276,7 +255,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                           ),
                           Container(
                             alignment: Alignment.center,
-                            // color: Colors.green,
                             width: widget.btnWidth * 0.15,
                             child: Text("Item Code",
                                 style:
@@ -285,7 +263,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                                 )),
                           ),
                           Container(
-                            // color: Colors.yellow,
                             alignment: Alignment.center,
                             width: widget.btnWidth * 0.5,
                             child: Text("Item Name",
@@ -315,7 +292,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                           Container(
                             alignment: Alignment.center,
                             width: widget.btnWidth * 0.2,
-                            // color: Colors.green,
                             child: Text("Date",
                                 style:
                                     widget.theme.textTheme.bodyMedium?.copyWith(
@@ -325,7 +301,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                           Container(
                             alignment: Alignment.centerRight,
                             width: widget.btnWidth * 0.25,
-                            // color: Colors.red,
                             child: Text("Total",
                                 style:
                                     widget.theme.textTheme.bodyMedium?.copyWith(
@@ -390,37 +365,13 @@ class _PendingorderTabState extends State<PendingorderTab> {
                                               child: ListTile(
                                                 contentPadding:
                                                     const EdgeInsets.all(0),
-                                                onTap: () {
-                                                  //   setState(() {
-                                                  //     context
-                                                  //         .read<
-                                                  //             PendingOrderController>()
-                                                  //         .soDetailsData(context
-                                                  //             .read<
-                                                  //                 PendingOrderController>()
-                                                  //             .filterHeaderOrderdatas![index]);
-
-                                                  //     Navigator.push(
-                                                  //         context,
-                                                  //         MaterialPageRoute(
-                                                  //             builder: (context) =>
-                                                  //                 PendingListItem(
-                                                  //                   theme: widget
-                                                  //                       .theme,
-                                                  //                   btnWidth: widget
-                                                  //                       .btnWidth,
-                                                  //                   btnheight: widget
-                                                  //                       .btnheight,
-                                                  //                 )));
-                                                  //   });
-                                                },
+                                                onTap: () {},
                                                 title: Container(
                                                   padding: EdgeInsets.only(
                                                       left: widget.btnWidth *
                                                           0.01,
                                                       right: widget.btnWidth *
                                                           0.01),
-                                                  //   color: Colors.amber,
                                                   width: widget.btnWidth * 0.77,
                                                   child: Row(
                                                     mainAxisAlignment:
@@ -428,7 +379,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                                                             .spaceBetween,
                                                     children: [
                                                       SizedBox(
-                                                          // color: Colors.red,
                                                           width:
                                                               widget.btnWidth *
                                                                   0.17,
@@ -469,7 +419,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                                                       Container(
                                                           alignment:
                                                               Alignment.center,
-                                                          // color: Colors.red,
                                                           width:
                                                               widget.btnWidth *
                                                                   0.15,
@@ -574,7 +523,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                   ],
                 ),
               ),
-              //
               SizedBox(
                 height: Screens.padingHeight(context) * 0.05,
               )

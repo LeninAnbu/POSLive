@@ -10,7 +10,6 @@ class TabReturnReg extends StatefulWidget {
   const TabReturnReg({
     super.key,
     required this.theme,
-    // required this.RetnRegCon,
   });
 
   final ThemeData theme;
@@ -20,7 +19,6 @@ class TabReturnReg extends StatefulWidget {
 }
 
 class _TabReturnRegState extends State<TabReturnReg> {
-  // final RetnRegCon RetnRegCon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,16 +50,9 @@ class _TabReturnRegState extends State<TabReturnReg> {
                                 child: const Text("From Date"),
                               ),
                               Container(
-                                // height: Screens.padingHeight(context) * 0.3,
                                 width: Screens.width(context) * 0.13,
-                                decoration: const BoxDecoration(
-                                    // //color: Colors.amber,
-                                    //   borderRadius: BorderRadius.circular(4),
-                                    //  border: Border.all(),
-                                    ),
-                                child:
-                                    // Center(child: Text("2023-03-03"))
-                                    TextFormField(
+                                decoration: const BoxDecoration(),
+                                child: TextFormField(
                                   controller: context
                                       .read<RetnRegCon>()
                                       .searchcontroller[2],
@@ -85,7 +76,6 @@ class _TabReturnRegState extends State<TabReturnReg> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(4)),
-                                      //   labelText: "Date",
                                       hintText: "",
                                       hintStyle: widget
                                           .theme.textTheme.bodyLarge!
@@ -105,16 +95,9 @@ class _TabReturnRegState extends State<TabReturnReg> {
                                 child: const Text("To Date"),
                               ),
                               Container(
-                                // height: Screens.padingHeight(context) * 0.3,
                                 width: Screens.width(context) * 0.13,
-                                decoration: const BoxDecoration(
-                                    // //color: Colors.amber,
-                                    //   borderRadius: BorderRadius.circular(4),
-                                    //  border: Border.all(),
-                                    ),
-                                child:
-                                    // Center(child: Text("2023-03-03"))
-                                    TextFormField(
+                                decoration: const BoxDecoration(),
+                                child: TextFormField(
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Required";
@@ -138,7 +121,6 @@ class _TabReturnRegState extends State<TabReturnReg> {
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(4)),
-                                      //   labelText: "Date",
                                       hintText: "",
                                       hintStyle: widget
                                           .theme.textTheme.bodyLarge!
@@ -187,9 +169,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
                     .copyWith(color: Colors.black),
                 keyboardType: TextInputType.text,
                 onChanged: (val) {
-                  //  setState(() {
                   context.read<RetnRegCon>().filterListSearched(val);
-                  //  });
                 },
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -300,9 +280,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
             child: Text(
               '${context.watch<RetnRegCon>().getfiltersalesReg[i].docno}',
               textAlign: TextAlign.left,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                  //color: theme.primaryColor,
-                  ),
+              style: theme.textTheme.bodyLarge?.copyWith(),
             ),
           ),
         ),
@@ -311,9 +289,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
           child: Text(
             '${context.watch<RetnRegCon>().getfiltersalesReg[i].branch}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                // color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -321,9 +297,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
           child: Text(
             '${context.watch<RetnRegCon>().getfiltersalesReg[i].terminal}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //  color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -331,9 +305,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
           child: Text(
             '${context.watch<RetnRegCon>().getfiltersalesReg[i].cardcode}\n${context.watch<RetnRegCon>().getfiltersalesReg[i].cardname}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                // color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -341,9 +313,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
           child: Text(
             '${context.watch<RetnRegCon>().getfiltersalesReg[i].itemcode}\n${context.watch<RetnRegCon>().getfiltersalesReg[i].itemname}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //  color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
         Padding(
@@ -351,9 +321,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
           child: Text(
             '${context.watch<RetnRegCon>().getfiltersalesReg[i].date}',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-                //color: theme.primaryColor,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(),
           ),
         ),
       ]));

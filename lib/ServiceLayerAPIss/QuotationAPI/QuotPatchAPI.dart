@@ -22,14 +22,12 @@ class SerlaySalesQuoPatchAPI {
   static String? deviceTransID;
 
   static Future<CreatePatchModel> getData(String sapDocEntry) async {
-    // int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       final data = json.encode({
         "CardCode": "$cardCodePost",
-        // "CardName": "$cardNamePost",
-           "U_VAT_NUMBER":"$vatNo",
-           'U_TinNO': '$tinNo',
+        "U_VAT_NUMBER": "$vatNo",
+        'U_TinNO': '$tinNo',
         "DocumentStatus": "bost_Open",
         "DocDate": "$docDate",
         "DocDueDate": "$dueDate",
@@ -49,9 +47,8 @@ class SerlaySalesQuoPatchAPI {
         },
         body: json.encode({
           "CardCode": "$cardCodePost",
-          // "CardName": "$cardNamePost",
-           "U_VAT_NUMBER":"$vatNo",
-           'U_TinNO': '$tinNo',
+          "U_VAT_NUMBER": "$vatNo",
+          'U_TinNO': '$tinNo',
           "DocumentStatus": "bost_Open",
           "DocDate": "$docDate",
           "DocDueDate": "$dueDate",
@@ -68,8 +65,8 @@ class SerlaySalesQuoPatchAPI {
         "datatatat Patch: ${json.encode({
               "CardCode": "$cardCodePost",
               "CardName": "$cardNamePost",
-           "U_VAT_NUMBER":"$vatNo",
-           'U_TinNO': '$tinNo',
+              "U_VAT_NUMBER": "$vatNo",
+              'U_TinNO': '$tinNo',
               "DocumentStatus": "bost_Open",
               "DocDate": "$docDate",
               "DocDueDate": "$dueDate",
@@ -82,21 +79,20 @@ class SerlaySalesQuoPatchAPI {
             })}",
       );
 
-      // ressCode = response.statusCode;
       log("SalesQuopatch stscode::${response.statusCode}");
-      log("SalesQuopatch stscode::${response.body}");
+      // log("SalesQuopatch stscode::${response.body}");
 
       if (response.statusCode >= 200 && response.statusCode <= 210) {
         return CreatePatchModel.fromJson(response.statusCode);
       } else {
         log("SalesQuo Exception: Error");
-        // throw Exception("Errorrrrr");
+
         return CreatePatchModel.fromJson2(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("QuotPatchException:: $e");
-      // throw Exception("Error");
+
       return CreatePatchModel.issue("Exception", 500);
     }
   }

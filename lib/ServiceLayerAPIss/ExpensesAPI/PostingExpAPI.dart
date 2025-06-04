@@ -33,16 +33,12 @@ class PostExpenseAPi {
       "Address": "$payTo",
       "Remarks": "$remarks",
       "CounterReference": "$reference",
+      "Reference2": "$reference",
       "CashSum": "$cashSum",
-      // 'Series': '$seriesType',
       'U_DeviceTransID': deviceTransID,
       "U_PosUserCode": UserValues.userCode,
       "U_PosTerminal": AppConstant.terminal,
-      // "ProjectCode": "$projectCode",
-      // "VatGroup": '$vatGroup',
-      // "ProfitCenter": '$OcrCode',
       "U_RVC": '$uRvc',
-
       "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList()
     });
 
@@ -69,6 +65,7 @@ class PostExpenseAPi {
                 "Address": "$payTo",
                 "Remarks": "$remarks",
                 "CounterReference": "$reference",
+                "Reference2": "$reference",
                 "CashSum": "$cashSum",
                 "U_RVC": '$uRvc',
                 'U_DeviceTransID': deviceTransID,
@@ -81,13 +78,13 @@ class PostExpenseAPi {
       log(json.encode({
         "DocDate": "$docDate",
         "DocType": "$docType",
-        // 'Series': '$seriesType',
         "CashAccount": "$cashAccount",
         "JournalRemarks": "$remarks",
         "Address": "$payTo",
         "Remarks": "$remarks",
         "CashSum": "$cashSum",
         "CounterReference": "$reference",
+        "Reference2": "$reference",
         "U_RVC": '$uRvc',
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
@@ -99,13 +96,13 @@ class PostExpenseAPi {
             json.decode(response.body), response.statusCode);
       } else {
         log("PostRequestAPi stcode22 ::${response.statusCode}");
-        // throw Exception("Error");
+
         return SapExpenseModel.issue(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log('Exception PostRequestAPi: $e');
-      // throw Exception('Exception PostRequestAPi: $e');
+
       return SapExpenseModel.error(
           'Restart the app or contact the admin!!..', 500);
     }

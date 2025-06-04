@@ -10,7 +10,6 @@ import 'TabCustomerScreen/TabStockSreen.dart';
 class CustomerMainScreens extends StatefulWidget {
   const CustomerMainScreens({
     super.key,
-    // required this.custCon,
   });
 // CustomerController custCon;
   @override
@@ -18,7 +17,6 @@ class CustomerMainScreens extends StatefulWidget {
 }
 
 class _CustomerMainScreensState extends State<CustomerMainScreens> {
-  // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -31,47 +29,7 @@ class _CustomerMainScreensState extends State<CustomerMainScreens> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return LayoutBuilder(builder: (context, constraints) {
-      // if (constraints.maxWidth <= 800) {
-      //   return ChangeNotifierProvider<CustomerController>(
-      //       create: (context) => CustomerController(),
-      //       builder: (context, child) {
-      //         return Consumer<CustomerController>(
-      //             builder: (BuildContext context, stkCtrl, Widget? child) {
-      //           return WillPopScope(
-      //             onWillPop:stkCtrl.onbackpress,
-      //             child: Scaffold(
-      //               appBar: appbarMS("Customer ", theme, context),
-      //               drawer: naviDrawerMob(context),
-      //               body: SafeArea(
-      //                 child: SingleChildScrollView(
-      //                   child: Container(
-      //                     child: Column(
-      //                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                       children: [
-      //                         MobCustomerScreens(
-      //                           stkCtrl: stkCtrl,
-
-      //                           // scaffoldKey: scaffoldKey,
-      //                         ),
-      //                       ],
-      //                     ),
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //           );
-      //         });
-      //       });
-      // } else {
-      //300
-      return
-          // ChangeNotifierProvider<CustomerController>(
-          //     create: (context) => CustomerController(),
-          //     builder: (context, child) {
-          //       return Consumer<CustomerController>(
-          //           builder: (BuildContext context, stkCtrl, Widget? child) {
-          //         return
-          WillPopScope(
+      return WillPopScope(
         onWillPop: context.read<CustomerController>().onbackpress,
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -85,9 +43,6 @@ class _CustomerMainScreensState extends State<CustomerMainScreens> {
               child: TabCustomerScreen(),
             )),
       );
-      //   });
-      // });
-      // }
     });
   }
 }

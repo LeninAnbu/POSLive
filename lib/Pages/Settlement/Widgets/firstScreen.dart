@@ -23,7 +23,6 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      // color: Colors.amber,
       padding: EdgeInsets.only(
           top: widget.custHeight * 0.03,
           left: widget.custWidth * 0.02,
@@ -37,7 +36,6 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
               right: widget.custWidth * 0.02,
               bottom: widget.custHeight * 0.02),
           child: Column(
-            //  mainAxisAlignment: MainAxisAlignment.,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,31 +43,24 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                   Row(
                     children: [
                       SizedBox(
-                        // alignment: Alignment.center,
-                        // color: Colors.blue,
                         width: widget.custWidth * 0.15,
                         child: const Text("Date"),
                       ),
                       Container(
                         height: widget.custHeight * 0.07,
                         width: widget.custWidth * 0.20,
-                        decoration: const BoxDecoration(
-                            // color: Colors.amber,
-                            ),
+                        decoration: const BoxDecoration(),
                         child: TextField(
                           readOnly: true,
                           controller: context
                               .read<DepositsController>()
                               .mycontroller[0],
-                          onTap: () {
-                            // context.read<DepositsController>().getDate(context, '');
-                          },
+                          onTap: () {},
                           decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 5.0, horizontal: 5.0),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4)),
-                              //   labelText: "Date",
                               hintText: "",
                               hintStyle: theme.textTheme.bodyLarge!
                                   .copyWith(color: Colors.black),
@@ -87,6 +78,9 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                             onPressed: () {
                               context
                                   .read<DepositsController>()
+                                  .onDisablebutton = false;
+                              context
+                                  .read<DepositsController>()
                                   .chequeQueryData = [];
                               context
                                   .read<DepositsController>()
@@ -94,27 +88,27 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                               context
                                   .read<DepositsController>()
                                   .isSelectedAllCheque = false;
-                              context
-                                  .read<DepositsController>()
-                                  .mycontroller[4]
-                                  .text = '';
-                              for (var i = 0;
-                                  i <
-                                      context
-                                          .read<DepositsController>()
-                                          .activitiesData
-                                          .length;
-                                  i++) {
-                                context
-                                        .read<DepositsController>()
-                                        .mycontroller[4]
-                                        .text =
-                                    context
-                                        .read<DepositsController>()
-                                        .activitiesData[i]
-                                        .cashBal
-                                        .toString();
-                              }
+                              // context
+                              //     .read<DepositsController>()
+                              //     .mycontroller[4]
+                              //     .text = '';
+                              // for (var i = 0;
+                              //     i <
+                              //         context
+                              //             .read<DepositsController>()
+                              //             .activitiesData
+                              //             .length;
+                              //     i++) {
+                              //   context
+                              //           .read<DepositsController>()
+                              //           .mycontroller[4]
+                              //           .text =
+                              //       context
+                              //           .read<DepositsController>()
+                              //           .activitiesData[i]
+                              //           .cashBal
+                              //           .toString();
+                              // }
                               context
                                   .read<DepositsController>()
                                   .forcashlistorder(context, "Cash", theme);
@@ -123,19 +117,6 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                                         Screens.padingHeight(context) * 0.90,
                                     custWidth: Screens.width(context) * 0.90,
                                   ));
-                              // Navigator.push(
-                              //     context,
-                              // MaterialPageRoute(
-                              //     builder: (context) =>
-                              // TabsetledSecondScreen(
-
-                              //   custHeight: Screens.padingHeight(
-                              //           context) *
-                              //       0.90,
-                              //   custWidth:
-                              //       Screens.width(context) * 0.90,
-                              // )));
-                              //  context.read<DepositsController>().currentDatepopUp(theme);
                             },
                             child: const Text("New Settlement"))
                         : Container(
@@ -173,13 +154,7 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                       Container(
                         height: widget.custHeight * 0.07,
                         width: widget.custWidth * 0.40,
-
-                        decoration: const BoxDecoration(
-                            // color: Colors.amber,
-                            //   borderRadius: BorderRadius.circular(4),
-                            //  border: Border.all(),
-                            ),
-
+                        decoration: const BoxDecoration(),
                         child: TextField(
                           keyboardType: TextInputType.number,
                           readOnly: true,
@@ -191,12 +166,10 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                                   vertical: 10.0, horizontal: 10.0),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4)),
-                              //   labelText: "Date",
                               hintText: "",
                               hintStyle: theme.textTheme.bodyLarge!
                                   .copyWith(color: Colors.black)),
                         ),
-                        //Center(child: Text("2000"))
                       ),
                     ],
                   ),
@@ -212,13 +185,7 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                       Container(
                         height: widget.custHeight * 0.07,
                         width: widget.custWidth * 0.40,
-
-                        decoration: const BoxDecoration(
-                            //color: Colors.amber,
-                            //   borderRadius: BorderRadius.circular(4),
-                            //  border: Border.all(),
-                            ),
-
+                        decoration: const BoxDecoration(),
                         child: TextField(
                           keyboardType: TextInputType.number,
                           readOnly: true,
@@ -230,12 +197,10 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                                   vertical: 10.0, horizontal: 10.0),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4)),
-                              //    labelText: "Date",
                               hintText: "",
                               hintStyle: theme.textTheme.bodyLarge!
                                   .copyWith(color: Colors.black)),
                         ),
-                        //Center(child: Text("202"))
                       ),
                     ],
                   ),
@@ -251,13 +216,7 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                       Container(
                         height: widget.custHeight * 0.07,
                         width: widget.custWidth * 0.40,
-
-                        decoration: const BoxDecoration(
-                            //color: Colors.amber,
-                            //   borderRadius: BorderRadius.circular(4),
-                            //  border: Border.all(),
-                            ),
-
+                        decoration: const BoxDecoration(),
                         child: TextField(
                           keyboardType: TextInputType.number,
                           readOnly: true,
@@ -269,12 +228,10 @@ class _SettleFirstscreenState extends State<SettleFirstscreen> {
                                   vertical: 10.0, horizontal: 10.0),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4)),
-                              // labelText: "Date",
                               hintText: "",
                               hintStyle: theme.textTheme.bodyLarge!
                                   .copyWith(color: Colors.black)),
                         ),
-                        //Center(child: Text("2000"))
                       ),
                     ],
                   ),

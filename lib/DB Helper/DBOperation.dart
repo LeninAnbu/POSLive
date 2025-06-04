@@ -47,7 +47,7 @@ class DBOperation {
 //log("customercodecustomercode::" + customercode.toString());
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMaster where customerCode ="$customercode" ''');
-    // log("CustomerMaster Len55: $result");
+    log("CustomerMaster Len55: $result");
     return result;
   }
 
@@ -345,6 +345,7 @@ class DBOperation {
           uTINSPERBOX: int.parse(result[i]['UTINSPERBOX'].toString()),
           uSpecificGravity: result[i]['USpecificGravity'].toString(),
           uPackSizeuom: result[i]['UPackSizeUom'].toString(),
+          managedBy: result[i]['ManageBy'].toString(),
           sellprice: result[i]['sellprice'].toString());
     });
   }
@@ -1130,6 +1131,7 @@ Select * from ItemMaster where (Itemcode || ' - ' || itemname_short) Like '%$dat
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
           isselected: int.parse(result[i]['IsSelected'].toString()),
+          managedBy: result[i]['ManageBy'].toString(),
           autoId: int.parse(result[i]["AutoId"].toString()),
           itemcode: result[i]["Itemcode"].toString(),
           itemnamelong: result[i]["itemname_long"].toString(),
@@ -1188,6 +1190,7 @@ Select * from ItemMaster''');
           isselected: result[i]['IsSelected'] != null
               ? int.parse(result[i]['IsSelected'].toString())
               : 0,
+          managedBy: result[i]['ManageBy'].toString(),
           autoId: int.parse(result[i]["AutoId"].toString()),
           itemcode: result[i]["Itemcode"].toString(),
           itemnamelong: result[i]["itemname_long"].toString(),
@@ -1260,6 +1263,7 @@ Select * from ItemMaster''');
           itemnamelong: result[i]["itemname_long"].toString(),
           itemnameshort: result[i]["itemname_short"].toString(),
           skucode: result[i]["skucode"].toString(),
+          managedBy: result[i]['ManageBy'].toString(),
           brand: result[i]["brand"].toString(),
           category: result[i]["category"].toString(),
           subcategory: result[i]["subcategory"].toString(),
@@ -1318,6 +1322,7 @@ WHERE $data IS NOT '';
           subcategory: result[i]["subcategory"].toString(),
           hsnsac: result[i]["hsn_sac"].toString(),
           taxrate: result[i]["taxrate"].toString(),
+          managedBy: result[i]['ManageBy'].toString(),
           isselected: int.parse(result[i]['IsSelected'].toString()),
           isinventory: result[i]["is_inventory"].toString(),
           isfreeby: result[i]["is_freeby"].toString(),
@@ -1377,6 +1382,8 @@ SELECT DISTINCT $fav,IsSelected FROM ItemMaster WHERE $fav IS NOT '' ;
         itemcode: result[i]["Itemcode"].toString(),
         isselected: int.parse(result[i]['IsSelected'].toString()),
         itemnamelong: result[i]["itemname_long"].toString(),
+        managedBy: result[i]['ManageBy'].toString(),
+
         itemnameshort: result[i]["itemname_short"].toString(),
         skucode: result[i]["skucode"].toString(),
         brand: result[i]["brand"].toString(),
@@ -2448,6 +2455,7 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
           isselected: result[i]['IsSelected'] == null
               ? 0
               : int.parse(result[i]['IsSelected'].toString()),
+          managedBy: result[i]['ManageBy'].toString(),
           autoId: int.parse(result[i]['AutoId'].toString()),
           // quantity: int.parse(result[i]['maximumQty'].toString()),
           maximumQty: result[i]['maximumQty'].toString(),
@@ -2488,13 +2496,58 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     });
   }
 
-  static Future<List<Map<String, Object?>>> itemmastercheckitemcode(
+  static Future<List<ItemMasterModelDB>> itemmastercheckitemcode(
       Database db, String itemCode) async {
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from ItemMaster where itemcode ='$itemCode'
      ''');
+    return List.generate(result.length, (i) {
+      // log("utinesperbox:::${result[i]['U_TINS_PER_BOX'].toString().isNotEmpty}");
+      return ItemMasterModelDB(
+          isselected: result[i]['IsSelected'] == null
+              ? 0
+              : int.parse(result[i]['IsSelected'].toString()),
+          managedBy: result[i]['ManageBy'].toString(),
+          autoId: int.parse(result[i]['AutoId'].toString()),
+          // quantity: int.parse(result[i]['maximumQty'].toString()),
+          maximumQty: result[i]['maximumQty'].toString(),
+          minimumQty: result[i]['minimumQty'].toString(),
+          weight: double.parse(result[i]['weight'].toString()),
+          liter: double.parse(result[i]['liter'].toString()),
+          displayQty: result[i]['displayQty'].toString(),
+          searchString: result[i]['searchString'].toString(),
+          brand: result[i]['brand'].toString(),
+          category: result[i]['category'].toString(),
+          createdUserID: result[i]['createdUserID'].toString(),
+          createdateTime: result[i]['createdateTime'].toString(),
+          hsnsac: result[i]['hsnsac'].toString(),
+          isActive: result[i]['isActive'].toString(),
+          isfreeby: result[i]['isfreeby'].toString(),
+          isinventory: result[i]['isinventory'].toString(),
+          issellpricebyscrbat: result[i]['is_sellpricebyscrbat'].toString(),
+          // isserialBatch: result[i]['is_serialBatch'].toString(),
+          itemcode: result[i]['itemcode'].toString(),
+          itemnamelong: result[i]['itemnamelong'].toString(),
+          itemnameshort: result[i]['itemnameshort'].toString(),
+          lastupdateIp: result[i]['lastupdateIp'].toString(),
+          maxdiscount: double.parse(result[i]['maxdiscount'].toString()),
+          skucode: result[i]['skucode'].toString(),
+          subcategory: result[i]['subcategory'].toString(),
+          taxrate: result[i]['taxrate'].toString(),
+          updatedDatetime: result[i]['UpdatedDatetime'].toString(),
+          updateduserid: result[i]['updateduserid'].toString(),
+          mrpprice: result[i]['mrpprice'].toString(),
+          uPackSize: result[i]['U_Pack_Size'].toString(),
+          uTINSPERBOX: result[i]['U_TINS_PER_BOX'].toString().isEmpty ||
+                  result[i]['U_TINS_PER_BOX'] == null
+              ? 0
+              : int.parse(result[i]['U_TINS_PER_BOX'].toString()),
+          uSpecificGravity: result[i]['U_Specific_Gravity'].toString(),
+          uPackSizeuom: result[i]['U_Pack_Size_uom'].toString(),
+          sellprice: result[i]['sellprice'].toString());
+    });
 //log('ItemMaster result::${result.toList()}');
-    return result;
+    // return result;
   }
 
   // insert brand
@@ -4732,7 +4785,7 @@ and  itemcode = '$itemcode'
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockInBatchDB
      ''');
-    log("StockInBatchDB :: " + result.toList().toString());
+    // log("StockInBatchDB :: " + result.toList().toString());
   }
 
   static Future<int?> insertStockInheader(
@@ -5150,6 +5203,15 @@ WHERE  docdate like '$date%'
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  tableDepositHeader where docentry="$docentry"''');
     //log('tableDepositHeader getdata' + result.toString());
+    return result;
+  }
+
+  static Future<List<Map<String, Object?>>> getAllDepositHeadDB(
+    Database db,
+  ) async {
+    final List<Map<String, Object?>> result =
+        await db.rawQuery('''SELECT * FROM  tableDepositHeader ''');
+    log('tableDepositHeader getdata' + result.toString());
     return result;
   }
 

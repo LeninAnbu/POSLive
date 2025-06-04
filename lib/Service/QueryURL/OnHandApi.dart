@@ -34,7 +34,7 @@ class OnhandApi {
       }
     } catch (e) {
       log('OnHandModel:::$e');
-      // throw (e);
+
       return OnHandModels.errors(e.toString(), 500);
     }
   }

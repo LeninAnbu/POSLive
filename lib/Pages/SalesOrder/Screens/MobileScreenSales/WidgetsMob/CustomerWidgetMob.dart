@@ -24,7 +24,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
           horizontal: Screens.width(context) * 0.02,
           vertical: Screens.padingHeight(context) * 0.01),
       width: Screens.width(context),
-      //  height: Screens.padingHeight(context)*0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -40,7 +39,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            // width: custWidth * 0.7,
             width: Screens.width(context) * 1,
             decoration: BoxDecoration(
               border:
@@ -49,7 +47,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
               color: Colors.grey.withOpacity(0.001),
             ),
             child: TextFormField(
-              // controller: prdCD.mycontroller[1],
               onChanged: (v) {},
               readOnly: true,
               onTap: () {
@@ -61,7 +58,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4))),
                         contentPadding: const EdgeInsets.all(0),
-                        // backgroundColor: Colors.transparent,
                         insetPadding:
                             EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                         content: forSearchBtn(context, widget.prdSI),
@@ -72,7 +68,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                 suffixIcon: IconButton(
                   icon: const Icon(
                     Icons.search,
-                    // size: custHeight * 0.08,
                     color: Colors.grey,
                   ),
                   onPressed: () {
@@ -85,7 +80,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             contentPadding: const EdgeInsets.all(0),
-                            // backgroundColor: Colors.transparent,
                             insetPadding: EdgeInsets.all(
                                 Screens.bodyheight(context) * 0.02),
                             content: forSearchBtn(context, widget.prdSI),
@@ -95,9 +89,7 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                   color: widget.theme.primaryColor,
                 ),
                 hintText: 'Customers',
-                hintStyle: widget.theme.textTheme.bodyLarge?.copyWith(
-                    // color: Colors.grey
-                    ),
+                hintStyle: widget.theme.textTheme.bodyLarge?.copyWith(),
                 filled: false,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
@@ -130,20 +122,16 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                   padding: EdgeInsets.symmetric(
                       vertical: Screens.padingHeight(context) * 0.02,
                       horizontal: Screens.width(context) * 0.02),
-                  // height: Screens.padingHeight(context) * 0.75,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                           width: Screens.width(context),
                           alignment: Alignment.centerRight,
-                          // height: Screens.padingHeight(context) * 0.02,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                //  color: Colors.green,
                                 width: Screens.width(context) * 0.7,
                                 child: Text(
                                   widget.prdSI.getselectedcust!.name != null
@@ -168,7 +156,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                                     Radius.circular(4))),
                                             contentPadding:
                                                 const EdgeInsets.all(0),
-                                            // backgroundColor: Colors.transparent,
                                             insetPadding: EdgeInsets.all(
                                                 Screens.bodyheight(context) *
                                                     0.02),
@@ -182,7 +169,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                   child: Container(
                                     width: Screens.width(context) * 0.06,
                                     alignment: Alignment.center,
-                                    //     color: Colors.red,
                                     child: const Icon(Icons.edit),
                                   )),
                               InkWell(
@@ -193,7 +179,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                   child: Container(
                                     width: Screens.width(context) * 0.06,
                                     alignment: Alignment.center,
-                                    //     color: Colors.blue,
                                     child: const Icon(Icons.close_sharp),
                                   )),
                             ],
@@ -204,7 +189,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       ),
                       SizedBox(
                         width: Screens.width(context),
-                        // color: Colors.green,
                         child: Row(
                           children: [
                             Row(
@@ -245,28 +229,21 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       ),
                       SizedBox(
                         width: Screens.width(context) * 0.88,
-                        //   color: Colors.blue,
                         child: Row(
-                          //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: Screens.width(context) * 0.44,
-
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    // color: Colors.green,
                                     width: Screens.width(context) * 0.13,
                                     child: Text("GST",
-                                        // "${AppLocalizations.of(context)!.gst}",
                                         style: widget.theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                   ),
                                   Container(
-                                    // color: Colors.blue,
                                     width: Screens.width(context) * 0.3,
                                     padding: EdgeInsets.only(
                                       right: Screens.width(context) * 0.02,
@@ -285,20 +262,17 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: Screens.width(context) * 0.44,
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     width: Screens.width(context) * 0.17,
-                                    //   color: Colors.blue,
                                     child: Text("Balance",
                                         style: widget.theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                   ),
                                   SizedBox(
-                                    // color: Colors.red,
                                     width: Screens.width(context) * 0.26,
                                     child: Text(
                                         widget.prdSI.config.slpitCurrency2(
@@ -317,28 +291,23 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       ),
                       SizedBox(
                         width: Screens.width(context) * 0.88,
-                        // color: Colors.green,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: Screens.width(context) * 0.44,
-                              //  color: Colors.green,
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     width: Screens.width(context) * 0.15,
-                                    //color: Colors.red,
                                     child: Text("Code#",
                                         style: widget.theme.textTheme.bodyLarge
                                             ?.copyWith(color: Colors.black54)),
                                   ),
                                   Container(
                                     width: Screens.width(context) * 0.28,
-                                    //color: Colors.green,
                                     padding: EdgeInsets.only(
                                       right: Screens.width(context) * 0.02,
                                     ),
@@ -353,8 +322,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                             Container(
                               alignment: Alignment.centerRight,
                               width: Screens.width(context) * 0.44,
-                              // color: Colors.red,
-                              // height: Screens.padingHeight(context) * 0.02,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -382,13 +349,11 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                // widget.prdSI.getcustaddresslist();
                                 billAddress(context, widget.prdSI);
                               });
                             },
                             child: SizedBox(
                               width: Screens.width(context) * 0.4,
-                              // color: Colors.red,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -488,12 +453,10 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                           ),
                           InkWell(
                             onTap: () {
-                              // widget.prdSI.getcustaddresslist();
                               shipaddress(context, widget.prdSI);
                             },
                             child: SizedBox(
                               width: Screens.width(context) * 0.465,
-                              //color: Colors.green,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -524,10 +487,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                   ),
                                   Text(
                                     " ${widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address1 != null ? widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address1.toString() : null},${widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address2 != null ? widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address2.toString() : null}, ${widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address3 != null ? widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address3.toString() : null}",
-
-                                    // "${widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address1.toString()}, " +
-                                    //     "${widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address2.toString()}, " +
-                                    //     "${widget.prdSI.getselectedcust!.address![widget.prdSI.getselectedShipAdress!].address3.toString()}",
                                     maxLines: 1,
                                     style: widget.theme.textTheme.bodyLarge
                                         ?.copyWith(color: Colors.black54),
@@ -624,7 +583,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                     padding: EdgeInsets.only(
                         left: Screens.padingHeight(context) * 0.02,
                         right: Screens.padingHeight(context) * 0.02),
-                    // color: Colors.red,
                     width: Screens.width(context) * 0.4,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -769,7 +727,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                         ),
                       );
                     })),
-            //  SizedBox(height: Screens.padingHeight(context) * 0.09),
             SizedBox(height: Screens.padingHeight(context) * 0.01),
             InkWell(
               onTap: () {
@@ -783,7 +740,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(4))),
                         contentPadding: const EdgeInsets.all(0),
-                        // backgroundColor: Colors.transparent,
                         insetPadding:
                             EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                         content:
@@ -827,7 +783,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
             bottom: Screens.padingHeight(context) * 0.01),
         width: Screens.width(context),
         height: Screens.padingHeight(context) * 0.7,
-        // color: Colors.red,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -848,7 +803,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                             padding: EdgeInsets.only(
                                 left: Screens.padingHeight(context) * 0.02,
                                 right: Screens.padingHeight(context) * 0.02),
-                            // color: Colors.red,
                             width: Screens.width(context) * 0.4,
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -927,8 +881,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       height: Screens.padingHeight(context) * 0.03,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -978,7 +930,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       height: Screens.padingHeight(context) * 0.03,
                     ),
                     Container(
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1027,8 +978,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       height: Screens.padingHeight(context) * 0.03,
                     ),
                     Container(
-                      // height: Screens.padingHeight(context) * 0.15,
-                      // width: custWidth * 1,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1075,20 +1024,16 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                     SizedBox(
                       height: Screens.padingHeight(context) * 0.02,
                     ),
-                    //addreswidget
                     AddressWidget(
                       theme: theme,
                       posController: prdadd,
                       custHeight: Screens.padingHeight(context),
                       custWidth: Screens.width(context),
                     ),
-
                     SizedBox(
                       height: Screens.padingHeight(context) * 0.02,
                     ),
                     Container(
-                      // height: custHeight * 0.15,
-                      // width: custWidth * 0.65,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: Colors.grey.withOpacity(0.01),
@@ -1139,8 +1084,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                       onTap: () {
                         if (title == "New Customer") {
                           prdadd.addnewCustomer(context, theme, 6);
-
-                          // prdadd.getCustDetFDB();
                         } else if (title == "Update Customer") {
                           showDialog(
                               context: context,
@@ -1150,7 +1093,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(4))),
                                   contentPadding: const EdgeInsets.all(0),
-                                  // backgroundColor: Colors.transparent,
                                   insetPadding: EdgeInsets.all(
                                       Screens.bodyheight(context) * 0.02),
                                   content: updateType(context, widget.prdSI,
@@ -1164,8 +1106,6 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                         height: Screens.padingHeight(context) * 0.045,
                         decoration: BoxDecoration(
                           color: theme.primaryColor,
-                          // borderRadius: BorderRadius.only(
-                          //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
                         ),
                         child: Center(
                           child: Container(
@@ -1240,8 +1180,6 @@ Widget updateType(BuildContext context, SOCon pos, int i) {
   final theme = Theme.of(context);
   return SizedBox(
     width: Screens.width(context),
-    //  height: Screens.padingHeight(context) * 0.4,
-
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -1250,14 +1188,11 @@ Widget updateType(BuildContext context, SOCon pos, int i) {
           height: Screens.padingHeight(context) * 0.05,
           decoration: BoxDecoration(
             color: theme.primaryColor,
-            // borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // color: Colors.red,
                 width: Screens.width(context) * 0.4,
                 alignment: Alignment.center,
                 child: Text(
@@ -1311,7 +1246,7 @@ Widget updateType(BuildContext context, SOCon pos, int i) {
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context);
-                          // pos.updateCustomer(i);
+
                           Navigator.pop(context);
                         },
                         child: Text(
@@ -1326,7 +1261,7 @@ Widget updateType(BuildContext context, SOCon pos, int i) {
                       child: ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            // pos.updateCustomer(i);
+
                             Navigator.pop(context);
                           },
                           child: Text(
@@ -1355,7 +1290,6 @@ billAddress(BuildContext context, SOCon pos) async {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           contentPadding: const EdgeInsets.all(0),
-          // backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
           content: Container(
             width: Screens.width(context),
@@ -1377,7 +1311,6 @@ billAddress(BuildContext context, SOCon pos) async {
                         padding: EdgeInsets.only(
                             left: Screens.padingHeight(context) * 0.02,
                             right: Screens.padingHeight(context) * 0.02),
-                        // color: Colors.red,
                         width: Screens.width(context) * 0.4,
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -1429,15 +1362,6 @@ billAddress(BuildContext context, SOCon pos) async {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    //             ListTile(
-                                    //   title: Text( pos.selectedcust!.address[index].billAddress,
-                                    //       style: theme.textTheme.bodySmall),
-                                    //   onTap: () {
-                                    //     pos.changeBillAddress(index);
-                                    //     //pos.selectedcust!.address[pos.selectedAdress].billAddress = pos.selectedcust!.address[index].billAddress;
-                                    //     Navigator.pop(context);
-                                    //   },
-                                    // ),
                                     Text(
                                         "${pos.getselectedcust!.address![index].address1},${pos.getselectedcust!.address![index].address2}, ${pos.getselectedcust!.address![index].address3}"),
                                     Text(pos.getselectedcust!.address![index]
@@ -1463,8 +1387,6 @@ billAddress(BuildContext context, SOCon pos) async {
                     height: Screens.padingHeight(context) * 0.045,
                     decoration: BoxDecoration(
                       color: theme.primaryColor,
-                      // borderRadius: BorderRadius.only(
-                      //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
                     ),
                     child: Center(
                       child: Container(
@@ -1482,15 +1404,6 @@ billAddress(BuildContext context, SOCon pos) async {
               ],
             ),
           ),
-          //  AlertBox(
-          //   payMent: 'Address',
-          //   widget:
-          //   buttonName: "Create Address",
-          //   callback: () {
-          //     Navigator.pop(context);
-          //     createAddress(context, theme, pos);
-          //   },
-          // )
         );
       });
 }
@@ -1505,7 +1418,6 @@ shipaddress(BuildContext context, SOCon pos) async {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           contentPadding: const EdgeInsets.all(0),
-          // backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
           content: Container(
             width: Screens.width(context),
@@ -1527,7 +1439,6 @@ shipaddress(BuildContext context, SOCon pos) async {
                         padding: EdgeInsets.only(
                             left: Screens.padingHeight(context) * 0.02,
                             right: Screens.padingHeight(context) * 0.02),
-                        // color: Colors.red,
                         width: Screens.width(context) * 0.4,
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -1556,7 +1467,6 @@ shipaddress(BuildContext context, SOCon pos) async {
                 ),
                 SizedBox(
                   height: Screens.padingHeight(context) * 0.4,
-                  // width: Screens.width(context) * 0.25,
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: pos.getselectedcust!.address!.length,
@@ -1570,16 +1480,6 @@ shipaddress(BuildContext context, SOCon pos) async {
                             child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            //             ListTile(
-                            //   title: Text(pos.selectedcust!.address[index].shipAddress,
-                            //       style: theme.textTheme.bodySmall),
-                            //   onTap: () {
-                            //     pos.changeShipAddress(index);
-                            //     // pos.selectedcust!.address[0].shipAddress =
-                            //     //     pos.selectedcust!.address[index].shipAddress;
-                            //     Navigator.pop(context);
-                            //   },
-                            // ),
                             Text(
                                 "${pos.getselectedcust!.address![index].address1}, ${pos.getselectedcust!.address![index].address2}, ${pos.getselectedcust!.address![index].address3},"),
                             Text(pos.getselectedcust!.address![index].billCity),
@@ -1603,8 +1503,6 @@ shipaddress(BuildContext context, SOCon pos) async {
                     height: Screens.padingHeight(context) * 0.045,
                     decoration: BoxDecoration(
                       color: theme.primaryColor,
-                      // borderRadius: BorderRadius.only(
-                      //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
                     ),
                     child: Center(
                       child: Container(
@@ -1622,15 +1520,6 @@ shipaddress(BuildContext context, SOCon pos) async {
               ],
             ),
           ),
-          // AlertBox(
-          //   payMent: 'Address',
-          //   widget:
-          //   buttonName: "Create Address",
-          //   callback: () {
-          //     Navigator.pop(context);
-          //     createAddress(context, theme, pos);
-          //   },
-          // )
         );
       });
 }
@@ -1645,18 +1534,8 @@ createAddress(BuildContext context, ThemeData theme, SOCon pos) async {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           contentPadding: const EdgeInsets.all(0),
-          // backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.all(Screens.bodyheight(context) * 0.02),
-          // contentPadding: EdgeInsets.all(0),
           content: createAddressMethod(theme, context, pos),
-          // AlertBox(
-          //   payMent: 'Create Address',
-          //   widget: createAddressMethod(theme, context, pos),
-          //   buttonName: "Save",
-          //   callback: () {
-          //     pos.addadress(context);
-          //   },
-          // )
         );
       });
 }
@@ -1687,7 +1566,6 @@ Container createAddressMethod(
                   padding: EdgeInsets.only(
                       left: Screens.padingHeight(context) * 0.02,
                       right: Screens.padingHeight(context) * 0.02),
-                  // color: Colors.red,
                   width: Screens.width(context) * 0.4,
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -1729,17 +1607,14 @@ Container createAddressMethod(
           InkWell(
             onTap: () {
               Navigator.pop(context);
-              // pos.insertCreatenewAddress();
+
               pos.createNewBillAdd();
-              // pos.addadress(context);
             },
             child: Container(
               alignment: Alignment.center,
               height: Screens.padingHeight(context) * 0.045,
               decoration: BoxDecoration(
                 color: theme.primaryColor,
-                // borderRadius: BorderRadius.only(
-                //     topLeft: Radius.circular(5), topRight: Radius.circular(5))
               ),
               child: Center(
                 child: Container(
@@ -1780,8 +1655,6 @@ class AddressWidget extends StatelessWidget {
       return Column(
         children: [
           Container(
-            // height: custHeight * 0.15,
-            // width: custWidth * 1,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
               color: Colors.grey.withOpacity(0.01),
@@ -1829,8 +1702,6 @@ class AddressWidget extends StatelessWidget {
             height: custHeight * 0.02,
           ),
           Container(
-            // height: custHeight * 0.15,
-            // width: custWidth * 1,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
               color: Colors.grey.withOpacity(0.01),
@@ -1877,8 +1748,6 @@ class AddressWidget extends StatelessWidget {
             height: custHeight * 0.02,
           ),
           Container(
-            // height: custHeight * 0.15,
-            // width: custWidth * 1,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(3),
               color: Colors.grey.withOpacity(0.01),
@@ -1928,7 +1797,6 @@ class AddressWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -1974,7 +1842,6 @@ class AddressWidget extends StatelessWidget {
                 ),
               ),
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2029,7 +1896,6 @@ class AddressWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2075,7 +1941,6 @@ class AddressWidget extends StatelessWidget {
                 ),
               ),
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2088,13 +1953,6 @@ class AddressWidget extends StatelessWidget {
                   style:
                       theme.textTheme.bodyLarge?.copyWith(color: Colors.black),
                   onChanged: (v) {},
-                  // validator: (value) {
-                  //   if (value!.isEmpty) {
-                  //     return "Please Enter the State";
-                  //   } else {
-                  //     return null;
-                  //   }
-                  // },
                   decoration: InputDecoration(
                     hintText: "Ind",
                     filled: false,
@@ -2153,8 +2011,6 @@ class AddressWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // height: custHeight * 0.15,
-                // width: custWidth * 0.65,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.grey.withOpacity(0.01),
@@ -2203,8 +2059,6 @@ class AddressWidget extends StatelessWidget {
                 height: custHeight * 0.02,
               ),
               Container(
-                // height: custHeight * 0.15,
-                // width: custWidth * 0.65,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.grey.withOpacity(0.01),
@@ -2253,8 +2107,6 @@ class AddressWidget extends StatelessWidget {
                 height: custHeight * 0.02,
               ),
               Container(
-                // height: custHeight * 0.15,
-                // width: custWidth * 0.65,
                 decoration: BoxDecoration(
                   border: Border.all(
                       color: const Color.fromARGB(255, 240, 235, 235)),
@@ -2310,7 +2162,6 @@ class AddressWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2356,7 +2207,6 @@ class AddressWidget extends StatelessWidget {
                 ),
               ),
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2411,7 +2261,6 @@ class AddressWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2457,7 +2306,6 @@ class AddressWidget extends StatelessWidget {
                 ),
               ),
               Container(
-                // height: custHeight * 0.15,
                 width: custWidth * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
@@ -2470,13 +2318,6 @@ class AddressWidget extends StatelessWidget {
                   style:
                       theme.textTheme.bodyLarge?.copyWith(color: Colors.black),
                   onChanged: (v) {},
-                  // validator: (value) {
-                  //   if (value!.isEmpty) {
-                  //     return "Please Enter the State";
-                  //   } else {
-                  //     return null;
-                  //   }
-                  // },
                   decoration: InputDecoration(
                     hintText: "Ind",
                     filled: false,
@@ -2509,6 +2350,4 @@ class AddressWidget extends StatelessWidget {
       );
     });
   }
-
-  //
 }

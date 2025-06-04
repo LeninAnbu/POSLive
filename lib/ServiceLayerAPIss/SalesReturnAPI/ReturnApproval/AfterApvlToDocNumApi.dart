@@ -20,14 +20,10 @@ class ApprovalsRetAPi {
       );
       final response = await http.get(
         Uri.parse(
-            "http://102.69.167.106:50001/b1s/v1/CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'"
-            // URL.sapUrl +
-            //     "/CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID' ", //&\$filter= DocumentStatus eq 'bost_Open'
-            ),
+            "http://102.69.167.106:50001/b1s/v1/CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'"),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),
-          // "Prefer":"return-no-content"
         },
       );
       log("statucCode: " + response.statusCode.toString());
@@ -38,14 +34,12 @@ class ApprovalsRetAPi {
           response.statusCode,
         );
       } else {
-        //  throw Exception('Restart the app or contact the admin!!..');
         return ApprovalsOTORModal.fromJson(
           json.decode(response.body) as Map<String, dynamic>,
           response.statusCode,
         );
       }
     } catch (e) {
-      // throw Exception(e);
       return ApprovalsOTORModal.issue(
           'Restart the app or contact the admin!!..');
     }

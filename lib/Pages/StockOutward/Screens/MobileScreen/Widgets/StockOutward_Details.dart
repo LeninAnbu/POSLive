@@ -30,7 +30,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
@@ -38,7 +37,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
           padding: EdgeInsets.all(
             sOutHeigh * 0.01,
           ),
-          // height: sOutHeigh * 0.1,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -56,13 +54,10 @@ class StockOut_DetailsWidget extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 width: sOutHeigh * 0.3,
-                // color: Colors.amber,
                 child: Text("Request From ${datatotal![index].reqfromWhs}"),
               ),
               Container(
                 alignment: Alignment.centerRight,
-                // width:sOutHeigh * 0.2,
-                // color: Colors.amber,
                 child: Text("${datatotal![index].reqtransdate}"),
               )
             ],
@@ -74,10 +69,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
         Container(
           height: sOutHeigh * 0.79,
           width: sOutWidth,
-          // padding: EdgeInsets.all(
-          //   SIN_Heigh * 0.008,
-          // ),
-
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -107,7 +98,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
                                 padding: EdgeInsets.all(sOutHeigh * 0.002),
                                 child: Container(
                                     width: sOutWidth * 0.95,
-                                    // height: sOutHeigh * 0.3,
                                     padding: EdgeInsets.all(
                                       sOutHeigh * 0.008,
                                     ),
@@ -153,284 +143,216 @@ class StockOut_DetailsWidget extends StatelessWidget {
                                     ),
                                     child: Column(
                                       children: [
-                                        Row(
-                                            // crossAxisAlignment:
-                                            //     CrossAxisAlignment.start,
+                                        Row(children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Column(
-                                                // crossAxisAlignment:
-                                                //     CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Container(
-                                                    width: sOutWidth * 0.48,
-                                                    // color: Colors.amber,
-                                                    // padding: EdgeInsets.all(
-                                                    //     sOutHeigh * 0.006),
-                                                    decoration: BoxDecoration(
-                                                        // color: Colors.amber,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4)),
-                                                    child: Text(
-                                                      "${data![i].itemcode}",
-                                                      // "${stOutCon.getScanneditemData[index].ItemName}",
-                                                      style: theme
-                                                          .textTheme.bodyMedium!
-                                                          .copyWith(
-                                                        // fontSize: 12,
-                                                        color: Colors.black,
-                                                        // fontWeight: FontWeight.bold
-                                                      ),
-                                                    ),
+                                              Container(
+                                                width: sOutWidth * 0.48,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4)),
+                                                child: Text(
+                                                  "${data![i].itemcode}",
+                                                  style: theme
+                                                      .textTheme.bodyMedium!
+                                                      .copyWith(
+                                                    color: Colors.black,
                                                   ),
-                                                  SizedBox(
-                                                    height: sOutHeigh * 0.008,
-                                                  ),
-                                                  Container(
-                                                    // padding: EdgeInsets.all(
-                                                    //     sOutHeigh * 0.001),
-                                                    width: sOutWidth * 0.5,
-
-                                                    // width: sOutWidth * 0.3,
-                                                    decoration: BoxDecoration(
-                                                        // color: Colors.grey[600],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4)),
-                                                    // color: Colors.blue,
-                                                    child: Text(
-                                                      "${data![i].serialBatch}",
-                                                      // "${stOutCon.getScanneditemData[index].SerialBatch}",
-                                                      style: theme
-                                                          .textTheme.bodyMedium!
-                                                          .copyWith(
-                                                        // fontSize: 12,
-                                                        color: Colors.black,
-                                                        // fontWeight: FontWeight.bold
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                ),
                                               ),
-
-                                              //
-                                              Column(
-                                                children: [
-                                                  SizedBox(
-                                                    width: sOutWidth * 0.37,
-                                                    // color: Colors.blue,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                              SizedBox(
+                                                height: sOutHeigh * 0.008,
+                                              ),
+                                              Container(
+                                                width: sOutWidth * 0.5,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4)),
+                                                child: Text(
+                                                  "${data![i].serialBatch}",
+                                                  style: theme
+                                                      .textTheme.bodyMedium!
+                                                      .copyWith(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            children: [
+                                              SizedBox(
+                                                width: sOutWidth * 0.37,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
                                                       children: [
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Container(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              width: sOutWidth *
-                                                                  0.17,
-                                                              padding:
-                                                                  EdgeInsets.all(
-                                                                      sOutHeigh *
-                                                                          0.006),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      // color: Colors.amber,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4)),
-                                                              child: Text(
-                                                                "Req.Qty",
-                                                                // "${stOutCon.getScanneditemData[index].ItemName}",
-                                                                style: theme
-                                                                    .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
-                                                                  // fontSize: 12,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  // fontWeight: FontWeight.bold
-                                                                ),
-                                                              ),
+                                                        Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          width:
+                                                              sOutWidth * 0.17,
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  sOutHeigh *
+                                                                      0.006),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4)),
+                                                          child: Text(
+                                                            "Req.Qty",
+                                                            style: theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                              color:
+                                                                  Colors.black,
                                                             ),
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets.all(
-                                                                      sOutHeigh *
-                                                                          0.005),
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              width: sOutWidth *
-                                                                  0.15,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      // color: Colors.grey[600],
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4)),
-                                                              // color: Colors.blue,
-                                                              child: Text(
-                                                                "${data![i].qty}",
-                                                                // "${stOutCon.getScanneditemData[index].SerialBatch}",
-                                                                style: theme
-                                                                    .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
-                                                                  // fontSize: 12,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  // fontWeight: FontWeight.bold
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
-                                                        Column(
-                                                          // crossAxisAlignment: CrossAxisAlignment.center,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          children: [
-                                                            Container(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              width: sOutWidth *
-                                                                  0.15,
-                                                              padding:
-                                                                  EdgeInsets.all(
-                                                                      sOutHeigh *
-                                                                          0.006),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      // color: Colors.amber,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4)),
-                                                              child: Text(
-                                                                "Tra.Qty",
-                                                                // "${stOutCon.getScanneditemData[index].ItemName}",
-                                                                style: theme
-                                                                    .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
-                                                                  // fontSize: 12,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  // fontWeight: FontWeight.bold
-                                                                ),
-                                                              ),
+                                                        Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  sOutHeigh *
+                                                                      0.005),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          width:
+                                                              sOutWidth * 0.15,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4)),
+                                                          child: Text(
+                                                            "${data![i].qty}",
+                                                            style: theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                              color:
+                                                                  Colors.black,
                                                             ),
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets.all(
-                                                                      sOutHeigh *
-                                                                          0.005),
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              width: sOutWidth *
-                                                                  0.15,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      // color: Colors.grey[600],
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4)),
-                                                              // color: Colors.blue,
-                                                              child: Text(
-                                                                "${data![i].trans_Qty}",
-                                                                // "${stOutCon.getScanneditemData[index].SerialBatch}",
-                                                                style: theme
-                                                                    .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
-                                                                  // fontSize: 12,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  // fontWeight: FontWeight.bold
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          width:
+                                                              sOutWidth * 0.15,
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  sOutHeigh *
+                                                                      0.006),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4)),
+                                                          child: Text(
+                                                            "Tra.Qty",
+                                                            style: theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  sOutHeigh *
+                                                                      0.005),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          width:
+                                                              sOutWidth * 0.15,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4)),
+                                                          child: Text(
+                                                            "${data![i].trans_Qty}",
+                                                            style: theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4)),
+                                                    child: Text(
+                                                      "Scanned Qty - ",
+                                                      style: theme
+                                                          .textTheme.bodySmall!
+                                                          .copyWith(
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
                                                   ),
-                                                  Row(
-                                                    // crossAxisAlignment: CrossAxisAlignment.center,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        // width: sOutWidth * 0.21,
-                                                        // padding: EdgeInsets.all(sOutHeigh * 0.006),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                // color: Colors.amber,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4)),
-                                                        child: Text(
-                                                          "Scanned Qty - ",
-                                                          style: theme.textTheme
-                                                              .bodySmall!
-                                                              .copyWith(
-                                                            // fontSize: 12,
-                                                            color: Colors.grey,
-                                                            // fontWeight: FontWeight.bold
-                                                          ),
-                                                        ),
+                                                  Container(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4)),
+                                                    child: Text(
+                                                      "${data![i].Scanned_Qty}",
+                                                      style: theme
+                                                          .textTheme.bodySmall!
+                                                          .copyWith(
+                                                        color: Colors.grey,
                                                       ),
-                                                      Container(
-                                                        // padding: EdgeInsets.all(sOutHeigh * 0.005),
-                                                        alignment: Alignment
-                                                            .centerRight,
-                                                        // width: sOutWidth * 0.08,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                // color: Colors.grey[600],
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4)),
-                                                        child: Text(
-                                                          "${data![i].Scanned_Qty}",
-                                                          style: theme.textTheme
-                                                              .bodySmall!
-                                                              .copyWith(
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                            ]),
+                                            ],
+                                          ),
+                                        ]),
                                       ],
                                     )),
                               ),
                             );
                     }),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       stOutCon.page.animateToPage(--stOutCon.pageIndex,
-                //           duration: Duration(milliseconds: 800),
-                //           curve: Curves.linearToEaseOut);
-                //     },
-                //     child: Text("Back"))
               ],
             ),
           ),
@@ -481,9 +403,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
                     onPressed: () {
                       stOutCon.holdbutton(
                           index, context, theme, data, datatotal![index]);
-                      // stOutCon.page.animateToPage(--stOutCon.pageIndex,
-                      //     duration: Duration(milliseconds: 1400),
-                      //     curve: Curves.linearToEaseOut);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -512,18 +431,11 @@ class StockOut_DetailsWidget extends StatelessWidget {
                               log('datadddddddd::${data!.length}');
                               stOutCon.submitbutton(index, context, theme, data,
                                   datatotal![index]);
-                              // stOutCon.page.animateToPage(--stOutCon.pageIndex,
-                              //     duration: Duration(milliseconds: 1400),
-                              //     curve: Curves.linearToEaseOut);
 
                               stOutCon.myFuture(context, theme, data);
-                              // Get.toNamed(ConstantRoutes.dashboard);
-                              // stOutCon.page.animateToPage(--stOutCon.pageIndex,
-                              //     duration: Duration(milliseconds: 1400),
-                              //     curve: Curves.linearToEaseOut);
                             }
                           : null,
-                      child: Text("Submit",
+                      child: Text("Submittt",
                           style: theme.textTheme.bodyMedium!
                               .copyWith(color: Colors.white))),
                 )
@@ -535,75 +447,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
     );
   }
 
-  // forSuspend(BuildContext contextt) {
-  //   return Container(
-  //       child: Column(
-  //     children: [
-  //       Container(
-  //           // color: Colors.amber,
-  //           padding: EdgeInsets.all(Screens.bodyheight(contextt) * 0.02),
-  //           child: Center(
-  //               child: Text(
-  //             "You about to suspended all information will be unsaved",
-  //             textAlign: TextAlign.center,
-  //           ))),
-  //       Padding(
-  //         padding: EdgeInsets.all(Screens.bodyheight(contextt) * 0.008),
-  //         child: Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             GestureDetector(
-  //                 onTap: () {
-
-  //                   stOutCon.suspendedbutton(
-  //                       index, contextt, theme, data, datatotal![index]);
-
-  //                        stOutCon.page.animateToPage(--stOutCon.pageIndex,
-  //                           duration: Duration(milliseconds: 1400),
-  //                           curve: Curves.linearToEaseOut);
-
-  //                   Navigator.pop(contextt);
-  //                 },
-  //                 child: Container(
-  //                   width: Screens.width(contextt) * 0.22,
-  //                   alignment: Alignment.center,
-  //                   decoration: BoxDecoration(
-  //                       color: theme.primaryColor,
-  //                       borderRadius: BorderRadius.circular(3),
-  //                       border: Border.all(
-  //                         color: theme.primaryColor,
-  //                       )),
-  //                   height: Screens.bodyheight(contextt) * 0.05,
-  //                   child: Text("Yes",
-  //                       style: theme.textTheme.bodyText2?.copyWith(
-  //                         color: Colors.white,
-  //                       )),
-  //                 )),
-  //             GestureDetector(
-  //                 onTap: () {
-  //                   Navigator.pop(contextt);
-  //                 },
-  //                 child: Container(
-  //                   width: Screens.width(contextt) * 0.22,
-  //                   alignment: Alignment.center,
-  //                   decoration: BoxDecoration(
-  //                       borderRadius: BorderRadius.circular(3),
-  //                       color: theme.primaryColor,
-  //                       border: Border.all(
-  //                         color: theme.primaryColor,
-  //                       )),
-  //                   height: Screens.bodyheight(contextt) * 0.05,
-  //                   child: Text("No",
-  //                       style: theme.textTheme.bodyText2?.copyWith(
-  //                         color: Colors.white,
-  //                       )),
-  //                 )),
-  //           ],
-  //         ),
-  //       ),
-  //     ],
-  //   ));
-  // }
   forSuspend(BuildContext context, ThemeData theme) {
     return Get.defaultDialog(
         title: "Alert",
@@ -612,8 +455,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
         titleStyle: theme.textTheme.bodyLarge!.copyWith(color: Colors.red),
         middleTextStyle: theme.textTheme.bodyLarge,
         radius: 0,
-        // onCancel: (){},
-        // onConfirm: (){},
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -622,10 +463,6 @@ class StockOut_DetailsWidget extends StatelessWidget {
                   onTap: () {
                     stOutCon.suspendedbutton(
                         index, context, theme, data, datatotal![index]);
-
-                    // stOutCon.page.animateToPage(--stOutCon.pageIndex,
-                    //     duration: Duration(milliseconds: 1400),
-                    //     curve: Curves.linearToEaseOut);
 
                     Navigator.pop(context);
                   },

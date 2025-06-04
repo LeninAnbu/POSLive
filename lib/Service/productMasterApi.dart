@@ -8,7 +8,6 @@ import '../url/url.dart';
 class ProductMasterApi {
   static Future<ProductMasterModsl> getData(
       String branch, String terminal) async {
-    // int resCode = 500;
     try {
       log("${URL.url}ProductMaster/$branch/$terminal");
       final response = await http.get(
@@ -26,12 +25,10 @@ class ProductMasterApi {
       } else {
         log("Error PM: ${json.decode(response.body)}");
         throw Exception("Error");
-        //  return ProductMasterModel.error('Error', resCode);
       }
     } catch (e) {
       log("Exception PM: $e");
       throw Exception(e.toString());
-      //  return ProductMasterModel.error(e.toString(), resCode);
     }
   }
 }

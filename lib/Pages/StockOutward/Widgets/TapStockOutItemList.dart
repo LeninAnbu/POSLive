@@ -58,7 +58,6 @@ class _StockOutwardPageviewerLeftState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          // color: Colors.red,
                           width: widget.stockInWidth * 0.45,
                           child: Text(
                             'Item Name',
@@ -66,7 +65,6 @@ class _StockOutwardPageviewerLeftState
                                 .copyWith(color: Colors.white),
                           )),
                       Container(
-                          // color: Colors.green,
                           width: widget.stockInWidth * 0.1,
                           child: Text(
                             'In Stock',
@@ -74,7 +72,6 @@ class _StockOutwardPageviewerLeftState
                                 .copyWith(color: Colors.white),
                           )),
                       Container(
-                          // color: Colors.green,
                           alignment: Alignment.center,
                           width: widget.stockInWidth * 0.14,
                           child: Text(
@@ -83,7 +80,6 @@ class _StockOutwardPageviewerLeftState
                                 .copyWith(color: Colors.white),
                           )),
                       Container(
-                          // color: Colors.red,
                           alignment: Alignment.center,
                           width: widget.stockInWidth * 0.14,
                           child: Text(
@@ -132,7 +128,6 @@ class _StockOutwardPageviewerLeftState
                           ],
                         ),
                         Container(
-                          // color: Colors.yellow,
                           height: widget.stockInheight * 0.87,
                           child: ListView.builder(
                               itemCount: context
@@ -140,7 +135,6 @@ class _StockOutwardPageviewerLeftState
                                   .passdata!
                                   .length,
                               itemBuilder: (context, indx) {
-                                // log(' context.watch<StockOutwardController>().passdata![indx].dscription::${context.watch<StockOutwardController>().passdata![indx].dscription}');
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
@@ -172,7 +166,6 @@ class _StockOutwardPageviewerLeftState
                                   },
                                   child: Card(
                                     child: Container(
-                                      // height: stockInheight * 0.11,
                                       width: widget.stockInWidth,
                                       padding: EdgeInsets.only(
                                         top: widget.stockInheight * 0.01,
@@ -223,7 +216,6 @@ class _StockOutwardPageviewerLeftState
                                                   Container(
                                                       alignment:
                                                           Alignment.centerLeft,
-                                                      // color: Colors.red,
                                                       child: context
                                                                   .read<
                                                                       StockOutwardController>()
@@ -343,50 +335,7 @@ class _StockOutwardPageviewerLeftState
                                                   inputFormatters: [
                                                     DecimalInputFormatter()
                                                   ],
-                                                  // inputFormatters: [
-                                                  //   FilteringTextInputFormatter
-                                                  //       .digitsOnly
-                                                  // ],
                                                   onEditingComplete: () {
-                                                    // setState(() {
-                                                    // context.read<StockOutwardController>().stkOutEditQty(
-                                                    //     context
-                                                    //         .read<
-                                                    //             StockOutwardController>()
-                                                    //         .get_i_value,
-                                                    //     context
-                                                    //         .read<
-                                                    //             StockOutwardController>()
-                                                    //         .StockOutward[context
-                                                    //             .read<
-                                                    //                 StockOutwardController>()
-                                                    //             .get_i_value]
-                                                    //         .data[context
-                                                    //             .read<
-                                                    //                 StockOutwardController>()
-                                                    //             .batch_i!]
-                                                    //         .serialbatchList![
-                                                    //             i]
-                                                    //         .serialbatch!,
-                                                    //     context
-                                                    //         .read<
-                                                    //             StockOutwardController>()
-                                                    //         .batch_i!,
-                                                    //     context
-                                                    //         .read<
-                                                    //             StockOutwardController>()
-                                                    //         .StockOutward[context
-                                                    //             .read<
-                                                    //                 StockOutwardController>()
-                                                    //             .get_i_value]
-                                                    //         .data[context
-                                                    //             .read<
-                                                    //                 StockOutwardController>()
-                                                    //             .batch_i!]
-                                                    //         .itemcode!,
-                                                    //     i);
-                                                    // });
-
                                                     context
                                                         .read<
                                                             StockOutwardController>()
@@ -427,18 +376,6 @@ class _StockOutwardPageviewerLeftState
                                                     ),
                                                   ),
                                                 )),
-                                            // Container(
-                                            //   // color: Colors.green,
-                                            //   alignment: Alignment.centerRight,
-                                            //   width: widget.stockInWidth * 0.13,
-                                            //   child: widget.data == null
-                                            //       ? const Text("")
-                                            //       : Text(
-                                            //           "${widget.data![indx].Scanned_Qty}",
-                                            //           style: widget.theme
-                                            //               .textTheme.bodyLarge,
-                                            //         ),
-                                            // ),
                                           ]),
                                     ),
                                   ),

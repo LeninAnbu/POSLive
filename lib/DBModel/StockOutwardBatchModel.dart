@@ -8,8 +8,6 @@ class StockOutBatchData {
   static String qty = 'quantity';
   static String seialBatch = "serialBatch";
   static String docstatus = "docstatus";
-
-  // static String scannedQty = "scannedQty";
 }
 
 class StockOutBatchDataDB {

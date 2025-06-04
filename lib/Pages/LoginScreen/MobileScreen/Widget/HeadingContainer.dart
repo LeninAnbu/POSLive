@@ -13,7 +13,6 @@ class HeadingContainerMob extends StatelessWidget {
     return Container(
       height: Screens.bodyheight(context) * 0.30,
       width: Screens.width(context) * 1.0,
-      //  color: Colors.amber,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

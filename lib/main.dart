@@ -68,6 +68,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+
 LocalNotificationService localNotificationService =
     new LocalNotificationService();
 
@@ -127,7 +129,7 @@ onReciveFCM() async {
 
       if (message.notification!.android!.imageUrl != null) {
         notify.add(NotificationModel(
-          docEntry: 0, //
+          docEntry: 0,
           titile: message.notification!.title,
           description: message.notification!.body!,
           receiveTime: config.currentDate(),
@@ -139,7 +141,6 @@ onReciveFCM() async {
       } else {
         notify.add(NotificationModel(
             docEntry: 0,
-            //
             titile: message.notification!.title,
             description: message.notification!.body!,
             receiveTime: config.currentDate(),
@@ -157,15 +158,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
   ]);
-  // await Firebase.initializeApp();
-  await Firebase.initializeApp(
-      //     options: const FirebaseOptions(
-      //   apiKey: "AIzaSyCujWq186yyiOu_X6zq3cY7bNmiMFQ4ZE0",
-      //   appId: "1:47765829820:android:b81af7db39d5c9417978b9",
-      //   messagingSenderId: "47765829820",
-      //   projectId: "posnotify-10031",
-      // )
-      );
+
+  await Firebase.initializeApp();
   getFCM();
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -229,12 +223,11 @@ void onStart(ServiceInstance service) async {
   service.on('stopService').listen((event) {
     service.stopSelf();
   });
-  //receivervb();
+
   timePeriod(service);
 }
 
 void timePeriod(ServiceInstance service) {
-  // Timer.periodic(const Duration(seconds: 15), (timer) async {
   if (service is AndroidServiceInstance) {
     service.setForegroundNotificationInfo(
       title: "My App Service",
@@ -251,7 +244,7 @@ void timePeriod(ServiceInstance service) {
       "device": device,
     },
   );
-  // });
+
   receivervb();
 }
 
@@ -280,19 +273,18 @@ Future<void> receivervb() async {
       sapPassword != 'null') {
     AppConstant.ip = ip;
     AppConstant.branch = branch.toString();
-    AppConstant.terminal = terminal.toString(); //102.69.167.106
+    AppConstant.terminal = terminal.toString();
     AppConstant.sapPassword = sapPassword;
     AppConstant.sapUserName = sapUserName;
     am.ConnectionSettings settings = am.ConnectionSettings(
         host: "${AppConstant.ip.toString().trim()}",
-        //"102.69.167.106"
         port: 5672,
         authProvider: am.PlainAuthenticator("buson", "BusOn123"));
     client = am.Client(settings: settings);
 
     Map<String, Object> data = {"Branch": UserValues.branch.toString()};
 
-    channel = await client!.channel(); // Br_HOFG_T2
+    channel = await client!.channel();
 
     queue = await channel!.queue(
         "Br_${AppConstant.branch.trim()}_${AppConstant.terminal.toString().trim()}",
@@ -306,7 +298,7 @@ Future<void> receivervb() async {
       consumer2 = await queue!.consume();
       consumer2?.listen((am.AmqpMessage message) {
         log("Consume the rabbitm queue11");
-        // log("datata11 : " + jsonDecode(message.payloadAsString).toString());
+
         validateQueue(message);
       });
     } else if (queue!.consumerCount == 1) {
@@ -359,7 +351,6 @@ Future<String?> getSlpCode() async {
 }
 
 void validateQueue(AmqpMessage message) async {
-  //print("Response: " + message.payloadAsString);
   var data = jsonDecode(message.payloadAsString);
 
   if (data["ObjectType"] == 1) {
@@ -462,7 +453,6 @@ expense(message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           salerequest.salesHeader[0].sapDocentry!,
-          //
           salerequest.salesHeader[0].sapDocNo!,
           int.parse(salerequest.salesHeader[0].docentry.toString()),
           'Expense');
@@ -478,7 +468,6 @@ updateExpense(AmqpMessage message) async {
   try {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
-    //print("updateData: doc: " + updateData.docEntry.toString());
 
     if (updateData.docEntry == null) {
       await DBOperation.updtExcepSapDetSalHead(db, updateData.transId!,
@@ -489,9 +478,7 @@ updateExpense(AmqpMessage message) async {
           updateData.docNumber!, updateData.transId!, 'Expense');
       expense.postRabitMqExpense2(int.parse(updateData.transId!.toString()));
     }
-  } catch (e) {
-    //print("E: $e");
-  }
+  } catch (e) {}
 }
 
 stkInward(message) async {
@@ -499,7 +486,6 @@ stkInward(message) async {
   StockInward stockinw =
       StockInward.fromjson(jsonDecode(message.payloadAsString));
 
-  //print("StockInward: " + stockinw.salesHeader[0].docentry.toString());
   int? alrdyhv = await DBOperation.getDocAldy(
       db,
       "docentry",
@@ -507,19 +493,16 @@ stkInward(message) async {
       int.parse(stockinw.salesHeader[0].docentry.toString()),
       stockinw.salesHeader[0].branch!,
       stockinw.salesHeader[0].terminal);
-  //print("alrdyhv: " + alrdyhv.toString());
+
   if (alrdyhv! < 1) {
-    //print("Insert stock inward table");
     await DBOperation.insertStockInheader(db, stockinw.salesHeader);
     await DBOperation.insertStInLine(db, stockinw.salesLine);
     await DBOperation.insertStInBatch(db, stockinw.stInbatch);
   } else {
-    //print("AAAAAAAAAAAAAAAAAAA1");
     if (stockinw.salesHeader[0].sapDocentry != null) {
       await DBOperation.updtSapDetSalHead(
           db,
           stockinw.salesHeader[0].sapDocentry!,
-          //
           stockinw.salesHeader[0].sapDocNo!,
           int.parse(stockinw.salesHeader[0].docentry.toString()),
           'StockInHeaderDB');
@@ -535,14 +518,11 @@ updateINward(AmqpMessage message) async {
   try {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
-    //print("updateData: doc: " + updateData.docEntry.toString());
 
     if (updateData.docEntry == null) {
       await DBOperation.updtExcepSapDetSalHead(db, updateData.transId!,
           updateData.errorMessage!.replaceAll("'", ""), 'StockInHeaderDB');
     } else {
-      // StockInwrdController stIn = new StockInwrdController();
-
       await DBOperation.updtSapDetSalHead(db, updateData.docEntry!,
           updateData.docNumber!, updateData.transId!, 'StockInHeaderDB');
       List<Map<String, Object?>> getStInDetails =
@@ -550,17 +530,9 @@ updateINward(AmqpMessage message) async {
               db, int.parse(updateData.transId!.toString()));
       await updateInWrdStkSnaptab(int.parse(updateData.transId!.toString()),
           int.parse(getStInDetails[0]["baseDocentry"].toString()));
-
-      // stIn.postRabitMq2(
-      //     int.parse(updateData.transId!.toString()),
-      //     int.parse(getStInDetails[0]['baseDocentry'].toString()),
-      //     getStInDetails[0]['reqtoWhs'].toString());
     }
-  } catch (e) {
-    //print("E: $e");
-  }
+  } catch (e) {}
 }
-//
 
 stkAddOutward(message) async {
   final Database db = (await DBHelper.getInstance())!;
@@ -582,7 +554,6 @@ stkAddOutward(message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           salerequest.salesHeader[0].sapDocentry!,
-          //
           salerequest.salesHeader[0].sapDocNo!,
           int.parse(salerequest.salesHeader[0].docentry.toString()),
           'StockOutHeaderDataDB');
@@ -620,12 +591,8 @@ updateOutward(AmqpMessage message) async {
           getStOutDetails[0]["baseDocentry"].toString(),
           getStOutDetails[0]["reqfromWhs"].toString());
     }
-  } catch (e) {
-    //print("E: $e");
-  }
+  } catch (e) {}
 }
-
-///
 
 stockRequest(AmqpMessage message) async {
   final Database db = (await DBHelper.getInstance())!;
@@ -648,7 +615,6 @@ stockRequest(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           salerequest.salesHeader![0].sapDocentry!,
-          //
           salerequest.salesHeader![0].sapDocNo!,
           int.parse(salerequest.salesHeader![0].docentry.toString()),
           'StockReqHDT');
@@ -683,7 +649,6 @@ updateStockReq(AmqpMessage message) async {
   }
 }
 
-///
 salesReturn(AmqpMessage message) async {
   final Database db = (await DBHelper.getInstance())!;
   SalesRetrun saleret =
@@ -704,7 +669,6 @@ salesReturn(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           int.parse(saleret.salesHeader![0].sapDocentry!),
-          //
           int.parse(saleret.salesHeader![0].sapDocNo!),
           int.parse(saleret.salesHeader![0].docentry.toString()),
           'SalesReturnHeader');
@@ -726,7 +690,6 @@ updateReturn(AmqpMessage message) async {
   try {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
-    // print("updateData: doc: " + updateData.docEntry.toString());
 
     if (updateData.docEntry == null) {
       log("updateData.docEntryis null");
@@ -771,7 +734,6 @@ salesQuotation(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           saleQuotation.salesQuotHeader![0].sapDocentry!,
-          //
           saleQuotation.salesQuotHeader![0].sapDocNo!,
           int.parse(saleQuotation.salesQuotHeader![0].docentry.toString()),
           'SalesQuotationHeader');
@@ -790,7 +752,7 @@ updatesalesQuotation(AmqpMessage message) async {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
     log("updateData: doc: " + updateData.docEntry.toString());
-    // log("updateData: Act type: " + updateData.actionType.toString());
+
     SalesQuotationCon salesQuot = new SalesQuotationCon();
 
     if (updateData.docEntry == null) {
@@ -834,7 +796,6 @@ salesOrder(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           saleinvc.salesOrderHeader![0].sapDocentry!,
-          //
           saleinvc.salesOrderHeader![0].sapDocNo!,
           int.parse(saleinvc.salesOrderHeader![0].docentry.toString()),
           'SalesOrderHeader');
@@ -858,7 +819,6 @@ updateSalesOrder(AmqpMessage message) async {
       await DBOperation.updtExcepSapDetSalHead(db, updateData.transId!,
           updateData.errorMessage!.replaceAll("'", ""), 'SalesOrderHeader');
     } else if (updateData.docEntry != null && updateData.actionType == "Edit") {
-      // await salesOrder.pushRabiMqSO3(int.parse(updateData.transId!.toString()));
       await DBOperation.updtSapDetSalHead(db, updateData.docEntry!,
           updateData.docNumber!, updateData.transId!, 'SalesOrderHeader');
       await salesOrder.pushRabiMqSO2(int.parse(updateData.transId!.toString()));
@@ -873,7 +833,6 @@ updateSalesOrder(AmqpMessage message) async {
   }
 }
 
-//
 salesInvoice(AmqpMessage message) async {
   final Database db = (await DBHelper.getInstance())!;
   SalesInvoice saleinvc =
@@ -897,7 +856,6 @@ salesInvoice(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           saleinvc.salesHeader![0].sapDocentry!,
-          //
           saleinvc.salesHeader![0].sapDocNo!,
           int.parse(saleinvc.salesHeader![0].docentry.toString()),
           'SalesHeader');
@@ -921,8 +879,6 @@ updateInvoice(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(db, updateData.docEntry!,
           updateData.docNumber!, updateData.transId!, 'SalesHeader');
       await updateInvStkSnaptab(updateData.transId!);
-      // await salesInvoice
-      //     .pushRabitmqSales2(int.parse(updateData.transId!.toString()));
     }
   } catch (e) {
     log(e.toString());
@@ -933,9 +889,7 @@ settlement(message) async {
   final Database db = (await DBHelper.getInstance())!;
   DepositQueue salerequest =
       DepositQueue.fromjson(jsonDecode(message.payloadAsString));
-  //print("UUUUUUUUUUUUUU");
 
-  //print("Settlement: " + salerequest.salesHeader[0].docentry.toString());
   int? alrdyhv = await DBOperation.getDocAldy(
       db,
       "docentry",
@@ -943,11 +897,8 @@ settlement(message) async {
       int.parse(salerequest.salesHeader[0].docentry.toString()),
       salerequest.salesHeader[0].branch!,
       salerequest.salesHeader[0].terminal);
-  //print(" salerequest.salesHeader[0].branch!::" +
-  // salerequest.salesHeader[0].branch!);
-  //print("alrdyhv: " + alrdyhv.toString());
+
   if (alrdyhv! < 1) {
-    //print("Insert Settlemnt table");
     await DBOperation.insertDepositHeader(db, salerequest.salesHeader);
     await DBOperation.insertDepositLine(db, salerequest.salesLine,
         int.parse(salerequest.salesHeader[0].docentry.toString()));
@@ -956,7 +907,6 @@ settlement(message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           salerequest.salesHeader[0].sapDocentry!,
-          //
           salerequest.salesHeader[0].sapDocNo!,
           int.parse(salerequest.salesHeader[0].docentry.toString()),
           'tableDepositHeader');
@@ -974,7 +924,6 @@ updateSettlement(AmqpMessage message) async {
   try {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
-    //print("updateData: doc: " + updateData.docEntry.toString());
 
     if (updateData.docEntry == null) {
       await DBOperation.updtExcepSapDetSalHead(db, updateData.transId!,
@@ -986,20 +935,15 @@ updateSettlement(AmqpMessage message) async {
 
       await DBOperation.updtSapDetSalHead(db, updateData.docEntry!,
           updateData.docNumber!, updateData.transId!, 'tableDepositHeader');
-      // await Settle.PostRabitMqSettle2(int.parse(updateData.transId!.toString()),
-      //     getDBSettlementHeader[0]['typedeposit'].toString());
     }
-  } catch (e) {
-    //print("E: $e");s
-  }
+  } catch (e) {}
 }
 
 paymentReceipt(AmqpMessage message) async {
   final Database db = (await DBHelper.getInstance())!;
   ReceiptQueue saleinvc =
       ReceiptQueue.fromjson(jsonDecode(message.payloadAsString));
-  //print("saleinvc.salesHeader!.docentry: " +
-  // saleinvc.salesHeader![0].docentry.toString());
+
   int? alrdyhv = await DBOperation.getDocAldy(
       db,
       "docentry",
@@ -1007,7 +951,7 @@ paymentReceipt(AmqpMessage message) async {
       int.parse(saleinvc.salesHeader![0].docentry.toString()),
       saleinvc.salesHeader![0].branch!,
       saleinvc.salesHeader![0].terminal);
-  //print("alrdyhv: " + alrdyhv.toString());
+
   if (alrdyhv! < 1) {
     await DBOperation.insertRecieptHeader(db, saleinvc.salesHeader!);
     await DBOperation.insertRecieptLine(db, saleinvc.salesLine!,
@@ -1019,7 +963,6 @@ paymentReceipt(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(
           db,
           saleinvc.salesHeader![0].sapDocentry!,
-          //
           saleinvc.salesHeader![0].sapDocNo!,
           int.parse(saleinvc.salesHeader![0].docentry.toString()),
           'ReceiptHeader');
@@ -1037,35 +980,23 @@ updatePayReceipt(AmqpMessage message) async {
   try {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
-    //print("updateData: doc: " + updateData.docEntry.toString());
 
     if (updateData.docEntry == null) {
-      // print("JJJJJJJJJ 222");
-
       await DBOperation.updtExcepSapDetSalHead(db, updateData.transId!,
           updateData.errorMessage!.replaceAll("'", ""), 'ReceiptHeader');
       await DBOperation.getReceiptHeaderDB(db, updateData.transId!);
     } else {
-      // print("JJJJJJJJJ 333");
-      // PayreceiptController payRecipt = new PayreceiptController();
       await DBOperation.updtSapDetSalHead(db, updateData.docEntry!,
           updateData.docNumber!, updateData.transId!, 'ReceiptHeader');
-      // PayRecipt.postRabitMqPaymentReceipt2(
-      //     int.parse(updateData.transId!.toString()));
     }
-  } catch (e) {
-    //print("E: $e");
-  }
+  } catch (e) {}
 }
 
-//refund
 refund(AmqpMessage message) async {
-  //print("KKKKKKKKK");
   final Database db = (await DBHelper.getInstance())!;
   RefundQueue saleinvc =
       RefundQueue.fromjson(jsonDecode(message.payloadAsString));
-  //print("saleinvc.refundHeader!.docentry: " +
-  // saleinvc.refundHeader![0].docentry.toString());
+
   int? alrdyhv = await DBOperation.getDocAldy(
       db,
       "docentry",
@@ -1073,7 +1004,7 @@ refund(AmqpMessage message) async {
       int.parse(saleinvc.refundHeader![0].docentry.toString()),
       saleinvc.refundHeader![0].branch!,
       saleinvc.refundHeader![0].terminal);
-  //print("alrdyhv: " + alrdyhv.toString());
+
   if (alrdyhv! < 1) {
     await DBOperation.insertRefundHeader(db, saleinvc.refundHeader!);
     await DBOperation.insertRefundLine(db, saleinvc.refundLine!,
@@ -1216,11 +1147,10 @@ updateOutWrdStkSnaptab(int docentry, int baseDocentry) async {
   final Database db = (await DBHelper.getInstance())!;
 
   List<Map<String, Object?>> getDB_StoutHeader =
-      await DBOperation.getStockOutHeader(db, docentry); //com
-  // List<Map<String, Object?>> getDB_StoutLine = await DBOperation.holdStOutLineDB(db, docentry, baseDocentry.toString()); //com
+      await DBOperation.getStockOutHeader(db, docentry);
+
   List<Map<String, Object?>> getDB_StOutBatch =
-      await DBOperation.getStockOutBatch(
-          db, docentry, baseDocentry.toString()); //com
+      await DBOperation.getStockOutBatch(db, docentry, baseDocentry.toString());
   if (UserValues.branch == AppConstant.branch) {
     for (int i = 0; i < getDB_StOutBatch.length; i++) {
       List<Map<String, Object?>> serialbatchCheck =
@@ -1353,19 +1283,15 @@ updateInWrdStkSnaptab(int docentry, int baseDocentry) async {
           }
         }
       } else {
-        List<Map<String, Object?>> serialbatchItemCheck =
-            await DBOperation.itemmastercheckitemcode(
-                db, getDB_StInBatch[i]['itemcode'].toString());
-
-        // List<Map<String, Object?>> serialbatchItemCheck =     await DBOperation. cfoserialBatchCheck(db,getDB_StInBatch[i]['itemname'].toString())
-        //  if( getDB_StInBatch[i]['serialBatch'].toString() != serialbatchCheck[ij]['serialbatch'].toString() && getDB_StInBatch[i]['itemcode'].toString() == serialbatchCheck[ij]['itemcode'].toString()){
+        List<Map<String, Object?>> serialbatchItemCheck = [];
+        await DBOperation.itemmastercheckitemcode(
+            db, getDB_StInBatch[i]['itemcode'].toString());
 
         if (serialbatchItemCheck.isNotEmpty) {
           stkSnpValues.add(StockSnapTModelDB(
             uPackSize: serialbatchItemCheck[0]['UPackSize'] == null
                 ? ''
                 : serialbatchItemCheck[0]['UPackSize'].toString(),
-
             uTINSPERBOX: serialbatchItemCheck[0]['UTINSPERBOX'] != null
                 ? int.parse(serialbatchItemCheck[0]['UTINSPERBOX'].toString())
                 : 0,
@@ -1376,11 +1302,8 @@ updateInWrdStkSnaptab(int docentry, int baseDocentry) async {
             itemname: serialbatchItemCheck[0]['itemname_short'].toString(),
             branchcode: serialbatchItemCheck[0]['branchcode'].toString(),
             taxCode: serialbatchItemCheck[0]['taxCode'].toString(),
-
             createdUserID: UserValues.userID,
-            // int.parse(getDB_StInBatch[i]['createdUserID'].toString()),
             createdateTime: config.currentDate(),
-            // getDB_StInBatch[i]['createdateTime'].toString(),
             itemcode: serialbatchItemCheck[0]['Itemcode'].toString(),
             lastupdateIp: UserValues.lastUpdateIp,
             maxdiscount: serialbatchItemCheck[0]['maxdiscount'].toString(),
@@ -1392,7 +1315,6 @@ updateInWrdStkSnaptab(int docentry, int baseDocentry) async {
             serialbatch: getDB_StInBatch[i]['serialBatch'].toString(),
             snapdatetime: serialbatchItemCheck[0]['snapdatetime'].toString(),
             specialprice: serialbatchItemCheck[0]['specialprice'].toString(),
-
             updatedDatetime: config.currentDate(),
             updateduserid: UserValues.userID,
             liter: serialbatchItemCheck[0]['liter'] != null
@@ -1417,12 +1339,10 @@ updateInWrdStkSnaptab(int docentry, int baseDocentry) async {
 }
 
 updateRefund(AmqpMessage message) async {
-  //print("JJJJJJJJJ");
   final Database db = (await DBHelper.getInstance())!;
   try {
     SapConsumeQueue updateData =
         SapConsumeQueue.fromjson(jsonDecode(message.payloadAsString));
-    //print("updateData: doc: " + updateData.docEntry.toString());
 
     if (updateData.docEntry == null) {
       await DBOperation.updtExcepSapDetSalHead(db, updateData.transId!,
@@ -1431,9 +1351,7 @@ updateRefund(AmqpMessage message) async {
       await DBOperation.updtSapDetSalHead(db, updateData.docEntry!,
           updateData.docNumber!, updateData.transId!, 'RefundHeader');
     }
-  } catch (e) {
-    //print("E: $e");
-  }
+  } catch (e) {}
 }
 
 class MyApp extends StatefulWidget {
@@ -1447,14 +1365,22 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    super.initState();
+    if ((widget.isLogged == null || widget.isLogged == false) &&
+        (widget.isdonload == null || widget.isdonload == false)) {
+      log("aaaaa");
+      DefaultCacheManager().emptyCache();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // return ChangeNotifierProvider(
-    //     create: (_) => LocaleProvider(),
-    //     builder: (context, child) {
-    //       final localPd = Provider.of<LocaleProvider>(context);
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ThemeManager()),
+        ChangeNotifierProvider(
+          create: (_) => ThemeManager(),
+        ),
         ChangeNotifierProvider(create: (_) => DashBoardController()),
         ChangeNotifierProvider(create: (_) => StockReqController()),
         ChangeNotifierProvider(create: (_) => StockOutwardController()),
@@ -1479,12 +1405,11 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => StockCheckController()),
         ChangeNotifierProvider(create: (_) => StockController()),
         ChangeNotifierProvider(create: (_) => ReportController()),
-
         ChangeNotifierProvider(create: (_) => NumberSeriesCtrl()),
         ChangeNotifierProvider(
           create: (_) => TransactionSyncController(),
         ),
-        ChangeNotifierProvider(create: (_) => RefundController()), //
+        ChangeNotifierProvider(create: (_) => RefundController()),
         ChangeNotifierProvider(create: (_) => ReconciliationCtrl()),
         ChangeNotifierProvider(create: (_) => LogoutCtrl()),
       ],
@@ -1505,20 +1430,7 @@ class _MyAppState extends State<MyApp> {
                 : DownloadScreen(),
         supportedLocales: L10n.all,
         getPages: Routes.allRoutes,
-        // locale: localPd.locale,
-        // localizationsDelegates: const [
-        //   AppLocalizations.delegate,
-        //   GlobalMaterialLocalizations.delegate,
-        //   // GlobalWidgetsLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate, //192.198.182.1:5672
-        // ],
       ),
     );
-    // });
   }
 }
-
-//test
-// {status: true, message: Success,
-// data: [{"Usercode":"U105","UserName":"sharmi","Password":"1234","Lockpin":null,"Branch":"ARSFG","Terminal":"T1","Userstatus":"Y","Usertype":"user","Licensekey":"buson123B","Lastpasswordchanged":null,"CreatedateTime":"2023-01-02T00:00:00","UpdatedDatetime":"2023-01-02T00:00:00","createdUserID":1,"updateduserid":1,"LastupdateIp":"192.198.182.1"},
-// {"Usercode":"U107","UserName":"admin","Password":"1234","Lockpin":null,"Branch":"ARSFG","Terminal":"T2","Userstatus":"Y","Usertype":"user","Licensekey":"buson123B","Lastpasswordchanged":null,"CreatedateTime":"2023-01-02T00:00:00","UpdatedDatetime":"2023-01-02T00:00:00","createdUserID":1,"updateduserid":1,"LastupdateIp":"192.198.182.1"}]}

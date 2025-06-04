@@ -14,14 +14,11 @@ import '../Pages/StockRequest/Screens/Screens.dart';
 import '../Pages/Stockslist/Screens/Screens.dart';
 
 Drawer naviDrawerMob(BuildContext context) {
-  // PosController posController = PosController();
   final theme = Theme.of(context);
   return Drawer(
     child: SafeArea(
       child: SingleChildScrollView(
         child: Column(
-          // shrinkWrap: true,
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               height: Screens.bodyheight(context) * 0.04,
@@ -34,20 +31,15 @@ Drawer naviDrawerMob(BuildContext context) {
                   border: Border.all(
                       color: theme.primaryColor,
                       width: Screens.width(context) * 0.01),
-                  // borderRadius: BorderRadius.circular(6),
                   shape: BoxShape.circle),
               child: Text(
                 "POS",
                 style: theme.textTheme.titleLarge!
                     .copyWith(color: theme.primaryColor, shadows: [
                   Shadow(
-                      // bottomLeft
                       offset: const Offset(-1.5, -1.5),
                       color: Colors.grey[200]!),
-                  const Shadow(
-                      // bottomRight
-                      offset: Offset(1.5, -1.5),
-                      color: Colors.white),
+                  const Shadow(offset: Offset(1.5, -1.5), color: Colors.white),
                 ]),
               ),
             ),
@@ -56,18 +48,13 @@ Drawer naviDrawerMob(BuildContext context) {
                 leading: Image.asset(
                   'assets/NavIcons/salepost.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
 
                   Navigator.pushNamed(context, '/DashBoardScreen');
-                  // Navigator.pop(context);
-
-                  //  Get.toNamed(ConstantRoutes.Login);
                 },
                 title: const Text(
                   "DashBoard",
@@ -78,10 +65,8 @@ Drawer naviDrawerMob(BuildContext context) {
               leading: Image.asset(
                 'assets/NavIcons/Neworder.png',
                 fit: BoxFit.fill,
-
                 height: Screens.bodyheight(context) * 0.05,
                 width: Screens.width(context) * 0.08,
-                // color: drawercolor.Dcolor,
               ),
               onTap: () {
                 Navigator.pop(context);
@@ -92,8 +77,6 @@ Drawer naviDrawerMob(BuildContext context) {
               },
               title: const Text(
                 "Sales",
-                // style: GoogleFonts.poppins(
-                //     color: Colors.black, fontWeight: FontWeight.w500),
               ),
             ),
             Builder(
@@ -103,7 +86,6 @@ Drawer naviDrawerMob(BuildContext context) {
                   fit: BoxFit.fill,
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -112,14 +94,9 @@ Drawer naviDrawerMob(BuildContext context) {
                       MaterialPageRoute(
                         builder: (context) => const SalesReturnScreens(),
                       ));
-
-                  // Navigator.pop(context);
-                  // Get.toNamed(ConstantRoutes.NewReminder);
                 },
                 title: const Text(
                   "Sales Return",
-                  // style: GoogleFonts.poppins(
-                  //     color: Colors.black, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -128,10 +105,8 @@ Drawer naviDrawerMob(BuildContext context) {
                 leading: Image.asset(
                   'assets/NavIcons/checkcard.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -145,16 +120,13 @@ Drawer naviDrawerMob(BuildContext context) {
                 ),
               ),
             ),
-
             Builder(
               builder: (context) => ListTile(
                 leading: Image.asset(
                   'assets/NavIcons/changepost.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -162,8 +134,6 @@ Drawer naviDrawerMob(BuildContext context) {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const StockReqScreens()));
-                  // Navigator.pop(context);
-                  //  Get.toNamed(ConstantRoutes.Login);
                 },
                 title: const Text(
                   "Stock Request",
@@ -175,20 +145,11 @@ Drawer naviDrawerMob(BuildContext context) {
                 leading: Image.asset(
                   'assets/NavIcons/salepost.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => StockInwardScreens()));
-                  // Navigator.pop(context);
-
-                  //  Get.toNamed(ConstantRoutes.Login);
                 },
                 title: const Text(
                   "Stock Inward",
@@ -200,19 +161,11 @@ Drawer naviDrawerMob(BuildContext context) {
                 leading: Image.asset(
                   'assets/NavIcons/addItem.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => StockOutwardScreens()));
-                  //  Navigator.pop(context);
-                  //  Get.toNamed(ConstantRoutes.Login);
                 },
                 title: const Text(
                   "Stock Outward",
@@ -224,10 +177,8 @@ Drawer naviDrawerMob(BuildContext context) {
                 leading: Image.asset(
                   'assets/NavIcons/checkcard.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -238,29 +189,21 @@ Drawer naviDrawerMob(BuildContext context) {
                           builder: (context) => StockMainScreens(
                                 theme: theme,
                               )));
-                  //  Navigator.pop(context);
-                  // paymentReceiptScreens(theme: theme),
-                  //  Get.toNamed(ConstantRoutes.Login);
                 },
                 title: const Text(
                   "Stocks",
                 ),
               ),
             ),
-            // StockMainScreens
             Builder(
               builder: (context) => ListTile(
                 leading: Image.asset(
                   'assets/Drawer/just-in-time.png',
                   fit: BoxFit.fill,
-
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
-                  // color: drawercolor.Dcolor,
                 ),
-                onTap: () {
-                  //  Get.toNamed(ConstantRoutes.Login);
-                },
+                onTap: () {},
                 title: const Text(
                   "Refunds",
                 ),
@@ -279,8 +222,6 @@ Drawer naviDrawerMob(BuildContext context) {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ExpenseScreen()));
-                  //  Get.toNamed(ConstantRoutes.Login);
-                  //  Navigator.pop(context);
                 },
                 title: const Text(
                   "Expenses",
@@ -300,7 +241,6 @@ Drawer naviDrawerMob(BuildContext context) {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const DepositScreen()));
-                  //  Get.toNamed(ConstantRoutes.Login);
                 },
                 title: const Text(
                   "Settlements",
@@ -331,9 +271,7 @@ Drawer naviDrawerMob(BuildContext context) {
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
                 ),
-                onTap: () {
-                  //  Get.toNamed(ConstantRoutes.Login);
-                },
+                onTap: () {},
                 title: const Text(
                   "Customers",
                 ),
@@ -347,9 +285,7 @@ Drawer naviDrawerMob(BuildContext context) {
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
                 ),
-                onTap: () {
-                  //  Get.toNamed(ConstantRoutes.Login);
-                },
+                onTap: () {},
                 title: const Text(
                   "Cash Statement",
                 ),
@@ -363,9 +299,7 @@ Drawer naviDrawerMob(BuildContext context) {
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
                 ),
-                onTap: () {
-                  //  Get.toNamed(ConstantRoutes.Login);
-                },
+                onTap: () {},
                 title: const Text(
                   "Pending Order",
                 ),
@@ -379,9 +313,7 @@ Drawer naviDrawerMob(BuildContext context) {
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
                 ),
-                onTap: () {
-                  //  Get.toNamed(ConstantRoutes.Login);
-                },
+                onTap: () {},
                 title: const Text(
                   "Stock Register",
                 ),
@@ -395,9 +327,7 @@ Drawer naviDrawerMob(BuildContext context) {
                   height: Screens.bodyheight(context) * 0.05,
                   width: Screens.width(context) * 0.08,
                 ),
-                onTap: () {
-                  //  Get.toNamed(ConstantRoutes.Login);
-                },
+                onTap: () {},
                 title: const Text(
                   "Return Register",
                 ),

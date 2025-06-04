@@ -6,8 +6,6 @@ import '../../Service/ReportsApi/SalesRegisterApi.dart';
 class StRegCon extends ChangeNotifier {
   init() async {
     clearalldata();
-    // callSalesRegApi();
-    // await getStockReg();
   }
 
   List<GlobalKey<FormState>> formkey =
@@ -40,38 +38,14 @@ class StRegCon extends ChangeNotifier {
       fromDate = datetype2;
 
       searchcontroller[2].text = datetype!;
-      //log(datetype);
     } else if (datetype == "To") {
       datetype = DateFormat('dd-MM-yyyy').format(pickedDate!);
       datetype2 = DateFormat('yyyy-MM-dd').format(pickedDate);
       toDate = datetype2;
 
       searchcontroller[3].text = datetype!;
-      //log(datetype);
-    } else {
-      //log("Date is not selected");
-    }
+    } else {}
   }
-
-  // Future<void> getStockReg() async {
-  //   final Database db = (await DBHelper.getInstance())!;
-  //   List<Map<String, Object?>> data = await DBOperation.getStockRegister(db);
-
-  //   for (int i = 0; i < data.length; i++) {
-  //     salesReg.add(StockRegisterList(
-  //         branch: data[i]['branch'].toString(),
-  //         cardcode: data[i]['customercode'].toString(),
-  //         cardname: data[i]['customername'].toString(),
-  //         date: data[i]['transtime'].toString(),
-  //         docEntry: int.parse(data[i]['docentry'].toString()),
-  //         docno: data[i]['documentno'].toString(),
-  //         itemcode: data[i]['itemcode'].toString(),
-  //         itemname: data[i]['itemname'].toString(),
-  //         terminal: data[i]['terminal'].toString()));
-  //   }
-  //   filtersalesReg = salesReg;
-  //   notifyListeners();
-  // }
 
   calSsearchBtn() {
     callSalesRegApi();
@@ -80,7 +54,7 @@ class StRegCon extends ChangeNotifier {
 
   String? fromDate;
   String? toDate;
-  // List<StockRegisterList>? salesRegListData = [];
+
   callSalesRegApi() async {
     await Salesregisterapi.getGlobalData(fromDate!, toDate!).then((value) {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
@@ -95,7 +69,6 @@ class StRegCon extends ChangeNotifier {
   }
 
   filterListSearched(String v) {
-    //y
     if (v.isNotEmpty) {
       filtersalesReg = salesReg
           .where((e) =>

@@ -9,9 +9,6 @@ import '../../Models/ReportsModel/StockReplenishModel.dart';
 import '../../Service/ReportsApi/StockReplenishApi.dart';
 
 class StockReplenishController extends ChangeNotifier {
-  // StockReplenishController() {
-  //   getOutOfStockItems();
-  // }
   clearDataAll() {
     outOfstock = [];
     filteroutOfstockList = [];
@@ -21,7 +18,7 @@ class StockReplenishController extends ChangeNotifier {
 
   init() {
     clearDataAll();
-    // getOutOfStockItems();
+
     callStockRepApi();
     notifyListeners();
   }
@@ -65,7 +62,6 @@ class StockReplenishController extends ChangeNotifier {
   List<stockCheckList> filteroutOfstockList = [];
   bool outOfstockBool = false;
   filterListSearched(String v) {
-    //y
     outOfstockBool = false;
     if (v.isNotEmpty) {
       filteroutOfstockList = outOfstock
@@ -89,11 +85,9 @@ class StockReplenishController extends ChangeNotifier {
       for (int j = 0; j < getOutOfItemsData.length; j++) {
         if (getOutOfItemsData[j]["shortageQty"] != 0) {
           outOfstock.add(stockCheckList(
-            // DocNo:getsyncedData[j]["documentno"]==null?0: int.parse(getsyncedData[j]["documentno"].toString()),
             itemname: getOutOfItemsData[j]["itemname_short"] == null
                 ? ''
                 : getOutOfItemsData[j]["itemname_short"].toString(),
-            // Docdate: getsyncedData[j]["createdateTime"].toString(),
             qty: getOutOfItemsData[j]["shortageQty"] == null
                 ? 0
                 : double.parse(getOutOfItemsData[j]["shortageQty"].toString()),

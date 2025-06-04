@@ -45,12 +45,9 @@ class SubGroupsSaleExcelReportAPi {
       );
       log("YTDGrowthSLPExcel sts: " + response.statusCode.toString());
 
-      // log("reportNameRes: " + response.bodyBytes.toString());
-
       if (response.statusCode == 200) {
-        // log("bodyBytes: "+ response.bodyBytes.toString());
         final bytes = response.bodyBytes;
-        //  log("Uint8List bytes: "+bytes.toString());
+
         final tempDir = await getTemporaryDirectory();
         String timestamp = DateFormat('yyyyMMdd_HHmmss').format(DateTime.now());
         final file =
@@ -59,7 +56,6 @@ class SubGroupsSaleExcelReportAPi {
         file.writeAsBytesSync(bytes);
         await OpenFile.open(file.path);
 
-        // SReportsState.isLoading = false;
         return 200;
       } else {
         return 400;
@@ -70,17 +66,6 @@ class SubGroupsSaleExcelReportAPi {
       return 500;
     }
   }
-
-  // static Future<void> mainss() async {
-  //   // Open README.md as a byte stream
-  //   final fileStream = File('README.md').openRead();
-
-  //   // Read all bytes from the stream
-  //   final bytes = await readByteStream(fileStream);
-  //   print(bytes);
-  //   // Convert content to string using utf8 codec from dart:convert and print
-  //   print(utf8.decode(bytes));
-  // }
 }
 
 Future<void> launchUrlInBrowser(String url) async {

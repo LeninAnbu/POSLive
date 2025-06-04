@@ -6,12 +6,10 @@ AppBar appbarDefault(
   BuildContext context,
 ) {
   final theme = Theme.of(context);
-  // final GlobalKey<ScaffoldState> Key = GlobalKey<ScaffoldState>();
 
   return AppBar(
     backgroundColor: theme.primaryColor,
     automaticallyImplyLeading: false,
-    // centerTitle: true,
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
@@ -23,7 +21,6 @@ AppBar appbarDefault(
         );
       },
     ),
-    // toolbarHeight: Screens.padingHeight(context) * 0.08, // Set this height
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

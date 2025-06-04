@@ -76,6 +76,7 @@ class ItemMasterT {
   static String U_TINS_PER_BOX = 'U_TINS_PER_BOX';
   static String U_Specific_Gravity = 'U_Specific_Gravity';
   static String U_Pack_Size_uom = 'U_Pack_Size_uom';
+  static String managedBy = 'ManageBy';
 }
 
 class ItemMasterModelDB {
@@ -89,6 +90,7 @@ class ItemMasterModelDB {
   double? quantity;
   String? brand;
   String? category;
+  String? managedBy;
 
   String? subcategory;
   String? hsnsac;
@@ -118,6 +120,7 @@ class ItemMasterModelDB {
   ItemMasterModelDB({
     required this.isselected,
     required this.autoId,
+    required this.managedBy,
     required this.maximumQty,
     required this.minimumQty,
     required this.weight,
@@ -157,6 +160,7 @@ class ItemMasterModelDB {
       ItemMasterModelDB(
         autoId: item['autoId'],
         quantity: item['autoId'],
+        managedBy: item['autoId'],
         brand: item['autoId'],
         category: item['autoId'],
         createdUserID: item['autoId'],
@@ -228,5 +232,6 @@ class ItemMasterModelDB {
         ItemMasterT.U_Pack_Size: uPackSize,
         ItemMasterT.U_TINS_PER_BOX: uTINSPERBOX,
         ItemMasterT.U_Specific_Gravity: uSpecificGravity,
+        ItemMasterT.managedBy: managedBy
       };
 }

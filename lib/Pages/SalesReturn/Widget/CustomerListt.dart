@@ -156,16 +156,7 @@ class _CustomerListtState extends State<CustomerListt> {
                               .read<SalesReturnController>()
                               .disableKeyBoard(context);
                         },
-                        // autofocus: true,
                         decoration: InputDecoration(
-                          // suffixIcon: IconButton(
-                          //   icon: const Icon(
-                          //     Icons.search,
-                          //     color: Colors.grey,
-                          //   ),
-                          //   onPressed: () {},
-                          //   color: theme.primaryColor,
-                          // ),
                           hintText: 'Invoice Number',
                           hintStyle: theme.textTheme.bodyLarge?.copyWith(),
                           filled: false,
@@ -1199,14 +1190,6 @@ class _CustomerListtState extends State<CustomerListt> {
                                           .watch<SalesReturnController>()
                                           .getfiltercustList[index]
                                           .cardCode!),
-                                      // Text(context
-                                      //     .watch<SalesReturnController>()
-                                      //     .config
-                                      //     .splitValues(context
-                                      //         .watch<SalesReturnController>()
-                                      //         .getfiltercustList[index]
-                                      //         .accBalance!
-                                      //         .toString())),
                                     ],
                                   ),
                                   Row(

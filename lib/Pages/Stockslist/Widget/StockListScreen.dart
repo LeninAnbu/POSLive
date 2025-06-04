@@ -32,12 +32,6 @@ class _StockListScreenState extends State<StockListScreen> {
         borderRadius: BorderRadius.circular(8),
         color: Colors.white,
       ),
-      // padding: paddings.padding2(context),
-      // padding: EdgeInsets.only(
-      //     top: widget.stkHeight * 0.01,
-      //     bottom: widget.stkHeight * 0.01,
-      //     left: widget.stkWidth * 0.01,
-      //     right: widget.stkWidth * 0.01),
       height: widget.stkHeight,
       width: widget.stkWidth,
       child: Column(
@@ -82,7 +76,6 @@ class _StockListScreenState extends State<StockListScreen> {
                       InkWell(
                         onTap: () {
                           setState(() {
-                            // stkCtrl.viewAllDetails();
                             context
                                 .read<StockController>()
                                 .isSelectedBrandViewAll2();
@@ -90,30 +83,15 @@ class _StockListScreenState extends State<StockListScreen> {
                                 .read<StockController>()
                                 .isselectedbrandViewAllPage();
                           });
-
-                          // print("widget.viewAll:${stkCtrl.viewAll}");
                         },
                         child: Container(
                           alignment: Alignment.centerRight,
                           width: widget.stkWidth,
-                          // child: InkWell(
-                          // onTap: () {
-                          //   widget.stkCtrl.viewAll = true;
-
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           StockListViewDetails(),
-                          //     ));
-                          //
-                          // },
                           child: Text(
                             "View All",
                             style: theme.textTheme.bodyMedium
                                 ?.copyWith(fontSize: 16, color: Colors.grey),
                           ),
-                          // ),
                         ),
                       )
                     ])),
@@ -128,7 +106,6 @@ class _StockListScreenState extends State<StockListScreen> {
                         Border.all(color: theme.primaryColor.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(8)),
                 width: widget.stkWidth,
-                //height: Screens.bodyheight(context) * 0.26,
                 padding: EdgeInsets.symmetric(
                     horizontal: widget.stkWidth * 0.015,
                     vertical: widget.stkHeight * 0.005),
@@ -158,7 +135,6 @@ class _StockListScreenState extends State<StockListScreen> {
                       InkWell(
                         onTap: () {
                           setState(() {
-                            // stkCtrl.viewAllDetails();
                             context
                                 .read<StockController>()
                                 .isSelectedProductViewAll2();
@@ -170,16 +146,6 @@ class _StockListScreenState extends State<StockListScreen> {
                         child: Container(
                           alignment: Alignment.centerRight,
                           width: widget.stkWidth,
-                          // child: InkWell(
-                          //   onTap: () {
-                          //
-                          //     // Navigator.push(
-                          //     //     context,
-                          //     //     MaterialPageRoute(
-                          //     //       builder: (context) =>
-                          //     //           StockListViewDetails(),
-                          //     //     ));
-                          //   },
                           child: Text(
                             "View All",
                             style: theme.textTheme.bodyMedium
@@ -187,7 +153,6 @@ class _StockListScreenState extends State<StockListScreen> {
                           ),
                         ),
                       ),
-                      // )
                     ])),
           ),
           Card(
@@ -236,28 +201,15 @@ class _StockListScreenState extends State<StockListScreen> {
                                 .read<StockController>()
                                 .isselectedSegmentViewAllPage();
                           });
-
-                          // context.read<StockController>().viewAllDetails();
                         },
                         child: Container(
                           alignment: Alignment.centerRight,
                           width: widget.stkWidth,
-                          // child: InkWell(
-                          // onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           StockListViewDetails(),
-                          //     ));
-                          //
-                          // },
                           child: Text(
                             "View All",
                             style: theme.textTheme.bodyMedium
                                 ?.copyWith(fontSize: 16, color: Colors.grey),
                           ),
-                          // ),
                         ),
                       )
                     ])),
@@ -293,11 +245,6 @@ class _StockListScreenState extends State<StockListScreen> {
                       setState(() {
                         context.read<StockController>().setList();
                       });
-                      // stkCtrl. viewSearchList();
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: ((context) => SearchStockList())));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,
@@ -315,13 +262,6 @@ class _StockListScreenState extends State<StockListScreen> {
                       setState(() {
                         context.read<StockController>().clearAllData();
                       });
-
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: ((context) => StockMainScreens(
-                      //               theme: theme,
-                      //             ))));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,
@@ -343,12 +283,9 @@ class _StockListScreenState extends State<StockListScreen> {
   isselectedBrand(int i) {
     if (i == 0) {
       i = 1;
-      // addBrand(brandList[i].brand);
     } else {
       i = 0;
-      // removeBrand(brandList[i].brand);
     }
-    // notifyListeners();
   }
 
   List<Widget> listContainers(
@@ -482,8 +419,6 @@ class _StockListScreenState extends State<StockListScreen> {
             alignment: Alignment.center,
             width: Screens.width(context) * 0.1,
             height: Screens.bodyheight(context) * 0.06,
-
-            ///   padding: EdgeInsets.all(5),
             decoration: BoxDecoration(
                 color: content[index].isselected == 1
                     ? theme.primaryColor
@@ -562,8 +497,6 @@ class _StockListScreenState extends State<StockListScreen> {
             alignment: Alignment.center,
             width: Screens.width(context) * 0.1,
             height: Screens.bodyheight(context) * 0.06,
-
-            ///   padding: EdgeInsets.all(5),
             decoration: BoxDecoration(
                 color: content[index].isselected == 1
                     ? theme.primaryColor

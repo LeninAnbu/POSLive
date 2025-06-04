@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../../../Constant/Screen.dart';
@@ -9,10 +10,7 @@ import '../../../Widgets/Drawer.dart';
 
 class TabsetledSecondScreen extends StatefulWidget {
   TabsetledSecondScreen(
-      {super.key,
-      // required this.settleCon,
-      required this.custHeight,
-      required this.custWidth});
+      {super.key, required this.custHeight, required this.custWidth});
 
   double custHeight;
   double custWidth;
@@ -22,7 +20,6 @@ class TabsetledSecondScreen extends StatefulWidget {
 
 class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
     with TickerProviderStateMixin {
-  //
   List<Tab> tabBar = [
     const Tab(
       text: 'Cash',
@@ -57,18 +54,16 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return
-        // DefaultTabController(
-        //   length: 3,
-        //   child:
-        Scaffold(
-            backgroundColor: Colors.grey[200],
-            appBar: AppBar(
-              title: const Text("Deposits Screen"),
-              bottom: TabBar(controller: controllerTab, tabs: tabBar),
-            ),
-            drawer: naviDrawer(),
-            body: SingleChildScrollView(
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          title: const Text("Deposits Screen"),
+          bottom: TabBar(controller: controllerTab, tabs: tabBar),
+        ),
+        drawer: naviDrawer(),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
               child: SizedBox(
                 width: Screens.width(context),
                 height: Screens.bodyheight(context) * 0.9,
@@ -84,74 +79,23 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                   ],
                 ),
               ),
-            )
-            // SafeArea(
-            //     child: SingleChildScrollView(
-            //   child: Container(
-            //     padding: EdgeInsets.only(
-            //         top: widget.custHeight * 0.01,
-            //         bottom: widget.custHeight * 0.01,
-            //         left: widget.custWidth * 0.01,
-            //         right: widget.custWidth * 0.01),
-            //     height: widget.custHeight * 1,
-            //     width: double.infinity,
-            //     child: Column(
-            //       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Container(
-            //           alignment: Alignment.center,
-            //           //     color: Colors.amber,
-            //           width: double.maxFinite,
-            //           child: TabBar(isScrollable: true, tabs: [
-            //             Tab(
-            //                 child: SizedBox(
-            //                     width: widget.custWidth * 0.05,
-            //                     child: Text("Cash",
-            //                         style: theme.textTheme.bodyLarge!.copyWith()))),
-            //             Tab(
-            //               child: SizedBox(
-            //                   width: widget.custWidth * 0.05,
-            //                   child: Text("Card",
-            //                       style: theme.textTheme.bodyLarge!.copyWith())),
-            //             ),
-            //             Tab(
-            //               child: SizedBox(
-            //                   width: widget.custWidth * 0.05,
-            //                   child: Text("Cheque",
-            //                       style: theme.textTheme.bodyLarge!.copyWith())),
-            //             ),
-            // Tab(
-            //   child: Container(
-            //       width: widget.custWidth * 0.05,
-            //       child: Text("Wallet",
-            //           style: theme.textTheme.bodyMedium!.copyWith())),
-            // ),
-            // Tab(
-            //   child: Container(
-            //       width: widget.custWidth * 0.05,
-            //       child: Text("Coupon",
-            //           style: theme.textTheme.bodyMedium!.copyWith())),
-            // ),
-            //   ]),
-            // ),
-            //         Expanded(
-            //           child: TabBarView(
-            //             controller: controllerTab,
-            //             children: [
-            //             CashWidget(context, theme),
-            //             CardWidget(context, theme),
-            //             ChecqueWidget(context, theme),
-            //           ]),
-            //         ),
-            //         SizedBox(
-            //           height: widget.custHeight * 0.01,
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // )),
-            // ),
-            );
+            ),
+            Visibility(
+              visible: context.watch<DepositsController>().onDisablebutton,
+              child: Container(
+                width: Screens.width(context),
+                height: Screens.bodyheight(context) * 1.2,
+                color: Colors.white60,
+                child: Center(
+                  child: SpinKitFadingCircle(
+                    size: Screens.bodyheight(context) * 0.08,
+                    color: theme.primaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 
   Container cashWidget(BuildContext context, ThemeData theme) {
@@ -172,7 +116,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 Row(
                   children: [
                     SizedBox(
-                        //  color: Colors.amber,
                         width: widget.custWidth * 0.30,
                         child: const Text("Amount in Hand")),
                     SizedBox(
@@ -199,11 +142,9 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 Row(
                   children: [
                     SizedBox(
-                        // color: Colors.amber,
                         width: widget.custWidth * 0.30,
                         child: const Text("Amount to Settle off")),
                     SizedBox(
-                        // height: widget.custHeight * 0.07,
                         width: widget.custWidth * 0.55,
                         child: TextFormField(
                           keyboardType: TextInputType.number,
@@ -213,37 +154,25 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                             }
                             log('valuevalue::::$value');
                             log(' mycontroller[4] .text::  ${double.parse(context.read<DepositsController>().mycontroller[4].text).ceil()}');
-                            if ((double.parse(value.toString()) !=
-                                    double.parse(context
-                                            .read<DepositsController>()
-                                            .mycontroller[4]
-                                            .text)
-                                        .ceil()) &&
-                                (double.parse(value.toString()) !=
-                                    double.parse(context
-                                            .read<DepositsController>()
-                                            .mycontroller[4]
-                                            .text)
-                                        .floor())) {
-                              // print(
-                              //     "aaajajaj::::${double.parse(context.watch<DepositsController>().mycontroller[4].text).floor()}");
-                              // print(
-                              //     "aaajajajvalue::::${value}");
-                              // print("ghgjhghgjgj: " +
-                              //     double.parse(context.watch<DepositsController>()
-                              //             .mycontroller[4]
-                              //             .text)
-                              //         .ceil()
-                              //         .toString());
-                              return "Enter Correct Amount";
-                            }
+                            // if ((double.parse(value.toString()) !=
+                            //         double.parse(context
+                            //                 .read<DepositsController>()
+                            //                 .mycontroller[4]
+                            //                 .text)
+                            //             .ceil()) &&
+                            //     (double.parse(value.toString()) !=
+                            //         double.parse(context
+                            //                 .read<DepositsController>()
+                            //                 .mycontroller[4]
+                            //                 .text)
+                            //             .floor())) {
+                            //   return "Enter Correct Amount";
+                            // }
                             return null;
                           },
-                          // readOnly: true,
                           controller: context
                               .read<DepositsController>()
                               .mycontroller[5],
-
                           decoration: InputDecoration(
                               errorBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -258,11 +187,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                 borderSide:
                                     const BorderSide(color: Colors.grey),
                               ),
-                              // focusedBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.circular(5),
-                              //   borderSide:
-                              //       BorderSide(color: theme.primaryColor),
-                              // )
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 5.0, horizontal: 5.0),
                               border: OutlineInputBorder(
@@ -278,7 +202,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 Row(
                   children: [
                     SizedBox(
-                        //    color: Colors.amber,
                         width: widget.custWidth * 0.30,
                         child: const Text("Settlement Account")),
                     Container(
@@ -325,7 +248,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 Row(
                   children: [
                     SizedBox(
-                        //   color: Colors.amber,
                         width: widget.custWidth * 0.30,
                         child: const Text("Remarks")),
                     SizedBox(
@@ -348,14 +270,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 SizedBox(
                   height: widget.custHeight * 0.05,
                 ),
-                //    Container(
-                //     // color: Colors.amber,
-                //    alignment: Alignment.centerLeft,
-                //     // width: widget.custWidth*0.20,
-                //    child: SizedBox(
-                // height: widget.custHeight*0.07,
-                // width: widget.custWidth*0.10,
-                // child: ElevatedButton(onPressed: (){}, child: Text("Save"))))
               ],
             ),
           ),
@@ -367,17 +281,15 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 width: widget.custWidth * 0.10,
                 child: ElevatedButton(
                     onPressed: () {
-                      context
-                          .read<DepositsController>()
-                          .validateCashSave(theme, context);
-                      // context
-                      //     .read<DepositsController>()
-                      //     .insertsettledheader("Cash", theme);
+                      setState(() {
+                        context.read<DepositsController>().init(context);
+                        Get.back();
+                      });
                     },
-                    child: const Text("Save")),
+                    child: const Text("Cancel")),
               ),
               SizedBox(
-                width: Screens.width(context) * 0.01,
+                width: Screens.width(context) * 0.02,
               ),
               SizedBox(
                 height: widget.custHeight * 0.07,
@@ -385,13 +297,26 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        context.read<DepositsController>().init(context);
-                        Get.back();
+                        // context
+                        //     .read<DepositsController>()
+                        //     .validateCashSave(theme, context);
 
-                        //   Get.toNamed(ConstantRoutes.settlement);
+                        if (context
+                            .read<DepositsController>()
+                            .cashform
+                            .currentState!
+                            .validate()) {
+                          context.read<DepositsController>().onDisablebutton =
+                              true;
+                          context.read<DepositsController>().setst();
+
+                          context
+                              .read<DepositsController>()
+                              .callDepositPostApi(context, theme, 'dtCash');
+                        }
                       });
                     },
-                    child: const Text("Cancel")),
+                    child: const Text("Save")),
               ),
             ],
           )
@@ -421,13 +346,11 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                     children: [
                       SizedBox(
                         width: widget.custWidth * 0.35,
-                        // color: Colors.pink,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text("Payment Terminal"),
                             Container(
-                              // color: Colors.blue,
                               height: widget.custHeight * 0.06,
                               width: widget.custHeight * 0.40,
                               decoration: BoxDecoration(
@@ -472,7 +395,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                       ),
                       SizedBox(
                         width: Screens.width(context) * 0.3,
-                        // color: Colors.red,
                         child: Text(
                             "Total Settled Card Amount: ${context.read<DepositsController>().totalCardAmt}"),
                       ),
@@ -535,7 +457,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                             color: Colors.grey[200],
                             child: Container(
                               padding: const EdgeInsets.all(20),
-                              // width: widget.custWidth*0.03,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -556,7 +477,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                       ],
                                     ),
                                   ),
-
                                   SizedBox(
                                       width: Screens.width(context) * 0.12,
                                       child: Row(
@@ -573,8 +493,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                           )
                                         ],
                                       )),
-
-                                  // Container(child: Text("Card Ref:")),
                                   SizedBox(
                                       width: Screens.width(context) * 0.08,
                                       child: Row(
@@ -591,7 +509,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                           )
                                         ],
                                       )),
-
                                   SizedBox(
                                       width: Screens.width(context) * 0.2,
                                       child: Row(
@@ -627,7 +544,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                                   .copyWith(fontSize: 15))
                                         ],
                                       )),
-
                                   SizedBox(
                                       width: Screens.width(context) * 0.05,
                                       child: Checkbox(
@@ -647,15 +563,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                           );
                         }),
                   ),
-                  // SizedBox(
-                  //   height: widget.custHeight * 0.01,
-                  // ),
-                  //  Container(
-                  //    alignment: Alignment.centerLeft,
-                  //    child: SizedBox(
-                  //      height: widget.custHeight*0.07,
-                  //        width: widget.custWidth*0.10,
-                  //      child: ElevatedButton(onPressed: (){}, child: Text("Save"))))
                 ],
               ),
               Form(
@@ -663,7 +570,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                 child: SizedBox(
                   width: Screens.width(context),
                   height: Screens.bodyheight(context) * 0.1,
-                  //  color: Colors.amber,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -679,11 +585,9 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
 
                                   return null;
                                 },
-                                // readOnly: true,
                                 controller: context
                                     .read<DepositsController>()
                                     .transactionID,
-
                                 decoration: InputDecoration(
                                     errorBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5),
@@ -720,7 +624,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
 
                                   return null;
                                 },
-                                // readOnly: true,
                                 controller: context
                                     .read<DepositsController>()
                                     .jurnelRemarks,
@@ -756,10 +659,13 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                             width: widget.custWidth * 0.10,
                             child: ElevatedButton(
                                 onPressed: () {
+                                  // context
+                                  //     .read<DepositsController>()
+                                  //     .validateCardSave(theme, context);
                                   context
                                       .read<DepositsController>()
-                                      .validateCardSave(theme, context);
-                                  // .insertsettledheader("Card", theme);
+                                      .callDepositPostApi(
+                                          context, theme, 'dtCard');
                                 },
                                 child: const Text("Save")),
                           ),
@@ -776,7 +682,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                           .read<DepositsController>()
                                           .init(context);
                                       Get.back();
-                                      // Get.toNamed(ConstantRoutes.settlement);
                                     });
                                   },
                                   child: const Text("Cancel"))),
@@ -816,27 +721,20 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                             width: widget.custHeight * 0.35,
                             child: const Text("Total Settled Cheque Amount")),
                         Container(
-                            child:
-                                // context
-                                //             .watch<DepositsController>()
-                                //             .mycontroller[14]
-                                //             .text ==
-                                //         ''
-                                context
-                                            .watch<DepositsController>()
-                                            .totalCheque ==
-                                        0
-                                    ? const Text("Rs.0.00")
-                                    : Text(context
+                            child: context
                                         .watch<DepositsController>()
-                                        .totalCheque
-                                        .toString())),
+                                        .totalCheque ==
+                                    0
+                                ? const Text("Rs.0.00")
+                                : Text(context
+                                    .watch<DepositsController>()
+                                    .totalCheque
+                                    .toString())),
                       ],
                     ),
                     Row(
                       children: [
                         Container(
-                          // height: custHeight * 0.24,
                           width: widget.custWidth * 0.3,
                           padding: EdgeInsets.only(
                             left: widget.custHeight * 0.01,
@@ -921,24 +819,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                       ? "Select All"
                                       : "Unsellect All",
                                 ))),
-
-                        // SizedBox(
-                        //   height: widget.custHeight * 0.07,
-                        //   width: widget.custWidth * 0.15,
-                        //   child: ElevatedButton(
-                        //       onPressed: () {
-                        //         context.read<DepositsController>().isload =
-                        //             true;
-                        //         setState(() {
-                        //           context
-                        //               .read<DepositsController>()
-                        //               .forChequelistorder(
-                        //                   context, "Cheque", theme, 1);
-                        //           // widget.settleCon.ontapisload();
-                        //         });
-                        //       },
-                        //       child: const Text("Load")),
-                        // ),
                       ],
                     ),
                   ],
@@ -1078,9 +958,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                                 ));
                           }),
                 ),
-                // SizedBox(
-                //   height: widget.custHeight * 0.02,
-                // ),
               ],
             ),
             Form(
@@ -1093,17 +970,8 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                     SizedBox(
                         width: Screens.width(context) * 0.37,
                         child: TextFormField(
-                          // validator: (value) {
-                          //   if (value!.isEmpty) {
-                          //     return "Requierd";
-                          //   }
-
-                          //   return null;
-                          // },
-                          // readOnly: true,
                           controller:
                               context.read<DepositsController>().transactionID,
-
                           decoration: InputDecoration(
                               errorBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
@@ -1131,14 +999,6 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                     SizedBox(
                         width: Screens.width(context) * 0.37,
                         child: TextFormField(
-                          // validator: (value) {
-                          //   if (value!.isEmpty) {
-                          //     return "Requierd";
-                          //   }
-
-                          //   return null;
-                          // },
-                          // readOnly: true,
                           controller:
                               context.read<DepositsController>().jurnelRemarks,
                           decoration: InputDecoration(
@@ -1169,9 +1029,20 @@ class _TabsetledSecondScreenState extends State<TabsetledSecondScreen>
                           width: widget.custWidth * 0.10,
                           child: ElevatedButton(
                               onPressed: () {
-                                context
+                                // context
+                                //     .read<DepositsController>()
+                                //     .validateCheque(theme, context);
+
+                                if (context
                                     .read<DepositsController>()
-                                    .validateCheque(theme, context);
+                                    .cashform
+                                    .currentState!
+                                    .validate()) {
+                                  context
+                                      .read<DepositsController>()
+                                      .callDepositPostApi(
+                                          context, theme, 'dtCheque');
+                                }
                               },
                               child: const Text("Save")),
                         ),

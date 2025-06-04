@@ -24,7 +24,6 @@ class RefundScreen extends StatelessWidget {
   });
 
   final ThemeData theme;
-  // PayreceiptController prdSCD;
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +47,9 @@ class RefundScreen extends StatelessWidget {
                     searchHeight: Screens.padingHeight(context) * 0.8,
                     searchWidth: Screens.width(context) * 0.48,
                     theme: theme,
-                    // prdsrch: prdSCD,
                   ),
                   RefundPayDetails(
                     theme: theme,
-                    // prdPmt: prdSCD,
                     paymentWidth: Screens.width(context) * 0.48,
                     paymentHeight: Screens.padingHeight(context) * 0.12,
                   )
@@ -66,19 +63,16 @@ class RefundScreen extends StatelessWidget {
                     custWidth: Screens.width(context) * 0.39,
                     custHeight: Screens.padingHeight(context) * 0.8,
                     theme: theme,
-                    // prdCD: prdSCD,
                   ),
                   RefundModeTypeBtns(
                     cashWidth: Screens.width(context) * 0.39,
                     cashHeight: Screens.padingHeight(context) * 0.2,
                     theme: theme,
-                    // payController: prdSCD,
                   ),
                   RefundBtmBtn(
                     theme: theme,
                     btnheight: Screens.padingHeight(context) * 0.38,
                     btnWidth: Screens.width(context) * 0.39,
-                    // payController: prdSCD,
                   )
                 ],
               ),

@@ -360,27 +360,8 @@ class SearhBoxState extends State<SearhBoxSQ> {
                                                     .toString(),
                                                 context,
                                               );
-                                          // await context
-                                          //     .read<SalesQuotationCon>()
-                                          //     .soCustAddressApi(
-                                          //       context
-                                          //           .read<SalesQuotationCon>()
-                                          //           .filtersearchData[index]
-                                          //           .docEntry
-                                          //           .toString(),
-                                          //     );
 
-                                          // context
-                                          //     .read<SalesQuotationCon>()
-                                          //     .fixDataMethod(
-                                          // context
-                                          //     .read<SalesQuotationCon>()
-                                          //     .filtersearchData[index]
-                                          //     .docEntry,
-                                          //         context,
-                                          //         widget.theme);
                                           Get.back();
-                                          // Navigator.pop(context);
                                         },
                                   child: Container(
                                     padding: EdgeInsets.only(
@@ -461,7 +442,6 @@ class SearhBoxState extends State<SearhBoxSQ> {
                                           ),
                                         ),
                                         Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.1,
                                           child: Text(
@@ -472,7 +452,6 @@ class SearhBoxState extends State<SearhBoxSQ> {
                                           ),
                                         ),
                                         Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.15,
                                           child: Text(
@@ -510,11 +489,6 @@ class SearhBoxState extends State<SearhBoxSQ> {
                     )
                   ],
                 ))),
-        // context.read<SalesQuotationCon>().loadSearch == true
-        //     ? Container(
-        //         height: Screens.bodyheight(context) * 0.85,
-        //         child: Center(child: CircularProgressIndicator()))
-        //     : Container(),
         Visibility(
           visible: context.watch<SalesQuotationCon>().loadSearch,
           child: Container(

@@ -52,26 +52,13 @@ class _Search_WidgetState extends State<Search_Widget> {
                   context.read<CustomerController>().filterListSearched(v);
                 },
                 cursorColor: Colors.grey,
-                // controller: stChCon.mycontroller[99],
                 onEditingComplete: () {},
                 decoration: InputDecoration(
                   filled: false,
                   hintText: 'Search Here..',
-                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                      //  color: Colors.grey
-                      //   fontWeight: FontWeight.normal
-                      ),
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  // suffixIcon: IconButton(
-                  //   icon: Icon(
-                  //     Icons.search,
-                  //     // size: searchHeight * 0.05,
-                  //     color: Colors.grey,
-                  //   ),
-                  //   onPressed: () async {},
-                  //   color: theme.primaryColor,
-                  // ),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 15,
                     horizontal: 10,
@@ -91,12 +78,10 @@ class _Search_WidgetState extends State<Search_Widget> {
             decoration: BoxDecoration(
               color: theme.primaryColor,
             ),
-            //  height: searchHeight * 0.06,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                    //  color: Colors.red,
                     alignment: Alignment.center,
                     width: widget.searchWidth * 0.07,
                     child: Text(
@@ -105,7 +90,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                           ?.copyWith(color: Colors.white),
                     )),
                 Container(
-                    //  color: Colors.red,
                     alignment: Alignment.center,
                     width: widget.searchWidth * 0.29,
                     child: Text(
@@ -114,7 +98,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                           ?.copyWith(color: Colors.white),
                     )),
                 Container(
-                    // color: Colors.red,
                     alignment: Alignment.center,
                     width: widget.searchWidth * 0.17,
                     child: Text(
@@ -123,7 +106,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                           ?.copyWith(color: Colors.white),
                     )),
                 Container(
-                    // color: Colors.red,
                     alignment: Alignment.center,
                     width: widget.searchWidth * 0.17,
                     child: Text(
@@ -134,7 +116,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                      // color: Colors.red,
                       alignment: Alignment.center,
                       width: widget.searchWidth * 0.08,
                       child: Text(
@@ -146,7 +127,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                      // color: Colors.red,
                       alignment: Alignment.center,
                       width: widget.searchWidth * 0.14,
                       child: Text(
@@ -186,8 +166,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                       .read<CustomerController>()
                                       .addressListdata = [];
 
-                                  // context.read<CustomerController>().pageplus();
-
                                   context.read<CustomerController>().listPasss(
                                       context
                                           .read<CustomerController>()
@@ -209,11 +187,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                                 searchWidth:
                                                     Screens.width(context),
                                               )));
-                                  // CustomerdetailPage(
-                                  // searchHeight: Screens.bodyheight(context),
-                                  // searchWidth: Screens.width(context),
-                                  //         // custMaslist:context.read<CustomerController>().cusList1,
-                                  // )
                                 });
                               },
                               child: Card(
@@ -233,7 +206,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.centerLeft,
                                           width: widget.searchWidth * 0.07,
                                           child: Text(
@@ -242,7 +214,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.centerLeft,
                                           width: widget.searchWidth * 0.29,
                                           child: Text(
@@ -251,7 +222,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.17,
                                           child: Text(
@@ -268,7 +238,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.17,
                                           child: Text(
@@ -277,12 +246,10 @@ class _Search_WidgetState extends State<Search_Widget> {
                                                 .filtercustomerList[index]
                                                 .balance!
                                                 .toStringAsFixed(2)),
-                                            // textAlign: TextAlign.left,
                                             style: theme.textTheme.bodyMedium
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.08,
                                           child: Text(
@@ -291,7 +258,6 @@ class _Search_WidgetState extends State<Search_Widget> {
                                                 ?.copyWith(color: Colors.black),
                                           )),
                                       Container(
-                                          // color: Colors.red,
                                           alignment: Alignment.center,
                                           width: widget.searchWidth * 0.14,
                                           child: Text(

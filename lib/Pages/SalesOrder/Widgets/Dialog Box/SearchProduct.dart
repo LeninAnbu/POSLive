@@ -95,13 +95,10 @@ class _SearchItemsState extends State<SearchItemsSO> {
                               .read<SOCon>()
                               .onselectFst(context, theme, index);
                           setState(() {});
-                          // log("total Qty: ${context.watch<SOCon>().getfilterSearchedData
-                          // [index].displayQty}");
                         },
                         child: Card(
                           child: Container(
                               width: Screens.bodyheight(context) * 0.8,
-                              // height: ProHeight * 0.3,
                               padding: EdgeInsets.only(
                                 top: Screens.bodyheight(context) * 0.01,
                                 left: Screens.width(context) * 0.01,

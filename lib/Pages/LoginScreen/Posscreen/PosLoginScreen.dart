@@ -19,8 +19,6 @@ class PosLoginScreen extends StatelessWidget {
     return SizedBox(
       width: Screens.width(context),
       height: Screens.padingHeight(context),
-      //     color: Colors.red,
-
       child: Row(children: [
         Container(
           width: Screens.width(context) * 0.50,
@@ -31,12 +29,10 @@ class PosLoginScreen extends StatelessWidget {
           padding: EdgeInsets.only(left: 20, right: 20, top: 30),
           child: SingleChildScrollView(
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
                   height: Screens.bodyheight(context) * 0.35,
                   width: Screens.width(context) * 1.0,
-                  // color: Colors.amber,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -47,10 +43,6 @@ class PosLoginScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 25),
                       ),
-
-                      // Text('Hello Again!',
-                      //     style: TextStyle(
-                      //         color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20)),
                     ],
                   ),
                 ),
@@ -58,8 +50,6 @@ class PosLoginScreen extends StatelessWidget {
                   height: Screens.bodyheight(context) * 0.02,
                 ),
                 Container(
-                  // color: Colors.red,
-                  // margin: EdgeInsets.symmetric(vertical: 10),
                   height: Screens.bodyheight(context) * 0.50,
                   padding: EdgeInsets.symmetric(vertical: 5),
                   child: Form(
@@ -84,7 +74,6 @@ class PosLoginScreen extends StatelessWidget {
                               ),
                         SizedBox(
                           width: Screens.width(context) * 0.30,
-                          //color: Colors.amber,
                           child: TextFormField(
                             autofocus: true,
                             decoration: InputDecoration(
@@ -149,9 +138,6 @@ class PosLoginScreen extends StatelessWidget {
                         SizedBox(
                           height: Screens.bodyheight(context) * 0.01,
                         ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -168,8 +154,6 @@ class PosLoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        //   ],
-                        // ),
                         SizedBox(
                           height: Screens.bodyheight(context) * 0.02,
                         ),

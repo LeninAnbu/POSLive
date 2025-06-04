@@ -26,8 +26,6 @@ class _AnnouncementState extends State<Announcement> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: Colors.white,
-
-        //  color: Colors.grey.withOpacity(0.1),
       ),
       padding: EdgeInsets.all(
         widget.dbHeight * 0.02,
@@ -40,9 +38,7 @@ class _AnnouncementState extends State<Announcement> {
           Container(
             padding: EdgeInsets.only(left: widget.dbHeight * 0.02),
             child: GestureDetector(
-              onTap: () {
-                // context.read<DashBoardController>().insertNotify();
-              },
+              onTap: () {},
               child: Text(
                 "Announcement",
                 style: widget.theme.textTheme.bodyMedium?.copyWith(
@@ -61,10 +57,6 @@ class _AnnouncementState extends State<Announcement> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      // setState(() {
-                      //   Get.offAllNamed(ConstantRoutes.notification);
-                      // });
-
                       config.showDialogBox(
                           context
                               .read<DashBoardController>()
@@ -78,38 +70,17 @@ class _AnnouncementState extends State<Announcement> {
                     },
                     child: Card(
                         child: Container(
-                      //  color: Colors.red,
                       width: widget.dbWidth,
                       padding: EdgeInsets.symmetric(
                           vertical: widget.dbHeight * 0.01,
                           horizontal: widget.dbWidth * 0.01),
-
                       margin: EdgeInsets.symmetric(
                         vertical: widget.dbHeight * 0.005,
                       ),
-
-                      // decoration: BoxDecoration(
-                      //   border: Border.all(color:
-                      //       prdDBC.getnotify[index].seenTime ==
-                      //               '0'
-                      //           ? Colors.green.withOpacity(0.2)
-                      //           : Colors.red,),
-                      //           color:
-                      //       prdDBC.getnotify[index].seenTime ==
-                      //               '0'
-                      //           ? Colors.green.withOpacity(0.1)
-                      //           : Colors.red.withOpacity(0.1),
-                      // ),
-
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             vertical: widget.dbHeight * 0.01,
                             horizontal: widget.dbWidth * 0.02),
-                        // color:
-                        //     prdDBC.getnotify[index].seenTime ==
-                        //             '0'
-                        //         ? Colors.grey[200]
-                        //         : Colors.white,
                         child: Column(children: [
                           SizedBox(
                             width: widget.dbWidth,
@@ -118,7 +89,6 @@ class _AnnouncementState extends State<Announcement> {
                               children: [
                                 SizedBox(
                                   width: widget.dbWidth * 0.65,
-                                  // color: Colors.red,
                                   child: Text(
                                     "${context.watch<DashBoardController>().getnotify[index].titile}",
                                     style: widget.theme.textTheme.bodyLarge,
@@ -177,42 +147,7 @@ class _AnnouncementState extends State<Announcement> {
                                 ),
                         ]),
                       ),
-                    )
-                        //      Container(
-                        //   padding: EdgeInsets.all(
-                        //     dbHeight * 0.02,
-                        //   ),
-                        //   decoration: BoxDecoration(
-                        //     color: Colors.white,
-                        //     boxShadow: [
-                        //       BoxShadow(
-                        //         color: Colors.grey.withOpacity(0.5),
-                        //         spreadRadius: 3,
-                        //         blurRadius: 7,
-                        //         offset: Offset(0, 3), // changes position of shadow
-                        //       ),
-                        //     ],
-                        //   ),
-                        //   // height: dbHeight * 0.17,
-                        //   width: dbWidth * 0.9,
-                        //   child: Column(
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Text(
-                        //         "${prdDBC.notify[index].titile}",
-                        //         style:
-                        //             theme.textTheme.bodyText2?.copyWith(fontSize: 16),
-                        //       ),
-                        //       Text(
-                        //         "${prdDBC.notify[index].description}",
-                        //         style:
-                        //             theme.textTheme.bodyText2?.copyWith(fontSize: 16),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // )
-                        ),
+                    )),
                   );
                 }),
           ),

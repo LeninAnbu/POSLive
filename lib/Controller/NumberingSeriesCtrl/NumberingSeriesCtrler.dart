@@ -80,7 +80,7 @@ class NumberSeriesCtrl extends ChangeNotifier {
 
   updateNxtnoTable(int ij) async {
     final Database db = (await DBHelper.getInstance())!;
-    // if(int.parse(nxtnocontroller[ij].text)>=numberSerisList[ij].NextNo){
+
     numberSerisList[ij].nextNo = int.parse(nxtnocontroller[ij].text);
     await DBOperation.updatenextno(
         db, numberSerisList[ij].id!, numberSerisList[ij].nextNo);
@@ -95,7 +95,7 @@ class NumberSeriesCtrl extends ChangeNotifier {
 
   updateLastnoTable(int ij) async {
     final Database db = (await DBHelper.getInstance())!;
-    // if(int.parse(lstnocontroller[ij].text)>=numberSerisList[ij].LastNo!){
+
     numberSerisList[ij].nextNo = int.parse(lstnocontroller[ij].text);
     await DBOperation.updatelastno(
         db, numberSerisList[ij].id!, numberSerisList[ij].nextNo);
@@ -110,7 +110,7 @@ class NumberSeriesCtrl extends ChangeNotifier {
 
   updateFirstnoTable(int ij) async {
     final Database db = (await DBHelper.getInstance())!;
-    // if(int.parse(frstnocontroller[ij].text)>=numberSerisList[ij].NextNo){
+
     numberSerisList[ij].nextNo = int.parse(frstnocontroller[ij].text);
     await DBOperation.updatefirstno(
         db, numberSerisList[ij].id!, numberSerisList[ij].firstNo!);
@@ -128,15 +128,13 @@ class NumberSeriesCtrl extends ChangeNotifier {
     numberSerisList[ij].prefix = prfixcontroller[ij].text;
     await DBOperation.updateprefixno(
         db, numberSerisList[ij].id!, numberSerisList[ij].prefix.toString());
-    // int? documentN0 = await DBOperation.getnumbSer(db, "nextno", "NumberingSeries",numberSerisList[ij].id!);
-    //    int nextno = documentN0!;
-    //      await DBOperation.updatenextno(db,numberSerisList[ij].id!, nextno);
+
     notifyListeners();
   }
 
   updateFrmDateTable(int ij) async {
     final Database db = (await DBHelper.getInstance())!;
-    // if(int.parse(frmdatecontroller[ij].text)>=numberSerisList[ij].NextNo){
+
     numberSerisList[ij].fromDate = frmdatecontroller[ij].text;
     await DBOperation.updatefromdate(db, numberSerisList[ij].id!,
         config.alignDate2(numberSerisList[ij].fromDate.toString()));
@@ -151,7 +149,7 @@ class NumberSeriesCtrl extends ChangeNotifier {
 
   updatetoDateTable(int ij) async {
     final Database db = (await DBHelper.getInstance())!;
-    // if(int.parse(todatecontroller[ij].text)>=numberSerisList[ij].NextNo){
+
     numberSerisList[ij].nextNo = int.parse(todatecontroller[ij].text);
     await DBOperation.updatetodate(db, numberSerisList[ij].id!,
         config.alignDate2(numberSerisList[ij].toDate.toString()));

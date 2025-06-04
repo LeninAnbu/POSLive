@@ -21,7 +21,6 @@ class PostStkInwardAPi {
   static void method() {
     final dat = json.encode({
       "CardCode": "$cardCodePost",
-
       "DocDate": "$docDate",
       "DueDate": "$dueDate",
       "FromWarehouse": "$fromWarehouse",
@@ -29,7 +28,6 @@ class PostStkInwardAPi {
       "Comments": "$comments",
       "U_PosUserCode": UserValues.userCode,
       "U_PosTerminal": AppConstant.terminal,
-      // 'Series': '$seriesType',
       "StockTransferLines": stockTransferLines!.map((e) => e.toJson()).toList(),
     });
     log('data::$dat');
@@ -43,7 +41,6 @@ class PostStkInwardAPi {
               headers: {
                 "content-type": "application/json",
                 "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-                // "Prefer":"return-no-content"
               },
               body: json.encode({
                 "CardCode": "$cardCodePost",
@@ -54,24 +51,21 @@ class PostStkInwardAPi {
                 "Comments": "$comments",
                 "U_PosUserCode": UserValues.userCode,
                 "U_PosTerminal": AppConstant.terminal,
-                // 'Series': '$seriesType',
                 "StockTransferLines":
                     stockTransferLines!.map((e) => e.toJson()).toList(),
               }));
       log(json.encode({
         "DocDate": "$docDate",
         "DueDate": "$dueDate",
-        // 'Series': '$seriesType',
         "FromWarehouse": "$fromWarehouse",
         "ToWarehouse": "$toWarehouse",
+        "Comments": "$comments",
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
         "StockTransferLines":
             stockTransferLines!.map((e) => e.toJson()).toList(),
       }));
       log("PostRequestAPi stcode11 ::${response.statusCode}");
-
-      // log("PostRequestAPi: " + json.decode(response.body).toString());
 
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         log("Step22");
@@ -80,9 +74,8 @@ class PostStkInwardAPi {
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       } else {
-        // log("PostRequestAPi: " + json.decode(response.body).toString());
         log("PostRequestAPi stcode22 ::${response.statusCode}");
-        // throw Exception("Error");
+
         return SapInwardModel.issue(
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
@@ -90,7 +83,6 @@ class PostStkInwardAPi {
     } catch (e) {
       log('Exception PostRequestAPi: $e');
       throw Exception('Exception PostRequestAPi: $e');
-      // return SapInwardModel.issue(json.decode('Restart the app or contact the admin!!..'), 500);
     }
   }
 }

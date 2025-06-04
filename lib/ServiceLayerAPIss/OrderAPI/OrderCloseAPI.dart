@@ -9,7 +9,6 @@ import '../../url/url.dart';
 
 class SerlayOrderCloseAPI {
   static Future getData(String sapDocEntry) async {
-    // int? ressCode = 500;
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
@@ -20,24 +19,19 @@ class SerlayOrderCloseAPI {
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
         },
       );
-      // ressCode = response.statusCode;
+
       log("SalesQuoclose stscode::${response.statusCode}");
       log("SalesQuoclose::${json.decode(response.body)}");
 
       if (response.statusCode == 204) {
         log("Successfully closed");
-        // return Servicrlayerquotation.fromJson(
-        //     json.decode(response.body), response.statusCode);
       } else {
         log("SalesQuoclose Exception: Error");
         throw Exception("Error");
-        // return Servicrlayerquotation.issue(
-        //     json.decode(response.body), response.statusCode);
       }
     } catch (e) {
       log("OrdCloseException:: $e");
       throw Exception("Error");
-      // return AccountBalanceModel.exception(e.toString(), ressCode);
     }
   }
 }

@@ -110,7 +110,6 @@ class DBHelper {
 
     await database.execute('''
  create table $tableItemMaster(
-
 ${ItemMasterT.itemname} varchar,
 ${ItemMasterT.itemcode} varchar,
 ${ItemMasterT.maximumQty} varchar,
@@ -148,7 +147,8 @@ ${ItemMasterT.U_Pack_Size} varchar,
 ${ItemMasterT.U_TINS_PER_BOX} varchar,
 ${ItemMasterT.U_Specific_Gravity} varchar,
 ${ItemMasterT.U_Pack_Size_uom} varchar,
-AutoId INTEGER primary key AUTOINCREMENT
+${ItemMasterT.managedBy} varchar,
+AutoId integer primary key AUTOINCREMENT
  )  ''');
 
     await database.execute('''

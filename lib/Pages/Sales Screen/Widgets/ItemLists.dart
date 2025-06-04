@@ -200,10 +200,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                             onTap: () {},
                             child: Container(
                                 padding: EdgeInsets.only(
-                                  // top: widget.searchHeight * 0.01,
                                   left: widget.searchHeight * 0.01,
                                   right: widget.searchHeight * 0.01,
-                                  // bottom: widget.searchHeight * 0.02,
                                 ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
@@ -343,9 +341,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                         .splitValues(
                                                             '${context.watch<PosController>().getScanneditemData2[index].priceAftDiscVal}')
                                                     : '0.00')),
-                                            // SizedBox(
-                                            //   width: widget.searchWidth * 0.01,
-                                            // ),
                                             Container(
                                                 width:
                                                     widget.searchWidth * 0.19,
@@ -459,7 +454,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                   top: widget.searchHeight * 0.01,
                                   left: widget.searchWidth * 0.01,
                                   right: widget.searchWidth * 0.01,
-                                  // bottom: widget.searchHeight * 0.02,
                                 ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
@@ -559,7 +553,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                           TextDirection.ltr,
                                                       keyboardType:
                                                           TextInputType.number,
-
                                                       onEditingComplete: () {
                                                         context
                                                             .read<
@@ -579,27 +572,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                       controller: context
                                                           .read<PosController>()
                                                           .qtymycontroller[index],
-                                                      // inputFormatters: [
-                                                      //   context
-                                                      //                   .watch<
-                                                      //                       PosController>()
-                                                      //                   .getScanneditemData[
-                                                      //                       index]
-                                                      //                   .uPackSize ==
-                                                      //               null ||
-                                                      //           context
-                                                      //                   .watch<
-                                                      //                       PosController>()
-                                                      //                   .getScanneditemData[
-                                                      //                       index]
-                                                      //                   .uPackSize ==
-                                                      //               0.000
-                                                      //       ?
-                                                      //   FilteringTextInputFormatter
-                                                      //       .allow(RegExp(
-                                                      //           dotAll: true,
-                                                      //           r'^\d*\.?\d{0,9}$'))
-                                                      // ],
                                                       decoration:
                                                           InputDecoration(
                                                         filled: false,
@@ -797,7 +769,6 @@ class _SearchWidgetState extends State<SearchWidget> {
               width: widget.searchWidth * 0.87,
               color: Colors.grey[100],
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     child: Row(
@@ -830,8 +801,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                     width: widget.searchWidth * 0.87,
                     padding: EdgeInsets.only(
                       top: widget.searchWidth * 0.01,
-                      // left: widget.searchHeight * 0.01,
-                      // right: widget.searchHeight * 0.01,
                       bottom: widget.searchWidth * 0.01,
                     ),
                     decoration: BoxDecoration(
@@ -1318,18 +1287,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               context,
                                             );
                                       });
-                                      // } else if (context
-                                      //         .read<PosController>()
-                                      //         .selectIndex !=
-                                      //     null) {
-                                      //   context
-                                      //       .read<PosController>()
-                                      //       .newAutoselectItemMethod(
-                                      //           // context
-                                      //           //     .read<PosController>()
-                                      //           //     .selectIndex!,
-                                      //           theme,
-                                      //           context);
                                     } else {
                                       showDialog(
                                           context: context,
@@ -1350,63 +1307,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                 ));
                                           });
                                     }
-                                    // if (context
-                                    //         .read<PosController>()
-                                    //         .selectAll ==
-                                    //     true) {
-                                    //   context.read<PosController>().soScanItem =
-                                    //       [];
-                                    // }
-
-                                    // log('selectIndexselectIndex::${context.read<PosController>().selectIndex}');
-                                    // if (context
-                                    //         .read<PosController>()
-                                    //         .selectAll ==
-                                    //     true) {
-                                    //   setState(() {
-                                    //     context
-                                    //         .read<PosController>()
-                                    //         .autoselectbtndisable = true;
-
-                                    //     context
-                                    //         .read<PosController>()
-                                    //         .newAutoselectAllMethod(
-                                    //           theme,
-                                    //           context,
-                                    //         );
-                                    //   });
-                                    // } else if (context
-                                    //         .read<PosController>()
-                                    //         .selectIndex !=
-                                    //     null) {
-                                    //   context
-                                    //       .read<PosController>()
-                                    //       .newAutoselectItemMethod(
-                                    //           // context
-                                    //           //     .read<PosController>()
-                                    //           //     .selectIndex!,
-                                    //           theme,
-                                    //           context);
-                                    // } else {
-                                    //   showDialog(
-                                    //       context: context,
-                                    //       barrierDismissible: true,
-                                    //       builder: (BuildContext context) {
-                                    //         return AlertDialog(
-                                    //             contentPadding:
-                                    //                 const EdgeInsets.all(0),
-                                    //             content: AlertBox(
-                                    //               payMent: 'Alert',
-                                    //               errormsg: true,
-                                    //               widget: Center(
-                                    //                   child: ContentContainer(
-                                    //                 content: 'Select Item List',
-                                    //                 theme: theme,
-                                    //               )),
-                                    //               buttonName: null,
-                                    //             ));
-                                    //       });
-                                    // }
                                   },
                             child: Text('Auto Select')),
                         ElevatedButton(

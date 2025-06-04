@@ -37,7 +37,7 @@
 //           borderRadius: BorderRadius.circular(5),
 //         ),
 //         child: Container(
-//           // height: paymentHeight * 0.35,
+//         
 //           decoration: BoxDecoration(
 //             borderRadius: BorderRadius.circular(5),
 //             color: context.watch<SOCon>().getScanneditemData2.isNotEmpty
@@ -55,9 +55,9 @@
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               SizedBox(
-//                 // color: Colors.red,
+//               
 //                 width: widget.paymentWidth * 0.5,
-//                 // height: paymentHeight * 0.11,
+//               
 //                 child: Column(
 //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,18 +71,18 @@
 //                           Row(
 //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                             children: [
-//                               // GestureDetector(
-//                               //   onTap: context
-//                               //           .watch<SOCon>()
-//                               //           .getScanneditemData2
-//                               //           .isNotEmpty
-//                               //       ? null
-//                               //       : () {
-//                               //           context
-//                               //               .watch<SOCon>()
-//                               //               .checkstocksetqty();
-//                               //         },
-//                               //   child:
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
+//                             
 //                               SizedBox(
 //                                 width: widget.paymentWidth * 0.18,
 //                                 child: Text(
@@ -91,7 +91,7 @@
 //                                       ?.copyWith(),
 //                                 ),
 //                               ),
-//                               // ),
+//                             
 //                               Container(
 //                                   width: widget.paymentWidth * 0.1,
 //                                   alignment: Alignment.centerRight,
@@ -104,14 +104,14 @@
 //                                           ? Text(
 //                                               "0",
 //                                             )
-//                                           // Container()
+//                                         
 //                                           : Text(
 //                                               context
 //                                                   .watch<SOCon>()
 //                                                   .getScanneditemData2
 //                                                   .length
 //                                                   .toString(),
-//                                               // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
+//                                             
 //                                               style: widget
 //                                                   .theme.textTheme.bodyMedium
 //                                                   ?.copyWith())
@@ -121,14 +121,14 @@
 //                                           ? Text(
 //                                               "0",
 //                                             )
-//                                           // Container()
+//                                         
 //                                           : Text(
 //                                               context
 //                                                   .watch<SOCon>()
 //                                                   .getScanneditemData
 //                                                   .length
 //                                                   .toString(),
-//                                               // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
+//                                             
 //                                               style: widget
 //                                                   .theme.textTheme.bodyMedium
 //                                                   ?.copyWith())),
@@ -158,7 +158,7 @@
 //                                               "0",
 //                                             )
 
-//                                           // Container()
+//                                         
 //                                           : Text(
 //                                               context
 //                                                   .watch<SOCon>()
@@ -166,7 +166,7 @@
 //                                                   .total!
 //                                                   .toString(),
 
-//                                               // "${prdPmt.totalPayment!.discount!.toStringAsFixed(0)}",
+//                                             
 //                                               style: widget
 //                                                   .theme.textTheme.bodyMedium
 //                                                   ?.copyWith())
@@ -179,7 +179,7 @@
 //                                               "0",
 //                                             )
 
-//                                           // Container()
+//                                         
 //                                           : Text(
 //                                               context
 //                                                   .watch<SOCon>()
@@ -187,7 +187,7 @@
 //                                                   .total!
 //                                                   .toString(),
 
-//                                               // "${prdPmt.totalPayment!.discount!.toStringAsFixed(0)}",
+//                                             
 //                                               style: widget
 //                                                   .theme.textTheme.bodyMedium
 //                                                   ?.copyWith()))
@@ -201,10 +201,10 @@
 //                             alignment: Alignment.center,
 //                             width: widget.paymentWidth * 0.5,
 //                             decoration: BoxDecoration(
-//                               // color: Colors.red,
+//                             
 
 //                               borderRadius: BorderRadius.circular(3),
-//                               // color: Colors.grey.withOpacity(0.01),
+//                             
 //                             ),
 //                             child: TextFormField(
 //                               controller:
@@ -244,10 +244,10 @@
 //                             alignment: Alignment.center,
 //                             width: widget.paymentWidth * 0.5,
 //                             decoration: BoxDecoration(
-//                               // color: Colors.red,
+//                             
 
 //                               borderRadius: BorderRadius.circular(3),
-//                               // color: Colors.grey.withOpacity(0.01),
+//                             
 //                             ),
 //                             child: TextFormField(
 //                               controller:
@@ -293,7 +293,7 @@
 //                 ),
 //               ),
 //               SizedBox(
-//                 // color: Colors.green,
+//               
 //                 width: widget.paymentWidth * 0.45,
 //                 child: Column(
 //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -310,7 +310,7 @@
 //                           ),
 //                         ),
 //                         Container(
-//                           // color: Colors.yellow,
+//                         
 //                           width: widget.paymentWidth * 0.25,
 //                           alignment: Alignment.centerRight,
 //                           child: context
@@ -348,7 +348,7 @@
 //                       children: [
 //                         Container(
 //                           width: widget.paymentWidth * 0.15,
-//                           // height: paymentHeight * 0.03,
+//                         
 //                           alignment: Alignment.centerLeft,
 //                           child: Text(
 //                             "Sub Total",
@@ -356,7 +356,7 @@
 //                           ),
 //                         ),
 //                         Container(
-//                           // color: Colors.yellow,
+//                         
 //                           width: widget.paymentWidth * 0.25,
 //                           alignment: Alignment.centerRight,
 //                           child: context
@@ -392,9 +392,9 @@
 //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                       children: [
 //                         Container(
-//                           // color: Colors.red,
+//                         
 //                           width: widget.paymentWidth * 0.15,
-//                           // height: paymentHeight * 0.03,
+//                         
 //                           alignment: Alignment.centerLeft,
 //                           child: Text(
 //                             "Total Tax",
@@ -402,8 +402,8 @@
 //                           ),
 //                         ),
 //                         Container(
-//                           // color: Colors.red,
-//                           // color: Colors.yellow,
+//                         
+//                         
 //                           width: widget.paymentWidth * 0.25,
 //                           alignment: Alignment.centerRight,
 //                           child: context
@@ -448,7 +448,7 @@
 //                           ),
 //                         ),
 //                         Container(
-//                           // color: Colors.yellow,
+//                         
 //                           width: widget.paymentWidth * 0.25,
 //                           alignment: Alignment.centerRight,
 //                           child: context
@@ -486,7 +486,7 @@
 //                       children: [
 //                         Container(
 //                           width: widget.paymentWidth * 0.15,
-//                           // height: paymentHeight * 0.03,
+//                         
 //                           alignment: Alignment.centerLeft,
 //                           child: Text(
 //                             "Total Paid",
@@ -494,7 +494,7 @@
 //                           ),
 //                         ),
 //                         Container(
-//                           // color: Colors.yellow,
+//                         
 //                           width: widget.paymentWidth * 0.25,
 //                           alignment: Alignment.centerRight,
 //                           child: context
@@ -539,7 +539,7 @@
 //                       children: [
 //                         Container(
 //                           width: widget.paymentWidth * 0.15,
-//                           // height: paymentHeight * 0.03,
+//                         
 //                           alignment: Alignment.centerLeft,
 //                           child: Text(
 //                             "Balance",
@@ -548,7 +548,7 @@
 //                           ),
 //                         ),
 //                         Container(
-//                             // color: Colors.yellow,
+//                           
 //                             width: widget.paymentWidth * 0.25,
 //                             alignment: Alignment.centerRight,
 //                             child: context
@@ -624,7 +624,7 @@
 // //           borderRadius: BorderRadius.circular(5),
 // //         ),
 // //         child: Container(
-// //           // height: paymentHeight * 0.35,
+// //         
 // //           decoration: BoxDecoration(
 // //             borderRadius: BorderRadius.circular(5),
 // //             color: context.watch<SOCon>().getScanneditemData2.isNotEmpty
@@ -643,7 +643,7 @@
 // //             children: [
 // //               SizedBox(
 // //                 width: paymentWidth * 0.6,
-// //                 // height: paymentHeight * 0.11,
+// //               
 // //                 child: Column(
 // //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
 // //                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -689,14 +689,14 @@
 // //                                           ? Text(
 // //                                               "0",
 // //                                             )
-// //                                           // Container()
+// //                                         
 // //                                           : Text(
 // //                                               context
 // //                                                   .watch<SOCon>()
 // //                                                   .getScanneditemData2
 // //                                                   .length
 // //                                                   .toString(),
-// //                                               // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith())
 // //                                       : context.watch<SOCon>().totalPayment ==
@@ -704,14 +704,14 @@
 // //                                           ? Text(
 // //                                               "0",
 // //                                             )
-// //                                           // Container()
+// //                                         
 // //                                           : Text(
 // //                                               context
 // //                                                   .watch<SOCon>()
 // //                                                   .getScanneditemData
 // //                                                   .length
 // //                                                   .toString(),
-// //                                               // "${prdPmt.totalPayment!.total!.toStringAsFixed(0)}",
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith())),
 // //                             ],
@@ -745,7 +745,7 @@
 // //                                               "0",
 // //                                             )
 
-// //                                           // Container()
+// //                                         
 // //                                           : Text(
 // //                                               context
 // //                                                   .watch<SOCon>()
@@ -753,7 +753,7 @@
 // //                                                   .total!
 // //                                                   .toString(),
 
-// //                                               // "${prdPmt.totalPayment!.discount!.toStringAsFixed(0)}",
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith())
 // //                                       : context.watch<SOCon>().totalPayment ==
@@ -762,7 +762,7 @@
 // //                                               "0",
 // //                                             )
 
-// //                                           // Container()
+// //                                         
 // //                                           : Text(
 // //                                               context
 // //                                                   .watch<SOCon>()
@@ -770,7 +770,7 @@
 // //                                                   .total
 // //                                                   .toString(),
 
-// //                                               // "${prdPmt.totalPayment!.discount!.toStringAsFixed(0)}",
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith()))
 // //                             ],
@@ -794,25 +794,25 @@
 // //                                           .isNotEmpty
 // //                                       ? Text(
 // //                                           "${context.watch<SOCon>().totwieght!.toStringAsFixed(2)}Kg",
-// //                                           // prdPmt.config.splitValues(
-// //                                           //     "${prdPmt.totalPayment!.discount!.toStringAsFixed(2)}"),
+// //                                         
+// //                                         
 // //                                           style: theme.textTheme.bodyMedium
 // //                                               ?.copyWith())
 
-// //                                       // Container()
+// //                                     
 // //                                       : context
 // //                                               .watch<SOCon>()
 // //                                               .scanneditemData
 // //                                               .isNotEmpty
 // //                                           ? Text(
 // //                                               "${context.watch<SOCon>().totalWeight().toStringAsFixed(2)}Kg",
-// //                                               // prdPmt.config.splitValues(
-// //                                               //     "${prdPmt.totalPayment!.discount!.toStringAsFixed(2)}"),
+// //                                             
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith())
 // //                                           : Text("0.00",
-// //                                               // prdPmt.config.splitValues(
-// //                                               //     "${prdPmt.totalPayment!.discount!.toStringAsFixed(2)}"),
+// //                                             
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith()))
 // //                             ],
@@ -837,25 +837,25 @@
 // //                                           .isNotEmpty
 // //                                       ? Text(
 // //                                           "${context.watch<SOCon>().totLiter!.toStringAsFixed(2)}",
-// //                                           // prdPmt.config.splitValues(
-// //                                           //     "${prdPmt.totalPayment!.discount!.toStringAsFixed(2)}"),
+// //                                         
+// //                                         
 // //                                           style: theme.textTheme.bodyMedium
 // //                                               ?.copyWith())
 
-// //                                       // Container()
+// //                                     
 // //                                       : context
 // //                                               .watch<SOCon>()
 // //                                               .scanneditemData
 // //                                               .isNotEmpty
 // //                                           ? Text(
 // //                                               "${context.watch<SOCon>().totalLiter().toStringAsFixed(2)}",
-// //                                               // prdPmt.config.splitValues(
-// //                                               //     "${prdPmt.totalPayment!.discount!.toStringAsFixed(2)}"),
+// //                                             
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith())
 // //                                           : Text("0.00",
-// //                                               // prdPmt.config.splitValues(
-// //                                               //     "${prdPmt.totalPayment!.discount!.toStringAsFixed(2)}"),
+// //                                             
+// //                                             
 // //                                               style: theme.textTheme.bodyMedium
 // //                                                   ?.copyWith()))
 // //                             ],
@@ -868,10 +868,10 @@
 // //                             alignment: Alignment.center,
 // //                             width: paymentWidth * 1,
 // //                             decoration: BoxDecoration(
-// //                               // color: Colors.red,
+// //                             
 
 // //                               borderRadius: BorderRadius.circular(3),
-// //                               // color: Colors.grey.withOpacity(0.01),
+// //                             
 // //                             ),
 // //                             child: TextFormField(
 // //                               controller:
@@ -882,7 +882,7 @@
 // //                               onChanged: (v) {},
 // //                               watchOnly: true,
 // //                               decoration: InputDecoration(
-// //                                 // hintText: "Remarks",
+// //                               
 // //                                 filled: false,
 // //                                 labelText: "Remarks",
 
@@ -913,10 +913,10 @@
 // //                             alignment: Alignment.center,
 // //                             width: paymentWidth * 1,
 // //                             decoration: BoxDecoration(
-// //                               // color: Colors.red,
+// //                             
 
 // //                               borderRadius: BorderRadius.circular(3),
-// //                               // color: Colors.grey.withOpacity(0.01),
+// //                             
 // //                             ),
 // //                             child: TextFormField(
 // //                               controller:
@@ -1013,7 +1013,7 @@
 // //                       children: [
 // //                         Container(
 // //                           width: paymentWidth * 0.15,
-// //                           // height: paymentHeight * 0.03,
+// //                         
 // //                           alignment: Alignment.centerLeft,
 // //                           child: Text(
 // //                             "Sub Total",
@@ -1053,9 +1053,9 @@
 // //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 // //                       children: [
 // //                         Container(
-// //                           // color: Colors.red,
+// //                         
 // //                           width: paymentWidth * 0.15,
-// //                           // height: paymentHeight * 0.03,
+// //                         
 // //                           alignment: Alignment.centerLeft,
 // //                           child: Text(
 // //                             "Total Tax",
@@ -1064,7 +1064,7 @@
 // //                           ),
 // //                         ),
 // //                         Container(
-// //                           // color: Colors.red,
+// //                         
 // //                           width: paymentWidth * 0.17,
 // //                           alignment: Alignment.centerRight,
 // //                           child: context
@@ -1141,7 +1141,7 @@
 // //                       children: [
 // //                         Container(
 // //                           width: paymentWidth * 0.15,
-// //                           // height: paymentHeight * 0.03,
+// //                         
 // //                           alignment: Alignment.centerLeft,
 // //                           child: Text(
 // //                             "Total Paid",
@@ -1190,7 +1190,7 @@
 // //                       children: [
 // //                         Container(
 // //                           width: paymentWidth * 0.15,
-// //                           // height: paymentHeight * 0.03,
+// //                         
 // //                           alignment: Alignment.centerLeft,
 // //                           child: Text(
 // //                             "Balance",
@@ -1226,11 +1226,11 @@
 // //                                             ?.copyWith(),
 // //                                       )
 // //                                     : Text("0.00")
-// //                             // : prdPmt.baltopay != null
-// //                             //     ? Text("${prdPmt.baltopay}")
-// //                             //     : Container(
-// //                             //         child: Text("0.00"),
-// //                             //       )
+// //                           
+// //                           
+// //                           
+// //                           
+// //                           
 // //                             ),
 // //                       ],
 // //                     ),

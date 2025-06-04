@@ -37,8 +37,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
         insetPadding: const EdgeInsets.all(10),
         contentPadding: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        // title: Text("Are you sure?"),
-        // content: Text("Do you want to exit?"),
         content: SizedBox(
           width: Screens.width(context) * 0.42,
           child: Column(
@@ -46,7 +44,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                // width: Screens.width(context),
                 width: Screens.width(context) * 0.5,
                 height: Screens.bodyheight(context) * 0.06,
                 child: ElevatedButton(
@@ -75,8 +72,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
                   )),
               Container(
                   alignment: Alignment.center,
-                  // width: Screens.width(context)*0.5,
-                  // padding: EdgeInsets.only(left:20),
                   child: const Text(
                     "Logging out will erase all the master data and documents in hold. ",
                     style: TextStyle(fontSize: 15),
@@ -86,7 +81,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
               ),
               Container(
                   alignment: Alignment.center,
-                  // padding: EdgeInsets.only(left:20),
                   child: const Text("Do you want to continue?",
                       style: TextStyle(fontSize: 15))),
               Container(
@@ -105,8 +99,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: theme.primaryColor,
-
-                          // primary: theme.primaryColor,
                           textStyle: const TextStyle(color: Colors.white),
                           shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -128,8 +120,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: theme.primaryColor,
-
-                          // primary: theme.primaryColor,
                           textStyle: const TextStyle(color: Colors.white),
                           shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -150,17 +140,6 @@ class _LogoutAlertDialogState extends State<LogoutAlertDialog> {
             ],
           ),
         ),
-        // actions: [
-        //   TextButton(
-        //     onPressed: () => Navigator.of(context).pop(false),
-        //     child: Text("No"),
-        //   ),
-        //   TextButton(
-        //       onPressed: () {
-        //         exit(0);
-        //       },
-        //       child: Text("yes"))
-        // ],
       ),
     );
   }

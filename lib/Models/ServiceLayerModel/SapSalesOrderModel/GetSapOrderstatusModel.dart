@@ -1071,6 +1071,7 @@ class SapSalesOrderModel {
       docDueDate: '', series: 0,
     );
   }
+
   factory SapSalesOrderModel.expError(String json, int statuscode) {
     return SapSalesOrderModel(
       statusCode: statuscode,
@@ -2170,19 +2171,24 @@ class OrderDocumentLine {
 
   factory OrderDocumentLine.fromJson(Map<String, dynamic> json) =>
       OrderDocumentLine(
-        lineNum: json["LineNum"] ?? '',
+        lineNum: json["LineNum"] ?? 0,
         itemCode: json["ItemCode"] ?? '',
         itemDescription: json["ItemDescription"] ?? '',
-        quantity: json["Quantity"] ?? '',
+        quantity: json["Quantity"] ?? 0,
         shipDate: json["ShipDate"].toString(),
         // price: json["Price"],
         // priceAfterVat: json["PriceAfterVAT"] ?? '',
         // currency: json["Currency"] ?? '',
         // rate: json["Rate"] ?? '',
-        discountPercent: json["DiscountPercent"] ?? '',
+        discountPercent: json["DiscountPercent"] ?? 0,
         // vendorNum: json["VendorNum"] ?? '',
         // serialNum: json["SerialNum"] ?? '',
         warehouseCode: json["WarehouseCode"] ?? '',
+        taxCode: json["TaxCode"] ?? '',
+        unitPrice: json["UnitPrice"] ?? 0,
+        lineStatus: json["LineStatus"] ?? '',
+        uPackSize: json["U_PackSize"] ?? 0,
+
         // salesPersonCode: json["SalesPersonCode"] ?? '',
         // commisionPercent: json["CommisionPercent"] ?? '',
         // treeType: json["TreeType"] ?? '',
@@ -2219,7 +2225,6 @@ class OrderDocumentLine {
         //     width2: json["Width2"],
         //     width2Unit: json["Width2Unit"],
         //     address: json["Address"],
-        taxCode: json["TaxCode"] ?? '',
         //     taxType: json["TaxType"],
         //     taxLiable: json["TaxLiable"],
         //     pickStatus: json["PickStatus"],
@@ -2280,8 +2285,7 @@ class OrderDocumentLine {
         // taxOnly: json["TaxOnly"] ?? '',
         // //     visualOrder: json["VisualOrder"],
         // baseOpenQuantity: json["BaseOpenQuantity"] ?? '',
-        unitPrice: json["UnitPrice"] ?? 0,
-        lineStatus: json["LineStatus"] ?? '',
+
         // packageQuantity: json["PackageQuantity"] ?? '',
         // text: json["Text"] ?? '',
         // lineType: json["LineType"] ?? '',
@@ -2382,7 +2386,6 @@ class OrderDocumentLine {
         //     uQtyOrdered: json["U_Qty_Ordered"],
         //     uOpenQty: json["U_Open_Qty"],
         //     uTonnage: json["U_Tonnage"],
-        uPackSize: json["U_PackSize"] ?? 0,
         // uProfitCentre: json["U_Profit_Centre"],
         // uNumberDrums: json["U_Number_Drums"],
         // uDrumSize: json["U_Drum_Size"],
@@ -2418,6 +2421,7 @@ class OrderDocumentLine {
         // "VendorNum": vendorNum,
         // "SerialNum": serialNum,
         "WarehouseCode": warehouseCode,
+
         // "SalesPersonCode": salesPersonCode,
         // "CommisionPercent": commisionPercent,
         // "TreeType": treeType,

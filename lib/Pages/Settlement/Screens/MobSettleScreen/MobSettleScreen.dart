@@ -11,9 +11,7 @@ import 'Mobwidgets/MobsettledCon.dart';
 class MobSettleScreen extends StatefulWidget {
   const MobSettleScreen({
     super.key,
-    // required this.settleCon,
   });
-  // DepositsController settleCon;
 
   @override
   State<MobSettleScreen> createState() => _MobSettleScreenState();
@@ -39,7 +37,6 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                 right: Screens.width(context) * 0.01,
                 bottom: Screens.padingHeight(context) * 0.02),
             child: Column(
-              //  mainAxisAlignment: MainAxisAlignment.,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,27 +44,17 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                     Row(
                       children: [
                         SizedBox(
-                          // alignment: Alignment.center,
-                          // color: Colors.blue,
                           width: Screens.width(context) * 0.10,
                           child: const Text("Date"),
                         ),
                         Container(
                           height: Screens.padingHeight(context) * 0.05,
                           width: Screens.width(context) * 0.42,
-                          decoration: const BoxDecoration(
-                              //  color: Colors.amber,
-                              //   borderRadius: BorderRadius.circular(4),
-                              //  border: Border.all(),
-                              ),
-                          child:
-                              // Center(child: Text("2023-03-03"))
-                              InkWell(
+                          decoration: const BoxDecoration(),
+                          child: InkWell(
                             child: TextField(
                               readOnly: true,
                               onTap: () {
-                                // context.read<DepositsController>().getDate(context, '');
-
                                 log("ontap");
                               },
                               controller: context
@@ -78,7 +65,6 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                                       vertical: 5.0, horizontal: 5.0),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4)),
-                                  //   labelText: "Date",
                                   hintText: "",
                                   hintStyle: theme.textTheme.bodyLarge!
                                       .copyWith(color: Colors.black),
@@ -102,14 +88,7 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                                   .forcashlistorder(context, "Cash", theme);
                             });
 
-                            setState(() {
-                              //  if(context.read<DepositsController>().mycontroller[0].text == context.read<DepositsController>().currentDate()){
-                              //   log("successs");
-
-                              // }else{
-                              //   log("Nw Settlement disbled");
-                              // }
-                            });
+                            setState(() {});
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -149,13 +128,7 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                         Container(
                           height: Screens.padingHeight(context) * 0.05,
                           width: Screens.width(context) * 0.62,
-
-                          decoration: const BoxDecoration(
-                              // color: Colors.amber,
-                              //   borderRadius: BorderRadius.circular(4),
-                              //  border: Border.all(),
-                              ),
-
+                          decoration: const BoxDecoration(),
                           child: TextField(
                             keyboardType: TextInputType.number,
                             readOnly: true,
@@ -167,12 +140,10 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                                     vertical: 10.0, horizontal: 10.0),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(4)),
-                                //   labelText: "Date",
                                 hintText: "",
                                 hintStyle: theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.black)),
                           ),
-                          //Center(child: Text("2000"))
                         ),
                       ],
                     ),
@@ -188,13 +159,7 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                         Container(
                           height: Screens.padingHeight(context) * 0.05,
                           width: Screens.width(context) * 0.62,
-
-                          decoration: const BoxDecoration(
-                              //color: Colors.amber,
-                              //   borderRadius: BorderRadius.circular(4),
-                              //  border: Border.all(),
-                              ),
-
+                          decoration: const BoxDecoration(),
                           child: TextField(
                             keyboardType: TextInputType.number,
                             readOnly: true,
@@ -206,12 +171,10 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                                     vertical: 10.0, horizontal: 10.0),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(4)),
-                                //    labelText: "Date",
                                 hintText: "",
                                 hintStyle: theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.black)),
                           ),
-                          //Center(child: Text("202"))
                         ),
                       ],
                     ),
@@ -227,13 +190,7 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                         Container(
                           height: Screens.padingHeight(context) * 0.05,
                           width: Screens.width(context) * 0.62,
-
-                          decoration: const BoxDecoration(
-                              //color: Colors.amber,
-                              //   borderRadius: BorderRadius.circular(4),
-                              //  border: Border.all(),
-                              ),
-
+                          decoration: const BoxDecoration(),
                           child: TextField(
                             readOnly: true,
                             controller: context
@@ -245,12 +202,10 @@ class _MobSettleScreenState extends State<MobSettleScreen> {
                                     vertical: 10.0, horizontal: 10.0),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(4)),
-                                // labelText: "Date",
                                 hintText: "",
                                 hintStyle: theme.textTheme.bodyLarge!
                                     .copyWith(color: Colors.black)),
                           ),
-                          //Center(child: Text("2000"))
                         ),
                       ],
                     ),

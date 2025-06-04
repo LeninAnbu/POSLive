@@ -29,8 +29,6 @@ class StockReplenishScreens extends StatelessWidget {
               height: Screens.bodyheight(context) * 0.93,
               child: SingleChildScrollView(
                 child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                         alignment: Alignment.center,
@@ -47,26 +45,13 @@ class StockReplenishScreens extends StatelessWidget {
                             stkCtrl.filterListSearched(v);
                           },
                           cursorColor: Colors.grey,
-                          // controller: stkCtrl.mycontroller[99],
                           onEditingComplete: () {},
                           decoration: InputDecoration(
                             filled: false,
                             hintText: 'Search Here..',
-                            hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                                //  color: Colors.grey
-                                //   fontWeight: FontWeight.normal
-                                ),
+                            hintStyle: theme.textTheme.bodyMedium?.copyWith(),
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none,
-                            // suffixIcon: IconButton(
-                            //   icon: Icon(
-                            //     Icons.search,
-                            //     // size: searchHeight * 0.05,
-                            //     color: Colors.grey,
-                            //   ),
-                            //   onPressed: () async {},
-                            //   color: theme.primaryColor,
-                            // ),
                             contentPadding: const EdgeInsets.symmetric(
                               vertical: 15,
                               horizontal: 10,
@@ -74,7 +59,6 @@ class StockReplenishScreens extends StatelessWidget {
                           ),
                         )),
                     SizedBox(
-                      // color: Colors.amber,
                       width: Screens.width(context) * 0.92,
                       height: Screens.bodyheight(context) * 0.82,
                       child: stkCtrl.outOfstockBool == true &&
@@ -104,7 +88,6 @@ class StockReplenishScreens extends StatelessWidget {
                                                           .spaceBetween,
                                                   children: [
                                                     Container(
-                                                        // color: Colors.red,
                                                         alignment:
                                                             Alignment.topLeft,
                                                         width: Screens.width(
@@ -119,7 +102,6 @@ class StockReplenishScreens extends StatelessWidget {
                                                                       .black),
                                                         )),
                                                     Container(
-                                                        // color: Colors.red,
                                                         alignment:
                                                             Alignment.topRight,
                                                         width: Screens.width(
@@ -136,34 +118,6 @@ class StockReplenishScreens extends StatelessWidget {
                                                   ],
                                                 ),
                                               ),
-                                              // IntrinsicHeight(
-                                              //   child: Row(
-                                              //     // mainAxisAlignment:
-                                              //     //     MainAxisAlignment.spaceBetween,
-                                              //     children: [
-                                              //       Container(
-                                              //           // color: Colors.red,
-                                              //           alignment: Alignment.bottomLeft,
-                                              //           // width: Screens.width(context) * 0.42,
-                                              //           child: Text(
-                                              //             "${stkCtrl.filterStockSnapList[index].itemCode}",
-                                              //             style: theme.textTheme.bodyText2
-                                              //                 ?.copyWith(
-                                              //                     color: Colors.grey),
-                                              //           )),
-                                              //       Container(
-                                              //           // color: Colors.red,
-                                              //           alignment: Alignment.bottomRight,
-                                              //           // width: Screens.width(context) * 0.42,
-                                              //           child: Text(
-                                              //             " | ${stkCtrl.filterStockSnapList[index].serialbatch}",
-                                              //             style: theme.textTheme.bodyText2
-                                              //                 ?.copyWith(
-                                              //                     color: Colors.grey),
-                                              //           )),
-                                              //     ],
-                                              //   ),
-                                              // )
                                             ],
                                           ),
                                         ),
@@ -179,6 +133,5 @@ class StockReplenishScreens extends StatelessWidget {
         ),
       ),
     );
-    //
   }
 }

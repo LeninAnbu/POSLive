@@ -18,18 +18,16 @@ class AddressMasterApi {
       );
       resCode = response.statusCode;
       log(response.statusCode.toString());
-      // log("sk_Address_master_data${json.decode(response.body)}");
+
       if (response.statusCode == 200) {
-        // Map data = json.decode(response.body);
         return AddressrModel.fromJson(json.decode(response.body), resCode);
       } else {
         log("Error AM: ${json.decode(response.body)}");
         throw Exception("Error");
-        // return AddressrModel.error('Error', resCode);
       }
     } catch (e) {
       log("Exception AM: $e");
-      //  throw Exception(e.toString());
+
       return AddressrModel.error(e.toString(), resCode);
     }
   }

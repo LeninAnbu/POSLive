@@ -142,9 +142,6 @@ class MobsalesDetails extends StatelessWidget {
                           height: salesheight * 0.035,
                           decoration: BoxDecoration(
                             color: theme.primaryColor,
-                            // borderRadius: BorderRadius.only(
-                            //     bottomLeft: Radius.circular(4),
-                            //     bottomRight: Radius.circular(4)),
                           ),
                           child: Text(
                             "Orders",
@@ -158,7 +155,6 @@ class MobsalesDetails extends StatelessWidget {
               Card(
                 elevation: 5,
                 child: Container(
-                  // padding: EdgeInsets.only(bottom:salesheight * 0.05, ),
                   height: salesheight * 0.14,
                   width: salesWidth * 0.45,
                   decoration: BoxDecoration(
@@ -181,9 +177,6 @@ class MobsalesDetails extends StatelessWidget {
                           height: salesheight * 0.035,
                           decoration: BoxDecoration(
                             color: theme.primaryColor,
-                            //   borderRadius: BorderRadius.only(
-                            //       bottomLeft: Radius.circular(4),
-                            //       bottomRight: Radius.circular(4)),
                           ),
                           alignment: Alignment.center,
                           child: Text(
@@ -200,23 +193,6 @@ class MobsalesDetails extends StatelessWidget {
           SizedBox(
             height: salesheight * 0.02,
           ),
-          // Container(
-          //     padding: EdgeInsets.only(
-          //       left: salesheight * 0.01,
-          //       right: salesheight * 0.01,
-          //       bottom: salesheight * 0.02,
-          //     ),
-          //     height: salesheight * 0.4,
-          //     width: salesWidth,
-          //     child: charts.BarChart(
-          //           behaviors: [charts.ChartTitle('Sales',
-          //   behaviorPosition: charts.BehaviorPosition.bottom,
-          //   titleOutsideJustification:
-          //       charts.OutsideJustification.middleDrawArea),],
-          //       prdDBC.createSampleData(), // _createSampleData(),
-          //       animate: true,
-          //       barGroupingType: charts.BarGroupingType.grouped,
-          //     ))
         ],
       ),
     );

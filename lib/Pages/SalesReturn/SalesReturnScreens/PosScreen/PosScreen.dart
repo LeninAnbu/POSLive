@@ -18,7 +18,6 @@ class SalesReturnPosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // color: Colors.red,
         color: Colors.grey.withOpacity(0.05),
         height: Screens.padingHeight(context),
         padding: EdgeInsets.only(
@@ -38,18 +37,15 @@ class SalesReturnPosScreen extends StatelessWidget {
                   searchHeight: Screens.padingHeight(context) * 0.69,
                   searchWidth: Screens.width(context) * 0.48,
                   theme: theme,
-                  // prdsrch: prdSR,
                 ),
                 SalesReturnPayment(
                     theme: theme,
-                    // prdSR: prdSR,
                     paymentWidth: Screens.width(context) * 0.48,
                     paymentHeight: Screens.padingHeight(context) * 0.22),
               ],
             ),
             SizedBox(
                 width: Screens.width(context) * 0.39,
-                //  color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,27 +54,16 @@ class SalesReturnPosScreen extends StatelessWidget {
                       custWidth: Screens.width(context) * 0.39,
                       custHeight: Screens.padingHeight(context) * 0.45,
                       theme: theme,
-                      // prdSR: prdSR,
                     ),
                     InvoiceInfo(
                       theme: theme,
-                      // posSR: prdSR,
                       cashWidth: Screens.width(context) * 0.39,
                       cashHeight: Screens.padingHeight(context) * 0.22,
                     ),
-                    // PaymentModeBtn(
-                    //   theme: theme,
-                    //   salesReturnController: prdSR,
-                    //   cashWidth: Screens.width(context) * 0.39,
-                    //   cashHeight: Screens.padingHeight(context) * 0.09,
-                    //   dialogheight: Screens.bodyheight(context) * 0.2,
-                    //   dialogwidth:  Screens.width(context) * 0.48,
-                    // ),
                     BottomBtn(
                       theme: theme,
                       btnheight: Screens.padingHeight(context) * 0.35,
                       btnWidth: Screens.width(context) * 0.38,
-                      // posSR: prdSR,
                     )
                   ],
                 )),

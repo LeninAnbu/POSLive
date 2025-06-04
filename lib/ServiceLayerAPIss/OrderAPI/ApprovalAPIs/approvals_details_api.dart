@@ -24,7 +24,6 @@ class ApprovalsDetailsAPi {
         },
       );
       log("statusCode::" + response.statusCode.toString());
-      // log(" Approvals Response:::" + response.body);
 
       if (response.statusCode >= 200 && response.statusCode <= 204) {
         return ApprovalDetailsValue.fromJson(
@@ -32,12 +31,11 @@ class ApprovalsDetailsAPi {
       } else {
         log(json.decode(response.body));
         log(response.statusCode.toString());
-        //throw Exception('Restart the app or contact the admin!!..');
+
         return ApprovalDetailsValue.issue(
             'Restart the app or contact the admin!!..');
       }
     } catch (e) {
-      //throw Exception('$e');
       return ApprovalDetailsValue.issue(
           'Restart the app or contact the admin!!..');
     }

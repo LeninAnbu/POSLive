@@ -15,7 +15,7 @@ class MobCustomerdetailPage extends StatelessWidget {
   double searchHeight;
   double searchWidth;
   CustomerMasterList? cusList;
-  // int index2;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -51,7 +51,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                         Container(
                             alignment: Alignment.topLeft,
                             width: searchWidth * 0.5,
-                            // color: Colors.amber,
                             child: Text(
                               "Customer Code",
                               style: theme.textTheme.bodyLarge!
@@ -63,7 +62,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                         Container(
                             alignment: Alignment.centerLeft,
                             width: searchWidth * 0.5,
-                            // color: Colors.red,
                             child: Text(
                               "${cusList!.customerCode}",
                               style: theme.textTheme.bodyLarge!.copyWith(),
@@ -74,8 +72,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       children: [
                         Container(
                             alignment: Alignment.centerRight,
-                            // width: searchWidth * 0.3,
-                            // color: Colors.amber,
                             child: Text(
                               "Customer Name",
                               style: theme.textTheme.bodyLarge!
@@ -86,8 +82,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                         ),
                         Container(
                             alignment: Alignment.centerRight,
-                            // width: searchWidth * 0.3,
-                            // color: Colors.red,
                             child: Text(
                               "${cusList!.customername}",
                               style: theme.textTheme.bodyLarge!.copyWith(),
@@ -108,7 +102,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerLeft,
                           width: searchWidth * 0.5,
-                          // color: Colors.amber,
                           child: Text(
                             "Balance",
                             style: theme.textTheme.bodyLarge!
@@ -120,7 +113,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerLeft,
                           width: searchWidth * 0.5,
-                          // color: Colors.red,
                           child: Text(
                             "${cusList!.balance}",
                             style: theme.textTheme.bodyLarge!.copyWith(),
@@ -131,8 +123,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                     children: [
                       Container(
                           alignment: Alignment.centerRight,
-                          // width: searchWidth * 0.3,
-                          // color: Colors.amber,
                           child: Text(
                             "Points",
                             style: theme.textTheme.bodyLarge!
@@ -144,7 +134,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerRight,
                           width: searchWidth * 0.3,
-                          // color: Colors.red,
                           child: Text(
                             "${cusList!.points}",
                             style: theme.textTheme.bodyLarge!.copyWith(),
@@ -164,7 +153,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerLeft,
                           width: searchWidth * 0.5,
-                          // color: Colors.amber,
                           child: Text(
                             "Email ID",
                             style: theme.textTheme.bodyLarge!
@@ -176,7 +164,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerLeft,
                           width: searchWidth * 0.5,
-                          // color: Colors.red,
                           child: Text(
                             "${cusList!.emalid}",
                             style: theme.textTheme.bodyLarge!.copyWith(),
@@ -188,7 +175,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.center,
                           width: searchWidth * 0.3,
-                          // color: Colors.amber,
                           child: Text(
                             "Tax No",
                             style: theme.textTheme.bodyLarge!
@@ -200,7 +186,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.center,
                           width: searchWidth * 0.3,
-                          // color: Colors.red,
                           child: Text(
                             "${cusList!.taxno}",
                             style: theme.textTheme.bodyLarge!.copyWith(),
@@ -220,7 +205,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerLeft,
                           width: searchWidth * 0.5,
-                          // color: Colors.amber,
                           child: Text(
                             "Phone No",
                             style: theme.textTheme.bodyLarge!
@@ -232,7 +216,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       Container(
                           alignment: Alignment.centerLeft,
                           width: searchWidth * 0.5,
-                          // color: Colors.red,
                           child: Text(
                             "${cusList!.phoneno1}",
                             style: theme.textTheme.bodyLarge!.copyWith(),
@@ -243,8 +226,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                     children: [
                       Container(
                           alignment: Alignment.centerRight,
-                          // width: searchWidth * 0.3,
-                          // color: Colors.amber,
                           child: Text(
                             "Customer Type",
                             style: theme.textTheme.bodyLarge!
@@ -255,8 +236,6 @@ class MobCustomerdetailPage extends StatelessWidget {
                       ),
                       Container(
                           alignment: Alignment.centerRight,
-                          // width: searchWidth * 0.3,
-                          // color: Colors.red,
                           child: Text(
                             "${cusList!.customertype}",
                             style: theme.textTheme.bodyLarge!.copyWith(),
@@ -292,20 +271,11 @@ class MobCustomerdetailPage extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.1),
-                            // borderRadius: BorderRadius.circular(2),
                           ),
-                          // alignment: Alignment.centerLeft,
-                          // height: searchWidth*0.6,
-                          // width: searchWidth*0.5,
-
-                          // color: Colors.amber,
-
                           child: Column(
                             children: [
                               Container(
                                   alignment: Alignment.centerLeft,
-                                  // width: searchWidth*0.5,
-                                  // color: Colors.amber,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

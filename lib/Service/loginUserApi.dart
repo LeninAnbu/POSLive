@@ -9,7 +9,7 @@ class LoginUserAPI {
   static Future<LoginUserModel> getData(
       String userCode, String fcmToken) async {
     int ressCode = 500; //
-    // log("br , term::${AppConstant.branch}:: ${AppConstant.terminal}");
+
     try {
       log('Login Url:::${URL.url}LoginAuth/UserCode/Password/Terminal/Branch/FcmToken?UserCode=$userCode&Password=1234&Terminal=${AppConstant.terminal}&Branch=${AppConstant.branch}&FcmToken=$fcmToken');
       final response = await http.get(
@@ -23,16 +23,14 @@ class LoginUserAPI {
       log(response.statusCode.toString());
       log("login response:::${json.decode(response.body)}");
       if (response.statusCode == 200) {
-        // Map data = json.decode(response.body);
         return LoginUserModel.fromJson(json.decode(response.body), ressCode);
       } else {
         log("Error userlogin: ${json.decode(response.body)}");
         throw Exception("Error");
-        // return AccountBalanceModel.exception('Error', ressCode);
       }
     } catch (e) {
       log("Exception userlogin: $e");
-      //  throw Exception(e.toString());
+
       return LoginUserModel.exception(e.toString(), ressCode);
     }
   }

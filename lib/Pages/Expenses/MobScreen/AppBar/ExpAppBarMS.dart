@@ -11,7 +11,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
   return AppBar(
     backgroundColor: theme.primaryColor,
     automaticallyImplyLeading: false,
-    // centerTitle: true,
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
@@ -23,16 +22,13 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
         );
       },
     ),
-    // toolbarHeight: Screens.padingHeight(context) * 0.08, // Set this height
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(titles),
       ],
     ),
-
     actions: [
-      //list if widget in appbar actions
       PopupMenuButton(itemBuilder: (context) {
         return [
           PopupMenuItem<int>(
@@ -112,7 +108,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4))),
                     contentPadding: const EdgeInsets.all(0),
-                    // backgroundColor: Colors.transparent,
                     insetPadding:
                         EdgeInsets.all(Screens.bodyheight(context) * 0.02),
                     content: posController.onhold.isEmpty
@@ -121,8 +116,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                             return SizedBox(
                               width: Screens.width(context),
                               child: Column(
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Container(
@@ -142,7 +135,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                                                 right: Screens.padingHeight(
                                                         context) *
                                                     0.02),
-                                            // color: Colors.red,
                                             width: Screens.width(context) * 0.7,
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -173,7 +165,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                                         ],
                                       ),
                                     ),
-
                                     Container(
                                       padding: EdgeInsets.symmetric(
                                           vertical:
@@ -254,7 +245,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                                                                     .padingHeight(
                                                                         context) *
                                                                 0.03),
-                                                        // height: custHeight * 0.2,
                                                         child: ListTile(
                                                           onTap: () {
                                                             Navigator.pop(
@@ -264,63 +254,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                                                                     index,
                                                                     context,
                                                                     theme);
-
-                                                            // showDialog(
-                                                            //     context:
-                                                            //         context,
-                                                            //     barrierDismissible:
-                                                            //         true,
-                                                            //     builder:
-                                                            //         (BuildContext
-                                                            //             context) {
-                                                            //       return AlertDialog(
-                                                            //           contentPadding:
-                                                            //               const EdgeInsets
-                                                            //                   .all(
-                                                            //                   0),
-                                                            //           content: AlertBox(
-                                                            //               payMent: 'Alert',
-                                                            //               widget: Container(
-                                                            //                 // width:
-                                                            //                 //     Screens.width(context) * 0.6,
-                                                            //                 padding:
-                                                            //                     EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.04, vertical: Screens.bodyheight(context) * 0.01),
-                                                            //                 child:
-                                                            //                     Column(
-                                                            //                   children: [
-                                                            //                     Container(alignment: Alignment.center, width: Screens.width(context) * 0.8,
-                                                            //                     child:  Center(child: Text('You are about to continue the sales transaction this draft will be created now..!!'))),
-                                                            //                     SizedBox(
-                                                            //                       height: Screens.bodyheight(context) * 0.01,
-                                                            //                     ),
-                                                            //                     Row(
-                                                            //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            //                       children: [
-                                                            //                         SizedBox(
-                                                            //                           width: Screens.width(context) * 0.15,
-                                                            //                           child: ElevatedButton(
-                                                            //                               onPressed: () {
-                                                            //                                 Navigator.pop(context);
-                                                            //                                 posController.mapHoldValues(index, context, theme);
-                                                            //                                 Navigator.pop(context);
-                                                            //                               },
-                                                            //                               child: const Text("Yes")),
-                                                            //                         ),
-                                                            //                         SizedBox(
-                                                            //                           width: Screens.width(context) * 0.15,
-                                                            //                           child: ElevatedButton(
-                                                            //                               onPressed: () {
-                                                            //                                 Navigator.pop(context);
-                                                            //                               },
-                                                            //                               child: const Text("No")),
-                                                            //                         ),
-                                                            //                       ],
-                                                            //                     )
-                                                            //                   ],
-                                                            //                 ),
-                                                            //               ),
-                                                            //               buttonName: null));
-                                                            //     });
                                                           },
                                                           title: Column(
                                                             mainAxisAlignment:
@@ -336,14 +269,6 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                                                                       .onholdfilter[
                                                                           index]
                                                                       .expensecode!),
-                                                                  // Container(
-                                                                  //     child: Text(posController
-                                                                  //         .config
-                                                                  //         .currentDate())
-                                                                  //     // .onHoldFilter![
-                                                                  //     //     index]
-                                                                  //     // .invoceDate!),
-                                                                  //     ),
                                                                 ],
                                                               ),
                                                               Row(
@@ -368,16 +293,9 @@ AppBar appbarMSExpense(String titles, ThemeData theme, BuildContext context,
                                         ],
                                       ),
                                     ),
-
-                                    //  SizedBox(height:  Screens.padingHeight(context) * 0.09),
                                   ]),
                             );
-                          })
-                    // AlertBox(
-                    //     payMent: 'Draft bills',
-                    //     buttonName: null,
-                    //     widget: )
-                    );
+                          }));
               });
         } else if (value == 1) {
         } else if (value == 2) {

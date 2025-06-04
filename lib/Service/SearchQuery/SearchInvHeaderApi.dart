@@ -19,8 +19,7 @@ class SerachInvoiceHeadAPi {
                 "constr":
                     "Server=INSIGNIAC03313;Database=${AppConstant.sapDB};User Id=sa; Password=Insignia@2021#;",
                 "query":
-                "EXEC BZ_POS_SerachInvoiceHeadAPi '$fromDate','$toDate' , '${AppConstant.branch}' "
-                    // "Select distinct T0.DocEntry,T0.DocNum,T0.DocDate,T1.whscode,T0.CardCode,T0.CardName,T0.DocTotal,T0.DocStatus from OINV T0 join INV1 T1 on T0.DocEntry=T1.DocEntry Where T0.DocDate between '$fromDate' and '$toDate' AND T1.WhsCode='${AppConstant.branch}' order by  T0.DocDate desc,DocNum desc"
+                    "EXEC BZ_POS_SerachInvoiceHeadAPi '$fromDate','$toDate' , '${AppConstant.branch}' "
               }));
 
       print(response.statusCode);
@@ -30,12 +29,10 @@ class SerachInvoiceHeadAPi {
       } else {
         log("SQ Header Data Res: " + json.decode(response.body).toString());
 
-        // throw Exception("Error!!...");
         return OpenSalesOrderHeader.fromJson(
             json.decode(response.body), response.statusCode);
       }
     } catch (e) {
-      //  throw Exception("Exception: $e");
       log('SalsesOrderHeaderAPi::${e.toString()}');
       return OpenSalesOrderHeader.error(e.toString(), 500);
     }

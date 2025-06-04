@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:posproject/Widgets/AlertBox.dart';
 import 'package:provider/provider.dart';
-import '../../../Constant/Screen.dart';
 import '../../../Controller/SalesQuotationController/SalesQuotationController.dart';
 import '../../../Widgets/ContentContainer.dart';
 
@@ -40,122 +39,6 @@ class _SQCashWidgetState extends State<SQCashWidget> {
       width: widget.cashWidth,
       height: widget.cashHeight,
       child: Center(
-          // child: Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          // Row(
-          //   children: [
-          // context
-          //             .read<SalesQuotationCon>()
-          //             .getScanneditemData2
-          //             .isNotEmpty &&
-          //         context.read<SalesQuotationCon>().userTypes ==
-          //             'corporate'
-          //     ? Container(
-          //         padding:
-          //             EdgeInsets.only(left: widget.cashHeight * 0.05),
-          //         height: Screens.padingHeight(context) * 0.057,
-          //         width: Screens.width(context) * 0.24,
-          //         decoration: const BoxDecoration(),
-          //         child: TextFormField(
-          //           controller: context
-          //               .read<SalesQuotationCon>()
-          //               .warehousectrl[0],
-          //           validator: (value) =>
-          //               value == null ? 'Required*' : null,
-          //           decoration: InputDecoration(
-          //             contentPadding: EdgeInsets.symmetric(
-          //                 vertical: 10, horizontal: 5),
-          //             // errorBorder: OutlineInputBorder(
-          //             //   borderRadius: BorderRadius.circular(5),
-          //             //   borderSide: const BorderSide(color: Colors.red),
-          //             // ),
-          //             // focusedErrorBorder: OutlineInputBorder(
-          //             //   borderRadius: BorderRadius.circular(5),
-          //             //   borderSide: const BorderSide(color: Colors.red),
-          //             // ),
-          //             enabledBorder: OutlineInputBorder(
-          //               borderRadius: BorderRadius.circular(5),
-          //               borderSide: BorderSide(color: Colors.grey),
-          //             ),
-          //             focusedBorder: OutlineInputBorder(
-          //               borderRadius: BorderRadius.circular(5),
-          //               borderSide: BorderSide(color: Colors.grey),
-          //             ),
-          //           ),
-          //         ),
-          //       )
-          //     : context.read<SalesQuotationCon>().userTypes == 'corporate'
-          //         ? Container(
-          //             padding:
-          //                 EdgeInsets.only(left: widget.cashHeight * 0.05),
-          //             height: Screens.padingHeight(context) * 0.057,
-          //             width: Screens.width(context) * 0.24,
-          //             decoration: const BoxDecoration(),
-          //             child: DropdownButtonFormField(
-          //                 validator: (value) =>
-          //                     value == null ? 'Required*' : null,
-          //                 decoration: InputDecoration(
-          //                   contentPadding: EdgeInsets.symmetric(
-          //                       vertical: 10, horizontal: 5),
-          //                   errorBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide:
-          //                         const BorderSide(color: Colors.red),
-          //                   ),
-          //                   focusedErrorBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide:
-          //                         const BorderSide(color: Colors.red),
-          //                   ),
-          //                   enabledBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide: BorderSide(
-          //                         color: widget.theme.primaryColor),
-          //                   ),
-          //                   focusedBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide: BorderSide(
-          //                         color: widget.theme.primaryColor),
-          //                   ),
-          //                 ),
-          //                 icon: const Icon(Icons.arrow_drop_down),
-          //                 value:
-          //                     context.watch<SalesQuotationCon>().whsName,
-          //                 items: context
-          //                     .read<SalesQuotationCon>()
-          //                     .whsLists
-          //                     .map((e) {
-          //                   return DropdownMenuItem(
-          //                       value: e.companyName,
-          //                       child: Text(
-          //                         e.companyName.toString(),
-          //                       ));
-          //                 }).toList(),
-          //                 hint: const Text(
-          //                   "Choose warehouse code",
-          //                   style: TextStyle(
-          //                       color: Colors.black54,
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w500),
-          //                 ),
-          //                 onChanged: (value) {
-          //                   setState(() {
-          //                     context.read<SalesQuotationCon>().whsName =
-          //                         value!;
-          //                     context
-          //                         .read<SalesQuotationCon>()
-          //                         .selectedWhsCode(value.toString());
-          //                   });
-          //                 }),
-          //           )
-          //         : Container(
-          //             width: Screens.width(context) * 0.15,
-          //           ),
-          // SizedBox(
-          //   width: Screens.width(context) * 0.025,
-          // ),
           child: context
                       .read<SalesQuotationCon>()
                       .getScanneditemData2
@@ -247,7 +130,6 @@ class _SQCashWidgetState extends State<SQCashWidget> {
                                 height: widget.cashHeight * 0.6,
                                 width: widget.cashWidth * 0.05,
                                 decoration: BoxDecoration(
-                                  // color: Colors.red,
                                   image: const DecorationImage(
                                     image: AssetImage("assets/disssccimg.png"),
                                   ),
@@ -262,103 +144,7 @@ class _SQCashWidgetState extends State<SQCashWidget> {
                               ),
                             ],
                           ))),
-                )
-          //   ],
-          // ),
-          // context.read<SalesQuotationCon>().getScanneditemData2.isNotEmpty &&
-          //         context.read<SalesQuotationCon>().userTypes == 'corporate'
-          //     ? Container(
-          //         padding: EdgeInsets.only(left: widget.cashHeight * 0.05),
-          //         height: Screens.padingHeight(context) * 0.057,
-          //         width: Screens.width(context) * 0.24,
-          //         decoration: const BoxDecoration(),
-          //         child: TextFormField(
-          //           controller:
-          //               context.read<SalesQuotationCon>().warehousectrl[1],
-          //           validator: (value) => value == null ? 'Required*' : null,
-          //           decoration: InputDecoration(
-          //             contentPadding:
-          //                 EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          //             enabledBorder: OutlineInputBorder(
-          //               borderRadius: BorderRadius.circular(5),
-          //               borderSide: BorderSide(color: Colors.grey),
-          //             ),
-          //             focusedBorder: OutlineInputBorder(
-          //               borderRadius: BorderRadius.circular(5),
-          //               borderSide: BorderSide(color: Colors.grey),
-          //             ),
-          //           ),
-          //         ))
-          //     : context.read<SalesQuotationCon>().userTypes == 'corporate'
-          //         ? Container(
-          //             padding:
-          //                 EdgeInsets.only(left: widget.cashHeight * 0.05),
-          //             height: Screens.padingHeight(context) * 0.057,
-          //             width: Screens.width(context) * 0.24,
-          //             decoration: const BoxDecoration(),
-          //             child: DropdownButtonFormField(
-          //                 validator: (value) =>
-          //                     value == null ? 'Required*' : null,
-          //                 decoration: InputDecoration(
-          //                   contentPadding: EdgeInsets.symmetric(
-          //                       vertical: 5, horizontal: 5),
-          //                   errorBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide: const BorderSide(color: Colors.red),
-          //                   ),
-          //                   focusedErrorBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide: const BorderSide(color: Colors.red),
-          //                   ),
-          //                   enabledBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide: BorderSide(
-          //                         color: widget.theme.primaryColor),
-          //                   ),
-          //                   focusedBorder: OutlineInputBorder(
-          //                     borderRadius: BorderRadius.circular(5),
-          //                     borderSide: BorderSide(
-          //                         color: widget.theme.primaryColor),
-          //                   ),
-          //                 ),
-          //                 icon: const Icon(Icons.arrow_drop_down),
-          //                 value: context
-          //                     .watch<SalesQuotationCon>()
-          //                     .newSeriesName,
-          //                 items: context
-          //                     .read<SalesQuotationCon>()
-          //                     .newDocSeries
-          //                     .map((e) {
-          //                   return DropdownMenuItem(
-          //                       value: e.seriesName,
-          //                       child: Text(
-          //                         e.seriesName.toString(),
-          //                       ));
-          //                 }).toList(),
-          //                 hint: const Text(
-          //                   "Choose series",
-          //                   style: TextStyle(
-          //                       color: Colors.black54,
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w500),
-          //                 ),
-          //                 onChanged: (value) {
-          //                   setState(() {
-          //                     context
-          //                         .read<SalesQuotationCon>()
-          //                         .newSeriesName = value.toString();
-          //                     context
-          //                         .read<SalesQuotationCon>()
-          //                         .selectDocSeries(value.toString());
-          //                   });
-          //                 }),
-          //           )
-          //         : Container(
-          //             width: Screens.width(context) * 0.15,
-          //           ),
-          //   ],
-          // ),
-          ),
+                )),
     );
   }
 }

@@ -34,9 +34,6 @@ class SalesHeaderT {
   static String customertype = "customertype";
   static String taxno = "taxno";
   static String billaddressid = "billaddressid";
-  // static String addressName1 = "addressName1";
-  // static String street = "street";
-  // static String block = 'block';
 
   static String city = "city";
   static String state = "state";
@@ -284,9 +281,6 @@ class SalesHeaderTModelDB {
         SalesHeaderT.amtpaid: amtpaid,
         SalesHeaderT.baltopay: baltopay,
         SalesHeaderT.billaddressid: billaddressid,
-        // SalesHeaderT.addressName1: addressName1,
-        // SalesHeaderT.street: street,
-        // SalesHeaderT.block: block,
         SalesHeaderT.country: country,
         SalesHeaderT.city: city,
         SalesHeaderT.state: state,
@@ -311,7 +305,6 @@ class SalesHeaderTModelDB {
         SalesHeaderT.objname: objname,
         SalesHeaderT.tinNo: tinNo,
         SalesHeaderT.vatNo: vatNo,
-
         SalesHeaderT.docstatus: docstatus,
         SalesHeaderT.doctotal: doctotal,
         SalesHeaderT.documentno: documentno,

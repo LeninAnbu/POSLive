@@ -16,7 +16,6 @@ class SRInvcWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Screens.width(context),
-      // height: Screens.bodyheight(context) * 0.4,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [

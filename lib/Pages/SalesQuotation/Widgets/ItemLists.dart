@@ -90,50 +90,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                       log('context.read<SalesQuotationCon>().searchcon.text::${context.read<SalesQuotationCon>().searchcon.text}');
                     },
                     onEditingComplete: () async {
-                      // await context.read<SalesQuotationCon>().getAllList(context
-                      //     .read<SalesQuotationCon>()
-                      //     .searchcon
-                      //     .text
-                      //     .trim());
-
-                      // if (context
-                      //     .read<SalesQuotationCon>()
-                      //     .getSearchedData
-                      //     .isEmpty) {
-                      //   showDialog(
-                      //       context: context,
-                      //       barrierDismissible: true,
-                      //       builder: (BuildContext context) {
-                      //         return AlertDialog(
-                      //             contentPadding: const EdgeInsets.all(0),
-                      //             content: AlertBox(
-                      //               payMent: 'Alert',
-                      //               errormsg: true,
-                      //               widget: Center(
-                      //                   child: ContentContainer(
-                      //                 content: 'Wrong Itemcode Scanned..!!',
-                      //                 theme: theme,
-                      //               )),
-                      //               buttonName: null,
-                      //             ));
-                      //       });
-                      // }
-                      // else if (context
-                      //         .read<SalesQuotationCon>()
-                      //         .getSearchedData
-                      //         .length ==
-                      //     1) {
-                      //   context
-                      //       .read<SalesQuotationCon>()
-                      //       .singleitemsearch(context, theme, 0);
-                      // } else {
-                      //   showDialog<dynamic>(
-                      //       context: context,
-                      //       builder: (_) {
-                      //         return const SearchItemsSQ();
-                      //       });
-                      // }
-
                       context
                           .read<SalesQuotationCon>()
                           .disableKeyBoard(context);
@@ -275,10 +231,8 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                           child: Container(
                               width: Screens.bodyheight(context) * 0.8,
                               padding: EdgeInsets.only(
-                                // top: Screens.bodyheight(context) * 0.01,
                                 left: Screens.width(context) * 0.01,
                                 right: Screens.width(context) * 0.01,
-                                // bottom: Screens.bodyheight(context) * 0.005,
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.grey[200],
@@ -588,29 +542,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                       inputFormatters: [
                                                         DecimalInputFormatter()
                                                       ],
-                                                      // inputFormatters: [
-                                                      //   context
-                                                      //                   .watch<
-                                                      //                       SalesQuotationCon>()
-                                                      //                   .getScanneditemData[
-                                                      //                       index]
-                                                      //                   .uPackSize ==
-                                                      //               null ||
-                                                      //           context
-                                                      //                   .watch<
-                                                      //                       SalesQuotationCon>()
-                                                      //                   .getScanneditemData[
-                                                      //                       index]
-                                                      //                   .uPackSize ==
-                                                      //               0.000
-                                                      //       ? FilteringTextInputFormatter
-                                                      //           .allow(RegExp(
-                                                      //               dotAll:
-                                                      //                   true,
-                                                      //               r'^\d*\.?\d{0,9}$'))
-                                                      //       : FilteringTextInputFormatter
-                                                      //           .digitsOnly
-                                                      // ],
                                                       onEditingComplete: () {
                                                         context
                                                             .read<
@@ -1021,7 +952,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                           widget.searchWidth *
                                                               0.005),
                                                   child: TextFormField(
-                                                    // textAlign: TextAlign.right,
                                                     onChanged: (val) {
                                                       context
                                                           .read<
@@ -1068,11 +998,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                     cursorColor: Colors.grey,
                                                     textDirection:
                                                         TextDirection.ltr,
-                                                    // keyboardType:
-                                                    //     TextInputType.number,
-                                                    // inputFormatters: [
-                                                    //   DecimalInputFormatter()
-                                                    // ],
                                                     onEditingComplete: () {
                                                       context
                                                           .read<
@@ -1092,7 +1017,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                             SalesQuotationCon>()
                                                         .itemNameController[index],
                                                     decoration: InputDecoration(
-                                                      // filled: false,
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderRadius:
@@ -1146,7 +1070,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                 Screens.width(context) * 0.005,
                                           ),
                                           Container(
-                                            // color: Colors.red,
                                             width: widget.searchWidth * 0.14,
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -1165,7 +1088,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                         color: Colors.black)),
                                           ),
                                           Container(
-                                            // color: Colors.green,
                                             width: widget.searchWidth * 0.18,
                                             alignment: Alignment.centerRight,
                                             child: Text(
@@ -1226,7 +1148,6 @@ class DecimalInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     final text = newValue.text;
 
-    // Allow only one decimal point
     if (text.contains('.') && text.indexOf('.') != text.lastIndexOf('.')) {
       return oldValue; // Reject the new value if there's a second decimal point
     }

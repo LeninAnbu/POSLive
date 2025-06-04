@@ -35,16 +35,8 @@ class SalesReturnMobile extends StatelessWidget {
                 SRInvcWidget(
                     theme: theme, salesReturnController: salesReturnController),
                 SizedBox(height: Screens.bodyheight(context) * 0.01),
-                // salesReturnController.getScanneditemData.isEmpty
-                //     ? SizedBox(
-                //         height: 0,
-                //       )
-                //     :
                 SRItemWid(
                     salesReturnController: salesReturnController, theme: theme),
-                // SizedBox(height: Screens.bodyheight(context) * 0.01),
-                // SRAmountSlctWidget(  theme: theme, salesReturnController: salesReturnController,
-                // ),
                 SizedBox(height: Screens.bodyheight(context) * 0.01),
                 salesReturnController.getpaymentWay.isNotEmpty
                     ? SRPaymentWidget(
