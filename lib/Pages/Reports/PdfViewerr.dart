@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:posproject/Pages/Reports/PDFHelper.dart';
-// import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 class CollectionReceiptPdf extends StatefulWidget {

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
-
 import 'package:flutter/material.dart';
 import '../../../../../Controller/DashBoardController/DashboardController.dart';
 
@@ -55,7 +53,7 @@ class MobAnnouncement extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 2,
-                        offset: Offset(0, 3), // changes position of shadow
+                        offset: Offset(0, 3),
                       ),
                     ],
                   ),

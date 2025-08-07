@@ -3,19 +3,16 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:posproject/Constant/AppConstant.dart';
 
-import '../../Constant/UserValues.dart';
-import '../../Models/ServiceLayerModel/DepositMode/depositspostmodel.dart';
-import '../../Models/ServiceLayerModel/SapExpensModel/ExpePostingList.dart';
-
 import '../../Models/ServiceLayerModel/SapSalesOrderModel/approvals_order_modal/approvalOTODPostApi.dart';
-import '../../Models/ServiceLayerModel/SapSalesQuotation/SalesQuotPostModel.dart';
 import '../../url/url.dart';
 
 class PostDepositAPi {
   static String? depType;
 
   static String? depDate;
+  static String? bankAccNum;
   static String? depAccount;
+
   static String? allocationAcc;
   static String? remarks;
   static double? totAmount;
@@ -27,6 +24,7 @@ class PostDepositAPi {
       "DepositCurrency": "TZS",
       "DepositAccount": "$depAccount",
       "AllocationAccount": "$allocationAcc",
+      "BankAccountNum": "$bankAccNum",
       "JournalRemarks": "$remarks",
       "TotalLC": totAmount,
     });
@@ -49,6 +47,7 @@ class PostDepositAPi {
             "DepositCurrency": "TZS",
             "DepositAccount": "$depAccount",
             "AllocationAccount": "$allocationAcc",
+            "BankAccountNum": "$bankAccNum",
             "JournalRemarks": "$remarks",
             "TotalLC": totAmount,
           }));
@@ -59,6 +58,7 @@ class PostDepositAPi {
         "DepositCurrency": "TZS",
         "DepositAccount": "$depAccount",
         "AllocationAccount": "$allocationAcc",
+        "BankAccountNum": "$bankAccNum",
         "JournalRemarks": "$remarks",
         "TotalLC": totAmount,
       }));
@@ -77,7 +77,7 @@ class PostDepositAPi {
     } catch (e) {
       log('Exception PostRequestAPi: $e');
 
-      return ApprovalstoDocModal.issue('Something went wrong..', 500);
+      return ApprovalstoDocModal.issue('$e', 500);
     }
   }
 }

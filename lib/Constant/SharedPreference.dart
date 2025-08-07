@@ -2,7 +2,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
   static String sPLocale = "Locale";
-//  static String sPLocale = "Locale";
   static String spStgIP = "SettingIP";
   static String spHost = "spHost";
   static String spDeviceID = "spDeviceID";
@@ -18,7 +17,6 @@ class SharedPref {
   static String isDatadownloaded = "isDatadownloaded";
   static String queueName = "isQueueName";
   static String consumercount = "isConsumerCount";
-
   static String sapusername = "sapusername";
   static String sappassword = "sapassword";
   static Future<bool> saveQeueName(String isDatad) async {

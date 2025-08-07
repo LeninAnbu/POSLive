@@ -706,7 +706,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                     ))
                                                 : Container(),
                                             Container(
-                                              width: widget.searchWidth * 0.45,
+                                              width: widget.searchWidth * 0.44,
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                 "${context.watch<PosController>().getScanneditemData[index].itemName}",
@@ -720,7 +720,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               width: widget.searchWidth * 0.01,
                                             ),
                                             Container(
-                                              width: widget.searchWidth * 0.15,
+                                              // color: Colors.green,
+                                              width: widget.searchWidth * 0.14,
                                               alignment: Alignment.centerRight,
                                               child: Text(
                                                   'Tax : ${context.watch<PosController>().getScanneditemData[index].taxRate ?? 0.00}%',
@@ -733,10 +734,11 @@ class _SearchWidgetState extends State<SearchWidget> {
                                               width: widget.searchWidth * 0.01,
                                             ),
                                             Container(
-                                              width: widget.searchWidth * 0.17,
+                                              // color: Colors.red,
+                                              width: widget.searchWidth * 0.16,
                                               alignment: Alignment.centerRight,
                                               child: Text(
-                                                  'InStock : ${context.watch<PosController>().getScanneditemData[index].inStockQty ?? 0}',
+                                                  'IS : ${context.watch<PosController>().getScanneditemData[index].inStockQty ?? 0}',
                                                   style: theme
                                                       .textTheme.bodyMedium
                                                       ?.copyWith(

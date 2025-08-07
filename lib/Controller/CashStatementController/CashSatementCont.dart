@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:posproject/Constant/Configuration.dart';
 import 'package:posproject/Models/ReportsModel/CashReportMdl.dart';
 
 import '../../Service/ReportsApi/CashStatementApi.dart';
@@ -9,6 +10,8 @@ import 'package:intl/intl.dart';
 class CashStateCon extends ChangeNotifier {
   init() async {
     clearalldata();
+    await getCurrentDate();
+    await callCashReportApi();
   }
 
   List<CashStateData> salesReg = [];
@@ -34,6 +37,14 @@ class CashStateCon extends ChangeNotifier {
 
   String? fromDate;
   String? toDate;
+  Configure config = Configure();
+  getCurrentDate() {
+    searchcontroller[2].text = config.alignDateT(config.currentDate2());
+    searchcontroller[3].text = config.alignDateT(config.currentDate2());
+
+    notifyListeners();
+  }
+
   searchBtn() {
     if (formkey[0].currentState!.validate()) {
       callCashReportApi();
@@ -49,16 +60,28 @@ class CashStateCon extends ChangeNotifier {
     filtersalesReg = [];
     isLoading = true;
     expMsg = '';
+    fromDate = config.alignDate1(searchcontroller[2].text);
+    toDate = config.alignDate1(searchcontroller[3].text);
     Cashreportapi.getGlobalData(fromDate!, toDate!).then((value) {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
-        salesReg = value.customerdata!;
-        log('salesRegsalesReglenght::${salesReg.length}');
-        filtersalesReg = salesReg;
+        if (value.customerdata != null) {
+          salesReg = value.customerdata!;
+          log('salesRegsalesReglenght::${salesReg.length}');
+          filtersalesReg = salesReg;
+        }
+
+        if (filtersalesReg.isEmpty) {
+          expMsg = 'No Data found';
+        }
+        isLoading = false;
+
         notifyListeners();
       } else if (value.stcode! >= 400 && value.stcode! <= 410) {
         expMsg = '${value.exception}';
+        isLoading = false;
       } else {
         expMsg = '${value.exception}';
+        isLoading = false;
       }
     });
     notifyListeners();

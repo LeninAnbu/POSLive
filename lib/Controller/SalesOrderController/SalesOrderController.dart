@@ -30,6 +30,7 @@ import 'package:posproject/Service/NewCustCodeCreate/PaymentGroupApi.dart';
 import 'package:posproject/Service/NewCustCodeCreate/TeritoryApi.dart';
 import 'package:posproject/Service/QueryURL/cashcardaccountdetailsApi.dart';
 import 'package:posproject/ServiceLayerAPIss/BankListApi/BankListsApi.dart';
+import 'package:posproject/ServiceLayerAPIss/OrderAPI/OrderCloseAPI.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
@@ -144,9 +145,9 @@ class SOCon extends ChangeNotifier {
   List<TextEditingController> mycontroller2 =
       List.generate(500, (i) => TextEditingController());
   List<TextEditingController> itemListDateCtrl =
-      List.generate(200, (i) => TextEditingController());
+      List.generate(5000, (i) => TextEditingController());
   List<TextEditingController> itemListDateCtrl2 =
-      List.generate(200, (i) => TextEditingController());
+      List.generate(500, (i) => TextEditingController());
   List<TextEditingController> qtymycontroller2 =
       List.generate(500, (ij) => TextEditingController());
   TextEditingController searchcontroller = TextEditingController();
@@ -334,7 +335,6 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
-// AccCode
   selectedWhsCode2(String val) async {
     for (var i = 0; i < whsLists.length; i++) {
       if (whsLists[i].whsCode.toString() == val) {
@@ -518,20 +518,6 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
-  leadDatePicker(
-    BuildContext context,
-    int i,
-  ) async {
-    DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
-    String datetype2 = DateFormat('dd-MM-yyyy').format(pickedDate!);
-
-    itemListDateCtrl[i].text = datetype2.toString();
-  }
-
   leadDatePicker2(
     BuildContext context,
     int i,
@@ -545,6 +531,20 @@ class SOCon extends ChangeNotifier {
     log("date1 date: $date1");
     log("Date after 90 days: $futureDate");
     String datetype2 = DateFormat('dd-MM-yyyy').format(futureDate);
+
+    itemListDateCtrl[i].text = datetype2.toString();
+  }
+
+  leadDatePicker(
+    BuildContext context,
+    int i,
+  ) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100));
+    String datetype2 = DateFormat('dd-MM-yyyy').format(pickedDate!);
 
     itemListDateCtrl[i].text = datetype2.toString();
   }
@@ -566,7 +566,7 @@ class SOCon extends ChangeNotifier {
                   alignment: Alignment.center,
                   child: ElevatedButton(
                       onPressed: () async {
-                        Navigator.pop(context);
+                        Get.back();
                         await promptEnableLocation();
                         requestLocationPermission(context);
                       },
@@ -837,7 +837,7 @@ class SOCon extends ChangeNotifier {
 
     qtychangemtd(scanneditemData.length - 1, '1', context, theme);
 
-    callLeadApiandDate(
+    await callLeadApiandDate(
         scanneditemData[scanneditemData.length - 1].itemCode.toString(),
         context,
         scanneditemData.length - 1);
@@ -1392,6 +1392,7 @@ class SOCon extends ChangeNotifier {
             onhandData.add(OnHandModelsData(
                 onHand: value.onHandData![i].onHand,
                 itemCode: value.onHandData![i].itemCode,
+                availableStock: value.onHandData![i].availableStock,
                 whsCode: value.onHandData![i].whsCode));
             notifyListeners();
           }
@@ -1399,6 +1400,9 @@ class SOCon extends ChangeNotifier {
           for (var ik = 0; ik < onhandData.length; ik++) {
             if (scanneditemData[index].itemCode.toString() ==
                 onhandData[ik].itemCode.toString()) {
+              scanneditemData[index].availableStk =
+                  double.parse(onhandData[ik].availableStock.toString());
+
               scanneditemData[index].inStockQty =
                   double.parse(onhandData[ik].onHand.toString());
             }
@@ -2428,6 +2432,8 @@ class SOCon extends ChangeNotifier {
   List<OpenSalesOrderHeaderData> filtersearchData = [];
 
   callSearchHeaderApi() async {
+    searchHeader = [];
+    filtersearchData = [];
     await SearchOrderHeaderAPi.getGlobalData(
             config.alignDate2(mycontroller[100].text),
             config.alignDate2(mycontroller[101].text))
@@ -3818,10 +3824,6 @@ class SOCon extends ChangeNotifier {
         });
       }
     });
-    notifyListeners();
-  }
-
-  checkcashcust() async {
     notifyListeners();
   }
 
@@ -8110,7 +8112,6 @@ class SOCon extends ChangeNotifier {
         vatregno: '',
         uCashCust: ''));
     notifyListeners();
-//
 
     newCustAddData.add({
       'customerCode': mycontroller[3].text.isNotEmpty
@@ -8582,10 +8583,13 @@ class SOCon extends ChangeNotifier {
       scanneditemData[iss].basic = double.parse(ansbasic);
 
       double? mycontlaa = scanneditemData[iss].discountper! ?? 0;
+
       scanneditemData[iss].discount =
           (scanneditemData[iss].basic! * mycontlaa / 100);
+
       scanneditemData[iss].priceAfDiscBasic =
           scanneditemData[iss].sellPrice! * 1;
+
       double priceafd = (scanneditemData[iss].priceAfDiscBasic! *
           scanneditemData[iss].discountper! /
           100);
@@ -9313,6 +9317,104 @@ class SOCon extends ChangeNotifier {
     notifyListeners();
   }
 
+  clickaCloseBtn(BuildContext context, ThemeData theme) async {
+    final Database db = (await DBHelper.getInstance())!;
+    log("sapDocentrysapDocentry:::$sapDocentry");
+    if (sapDocentry.isNotEmpty) {
+      log('step1');
+      List<Map<String, Object?>> getheaderData =
+          await DBOperation.salesOrderCancellQuery(
+        db,
+        tbDocEntry.toString(),
+      );
+      if (getheaderData.isNotEmpty) {
+        log('step12');
+
+        if (getheaderData[0]['basedocentry'].toString() ==
+            tbDocEntry.toString()) {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                    contentPadding: EdgeInsets.zero,
+                    content: AlertBox(
+                      payMent: 'Alert',
+                      errormsg: true,
+                      widget: Center(
+                          child: ContentContainer(
+                        content:
+                            'This document is already converted into sales invoice',
+                        theme: theme,
+                      )),
+                      buttonName: null,
+                    ));
+              }).then((value) {
+            cancelDocnum = '';
+            sapDocentry = '';
+            sapDocuNumber = '';
+            selectedcust2 = null;
+            selectedcust25 = null;
+            paymentWay2.clear();
+            scanneditemData2.clear();
+            cancelbtn = false;
+            selectedcust2 = null;
+            selectedcust = null;
+            scanneditemData2.clear();
+            paymentWay2.clear();
+            totalPayment2 = null;
+            injectToDb();
+            getdraftindex();
+            mycontroller2[50].text = "";
+            notifyListeners();
+          });
+        }
+      } else {
+        log('step13');
+
+        log('message::Cancel api calling');
+        await callSalesOrderCloseAPI(context, theme);
+        log('step15');
+
+        notifyListeners();
+      }
+    } else {
+      cancelbtn = false;
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                contentPadding: EdgeInsets.zero,
+                content: AlertBox(
+                  payMent: 'Alert',
+                  errormsg: true,
+                  widget: Center(
+                      child: ContentContainer(
+                    content: 'Something went wrong',
+                    theme: theme,
+                  )),
+                  buttonName: null,
+                ));
+          }).then((value) {
+        sapDocentry = '';
+        sapDocuNumber = '';
+        selectedcust2 = null;
+        selectedcust25 = null;
+        scanneditemData2.clear();
+        paymentWay2.clear();
+        totalPayment2 = null;
+        custList2.clear();
+        injectToDb();
+        getdraftindex();
+        mycontroller2[50].text = "";
+        cancelbtn = false;
+        notifyListeners();
+      });
+    }
+    notifyListeners();
+  }
+
   sapOrderLoginApi(
     BuildContext context,
   ) async {
@@ -9329,56 +9431,89 @@ class SOCon extends ChangeNotifier {
           await getSession();
         }
       } else if (value.stCode! >= 400 && value.stCode! <= 410) {
-        if (value.error!.code != null) {
-          loadingscrn = false;
+        // if (value.error!.code != null) {
+        loadingscrn = false;
 
-          custserieserrormsg = value.error!.message!.value.toString();
-
-          final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              bottom: Screens.bodyheight(context) * 0.3,
-            ),
-            duration: const Duration(seconds: 4),
-            backgroundColor: Colors.red,
-            content: Text(
-              "${value.error!.message!.value}\nCheck Your Sap Details !!..",
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          Future.delayed(const Duration(seconds: 5), () {
-            exit(0);
-          });
-        }
+        custserieserrormsg = value.error!.message!.value.toString();
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: Text(
+        //     "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //     style: const TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        // Future.delayed(const Duration(seconds: 5), () {
+        //   exit(0);
+        // });
+        // }
       } else if (value.stCode == 500) {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Opps Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     });
   }
@@ -9441,6 +9576,26 @@ class SOCon extends ChangeNotifier {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: theme.primaryColor,
+                        borderRadius: BorderRadius.circular(5)),
+                    width: Screens.width(context) * 0.07,
+                    height: Screens.padingHeight(context) * 0.05,
+                    child: Text(
+                      "No",
+                      style: theme.textTheme.bodyMedium
+                          ?.copyWith(color: Colors.white),
+                    ),
+                    alignment: Alignment.center,
+                  ),
+                  onPressed: () {
+                    onDisablebutton = false;
+
+                    Get.back();
+                  },
+                ),
+                TextButton(
                     child: Container(
                       decoration: BoxDecoration(
                           color: theme.primaryColor,
@@ -9462,6 +9617,50 @@ class SOCon extends ChangeNotifier {
                       await callCancelApi(context, theme);
                       notifyListeners();
                     }),
+              ],
+            ),
+          ],
+          radius: 5);
+    } else if (selectedcust2!.docStatus == 'C') {
+      cancelbtn = false;
+
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                contentPadding: EdgeInsets.zero,
+                content: AlertBox(
+                  payMent: 'Alert',
+                  errormsg: true,
+                  widget: Center(
+                      child: ContentContainer(
+                    content: 'Document is already cancelled',
+                    theme: theme,
+                  )),
+                  buttonName: null,
+                ));
+          }).then((value) {
+        onDisablebutton = false;
+
+        notifyListeners();
+      });
+      notifyListeners();
+    }
+  }
+
+  callSalesOrderCloseAPI(BuildContext context, ThemeData theme) async {
+    if (selectedcust2!.docStatus == 'O') {
+      onDisablebutton = false;
+      Get.defaultDialog(
+          title: 'Warning',
+          titleStyle: theme.textTheme.bodyMedium
+              ?.copyWith(color: Colors.red, fontSize: 18),
+          middleText: 'Do you want to close this document ?',
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 TextButton(
                   child: Container(
                     decoration: BoxDecoration(
@@ -9482,6 +9681,28 @@ class SOCon extends ChangeNotifier {
                     Get.back();
                   },
                 ),
+                TextButton(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: theme.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      width: Screens.width(context) * 0.07,
+                      height: Screens.padingHeight(context) * 0.05,
+                      child: Text(" Yes ",
+                          style: theme.textTheme.bodyMedium
+                              ?.copyWith(color: Colors.white)),
+                      alignment: Alignment.center,
+                    ),
+                    onPressed: () async {
+                      Get.back();
+
+                      notifyListeners();
+
+                      log('step14');
+                      onDisablebutton = true;
+                      await callCloseApi(context, theme);
+                      notifyListeners();
+                    }),
               ],
             ),
           ],
@@ -9531,6 +9752,80 @@ class SOCon extends ChangeNotifier {
         await Get.defaultDialog(
                 title: "Success",
                 middleText: 'Document is successfully cancelled ..!!',
+                backgroundColor: Colors.white,
+                titleStyle: const TextStyle(color: Colors.red),
+                middleTextStyle: const TextStyle(color: Colors.black),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text("Close"),
+                        onPressed: () => Get.back(),
+                      ),
+                    ],
+                  ),
+                ],
+                radius: 5)
+            .then((value) {
+          sapDocentry = '';
+          sapDocuNumber = '';
+          selectedcust2 = null;
+          selectedcust25 = null;
+          paymentWay2.clear();
+          scanneditemData2.clear();
+          onDisablebutton = false;
+
+          notifyListeners();
+        });
+        custserieserrormsg = '';
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+        cancelbtn = false;
+
+        custserieserrormsg = value.exception!.message!.value.toString();
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: AlertBox(
+                    payMent: 'Alert',
+                    errormsg: true,
+                    widget: Center(
+                        child: ContentContainer(
+                      content: '$custserieserrormsg',
+                      theme: theme,
+                    )),
+                    buttonName: null,
+                  ));
+            }).then((value) {
+          onDisablebutton = false;
+          notifyListeners();
+        });
+      } else {}
+    });
+    notifyListeners();
+  }
+
+  callCloseApi(BuildContext context, ThemeData theme) async {
+    final Database db = (await DBHelper.getInstance())!;
+    await sapOrderLoginApi(
+      context,
+    );
+    await SerlayOrderCloseAPI.getData(sapDocentry.toString())
+        .then((value) async {
+      if (value.statusCode! >= 200 && value.statusCode! <= 204) {
+        cancelbtn = false;
+
+        await DBOperation.updateSalesOrderclosedocsts(
+            db, sapDocentry.toString());
+        notifyListeners();
+
+        await Get.defaultDialog(
+                title: "Success",
+                middleText: 'Document is successfully closed ..!!',
                 backgroundColor: Colors.white,
                 titleStyle: const TextStyle(color: Colors.red),
                 middleTextStyle: const TextStyle(color: Colors.black),

@@ -12,16 +12,15 @@ class ApprovalsOrdersModal {
   });
   factory ApprovalsOrdersModal.fromJson(Map<String, dynamic> jsons) {
     if (jsons['value'] != null) {
-      final list = jsons['value'] as List; //jsonDecode
-      // print(list);
+      final list = jsons['value'] as List;
+
       List<ApprovalsOrdersValue> dataList = list
           .map((dynamic enquiries) => ApprovalsOrdersValue.fromJson(enquiries))
           .toList();
-      // print(dataList[0]);
+
       return ApprovalsOrdersModal(
         approvalsOrdersValue: dataList,
         odatametadata: jsons['odata.metadata'].toString(),
-        // nextLink:  jsons['odata.nextLink'].toString(),
       );
     } else {
       return ApprovalsOrdersModal(
@@ -76,8 +75,4 @@ class ApprovalsOrdersValue {
       wddCode: jsons['WddCode'] ?? 0,
     );
   }
-//  {\"WddCode\":965998,\"WtmCode\":69,\"ObjType\":\"17\",\"CurrStep\":62,\
-//  "CreateDate\":\"2022-06-08T00:00:00\",\"CreateTime\":1550,\"DraftEntry\":
-//  787512,\"FromUser\":\"HOORDER\",\"DocNum\":3853,\"DocDate\":\"2022-06-08'
-//  T00:00:00\",\"CardCode\":\"D9121\",\"CardName\":\"ED\"}
 }

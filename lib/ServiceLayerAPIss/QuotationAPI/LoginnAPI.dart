@@ -18,7 +18,7 @@ class PostLoginAPi {
             'Content-Type': 'application/json'
           }, //{"CompanyDB":"MRP T1","UserName":"mwanza","Password":"8765"}
           body: json.encode({
-            "CompanyDB": "${AppConstant.sapDB}",
+            "CompanyDB": AppConstant.sapDB,
             "UserName": AppConstant.sapUserName,
             "Password": AppConstant.sapPassword
           }));
@@ -38,14 +38,17 @@ class PostLoginAPi {
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       } else {
-        log("saplogin: ${json.decode(response.body)}");
-        log("saplogin stcode22 ::${response.statusCode}");
-        throw Exception("Error");
+        // log("saplogin22: ${json.decode(response.body)}");
+        // log("saplogin stcode22 ::${response.statusCode}");
+        return Logindata.error(
+            json.decode(response.body) as Map<String, dynamic>,
+            response.statusCode);
+        // throw Exception("Error");
       }
     } catch (e) {
       log('Exception saplogin: $e');
 
-      return Logindata.issue('Restart the app or contact the admin!!..', 500);
+      return Logindata.issue('$e', 500);
     }
   }
 }

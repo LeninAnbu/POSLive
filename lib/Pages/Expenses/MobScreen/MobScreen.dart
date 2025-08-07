@@ -95,7 +95,6 @@ class _MobScreenState extends State<MobScreen> {
                       SizedBox(
                         height: Screens.padingHeight(context) * 0.03,
                       ),
-
                       SizedBox(
                         width: Screens.width(context),
                         child: TextFormField(
@@ -192,8 +191,7 @@ class _MobScreenState extends State<MobScreen> {
                             borderSide: BorderSide(color: theme.primaryColor),
                           ),
                         ),
-                      ), //TextField
-
+                      ),
                       SizedBox(
                         height: Screens.padingHeight(context) * 0.03,
                       ),
@@ -251,10 +249,9 @@ class _MobScreenState extends State<MobScreen> {
                       ),
                       SizedBox(
                         height: Screens.padingHeight(context) * 0.03,
-                      ), //dropdown
+                      ),
                     ],
-                  ), //dropdown
-
+                  ),
                   SizedBox(
                     height: Screens.padingHeight(context) * 0.05,
                   ),

@@ -24,7 +24,7 @@ class Cashreportapi {
                 "query": "EXEC BZ_POS_Cashreportapi '$fromDate','$toDate'"
               }));
 
-      log("CustomersReport Res: ${response.statusCode}");
+      log("BZ_POS_Cashreportapi Res: ${response.body}");
 
       if (response.statusCode == 200) {
         return CashReportModel.fromJson(response.body, response.statusCode);

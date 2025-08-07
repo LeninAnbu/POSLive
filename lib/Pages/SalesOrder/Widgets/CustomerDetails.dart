@@ -52,7 +52,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                     children: [
                       Container(
                         height: widget.custWidth * 0.08,
-                        width: widget.custWidth * 0.55,
+                        width: widget.custWidth * 0.53,
                         decoration: BoxDecoration(
                           border: Border.all(
                               color: const Color.fromARGB(255, 240, 235, 235)),
@@ -106,7 +106,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                           ? Container()
                           : Container(
                               height: Screens.padingHeight(context) * 0.06,
-                              width: widget.custWidth * 0.4,
+                              width: widget.custWidth * 0.35,
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: const Color.fromARGB(
@@ -194,7 +194,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                 ),
                                 SizedBox(
                                     height: widget.custHeight * 0.16,
-                                    width: widget.custWidth * 0.3,
+                                    width: widget.custWidth * 0.28,
                                     child: context
                                                     .watch<SOCon>()
                                                     .getselectedcust2 !=
@@ -384,7 +384,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -413,7 +413,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                               ),
                               Container(
                                 alignment: Alignment.centerRight,
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -453,7 +453,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -476,7 +476,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                               ),
                               Container(
                                 alignment: Alignment.centerRight,
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -509,7 +509,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -538,7 +538,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                               ),
                               Container(
                                 alignment: Alignment.centerRight,
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -569,12 +569,12 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                             InkWell(
                               onTap: () {},
                               child: SizedBox(
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: widget.custWidth * 0.465,
+                                      width: widget.custWidth * 0.44,
                                       padding: EdgeInsets.only(
                                           right: widget.custWidth * 0.02),
                                       child: Row(
@@ -707,12 +707,12 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                             InkWell(
                               onTap: () {},
                               child: SizedBox(
-                                width: widget.custWidth * 0.465,
+                                width: widget.custWidth * 0.44,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: widget.custWidth * 0.465,
+                                      width: widget.custWidth * 0.44,
                                       padding: EdgeInsets.only(
                                           right: widget.custWidth * 0.02),
                                       child: Row(
@@ -868,7 +868,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
-                                          width: widget.custWidth * 0.55,
+                                          width: widget.custWidth * 0.53,
                                           height: widget.custHeight * 0.16,
                                           child: context
                                                           .read<SOCon>()
@@ -979,7 +979,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                         ),
                                         SizedBox(
                                             height: widget.custHeight * 0.16,
-                                            width: widget.custWidth * 0.3,
+                                            width: widget.custWidth * 0.29,
                                             child: context
                                                             .watch<SOCon>()
                                                             .getselectedcust !=
@@ -1258,7 +1258,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1297,8 +1297,9 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                     ),
                                   ),
                                   Container(
+                                    // color: Colors.red,
                                     alignment: Alignment.centerRight,
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1350,7 +1351,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1374,7 +1375,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                   ),
                                   Container(
                                     alignment: Alignment.centerRight,
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1410,7 +1411,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1443,7 +1444,7 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                   ),
                                   Container(
                                     alignment: Alignment.centerRight,
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1478,13 +1479,13 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                 InkWell(
                                   onTap: () async {},
                                   child: SizedBox(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Container(
-                                          width: widget.custWidth * 0.465,
+                                          width: widget.custWidth * 0.44,
                                           padding: EdgeInsets.only(
                                               right: widget.custWidth * 0.02),
                                           child: Row(
@@ -1631,13 +1632,13 @@ class _POCustomerDetailsState extends State<POCustomerDetails> {
                                 InkWell(
                                   onTap: () async {},
                                   child: SizedBox(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Container(
-                                          width: widget.custWidth * 0.465,
+                                          width: widget.custWidth * 0.44,
                                           padding: EdgeInsets.only(
                                               right: widget.custWidth * 0.02),
                                           child: Row(

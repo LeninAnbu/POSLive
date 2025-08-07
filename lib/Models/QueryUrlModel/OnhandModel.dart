@@ -64,17 +64,21 @@ class OnHandModels {
 
 class OnHandModelsData {
   double onHand;
+  double availableStock;
+
   String itemCode;
   String whsCode;
   OnHandModelsData({
     required this.onHand,
+    required this.availableStock,
     required this.itemCode,
     required this.whsCode,
   });
-
+// [{\"OnHand\":226.800000,\"ItemCode\":\"100017A\",\"WhsCode\":\"UBNFG\",\"AvailableStock\":2198.625200}]"
   factory OnHandModelsData.fromJson(dynamic jsons) {
     return OnHandModelsData(
       onHand: jsons['OnHand'] ?? 0,
+      availableStock: jsons['AvailableStock'] ?? 0,
       itemCode: jsons['ItemCode'] ?? "",
       whsCode: jsons['WhsCode'] ?? "",
     );

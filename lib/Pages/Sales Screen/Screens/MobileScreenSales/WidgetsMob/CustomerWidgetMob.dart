@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../Constant/Screen.dart';
 import '../../../../../Controller/SalesInvoice/SalesInvoiceController.dart';
 
@@ -31,7 +30,7 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 3,
             blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -182,8 +181,7 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                     child: const Icon(Icons.close_sharp),
                                   )),
                             ],
-                          ) // IconButton(onPressed: (){}, icon: Icon(Icons.close_sharp))
-                          ),
+                          )),
                       SizedBox(
                         height: Screens.padingHeight(context) * 0.01,
                       ),
@@ -664,8 +662,7 @@ class _CustomerWidgetMobileState extends State<CustomerWidgetMobile> {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 2,
                                 blurRadius: 2,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
+                                offset: const Offset(0, 3),
                               ),
                             ],
                           ),

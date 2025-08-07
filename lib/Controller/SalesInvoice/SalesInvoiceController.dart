@@ -927,9 +927,6 @@ class PosController extends ChangeNotifier {
             ? totalPayment!.discount!.toString().replaceAll(',', '')
             : null,
         docdiscuntpercen: '0',
-        // discountcontroller[i].text.isNotEmpty
-        //     ? discountcontroller[i].text.toString()
-        //     : '0',
         documentno: (documentNum).toString(),
         docstatus: docstatus == "suspend"
             ? "0"
@@ -1927,6 +1924,7 @@ class PosController extends ChangeNotifier {
       } else {
         if (openOrdLineList![i].checkBClr == true &&
             openOrdLineList![i].managedBy == 'NONE') {
+          log('message::XXXXXX');
           soScanItem.add(StocksnapModelData(
             branch: AppConstant.branch,
             shipDate: '',
@@ -2399,174 +2397,6 @@ class PosController extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-  // newAutoselectItemMethod(
-  //   ThemeData theme,
-  //   BuildContext context,
-  // ) async {
-  //   double soListqty = 0;
-  //   openAutoSelect = [];
-  //   autoselectbtndisable = true;
-  //   batchselectbtndisable = false;
-  //   manualselectbtndisable = false;
-  //   selectionBtnLoading = true;
-  //   String tempItem = '';
-  //   String tempItem2 = '';
-  //   String tempItem3 = '';
-
-  //   List<String> itemCodeList = [];
-  //   notifyListeners();
-  //   noMsgText = '';
-  //   for (var ih = 0; ih < openOrdLineList!.length; ih++) {
-  //     if (openOrdLineList![ih].checkBClr == true) {
-  //       itemCodeList.add(openOrdLineList![ih].itemCode);
-
-  //       tempItem = itemCodeList.toString().replaceAll('[', '');
-  //       tempItem2 = tempItem.toString().replaceAll(']', '');
-  //       log('tempItem2tempItem2::${tempItem2.toString()}');
-
-  //       tempItem3 = tempItem2.toString().replaceAll(' ', '');
-
-  //       log('tempItem3tempItem3::${tempItem3.toString()}');
-  //       if (selectAll == false) {
-  //         for (var ik = 0; ik < soScanItem.length; ik++) {
-  //           if (openOrdLineList![ih].itemCode == soScanItem[ik].itemCode &&
-  //               openOrdLineList![ih].lineNum.toString() ==
-  //                   soScanItem[ik].baselineid.toString()) {
-  //             soScanItem.removeAt(ik);
-  //           }
-
-  //           notifyListeners();
-  //         }
-
-  //         if (selectAll == false) {
-  //           for (var ix = 0; ix < soFilterScanItem.length; ix++) {
-  //             if (openOrdLineList![ih].itemCode ==
-  //                     soFilterScanItem[ix].itemCode &&
-  //                 openOrdLineList![ih].lineNum.toString() ==
-  //                     soFilterScanItem[ix].baselineid.toString()) {
-  //               soFilterScanItem.removeAt(ix);
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   await AutoSelectApi.getGlobalData(tempItem3).then((value) {
-  //     if (value.statusCode! >= 200 && value.statusCode! <= 210) {
-  //       if (value.openOutwardData!.isNotEmpty) {
-  //         openAutoSelect = value.openOutwardData!;
-  //       } else {
-  //         noMsgText = value.error!;
-  //         batchselectbtndisable = false;
-  //         autoselectbtndisable = false;
-  //         manualselectbtndisable = false;
-  //       }
-  //       selectionBtnLoading = false;
-  //     } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
-  //       batchselectbtndisable = false;
-  //       autoselectbtndisable = false;
-  //       manualselectbtndisable = false;
-
-  //       selectionBtnLoading = false;
-  //       showDialog(
-  //           context: context,
-  //           barrierDismissible: false,
-  //           builder: (BuildContext context) {
-  //             return AlertDialog(
-  //                 contentPadding: const EdgeInsets.all(0),
-  //                 content: AlertBox(
-  //                   payMent: 'Alert',
-  //                   errormsg: true,
-  //                   widget: Center(
-  //                       child: ContentContainer(
-  //                     content: '${value.error}',
-  //                     theme: theme,
-  //                   )),
-  //                   buttonName: null,
-  //                 ));
-  //           });
-  //     }
-  //   });
-
-  //   for (var ih = 0; ih < openOrdLineList!.length; ih++) {
-  //     if (openOrdLineList![ih].checkBClr == true) {
-  //       double balQty = double.parse(soListController[ih].text);
-  //       for (var im = 0; im < openAutoSelect!.length; im++) {
-  //         if (openOrdLineList![ih].itemCode == openAutoSelect![im].itemCode &&
-  //             openAutoSelect![im].remQty > 0) {
-  //           if (balQty >= openAutoSelect![im].remQty) {
-  //             log('itemcode:111:${openAutoSelect![im].itemCode}');
-
-  //             soScanItem.add(StocksnapModelData(
-  //               branch: AppConstant.branch,
-  //               baselineid: openOrdLineList![ih].lineNum.toString(),
-  //               basedocentry: openOrdLineList![ih].docEntry.toString(),
-  //               itemCode: openAutoSelect![im].itemCode,
-  //               itemName: openAutoSelect![im].itemName,
-  //               shipDate: '',
-  //               serialBatch: openAutoSelect![im].batchNum,
-  //               inDate: openAutoSelect![im].inDate,
-  //               openRetQty: openAutoSelect![im].remQty,
-  //               maxdiscount: '0',
-  //               discountper: 0,
-  //               mrp: 0,
-  //               sellPrice: openAutoSelect![im].price,
-  //             ));
-  //             balQty = balQty - openAutoSelect![im].remQty;
-  //             openAutoSelect![im].remQty = 0;
-  //             notifyListeners();
-  //           } else {
-  //             log('itemcode::${openAutoSelect![im].itemCode}');
-
-  //             soScanItem.add(StocksnapModelData(
-  //               branch: AppConstant.branch,
-  //               shipDate: '',
-  //               baselineid: openOrdLineList![ih].lineNum.toString(),
-  //               basedocentry: openOrdLineList![ih].docEntry.toString(),
-  //               itemCode: openAutoSelect![im].itemCode,
-  //               itemName: openAutoSelect![im].itemName,
-  //               serialBatch: openAutoSelect![im].batchNum,
-  //               inDate: openAutoSelect![im].inDate,
-  //               openRetQty: balQty,
-  //               maxdiscount: '0',
-  //               discountper: 0,
-  //               mrp: 0,
-  //               sellPrice: openAutoSelect![im].price,
-  //             ));
-
-  //             openAutoSelect![im].remQty = openAutoSelect![im].remQty - balQty;
-  //             balQty = 0;
-  //             notifyListeners();
-  //             break;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   await mapItemCodeWiseSoAllData();
-
-  //   for (var ih = 0; ih < openOrdLineList!.length; ih++) {
-  //     if (openOrdLineList![ih].checkBClr == true) {
-  //       soListqty = 0;
-
-  //       for (var iv = 0; iv < soScanItem.length; iv++) {
-  //         if (openOrdLineList![ih].itemCode == soScanItem[iv].itemCode &&
-  //             openOrdLineList![ih].lineNum.toString() ==
-  //                 soScanItem[iv].baselineid.toString()) {
-  //           soListqty = soListqty + soScanItem[iv].openRetQty!;
-  //           openOrdLineList![ih].valueInsert = true;
-
-  //           soListController[ih].text = soListqty.toString();
-  //           notifyListeners();
-  //         }
-  //       }
-
-  //       notifyListeners();
-  //     }
-  //   }
-  // }
 
   String expMsg = '';
 
@@ -4088,9 +3918,6 @@ class PosController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // int i = 1;
-
-  // int get geti => i;
   itemIncrement(int ind, BuildContext context, ThemeData theme) {
     int qtyctrl = int.parse(qtymycontroller[ind].text);
 
@@ -4168,6 +3995,7 @@ class PosController extends ChangeNotifier {
           for (int i = 0; i < value.onHandData!.length; i++) {
             onhandData.add(OnHandModelsData(
                 onHand: value.onHandData![i].onHand,
+                availableStock: value.onHandData![i].availableStock,
                 itemCode: value.onHandData![i].itemCode,
                 whsCode: value.onHandData![i].whsCode));
             notifyListeners();
@@ -4176,6 +4004,9 @@ class PosController extends ChangeNotifier {
           for (var ik = 0; ik < onhandData.length; ik++) {
             if (scanneditemData[index].itemCode.toString() ==
                 onhandData[ik].itemCode.toString()) {
+              scanneditemData[index].availableStk =
+                  double.parse(onhandData[ik].availableStock.toString());
+
               scanneditemData[index].inStockQty =
                   double.parse(onhandData[ik].onHand.toString());
             }
@@ -7618,53 +7449,87 @@ class PosController extends ChangeNotifier {
           await getSession();
         }
       } else if (value.stCode! >= 400 && value.stCode! <= 410) {
-        if (value.error!.code != null) {
-          loadingscrn = false;
-          final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              bottom: Screens.bodyheight(context) * 0.3,
-            ),
-            duration: const Duration(seconds: 4),
-            backgroundColor: Colors.red,
-            content: Text(
-              "${value.error!.message!.value}\nCheck Your Sap Details !!..",
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          Future.delayed(const Duration(seconds: 5), () {
-            exit(0);
-          });
-        }
+        // if (value.error!.code != null) {
+        loadingscrn = false;
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        //   final snackBar = SnackBar(
+        //     behavior: SnackBarBehavior.floating,
+        //     margin: EdgeInsets.only(
+        //       bottom: Screens.bodyheight(context) * 0.3,
+        //     ),
+        //     duration: const Duration(seconds: 4),
+        //     backgroundColor: Colors.red,
+        //     content: Text(
+        //       "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //       style: const TextStyle(color: Colors.white),
+        //     ),
+        //   );
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        //   Future.delayed(const Duration(seconds: 5), () {
+        //     exit(0);
+        //   });
+        // }
       } else if (value.stCode == 500) {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        //   final snackBar = SnackBar(
+        //     behavior: SnackBarBehavior.floating,
+        //     margin: EdgeInsets.only(
+        //       bottom: Screens.bodyheight(context) * 0.3,
+        //     ),
+        //     duration: const Duration(seconds: 4),
+        //     backgroundColor: Colors.red,
+        //     content: const Text(
+        //       "Opps Something went wrong !!..",
+        //       style: TextStyle(color: Colors.white),
+        //     ),
+        //   );
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     });
   }
@@ -8591,24 +8456,6 @@ class PosController extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  // sBatchFrmStksnap(int index) async {
-  //   final Database db = (await DBHelper.getInstance())!;
-  //   List<Map<String, Object?>> serialbatchCheck =
-  //       await DBOperation.cfoserialBatchCheck(
-  //           db, soData[index].itemCode.toString());
-  //   for (int i = 0; i < serialbatchCheck.length; i++) {
-  //     if (soData[index].itemCode ==
-  //         serialbatchCheck[i]['itemcode'].toString()) {
-  //       soData[index].serialBatch =
-  //           serialbatchCheck[i]['serialbatch'].toString();
-
-  //       notifyListeners();
-  //     }
-  //   }
-  //   notifyListeners();
-  //   return i;
-  // }
 
   clearsoaqty() {
     soqtycontroller = List.generate(500, (ij) => TextEditingController());

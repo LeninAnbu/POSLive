@@ -68,34 +68,3 @@ class _StockReqScreensState extends State<StockReqScreens> {
     });
   }
 }
-
-// return Scaffold(
-//     drawer: naviDrawer(),
-//     body: ChangeNotifierProvider<PosController>(
-//         create: (context) => PosController(),
-//         builder: (context, child) {
-//           return Consumer<PosController>(
-//               builder: (BuildContext context, prdSCD, Widget? child) {
-//             return LayoutBuilder(
-//               builder: (context, constraints) {
-//                    if (constraints.maxWidth <= 568) {
-//           return StockReqMob();
-//         }
-//              else if (constraints.maxWidth <= 1168) {
-//                 return
-//                 Container(
-//                   child: Column(
-//                     children:[
-//                     appbar("Stock Request", widget.theme, context),
-//                     StockReqTab(
-//                       theme: widget.theme, prdSCD: prdSCD),
-//                   ]),
-//                 );
-//               } else
-//                 return StockReqPos( theme: widget.theme,prdSCD: prdSCD,);
-//               
-//               
-//               
-//             });
-//           });
-//         }));

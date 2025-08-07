@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:posproject/Constant/Configuration.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../Constant/AppConstant.dart';
 import '../../Constant/SharedPreference.dart';
 import '../../Constant/UserValues.dart';
@@ -29,6 +28,7 @@ import '../../Models/DataModel/OriginalSales/OriginalSales.dart';
 import '../../Models/ExpenseModel/paidfrom.dart';
 import '../../Service/QueryURL/cashcardaccountdetailsApi.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../LoginController/LoginController.dart';
 

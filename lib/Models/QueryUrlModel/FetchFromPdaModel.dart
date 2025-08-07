@@ -1,9 +1,3 @@
-// {
-//     "status": true,
-//     "msg": "Success",
-//     "data": "[{\"RowID\":\"1-0463918\",\"DocID\":117462,\"DocKeyCode\":\"463867-17\",\"DocEntry\":463918,\"LineID\":0,\"ObjType\":\"17\",\"WhsCode\":\"HOFG\",\"ItemCode\":\"5109003E\",\"BatchID\":\"24-31643\",\"PickedQty\":6.000000}]"
-// }
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -27,7 +21,7 @@ class FetchBatchFromPdaModel {
     if (stcode >= 200 && stcode <= 210) {
       if (jsons['data'].toString() != 'No data found') {
         log('dddddddd');
-        var list = jsonDecode(jsons['data']) as List; //jsonDecode
+        var list = jsonDecode(jsons['data']) as List;
         List<FetchFromPdaModelData> dataList = list
             .map((dynamic enquiries) =>
                 FetchFromPdaModelData.fromJson(enquiries))
@@ -77,8 +71,6 @@ class FetchFromPdaModelData {
   int lineID;
   double pickedQty;
   String objType;
-// "data": "[{\"RowID\":\"1-0463918\",\"DocID\":117462,\"DocKeyCode\":\"463867-17\",\"DocEntry\":463918,\"LineID\":0,
-// \"ObjType\":\"17\",\"WhsCode\":\"HOFG\",\"ItemCode\":\"5109003E\",\"BatchID\":\"24-31643\",\"PickedQty\":6.000000}]"
 
   String batchNum;
   String itemCode;
@@ -102,8 +94,6 @@ class FetchFromPdaModelData {
     required this.whsCode,
     required this.lineID,
   });
-// "data": "[{\"RowID\":\"1-0463918\",\"DocID\":117462,\"DocKeyCode\":\"463867-17\",\"DocEntry\":463918,\"LineID\":0,
-// \"ObjType\":\"17\",\"WhsCode\":\"HOFG\",\"ItemCode\":\"5109003E\",\"BatchID\":\"24-31643\",\"PickedQty\":6.000000}]"
 
   factory FetchFromPdaModelData.fromJson(dynamic jsons) {
     return FetchFromPdaModelData(

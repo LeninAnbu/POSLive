@@ -6,7 +6,7 @@ import 'package:posproject/Constant/SharedPreference.dart';
 import 'package:posproject/Pages/LoginScreen/LoginScreen.dart';
 import 'package:posproject/Pages/Sales%20Screen/Screens/Screens.dart';
 import 'package:posproject/Pages/SalesReturn/Screens.dart';
-import 'package:posproject/Pages/Settlement/Screens/SettlementScreen.dart';
+import 'package:posproject/Pages/Deposits/Screens/SettlementScreen.dart';
 import '../Constant/ConstantRoutes.dart';
 import '../Pages/Expenses/ExpenseScreen.dart';
 import '../Pages/PaymentReceipt/Screens/Screens.dart';

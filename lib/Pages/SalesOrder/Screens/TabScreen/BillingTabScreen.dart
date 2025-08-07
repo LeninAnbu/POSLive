@@ -41,23 +41,23 @@ class _SObillingTabScreenState extends State<SObillingTabScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                      width: Screens.width(context) * 0.565,
+                      width: Screens.width(context) * 0.59,
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SOSearchWidget(
                               searchHeight: Screens.bodyheight(context) * 0.64,
-                              searchWidth: Screens.width(context) * 0.565,
+                              searchWidth: Screens.width(context) * 0.59,
                               theme: widget.theme,
                             ),
                             SOPaymentDetails(
                               theme: widget.theme,
-                              paymentWidth: Screens.width(context) * 0.565,
+                              paymentWidth: Screens.width(context) * 0.59,
                               paymentHeight: Screens.bodyheight(context) * 0.28,
                             )
                           ])),
                   SizedBox(
-                      width: Screens.width(context) * 0.42,
+                      width: Screens.width(context) * 0.395,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

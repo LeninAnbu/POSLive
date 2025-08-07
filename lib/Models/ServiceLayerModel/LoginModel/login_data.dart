@@ -1,11 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../../DataModel/SeriesMode/SeriesModels.dart';
 
 Logindata logindataFromJson(String str, int st) =>
     Logindata.fromJson(json.decode(str) as Map<String, dynamic>, st);
-
-//String logindataToJson(Logindata data) => json.encode(data.toJson());
 
 class Logindata {
   Logindata(
@@ -49,6 +48,7 @@ class Logindata {
   }
 
   factory Logindata.error(Map<String, dynamic> json, int stcode) {
+    log('sap login error');
     return Logindata(
         odataMetadata: null,
         sessionId: null,

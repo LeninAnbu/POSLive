@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:posproject/Constant/Screen.dart';
 import 'package:posproject/main.dart';
 import 'package:provider/provider.dart';
@@ -32,12 +33,67 @@ class _PendingorderTabState extends State<PendingorderTab> {
               SizedBox(
                 height: widget.btnheight * 0.015,
               ),
-              SizedBox(
-                width: widget.btnWidth * 1.15,
+              Container(
+                padding: EdgeInsets.all(10),
+                // width: widget.btnWidth * 1.15,
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Container(
+                        width: widget.btnWidth * 0.9,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey[300]!),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white
+                                  .withOpacity(0.3), //color of shadow
+                              spreadRadius: 3, //spread radius
+                              blurRadius: 2, // blur radius
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: TextFormField(
+                          controller: context
+                              .read<PendingOrderController>()
+                              .searchcontroller[4],
+                          style: widget.theme.textTheme.bodyMedium!
+                              .copyWith(color: Colors.black),
+                          onChanged: (val) {
+                            setState(() {
+                              context
+                                  .read<PendingOrderController>()
+                                  .filterHeaderListItem(val);
+                            });
+                          },
+                          onEditingComplete: () {},
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.all(8),
+                            hintText: "Search here..!!",
+                            hintStyle: widget.theme.textTheme.bodyMedium!
+                                .copyWith(color: const Color(0xFF757575)),
+                            suffixIcon: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.search,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
                       Form(
                           key:
                               context.read<PendingOrderController>().formkey[0],
@@ -165,64 +221,6 @@ class _PendingorderTabState extends State<PendingorderTab> {
                       ),
                     ]),
               ),
-              SizedBox(
-                height: widget.btnheight * 0.07,
-              ),
-              Container(
-                width: widget.btnWidth * 2.05,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey[300]!),
-                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white.withOpacity(0.3), //color of shadow
-                      spreadRadius: 3, //spread radius
-                      blurRadius: 2, // blur radius
-                      offset: const Offset(0, 2), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: TextFormField(
-                  controller: context
-                      .read<PendingOrderController>()
-                      .searchcontroller[4],
-                  style: widget.theme.textTheme.bodyMedium!
-                      .copyWith(color: Colors.black),
-                  onChanged: (val) {
-                    setState(() {
-                      context
-                          .read<PendingOrderController>()
-                          .filterHeaderListItem(val);
-                    });
-                  },
-                  onEditingComplete: () {},
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.all(8),
-                    hintText: "Search here..!!",
-                    hintStyle: widget.theme.textTheme.bodyMedium!
-                        .copyWith(color: const Color(0xFF757575)),
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: widget.btnheight * 0.05,
-              ),
               Container(
                 padding: EdgeInsets.all(widget.btnheight * 0.02),
                 child: Column(
@@ -335,7 +333,8 @@ class _PendingorderTabState extends State<PendingorderTab> {
                             ? Container(
                                 height: widget.btnheight * 1.5,
                                 alignment: Alignment.center,
-                                child: const Text("No Pending Order Here..!!"),
+                                child: Text(
+                                    "${context.watch<PendingOrderController>().expMsg}"),
                               )
                             : context
                                         .watch<PendingOrderController>()

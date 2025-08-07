@@ -35,7 +35,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
           color: Colors.white,
         ),
         padding:
-            EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.01),
+            EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.005),
         height: widget.btnheight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -391,6 +391,40 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                             setState(() {
                                               context
                                                   .read<SOCon>()
+                                                  .clickaCloseBtn(
+                                                      context, widget.theme);
+                                            });
+                                          },
+                                          child: Container(
+                                            width: widget.btnWidth * 0.2,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: widget.theme.primaryColor
+                                                    .withOpacity(0.1),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                border: Border.all(
+                                                  color:
+                                                      widget.theme.primaryColor,
+                                                )),
+                                            height: widget.btnheight * 0.15,
+                                            child: Text("Close",
+                                                textAlign: TextAlign.center,
+                                                style: widget
+                                                    .theme.textTheme.bodySmall
+                                                    ?.copyWith(
+                                                  color: Colors.black,
+                                                )),
+                                          ))),
+                                  Container(
+                                      padding: EdgeInsets.all(
+                                        widget.btnheight * 0.01,
+                                      ),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              context
+                                                  .read<SOCon>()
                                                   .callClearBtn();
                                             });
                                           },
@@ -424,7 +458,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                 children: [
                                   SizedBox(
                                       height: widget.btnheight * 0.2,
-                                      width: widget.btnWidth * 0.24,
+                                      width: widget.btnWidth * 0.23,
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: Colors.white,
@@ -641,6 +675,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                                   style: widget.theme.textTheme
                                                       .bodyMedium!
                                                       .copyWith(
+                                                          fontSize: 13,
                                                           color: widget.theme
                                                               .primaryColor),
                                                 )
@@ -737,6 +772,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                           style: widget
                                               .theme.textTheme.bodyMedium!
                                               .copyWith(
+                                                  fontSize: 13,
                                                   color: widget
                                                       .theme.primaryColor),
                                         )),
@@ -769,6 +805,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                           style: widget
                                               .theme.textTheme.bodyMedium!
                                               .copyWith(
+                                                  fontSize: 13,
                                                   color: widget
                                                       .theme.primaryColor),
                                         )),
@@ -796,6 +833,7 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                           style: widget
                                               .theme.textTheme.bodyMedium!
                                               .copyWith(
+                                                  fontSize: 13,
                                                   color: widget
                                                       .theme.primaryColor),
                                         )),
@@ -872,7 +910,10 @@ class SOBottomButtonsState extends State<SOBottomButtons> {
                                           "Save",
                                           style: widget
                                               .theme.textTheme.bodyMedium!
-                                              .copyWith(color: Colors.white),
+                                              .copyWith(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                          ),
                                         )),
                                   ),
                                 ],

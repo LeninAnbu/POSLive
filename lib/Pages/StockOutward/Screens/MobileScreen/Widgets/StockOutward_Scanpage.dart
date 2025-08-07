@@ -48,7 +48,7 @@ class _MyWidgetState extends State<MyWidget> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: Offset(0, 3),
                   ),
                 ],
               ),
@@ -156,8 +156,7 @@ class _MyWidgetState extends State<MyWidget> {
                                                     .withOpacity(0.5),
                                                 spreadRadius: 3,
                                                 blurRadius: 7,
-                                                offset: Offset(0,
-                                                    3), // changes position of shadow
+                                                offset: Offset(0, 3),
                                               ),
                                             ]),
                                         child: Column(
@@ -273,7 +272,7 @@ class _MyWidgetState extends State<MyWidget> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 3,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),

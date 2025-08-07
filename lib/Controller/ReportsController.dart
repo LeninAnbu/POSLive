@@ -19,9 +19,9 @@ import '../Service/NewReportsApi/NewReportQuery2.dart';
 import '../Service/NewReportsApi/NweQuerCompoApi.dart';
 
 class ReportController extends ChangeNotifier {
-  init() {
+  init() async {
     clearAllData();
-    callReportsListNameApi();
+    await callReportsListNameApi();
     notifyListeners();
   }
 
@@ -30,12 +30,10 @@ class ReportController extends ChangeNotifier {
   clearAllData() {
     reportsList = [];
     noDataMsg = '';
-
     reportQeury = '';
     showListVal = false;
     listBoxData = [];
     valuesddd = [];
-
     keysList = [];
     loadingscrn = false;
     frmController = List.generate(150, (i) => TextEditingController());
@@ -122,9 +120,7 @@ class ReportController extends ChangeNotifier {
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2100));
-
     var datetype = DateFormat('yyyy-MM-dd').format(pickedDate!);
-
     toController[1].text = config.alignDate(datetype);
     notifyListeners();
   }
@@ -156,7 +152,6 @@ class ReportController extends ChangeNotifier {
           CollectionReceiptPdfHelper.valuesddd = valuesddd;
         } else {
           log('NewReportApi2NewReportApi2222::${NewReportApi2.values.length}');
-
           noDataMsg = 'No data found';
           notifyListeners();
         }
@@ -169,7 +164,7 @@ class ReportController extends ChangeNotifier {
         loadingscrn = false;
       } else {
         valuesddd = [];
-        noDataMsg = 'Something went wrong. Try again';
+        noDataMsg = '${value.erros}';
         loadingscrn = false;
       }
       notifyListeners();
@@ -181,7 +176,6 @@ class ReportController extends ChangeNotifier {
   List<String> filterListBoxData = [];
   filterListOnList(String v) {
     log("salesModelsalesModel.length:${listBoxData.length}");
-
     if (v.isNotEmpty) {
       filterListBoxData = listBoxData
           .where((e) => e.toLowerCase().contains(v.toLowerCase()))

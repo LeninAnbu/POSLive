@@ -41,8 +41,8 @@ class PostReturnLoginAPi {
             response.statusCode);
       }
     } catch (e) {
-      log('Exception // saplogin: $e');
-      throw Exception('Exception // saplogin: $e');
+      log('Exception  saplogin: $e');
+      return Logindata.issue('$e', 500);
     }
   }
 }

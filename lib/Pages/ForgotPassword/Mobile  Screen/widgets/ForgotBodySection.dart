@@ -6,11 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../Controller/ForgotPasswordController/ForgotPasswordController.dart';
 import '../../../../Widgets/custom_elevatedBtn.dart';
-// import 'package:sellerkit/Pages/Splash/Widgets/custom_elevatedBtn.dart';
-// import '../../../Constant/Screen.dart';
-// import '../../../Constant/padings.dart';
-// import '../../../Controller/ForgotPasswordController/ForgotPasswordController.dart';
-// import '../../../Controller/LoginController/LoginController.dart';
 
 class MobForgotBodySection extends StatefulWidget {
   const MobForgotBodySection({

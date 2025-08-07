@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:posproject/Constant/Configuration.dart';
 import 'package:posproject/DB%20Helper/DBOperation.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../DB Helper/DBhelper.dart';
@@ -13,6 +14,8 @@ import '../../Service/ReportsApi/RetrunRegisterApi.dart';
 class RetnRegCon extends ChangeNotifier {
   init() async {
     clearalldata();
+    await getCurrentDate();
+    await callCashReportApi();
   }
 
   List<ReturnRegisterList> salesReg = [];
@@ -22,10 +25,23 @@ class RetnRegCon extends ChangeNotifier {
       List.generate(100, (i) => GlobalKey<FormState>());
   List<TextEditingController> searchcontroller =
       List.generate(150, (i) => TextEditingController());
+
   clearalldata() {
+    searchcontroller = List.generate(150, (i) => TextEditingController());
     salesReg.clear();
     filtersalesReg.clear();
     isloading = false;
+    fromDate = '';
+    toDate = '';
+    notifyListeners();
+  }
+
+  Configure config = Configure();
+  getCurrentDate() {
+    searchcontroller[2].text = config.alignDateT(config.currentDate2());
+    searchcontroller[3].text = config.alignDateT(config.currentDate2());
+
+    notifyListeners();
   }
 
   callSearchBtn() {
@@ -42,13 +58,17 @@ class RetnRegCon extends ChangeNotifier {
     salesReg = [];
     filtersalesReg = [];
     isloading = true;
+    fromDate = config.alignDate1(searchcontroller[2].text);
+    toDate = config.alignDate1(searchcontroller[3].text);
     Retrunregisterapi.getGlobalData(fromDate, toDate).then((value) {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
-        salesReg = value.returnRegdata!;
-        log('salesRegsalesReglenght::${salesReg.length}');
-        filtersalesReg = salesReg;
-        isloading = false;
-        notifyListeners();
+        if (value.returnRegdata != null) {
+          salesReg = value.returnRegdata!;
+          log('salesRegsalesReglenght::${salesReg.length}');
+          filtersalesReg = salesReg;
+          isloading = false;
+          notifyListeners();
+        }
       } else if (value.stcode! >= 400 && value.stcode! <= 410) {
         isloading = false;
       } else {

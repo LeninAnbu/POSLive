@@ -197,6 +197,14 @@ class Configure {
     return retunVal;
   }
 
+  String splitValues22(String val) {
+    var formatter = NumberFormat('###,000.00000');
+    double formatNO = double.parse(val);
+
+    String retunVal = formatter.format(formatNO).toString();
+    return retunVal;
+  }
+
   void showDialogSucessB(String msg, String title) {
     Get.defaultDialog<void>(
         title: title,

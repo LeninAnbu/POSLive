@@ -24,15 +24,6 @@ class PaymentWay {
   String? creditref;
   String? recoverydate;
 
-  //    ${SalesPayT.couponcode}  varchar ,
-//   ${SalesPayT.coupontype}  varchar ,
-//   ${SalesPayT.creditref}  varchar ,
-//   ${SalesPayT.discountcode}  varchar ,
-//   ${SalesPayT.cardref}  varchar ,
-//  ${SalesPayT.amt}  varchar ,
-//   ${SalesPayT.discounttype}  varchar ,
-// ${SalesPayT.walletref}  varchar ,
-//   ${SalesPayT.wallettype}  varchar ,
   PaymentWay(
       {this.amt,
       this.basedoctype,

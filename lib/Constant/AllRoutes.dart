@@ -1,12 +1,14 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:posproject/Pages/Customer/Screens/Screens.dart';
+import 'package:posproject/Pages/IncomingReportScreen/Screens.dart';
 import 'package:posproject/Pages/ReconciliationPage/Screens/Screens.dart';
-import 'package:posproject/Pages/Settlement/Screens/SettlementScreen.dart';
+import 'package:posproject/Pages/Deposits/Screens/SettlementScreen.dart';
 import 'package:posproject/Pages/TransactionSync/Screens/TranscationSyncPage.dart';
 import '../Pages/ApiSettings/TabScreen/TabApiSettingScreen.dart';
 import '../Pages/CashStatement/CashStatement/screens/CashStatement.dart';
 import '../Pages/DashBoard/Screens/DashBoardScreen.dart';
+import '../Pages/DepositsReportScreen.dart/Screens.dart';
 import '../Pages/DownloadPage/Screens.dart';
 import '../Pages/Expenses/ExpenseScreen.dart';
 import '../Pages/LogOut/LogoutScreens.dart';
@@ -168,6 +170,13 @@ class Routes {
       name: ConstantRoutes.login,
       page: () => LoginScreen(),
     ),
+    GetPage<dynamic>(
+      name: ConstantRoutes.incomingReport,
+      page: () => IncomingReportsScreens(),
+    ),
+    GetPage<dynamic>(
+      name: ConstantRoutes.deposiReport,
+      page: () => DepositReportsScreens(),
+    ),
   ];
 }
-//logout

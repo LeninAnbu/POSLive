@@ -19,7 +19,7 @@ class ReceiptPostAPi {
   static List<PostPaymentCheck>? docPaymentChecks;
   static List<PostPaymentInvoice>? docPaymentInvoices;
   static List<PostPaymentCard>? docPaymentCards;
-
+  static String paymentType = '';
   static String? transferReference;
   static String? checkAccount;
   static String? transferAccount;
@@ -68,6 +68,7 @@ class ReceiptPostAPi {
         "TransferReference": transferReference,
         "U_PosUserCode": UserValues.userCode,
         "U_PosTerminal": AppConstant.terminal,
+        "Payment Type": '$paymentType',
         "PaymentChecks": docPaymentChecks!.map((e) => e.toJson2()).toList(),
         "PaymentCreditCards": docPaymentCards!.map((e) => e.toJson3()).toList(),
         "PaymentInvoices": docPaymentInvoices!.map((e) => e.toJson3()).toList(),

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_single_quotes, prefer_interpolation_to_compose_strings, use_raw_strings, avoid_print, file_names
-
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;

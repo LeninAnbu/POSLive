@@ -1,8 +1,3 @@
-// {
-//     "status": true,
-//     "msg": "Success",
-//     "data": "[{\"CreditLine\":1.000000}]"
-// }
 import 'dart:convert';
 import 'dart:developer';
 
@@ -14,7 +9,6 @@ class CreditLimitModel {
   int statuscode;
   CreditLimitModel(
       {required this.status,
-      //
       required this.message,
       this.creditLimitData,
       required this.statuscode,
@@ -72,7 +66,6 @@ class CreditDaysModel {
   int statuscode;
   CreditDaysModel(
       {required this.status,
-      //
       required this.message,
       this.creditDaysData,
       required this.statuscode,

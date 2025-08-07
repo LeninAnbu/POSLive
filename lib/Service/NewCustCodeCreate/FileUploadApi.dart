@@ -39,7 +39,7 @@ class FilePostApi {
         log("File Exception11");
 
         return FilePostModel.issue(
-          'Something went wrong Bad Request..',
+          'Bad Request..',
           response.statusCode,
         );
       }

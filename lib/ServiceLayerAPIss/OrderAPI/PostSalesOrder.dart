@@ -170,6 +170,7 @@ class SalesOrderPostAPi {
             "U_PosTerminal": AppConstant.terminal,
             "U_latitude ": latitude,
             "U_longitude": longitude,
+            'Series': '$seriesType',
             "U_Request": data,
             "DocumentLines": copyfromsq == true
                 ? docLineQout!.map((e) => e.tojson()).toList()

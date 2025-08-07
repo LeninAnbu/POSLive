@@ -24,9 +24,9 @@ class DepositsQueryAPi {
                 "query": "EXEC BZ_POS_DepositsQueryAPi '$siteCode'"
               }));
 
-      log("Acc Data sts: ${response.statusCode}");
+      log("BZ_POS_DepositsQueryAPi sts: ${response.statusCode}");
 
-      log("Acc Data Res: ${json.decode(response.body)}");
+      log("BZ_POS_DepositsQueryAPi Res: ${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return DepositQueryModel.fromJson(response.body, response.statusCode);

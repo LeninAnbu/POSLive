@@ -771,21 +771,3 @@ class _PdfInvoiceApiiiState extends State<PdfInvoiceApiii> {
     return pdf.save();
   }
 }
-
-// class Base64Image extends StatelessWidget {
-//   final String base64String;
-
-//   const Base64Image({required this.base64String});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     try {
-    
-    
-
-    
-//     } catch (e) {
-//       return Text('Invalid Base64 String');
-//     }
-//   }
-// }

@@ -7,7 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:posproject/Constant/UserValues.dart';
 import 'package:posproject/Controller/DashBoardController/DashboardController.dart';
+import 'package:posproject/Controller/DepositController/DepositsReportCtrl.dart';
 import 'package:posproject/Controller/LogoutController/LogOutControllers.dart';
+import 'package:posproject/Controller/PaymentReceiptController/ReportsCtrl.dart';
 import 'package:posproject/Controller/ReportsController.dart';
 import 'package:posproject/Controller/StockRequestController/StockRequestController.dart';
 import 'package:posproject/Controller/TransacationSyncController/TransactionSyncController.dart';
@@ -1412,6 +1414,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => RefundController()),
         ChangeNotifierProvider(create: (_) => ReconciliationCtrl()),
         ChangeNotifierProvider(create: (_) => LogoutCtrl()),
+        ChangeNotifierProvider(create: (_) => IncomingReportCtrl()),
+        ChangeNotifierProvider(create: (_) => DepositReportCtrlrs()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

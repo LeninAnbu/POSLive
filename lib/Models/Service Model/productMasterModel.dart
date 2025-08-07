@@ -43,7 +43,6 @@ class ProductMasterModsl {
   }
 }
 
-// "itemname", "itemcode", "quantity", "maximumQty", "minimumQty", "displayQty", "searchString", "category", "liter", "category1", "weight", "hsnsac", "isActive", "isfreeby", "isinventory", "issellpricebyscrbat", "itemnamelong", "itemnameshort", "skucode", "subcategory", "sellprice", "mrpprice", "specialprice", "maxdiscount", "taxrate", "snapdatetime", "purchasedate", "createdateTime", "updatedDatetime", "createdUserID", "updateduserid", "lastupdateIp", "U_Pack_Size", "U_TINS_PER_BOX", "U_Specific_Gravity", "U_Pack_Size_uom
 class ProductMasterModslData {
   int? autoId;
   String? itemcode;
@@ -133,9 +132,8 @@ class ProductMasterModslData {
     required this.updatedDatetime,
     required this.updateduserid,
   });
-// {\"itemname\":\"2K EPOXY HARDNER - 1LTR\",\"itemcode\":\"10000019E\",\"maximumQty\":\"10\",\"minimumQty\":\"100\",\"displayQty\":\"10\",\"searchString\":\"10000019E,2K EPOXY HARDNER - 1LTR,2K EPOXY HARDNER - 1LTR,GALAXY\",\"category\":\"\",\"BRAND\":\"GALAXY\",\"liter\":1.000000,\"category1\":\"\",\"BRAND1\":\"GALAXY\",\"weight\":0.000000,\"hsnsac\":\"\",\"isActive\":\"N\",\"isfreeby\":\"FALSE\",\"isinventory\":\"TRUE\",\"issellpricebyscrbat\":\"FALSE\",\"itemnamelong\":\"10000019E,2K EPOXY HARDNER - 1LTR,2K EPOXY HARDNER - 1LTR,GALAXY\",\"taxrate\":18.000000,\"itemnameshort\":\"2K EPOXY HARDNER - 1LTR\",\"skucode\":\"10000019E\",\"subcategory\":\"\",\"sellprice\":17500.000000,\"mrpprice\":17500.000000,\"specialprice\":17500.000000,\"maxdiscount\":\"50\",\"snapdatetime\":\"2024-09-16T13:38:02.557\",\"purchasedate\":\"2024-09-16T13:38:02.557\",\"createdateTime\":\"2024-09-16T13:38:02.557\",\"updatedDatetime\":\"2024-09-16T13:38:02.557\",\"createdUserID\":\"1\",\"updateduserid\":\"1\",\"lastupdateIp\":\"\",\"U_Pack_Size\":1.000000,\"U_TINS_PER_BOX\":0,\"U_Specific_Gravity\":0.950000,\"U_Pack_Size_uom\":\"L\"}
+
   factory ProductMasterModslData.fromJson(Map<String, dynamic> json) {
-    // log('taxcoddeeeee::${json.toString()}');
     return ProductMasterModslData(
       autoId: json['AutoId'] == null ? 0 : int.parse(json['AutoId'].toString()),
       maximumQty:
@@ -151,15 +149,11 @@ class ProductMasterModslData {
       createdateTime: json['createdateTime'] ?? '',
       lastupdateIp: json['lastupdateIp'] ?? '',
       managedby: json['ManageBy'] ?? '',
-
       brand: json['BRAND'] ?? '',
       brand1: json['BRAND1'] ?? '',
       category: json['category'] ?? '',
       category1: json['category1'].toString(),
       serialBatch: '',
-      // quantity: json['quantity'] == null
-      //     ? 0
-      //     : int.parse(json['quantity'].toString()),
       updatedDatetime: json['updatedDatetime'] ?? '',
       updateduserid: json['updateduserid'] ?? '',
       mrpprice: json['mrpprice'],
@@ -174,38 +168,17 @@ class ProductMasterModslData {
       issellpricebyscrbat: json['issellpricebyscrbat'].toString(),
       itemcode: json['itemcode'] ?? '',
       itemName: json['itemname'] ?? '',
-
       itemnamelong: json['itemnamelong'] ?? '',
       maxdiscount:
           json['maxdiscount'] == null ? '' : json['maxdiscount'].toString(),
       itemnameshort: json['itemnameshort'] ?? '',
       uPackSize: json['U_Pack_Size'],
-
       specialprice: json['specialprice'],
       snapdatetime: json['snapdatetime'],
       purchasedate: json['purchasedate'],
-
       uTINSPERBOX: json['U_TINS_PER_BOX'],
       uSpecificGravity: json['U_Specific_Gravity'],
       uPackSizeuom: json['U_Pack_Size_uom'].toString(),
     );
   }
-  // Map<String, Object?> toMap() => {
-  //       PosColumn.branch: Branch,
-  //       PosColumn.itemCode: ItemCode,
-  //       PosColumn.itemName: ItemName,
-  //       PosColumn.transId: TransID,
-  //       PosColumn.serialBatch: SerialBatch,
-  //       PosColumn.qty: Qty,
-  //       PosColumn.openQty: OpenQty,
-  //       PosColumn.venCode: VenCode,
-  //       PosColumn.venName: VenName,
-  //       PosColumn.inDate: Branch,
-  //       PosColumn.inType: ItemCode,
-  //       PosColumn.sellPrice: SellPrice,
-  //       PosColumn.mrp: MRP,
-  //       PosColumn.cost: Cost,
-  //       PosColumn.taxRate: TaxRate,
-  //       PosColumn.taxType: TaxType,
-  //     };
 }

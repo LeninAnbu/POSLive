@@ -47,65 +47,62 @@ class _SQCashWidgetState extends State<SQCashWidget> {
               ? Container()
               : Center(
                   child: GestureDetector(
-                      onTap: context.read<SalesQuotationCon>().userTypes ==
-                              'corporate'
-                          ? null
-                          : () async {
-                              context.read<SalesQuotationCon>().nullErrorMsg();
-                              if (context
-                                      .read<SalesQuotationCon>()
-                                      .getselectedcust ==
-                                  null) {
-                                showDialog(
-                                    context: context,
-                                    barrierDismissible: true,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                          contentPadding:
-                                              const EdgeInsets.all(0),
-                                          content: AlertBox(
-                                              payMent: 'Alert',
-                                              errormsg: true,
-                                              widget: Center(
-                                                  child: ContentContainer(
-                                                content: 'Choose cusotmer..!!',
-                                                theme: widget.theme,
-                                              )),
-                                              buttonName: null));
-                                    });
-                              } else if (context
-                                      .read<SalesQuotationCon>()
-                                      .getScanneditemData
-                                      .length <
-                                  1) {
-                                showDialog(
-                                    context: context,
-                                    barrierDismissible: true,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                          contentPadding:
-                                              const EdgeInsets.all(0),
-                                          content: AlertBox(
-                                              payMent: 'Alert',
-                                              errormsg: true,
-                                              widget: Center(
-                                                  child: ContentContainer(
-                                                content: 'Choose Product..!!',
-                                                theme: widget.theme,
-                                              )),
-                                              buttonName: null));
-                                    });
-                              } else {
-                                context.read<SalesQuotationCon>().schemebtnclk =
-                                    true;
-                                await context
-                                    .read<SalesQuotationCon>()
-                                    .schemeapiforckout(context, widget.theme);
-                              }
-                              context
-                                  .read<SalesQuotationCon>()
-                                  .disableKeyBoard(context);
-                            },
+                      onTap:
+                          // context.read<SalesQuotationCon>().userTypes ==
+                          //         'corporate'
+                          //     ? null
+                          //     :
+                          () async {
+                        context.read<SalesQuotationCon>().nullErrorMsg();
+                        if (context.read<SalesQuotationCon>().getselectedcust ==
+                            null) {
+                          showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                    contentPadding: const EdgeInsets.all(0),
+                                    content: AlertBox(
+                                        payMent: 'Alert',
+                                        errormsg: true,
+                                        widget: Center(
+                                            child: ContentContainer(
+                                          content: 'Choose cusotmer..!!',
+                                          theme: widget.theme,
+                                        )),
+                                        buttonName: null));
+                              });
+                        } else if (context
+                                .read<SalesQuotationCon>()
+                                .getScanneditemData
+                                .length <
+                            1) {
+                          showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                    contentPadding: const EdgeInsets.all(0),
+                                    content: AlertBox(
+                                        payMent: 'Alert',
+                                        errormsg: true,
+                                        widget: Center(
+                                            child: ContentContainer(
+                                          content: 'Choose Product..!!',
+                                          theme: widget.theme,
+                                        )),
+                                        buttonName: null));
+                              });
+                        } else {
+                          context.read<SalesQuotationCon>().schemebtnclk = true;
+                          await context
+                              .read<SalesQuotationCon>()
+                              .schemeapiforckout(context, widget.theme);
+                        }
+                        context
+                            .read<SalesQuotationCon>()
+                            .disableKeyBoard(context);
+                      },
                       child: Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.only(
@@ -114,12 +111,14 @@ class _SQCashWidgetState extends State<SQCashWidget> {
                           height: widget.cashHeight * 0.35,
                           width: widget.cashWidth * 0.25,
                           decoration: BoxDecoration(
-                            color: context
-                                        .read<SalesQuotationCon>()
-                                        .userTypes ==
-                                    'corporate'
-                                ? Colors.grey[300]
-                                : widget.theme.primaryColor.withOpacity(0.2),
+                            color:
+                                // context
+                                //             .read<SalesQuotationCon>()
+                                //             .userTypes ==
+                                //         'corporate'
+                                //     ? Colors.grey[300]
+                                //     :
+                                widget.theme.primaryColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Row(

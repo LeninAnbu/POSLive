@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
+import 'package:posproject/Service/NewReportsApi/NewReportQuery2.dart';
 
 import '../../Constant/AppConstant.dart';
 import '../../Controller/ReportsController.dart';
 import '../../Models/NewReportsModel/SalesDaysReportMdl.dart';
-import 'NewReportQuery2.dart';
 
 class NewReportCompoApi {
   static List<SplitLeadData> splitdataaa = [];

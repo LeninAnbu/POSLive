@@ -1,5 +1,3 @@
-// ignore_for_file: omit_local_variable_types, prefer_final_locals, avoid_redundant_argument_values, prefer_single_quotes
-
 import 'dart:convert';
 
 class ApprovalsModal {
@@ -21,17 +19,15 @@ class ApprovalsModal {
     if (statusCode >= 200 && statusCode <= 210) {
       if (jsons['data'] != 'No data found') {
         var list = jsonDecode(jsons['data']) as List;
-        // print(list);
+
         List<ApprovalsValue> dataList = list
             .map((dynamic enquiries) => ApprovalsValue.fromJson(enquiries))
             .toList();
-        // print(dataList[0]);
+
         return ApprovalsModal(
           approvalsvalue: dataList,
           message: jsons['msg'].toString(),
           status: jsons['status'],
-
-          // nextLink: jsons['odata.nextLink'].toString(),
           stsCode: statusCode,
         );
       } else {
@@ -70,7 +66,6 @@ class ApprovalsModal {
 }
 
 class ApprovalsValue {
-//int groupCode;
   String? cardCode;
   String? cardName;
   String? createDate;
@@ -84,7 +79,7 @@ class ApprovalsValue {
   String? objType;
   int? wddCode;
   int? wtmCode;
-// String? notes;
+
   ApprovalsValue({
     required this.cardCode,
     required this.createDate,
@@ -99,7 +94,6 @@ class ApprovalsValue {
     required this.objType,
     required this.wddCode,
     required this.wtmCode,
-    // this.notes,
   });
 
   factory ApprovalsValue.fromJson(dynamic jsons) {

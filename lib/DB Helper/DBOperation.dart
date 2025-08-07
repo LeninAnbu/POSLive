@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:posproject/DBModel/ReceiptHeader.dart';
 import 'package:posproject/DBModel/SalesReturnLineT.dart';
@@ -44,19 +45,17 @@ import '../Models/DataModel/CustomerModel/CustomerModel.dart';
 class DBOperation {
   static Future<List<Map<String, Object?>>> getCstmMasDatabyautoid(
       Database db, String customercode) async {
-//log("customercodecustomercode::" + customercode.toString());
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMaster where customerCode ="$customercode" ''');
-    log("CustomerMaster Len55: $result");
+
     return result;
   }
 
   static Future<List<Map<String, Object?>>> getCstmMasDatabyupdate(
       Database db, String autoid) async {
-//log("customercodecustomercode::" + autoid.toString());
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  CustomerMaster where autoid ="$autoid" ''');
-    // log("CustomerMaster Len55: " + result.toString());
+
     return result;
   }
 
@@ -73,8 +72,7 @@ class DBOperation {
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(itemcode) from StockSnap
      ''');
-    //log('');
-    //log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -83,8 +81,7 @@ class DBOperation {
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(itemcode) from ItemMaster
      ''');
-    //log('');
-    //log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -101,13 +98,11 @@ class DBOperation {
 
   static Future<int?> getcountofTable(
       Database db, String colName, tableName) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count($colName) as count from $tableName
      ''');
-//log("result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
 
     return count;
   }
@@ -127,7 +122,6 @@ class DBOperation {
     List<StockSnapTModelDB> values,
     int i,
   ) async {
-//log("message::" + values[i].quantity.toString());
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE StockSnap SET
 
@@ -135,9 +129,7 @@ class DBOperation {
 
     where serialbatch='${values[i].serialbatch}' and itemcode='${values[i].itemcode}'
      ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM  StockSnap where  serialbatch='${values[i].serialbatch}' and itemcode="${values[i].itemcode}"''');
-//log("Up StockSnap result:" + result2.toString());
+
     return result;
   }
 
@@ -145,10 +137,7 @@ class DBOperation {
     List<Map<String, Object?>> result = await db.rawQuery('''
     UPDATE NumberingSeries SET nextno=$value WHERE id = $id
      ''');
-    // List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from NumberingSeries where id = $id
-    //  ''');
-    // log("result UPDATE NumberingSeries:: " + result2.toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -158,7 +147,6 @@ class DBOperation {
     UPDATE NumberingSeries SET FirstNo=$value WHERE id = $id
      ''');
 
-//log("result UPDATE NumberingSeries:: " + result2.toString());
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -168,51 +156,40 @@ class DBOperation {
     UPDATE NumberingSeries SET LastNo=$value WHERE id = $id
      ''');
 
-//log("result UPDATE NumberingSeries:: " + result2.toString());
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
 
   static Future<int?> updateprefixno(Database db, int id, String value) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     UPDATE NumberingSeries SET Prefix='$value' WHERE id = $id
      ''');
-    // List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from NumberingSeries where id = $id
-    //  ''');
-//log("result UPDATE NumberingSeries:: " + result2.toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
 
   static Future<int?> updatefromdate(Database db, int id, String value) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     UPDATE NumberingSeries SET FromDate='$value' WHERE id = $id
      ''');
-    // List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from NumberingSeries where id = $id
-    //  ''');
-//log("result UPDATE NumberingSeries:: " + result2.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
+
     return count;
   }
 
   static Future<int?> updatetodate(Database db, int id, String value) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     UPDATE NumberingSeries SET ToDate='$value' WHERE id = $id
      ''');
-//log("result UPDATE NumberingSeries:: " + result2.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
+
     return count;
   }
 
   static Future<String?> getnumbSeriesvlue(Database db, int id) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
          select prefix as docnum from NumberingSeries where id = $id
      ''');
@@ -224,12 +201,10 @@ class DBOperation {
   static Future<List<Map<String, Object?>>> geteriesvlue(
     Database db,
   ) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
          select * from NumberingSeries
      ''');
-    // log("NumberingSeries:: " + result.toString());
-    // String data = result[0]['docnum'].toString();
+
     return result;
   }
 
@@ -237,44 +212,29 @@ class DBOperation {
     List<Map<String, Object?>> result = await db.rawQuery('''
          SELECT * FROM NumberingSeries 
      ''');
-//log('kk::' + result.toString());
+
     return result;
   }
 
   static Future<String?> getStockReqWhsCode(Database db, int docentry) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
          SELECT reqtoWhs FROM StockReqHDT WHERE docentry='$docentry'
      ''');
-    //log("result:: " + result.toString());
+
     String data = result[0]['reqtoWhs'].toString();
     return data;
   }
 
   static Future<int?> getnumbSer(
       Database db, String colName, tableName, int id) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     select IFNULL(MAX($colName)+1,1) as docno from $tableName where id = $id
      ''');
-//log("getnumbSer result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
+
     return count;
   }
-
-  // static Future insertItemter(
-  //     Database db, List<ItemMasterModelDB> values) async {
-  //   var data = values.map((e) => e.toMap()).toList();
-  //   var batch = db.batch();
-  //   data.forEach((es) async {
-  //     batch.insert("ItemMaster", es);
-  //   });
-  //   await batch.commit();
-  //   List<Map<String, Object?>> result = await db.rawQuery('''
-  //   select * from ItemMaster
-  //    ''');
-  // }
 
   static Future insertItemMaster(Database db, List<dynamic> data) async {
     for (var map in data) {
@@ -290,23 +250,11 @@ class DBOperation {
     log('result itemmaster::${result.length}');
   }
 
-  // static Future<List<Map<String, Object?>>> checkBatchAvailRNot(
-  //   Database db,
-  //   String batch,
-  // ) async {
-  //   List<Map<String, Object?>> result = await db.rawQuery('''
-  //    select * from StockSnap where serialbatch = "$batch"
-  //    ''');
-
-  //   //log(result.toList().toString());
-  //   return result;
-  // }
-
   static Future<List<ItemMasterModelDB>> getItemMasData2(
       Database db, String sbatch) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  StockSnap WHERE serialbatch="$sbatch"''');
-    //log("StockSnap Len: " + result.length.toString());
+
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
           isselected: result[i]['IsSelected'] == null
@@ -354,7 +302,7 @@ class DBOperation {
       Database db, String sbatch) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  StockSnap WHERE serialbatch="$sbatch"''');
-    // log("StockSnap: " + result.toString());
+
     return List.generate(result.length, (i) {
       return StockSnapTModelDB(
         terminal: result[i]['terminal'].toString(),
@@ -391,7 +339,6 @@ class DBOperation {
     });
   }
 
-//
   static Future<List<StockSnapTModelDB>> getItemMasDataItemcd(
       Database db, String sbatch, String itemcodee) async {
     log('message::$sbatch ::: $itemcodee');
@@ -399,7 +346,7 @@ class DBOperation {
         .rawQuery('''SELECT * FROM  StockSnap WHERE serialbatch="$sbatch" 
      and itemcode="$itemcodee"
         ''');
-    //
+
     log("StockSnap: $result");
     return List.generate(result.length, (i) {
       return StockSnapTModelDB(
@@ -441,7 +388,7 @@ class DBOperation {
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(expensecode) from ExpenseMaster
      ''');
-    //log("Expcode length" + result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -450,26 +397,10 @@ class DBOperation {
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(accountname) from expensepaidfrom
      ''');
-    //log("exp paidfrom len" + result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
-  // StockSnapTModelDB
-
-  // customer insert
-
-  // static Future insertCustomer(
-  //     Database db, List<CustomerModelDB> values) async {
-  //   var data = values.map((e) => e.toMap()).toList();
-  //   var batch = db.batch();
-  //   data.forEach((es) async {
-  //     batch.insert("CustomerMaster", es);
-  //   });
-  //   await batch.commit();
-  //   // List<Map<String, Object?>> result =
-  //   //     await db.rawQuery("select * from CustomerMaster");
-  //   // log("CustomerMaster RRSS" + result.toList().toString());
-  // }
 
   static Future insertCustomer(Database db, List<dynamic> data) async {
     for (var mapdata in data) {
@@ -485,44 +416,6 @@ class DBOperation {
     log('result CustomerMaster::${result.length}');
   }
 
-//
-  // static Future<List<StockSnapTModelDB>> getSearchedStockList(
-  //     Database db, String name) async {
-  //   List<Map<String, Object?>> result = await db.rawQuery('''
-  //   select * from StockSnap where itemcode like '%$name%'or itemname like '%$name%'
-  //    ''');
-
-  //   print(
-  //       "Query:  select * from StockSnap where itemcode like '%$name%'or itemname like '%$name%'");
-
-  //   //log("res:$result");
-
-  //   return List.generate(result.length, (i) {
-  //     return StockSnapTModelDB(
-  //       terminal: result[i]['terminal'].toString(),
-  //       branchcode: result[i]['branchcode'].toString(),
-  //       createdUserID: int.parse(result[i]['createdUserID'].toString()),
-  //       createdateTime: result[i]['createdateTime'].toString(),
-  //       itemcode: result[i]['itemcode'].toString(),
-  //       lastupdateIp: result[i]['lastupdateIp'].toString(),
-  //       maxdiscount: result[i]['maxdiscount'].toString(),
-  //       mrpprice: result[i]['mrpprice'].toString(),
-  //       purchasedate: result[i]['purchasedate'].toString(),
-  //       quantity: result[i]['quantity'].toString(),
-  //       sellprice: result[i]['sellprice'].toString(),
-  //       serialbatch: result[i]['serialbatch'].toString(),
-  //       snapdatetime: result[i]['snapdatetime'].toString(),
-  //       specialprice: result[i]['specialprice'].toString(),
-  //       updatedDatetime: result[i]['UpdatedDatetime'].toString(),
-  //       updateduserid: int.parse(result[i]['updateduserid'].toString()),
-  //       itemname: result[i]['itemname'].toString(),
-  //       taxrate: result[i]['taxrate'].toString(),
-  //       branch: result[i]['branch'].toString(),
-  //     );
-  //   });
-  // }
-  // sales order functions
-
   static Future<int?> insertSaleOrderheader(
       Database db, List<SalesOrderHeaderModelDB> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -532,16 +425,12 @@ class DBOperation {
     });
     await batch.commit();
 
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  SalesOrderHeader''');
-    //log("SalesOrderHeader:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM SalesOrderHeader  ORDER BY docentry DESC limit 1
      ''');
-    //log("SalesOrderHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("SalesOrderHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -553,9 +442,6 @@ class DBOperation {
       batch.insert("SalesOrderPay", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  SalesOrderPay''');
-    //log("SalesOrderPay Table:" + result1.toString());
   }
 
   static Future insertSalesOrderLine(
@@ -575,7 +461,7 @@ class DBOperation {
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesOrderHeader where docentry="$docentry"''');
-    // print("SalesOrderHeaderrr::" + result.toString());
+
     return result;
   }
 
@@ -583,7 +469,7 @@ class DBOperation {
       Database db, String docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         ''' SELECT reqfromWhs,baseDocentry FROM StockOutHeaderDataDB WHERE docentry='$docentry' ''');
-//log("StockOutHeader baseDocentry:;$result");
+
     return result;
   }
 
@@ -591,7 +477,6 @@ class DBOperation {
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         ''' SELECT reqtoWhs,baseDocentry FROM StockInHeaderDB WHERE docentry='$docentry' ''');
-//log("StockInwardHeader baseDocentry:;$result");
 
     return result;
   }
@@ -600,7 +485,7 @@ class DBOperation {
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesOrderPay where docentry=$docentry''');
-    // log("SalesOrderPay result:" + result.toString());
+
     return result;
   }
 
@@ -608,7 +493,7 @@ class DBOperation {
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesOrderLine where docentry=$docentry''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
+
     log("SalesOrderLine result:$result");
     return result;
   }
@@ -617,7 +502,7 @@ class DBOperation {
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesOrderHeader where docentry=$docentry''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
+
     log("SalesOrderLine result:$result");
     return result;
   }
@@ -640,8 +525,6 @@ delete FROM  SalesOrderHeader where docentry=$docentry''');
     });
     await batch.commit();
 
-//log("SalesQuotationHeader:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM SalesQuotationHeader  ORDER BY docentry DESC limit 1
      ''');
@@ -657,7 +540,6 @@ delete FROM  SalesOrderHeader where docentry=$docentry''');
       batch.insert("SalesQuotationLine", es);
     });
     await batch.commit();
-    // log("SalesQuotationLine:" + result1.toString());
   }
 
   static Future updateSaleQuoheader(
@@ -726,8 +608,7 @@ customerSeriesNum = "${values.customerSeriesNum}",
  totalweight   ="${values.totalweight}"
  where  docentry="$docentry" and documentno="$documentno"
  ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery('''SELECT * FROM  SalesQuotationHeader where docentry="$docentry" ''');
-    // log("Up SalesQuotaionHeaderrr::" + result2.toString());
+
     return result;
   }
 
@@ -743,9 +624,6 @@ customerSeriesNum = "${values.customerSeriesNum}",
 
   static Future updateSalesQuoLine(Database db,
       List<SalesQuotationLineTDB> values, int i, String docEntry) async {
-//log("message::" + values[i].toString());
-
-//log("IIIIII:::$i");
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE SalesQuotationLine SET
  itemcode = "${values[i].itemcode}",
@@ -772,7 +650,7 @@ customerSeriesNum = "${values.customerSeriesNum}",
  lastupdateIp = "${values[i].lastupdateIp}"
     where docentry='$docEntry' and lineID='$i'
      ''');
-    // log("Up SalesQuotationLine result:" + result2.toString());
+
     return result;
   }
 
@@ -842,15 +720,12 @@ customerSeriesNum = "${values.customerSeriesNum}",
  totalweight   ="${values.totalweight}"
  where docentry="$docentry" and documentno="$documentno"
  ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery('''SELECT * FROM  SalesOrderHeader where docentry="$docentry" ''');
-    // log("Updt SalesOrderHeader::" + result2.toString());
-    // log("result2result2 length::${result2.length}");
+
     return result;
   }
 
   static Future updateSalesOrderLine(Database db,
       List<SalesOrderLineTDB> values, int i, String docEntry) async {
-//log("IIIIII:::$i");
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE SalesOrderLine SET
  itemcode = "${values[i].itemcode}",
@@ -877,13 +752,12 @@ customerSeriesNum = "${values.customerSeriesNum}",
  lastupdateIp = "${values[i].lastupdateIp}"
     where docentry='$docEntry' and lineID=$i
      ''');
-//log("Up SalesOrderLine result:" + result2.toString());
+
     return result;
   }
 
   static Future updateSalesOrderPay(Database db, List<SalesOrderPayTDB> values,
       int i, String docEntry) async {
-//log("IIIIII:::$i");
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE SalesOrderPay SET
  docentry  = "${values[i].docentry}";
@@ -923,7 +797,7 @@ customerSeriesNum = "${values.customerSeriesNum}",
   lastupdateIp  = "${values[i].lastupdateIp}";
     where docentry='$docEntry' and lineID=$i
      ''');
-//log("Up SalesOrderPay result:" + result2.toString());
+
     return result;
   }
 
@@ -940,8 +814,6 @@ customerSeriesNum = "${values.customerSeriesNum}",
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesQuotationHeader where docentry="$docentry" ''');
-//log("SalesQuotaionHeaderrr::" + result.toString());
-//log("SalesQuotaionHeaderrr length::" + result.length.toString());
 
     return result;
   }
@@ -951,7 +823,7 @@ customerSeriesNum = "${values.customerSeriesNum}",
   ) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesQuotationHeader where qStatus='C' and doctatus="3"''');
-    // log("SalesOrderHeaderrr::" + result.toString());
+
     return result;
   }
 
@@ -959,8 +831,6 @@ customerSeriesNum = "${values.customerSeriesNum}",
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesQuotationLine where docentry=$docentry''');
-    // log("SalesQuotationLine result:" + result.toString());
-    // print("SalesQuotationLine result length:" + result.length.toString());
 
     return result;
   }
@@ -969,10 +839,9 @@ customerSeriesNum = "${values.customerSeriesNum}",
       Database db, int sapdocentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesQuotationLine where sapDocentry=$sapdocentry''');
-    // log("SalesQuotationLine result:$result");
+
     final List<Map<String, Object?>> result2 =
         await db.rawQuery('''SELECT * FROM  SalesQuotationLine ''');
-    // log("SalesQuotationLine result:$result2");
 
     print("SalesQuotationLine result length:" + result2.length.toString());
 
@@ -996,31 +865,9 @@ group by soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
 
 ''');
     log("SalesquorHeadHoldvalueDB:$result");
-    //SalesQuotationLine
 
     return result;
   }
-// oldQuery
-  // static Future<List<Map<String, Object?>>> getSalesQuotationvalueDB(Database db, String cardcode) async {
-  //   final List<Map<String, Object?>> result = await db.rawQuery(''' SELECT soh.docentry,soh.documentno,
-//     soh.createdateTime,soh.baltopay, soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,
-//     soh.customerphono,soh.customeremail,soh.sapDocentry, soh.customername,soh.taxno,soh.customerpoint,
-//     soh.customercode,soh.sapDocNo,soh.sapDocentry,soh.customeraccbal,soh.doctotal,s.lineid,s.itemcode,
-// s.itemname,s.serialbatch,s.quantity,s.price,s.taxrate,s.discperc,s.maxdiscount,
-// s.createdateTime,s.quantity-ifnull(sum(sl.quantity),0) Balanceqty
-// FROM  SalesQuotationHeader soh Inner Join SalesQuotationLine s on
-// s.docentry=soh.docentry
-// LEFT JOIN SalesOrderLine sl on sl.basedocentry=s.docentry and sl.baselineid=s.lineid
-// where s.quantity > ifnull(sl.quantity,0) and soh.docstatus='3' and soh.sapDocNo IS NOT NULL and soh.customercode='$cardcode'
-// group by soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
-//         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
-//  soh.customername,soh.taxno,soh.customerpoint,soh.customercode,soh.customeraccbal,soh.doctotal,s.discperc
-// ''');
-//     print("SalesquorHeadHoldvalueDB:" + result.toString());
-//     print("SalesOrderHeadHoldvalueDB length:" + result.length.toString()); //SalesQuotationLine
-
-//     return result;
-//   }
 
   static Future<void> deleteHoldSalesQuoMaped(
       Database db, String docentry) async {
@@ -1042,7 +889,7 @@ where s.docentry in ($docentry)
 group by s.docentry,s.lineid,s.itemcode,s.itemname,s.serialbatch,s.quantity,s.price,s.taxrate,s.discperc,s.maxdiscount,
 s.createdateTime
 ''');
-//log("SalesOrderLinevalueDB:" + result.toString());
+
     return result;
   }
 
@@ -1051,7 +898,6 @@ s.createdateTime
     String fromdate,
     String toDate,
   ) async {
-//log('fromdate::${fromdate}::toDate::${toDate}');
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from SalesQuotationHeader WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus='3'AND qStatus='C'
      ''');
@@ -1064,7 +910,7 @@ s.createdateTime
 
     select count(customercode) from CustomerMaster
      ''');
-    //log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -1073,7 +919,7 @@ s.createdateTime
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(WhsCode) from BranchMaster
      ''');
-    //log("BranchMaster: " + result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -1086,16 +932,13 @@ s.createdateTime
       batch.insert("BranchMaster", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result =
-    //     await db.rawQuery('''SELECT * FROM  BranchMaster ''');
-    // log('message::$result');
   }
 
   static Future<List<Map<String, Object?>>> getSaleHeadSapDet(
       Database db, int sapdocen, String table) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  $table where docentry=$sapdocen''');
-//log("sapdoc datails: " + result.toString());
+
     return result;
   }
 
@@ -1106,7 +949,6 @@ count(substr(createdatetime,1,10)) as count from SalesHeader
 where  substr(createdatetime,1,10) > DATE(datetime('now'), '-6 month') and docstatus='3'
 group by substr('JanFebMarAprMayJunJulAugSepOctNovDec', 1 + 3*strftime('%m', substr(createdatetime,1,10)), -3)''');
 
-//log("Chart datails: " + result.toString());
     return result;
   }
 
@@ -1115,7 +957,6 @@ group by substr('JanFebMarAprMayJunJulAugSepOctNovDec', 1 + 3*strftime('%m', sub
         '''select sum(amtpaid) as amtpaid , count(substr(createdatetime,1,10)) noofsales from SalesHeader 
 WHERE substr(createdatetime,1,10) = substr(datetime('now'),1,10) and docstatus="3"''');
 
-//log("getNoSalesData datails: " + result.toString());
     return result;
   }
 
@@ -1124,9 +965,6 @@ WHERE substr(createdatetime,1,10) = substr(datetime('now'),1,10) and docstatus="
     final List<Map<String, Object?>> result = await db.rawQuery('''
 Select * from ItemMaster where (Itemcode || ' - ' || itemname_short) Like '%$data%';
 ''');
-
-//log("Search data: " + result.toList().toString());
-    // log("Saved AllocATE length: " + result.length.toString());
 
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
@@ -1183,7 +1021,6 @@ Select * from ItemMaster where (Itemcode || ' - ' || itemname_short) Like '%$dat
 Select * from ItemMaster''');
 
     log("SeItemMasterarch data: " + result.length.toString());
-    // log("Saved AllocATE length: " + result.length.toString());
 
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
@@ -1249,13 +1086,6 @@ Select * from ItemMaster''');
       AND ('$isSelectedsegment' = '' OR A.itemname_short in ($segment)) 
 """);
 
-    // log("Saved AllocATE: " + result.toList().toString());
-//log("Saved AllocATE length: " + result.length.toString());
-
-    ///
-
-//log(data.toString());
-
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
           autoId: int.parse(result[i]["AutoId"].toString()),
@@ -1304,9 +1134,6 @@ SELECT DISTINCT $data,IsSelected
  FROM ItemMaster
 WHERE $data IS NOT '';
 ''');
-
-    // log("Saved AllocATE: " + result.toList().toString());
-//log("Saved AllocATE length: " + result.length.toString());
 
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
@@ -1371,9 +1198,6 @@ WHERE $data IS NOT '';
 SELECT DISTINCT $fav,IsSelected FROM ItemMaster WHERE $fav IS NOT '' ;
 ''');
 
-    // log("Saved AllocATE: " + result.toList().toString());
-//log("Saved AllocATE length: " + result.length.toString());
-
     return List.generate(result.length, (i) {
       return ItemMasterModelDB(
         autoId: result[i]["AutoId"] == null
@@ -1383,7 +1207,6 @@ SELECT DISTINCT $fav,IsSelected FROM ItemMaster WHERE $fav IS NOT '' ;
         isselected: int.parse(result[i]['IsSelected'].toString()),
         itemnamelong: result[i]["itemname_long"].toString(),
         managedBy: result[i]['ManageBy'].toString(),
-
         itemnameshort: result[i]["itemname_short"].toString(),
         skucode: result[i]["skucode"].toString(),
         brand: result[i]["brand"].toString(),
@@ -1426,7 +1249,6 @@ SELECT DISTINCT $fav,IsSelected FROM ItemMaster WHERE $fav IS NOT '' ;
         sellprice: result[i]["sellprice"].toString(),
         mrpprice: result[i]["mrpprice"].toString(),
         uPackSize: result[i]['UPackSize'].toString(),
-        // uTINSPERBOX: int.parse(result[i]['UTINSPERBOX'].toString()),
         uSpecificGravity: result[i]['USpecificGravity'].toString(),
         uPackSizeuom: result[i]['UPackSizeUom'].toString(),
       );
@@ -1439,7 +1261,6 @@ SELECT DISTINCT $fav,IsSelected FROM ItemMaster WHERE $fav IS NOT '' ;
         '''select sum(doctotal) as doctotal , count(substr(createdatetime,1,10)) noofsales from SalesOrderHeader 
 WHERE  substr(createdatetime,1,10) = substr(datetime('now'),1,10)''');
 
-    //log("getNoSalesOrderData datails: " + result.toString());
     return result;
   }
 
@@ -1466,7 +1287,6 @@ UNION ALL
 SELECT	sapDocNo,qStatus,docentry,'',documentno,"",createdateTime,UpdatedDatetime,doctype,typedeposit from tableDepositHeader where doctype='Deposit'and qStatus='C'
 ''');
 
-    // log("getSynceData datails: " + result.toString());
     return result;
   }
 
@@ -1522,7 +1342,7 @@ SELECT sapDocentry,sapDocNo,qStatus,docentry,1,"",doctype FROM tableDepositHeade
 UNION ALL
 SELECT sapDocentry,sapDocNo,qStatus,docentry,1,"",doctype FROM RefundHeader where qStatus =='Y' 
 ''');
-//log("get_QstatusData datails22: " + result.toString());
+
     return result;
   }
 
@@ -1551,7 +1371,7 @@ SELECT sapDocentry,sapDocNo,qStatus,docentry,1,"",doctype,"" FROM tableDepositHe
 UNION ALL
 SELECT sapDocentry,sapDocNo,qStatus,docentry,1,"",doctype,"" FROM RefundHeader where qStatus =='C' 
 ''');
-//log("get_QstatusData datails22: " + result.toString());
+
     return result;
   }
 
@@ -1565,16 +1385,6 @@ GROUP by T1.ItemCode,t1.itemnameshort, t1.minimumQty
 HAVING  T1.minimumQty >= sum(T2.quantity)
  ''');
 
-//     final List<Map<String, Object?>> ItemMaster =
-//         await db.rawQuery(''' select * from ItemMaster
-//  ''');
-//     final List<Map<String, Object?>> StockSnap =
-//         await db.rawQuery(''' select * from StockSnap
-//  ''');
-    //log("ItemMaster==: " + ItemMaster.length.toString());
-    //log("StockSnap==: " + StockSnap.length.toString());
-
-    //log("getoutofDataData datails: " + result.toString());
     return result;
   }
 
@@ -1582,8 +1392,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  Expense where docentry=$docentry''');
-    //log("'SELECT * FROM  Expense where docentry=$docentry'" +
-    // result.toString());
+
     return result;
   }
 
@@ -1591,7 +1400,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     final List<Map<String, Object?>> result =
         await db.rawQuery('''select count(*) as count FROM CouponDetailsT 
  ''');
-    //log("select count(*) as count FROM CouponDetailsT " + result.toString());
+
     return result;
   }
 
@@ -1600,12 +1409,10 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''select count(*) as count FROM CouponDetailsT WHERE status = 'Used'
  ''');
-    //log("select count(*) as count FROM CouponDetailsT WHERE status = 'Used' " +
-    // result.toString());
+
     return result;
   }
 
-//UserTable insert
   static Future insertUsers(Database db, List<UserModelDB> values) async {
     var data = values.map((e) => e.toMap()).toList();
     var batch = db.batch();
@@ -1631,7 +1438,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     log("userNameuserName" + userssName.toString());
     List<Map<String, Object?>> result = await db.rawQuery(
         "select * from Users where Lower(userName)=Lower('$userssName')");
-    // log("Users RRSS" + result.toList().toString());
+
     return result;
   }
 
@@ -1644,17 +1451,10 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     List<Map<String, Object?>> result = await db.rawQuery('''
      select * from Users where userName = "$usn" and password = "$pass" and branch = "$branch" and userstatus = "Y"
      ''');
-    //log(' select * from Users where userName = "$usn" and password = "$pass" and branch = "$branch" and userstatus = "Y"');
-////log('select count(autoId) * from Users where userName = "$usn" and password = "$pass" and branch = "$branch" and userstatus = "N"');
-    //log(result.toList().toString());
-//int? count = Sqflite.firstIntValue(result);
-////log("count: "+count.toString());
-    // return count;
 
     return result;
   }
 
-  // customer address insert
   static Future insertCustomerAddress(
       Database db, List<CustomerAddressModelDB> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -1662,7 +1462,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     data.forEach((es) async {
       batch.insert("CustomerMasterAddress", es);
     });
-    // log("CustomerMasterAddress::" + result2.toList().toString());
+
     await batch.commit();
   }
 
@@ -1670,7 +1470,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(custcode) from CustomerMasterAddress
      ''');
-    //log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -1679,7 +1479,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(*) from StockSnap
      ''');
-//log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -1688,7 +1488,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(*) from ItemMaster
      ''');
-//log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -1697,7 +1497,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(*) from BranchMaster
      ''');
-//log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -1715,17 +1515,12 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(*) from CustomerMasterAddress
      ''');
-//log("CustomerMasterAddress" + result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
 
-  static Future<void> getdata(Database db) async {
-    // log("CustomerMaster RRSS" + result.toList().toString());
-
-    // log("CustomerMasterAddress RRSS" + result2.toList().toString());
-    // log(result.length.toString());
-  }
+  static Future<void> getdata(Database db) async {}
 
   static Future<List<CustomerModelDB>> getCstmMasDB(
     Database db,
@@ -1738,7 +1533,6 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         autoid: result[i]['autoid'].toString(),
         customerCode: result[i]['customerCode'].toString(),
         uCashCust: result[i]['U_CASHCUST'].toString(),
-
         createdUserID: result[i]['createdUserID'].toString(),
         createdateTime: result[i]['createdateTime'].toString(),
         lastupdateIp: result[i]['lastupdateIp'].toString(),
@@ -1756,9 +1550,6 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         snapdatetime: result[i]['snapdatetime'].toString(),
         taxno: result[i]['taxno'].toString(),
         taxCode: result[i]['TaxCode'].toString(),
-        // terminal: result[i]['terminal'].toString(),
-        // tinNo: result[i]['tinNo'].toString(),
-        // vatregno: result[i]['vatregno'].toString()
       );
     });
   }
@@ -1768,7 +1559,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  CustomerMaster''');
-    // log("CustomerMaster Len: " + result.toString());
+
     return List.generate(result.length, (i) {
       return CustomerModelDB(
         autoid: result[i]['autoid'].toString(),
@@ -1777,7 +1568,6 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         createdateTime: result[i]['createdateTime'].toString(),
         lastupdateIp: result[i]['lastupdateIp'].toString(),
         uCashCust: result[i]['U_CASHCUST'].toString(),
-
         updatedDatetime: result[i]['updatedDatetime'].toString(),
         updateduserid: int.parse(result[i]['updateduserid'].toString()),
         balance: double.parse(result[i]['balance'].toString()),
@@ -1792,9 +1582,6 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         snapdatetime: result[i]['snapdatetime'].toString(),
         taxno: result[i]['taxno'].toString(),
         taxCode: result[i]['TaxCode'].toString(),
-        // terminal: result[i]['terminal'].toString(),
-        // tinNo: result[i]['tinNo'].toString(),
-        // vatregno: result[i]['vatregno'].toString()
       );
     });
   }
@@ -1804,7 +1591,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  CustomerMasterAddress''');
-    // log("CustomerAddress addresstype Len: " + result.length.toString());
+
     return List.generate(result.length, (i) {
       return CustomerAddressModelDB(
         autoid: result[i]['autoid'].toString(),
@@ -1834,7 +1621,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
       Database db, String custCode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMasterAddress where custcode = "$custCode"''');
-    // log("CustomerAddress addresstype Len: " + result.length.toString());
+
     return List.generate(result.length, (i) {
       log('message addresstype::${result[i]['addresstype'].toString()}');
       return CustomerAddressModelDB(
@@ -1865,8 +1652,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
       Database db, String custCode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMasterAddress where custcode = "$custCode"''');
-    // log("SELECT * FROM  CustomerMasterAddress where autoid = $autoid");
-    // log("CustomerMasterAddress: $result");
+
     return result;
   }
 
@@ -1874,8 +1660,7 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
       Database db, String cardCode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  CustomerMasterAddress WHERE custcode="$cardCode"''');
-    //log("Len1111: " + result.length.toString());
-//log("Result of custadd: " + result.toString());
+
     return List.generate(result.length, (i) {
       return CustomerAddressModelDB(
         autoid: result[i]['autoid'].toString(),
@@ -1903,17 +1688,6 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
 
   static Future updateAddressDetails(
       Database db, int i, CustomerDetals selectedcust, String autoid) async {
-    // log('Add autoidautoid::' + autoid.toString());String custcode,String custcode,
-
-    // log('Add custcodecustcodecustcode::' + custcode.toString());
-    // log('selectedcust.address![i].address1::' +
-    //     selectedcust.address![i].address1.toString());
-    // log('selectedcust.address![i].address2::' +
-    //     selectedcust.address![i].address2.toString());
-    // log('selectedcust.address![i].address3::' +
-    //     selectedcust.address![i].address3.toString());
-    // log('selectedcust.address![i].billCity::' +
-    //     selectedcust.address![i].billCity.toString());
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE CustomerMasterAddress SET
         address1="${selectedcust.address![i].address1}",
@@ -1925,23 +1699,11 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         statecode="${selectedcust.address![i].billstate}"
  WHERE addresstype="B" and autoid=$autoid ''');
 
-//log("Update Address Detailsbb" + result.toString());
     return result;
   }
 
-// String custcode,custcode ="$custcode" and
   static Future updateShipAddressDetails(
       Database db, int ij, CustomerDetals selectedcust55, String autoid) async {
-//log('Add autoidautoidautoid::' + autoid.toString());
-
-//log('selectedcust55.address![ij].address1::' +
-    // selectedcust55.address![ij].address1.toString());
-//log('selected/cust55.address![ij].address2::' +
-    // selectedcust55.address![ij].address2.toString());
-//log('selectedcust55.address![i].address3::' +
-    // selectedcust55.address![ij].address3.toString());
-//log('selectedcust55.address![ij].billCity::' +
-    // selectedcust55.address![ij].billCity.toString());
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE CustomerMasterAddress SET
         address1="${selectedcust55.address![ij].address1}",
@@ -1952,30 +1714,15 @@ HAVING  T1.minimumQty >= sum(T2.quantity)
         pincode="${selectedcust55.address![ij].billPincode}",
         statecode="${selectedcust55.address![ij].billstate}"
  WHERE addresstype="S" and autoid=$autoid ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM  CustomerMasterAddress  WHERE custcode ="$custcode" and addresstype="S" and autoid="$autoid"''');
 
-//log("selectedcust55 Update Address Det" + result.toString());
     return result;
   }
 
   static Future updateCustomerAccBal(
-      Database db, String cardCode, CustomerDetals selectedcust) async {
-//log("cardCodecardCodecardCode::" + selectedcust.cardCode.toString());
-//log("selectedcust.accBalance::" + selectedcust.accBalance.toString());
-
-//log("Update Customer Details" + result2.toString());
-    // return result;
-  }
+      Database db, String cardCode, CustomerDetals selectedcust) async {}
 
   static Future updateCustomerDetails(
       Database db, String autoid, CustomerDetals selectedcust) async {
-    // log("cardCodecardCodecardCode::" + selectedcust.cardCode.toString());
-    // log("selectedcust.accBalance::" + selectedcust.accBalance.toString());
-    // log("selectedcust.name::" + selectedcust.name.toString());
-    // log("selectedcust.email::" + selectedcust.email.toString());
-//log("selectedcust.phNo::" + selectedcust.phNo.toString());
-
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE CustomerMaster SET 
         balance ="${selectedcust.accBalance}",
@@ -1986,11 +1733,9 @@ phoneno2="${selectedcust.phNo}",
 points="${selectedcust.point}",
 taxno="${selectedcust.tarNo}" WHERE autoid="$autoid" 
 ''');
-    // final List<Map<String, Object?>> result2 = await db
-    //     .rawQuery('''SELECT * FROM CustomerMaster WHERE autoid="$autoid"''');
+
     return result;
   }
-// {customercode: A1B2, customername: ASDFGHI, premiumid: , customertype: , taxno: Gst, createdbybranch: HOFG, balance: 0, points: 0, snapdatetime: 2023-08-08 15:09:17, phoneno1: 1236547890, phoneno2: , emalid: assdddd@gmail.com, terminal: T1, createdateTime: 2023-08-08 15:09:17, UpdatedDatetime: 2023-08-08 15:09:17, createdUserID: 1, updateduserid: 1, lastupdateIp: 192.198.182.1}]
 
   static Future updateCustomerDetailstocrdcode(
       Database db, String cardcode, String autoid) async {
@@ -1999,8 +1744,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
         customerCode ="$cardcode"
         WHERE autoid="$autoid" 
 ''');
-    // final List<Map<String, Object?>> result2 = await db
-    //     .rawQuery('''SELECT * FROM CustomerMaster WHERE autoid="$autoid"''');
+
     log('message::${result.length}');
     return result;
   }
@@ -2012,8 +1756,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
         custcode ="$cardcode"
         WHERE autoid="$autoid" 
 ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM CustomerMasterAddress WHERE autoid="$autoid"''');
+
     return result;
   }
 
@@ -2026,7 +1769,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
         customercode ="$sapcardcode"
         WHERE autoid=customercode
 ''');
-//log("Update Customer Details" + result2.toString());
+
     return result;
   }
 
@@ -2034,8 +1777,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       Database db, String usercode) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  Users where usercode="$usercode" ''');
-    //log("Users Len: " + result.length.toString());
-    //log("User Tables Values:" + result.toList().toString());
+
     return List.generate(result.length, (i) {
       return UserModelDB(
         autoId: int.parse(result[i]["autoId"].toString()),
@@ -2067,25 +1809,21 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     });
     await batch.commit();
 
-    //log("SalesHeader:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM SalesHeader  ORDER BY docentry DESC limit 1
      ''');
-    //log("SalesHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("SalesHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
   static Future<int?> getDocNO(Database db, String colName, tableName) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     select IFNULL(MAX($colName)+1,1) as docno from $tableName
      ''');
-    //log("result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
 
     return count;
   }
@@ -2098,7 +1836,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       batch.insert("SalesPay", es);
     });
     await batch.commit();
-    //log("SalesPay Table:" + result1.toString());
   }
 
   static Future insertSalesLine(
@@ -2109,9 +1846,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       batch.insert("SalesLine", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  SalesLine''');
-    //log("SalesLine:" + result1.toString());
   }
 
   static Future<List<Map<String, Object?>>> getSalesHeadHoldvalueDB(
@@ -2119,7 +1853,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
   ) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesHeader where docstatus = "1"''');
-    // log("getSalesHeadHoldvalueDB length:" + result.length.toString());
 
     log("getSalesHeadHoldvalueDB:" + result.toString());
 
@@ -2130,9 +1863,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       Database db, String docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesHeader where docstatus = '1'and docentry = "$docentry"''');
-    // log("getSalesHeadHoldvalueDB length:" + result.length.toString());
-
-    // log("getSalesHeadHoldvalueDB:" + result.toString());
 
     return result;
   }
@@ -2141,7 +1871,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesHeader where docentry=$docentry''');
-//log("getSalesHeadHoldvaluessDB:" + result.toString());
 
     return result;
   }
@@ -2162,8 +1891,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT * from StockSnap WHERE itemcode="$itemcode" 
      ''');
-    //or serialbatch="$serialBatch"
-    // log('"SELECT * from StockSnap :::' + result.toString());
+
     return result;
   }
 
@@ -2172,8 +1900,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT * from StockSnap WHERE itemcode="$itemcode"
      ''');
-    // log('"SELECT * from StockSnap WHERE itemcode="$itemcode" :::' +
-    // result.toString());
+
     return result;
   }
 
@@ -2187,20 +1914,13 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     return result1;
   }
 
-  // static Future<List<Map<String, Object?>>> ItemcodeserialItembatch(Database db, String itemcode, String serialbatch) async {
-  //   final List<Map<String, Object?>> result1 = await db.rawQuery(''' select * from StockSnap where itemcode="$itemcode" and serialbatch = "$serialbatch"''');
-  //   print("ItemCode:" + result1.toString());
-  //   return result1;
-  // }
-
   static Future<List<Map<String, Object?>>> getTopCuslist(Database db) async {
     final List<Map<String, Object?>> result1 = await db.rawQuery(
         ''' SELECT customerCode, customername, count(customerCode) from SalesHeader WHERE docstatus='3' GROUP by customercode ORDER by  count(customercode) DESC LIMIT 10 ''');
-    // log("getTopCuslist1:::" + ßresult1.length.toString());
+
     return result1;
   }
 
-// LED-150K-250K-2Yr
   static Future<List<Map<String, Object?>>> getHoldSalesPayDB(
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
@@ -2212,16 +1932,13 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesLine where docentry=$docentry''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
-    // log("SalesLine result:" + result.toString());
+
     return result;
   }
 
   static Future deleteInvoicewholedata(
     Database db,
   ) async {
-    //log('deleted doc entry no:' + docEntry.toString());
-
     await db.rawQuery('''
     delete from SalesPay
      ''');
@@ -2231,14 +1948,9 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     await db.rawQuery('''
     delete from SalesHeader
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    //log("SH2" + sh2.toString());
   }
 
   static Future deleteHold(Database db, String docEntry) async {
-    //log('deleted doc entry no:' + docEntry.toString());
-
     await db.rawQuery('''
     delete from SalesPay where docentry = $docEntry
      ''');
@@ -2248,13 +1960,9 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     await db.rawQuery('''
     delete from SalesHeader where docentry = $docEntry
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    //log("SH2" + sh2.toString());
   }
 
   static Future deleteOrderHold(Database db, String docEntry) async {
-    //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from SalesOrderHeader where docentry = $docEntry
      ''');
@@ -2264,15 +1972,11 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     await db.rawQuery('''
     delete from SalesOrderLine where docentry = $docEntry
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    //log("SH2" + sh2.toString());
   }
 
   static Future deleteSalesOrder(
     Database db,
   ) async {
-    //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from SalesOrderHeader 
      ''');
@@ -2285,7 +1989,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
   }
 
   static Future deleteSalesQuot(Database db) async {
-    //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from SalesQuotationHeader
      ''');
@@ -2293,37 +1996,21 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     await db.rawQuery('''
     delete from SalesQuotationLine
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    // List<Map<String, Object?>> sh2 = await db.rawQuery('''
-    // select *from SalesHeader
-    //  ''');
-    //log("SH2" + sh2.toString());
   }
 
   static Future deleteHeaderSettle(Database db, String docEntry) async {
-    // List<Map<String, Object?>> sh = await db.rawQuery('''
-    // select *from SalesHeader
-    //  ''');
-    // //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from SalesHeader where docentry = $docEntry
      ''');
   }
 
-  //stockreq
-
-  // stock request operation
   static Future<int?> getreqDocNO(
       Database db, String colName, tableName) async {
-    //log("result ");
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     select IFNULL(MAX($colName)+1,1) as docno   from $tableName
      ''');
-    //log("result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
 
     return count;
   }
@@ -2340,9 +2027,7 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM StockReqHDT  ORDER BY docentry DESC limit 1
      ''');
-    // List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from StockReqHDT
-    //  ''');
+
     int? count = Sqflite.firstIntValue(result);
     return count ?? 0;
   }
@@ -2355,10 +2040,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
       batch.insert("StockReqLineT", es);
     });
     await batch.commit();
-    // List<Map<String, Object?>> result = await db.rawQuery('''
-    // select * from StockReqLineT
-    //  ''');
-//log("result:: " + result.toList().toString());
   }
 
   static Future<List<Map<String, Object?>>> getStockHDReqHold(
@@ -2366,7 +2047,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockReqHDT where docstatus = "1"
      ''');
-    // log("StockReqHDT hold:: " + result.toString());
 
     return result;
   }
@@ -2376,7 +2056,6 @@ taxno="${selectedcust.tarNo}" WHERE autoid="$autoid"
     List<Map<String, Object?>> result = await db.rawQuery('''
     SELECT * FROM SalesLine WHERE JULIANDAY( date('now')) - JULIANDAY(substr(createdateTime,1,10)) =1
      ''');
-    //log("SalesLine WHERE JULIANDAY:: " + result.toList().toString());
 
     return result;
   }
@@ -2388,7 +2067,6 @@ from ItemMaster T1
 INNER JOIN StockSnap T2 on T1.itemcode = T2.itemcode 
 GROUP by T1.ItemCode,t1.itemname_short, t1.displayQty 
 HAVING  T1.displayQty >= sum(T2.quantity)  ''');
-    //log("SalesLine WHERE JULIANDAY:: " + result.toList().toString());
 
     return result;
   }
@@ -2398,7 +2076,6 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockReqLineT where docentry = $docID
      ''');
-    //    //log("StockReqLineT hold:: "+result.toList().toString());
 
     return result;
   }
@@ -2408,7 +2085,6 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockReqHDT 
      ''');
-//log("StockReqHDT :: " + result.toList().toString());
 
     return result;
   }
@@ -2418,7 +2094,6 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockReqHDT where docentry = "$docentry"
      ''');
-//log("StockReqHDT ZZZZZ:: " + result.toList().toString());
 
     return result;
   }
@@ -2448,16 +2123,14 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from ItemMaster where itemcode like '%$name%'or itemname like '%$name%'
      ''');
-    // log('resultresult::${result.length}');
+
     return List.generate(result.length, (i) {
-      // log("utinesperbox:::${result[i]['U_TINS_PER_BOX'].toString().isNotEmpty}");
       return ItemMasterModelDB(
           isselected: result[i]['IsSelected'] == null
               ? 0
               : int.parse(result[i]['IsSelected'].toString()),
           managedBy: result[i]['ManageBy'].toString(),
           autoId: int.parse(result[i]['AutoId'].toString()),
-          // quantity: int.parse(result[i]['maximumQty'].toString()),
           maximumQty: result[i]['maximumQty'].toString(),
           minimumQty: result[i]['minimumQty'].toString(),
           weight: double.parse(result[i]['weight'].toString()),
@@ -2473,7 +2146,6 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
           isfreeby: result[i]['isfreeby'].toString(),
           isinventory: result[i]['isinventory'].toString(),
           issellpricebyscrbat: result[i]['is_sellpricebyscrbat'].toString(),
-          // isserialBatch: result[i]['is_serialBatch'].toString(),
           itemcode: result[i]['itemcode'].toString(),
           itemnamelong: result[i]['itemnamelong'].toString(),
           itemnameshort: result[i]['itemnameshort'].toString(),
@@ -2493,6 +2165,154 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
           uSpecificGravity: result[i]['U_Specific_Gravity'].toString(),
           uPackSizeuom: result[i]['U_Pack_Size_uom'].toString(),
           sellprice: result[i]['sellprice'].toString());
+    });
+  }
+
+  static Future<List<ItemMasterModelDB>> getSearchedStockList22(
+      Database db, String name, String category, String subCategory) async {
+    print('''
+    select * from ItemMaster where itemcode like '%$name%'or itemname like '%$name%' 
+     ''');
+    List<Map<String, Object?>> result = await db.rawQuery('''
+    select * from ItemMaster where itemcode like '%$name%'or itemname like "%$name%"
+     ''');
+    log('resultresult::${result.length}');
+
+    return List.generate(result.length, (i) {
+      return ItemMasterModelDB(
+          isselected: result[i]['IsSelected'] == null
+              ? 0
+              : int.parse(result[i]['IsSelected'].toString()),
+          managedBy: result[i]['ManageBy'].toString(),
+          autoId: int.parse(result[i]['AutoId'].toString()),
+          maximumQty: result[i]['maximumQty'].toString(),
+          minimumQty: result[i]['minimumQty'].toString(),
+          weight: double.parse(result[i]['weight'].toString()),
+          liter: double.parse(result[i]['liter'].toString()),
+          displayQty: result[i]['displayQty'].toString(),
+          searchString: result[i]['searchString'].toString(),
+          brand: result[i]['brand'].toString(),
+          category: result[i]['category'].toString(),
+          createdUserID: result[i]['createdUserID'].toString(),
+          createdateTime: result[i]['createdateTime'].toString(),
+          hsnsac: result[i]['hsnsac'].toString(),
+          isActive: result[i]['isActive'].toString(),
+          isfreeby: result[i]['isfreeby'].toString(),
+          isinventory: result[i]['isinventory'].toString(),
+          issellpricebyscrbat: result[i]['is_sellpricebyscrbat'].toString(),
+          itemcode: result[i]['itemcode'].toString(),
+          itemnamelong: result[i]['itemnamelong'].toString(),
+          itemnameshort: result[i]['itemnameshort'].toString(),
+          lastupdateIp: result[i]['lastupdateIp'].toString(),
+          maxdiscount: double.parse(result[i]['maxdiscount'].toString()),
+          skucode: result[i]['skucode'].toString(),
+          subcategory: result[i]['subcategory'].toString(),
+          taxrate: result[i]['taxrate'].toString(),
+          updatedDatetime: result[i]['UpdatedDatetime'].toString(),
+          updateduserid: result[i]['updateduserid'].toString(),
+          mrpprice: result[i]['mrpprice'].toString(),
+          uPackSize: result[i]['U_Pack_Size'].toString(),
+          uTINSPERBOX: result[i]['U_TINS_PER_BOX'].toString().isEmpty ||
+                  result[i]['U_TINS_PER_BOX'] == null
+              ? 0
+              : int.parse(result[i]['U_TINS_PER_BOX'].toString()),
+          uSpecificGravity: result[i]['U_Specific_Gravity'].toString(),
+          uPackSizeuom: result[i]['U_Pack_Size_uom'].toString(),
+          sellprice: result[i]['sellprice'].toString());
+    });
+  }
+
+  static Future<List<ItemMasterModelDB>> getSearchedStockList33(
+      Database db, String category, String subCategory, String packSize) async {
+    print('''
+    select * from ItemMaster where  category='$category' or subcategory="$subCategory" or U_Pack_Size ="$packSize"
+     ''');
+    List<Map<String, Object?>> result = await db.rawQuery('''
+    select * from ItemMaster where category='$category' or subcategory="$subCategory" or U_Pack_Size ="$packSize"
+     ''');
+    log('resultresult::${result.length}');
+
+    return List.generate(result.length, (i) {
+      return ItemMasterModelDB(
+          isselected: result[i]['IsSelected'] == null
+              ? 0
+              : int.parse(result[i]['IsSelected'].toString()),
+          managedBy: result[i]['ManageBy'].toString(),
+          autoId: int.parse(result[i]['AutoId'].toString()),
+          maximumQty: result[i]['maximumQty'].toString(),
+          minimumQty: result[i]['minimumQty'].toString(),
+          weight: double.parse(result[i]['weight'].toString()),
+          liter: double.parse(result[i]['liter'].toString()),
+          displayQty: result[i]['displayQty'].toString(),
+          searchString: result[i]['searchString'].toString(),
+          brand: result[i]['brand'].toString(),
+          category: result[i]['category'].toString(),
+          createdUserID: result[i]['createdUserID'].toString(),
+          createdateTime: result[i]['createdateTime'].toString(),
+          hsnsac: result[i]['hsnsac'].toString(),
+          isActive: result[i]['isActive'].toString(),
+          isfreeby: result[i]['isfreeby'].toString(),
+          isinventory: result[i]['isinventory'].toString(),
+          issellpricebyscrbat: result[i]['is_sellpricebyscrbat'].toString(),
+          itemcode: result[i]['itemcode'].toString(),
+          itemnamelong: result[i]['itemnamelong'].toString(),
+          itemnameshort: result[i]['itemnameshort'].toString(),
+          lastupdateIp: result[i]['lastupdateIp'].toString(),
+          maxdiscount: double.parse(result[i]['maxdiscount'].toString()),
+          skucode: result[i]['skucode'].toString(),
+          subcategory: result[i]['subcategory'].toString(),
+          taxrate: result[i]['taxrate'].toString(),
+          updatedDatetime: result[i]['UpdatedDatetime'].toString(),
+          updateduserid: result[i]['updateduserid'].toString(),
+          mrpprice: result[i]['mrpprice'].toString(),
+          uPackSize: result[i]['U_Pack_Size'].toString(),
+          uTINSPERBOX: result[i]['U_TINS_PER_BOX'].toString().isEmpty ||
+                  result[i]['U_TINS_PER_BOX'] == null
+              ? 0
+              : int.parse(result[i]['U_TINS_PER_BOX'].toString()),
+          uSpecificGravity: result[i]['U_Specific_Gravity'].toString(),
+          uPackSizeuom: result[i]['U_Pack_Size_uom'].toString(),
+          sellprice: result[i]['sellprice'].toString());
+    });
+  }
+
+  static Future<List<StockSnapTModelDB>> getSearchedStockListBatch22(
+      Database db, String name) async {
+    List<Map<String, Object?>> result = await db.rawQuery('''
+    select * from StockSnap where itemcode like '%$name%' or itemname like '%$name%'
+     ''');
+
+    log("select * from StockSnap where itemcode like '%$name%'::::$result");
+
+    return List.generate(result.length, (i) {
+      return StockSnapTModelDB(
+        terminal: result[i]['terminal'].toString(),
+        branchcode: result[i]['branchcode'].toString(),
+        createdUserID: int.parse(result[i]['createdUserID'].toString()),
+        taxCode: result[i]['taxCode'].toString(),
+        createdateTime: result[i]['createdateTime'].toString(),
+        itemcode: result[i]['itemcode'].toString(),
+        lastupdateIp: result[i]['lastupdateIp'].toString(),
+        maxdiscount: result[i]['maxdiscount'].toString(),
+        mrpprice: result[i]['mrpprice'].toString(),
+        purchasedate: result[i]['purchasedate'].toString(),
+        liter: double.parse(result[i]['liter'].toString()),
+        weight: double.parse(result[i]['weight'].toString()),
+        quantity: result[i]['quantity'].toString(),
+        sellprice: result[i]['sellprice'].toString(),
+        serialbatch: result[i]['serialbatch'].toString(),
+        snapdatetime: result[i]['snapdatetime'].toString(),
+        specialprice: result[i]['specialprice'].toString(),
+        updatedDatetime: result[i]['UpdatedDatetime'].toString(),
+        updateduserid: int.parse(result[i]['updateduserid'].toString()),
+        itemname: result[i]['itemname'].toString(),
+        taxrate: result[i]['taxrate'].toString(),
+        branch: result[i]['branch'].toString(),
+        uPackSize: result[i]['UPackSize'].toString(),
+        uTINSPERBOX: int.parse(result[i]['UTINSPERBOX'].toString()),
+        uSpecificGravity: result[i]['USpecificGravity'].toString(),
+        uPackSizeuom: result[i]['UPackSizeUom'].toString(),
+      );
     });
   }
 
@@ -2502,14 +2322,12 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     select * from ItemMaster where itemcode ='$itemCode'
      ''');
     return List.generate(result.length, (i) {
-      // log("utinesperbox:::${result[i]['U_TINS_PER_BOX'].toString().isNotEmpty}");
       return ItemMasterModelDB(
           isselected: result[i]['IsSelected'] == null
               ? 0
               : int.parse(result[i]['IsSelected'].toString()),
           managedBy: result[i]['ManageBy'].toString(),
           autoId: int.parse(result[i]['AutoId'].toString()),
-          // quantity: int.parse(result[i]['maximumQty'].toString()),
           maximumQty: result[i]['maximumQty'].toString(),
           minimumQty: result[i]['minimumQty'].toString(),
           weight: double.parse(result[i]['weight'].toString()),
@@ -2525,7 +2343,6 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
           isfreeby: result[i]['isfreeby'].toString(),
           isinventory: result[i]['isinventory'].toString(),
           issellpricebyscrbat: result[i]['is_sellpricebyscrbat'].toString(),
-          // isserialBatch: result[i]['is_serialBatch'].toString(),
           itemcode: result[i]['itemcode'].toString(),
           itemnamelong: result[i]['itemnamelong'].toString(),
           itemnameshort: result[i]['itemnameshort'].toString(),
@@ -2546,11 +2363,7 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
           uPackSizeuom: result[i]['U_Pack_Size_uom'].toString(),
           sellprice: result[i]['sellprice'].toString());
     });
-//log('ItemMaster result::${result.toList()}');
-    // return result;
   }
-
-  // insert brand
 
   static Future insertBranch(Database db, List<BranchTModelDB> values) async {
     await db.rawQuery('''
@@ -2562,18 +2375,12 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
       batch.insert("Branch", es);
     });
     await batch.commit();
-
-    // List<Map<String, Object?>> result3 = await db.rawQuery('''
-    // select * from BranchMaster
-    //  ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future<List<Map<String, Object?>>> getBranch(Database db) async {
     List<Map<String, Object?>> result = await db.rawQuery('''
          select * from BranchMaster
      ''');
-    // log("Branch all:: ${result.toList()}");
 
     return result;
   }
@@ -2583,30 +2390,20 @@ HAVING  T1.displayQty >= sum(T2.quantity)  ''');
     List<Map<String, Object?>> result = await db.rawQuery('''
          select * from BranchMaster where WhsCode = "$whscode"
      ''');
-    // log("BranchMaster all:: " + result.toList().toString());
+
     return result;
   }
-  // SalesReturn
 
   static Future<List<Map<String, Object?>>> getSsaleHeader(
       Database db, String customername) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesHeader where customername=$customername''');
 
-    //log("Salesheader cusotmer :" + result.toString());
     return result;
   }
 
-  //where docentry=  $docentry
-// and documentno = $docnum
-
-// insert sales return
-
   static Future<List<Map<String, Object?>>> getSalesheadCkout(
       Database db, String? docnocustomercode) async {
-    // log("docnodocnodocno$docnocustomercode");
-//  A.documentno , A.customercode,customername,customeraccbal,customeremail,customerpoint, A.customername,A.doctype, B.rcamount,B.createdateTime FROM SalesHeader A
-    //log("SalesHeader checkout::" + docno.toString());//
     List<Map<String, Object?>> result = await db.rawQuery('''
 SELECT soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
@@ -2616,23 +2413,11 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
    
     ''');
 
-    // select * from SalesHeader where docstatus = '3' and
-    // documentno= '${docno.toString().trim()}'
-
-    //log("SalesHeader checkout:: " + result.toList().toString());
-    // List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from SalesHeader where docstatus = '3'
-    // ''');
-    // log("SalesHeader result:: " + result.toList().toString());
-
     return result;
   }
 
   static Future<List<Map<String, Object?>>> getSalesretheaderCkout(
       Database db, String? docnocustomercode) async {
-    // log("docnodocnodocno$docnocustomercode");
-//  A.documentno , A.customercode,customername,customeraccbal,customeremail,customerpoint, A.customername,A.doctype, B.rcamount,B.createdateTime FROM SalesHeader A
-    //log("SalesHeader checkout::" + docno.toString());//
     List<Map<String, Object?>> result = await db.rawQuery('''
 SELECT soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
@@ -2640,59 +2425,37 @@ SELECT soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
 WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
    
     ''');
-    // log("SalesHeader result:: " + result.toList().toString());
 
     return result;
   }
 
   static Future<List<Map<String, Object?>>> salestosalesret(
       Database db, String? docno) async {
-    //log("SalesHeader checkout::" + docno.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from SalesHeader where docstatus = '3' and sapDocNo IS NOT NULL and 
     sapDocNo= '$docno'
     ''');
-//log("SalesReturnHeaderXXXXXXXx $result");
 
     return result;
   }
 
   static Future<List<Map<String, Object?>>> salestoprint(Database db) async {
-    //log("SalesHeader checkout::" + docno.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from SalesHeader where docstatus = '3' and sapDocNo IS NOT NULL 
  
     ''');
-    // print("SalesReturnHeaderXXXXXXXx $result");
 
     return result;
   }
-  // static Future<List<Map<String, Object?>>> salesRettosalesret(Database db, String? docno) async {
-  //   // log("SalesReturnHeader checkout::" + docno.toString());
-  //   List<Map<String, Object?>> result = await db.rawQuery('''
-  //   select * from SalesReturnHeader where docstatus = '3' and
-  //   documentno= '${docno.toString().trim()}'
-  //   ''');
-  //   // log("SalesReturnHeaderXXXXXXXXXXx $result");
-
-  //   return result;
-  // }
-//log("SalesHeader checkout:: " + result.toList().toString());
-  // List<Map<String, Object?>> result2 = await db.rawQuery('''
-  // select * from SalesHeader where docstatus = '3'
-  // ''');
-  // //log("SalesHeader checkout:: " + result2.toList().toString());
 
   static Future<List<Map<String, Object?>>> getWeightLiterStockSnap(
       Database db, String? itemname, String? serialbatch) async {
-    // //log("weight ::" + weight.toString()+"::liter::"+liter.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
     select liter,weight from StockSnap where itemcode = '$itemname' and serialbatch='$serialbatch'
     ''');
     log("StockSnap weight liter :: select * from StockSnap where itemname = '$itemname' and serialbatch='$serialbatch' " +
         result.toList().toString());
 
-    // //log("StockSnap weight liter :: " + result.toList().toString());
     return result;
   }
 
@@ -2701,9 +2464,7 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from SalesPay where docentry="$docentry" 
     ''');
-    //log("docentrydocentry:" + docentry.toString());
-    //log("Salespay checkout length:: " + result.length.toString());
-    //log("Salespay checkout:: " + result.toList().toString());
+
     return result;
   }
 
@@ -2722,8 +2483,7 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
                     Group by T1.docentry, T1.balqty,T1.lineID,T1.itemcode,T1.itemname,T1.serialbatch,T1.quantity,T1.price,
                     T1.linetotal,T1.taxrate,T1.discperc,T1.discperunit,T1.basic,T1.taxtotal,T1.discamt,T1.netlinetotal,
                     T1.branch,T1.createdUser,T1.createdateTime,T1.UpdatedDatetime,T1.createdUserID,T1.updateduserid,
-                    T1.lastupdateIp  Having T1.quantity - IFNull(sum(T2.quantity),0) > 0'''); //where docentry="16"
-//log("SalesLine result2 result2:" + result2.toString());
+                    T1.lastupdateIp  Having T1.quantity - IFNull(sum(T2.quantity),0) > 0''');
 
     return result2;
   }
@@ -2738,7 +2498,7 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
 					Where t3.docstatus=3 )T2 on T1.docentry = T2.basedocentry And T1.lineID = T2.baselineID
                       Where  T1.docentry="$bsdocentry" And T1.lineid = "$bslineid"
                     Group by T1.quantity Having T1.quantity - IFNull(sum(T2.quantity),0) > 0''');
-//log("SalesReturn balamt XX::" + result.toString());
+
     return result;
   }
 
@@ -2746,7 +2506,6 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
     Database db,
     String docnum,
   ) async {
-    // log("donumdonum:$docnum");
     final List<Map<String, Object?>> result2 = await db.rawQuery(
         '''SELECT T1.docentry,T1.documentno,T1.customername,T1.customercode,T1.customerphono,
         T1.customeremail,T1.customeraccbal,T1.customerpoint,T1.taxno,T1.billaddressid,
@@ -2757,26 +2516,10 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
       Left Join RefundHeader T2 on T1.docentry = T2.transdocentry And T1.documentno = T2.transdocnum 
        Where T1.documentno="$docnum" and  not exists(select T2.transdocnum From RefundHeader T2 where T2.transdocnum=T1.documentno) 
         
-'''); //where docentry="16"
-    // log("SalesRetruntoRefund result2:" + result2.toString());
+''');
 
     return result2;
   }
-
-//   static Future<List<Map<String, Object?>>> salesQuoCancellQuery(Database db, String docnum) async {
-//     print("");
-//     final List<Map<String, Object?>> result2 = await db.rawQuery('''SELECT T1.docentry,T1.documentno,
-//     T1.customername,T1.customercode,T1.customerphono,
-//      T1.doctype,T1.docstatus,T1.sodocno,
-//         T1.branch,T1.createdateTime,T1.UpdatedDatetime, T2.basedocentry,
-//        T1.updateduserid,T1.lastupdateIp FROM  SalesQuotationHeader T1
-//       Inner Join SalesOrderHeader T2 on T1.docentry = T2.basedocentry
-//       where T1.documentno="$docnum"
-// ''');
-//     print("Saeles quo cancellQuery:" + result2.toString());
-
-//     return result2;
-//   }
 
   static Future<List<Map<String, Object?>>> salesQuoCancellQuery(
       Database db, String docentry) async {
@@ -2786,20 +2529,8 @@ WHERE soh.customercode= "${docnocustomercode.toString().trim()}"
        Where T1.basedocentry="$docentry" and T1.docstatus=3 and T1.qStatus='C'
        group by T1.docentry,T1.basedocentry
 
-       '''
-//           ''' SELECT soh.docentry,soh.documentno,soh.sapDocentry,
-//       s.lineid,s.itemcode,
-// s.itemname,s.serialbatch,s.quantity,s.price,s.taxrate,s.discperc,s.maxdiscount
-// FROM  SalesQuotationHeader soh Inner Join SalesQuotationLine s on
-// s.docentry=soh.docentry
-// Inner JOIN SalesOrderLine sl on sl.basedocentry=s.docentry and sl.baselineid=s.lineid
-// where soh.documentno ="$docnum"
-// group by soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
-//         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
-//  soh.customername,soh.taxno,soh.customerpoint,soh.customercode,soh.customeraccbal,soh.doctotal
-// '''
-        );
-//log("SalesQuotation cancel query:" + result.toString());
+       ''');
+
     return result;
   }
 
@@ -2811,19 +2542,7 @@ SELECT T1.docentry,T1.basedocentry FROM  salesHeader T1
        Where T1.basedocentry="$docentry" and T1.docstatus=3 and T1.qStatus='C'
        group by T1.docentry,T1.basedocentry
 
-       '''
-//           ''' SELECT soh.docentry,soh.documentno,soh.sapDocentry,
-//       s.lineid,s.itemcode,
-// s.itemname,s.serialbatch,s.quantity,s.price,s.taxrate,s.discperc,s.maxdiscount
-// FROM  SalesOrderHeader soh Inner Join SalesOrderLine s on
-// s.docentry=soh.docentry
-// Inner JOIN SalesLine sl on sl.basedocentry=s.docentry and sl.baselineid=s.lineid
-// where soh.documentno ="$docnum"
-// group by soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
-//         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
-//  soh.customername,soh.taxno,soh.customerpoint,soh.customercode,soh.customeraccbal,soh.doctotal, s.lineid,s.itemcode
-// '''
-        );
+       ''');
     log("SalesOrder cancel query:$result");
     return result;
   }
@@ -2838,17 +2557,6 @@ SELECT T1.docentry,T1.basedocnum,T1.basedocentry FROM  SalesReturnHeader T1
 
        ''');
 
-//         SELECT soh.docentry,soh.documentno,soh.sapDocentry,
-//       s.lineid,s.itemcode,
-// s.itemname,s.serialbatch,s.quantity,s.price,s.taxrate,s.discperc,s.maxdiscount
-// FROM  SalesHeader soh Inner Join SalesLine s on
-
-// s.docentry=soh.docentry
-// Inner JOIN SalesReturnLine sl on sl.basedocentry=s.docentry and sl.baselineid=s.lineid
-// where soh.documentno ="$docnum"
-// group by soh.docentry,soh.documentno,soh.createdateTime,soh.baltopay,
-//         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
-//  soh.customername,soh.taxno,soh.customerpoint,soh.customercode,soh.customeraccbal,soh.doctotal
     log("Resultttttt::::$result");
     return result;
   }
@@ -2857,39 +2565,28 @@ SELECT T1.docentry,T1.basedocnum,T1.basedocentry FROM  SalesReturnHeader T1
     Database db,
     String docnum,
   ) async {
-    // log("donumdonum:$docnum");
     final List<Map<String, Object?>> result2 = await db.rawQuery('''
 SELECT T1.docentry,T1.transdocnum,T1.transdocentry FROM  ReceiptHeader T1
       Inner Join salesHeader T2 on T1.transdocentry = T2.docentry 
        Where T1.transdocnum="$docnum" and T1.docstatus=3 and T1.qStatus='C'
        group by T1.docentry,T1.transdocnum,T1.transdocentry
 
-       '''
-
-//         '''SELECT T1.docentry,T1.documentno,T1.customername,T1.customercode,T2.transdocentry,T2.transdocnum FROM  SalesHeader T1
-//       Inner Join ReceiptHeader T2 on T1.docentry = T2.transdocentry And T1.documentno = T2.transdocnum
-//        Where T1.documentno="$docnum"
-
-// '''
-        );
-//log("SalestoReceipt result2:" + result2.toString());
+       ''');
 
     return result2;
   }
 
   static Future getSalesRetheadCkoutRefund(
       Database db, String customercode) async {
-    // log("customercodecustomercodecustomercode:" + customercode.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from SalesReturnHeader where docstatus = '3' and customercode='$customercode'
   ''');
-    // log("SalesReturnHeader checkout:: " + result.toList().toString());
+
     return result;
   }
 
   static Future<List<Map<String, Object?>>> salesRetHeadCardCodetorefund(
       Database db, String customercode, String custname) async {
-    // log("customercode:$customercode");
     final List<Map<String, Object?>> result2 = await db.rawQuery(
         '''SELECT T1.docentry,T1.documentno,T1.customername,T1.customercode,T1.customerphono,
         T1.customeremail,T1.customeraccbal,T1.customerpoint,T1.taxno,T1.billaddressid,
@@ -2900,16 +2597,12 @@ SELECT T1.docentry,T1.transdocnum,T1.transdocentry FROM  ReceiptHeader T1
       Left Join RefundHeader T2 on T1.docentry = T2.transdocentry And T1.documentno = T2.transdocnum 
        Where T1.customercode="$customercode" or T1.customername="$custname" and  not exists(select T2.transdocnum From RefundHeader T2 where T2.transdocnum=T1.documentno) 
         
-'''); //where docentry="16"
-    // log("SalesRet cardcode result2:" + result2.toString());
+''');
 
     return result2;
   }
 
   static deleterefund(Database db) async {
-    // List<Map<String, Object?>> sh = await db.rawQuery('''
-    // select *from RefundHeader
-    //  ''');
     await db.rawQuery('''
     delete from RefundHeader 
      ''');
@@ -2919,7 +2612,6 @@ SELECT T1.docentry,T1.transdocnum,T1.transdocentry FROM  ReceiptHeader T1
     await db.rawQuery('''
     delete from RefundLine1
      ''');
-    // log('deleted doc entry no:' + sh.toString());
   }
 
   static Future<List<Map<String, Object?>>> adjustcreditamt(
@@ -2927,7 +2619,7 @@ SELECT T1.docentry,T1.transdocnum,T1.transdocentry FROM  ReceiptHeader T1
     final List<Map<String, Object?>> result2 = await db.rawQuery('''
 Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' and docentry in
  (Select DocEntry from SalesReturnHeader Where basedocentry=$docentry)''');
-    //log("Adjust Amt::$result2");
+
     return result2;
   }
 
@@ -2940,16 +2632,12 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
     });
     await batch.commit();
 
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  SalesReturnHeader''');
-    //log("SalesReturnHeader Insert:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM SalesReturnHeader  ORDER BY docentry DESC limit 1
      ''');
-    //log("SalesReturnHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("SalesReturnHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -2957,9 +2645,8 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       Database db, String docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnHeader WHERE docentry="$docentry"''');
-//log("SalesReturnHeader Len: " + result.toString());
+
     return List.generate(result.length, (i) {
-      //log(" result updatedDatetime::${result[i]['updatedDatetime'].toString()}");
       return SalesReturnTModelDB(
         docentry: result[i]['docentry'].toString(),
         doctype: result[i]['doctype'].toString(),
@@ -2967,7 +2654,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
         amtpaid: result[i]['amtpaid'].toString(),
         country: result[i]['country'].toString(),
         uDeviceId: result[i]['U_DeviceId'].toString(),
-
         city: result[i]['city'].toString(),
         state: result[i]['state'].toString(),
         gst: result[i]['gst'].toString(),
@@ -2994,9 +2680,7 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
         docdiscuntpercen: result[i]['docdiscuntpercen'].toString(),
         terminal: result[i]['terminal'].toString(),
         basedocentry: null,
-        //  result[i]['basedocentry'].toString(),
         basedocnum: null,
-        //  result[i]['basedocnum'].toString(),
         docstatus: result[i]['docstatus'].toString(),
         doctotal: result[i]['doctotal'].toString(),
         lastupdateIp: result[i]['lastupdateIp'].toString(),
@@ -3027,9 +2711,7 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
         sapInvoicedocnum: result[i]['sapInvoicedocnum'].toString(),
         qStatus: 'No',
         sapDocentry: null,
-        // result[i]['sapDocentry'] != null ? result[i]['sapDocentry'].toString() : null,
         sapDocNo: null,
-        // result[i]['sapDocentry'] != null ? result[i]['sapDocentry'].toString() : null,
         totalltr: double.parse(result[i]['totalltr'].toString()),
         totalweight: double.parse(result[i]['totalweight'].toString()),
       );
@@ -3044,9 +2726,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       batch.insert("SalesReturnPay", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  SalesReturnPay''');
-    //log("SalesReturnPay Insert:" + result1.toString());
   }
 
   static Future insertSalesReturnLine(
@@ -3057,19 +2736,14 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       batch.insert("SalesReturnLine", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  SalesReturnLine''');
-    // //log("SalesReturnLine Insert:" + result1.toString());
   }
-
-// LED-150K-250K-2Yr
 
   static Future<List<Map<String, Object?>>> getSalesRetCkoutHeadDB(
     Database db,
   ) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesReturnHeader where docstatus = "3"''');
-    // log('SalesReturnHeader getdata' + result.toString());
+
     return result;
   }
 
@@ -3084,7 +2758,7 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnHeader where docentry="$docentry" and docstatus="3"''');
-//log('SalesReturnHeader getdata' + result.toString());
+
     return result;
   }
 
@@ -3092,15 +2766,12 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnPay where docentry="$docentry"''');
-    //log("SalesRetLine getdata:" + result.toString());
 
     return result;
   }
 
   static Future<List<Map<String, Object?>>> grtSalesRetLineDB(
       Database db, int? docentry) async {
-//log("docentrydocentrydocentry:" + docentry.toString());
-
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnLine where docentry="$docentry"''');
     log("SalesReturnLine getdata:" + result.toString());
@@ -3111,15 +2782,13 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       Database db, String docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnLine WHERE docentry="$docentry"''');
-//log("SalesReturnLine Len: " + result.toString());
+
     return List.generate(result.length, (i) {
-      //log('result line UpdatedDatetime::${result[i]["UpdatedDatetime"].toString()}');
       return SalesReturnLineTDB(
         docentry: result[i]['docentry'].toString(),
         createdUser: result[i]["createdUser"].toString(),
         baselineID: result[i]["baselineID"].toString(),
         basedocentry: null,
-        //  result[i]["basedocentry"].toString(),
         basic: result[i]["basic"].toString(),
         itemname: result[i]["itemname"].toString(),
         branch: result[i]["branch"].toString(),
@@ -3149,7 +2818,7 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       Database db, String docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnHeader where  basedocentry="$docentry" and docstatus=3''');
-//log('SalesReturnHeader getdata' + result.toString());
+
     return result;
   }
 
@@ -3157,8 +2826,7 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
       Database db, String bsdocentry, String docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesReturnLine where basedocentry="$bsdocentry" and docentry="$docentry" ''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
-//log("SalesReturnLine getdata XX:" + result.toString());
+
     return result;
   }
 
@@ -3167,38 +2835,28 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
     final List<Map<String, Object?>> result =
         await db.rawQuery(''' UPDATE SalesQuotationHeader SET docstatus ="4"
  WHERE sapDocentry ="$sapdocentry" ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM  SalesQuotationHeader WHERE  sapDocentry ="$sapdocentry"''');
 
-//log("Update SalesQuotationHeader Docstatus Details" + result2.toString());
     return result;
   }
 
   static Future updateSalesOrderclosedocsts(
       Database db, String sapdocentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE SalesOrderHeader SET docstatus ="4"
  WHERE sapDocentry ="$sapdocentry" ''');
-    // final List<Map<String, Object?>> result2 =
+
     await db.rawQuery(
         '''SELECT * FROM  SalesOrderHeader WHERE sapDocentry ="$sapdocentry"''');
   }
 
   static Future updateSOrdercApprovalsts(Database db, String docentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE SalesOrderHeader SET docstatus ="5"
  WHERE docentry ="$docentry" ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM  SalesOrderHeader WHERE docentry ="$docentry"''');
   }
 
   static Future updateSOrdercErrorApprovalsts(
       Database db, String docentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE SalesOrderHeader SET docstatus ="6"
  WHERE docentry ="$docentry" ''');
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM  SalesOrderHeader WHERE docentry ="$docentry"''');
   }
 
   static Future getSoApprovalsts(
@@ -3209,7 +2867,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
         await db.rawQuery('''SELECT * FROM  SalesOrderHeader  
  WHERE  U_DeviceId= "$deviceidd" and  docstatus ="5" ''');
 
-    // log(" SalesOrderApprovl Docstatus Details" + result.toString());
     return result;
   }
 
@@ -3238,7 +2895,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
 
   static Future updateSaleInvoiceclosedocsts(
       Database db, String sapdocentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE SalesHeader SET docstatus ="4"
  WHERE sapDocentry ="$sapdocentry" ''');
     final List<Map<String, Object?>> result2 = await db.rawQuery(
@@ -3248,7 +2904,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
   }
 
   static Future updateSaleRetclosedocsts(Database db, String docentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE SalesReturnHeader SET docstatus ="4"
  WHERE  docentry ="$docentry" ''');
     final List<Map<String, Object?>> result2 = await db.rawQuery(
@@ -3258,7 +2913,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
   }
 
   static Future updateStkReqclosedocsts(Database db, String sapdocentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE StockReqHDT SET docstatus ="4"
  WHERE sapDocentry ="$sapdocentry" ''');
     final List<Map<String, Object?>> result2 = await db.rawQuery(
@@ -3268,7 +2922,6 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
   }
 
   static Future updateExpclosedocsts(Database db, String sapdocentry) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(''' UPDATE Expense SET docstatus ="4"
  WHERE sapDocentry ="$sapdocentry" ''');
     final List<Map<String, Object?>> result2 = await db.rawQuery(
@@ -3279,15 +2932,10 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
 
   static Future updatesalesreturnsts(
       Database db, SalesReturnTModelDB salesreqtable, String custcode) async {
-    // final List<Map<String, Object?>> result =
     await db.rawQuery(
         ''' UPDATE SalesReturnHeader SET docstatus ="${salesreqtable.docstatus}"
       
  WHERE customercode ="$custcode" ''');
-    // final List<Map<String, Object?>> result2 =
-    //     await db.rawQuery('''SELECT * FROM  SalesReturnHeader''');
-
-    //log("Update SalesReturnHeader Details" + result2.toString());
   }
 
   static Future<List<Map<String, Object?>>> getSalesRetheadholdDB(
@@ -3300,11 +2948,10 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
   }
 
   static Future deleteSalesRetHold(Database db, String docEntry) async {
-    // List<Map<String, Object?>> sh =
     await db.rawQuery('''
     select *from SalesReturnHeader 
      ''');
-    //log('deleted doc entry no:' + docEntry.toString());
+
     await db.rawQuery('''
     delete from SalesReturnHeader where docentry = $docEntry
      ''');
@@ -3314,38 +2961,24 @@ Select ifnull(amt,0) adjustedamt from SalesReturnPay where rcmode='OnAccount' an
     await db.rawQuery('''
     delete from SalesReturnLine where docentry = $docEntry
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    // List<Map<String, Object?>> sh2 = await db.rawQuery('''
-    // select *from SalesReturnHeader
-    //  ''');
-    //log("SH2" + sh2.toString());
   }
 
   static Future viewsalesret(Database db) async {
     await db.rawQuery('''Delete  FROM  SalesHeader''');
-//log("SalesOrderHeader getdata:" + result1.toString());
 
     await db.rawQuery('''Delete FROM  SalesLine ''');
-//log("SalesOrderLine getdata:" + result2.toString());
 
     await db.rawQuery('''Delete FROM  SalesPay ''');
-//log("SalesOrdervPay getdata:" + result3.toString());
   }
 
   static Future dltsalesret(Database db) async {
     await db.rawQuery('''delete FROM  SalesReturnHeader''');
-    // log("SalesReturnHeader getdata:" + result1.toString());
 
     await db.rawQuery('''delete  FROM  SalesReturnLine ''');
-    // log("SalesRetLine getdata:" + result2.toString());
 
-    // final List<Map<String, Object?>> result3 =
     await db.rawQuery('''delete FROM  SalesReturnPay ''');
-    // log("SalesReturnPay getdata:" + result3.toString());
   }
 
-//payment receipt
   static Future<List<Map<String, Object?>>> salespaymentreceipt(
       Database db, String documentno) async {
     final List<Map<String, Object?>> result2 = await db.rawQuery(
@@ -3363,8 +2996,8 @@ Group by T1.docentry, T1.quantity,T1.netlinetotal  Having T1.quantity - IFNull(s
 group by docentry) SB on SB.docentry = SH.docentry
 left join (select transDocEnty,transtype,sum(TransAmount) TransAmount from  ReceiptLine1 RL
 Inner Join ReceiptHeader R on R.docentry = RL.docentry Where R.docstatus=3 GROUP By transDocEnty,transtype) sy on sy.transDocEnty = SP.docentry and sy.transtype=sh.doctype
-where SH.documentno="$documentno" and SH.sapDocNo IS NOT NULL and SH.docstatus='3' and SP.rcmode ='Credit' and SP.rcamount -ifnull(sy.TransAmount,0)>0 '''); //w
-//log("SalesCredit:" + result2.toString());
+where SH.documentno="$documentno" and SH.sapDocNo IS NOT NULL and SH.docstatus='3' and SP.rcmode ='Credit' and SP.rcamount -ifnull(sy.TransAmount,0)>0 ''');
+
     return result2;
   }
 
@@ -3373,7 +3006,7 @@ where SH.documentno="$documentno" and SH.sapDocNo IS NOT NULL and SH.docstatus='
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from SalesHeader where docstatus = '3' and customercode='$customercode' or customername='$custname'
   ''');
-//log("SalesHeader checkout:: " + result.toList().toString());
+
     return result;
   }
 
@@ -3381,8 +3014,6 @@ where SH.documentno="$documentno" and SH.sapDocNo IS NOT NULL and SH.docstatus='
     Database db,
     String custcode,
   ) async {
-    //log("Cusotmer Code:" + custcode);
-
     final List<Map<String, Object?>> result2 = await db.rawQuery(
         '''SELECT SH.docentry,SH.documentno,SH.sapDocentry,SH.customername,SH.customercode,SH.doctype,SH.docstatus,SH.sodocno, SH.createdateTime,
   SP.docentry, SP.rcmode,SP.rcamount, 
@@ -3403,11 +3034,9 @@ Inner Join ReceiptHeader R on R.docentry = RL.docentry Where R.docstatus=3 GROUP
 where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus='3' and SP.rcmode ='Credit' and SP.rcamount -ifnull(sy.TransAmount,0)>0
 ''');
 
-//log("Payment Credit List:" + result2.toString());
     return result2;
   }
 
-//Insert payment Receipt
   static Future insertRecieptHeader(
       Database db, List<ReceiptHeaderTDB> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -3416,16 +3045,13 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       batch.insert("ReceiptHeader", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  ReceiptHeader''');
-//log("ReceiptHeader Insert:" + result1.toString());
 
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM ReceiptHeader  ORDER BY docentry DESC limit 1
      ''');
-    //log("ReceiptHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("ReceiptHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -3437,9 +3063,6 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       batch.insert("ReceiptLine1", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  ReceiptLine1''');
-    //log("ReceiptLine1 Insert:" + result1.toString());
   }
 
   static Future insertReciepLine2(
@@ -3450,12 +3073,8 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       batch.insert("ReceiptLine2", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  ReceiptLine2''');
-    //log("ReceiptLine2 Insert:" + result1.toString());
   }
 
-//refund
   static Future insertRefundHeader(
       Database db, List<RefundHeaderTDB> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -3464,15 +3083,13 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       batch.insert("RefundHeader", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  RefundHeader''');
 
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM RefundHeader  ORDER BY docentry DESC limit 1
      ''');
-    // log("ReceiptHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    // log("RefundHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -3484,9 +3101,6 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       batch.insert("RefundLine1", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  RefundLine1''');
-    // log("RefundLine1 Insert:" + result1.toString());
   }
 
   static Future insertRefundPay(
@@ -3497,17 +3111,13 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       batch.insert("RefundPay", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  RefundPay''');
-    // log("insertRefundPay Insert:" + result1.toString());
   }
 
   static Future<List<Map<String, Object?>>> getRefundHeaderDB(
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  RefundHeader where docentry=$docentry''');
-    //log("SELECT * FROM  RefundHeader where docentry=$docentry'" +
-    // result.toString());
+
     return result;
   }
 
@@ -3515,8 +3125,7 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  RefundLine1 where docentry=$docentry''');
-    //log("SELECT * FROM  ReceiptLine1 where docentry=$docentry'" +
-    // result.toString());
+
     return result;
   }
 
@@ -3524,8 +3133,6 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  RefundPay where docentry=$docentry''');
-    //log("SELECT * FROM  ReceiptLine2 where docentry=$docentry'" +
-    // result.toString());
 
     return result;
   }
@@ -3533,16 +3140,11 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
   static Future<List<Map<String, Object?>>> getRefunOnHold(Database db) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  RefundHeader where docstatus = "1"''');
-    // log("SELECT * FROM  RefundHeader on hold" + result.toString());
 
     return result;
   }
 
   static Future deletRefundHold(Database db, String docEntry) async {
-    // List<Map<String, Object?>> sh = await db.rawQuery('''
-    // select *from RefundHeader
-    //  ''');
-    //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from RefundHeader where docentry = $docEntry
      ''');
@@ -3552,14 +3154,7 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
     await db.rawQuery('''
     delete from RefundPay where docentry = $docEntry
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    // List<Map<String, Object?>> sh2 = await db.rawQuery('''
-    // select *from ReceiptHeader
-    //  ''');
-    //log("SH2" + sh2.toString());
   }
-  // get Payment Receipt
 
   static Future<List<Map<String, Object?>>> getReceiptHeaderDB(
       Database db, int docentry) async {
@@ -3572,8 +3167,7 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  ReceiptLine1 where docentry=$docentry''');
-//log("SELECT * FROM  ReceiptLine1 where docentry=$docentry'" +
-    // result.toString());
+
     return result;
   }
 
@@ -3581,22 +3175,16 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  ReceiptLine2 where docentry=$docentry''');
-//log("SELECT * FROM  ReceiptLine2 where docentry=$docentry'" +
-    // result.toString());
 
     return result;
   }
 
   static Future deletereceipt(Database db) async {
-    // final List<Map<String, Object?>> result1 =
     await db.rawQuery('''delete FROM  ReceiptLine1''');
-    // log("ReceiptLine1 delete:" + result1.toString());
-    // final List<Map<String, Object?>> result13 =
+
     await db.rawQuery('''delete FROM  ReceiptLine2''');
-    //log("ReceiptLine2 delete:" + result13.toString());
-    // final List<Map<String, Object?>> result12 =
+
     await db.rawQuery('''delete FROM  ReceiptHeader''');
-    //log("ReceiptHeader delete:" + result12.toString());
   }
 
   getreceiptcustomerdetails(
@@ -3606,7 +3194,7 @@ where SH.customercode = '$custcode'and SH.sapDocNo IS NOT NULL and SH.docstatus=
         await db.rawQuery('''select t0.*,t2.* from ReceiptHeader t0 
 INNER JOIN CustomerMaster t1 on t0.customer=t1.customername
 INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
-    //log('getreceiptcustomerdetails getdata' + result.toString());
+
     return result;
   }
 
@@ -3624,7 +3212,7 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  ReceiptHeader''');
-    //log('ReceiptHeader getdata alert' + result.toString());
+
     return result;
   }
 
@@ -3640,15 +3228,11 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  ReceiptLine2 where docentry="$docentry"''');
-    // log("ReceiptLine2 getdata:" + result.toString());
+
     return result;
   }
 
   static Future deletepayreceipttHold(Database db, String docEntry) async {
-    // List<Map<String, Object?>> sh = await db.rawQuery('''
-    // select *from ReceiptHeader
-    //  ''');
-    //log('deleted doc entry no:' + docEntry.toString());
     await db.rawQuery('''
     delete from ReceiptHeader where docentry = $docEntry
      ''');
@@ -3658,19 +3242,10 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
     await db.rawQuery('''
     delete from ReceiptLine2 where docentry = $docEntry
      ''');
-
-    // //log("Branch *: "+result3.toList().toString());
-    // List<Map<String, Object?>> sh2 = await db.rawQuery('''
-    // select *from ReceiptHeader
-    //  ''');
-    //log("SH2" + sh2.toString());
   }
-
-  //Deposit
 
   static Future<int?> insertDepositHeader(
       Database db, List<DepositHeaderTDB> values) async {
-    //log("Deposit header");
     var data = values.map((e) => e.toMap()).toList();
     var batch = db.batch();
     data.forEach((es) async {
@@ -3678,28 +3253,22 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
     });
     await batch.commit();
 
-//     final List<Map<String, Object?>> result1 =
-//         await db.rawQuery('''SELECT * FROM  tableDepositHeader''');
-//log("tableDepositHeader:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM tableDepositHeader  ORDER BY docentry DESC limit 1
      ''');
-    //log("tableDepositHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("tableDepositHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
   static Future<int?> getDocNOforsettled(
       Database db, String colName, tableName) async {
-    //log("result ");
     List<Map<String, Object?>> result = await db.rawQuery('''
     select IFNULL(MAX($colName)+1,1) as docno   from $tableName
      ''');
-    //log("result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
 
     return count;
   }
@@ -3708,7 +3277,7 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
       Database db, String paymodetype, String createdatetime) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  DepositLine where paymodetype="$paymodetype" and createdatetime="$createdatetime" ''');
-//log("FFFFFFFF" + result.toString());
+
     return result;
   }
 
@@ -3720,18 +3289,12 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
       batch.insert("DepositLine", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  DepositLine''');
-//log("tableDepositLine:" + result1.toString());
   }
 
   static deleteDeposit(Database db) async {
-    // final List<Map<String, Object?>> result1 =
     await db.rawQuery('''DELETE FROM DepositLine''');
-    //log("tableDepositLine:" + result1.toString());
-    // final List<Map<String, Object?>> result2 =
+
     await db.rawQuery('''DELETE FROM tableDepositHeader''');
-    //log("tableDepositHeader:" + result2.toString());
   }
 
   static Future<List<Map<String, Object?>>> getSalesHeaderDBforsellement(
@@ -3746,7 +3309,6 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
       Database db, int? docentry, String rcmode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  SalesPay where docentry=$docentry and rcmode="$rcmode"''');
-    //log("$result");
 
     return result;
   }
@@ -3756,12 +3318,10 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  SalesPay''');
-    //log("$result");
 
     return result;
   }
 
-  //expences
   static Future<int?> insertExpense(
       Database db, List<ExpenseDBModel> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -3773,9 +3333,9 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM Expense ORDER BY docentry DESC limit 1
      ''');
-    //log("Expense result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("Expense count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -3808,29 +3368,14 @@ INNER JOIN CustomerMasterAddress t2 on t2.custcode=t1.customercode''');
 
   static Future<void> updtExcepSapDetSalHead(
       Database db, int docentry, String status, String tablename) async {
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update $tablename set 
    qStatus = '$status'
 where docentry = $docentry 
      ''');
-    //   List<Map<String, Object?>> result2 = await db.rawQuery('''
-    //  select * from $tablename where docentry = $docentry
-    //    ''');
-    // log("updated qStatus details *: " + result2.toList().toString());
-
-    //   List<Map<String, Object?>> result3 = await db.rawQuery('''
-    //  select * from $tablename where docentry = $docentry
-    //    ''');
-//log("select * from $tablename : " + result3.toList().toString());
   }
 
   static Future deleteExpenseHold(Database db, String docEntry) async {
-    // List<Map<String, Object?>> sh = await db.rawQuery('''
-    // select * from Expense
-    //  ''');
-    //log('deleted doc entry no:' + docEntry.toString());
-    //log("SH1" + sh.toString());
     await db.rawQuery('''
     delete from Expense where docentry = $docEntry
      ''');
@@ -3839,7 +3384,6 @@ where docentry = $docentry
     select *from Expense 
 
      ''');
-//log("SH2" + sh2.toString());
   }
 
   static Future deleteExpense(
@@ -3861,17 +3405,13 @@ where docentry = $docentry
 where docentry = $docentry 
      ''');
 
-    // List<Map<String, Object?>> result2 =
     await db.rawQuery('''
    select * from $tablename where docentry = $docentry 
      ''');
-    // log("updated qStatus details***: " + result2.toList().toString());
   }
 
   static Future<void> updtSapDetSalHead(Database db, int sapdocEntry,
       int sapDocno, int docentry, String tablename) async {
-//log("tablenametablename:: " + tablename);
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update $tablename set sapDocentry = $sapdocEntry , sapDocNo = $sapDocno , qStatus = 'C'
 where docentry = $docentry 
@@ -3886,8 +3426,6 @@ where docentry = $docentry
 
   static Future<void> updtSapStkReqHead(Database db, int sapdocEntry,
       int sapDocno, int docentry, String tablename) async {
-//log("tablenametablename:: " + tablename);
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update $tablename set sapDocentry = $sapdocEntry , sapDocNo = $sapDocno , qStatus = 'O'
 where docentry = $docentry 
@@ -3902,25 +3440,18 @@ where docentry = $docentry
 
   static Future<void> updateRcSapDetSalpay(Database db, int docentry,
       int rcDocno, int rcdocentry, String tablename) async {
-//log("tablenametablename:: " + tablename);
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update $tablename set rcdocentry = $rcdocentry , rcnumber = $rcDocno
 where docentry = $docentry 
      ''');
 
-    // List<Map<String, Object?>> result2 =
     await db.rawQuery('''
      select * from $tablename where docentry = $docentry
        ''');
-
-//log("updated RC details in $tablename *: " +
-    // result2.toList().toString());
   }
 
   static Future<void> updtAprvltoDocSalHead(
       Database db, int sapdocEntry, int sapDocno, int docentry) async {
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update SalesOrderHeader set sapDocentry = $sapdocEntry , sapDocNo = $sapDocno , qStatus = 'C', docstatus='3'
 where docentry = $docentry 
@@ -3936,7 +3467,6 @@ where docentry = $docentry
 
   static Future<void> updtAprvltoDocSalRetHead(
       Database db, int sapdocEntry, int sapDocno, int docentry) async {
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update SalesReturnHeader set sapDocentry = $sapdocEntry , sapDocNo = $sapDocno , qStatus = 'C', docstatus='3'
 where docentry = $docentry 
@@ -3952,7 +3482,6 @@ where docentry = $docentry
 
   static Future<void> updtAprvltoDocExpenseHead(
       Database db, int sapdocEntry, int sapDocno, int docentry) async {
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update Expense set sapDocentry = $sapdocEntry , sapDocNo = $sapDocno , qStatus = 'C', docstatus='2'
 where docentry = $docentry 
@@ -3966,30 +3495,18 @@ where docentry = $docentry
         result2.toList().toString());
   }
 
-//
   static Future<void> updtCustcodeSalHead(
       Database db, String sapcustcode, int docentry, String tablename) async {
-//log("tablenametablename:: " + tablename);
-    // List<Map<String, Object?>> result =
     await db.rawQuery('''
    update $tablename set customercode = $sapcustcode,
 where docentry = $docentry 
      ''');
 
-    //   List<Map<String, Object?>> result2 = await db.rawQuery('''
-    //  select * from $tablename where docentry = $docentry
-    //    ''');
-
-    // log("updated qStatus details in $tablename*: " +
-    // result2.toList().toString());
-
     List<Map<String, Object?>> result3 = await db.rawQuery('''
    select * from $tablename 
      ''');
-    // log("qStatus $tablename*: " + result3.toList().toString());
   }
 
-//sotck outwared
   static Future updateQTYBatch(Database db, int docEntry, int lineno,
       String itemcode, String serialbatch) async {
     await db.rawQuery('''
@@ -3997,33 +3514,18 @@ where docentry = $docentry
 and lineno = $lineno and itemcode = '$itemcode' and serialBatch = '$serialbatch') -1
 where baseDocentry = $docEntry and lineno = $lineno and itemcode = '$itemcode' and serialBatch = '$serialbatch'
      ''');
-    //   final List<Map<String, Object?>> result = await db.rawQuery('''
-    //  select * from StockOutBatchDB
-    //    '''); // //log("Branch *: "+result3.toList().toString());
-    //  log("batch table"+result.toString());
   }
 
-  static Future<List<Map<String, Object?>>> getStOutCheckScanData(
-      //ch
-      Database db,
-      int? docentry,
-      int? lineno,
-      String? itemcode,
-      String? serialbatch) async {
+  static Future<List<Map<String, Object?>>> getStOutCheckScanData(Database db,
+      int? docentry, int? lineno, String? itemcode, String? serialbatch) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         ''' select * from StockOutBatchDB where baseDocentry = $docentry and lineno = $lineno and
          itemcode = '$itemcode' and serialBatch='$serialbatch' ''');
-    // log("get updatated Batch Data:" + result.toString());
-    //log("query" +
-    // '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and itemcode = '$itemcode' ''');
+
     return result;
-    //old
-    //  '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    //     itemcode = '$itemcode' '''
   }
 
   static Future<List<Map<String, Object?>>> getStOutCheckScanData2(
-    //ch
     Database db,
     int? docentry,
     int? lineno,
@@ -4033,31 +3535,16 @@ where baseDocentry = $docEntry and lineno = $lineno and itemcode = '$itemcode' a
         await db.rawQuery(''' select * from StockOutBatchDB where 
     baseDocentry = $docentry and  itemcode = '$itemcode'  ''');
 
-//log("test:2 StockOutBatchDB:" + result.toString());
-
-    //log("query" +
-    // '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and itemcode = '$itemcode' ''');
     return result;
-    //old
-    //  '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    //     itemcode = '$itemcode' '''
   }
 
   static Future deletAlreadyHoldDataLine(
       Database db, int basedocentry, int docentry, String itemcode) async {
-    // await db.rawQuery('''
-    // DELETE  FROM StockOutLineDB where baseDocentry = $docentry ''');
-    // await db.rawQuery('''
-    // DELETE  FROM StockOutBatchDB where docentry = $docentry ''');
     await db.rawQuery('''
     DELETE  FROM StockOutLineDB where baseDocentry = $basedocentry and itemcode="$itemcode" and docentry=$docentry ''');
   }
 
   static Future deletAlreadyHoldData(Database db, int docentry) async {
-    // await db.rawQuery('''
-    // DELETE  FROM StockOutLineDB where baseDocentry = $docentry ''');
-    // await db.rawQuery('''
-    // DELETE  FROM StockOutBatchDB where docentry = $docentry ''');
     await db.rawQuery('''
     DELETE  FROM StockOutHeaderDataDB where baseDocentry = $docentry and docstatus = "1"''');
   }
@@ -4078,12 +3565,7 @@ where baseDocentry = $docEntry and lineno = $lineno and itemcode = '$itemcode' a
 and lineno = $lineno and itemcode = '$itemcode' and serialBatch='$serialbatch') +1
 where baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch='$serialbatch'
      ''');
-    //   List<Map<String, Object?>> result2 = await db.rawQuery('''
-    //  select * From StockOutBatchDB
-    //    ''');
-    //   log("Batch Table docentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch='$serialbatch'::" +
-    //       result2.toList().toString());
-    //   log("Update::" + result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -4098,8 +3580,7 @@ where baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' a
     List<Map<String, Object?>> result2 = await db.rawQuery('''
      select * From StockInBatchDB 
        ''');
-//log("efgh::" + result2.toList().toString());
-    //log("abcd::" + result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -4112,10 +3593,6 @@ where baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' a
       batch.insert("StockOutBatchDB", es);
     });
     await batch.commit();
-    // List<Map<String, Object?>> result = await db.rawQuery('''
-    // select * from StockOutBatchDB
-    //  ''');
-//log("StockOutBatchDB :: " + result.toList().toString());
   }
 
   static Future updateSTOUTHeader(Database db, String updatedDatetime,
@@ -4140,9 +3617,9 @@ where baseDocentry = $docentry
     List<Map<String, Object?>> result = await db.rawQuery('''
      select * from StockOutHeaderDataDB where baseDocentry = $docentry
      ''');
-//log("StockOutHeaderDataDByy result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("StockReqHDT count:: " + count.toString());
+
     return result;
   }
 
@@ -4151,7 +3628,6 @@ where baseDocentry = $docentry
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockOutBatchDB where docentry = $docentry and baseDocentry=$baseDocentry
      ''');
-    //  //log("StockReqHDT hold:: "+result.toList().toString());
 
     return result;
   }
@@ -4161,9 +3637,9 @@ where baseDocentry = $docentry
     List<Map<String, Object?>> result = await db.rawQuery('''
      select * from StockOutLineDB where docentry = $docentry and baseDocentry = $baseDocentry and baseDocline = $baseDocentry and itemcode = '$itemcode'
      ''');
-    //log("StockReqHDT result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //log("StockReqHDT count:: " + count.toString());
+
     return result;
   }
 
@@ -4175,10 +3651,6 @@ where baseDocentry = $docentry
       batch.insert("StockOutLineDB", es);
     });
     await batch.commit();
-    // List<Map<String, Object?>> result = await db.rawQuery('''
-    // select * from StockOutLineDB
-    //  ''');
-    //log("result:: " + result.toList().toString());
   }
 
   static Future<int?> insertStockOutheader(
@@ -4190,16 +3662,12 @@ where baseDocentry = $docentry
     });
     await batch.commit();
 
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  StockOutHeaderDataDB''');
-    // log("StockOutHeaderDataDB:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM StockOutHeaderDataDB  ORDER BY docentry DESC limit 1
      ''');
-    // //log("StockOutHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    // //log("StockOutHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -4216,8 +3684,6 @@ where baseDocentry = $docentry
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockSnap where serialbatch = "$name"
      ''');
-
-    //log("select * from StockSnap where serialbatch = '$name'::::$result");
 
     return List.generate(result.length, (i) {
       return StockSnapTModelDB(
@@ -4252,7 +3718,6 @@ where baseDocentry = $docentry
   }
 
   static Future<List<Map<String, Object?>>> getStInCheckScanData2(
-    //ch
     Database db,
     int? docentry,
     int? lineno,
@@ -4265,17 +3730,8 @@ where baseDocentry = $docentry
 
     final List<Map<String, Object?>> result = await db.rawQuery(
         ''' select * from StockInBatchDB where baseDocentry = $docentry and  itemcode = '$itemcode'  ''');
-//log("test1  docentry = $docentry and  itemcode = '$itemcode':" +
-    // result.toString());
-//log("StockInLineDB:2==" + result2.toString());
-//log("StockInBatchDB:2==" + result3.toString());
 
-    //log("query" +
-    // '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and itemcode = '$itemcode' ''');
     return result;
-    //old
-    //  '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    //     itemcode = '$itemcode' '''
   }
 
   static Future<List<Map<String, Object?>>> updateStInBachInHoldButton(
@@ -4287,34 +3743,26 @@ where baseDocentry = $docentry
       String serialBatch) async {
     List<Map<String, Object?>> result = await db.rawQuery(
         ''' update StockInBatchDB set quantity= $qty , serialBatch= '$serialBatch' where baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch= '$serialBatch'     ''');
-    // List<Map<String, Object?>> result2 =
-    //     await db.rawQuery(''' select * from StockOutBatchDB ''');
-    // log("Batch Table Updated:::" + result2.toString());
 
     return result;
   }
 
   static Future<List<Map<String, Object?>>> getBatchInOutwardStIn2(
       Database db, int? docentry, int? baseDocentry, String? itemcode) async {
-    final List<Map<String, Object?>> result = await db.rawQuery(
-        '''  Select * from StockOutBatchDB  '''); //where docentry="16"
+    final List<Map<String, Object?>> result =
+        await db.rawQuery('''  Select * from StockOutBatchDB  ''');
 
     final List<Map<String, Object?>> result2 = await db.rawQuery(
-        '''  Select * from StockOutBatchDB where docentry =$docentry and itemcode="$itemcode" and baseDocentry=$baseDocentry '''); //where docentry="16"
-    // final List<Map<String, Object?>> result1 = await db
-    //     .rawQuery('''  Select * from StockOutBatchDB '''); //where docentry="16"
-//log("Batch111::::" + result.toString());
+        '''  Select * from StockOutBatchDB where docentry =$docentry and itemcode="$itemcode" and baseDocentry=$baseDocentry ''');
 
-//log("Batch222::::" + result2.toString());
-    // int? count = Sqflite.firstIntValue(result2);
     return result2;
   }
 
   static Future<List<Map<String, Object?>>> getbatchList(
     Database db,
   ) async {
-    final List<Map<String, Object?>> result = await db.rawQuery(
-        '''  Select * from StockOutBatchDB  '''); //where docentry="16"
+    final List<Map<String, Object?>> result =
+        await db.rawQuery('''  Select * from StockOutBatchDB  ''');
     log('StockOutBatchDB::${result}');
     return result;
   }
@@ -4322,9 +3770,8 @@ where baseDocentry = $docentry
   static Future<List<Map<String, Object?>>> getBatchInOutwardStIn(
       Database db, int? docentry, String? itemcode) async {
     final List<Map<String, Object?>> result2 = await db.rawQuery(
-        '''  Select * from StockInBatchDB where docentry =$docentry and itemcode="$itemcode" '''); //where docentry="16"
-    // final List<Map<String, Object?>> result1 = await db
-    //     .rawQuery('''  Select * from StockOutBatchDB '''); //where docentry="16"
+        '''  Select * from StockInBatchDB where docentry =$docentry and itemcode="$itemcode" ''');
+
     log("Batch::::===-----------------" + result2.toString());
     int? count = Sqflite.firstIntValue(result2);
     return result2;
@@ -4340,10 +3787,6 @@ where baseDocentry = $docentry
    update StockOutBatchDB set docentry = $docEntry  where baseDocentry = $baseDocEntry 
 and  itemcode = '$itemcode' 
      ''');
-    //   final List<Map<String, Object?>> result = await db.rawQuery('''
-    //  select * from StockOutBatchDB
-    //    '''); // //log("Branch *: "+result3.toList().toString());
-    //  log("batch table"+result.toString());
   }
 
   static Future<List<Map<String, Object?>>> getStockReq(Database db) async {
@@ -4357,8 +3800,6 @@ where  julianday('now') - julianday(RH.reqtransdate) <3  and RH.sapDocNo IS NOT 
 group by RH.DocEntry,RH.reqfromWhs,RH.docstatus,RH.documentno,RH.reqtransdate,RH.branch,RH.reqtoWhs,RL.LineNo
 Having RL.quantity- IFNull(sum(ODL.scannedQty),0) > 0
  ''');
-//and RH.reqtoWhs="${AppConstant.branch}"
-//log("getStockReq::::" + result.toList().toString());
 
     return result;
   }
@@ -4375,8 +3816,7 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
 					Where  T1.docentry= $docentry  
                     Group by T1.docentry,T1.lineNo,T1.itemcode,T1.serialBatch,T1.quantity,T1.price,T1.taxRate,T1.createdateTime,
 					T1.UpdatedDatetime,T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch
-                    Having T1.quantity- IFNull(sum(ODB.quantity),0) > 0'''); //where docentry="16"
-    // log("SalesLine result2 docentry:" + docentry.toString());
+                    Having T1.quantity- IFNull(sum(ODB.quantity),0) > 0''');
 
     int? count = Sqflite.firstIntValue(result2);
     return result2;
@@ -4386,7 +3826,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     List<Map<String, Object?>> sh = await db.rawQuery('''
     select * from StockOutHeaderDataDB 
      ''');
-    // //log('deleted doc entry no:' + docEntry.toString());
 
     await db.rawQuery('''
     delete from StockOutHeaderDataDB where baseDocentry = '$docEntry'
@@ -4397,11 +3836,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     await db.rawQuery('''
     delete from StockOutBatchDB where docentry = '$docEntry'
      ''');
-    // //log("Branch *: "+result3.toList().toString());
-    // List<Map<String, Object?>> sh2 = await db.rawQuery('''
-    // select *from StockOutHeaderDataDB
-    //  ''');
-    //log("SH2" + sh2.toString());
   }
 
   static Future deleteStOutTable(Database db) async {
@@ -4428,8 +3862,7 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
       Database db, int docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  StockOutHeaderDataDB where docentry=$docentry ''');
-    //log("SELECT * FROM  StockOutHeaderDataDB where docstatus=1" +
-    // result.toString());
+
     return result;
   }
 
@@ -4443,11 +3876,9 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
 
   static Future<List<Map<String, Object?>>> holdStOutLineDB2(
       Database db, int? docentry) async {
-    // final List<Map<String, Object?>> result2 = await db
-    //     .rawQuery('''SELECT * FROM  StockOutLineDB where docentry=$docentry''');
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  StockOutLineDB where docentry=$docentry ''');
-    //log("stoutlinedocentry:" + docentry.toString());
+
     log("stoutline result:" + result.toString());
     return result;
   }
@@ -4473,10 +3904,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     List<Map<String, Object?>> result = await db.rawQuery(
         ''' update StockOutBatchDB set quantity= $qty , serialBatch= '$serialBatch' where baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch= '$serialBatch'
      ''');
-    // List<Map<String, Object?>> result2 =
-    //     await db.rawQuery(''' select * from StockOutBatchDB ''');
-//log("Batch update StockOutBatchDB set quantity= $qty , serialBatch= '$serialBatch' where baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch= '$serialBatch':::" +
-    // result.toString());
 
     return result;
   }
@@ -4486,7 +3913,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     await db.rawQuery('''
     delete from StockOutBatchDB where baseDocentry = $docEntry and itemcode="$itemcode" 
      ''');
-    //log('deleted doc entry no:' + docEntry.toString());
   }
 
   static Future deleteSuspendBatchStIn(Database db, int docEntry) async {
@@ -4499,8 +3925,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     await db.rawQuery('''
     delete from StockInLineDB where baseDocentry = $docEntry
      ''');
-
-    //log('deleted doc entry no:' + docEntry.toString());
   }
 
   static Future deleteStkInward(Database db) async {
@@ -4513,29 +3937,15 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     await db.rawQuery('''
     delete from StockInLineDB 
      ''');
-
-    //log('deleted doc entry no:' + docEntry.toString());
   }
 
-  static Future<List<Map<String, Object?>>> stOutCheckScanData(
-      //ch
-      Database db,
-      int? basedocentry,
-      int? docentry,
-      int? lineno,
-      String? itemcode) async {
+  static Future<List<Map<String, Object?>>> stOutCheckScanData(Database db,
+      int? basedocentry, int? docentry, int? lineno, String? itemcode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''select * from StockOutBatchDB where baseDocentry = $basedocentry and lineno = $lineno and 
         itemcode = '$itemcode' and docentry=$docentry  ''');
-    // log("gjhgjgj111:" + result.toString());
-    //log("query" +
-    // ''' select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    // itemcode = '$itemcode'  and (ifnull(docstatus,'-1')) !='0' ''');
-    return result;
 
-    //old
-    //  '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    //     itemcode = '$itemcode' '''
+    return result;
   }
 
   static Future<List<Map<String, Object?>>> getStockOutHeader(
@@ -4543,7 +3953,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockOutHeaderDataDB where docentry = "$docentry" and docstatus=3
      ''');
-    //  //log("StockReqHDT hold:: "+result.toList().toString());
 
     return result;
   }
@@ -4553,7 +3962,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockOutHeaderDataDB where docentry = "$docentry" and docstatus=3
      ''');
-//log("StockReqHDT hold:: " + result.toList().toString());
 
     return result;
   }
@@ -4567,7 +3975,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     await db.rawQuery('''
     DELETE from StockOutBatchDB where itemcode = '$itemcode'  and docentry=$docEntry
      ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future deleteBatch_STIN(Database db, int docEntry, int lineno,
@@ -4576,7 +3983,6 @@ T1.createdUserID,T1.updateduserid,T1.lastupdateIp,T1.branch, T1.quantity - IFNul
     DELETE from StockInBatchDB where baseDocentry = $docEntry 
 and lineno = $lineno and itemcode = '$itemcode' and serialBatch = '$serialbatch'
      ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future deleteBatch2(
@@ -4585,7 +3991,6 @@ and lineno = $lineno and itemcode = '$itemcode' and serialBatch = '$serialbatch'
     DELETE from StockOutBatchDB where baseDocentry = $docEntry 
 and lineno = $lineno and itemcode = '$itemcode' 
      ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future deleteBatch2_STIN(
@@ -4594,28 +3999,21 @@ and lineno = $lineno and itemcode = '$itemcode'
     DELETE from StockInBatchDB where baseDocentry = $docEntry 
 and lineno = $lineno and itemcode = '$itemcode' 
      ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future<List<Map<String, Object?>>> getBachList(Database db,
       int? docentry, int? lineno, String? itemcode, String? serialBatch) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''select * from StockOutBatchDB where  baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch = '$serialBatch' ''');
-    //log("batchList Erukkutha illaya::" + result.toString());
+
     return result;
   }
 
   static Future<List<Map<String, Object?>>> holdStOutLineDB(
       Database db, int? docentry, String? baseDocentry) async {
-    // log("stoutline baseDocentry:" + baseDocentry.toString());
-
-    // final List<Map<String, Object?>> result2 = await db
-    //     .rawQuery('''SELECT * FROM  StockOutLineDB where docentry=$docentry''');
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  StockOutLineDB where baseDocentry=$baseDocentry and docentry=$docentry ''');
-    //log("stoutlinedocentry:" + docentry.toString());
-//log("stoutline result:" + result.toString());
-    //log("stoutline result:" + result2.toString());
+
     return result;
   }
 
@@ -4623,7 +4021,7 @@ and lineno = $lineno and itemcode = '$itemcode'
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result2 = await db
         .rawQuery('''SELECT * FROM  StockOutLineDB where docentry=$docentry''');
-//log("StockOutLineDB::$result2");
+
     return result2;
   }
 
@@ -4631,54 +4029,26 @@ and lineno = $lineno and itemcode = '$itemcode'
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  StockOutBatchDB where docentry=$docentry''');
-    //log("stoutBatchdocentry:" + docentry.toString());
-    //log("stoutBatch result:" + result.length.toString());
+
     return result;
   }
 
   static Future deletereq(Database db) async {
-//log("delete req");
-    // await db.rawQuery('''
-    // // DELETE  FROM StockReqHDT''');
-    // await db.rawQuery('''
-    // DELETE  FROM StockReqLineT''');
     await db.rawQuery('''
     DELETE  FROM StockOutLineDB''');
     await db.rawQuery('''
     DELETE  FROM StockOutBatchDB''');
     await db.rawQuery('''
     DELETE  FROM StockOutHeaderDataDB''');
-    // await db.rawQuery('''
-    // DELETE  FROM StockInBatchDB''');
-    // await db.rawQuery('''
-    // DELETE  FROM StockInLineDB''');
-    // await db.rawQuery('''
-    // DELETE  FROM StockInHeaderDB''');
   }
-  // stock inward
 
-  static Future<List<Map<String, Object?>>> stInCheckScanData(
-      //ch
-      Database db,
-      int? docentry,
-      int? lineno,
-      String? itemcode,
-      String? serialbatch) async {
+  static Future<List<Map<String, Object?>>> stInCheckScanData(Database db,
+      int? docentry, int? lineno, String? itemcode, String? serialbatch) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''select * from StockInBatchDB where baseDocentry = $docentry and lineno = $lineno and 
         itemcode = '$itemcode' and serialBatch='$serialbatch'  ''');
-    // final List<Map<String, Object?>> result2 =
-    //     await db.rawQuery('''select * from StockInBatchDB   ''');
 
-    //log("gjhgjgj111:" + result.toString());
-    //log("query" +
-    // ''' select * from StockInBatchDB where docentry = $docentry and lineno = $lineno and
-    // itemcode = '$itemcode'  and (ifnull(docstatus,'-1')) !='0' ''' +
-    // result2.toString());
     return result;
-    //old
-    //  '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    //     itemcode = '$itemcode' '''
   }
 
   static Future<List<Map<String, Object?>>> getTrasferQtyStIn(
@@ -4691,11 +4061,7 @@ and lineno = $lineno and itemcode = '$itemcode'
 					Left Join StockInBatchDB ODB on ODB.baseDocentry = T1.docentry And ODB.lineno = T1.lineno  
                     Where  T1.docentry= $docentry and T1.baseDocentry=$basedocEnt
                     Group by T1.docentry,T1.baseDocentry,T1.lineno,T1.itemcode,T1.serialBatch,T1.quantity,T1.branch
-                    Having T1.quantity - IFNull(sum(T2.scannedQty),0) > 0 '''); //where docentry="16"
-    // log("SalesLine result2 result222:" + result2.toString());
-    // final List<Map<String, Object?>> result3 =
-    //     await db.rawQuery('''select * from StockInLineDB '''); //
-//log("Out Line::::" + result2.toString());
+                    Having T1.quantity - IFNull(sum(T2.scannedQty),0) > 0 ''');
 
     int? count = Sqflite.firstIntValue(result2);
     return result2;
@@ -4707,7 +4073,6 @@ and lineno = $lineno and itemcode = '$itemcode'
     DELETE from StockInBatchDB where docentry = $docEntry 
 and lineno = $lineno and itemcode = '$itemcode'
      ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future updateQTYBatchsStIn(
@@ -4717,14 +4082,13 @@ and lineno = $lineno and itemcode = '$itemcode'
 and lineno = $lineno and itemcode = '$itemcode') -1
 where docentry = $docEntry and lineno = $lineno and itemcode = '$itemcode'
      ''');
-    // //log("Branch *: "+result3.toList().toString());
   }
 
   static Future<List<Map<String, Object?>>> getBachListStIn(Database db,
       int? docentry, int? lineno, String? itemcode, String? serialBatch) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''select * from StockInBatchDB where  baseDocentry = $docentry and lineno = $lineno and itemcode = '$itemcode' and serialBatch = '$serialBatch' ''');
-//log("batchList Erukkutha illaya::" + result.toString());
+
     return result;
   }
 
@@ -4749,29 +4113,15 @@ where docentry = $docEntry and lineno = $lineno and itemcode = '$itemcode'
    update StockInBatchDB set docentry = $docEntry  where baseDocentry = $baseDocEntry 
 and  itemcode = '$itemcode' 
      ''');
-    //   final List<Map<String, Object?>> result = await db.rawQuery('''
-    //  select * from StockOutBatchDB
-    //    '''); // //log("Branch *: "+result3.toList().toString());
-    //  log("batch table"+result.toString());
   }
 
-  static Future<List<Map<String, Object?>>> getStInCheckScanData(
-      //ch
-      Database db,
-      int? docentry,
-      int? lineno,
-      String? itemcode,
-      String? serialBatch) async {
+  static Future<List<Map<String, Object?>>> getStInCheckScanData(Database db,
+      int? docentry, int? lineno, String? itemcode, String? serialBatch) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         ''' select * from StockInBatchDB where baseDocentry = $docentry and lineno = $lineno and
          itemcode = '$itemcode' and serialBatch='$serialBatch' ''');
-    //log("gjhgjgj222:" + result.toString());
-    //log("query" +
-    // '''select * from StockInBatchDB where docentry = $docentry and lineno = $lineno and itemcode = '$itemcode' ''');
+
     return result;
-    //old
-    //  '''select * from StockOutBatchDB where docentry = $docentry and lineno = $lineno and
-    //     itemcode = '$itemcode' '''
   }
 
   static Future insertStInBatch(
@@ -4785,7 +4135,6 @@ and  itemcode = '$itemcode'
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockInBatchDB
      ''');
-    // log("StockInBatchDB :: " + result.toList().toString());
   }
 
   static Future<int?> insertStockInheader(
@@ -4797,16 +4146,12 @@ and  itemcode = '$itemcode'
     });
     await batch.commit();
 
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  StockInHeaderDB''');
-//log("StockOutHeaderDataDB:" + result1.toString());
-
     List<Map<String, Object?>> result = await db.rawQuery('''
      SELECT docentry FROM StockInHeaderDB  ORDER BY docentry DESC limit 1
      ''');
-//log("StockOutHeader result:: " + result.toString());
+
     int? count = Sqflite.firstIntValue(result);
-    // //log("StockOutHeader count:: " + count.toString());
+
     return count ?? 0;
   }
 
@@ -4818,10 +4163,6 @@ and  itemcode = '$itemcode'
       batch.insert("StockInLineDB", es);
     });
     await batch.commit();
-    // List<Map<String, Object?>> result = await db.rawQuery('''
-    // select * from StockInLineDB
-    //  ''');
-    // log("result:: " + result.toList().toString());
   }
 
   static Future<List<Map<String, Object?>>> getHoldStInHeadDB(
@@ -4829,22 +4170,16 @@ and  itemcode = '$itemcode'
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  StockInHeaderDB
  where docstatus="1"''');
-    // log("SELECT * FROM  StockInHeaderDB where docstatus=1" + result.toString());
+
     log('getHoldStInHeadDB::${result}');
     return result;
   }
 
   static Future<List<Map<String, Object?>>> holdStInLineDB(
       Database db, int? basedocentry, int? docentry) async {
-//log("basedocentrybasedocentry:" + basedocentry.toString());
-
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  StockInLineDB where baseDocentry=$basedocentry and docentry=$docentry ''');
-    // final List<Map<String, Object?>> result2 =
-    //     await db.rawQuery('''SELECT * FROM  StockInLineDB''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
-//log("StockInLineDB result2:" + result2.toString());
-//log("stoutline result:" + result.length.toString());
+
     return result;
   }
 
@@ -4852,10 +4187,7 @@ and  itemcode = '$itemcode'
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  StockInLineDB where docentry=$docentry ''');
-    // final List<Map<String, Object?>> result2 =
-    //     await db.rawQuery('''SELECT * FROM  StockInLineDB''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
-//log("stoutline result2:" + result2.toString());
+
     return result;
   }
 
@@ -4863,16 +4195,11 @@ and  itemcode = '$itemcode'
       Database db, int? basedocentry, String? itemcode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  StockInBatchDB where itemcode='$itemcode' and baseDocentry=$basedocentry ''');
-    //log("docentrydocentrydocentry:" + docentry.toString());
-    // log("stoutBatch itemcode='$itemcode' and baseDocentry=$basedocentry result:" + result.length.toString());
+
     return result;
   }
 
   static Future deleteHoldStIn(Database db, String docEntry) async {
-    // List<Map<String, Object?>> sh = await db.rawQuery('''
-    // select * from StockInHeaderDB
-
-    //  ''');
     await db.rawQuery('''
     delete from StockInLineDB where baseDocentry = '$docEntry'
      ''');
@@ -4880,18 +4207,8 @@ and  itemcode = '$itemcode'
     delete from StockInHeaderDB
  where baseDocentry = '$docEntry'
      ''');
-
-    // await db.rawQuery('''
-    // delete from StockInBatchDB where docentry = '$docEntry'
-    //  ''');
-    // List<Map<String, Object?>> sh2 = await db.rawQuery('''
-    // select * from StockInHeaderDB
-
-    //  ''');
-    //log("SH2" + sh2.toString());
   }
 
-// nnn
   static Future<List<Map<String, Object?>>> getStockOut(Database db) async {
     List<Map<String, Object?>> result = await db.rawQuery(
         '''Select distinct RH.docentry,RH.baseDocentry,RH.documentno,RH.reqfromWhs,RH.docstatus,
@@ -4907,13 +4224,7 @@ group by RH.docentry,RH.baseDocentry,RH.documentno,RH.reqfromWhs,RH.docstatus,RH
 RH.reqtoWhs,RH.reqdocno,RH.branch, 
 RH.sapStockReqdocentry,RH.sapStockReqdocnum,RH.sapDocentry,RH.sapDocNo
 Having IfNull(Sum(RL.scannedQty),0) - IfNull(Sum(ODL.scannedQty),0) > 0''');
-//where T.reqtoWhs = 'CBE1'
-//--
-    // "SELECT * FROM StockReqHDT WHERE docstatus = '2' OR docstatus='3'  ");
-    // where docstatus = '2' and docstatus = '3'
-    // List<Map<String, Object?>> result2 =
-    //     await db.rawQuery("Select * from StockReqLineTDB");
-//log("to InwardHeader:::" + result.toList().toString());
+
     log('outward:::${result.toList()}');
     return result;
   }
@@ -4923,7 +4234,6 @@ Having IfNull(Sum(RL.scannedQty),0) - IfNull(Sum(ODL.scannedQty),0) > 0''');
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockInHeaderDB where docentry = "$docentry"
      ''');
-//log("StockInHeaderDB :: " + result.toList().toString());
 
     return result;
   }
@@ -4932,50 +4242,17 @@ Having IfNull(Sum(RL.scannedQty),0) - IfNull(Sum(ODL.scannedQty),0) > 0''');
       Database db, int baseDocentry, int docentry) async {
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from StockInBatchDB where baseDocentry = $baseDocentry and docentry=$docentry ''');
-//log("StockInBatchDB :: " + result.toList().toString());
 
     return result;
   }
-
-  // Deposit
 
   static Future<List<Map<String, Object?>>> getsaveinsertHeader(
       Database db, String createdatetime) async {
-    //log("mycontroller-----:" + createdatetime);
-    // final List<Map<String, Object?>> result2 = await db.rawQuery(
-    //     '''SELECT * FROM  tableDepositHeader ''');//2023-05-04 //2023-05-04 123423
-    //      //log("mycontroller222-----:"+result2.toString());
-
     final List<Map<String, Object?>> result = await db.rawQuery(
-        '''SELECT  * FROM  tableDepositHeader where substr(createdatetime,1,10)="$createdatetime"'''); //2023-05-04 //2023-05-04 123423
-//log("FFFFFFFFUUU" + result.toString());
+        '''SELECT  * FROM  tableDepositHeader where substr(createdatetime,1,10)="$createdatetime"''');
+
     return result;
   }
-
-// Left join DepositLine SL on SL.basedocentry = S.docentry and sp.lineid
-//\= SL.baselineid  and S.doctype = SL.basedoctype
-//   and SL.docentry IS NULL
-//   static Future<List<Map<String, Object?>>> finalforDeposit(
-//       Database db, String rcmode) async {
-//     final List<Map<String, Object?>> result = await db.rawQuery(
-//         '''select S.documentno,S.docentry,sp.lineid,S.doctype, sp.rcamount ,sp.rcmode,S.customerphono,sp.cardApprno,sp.cardterminal,sp.rcdatetime,sp.createdateTime,sp.couponcode,sp.coupontype,sp.walletid,sp.wallettype,sp.chequedate,sp.chequeno
-// from SalesPay sp
-// inner join SalesHeader S on S.docentry = sp.docentry
-
-// where rcmode = '$rcmode'
-// Union ALL
-
-// select S.docnumber,S.docentry,sp.lineid,S.doctype,sp.rcamount ,sp.rcmode,"",sp.cardApprno,sp.cardterminal,sp.rcdatetime,sp.createdateTime,sp.couponcode,sp.coupontype,sp.walletid,sp.wallettype,sp.chequedate,sp.chequeno
-// from ReceiptLine2 sp
-// inner join ReceiptHeader S on S.docentry = sp.docentry
-// where rcmode = '$rcmode'
-// Union ALL
-// SELECT sa.documentno,sa.docentry,sa.lineid,sa.doctype,-sa.rcamount,sa.rcmode,"","","","",sa.createdateTime,"","","","","","" FROM Expense sa
-// ''');
-//     //log("aaaaanbu+=$result");
-
-//     return result;
-//   }
 
   static Future<List<Map<String, Object?>>> finalforDeposit(
       Database db, String rcmode) async {
@@ -4999,24 +4276,7 @@ SELECT sa.documentno,sa.docentry,"","",sa.lineid,sa.doctype,-sa.rcamount,sa.rcmo
 Left join DepositLine SL on SL.basedocentry = sa.docentry and sa.lineid = SL.baselineid and sa.doctype = SL.basedoctype
 where rcmode = 'Cash' and SL.docentry IS NULL
 ''');
-////log("""select S.documentno,S.docentry,sp.lineid,S.doctype, sp.rcamount ,sp.rcmode,S.customerphono,sp.cardApprno,sp.cardterminal,sp.rcdatetime,sp.createdateTime,sp.couponcode,sp.coupontype,sp.walletid,sp.wallettype,sp.chequedate,sp.chequeno
-// from SalesPay sp
-// inner join SalesHeader S on S.docentry = sp.docentry
-// Left join DepositLine SL on SL.basedocentry = S.docentry and sp.lineid = SL.baselineid and S.doctype = SL.basedoctype
-// where rcmode = '$rcmode' and SL.docentry IS NULL
-// Union ALL
 
-// select S.docnumber,S.docentry,sp.lineid,S.doctype,sp.rcamount ,sp.rcmode,"",sp.cardApprno,sp.cardterminal,sp.rcdatetime,sp.createdateTime,sp.couponcode,sp.coupontype,sp.walletid,sp.wallettype,sp.chequedate,sp.chequeno
-// from ReceiptLine2 sp
-// inner join ReceiptHeader S on S.docentry = sp.docentry
-// Left join DepositLine SL on SL.basedocentry = S.docentry and sp.lineid = SL.baselineid and S.doctype = SL.basedoctype
-// where rcmode = '$rcmode' and SL.docentry IS NULL
-// Union ALL
-// SELECT sa.documentno,sa.docentry,sa.lineid,sa.doctype,-sa.rcamount,sa.rcmode,"","","","",sa.createdateTime,"","","","","","" FROM Expense sa
-// Left join DepositLine SL on SL.basedocentry = sa.docentry and sa.lineid = SL.baselineid and sa.doctype = SL.basedoctype
-// where rcmode = '$rcmode'and SL.docentry IS NULL
-// """);
-//log("resuuuuL11: " + result.toString());
     return result;
   }
 
@@ -5035,19 +4295,7 @@ SELECT ifnull (SUM(rcamount),0)
 FROM Expense
 WHERE  createdateTime like '$date%';
 ''');
-////log("""SELECT ifnull (SUM(rcamount),0)as totals
-// FROM SalesPay
-// WHERE  createdateTime like '$date%'
-// UNION ALL
-// SELECT  ifnull (SUM(rcamount),0)
-// FROM ReceiptLine2
-// WHERE  createdateTime like '$date%'
-// UNION ALL
-// SELECT ifnull (SUM(rcamount),0)
-// FROM Expense
-// WHERE  createdateTime like '$date%';
-// """);
-//log("resuuuuL22: " + result.toString());
+
     return result;
   }
 
@@ -5058,12 +4306,7 @@ WHERE  createdateTime like '$date%';
 FROM tableDepositHeader
 WHERE  docdate like '$date%' and typedeposit = '$mode'
 ''');
-////log(""" settle --
-// SELECT ifnull (SUM(amountsettled),0)as totals
-// FROM tableDepositHeader
-// WHERE  docdate like '$date%'  and typedeposit = '$mode'
-// """);
-//log("resuuuuL33: " + result.toString());
+
     return result;
   }
 
@@ -5074,11 +4317,7 @@ WHERE  docdate like '$date%' and typedeposit = '$mode'
 FROM tableDepositHeader
 WHERE  docdate like '$date%'
 ''');
-////log("""SELECT ifnull (SUM(amountsettled),0)as totals
-// FROM tableDepositHeader
-// WHERE  docdate like '$date%'
-// """);
-//log("resuuuuL44: " + result.toString());
+
     return result;
   }
 
@@ -5100,30 +4339,10 @@ WHERE  docdate like '$date%'
       SELECT sa.documentno,sa.docentry,sa.lineid,sa.doctype,-sa.rcamount,sa.rcmode,"","","","",sa.createdateTime,"","","","","","" FROM Expense sa
       where rcmode = '$mode' and  sa.createdateTime like '$date%' ;
 ''');
-////log("""select S.documentno,S.docentry,sp.lineid,S.doctype, sp.rcamount ,sp.rcmode,S.customerphono,sp.cardApprno,sp.cardterminal,sp.rcdatetime,sp.createdateTime,sp.couponcode,sp.coupontype,sp.walletid,sp.wallettype,sp.chequedate,sp.chequeno
-//       from SalesPay sp
-//       inner join SalesHeader S on S.docentry = sp.docentry
-//       where rcmode = '$mode'  and  sp.createdateTime like '$date%'
-//       Union ALL
 
-//       select S.documentno,S.docentry,sp.lineid,S.doctype,sp.rcamount ,sp.rcmode,"",sp.cardApprno,sp.cardterminal,sp.rcdatetime,sp.createdateTime,sp.couponcode,sp.coupontype,sp.walletid,sp.wallettype,sp.chequedate,sp.chequeno
-//       from ReceiptLine2 sp
-//       inner join ReceiptHeader S on S.docentry = sp.docentry
-//       where rcmode = '$mode'  and  sp.createdateTime like '$date%'
-//       Union ALL
-
-//       SELECT sa.documentno,sa.docentry,sa.lineid,sa.doctype,-sa.rcamount,sa.rcmode,"","","","",sa.createdateTime,"","","","","","" FROM Expense sa
-//       where rcmode = '$mode' and  sa.createdateTime like '$date%' ;
-// """);
-//log("resuuuuL55: " + result.toString());
     return result;
   }
 
-// select S.documentno,S.docentry,sp.lineid,S.doctype,-sp.rcamount ,sp.rcmode,"","","","",sp.createdateTime,sp.couponcode,sp.coupontype,"","",sp.chequedate,sp.chequeno
-// from SalesReturnPay sp
-// inner join SalesReturnHeader S on S.docentry = sp.docentry
-// where rcmode = '$rcmode'
-// Union ALL
   static Future<int?> insertExpenseMaster(
       Database db, List<ExpenseMasterModel> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -5132,10 +4351,8 @@ WHERE  docdate like '$date%'
       batch.insert("ExpenseMaster", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  ExpenseMaster''');
+
     return null;
-    //log("ExpenseMaster:" + result1.toString());
   }
 
   static Future<int?> insertExpensepaidfrom(
@@ -5146,10 +4363,8 @@ WHERE  docdate like '$date%'
       batch.insert("expensepaidfrom", es);
     });
     await batch.commit();
-    // final List<Map<String, Object?>> result1 =
-    //     await db.rawQuery('''SELECT * FROM  expensepaidfrom''');
+
     return null;
-    //log("expensepaidfrom:" + result1.toString());
   }
 
   static Future<List<Map<String, Object?>>> getExpenseMaster(
@@ -5157,7 +4372,7 @@ WHERE  docdate like '$date%'
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  ExpenseMaster''');
-    //log("aaaahhhh1:" + result.toString());
+
     return result;
   }
 
@@ -5166,12 +4381,10 @@ WHERE  docdate like '$date%'
   ) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT * FROM  expensepaidfrom''');
-    //log("aaahhh1:" + result.toString());
-    //log("aaaahhhh1:" + result.toString());
+
     return result;
   }
 
-//
   static Future<int?> getDocAldy(Database db, String colName, tableName,
       int value, String barnch, terminal) async {
     List<Map<String, Object?>> result = await db.rawQuery('''
@@ -5179,21 +4392,16 @@ WHERE  docdate like '$date%'
     and branch = '$barnch' and terminal = '$terminal' 
      ''');
     int? count = Sqflite.firstIntValue(result);
-    // List<Map<String, Object?>> ress = await db.rawQuery('''
-    // select * from $tableName
-    //  ''');
-//log("$tableName count:::${count}");
+
     return count;
   }
 
   static Future<int?> generateDocentr(
       Database db, String colName, tableName) async {
-    // select max ((documentno) +1 )from StockReqHDT select documentno from StockReqHDT
     List<Map<String, Object?>> result = await db.rawQuery('''
     select IFNULL(MAX($colName)+1,1) as $colName from $tableName
      ''');
     int? count = Sqflite.firstIntValue(result);
-    //log("count:: " + count.toString());
 
     return count;
   }
@@ -5202,7 +4410,7 @@ WHERE  docdate like '$date%'
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT * FROM  tableDepositHeader where docentry="$docentry"''');
-    //log('tableDepositHeader getdata' + result.toString());
+
     return result;
   }
 
@@ -5219,25 +4427,19 @@ WHERE  docdate like '$date%'
       Database db, int? docentry) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  DepositLine where docentry="$docentry"''');
-    //log('DepositLine getdata' + result.toString());
+
     return result;
   }
 
-  //parames Queries
   static Future<List<Map<String, Object?>>> getSalesHeaderDateWise(
     Database db,
     String fromdate,
     String toDate,
   ) async {
-    // //log("date11:: " + fromdate.toString());
-    // //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from SalesHeader WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus='3'AND qStatus='C'
      ''');
 
-    //   List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from SalesHeader
-    //    ''');
     log("SalesHeader:: " + result.toList().toString());
 
     return result;
@@ -5248,8 +4450,6 @@ WHERE  docdate like '$date%'
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     log('''
   select * from SalesOrderHeader WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus='3' AND qStatus='C'
      ''');
@@ -5270,16 +4470,9 @@ WHERE  docdate like '$date%'
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from SalesOrderHeader WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus="5"
      ''');
-
-    //   List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from SalesOrderHeader
-    //    ''');
-//log("SalesOrderHeader:: " + result.toList().toString());
 
     return result;
   }
@@ -5289,8 +4482,6 @@ WHERE  docdate like '$date%'
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from Expense WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' and docstatus="2"  AND qStatus='C'
      ''');
@@ -5305,8 +4496,6 @@ WHERE  docdate like '$date%'
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from ReceiptHeader WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus= '3' AND qStatus='C'
      ''');
@@ -5328,7 +4517,6 @@ WHERE  docdate like '$date%'
 select * from ReceiptLine1 WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' 
    
      ''');
-    //  //log("ReceiptLine1 hold:: "+result.toList().toString());
 
     return result;
   }
@@ -5345,15 +4533,11 @@ select * from ReceiptLine2 WHERE substr(createdateTime,1,10) BETWEEN '$fromdate'
     return result;
   }
 
-  //
-
   static Future<List<Map<String, Object?>>> getSalesRetHeaderDateWise(
     Database db,
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from SalesReturnHeader WHERE docstatus='3'and substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate'  AND qStatus='C'
      ''');
@@ -5387,18 +4571,16 @@ select * from SalesReturnLine WHERE substr(createdateTime,1,10) BETWEEN '$fromda
     List<Map<String, Object?>> result = await db.rawQuery('''
 select * from SalesReturnPay WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate'
      ''');
-    //  //log("StockReqHDT hold:: "+result.toList().toString());
 
     return result;
   }
 
   static Future<List<Map<String, Object?>>> getSalesheadCkout2(
       Database db, String? customercode) async {
-    //log("Sales header docno::" + customercode.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
     select * from SalesHeader where customercode="$customercode" 
     ''');
-    //log("SalesHeader checkout:: " + result.toList().toString());
+
     return result;
   }
 
@@ -5407,8 +4589,6 @@ select * from SalesReturnPay WHERE substr(createdateTime,1,10) BETWEEN '$fromdat
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from StockInHeaderDB WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus='3' AND qStatus='C'
      ''');
@@ -5416,7 +4596,6 @@ select * from SalesReturnPay WHERE substr(createdateTime,1,10) BETWEEN '$fromdat
     List<Map<String, Object?>> result2 = await db.rawQuery('''
   select * from StockInHeaderDB 
      ''');
-    //log("StockInHeaderDB:: " + result.toList().toString());
 
     return result;
   }
@@ -5433,7 +4612,6 @@ select * from SalesReturnPay WHERE substr(createdateTime,1,10) BETWEEN '$fromdat
     List<Map<String, Object?>> result2 = await db.rawQuery('''
   select * from StockOutHeaderDataDB 
      ''');
-    //log("StockOutHeaderDataDB:: " + result.toList().toString());
 
     return result;
   }
@@ -5443,27 +4621,21 @@ select * from SalesReturnPay WHERE substr(createdateTime,1,10) BETWEEN '$fromdat
     String fromdate,
     String toDate,
   ) async {
-    //log("date11:: " + fromdate.toString());
-    //log("date22:: " + toDate.toString());
     List<Map<String, Object?>> result = await db.rawQuery('''
   select * from StockReqHDT WHERE substr(createdateTime,1,10) BETWEEN '$fromdate' AND '$toDate' AND docstatus='3'  AND qStatus='O'
      ''');
-//OR docstatus="2"
-    //   List<Map<String, Object?>> result2 = await db.rawQuery('''
-    // select * from StockReqLineT
-    //    ''');
+
     log("StockReqLineT:: ${result.toList()}");
 
     return result;
   }
 
-// copy from so
   static Future<List<Map<String, Object?>>> getSalesOrderconfirmvalueDB(
     Database db,
   ) async {
     final List<Map<String, Object?>> result = await db
         .rawQuery('''SELECT * FROM  SalesOrderHeader where docstatus = "3"''');
-    //log("SalesOrderHeadHoldvalueDB:" + result.toString());
+
     return result;
   }
 
@@ -5484,8 +4656,6 @@ group by soh.docentry,soh.documentno,soh.sapDocNo,soh.createdateTime,soh.baltopa
         soh.city,soh.state,soh.pinno,soh.gst,soh.country,soh.billaddressid,soh.customerphono,soh.customeremail,
  soh.customername,soh.taxno,soh.customerpoint,soh.customercode,soh.customeraccbal,soh.doctotal
 ''');
-//log("SalesOrderHeadHoldvalueDB:" + result.toString());
-    // log("SalesOrderHeadHoldvalueDB length:" + result.length.toString());
 
     return result;
   }
@@ -5502,11 +4672,10 @@ where s.docentry in ($docentry)
 group by s.docentry,s.lineid,s.itemcode,s.itemname,s.serialbatch,s.quantity,s.price,s.taxrate,s.discperc,s.maxdiscount,s.createdateTime
 
 ''');
-    //log("SalesOrderLinevalueDB:" + result.toString());
+
     return result;
   }
 
-  //coupons details
   static Future insertCouponmaster(
       Database db, List<CouponDetailDB> values) async {
     var data = values.map((e) => e.toMap()).toList();
@@ -5517,18 +4686,16 @@ group by s.docentry,s.lineid,s.itemcode,s.itemname,s.serialbatch,s.quantity,s.pr
     await batch.commit();
     final List<Map<String, Object?>> result1 =
         await db.rawQuery('''SELECT * FROM  CouponDetailsT''');
-    //log("CouponDetailsT Table:" + result1.toString());
   }
 
   static Future getcoupontype(Database db, String custcode) async {
     List<Map<String, Object?>> result = await db.rawQuery('''
 Select  Distinct coupontype,coupontype,couponcode,couponamt,cardcode,status From CouponDetailsT Where status = 'Open' and cardcode="$custcode"
      ''');
-    //log("CouponDetailsT result111" + result.toList().toString());
+
     List<Map<String, Object?>> result2 = await db.rawQuery('''
 Select  * From CouponDetailsT
      ''');
-    //log("CouponDetails result22222" + result2.toList().toString());
 
     return result;
   }
@@ -5537,7 +4704,7 @@ Select  * From CouponDetailsT
     List<Map<String, Object?>> result = await db.rawQuery('''
     select count(cardcode) from CouponDetailsT
      ''');
-    //log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
     return count;
   }
@@ -5547,11 +4714,9 @@ Select  * From CouponDetailsT
     List<Map<String, Object?>> result = await db.rawQuery(
         ''' UPDATE CouponDetailsT  SET status="Used" Where couponcode="$cpncode" and cardcode="$cardCode"
  ''');
-    //log("Updated Coupon list::" + result.toString());
+
     return result;
   }
-
-  //Notification
 
   static Future insertNotification(
       List<NotificationModel> values, Database db) async {
@@ -5608,9 +4773,9 @@ SELECT * FROM $tableNotification where  ReceiveTime like "$date%"
     final List<Map<String, Object?>> result = await db.rawQuery('''
     SELECT count(NId) from $tableNotification where SeenTime = '0';
     ''');
-//log(result.toList().toString());
+
     int? count = Sqflite.firstIntValue(result);
-    //  await db.close();
+
     return count;
   }
 
@@ -5634,17 +4799,13 @@ SELECT * FROM $tableNotification where  ReceiveTime like "$date%"
     await db.rawQuery('''
       delete from $tableNotification WHERE DocEntry = $id;
     ''');
-    // await db.close();
   }
 
   static deleteNotifyAll(Database db) async {
     await db.rawQuery('''
       delete from $tableNotification;
     ''');
-    // await db.close();
   }
-
-  // ? get stock register
 
   static Future<List<Map<String, Object?>>> getStockRegister(
     Database db,
@@ -5656,11 +4817,10 @@ from SalesHeader t1
 inner JOIN
 SalesLine t2 on t1.docentry = t2.docentry where t1.docstatus="3"
      ''');
-    // log("salesheader:: " + result.toList().toString());
+
     return result;
   }
 
-  // ? get return register
   static Future<List<Map<String, Object?>>> getRetunrRegister(
     Database db,
   ) async {
@@ -5671,11 +4831,10 @@ from SalesReturnHeader t1
 inner JOIN
 SalesReturnLine t2 on t1.docentry = t2.docentry
      ''');
-    // log("salesheader:: " + result.toList().toString());
+
     return result;
   }
 
-  // ? get Cashstatement
   static Future<List<Map<String, Object?>>> getCashstatement(
     Database db,
   ) async {
@@ -5697,14 +4856,13 @@ SELECT t4.documentno,t4.expencecode,'',t4.branch,t4.terminal,t4.docstatus,t4.doc
 from Expense t4 
 where rcmode = 'Cash' 
      ''');
-//log("getCashstatement:: " + result.toList().toString());
+
     return result;
   }
 
   static Future holdDeleteQuery(
     Database db,
   ) async {
-    //1.Quotation
     await db.rawQuery(
         ''' Delete From SalesQuotationLine Where docentry in (SELECT docentry from SalesQuotationHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5712,7 +4870,6 @@ where rcmode = 'Cash'
         '''Delete From SalesQuotationHeader Where docentry in (SELECT docentry from SalesQuotationHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//2.SalesOrder
     await db.rawQuery(
         ''' Delete From SalesOrderLine Where docentry in (SELECT docentry from SalesOrderHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5723,7 +4880,6 @@ where rcmode = 'Cash'
         '''Delete From SalesorderHeader Where Docentry in (SELECT docentry from SalesOrderHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//3.Sales
     await db.rawQuery(
         ''' Delete From SalesLine Where docentry in (SELECT docentry from SalesHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5734,7 +4890,6 @@ where rcmode = 'Cash'
         '''Delete From SalesHeader Where docentry in (SELECT docentry from SalesHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//4.SalesReturn
     await db.rawQuery(
         ''' Delete From SalesReturnLine Where docentry in (SELECT docentry from SalesReturnHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5742,7 +4897,6 @@ where rcmode = 'Cash'
         '''Delete From SalesReturnHeader Where docentry in (SELECT docentry from SalesReturnHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//5.StockReq
     await db.rawQuery(
         ''' Delete From StockReqLineT Where docentry in (SELECT docentry from StockReqHDT where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5750,7 +4904,6 @@ where rcmode = 'Cash'
         '''Delete From StockReqHDT Where docentry in (SELECT docentry from StockReqHDT where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//6.StockOutWard
     await db.rawQuery(
         ''' Delete From StockOutLineDB Where docentry in (SELECT docentry from StockOutHeaderDataDB where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5760,7 +4913,7 @@ where rcmode = 'Cash'
     await db.rawQuery(
         '''Delete From StockOutHeaderDataDB Where docentry in (SELECT docentry from StockOutHeaderDataDB where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
-//7.Stockinward
+
     await db.rawQuery(
         ''' Delete From StockInLineDB Where docentry in (SELECT docentry from StockInHeaderDB where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5771,7 +4924,6 @@ where rcmode = 'Cash'
         '''Delete From StockInHeaderDB Where docentry in (SELECT docentry from StockInHeaderDB where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//8.Payment Receipt
     await db.rawQuery(
         ''' Delete From ReceiptLine1 Where docentry in (SELECT docentry from ReceiptHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5782,7 +4934,6 @@ where rcmode = 'Cash'
         '''Delete From ReceiptHeader Where docentry in (SELECT docentry from ReceiptHeader where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
 
-//9.Expense
     await db.rawQuery(
         '''Delete From Expense Where docentry in (SELECT docentry from Expense where docstatus=1 and cast(julianday('now') - julianday(createdatetime) as INTEGER)>=7)
 ''');
@@ -5812,12 +4963,6 @@ where rcmode = 'Cash'
     await db.rawQuery('delete from $couponDetailsMaster');
   }
 
-  // static truncateNewItemMasterCheck(
-  //   Database db,
-  // ) async {
-  //   await db.rawQuery('delete from ItemMasterCheck');
-  // }
-
   static truncateCustomerMasterAddress(
     Database db,
   ) async {
@@ -5836,13 +4981,10 @@ where rcmode = 'Cash'
     await db.rawQuery('delete from $tableUsers');
   }
 
-  //customer controller
   static Future<List<Map<String, Object?>>> getCstmMasforcustomerpage(
       Database db) async {
     final List<Map<String, Object?>> result =
         await db.rawQuery('''SELECT  * from CustomerMaster ''');
-    // log("CustomerMaster Len: " + result.length.toString());
-    // log("CustomerMaster Len: " + result.toString());
 
     return result;
   }
@@ -5851,8 +4993,6 @@ where rcmode = 'Cash'
       Database db, String customercode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT  * from CustomerMasterAddress WHERE custcode="$customercode"''');
-    // log("CustomerMasterAddress Len: " + result.length.toString());
-    // log("CustomerMasterAddress Len: " + result.toString());
 
     return result;
   }
@@ -5861,8 +5001,6 @@ where rcmode = 'Cash'
       Database db, String customercode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT  * from CustomerMaster WHERE customercode Like '%$customercode%' or  customername like '%$customercode%' ''');
-    // log("CustomerMaster Len: " + result.length.toString());
-    // log("CustomerMaster Len: " + result.toString());
 
     return result;
   }
@@ -5871,8 +5009,6 @@ where rcmode = 'Cash'
       Database db, String customercode) async {
     final List<Map<String, Object?>> result = await db.rawQuery(
         '''SELECT  * from CustomerMaster WHERE  customercode Like '%$customercode%' and customername like '%CASH%' ''');
-//log("CustomerMaster Len: " + result.length.toString());
-//log("CustomerMaster result: " + result.toString());
 
     return result;
   }

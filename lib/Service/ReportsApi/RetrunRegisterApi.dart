@@ -12,6 +12,7 @@ class Retrunregisterapi {
     String toDate,
   ) async {
     try {
+      log("EXEC BZ_POS_Retrunregisterapi '$fromDate','$toDate'");
       final response =
           await http.post(Uri.parse('http://102.69.167.106:1705/api/SellerKit'),
               headers: {

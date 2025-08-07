@@ -20,7 +20,7 @@ class SalesInDay {
     if (stcode >= 200 && stcode <= 210) {
       if (jsons['data'].toString() != 'No data found') {
         log('dddddddd');
-        var list = jsonDecode(jsons['data']) as List; //jsonDecode
+        var list = jsonDecode(jsons['data']) as List;
         List<SalesInDayData> dataList = list
             .map((dynamic enquiries) => SalesInDayData.fromJson(enquiries))
             .toList();
@@ -61,10 +61,6 @@ class SalesInDay {
   }
 }
 
-// "data": "[{\"Doc Num\":1017796,\"Doc Status\":\"C\",\"taxDate\":\"2024-12-09T00:00:00\",\"Customer Code\":\"D4387\",
-//\"CardName\":\"CASH ACCOUNT MAGRETH\",\"NumAtCard\":\"gvbvggghv\",\"DISC %\":0.000000,\"VatSum\":43944.265800,
-//\"DocTotal\":288079.075800,\"Comments\":\"\",\"ReceiptNum\":null,\"SlpName\":\"FRANK\",\"DocTime\":1053,
-//\"Memo\":\"CORPORATE\",\"IsIns\":\"N\",\"BRANCH\":\"ARSFG\"},
 class SalesInDayData {
   int docNum;
   String cardName;
@@ -123,8 +119,7 @@ class SalesInDayData {
       memo: json['Memo'] ?? "",
     );
   }
-// {"Doc Num":1017796,"Doc Status":"C","taxDate":"2024-12-09T00:00:00","Customer Code":"D4387","
-//CardName":"CASH ACCOUNT MAGRETH","NumAtCard":"gvbvggghv","DISC %":0.000000,"VatSum":43944.265800,"DocTotal":288079.075800,"Comments":"","ReceiptNum":null,"SlpName":"FRANK","DocTime":1053,"Memo":"CORPORATE","IsIns":"N","BRANCH":"ARSFG"}
+
   Map<String, Object?> toMap() => {
         'DocNum': docNum,
         'Doc Status': DocStatus,

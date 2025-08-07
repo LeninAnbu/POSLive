@@ -450,7 +450,7 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                       top: widget.searchHeight * 0.01,
                                       bottom: widget.searchHeight * 0.01,
                                       left: widget.searchHeight * 0.01,
-                                      right: widget.searchHeight * 0.01,
+                                      right: widget.searchHeight * 0.005,
                                     ),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
@@ -934,6 +934,8 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                         height: widget.searchHeight * 0.01,
                                       ),
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           context
                                                       .watch<
@@ -943,7 +945,7 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                   'corporate'
                                               ? Container(
                                                   width:
-                                                      widget.searchWidth * 0.65,
+                                                      widget.searchWidth * 0.5,
                                                   height: widget.searchHeight *
                                                       0.07,
                                                   alignment: Alignment.center,
@@ -1047,7 +1049,7 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                   ))
                                               : Container(
                                                   width:
-                                                      widget.searchWidth * 0.58,
+                                                      widget.searchWidth * 0.5,
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -1088,8 +1090,9 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                         color: Colors.black)),
                                           ),
                                           Container(
-                                            width: widget.searchWidth * 0.18,
-                                            alignment: Alignment.centerRight,
+                                            // color: Colors.red,
+                                            width: widget.searchWidth * 0.155,
+                                            alignment: Alignment.centerLeft,
                                             child: Text(
                                                 context
                                                             .watch<
@@ -1098,8 +1101,8 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
                                                                 index]
                                                             .inStockQty ==
                                                         null
-                                                    ? 'Instock : 00'
-                                                    : 'Instock : ${context.read<SalesQuotationCon>().getScanneditemData[index].inStockQty}',
+                                                    ? 'IS : 00'
+                                                    : 'IS : ${context.read<SalesQuotationCon>().getScanneditemData[index].inStockQty}',
                                                 style: theme
                                                     .textTheme.bodyMedium
                                                     ?.copyWith(
@@ -1118,30 +1121,6 @@ class _SQuotationSearchWidgetState extends State<SQuotationSearchWidget> {
   }
 }
 
-// class DecimalInputRestriction extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Restrict Second Decimal Point'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: TextField(
-//           decoration: InputDecoration(
-//             labelText: 'Enter a number',
-//             border: OutlineInputBorder(),
-//           ),
-//           keyboardType: TextInputType.number,
-//           inputFormatters: [
-//             DecimalInputFormatter(),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class DecimalInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
@@ -1149,9 +1128,9 @@ class DecimalInputFormatter extends TextInputFormatter {
     final text = newValue.text;
 
     if (text.contains('.') && text.indexOf('.') != text.lastIndexOf('.')) {
-      return oldValue; // Reject the new value if there's a second decimal point
+      return oldValue;
     }
 
-    return newValue; // Accept the new value if valid
+    return newValue;
   }
 }

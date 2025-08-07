@@ -1,5 +1,3 @@
-//{"CompanyDB":"MRP T1","UserName":"mwanza","Password":"8765"}
-
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
@@ -8,7 +6,6 @@ import '../../url/url.dart';
 import '../QuotationAPI/QuotationCancelAPI.dart';
 
 class SerlayExpensesCancelAPI {
-// /https://102.69.167.106:50000/b1s/v1/Quotations(48386)/Cancel
   static Future<Cancelmodel> getData(String sapDocEntry) async {
     log("Expenses sapSessionID:::${AppConstant.sapSessionID}");
     try {

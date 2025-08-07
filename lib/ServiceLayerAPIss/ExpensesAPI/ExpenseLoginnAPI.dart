@@ -36,11 +36,16 @@ class PostExpensesLoginAPi {
             response.statusCode);
       } else {
         log("saplogin stcode22 ::${response.statusCode}");
-        throw Exception("Error");
+        return Logindata.error(
+            json.decode(response.body) as Map<String, dynamic>,
+            response.statusCode);
+        // throw Exception("Error");
       }
     } catch (e) {
       log('Exception saplogin: $e');
-      throw Exception('Exception saplogin: $e');
+      return Logindata.issue('$e', 500);
+
+      // throw Exception('Exception saplogin: $e');
     }
   }
 }

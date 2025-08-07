@@ -32,7 +32,3 @@ class AddressMasterApi {
     }
   }
 }
-// {\"custcode\":\"D0002\",\"address1\":\"P. O. BOX 961\",\"address2\":null,\"address3\":null,\"city\":\"TANGA\",
-// \"statecode\":null,\"pincode\":null,\"countrycode\":\"TZ\",\"geolocation1\":\"\",\"geolocation2\":\"\",
-// \"createdateTime\":\"2023-08-12T07:59:49.637\",\"updatedDatetime\":\"2023-08-12T07:59:49.637\",\"createdUserID\":\"1\",
-// \"updateduserid\":\"1\",\"lastupdateIp\":\"\",\"addresstype\":\"B\"},

@@ -65,12 +65,10 @@ android {
       
         applicationId "com.buson.posinsignia"
       
-      
-      
        minSdkVersion 21
         targetSdkVersion 34 //26(Using DB Save) and 30 (apkbuild)
-        versionCode 21
-        versionName '1.2.8'
+        versionCode 38
+        versionName '1.3.6'
     }
 
      signingConfigs {

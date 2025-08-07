@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 class StockOutwardList {
   String? docentry;
   String? baceDocentry;
@@ -11,43 +9,21 @@ class StockOutwardList {
 
   String? remarks;
   String? branch;
-  // int? reqdocno;
-  // String? reqdocseries;
-  // int? reqdocseriesno;
+
   String? reqtransdate;
-  // String? reqdoctime;
-  // String? reqsystime;
+
   String? documentno;
-  // int? seresid;
-  // int? seriesnum;
-  // String? transactiondate;
-  // String? transtime;
-  // String? sysdatetime;
+
   String? reqfromWhs;
   String? reqtoWhs;
   String? u_reqWhs;
 
-  // int? totalitems;
-  // double? totalweight;
-  // double? totalqty;
-  // double? totalltr;
-  // String? isagainstorder;
-  // String? isagainststock;
   String? docstatus;
-  // String? salesexec;
-  // String? createdateTime;
-  // String? updatedDatetime;
-  // int? createdUserID;
-  // int? updateduserid;
-  // String? lastupdateIp;
-  // int?scanToatal;
-  // int? transTotal;
+
   List<StockOutwardDetails> data;
 
   StockOutwardList(
       {required this.branch,
-      // required this.createdUserID,
-      // required this.createdateTime,
       this.baceDocentry,
       this.stock,
       this.docentry,
@@ -57,34 +33,10 @@ class StockOutwardList {
       required this.sapbaceDocentry,
       this.cardCode,
       this.cardName,
-
-      // required this.isagainstorder,
-      // required this.isagainststock,
-      // required this.lastupdateIp,
-      // required this.reqdocno,
-      // required this.reqdocseries,
-      // required this.reqdocseriesno,
-      // required this.reqdoctime,
       required this.reqfromWhs,
-      // required this.reqsystime,
       required this.remarks,
       required this.reqtoWhs,
       required this.reqtransdate,
-      // required this.salesexec,
-      // required this.seresid,
-      // required this.seriesnum,
-      // required this.sysdatetime,
-      // required this.totalitems,
-      // required this.totalltr,
-      // required this.totalqty,
-      // required this.totalweight,
-      // required this.transactiondate,
-      // required this.transtime,
-      // required this.updatedDatetime,
-      // required this.updateduserid,
-      // this.scanToatal,
-      // this.transTotal,
-
       required this.data});
 }
 
@@ -115,7 +67,6 @@ class StockOutwardDetails {
   bool? listClr;
   bool? insertValue;
 
-  // String? serialbatch;
   List<StockOutSerialbatch>? serialbatchList;
 
   StockOutwardDetails(
@@ -152,7 +103,7 @@ class StockOutSerialbatch {
   String? lineno;
   String? itemcode;
   double? qty;
-  // int? openQty;
+
   String? serialbatch;
   String? docstatus;
   bool? scanbool = false;

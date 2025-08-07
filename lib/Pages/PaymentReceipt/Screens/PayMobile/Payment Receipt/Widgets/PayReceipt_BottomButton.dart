@@ -4,9 +4,6 @@ import '../../../../../../../../Constant/Screen.dart';
 import '../../../../../../Controller/PaymentReceiptController/PayReceiptController.dart';
 import '../../../../../../Widgets/AlertBox.dart';
 
-// Positioned PayReceipt_BottomButton(
-//     BuildContext context, PayreceiptController SRcon, ThemeData theme) {
-
 class PayReceiptBottomButton extends StatelessWidget {
   const PayReceiptBottomButton(
       {super.key, required this.payCon, required this.theme});
@@ -29,7 +26,7 @@ class PayReceiptBottomButton extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 3,
               blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3),
             ),
           ],
         ),

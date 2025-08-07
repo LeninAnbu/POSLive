@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import '../../../Constant/AppConstant.dart';
-import '../../../Models/QueryUrlModel/DepositsQueryModel/DepositQryModel.dart';
 import '../../../Models/QueryUrlModel/DepositsQueryModel/depositsdetModel.dart';
 
 class DepositsDetailsQueryAPi {
@@ -23,9 +22,9 @@ class DepositsDetailsQueryAPi {
                 "query": "EXEC BZ_POS_GetBalDeposits '$siteCode'"
               }));
 
-      log("Acc Data sts: ${response.statusCode}");
+      log("BZ_POS_GetBalDeposits sts: ${response.statusCode}");
 
-      log("Acc Data Res: ${json.decode(response.body)}");
+      log("BZ_POS_GetBalDeposits Res: ${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         return DepositDetailsModel.fromJson(

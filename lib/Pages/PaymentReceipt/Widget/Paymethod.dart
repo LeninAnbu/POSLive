@@ -29,7 +29,7 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
           top: widget.paymentHeight * 0.05,
           left: widget.paymentHeight * 0.01,
           right: widget.paymentHeight * 0.01,
-          bottom: widget.paymentHeight * 0.01,
+          // bottom: widget.paymentHeight * 0.01,
         ),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -58,7 +58,7 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: Screens.padingHeight(context) * 0.11,
+                height: Screens.padingHeight(context) * 0.18,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,27 +79,12 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        for (int i = 0;
-                                            i <
-                                                context
-                                                    .read<
-                                                        PayreceiptController>()
-                                                    .scanneditemData
-                                                    .length;
-                                            i++) {
-                                          log("mycontroller[i]2222:::${context.read<PayreceiptController>().mycontroller[i].text}");
-                                        }
-                                      },
-                                      child: SizedBox(
-                                        width: widget.paymentWidth * 0.18,
-                                        child: Text(
-                                          "Total Document",
-                                          style: widget
-                                              .theme.textTheme.bodyMedium
-                                              ?.copyWith(),
-                                        ),
+                                    SizedBox(
+                                      width: widget.paymentWidth * 0.18,
+                                      child: Text(
+                                        "Total Document",
+                                        style: widget.theme.textTheme.bodyMedium
+                                            ?.copyWith(),
                                       ),
                                     ),
                                     Container(
@@ -248,6 +233,112 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                     ),
                                   ),
                                 ),
+                          context.watch<PayreceiptController>().selectedcust2 !=
+                                  null
+                              ? Container(
+                                  alignment: Alignment.center,
+                                  width: widget.paymentWidth * 0.6,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  child: TextFormField(
+                                    controller: context
+                                        .watch<PayreceiptController>()
+                                        .referencemycontroller[1],
+                                    cursorColor: Colors.grey,
+                                    style: widget.theme.textTheme.bodyMedium
+                                        ?.copyWith(),
+                                    onChanged: (v) {},
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return ' Please Enter the Reference';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Reference",
+                                      filled: false,
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                        vertical: 5,
+                                        horizontal: 10,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  alignment: Alignment.center,
+                                  width: widget.paymentWidth * 0.6,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  child: TextFormField(
+                                    controller: context
+                                        .watch<PayreceiptController>()
+                                        .referencemycontroller[0],
+                                    cursorColor: Colors.grey,
+                                    style: widget.theme.textTheme.bodyMedium
+                                        ?.copyWith(),
+                                    onChanged: (v) {},
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return ' Please Enter the Reference';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Reference",
+                                      filled: false,
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide:
+                                            const BorderSide(color: Colors.red),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(
+                                            color: Colors.grey),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                        vertical: 5,
+                                        horizontal: 10,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                         ],
                       ),
                     ),
@@ -283,10 +374,10 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                         context
                                             .watch<PayreceiptController>()
                                             .config
-                                            .splitValues(context
+                                            .splitValues22(context
                                                 .watch<PayreceiptController>()
                                                 .totalpaidamt2()
-                                                .toStringAsFixed(2)),
+                                                .toString()),
                                         style: widget.theme.textTheme.bodyMedium
                                             ?.copyWith(),
                                       )
@@ -310,7 +401,7 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                                     .watch<
                                                         PayreceiptController>()
                                                     .config
-                                                    .splitValues(context
+                                                    .splitValues22(context
                                                         .watch<
                                                             PayreceiptController>()
                                                         .totalduepay!
@@ -355,8 +446,7 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                                     .watch<
                                                         PayreceiptController>()
                                                     .getSumTotalPaid33()
-                                                    .toStringAsFixed(2)
-                                                    .toString())
+                                                    .toStringAsFixed(5))
                                         : context
                                                     .watch<
                                                         PayreceiptController>()
@@ -369,7 +459,6 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                                     .watch<
                                                         PayreceiptController>()
                                                     .getSumTotalPaid()
-                                                    .toStringAsFixed(2)
                                                     .toString())
                                             : context
                                                     .watch<
@@ -381,11 +470,10 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                                     .watch<
                                                         PayreceiptController>()
                                                     .config
-                                                    .splitValues(context
+                                                    .splitValues22(context
                                                         .watch<
                                                             PayreceiptController>()
                                                         .getSumTotalPaid()
-                                                        .toStringAsFixed(2)
                                                         .toString()),
                                     style: widget.theme.textTheme.bodyMedium
                                         ?.copyWith(),
@@ -439,17 +527,17 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                                             .config
                                             .splitValues(context
                                                 .watch<PayreceiptController>()
-                                                .totalduepay
+                                                .totalduepay!
                                                 .toString()))
                                         : Text(
                                             context
                                                 .watch<PayreceiptController>()
                                                 .config
-                                                .splitValues(context
+                                                .splitValues22(context
                                                     .watch<
                                                         PayreceiptController>()
                                                     .getBalancePaid()
-                                                    .toStringAsFixed(2)),
+                                                    .toString()),
                                             style: widget
                                                 .theme.textTheme.bodyMedium
                                                 ?.copyWith(),
@@ -463,99 +551,6 @@ class _PayReceiptPayDetailsState extends State<PayReceiptPayDetails> {
                   ],
                 ),
               ),
-              context.watch<PayreceiptController>().selectedcust2 != null
-                  ? Container(
-                      alignment: Alignment.center,
-                      width: widget.paymentWidth * 0.6,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: TextFormField(
-                        controller: context
-                            .watch<PayreceiptController>()
-                            .referencemycontroller[1],
-                        cursorColor: Colors.grey,
-                        style: widget.theme.textTheme.bodyMedium?.copyWith(),
-                        onChanged: (v) {},
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return ' Please Enter the Reference';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Reference",
-                          filled: false,
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.red),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.red),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 5,
-                            horizontal: 10,
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(
-                      alignment: Alignment.center,
-                      width: widget.paymentWidth * 0.6,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: TextFormField(
-                        controller: context
-                            .watch<PayreceiptController>()
-                            .referencemycontroller[0],
-                        cursorColor: Colors.grey,
-                        style: widget.theme.textTheme.bodyMedium?.copyWith(),
-                        onChanged: (v) {},
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return ' Please Enter the Reference';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Reference",
-                          filled: false,
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.red),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.red),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 5,
-                            horizontal: 10,
-                          ),
-                        ),
-                      ),
-                    ),
             ],
           ),
         ));

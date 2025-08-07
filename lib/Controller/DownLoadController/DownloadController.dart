@@ -24,7 +24,7 @@ import '../../Service/StockSnapApi.dart';
 import '../../main.dart';
 
 class DownLoadController extends ChangeNotifier {
-  String errorMsg = 'Some thing went wrong';
+  String errorMsg = 'Something went wrong';
   bool exception = false;
   bool get getException => exception;
   String get getErrorMsg => errorMsg;
@@ -298,6 +298,7 @@ class DownLoadController extends ChangeNotifier {
     await CustomerMasterApi.getData().then((value) async {
       if (value.stcode! >= 200 && value.stcode! <= 210) {}
     });
+
     loadingMsg = "Loading Users Masters";
 
     await DBOperation.insertStockSnap(db, stockSnap).then((value) {

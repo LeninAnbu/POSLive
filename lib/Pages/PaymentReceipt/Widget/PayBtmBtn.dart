@@ -186,11 +186,11 @@ class _PayBtmBtnState extends State<PayBtmBtn> {
                                           context
                                               .read<PayreceiptController>()
                                               .config
-                                              .splitValues(context
+                                              .splitValues22(context
                                                   .watch<PayreceiptController>()
                                                   .getpaymentWay[index]
                                                   .amt!
-                                                  .toStringAsFixed(2)),
+                                                  .toString()),
                                           style: widget
                                               .theme.textTheme.bodyMedium
                                               ?.copyWith(color: Colors.black),

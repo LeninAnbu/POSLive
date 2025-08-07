@@ -79,6 +79,10 @@ class _PayCustomerDetailsState extends State<PayCustomerDetails> {
                               onPressed: () {
                                 context
                                     .read<PayreceiptController>()
+                                    .mycontroller[2]
+                                    .text = '';
+                                context
+                                    .read<PayreceiptController>()
                                     .refreshfiltercust();
                                 showDialog(
                                     context: context,

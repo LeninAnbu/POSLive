@@ -1,13 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:posproject/Constant/Screen.dart';
 import 'package:posproject/Constant/VersionConfiguration.dart';
-// import 'package:platform_device_id/platform_device_id.dart';
 import 'package:posproject/DBModel/UserDBModel.dart';
 import 'package:posproject/Service/loginUserApi.dart';
 import 'package:posproject/Service/UsersAPI.dart';
@@ -257,7 +255,7 @@ class LoginController extends ChangeNotifier {
 
         await Get.defaultDialog(
                 title: "Alert",
-                middleText: 'Something Went Wrong',
+                middleText: '${value.exception!}',
                 backgroundColor: Colors.white,
                 titleStyle: const TextStyle(color: Colors.red),
                 middleTextStyle: const TextStyle(color: Colors.black),

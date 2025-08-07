@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_string_interpolations
-
 import 'dart:developer';
 import 'dart:io';
 
@@ -8,9 +6,18 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:posproject/Constant/AppConstant.dart';
 import 'package:posproject/Constant/Configuration.dart';
 import 'package:posproject/Constant/Screen.dart';
+import 'package:posproject/Models/StockListModel/ItemsModels.dart';
+import 'package:posproject/Models/StockListModel/MainGroupModel.dart';
+import 'package:posproject/Models/StockListModel/SubGroupMdl.dart';
+import 'package:posproject/ServiceLayerAPIss/OrderAPI/OrderLoginnAPI.dart';
+import 'package:posproject/ServiceLayerAPIss/StocklistApi/ItemsApis.dart';
+import 'package:posproject/ServiceLayerAPIss/StocklistApi/MainGroupApi.dart';
+import 'package:posproject/ServiceLayerAPIss/StocklistApi/SubGroupApi.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../DB Helper/DBOperation.dart';
@@ -18,10 +25,14 @@ import '../../DB Helper/DBhelper.dart';
 import '../../DBModel/ItemMaster.dart';
 
 class StockController extends ChangeNotifier {
-  init() {
+  init(BuildContext context) async {
     clearAllData();
-    getDataFromDB();
+    await callMainAndSubGroupApi(context);
+    notifyListeners();
   }
+
+  bool visibleItemList = false;
+  bool maingoupload = false;
 
   Configure config = Configure();
   List<GlobalKey<FormState>> formkey =
@@ -81,7 +92,6 @@ class StockController extends ChangeNotifier {
 
   RangeValues get getrangevalue => rageValue;
 
-//Listview Loading on clicked
   bool isLoadingListView = false;
   bool get getisLoadingListView => isLoadingListView;
 
@@ -281,8 +291,6 @@ class StockController extends ChangeNotifier {
     onSelectedFilter();
   }
 
-//// view all
-
   isselectedbrandViewAllPage() async {
     final Database db = (await DBHelper.getInstance())!;
 
@@ -361,8 +369,6 @@ class StockController extends ChangeNotifier {
     notifyListeners();
   }
 
-//segment view all
-
   isselectedSegmentViewAllPage() async {
     final Database db = (await DBHelper.getInstance())!;
 
@@ -398,7 +404,34 @@ class StockController extends ChangeNotifier {
     isselectedViewAllString.remove("'$category'");
   }
 
+  clearData() {
+    groupmycontroller = List.generate(15, (i) => TextEditingController());
+    valueSelectedMain = null;
+    visibilityError = '';
+    visibleItemList = false;
+    valueSelectedSub = null;
+    getSearchedData = [];
+    getfilterSearchedData = [];
+    searchBtnLoading = false;
+    itemValue = [];
+    filteritemValue = [];
+    getSearchedData = [];
+    notifyListeners();
+  }
+
   clearAllData() {
+    groupmycontroller = List.generate(15, (i) => TextEditingController());
+    valueSelectedMain = null;
+    itemValue = [];
+    mainValueValue = [];
+
+    getfilterSearchedData = [];
+    getSearchedData = [];
+    searchBtnLoading = false;
+    filteritemValue = [];
+    subValueValue = [];
+    visibilityError = '';
+    valueSelectedSub = null;
     listshow = false;
     isselectedBrandString.clear();
     isselectedProductString.clear();
@@ -420,7 +453,250 @@ class StockController extends ChangeNotifier {
     isProductViewAllSelected = false;
     isSegmentViewAllSelected = false;
     listPriceAvail.clear();
-    getDataFromDB();
+    notifyListeners();
+  }
+
+  String custserieserrormsg = '';
+  sapOrderLoginApi(
+    BuildContext context,
+  ) async {
+    final pref2 = await pref;
+    PostOrderLoginAPi.username = AppConstant.sapUserName;
+    PostOrderLoginAPi.password = AppConstant.sapPassword;
+    await PostOrderLoginAPi.getGlobalData().then((value) async {
+      if (value.stCode! >= 200 && value.stCode! <= 210) {
+        if (value.sessionId != null) {
+          AppConstant.sapSessionID = '';
+
+          pref2.setString("sessionId", value.sessionId.toString());
+          pref2.setString("sessionTimeout", value.sessionTimeout.toString());
+          await getSession();
+        }
+      } else if (value.stCode! >= 400 && value.stCode! <= 410) {
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // if (value.error!.code != null) {
+        //   custserieserrormsg = value.error!.message!.value.toString();
+
+        //   final snackBar = SnackBar(
+        //     behavior: SnackBarBehavior.floating,
+        //     margin: EdgeInsets.only(
+        //       bottom: Screens.bodyheight(context) * 0.3,
+        //     ),
+        //     duration: const Duration(seconds: 4),
+        //     backgroundColor: Colors.red,
+        //     content: Text(
+        //       "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //       style: const TextStyle(color: Colors.white),
+        //     ),
+        //   );
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        //   Future.delayed(const Duration(seconds: 5), () {
+        //     exit(0);
+        //   });
+        // }
+      } else if (value.stCode == 500) {
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Opps Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
+  }
+
+  getSession() async {
+    var preff = await SharedPreferences.getInstance();
+    AppConstant.sapSessionID = preff.getString('sessionId')!;
+    notifyListeners();
+  }
+
+  Future<SharedPreferences> pref = SharedPreferences.getInstance();
+
+  List<MainModalValue> mainValueValue = [];
+  List<SubModalValue> subValueValue = [];
+  String? valueSelectedMain;
+  String? valueSelectedSub;
+  String? valueSelectedMainName;
+  String? valueSelectedSubName;
+  List<ItemMasterModelDB> getSearchedData = [];
+  List<ItemMasterModelDB> getfilterSearchedData = [];
+
+  Future<List<ItemMasterModelDB>?> getAllListItem(
+      String data, String category, String subCategory) async {
+    getfilterSearchedData = [];
+    getSearchedData = [];
+    if (data.isNotEmpty) {
+      log('message111');
+      final Database db = (await DBHelper.getInstance())!;
+      getSearchedData = await DBOperation.getSearchedStockList22(
+          db, data, category, subCategory);
+      getfilterSearchedData = getSearchedData;
+      notifyListeners();
+      return getSearchedData;
+    } else {
+      getSearchedData = [];
+    }
+    return null;
+  }
+
+  Future<List<ItemMasterModelDB>?> getAllListItem22(
+      String category, String subCategory) async {
+    getfilterSearchedData = [];
+    getSearchedData = [];
+    log('message111');
+
+    double packsize = groupmycontroller[0].text.isNotEmpty
+        ? double.parse(groupmycontroller[0].text)
+        : 0;
+    String packsize2 = packsize != 0 ? packsize.toStringAsFixed(6) : '_';
+    final Database db = (await DBHelper.getInstance())!;
+    getSearchedData = await DBOperation.getSearchedStockList33(
+        db, category, subCategory, packsize2);
+    getfilterSearchedData = getSearchedData;
+    notifyListeners();
+    return getSearchedData;
+  }
+
+  selectedMainGroup(String val) {
+    for (var i = 0; i < mainValueValue.length; i++) {
+      if (mainValueValue[i].code.toString() == val.toString()) {
+        valueSelectedMainName = mainValueValue[i].name.toString();
+      }
+    }
+    notifyListeners();
+  }
+
+  selectedSubGroup(String val) {
+    for (var i = 0; i < subValueValue.length; i++) {
+      if (subValueValue[i].code.toString() == val.toString()) {
+        valueSelectedSubName = subValueValue[i].name.toString();
+      }
+    }
+    notifyListeners();
+  }
+
+  callMainAndSubGroupApi(BuildContext context) async {
+    Get.defaultDialog(
+        barrierDismissible: false,
+        title: '',
+        content: Container(
+          child: CircularProgressIndicator(
+            color: Colors.blue,
+          ),
+        ));
+    await sapOrderLoginApi(context);
+
+    notifyListeners();
+    await MainGroupAPi.getGlobalData().then((value) {
+      mainValueValue = value.itemValueValue!;
+    });
+
+    await SubGroupAPi.getGlobalData().then((value) {
+      value.itemValueValue![0].code;
+      subValueValue = value.itemValueValue!;
+      Get.back();
+    });
+    notifyListeners();
+  }
+
+  List<ItemValue> itemValue = [];
+  List<ItemValue> filteritemValue = [];
+  List<TextEditingController> groupmycontroller =
+      List.generate(15, (i) => TextEditingController());
+  String visibilityError = '';
+  bool searchBtnLoading = false;
+  Future<void> valuesAdd(BuildContext context) async {
+    filteritemValue = [];
+    itemValue = [];
+    getSearchedData = [];
+    getfilterSearchedData = [];
+    groupmycontroller[1].text = '';
+    visibilityError = '';
+    searchBtnLoading = true;
+    sapOrderLoginApi(context);
+    ItemsAPi.mainGroup = valueSelectedMain ?? 'a';
+    ItemsAPi.subGroup = valueSelectedSub ?? 'a';
+    ItemsAPi.searchData = groupmycontroller[2].text.trim();
+    String packSize =
+        groupmycontroller[0].text.isNotEmpty ? groupmycontroller[0].text : '_';
+
+    await ItemsAPi.getGlobalData(packSize).then((value) {
+      searchBtnLoading = false;
+      if (value.itemValueValue!.isNotEmpty) {
+        itemValue = value.itemValueValue!;
+        ItemsAPi.nextUrl = value.nextLink;
+        log('itemValueitemValue::${itemValue.length}');
+
+        notifyListeners();
+      } else if (value.itemValueValue!.isEmpty) {
+        visibilityError = 'No Data Found';
+        searchBtnLoading = false;
+      }
+    });
+    notifyListeners();
+  }
+
+  Future<void> getmoredata() async {
+    await ItemsAPi.callNextLink().then((val) {
+      if (val.itemValueValue!.isNotEmpty) {
+        for (int i = 0; i < val.itemValueValue!.length; i++) {}
+      }
+    });
   }
 
   clearViewAllData() {
@@ -641,7 +917,6 @@ class StockController extends ChangeNotifier {
     return Future.value(text);
   }
 
-//filter
   onSelectedFilter() async {
     final Database db = (await DBHelper.getInstance())!;
 
@@ -1025,5 +1300,345 @@ class StockController extends ChangeNotifier {
     } catch (e) {
       showSnackBars("$e", Colors.red);
     }
+  }
+
+  listDialogue(BuildContext context, ItemValue itemValue, int i) {
+    showDialog<dynamic>(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            final theme = Theme.of(context);
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(0),
+              content: Container(
+                width: Screens.width(context) * 0.8,
+                height: Screens.padingHeight(context) * 0.3,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            child: IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon: Icon(
+                                  Icons.close_outlined,
+                                  color: theme.primaryColor,
+                                )),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: Screens.padingHeight(context) * 0.04,
+                      color: Colors.blue,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.only(left: 10),
+                              alignment: Alignment.centerLeft,
+                              width: Screens.width(context) * 0.1,
+                              child: Text(
+                                "S.No",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.2,
+                              child: Text(
+                                "Item Name",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.1,
+                              child: Text(
+                                "Item Code",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.1,
+                              child: Text(
+                                "Serialbatch",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: Screens.width(context) * 0.1,
+                                child: Text(
+                                  "Qty",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: Screens.width(context) * 0.1,
+                                child: Text(
+                                  "Price",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: Screens.width(context) * 0.1,
+                                child: Text(
+                                  "Branch",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Screens.padingHeight(context) * 0.02,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.centerLeft,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${i + 1}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.2,
+                            child: Text(
+                              "${itemValue.itemName}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${itemValue.itemCode}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${itemValue.itemPrices![0].price}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${AppConstant.branch}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+        });
+  }
+
+  listDialogue22(BuildContext context, ItemMasterModelDB itemValue, int i) {
+    showDialog<dynamic>(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            final theme = Theme.of(context);
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(2),
+              content: Container(
+                width: Screens.width(context) * 0.8,
+                height: Screens.padingHeight(context) * 0.3,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            child: IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon: Icon(
+                                  Icons.close_outlined,
+                                  color: theme.primaryColor,
+                                )),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: Screens.padingHeight(context) * 0.04,
+                      color: Colors.blue,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.only(left: 10),
+                              alignment: Alignment.centerLeft,
+                              width: Screens.width(context) * 0.1,
+                              child: Text(
+                                "S.No",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.2,
+                              child: Text(
+                                "Item Name",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          Container(
+                              alignment: Alignment.center,
+                              width: Screens.width(context) * 0.1,
+                              child: Text(
+                                "Item Code",
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              )),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: Screens.width(context) * 0.1,
+                                child: Text(
+                                  "Qty",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: Screens.width(context) * 0.1,
+                                child: Text(
+                                  "Price",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                )),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                                alignment: Alignment.center,
+                                width: Screens.width(context) * 0.1,
+                                child: Text(
+                                  "Branch",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Screens.padingHeight(context) * 0.02,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.centerLeft,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${i + 1}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.2,
+                            child: Text(
+                              "${itemValue.itemnameshort}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${itemValue.itemcode}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${itemValue.maximumQty}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${itemValue.sellprice}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            width: Screens.width(context) * 0.1,
+                            child: Text(
+                              "${AppConstant.branch}",
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.black),
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+        });
   }
 }

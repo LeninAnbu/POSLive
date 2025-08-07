@@ -37,14 +37,17 @@ class PostOrderLoginAPi {
             json.decode(response.body) as Map<String, dynamic>,
             response.statusCode);
       } else {
-        log("saplogin: ${json.decode(response.body)}");
-        log("saplogin stcode22 ::${response.statusCode}");
-        throw Exception("Error");
+        // log("saplogin: ${json.decode(response.body)}");
+        // log("saplogin stcode22 ::${response.statusCode}");
+        // throw Exception("Error");
+        return Logindata.error(
+            json.decode(response.body) as Map<String, dynamic>,
+            response.statusCode);
       }
     } catch (e) {
       log('Exception saplogin: $e');
 
-      return Logindata.issue('Restart the app or contact the admin!!..', 500);
+      return Logindata.issue('$e', 500);
     }
   }
 }

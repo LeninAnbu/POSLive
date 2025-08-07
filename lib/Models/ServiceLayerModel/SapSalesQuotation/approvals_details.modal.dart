@@ -335,11 +335,9 @@ class ApprovalDetailsPutValue {
   dynamic uAuditName;
   dynamic uRequest;
   dynamic uPosDocNo;
-  // List<dynamic> documentApprovalRequests;
+
   List<DocumentApprovalPutValue>? documentLines;
-  // List<dynamic> electronicProtocols;
-  // List<dynamic> documentAdditionalExpenses;
-  // List<dynamic> documentSpecialLines;
+
   TaxExtension? taxExtension;
   AddressExtension? addressExtension;
   List<DocumentReference>? documentReferences;
@@ -675,15 +673,10 @@ class ApprovalDetailsPutValue {
     this.uAuditName,
     this.uRequest,
     this.uPosDocNo,
-    //   this.documentApprovalRequests,
     this.documentLines,
-    //   this.electronicProtocols,
-    //   this.documentAdditionalExpenses,
-    //   this.documentSpecialLines,
     this.taxExtension,
     this.addressExtension,
     this.error,
-    //   this.documentReferences,
   });
 
   factory ApprovalDetailsPutValue.fromJson(dynamic json, int stsCode) {
@@ -703,7 +696,6 @@ class ApprovalDetailsPutValue {
     return ApprovalDetailsPutValue(
       statusCode: stsCode,
       documentLines: dataList,
-      //  List<DocumentLine>.from(json['DocumentLines'].map((x) => DocumentLine.fromJson(x))),
       documentReferences: dataList2,
       odataMetadata: json['odata.metadata']?.toString(),
       odataEtag: json['odata.etag']?.toString(),
@@ -1127,7 +1119,6 @@ class ApprovalDetailsPutValue {
       uBolImage: json['U_BOL_Image'],
       uGpApproval: json['U_GP_Approval']?.toString(),
       uTruckInternal: json['U_Truck_Internal']?.toString(),
-
       uOrderType: json['U_Order_Type']?.toString(),
       uSupplierName: json['U_SUPPLIER_NAME'],
       uVatNumber: json['U_VAT_NUMBER'],
@@ -1522,13 +1513,8 @@ class ApprovalDetailsPutValue {
         'U_AUDIT_NAME': uAuditName,
         'U_Request': uRequest,
         'U_PosDocNo': uPosDocNo,
-        // 'Document_ApprovalRequests': List<dynamic>.from(documentApprovalRequests.map((x) => x)),
         'DocumentLines':
             List<dynamic>.from(documentLines!.map((x) => x.toJson())),
-
-        // 'ElectronicProtocols': List<dynamic>.from(electronicProtocols.map((x) => x)),
-        // 'DocumentAdditionalExpenses': List<dynamic>.from(documentAdditionalExpenses.map((x) => x)),
-        // 'DocumentSpecialLines': List<dynamic>.from(documentSpecialLines.map((x) => x)),
         'TaxExtension': taxExtension,
         'AddressExtension': addressExtension,
         'DocumentReferences':
@@ -1773,14 +1759,9 @@ class DocumentApprovalPutValue {
   dynamic uIdentifier;
 
   double? U_Pack_Size;
-  // double U_Tins_Per_Box;
-  // List<dynamic> lineTaxJurisdictions;
-  // List<dynamic> documentLineAdditionalExpenses;
 
   DocumentApprovalPutValue({
     required this.U_Pack_Size,
-    // required this.U_Tins_Per_Box,
-
     required this.lineNum,
     required this.itemCode,
     required this.itemDescription,
@@ -2006,8 +1987,6 @@ class DocumentApprovalPutValue {
     required this.uRvc,
     required this.uVrn,
     required this.uIdentifier,
-    //   this.lineTaxJurisdictions,
-    //   this.documentLineAdditionalExpenses,
   });
 
   factory DocumentApprovalPutValue.fromJson(dynamic json) =>
@@ -2442,10 +2421,6 @@ class DocumentApprovalPutValue {
         U_Pack_Size: json['U_Pack_Size'] == null
             ? null
             : double.parse(json['U_Pack_Size'].toString()),
-// U_Tins_Per_Box:double.parse(json['U_Tins_Per_Box'].toString()),
-
-        // lineTaxJurisdictions: List<dynamic>.from(json['LineTaxJurisdictions'].map((x) => x)),
-        // documentLineAdditionalExpenses: List<dynamic>.from(json['DocumentLineAdditionalExpenses'].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -2675,7 +2650,5 @@ class DocumentApprovalPutValue {
         'U_RVC': uRvc,
         'U_VRN': uVrn,
         'U_Identifier': uIdentifier,
-        // 'LineTaxJurisdictions': List<dynamic>.from(lineTaxJurisdictions.map((x) => x)),
-        // 'DocumentLineAdditionalExpenses': List<dynamic>.from(documentLineAdditionalExpenses.map((x) => x)),
       };
 }

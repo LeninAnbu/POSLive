@@ -8,8 +8,6 @@ import '../Pages/Reports/NewreportsPage.dart';
 
 import '../Pages/Stockslist/Screens/Screens.dart';
 
-// Drawer naviDrawer(BuildContext context) {
-
 class naviDrawer extends StatefulWidget {
   naviDrawer({super.key});
 
@@ -332,24 +330,24 @@ class _naviDrawerState extends State<naviDrawer> {
                   ),
                 ),
               ),
-              Builder(
-                builder: (context) => ListTile(
-                  leading: Image.asset(
-                    'assets/Drawer/stockcheck.png',
-                    fit: BoxFit.fill,
-                    height: Screens.bodyheight(context) * 0.038,
-                    width: Screens.width(context) * 0.024,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
+              // Builder(
+              //   builder: (context) => ListTile(
+              //     leading: Image.asset(
+              //       'assets/Drawer/stockcheck.png',
+              //       fit: BoxFit.fill,
+              //       height: Screens.bodyheight(context) * 0.038,
+              //       width: Screens.width(context) * 0.024,
+              //     ),
+              //     onTap: () {
+              //       Navigator.pop(context);
 
-                    Get.toNamed(ConstantRoutes.stockCheck);
-                  },
-                  title: const Text(
-                    "Stock Check",
-                  ),
-                ),
-              ),
+              //       Get.toNamed(ConstantRoutes.stockCheck);
+              //     },
+              //     title: const Text(
+              //       "Stock Check",
+              //     ),
+              //   ),
+              // ),
               Builder(
                 builder: (context) => ListTile(
                   leading: Image.asset(
@@ -449,6 +447,42 @@ class _naviDrawerState extends State<naviDrawer> {
                   },
                   title: const Text(
                     "Stock Replenish",
+                  ),
+                ),
+              ),
+              Builder(
+                builder: (context) => ListTile(
+                  leading: Image.asset(
+                    'assets/Drawer/incomingReport.png',
+                    fit: BoxFit.fill,
+                    height: Screens.bodyheight(context) * 0.04,
+                    width: Screens.width(context) * 0.024,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Get.toNamed(ConstantRoutes.incomingReport);
+                  },
+                  title: const Text(
+                    "Incoming Payment Report",
+                  ),
+                ),
+              ),
+              Builder(
+                builder: (context) => ListTile(
+                  leading: Image.asset(
+                    'assets/Drawer/depositreport.jpeg',
+                    fit: BoxFit.fill,
+                    height: Screens.bodyheight(context) * 0.04,
+                    width: Screens.width(context) * 0.024,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Get.toNamed(ConstantRoutes.deposiReport);
+                  },
+                  title: const Text(
+                    "Deposit Report",
                   ),
                 ),
               ),

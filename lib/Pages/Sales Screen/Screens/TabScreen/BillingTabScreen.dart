@@ -121,21 +121,3 @@ class _SalesInvoiceTabScreenState extends State<SalesInvoiceTabScreen> {
     );
   }
 }
-
-// class Base64Image extends StatelessWidget {
-//   final String base64String;
-
-//   const Base64Image({required this.base64String});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     try {
-//       String base64Stringx = base64String.split(',').last;
-//       Uint8List imageBytes = base64Decode(base64Stringx);
-
-//       return Image.memory(imageBytes);
-//     } catch (e) {
-//       return Text('Invalid Base64 String');
-//     }
-//   }
-// }

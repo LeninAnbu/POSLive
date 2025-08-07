@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable
-
 const String tableDepositLine = "DepositLine";
 
 class DepositLineT {
@@ -11,8 +9,8 @@ class DepositLineT {
   static String transactionRefno = "transactionRefno";
   static String instrumentno = "instrumentno";
   static String paymodetype = "paymodetype";
-  static String rcDocentry  = "RcDocentry";
-  static String rcDocnum    = "RcDocnum";
+  static String rcDocentry = "RcDocentry";
+  static String rcDocnum = "RcDocnum";
   static String payentry = "payentry";
   static String paylineno = "paylineno";
   static String payamount = "payamount";
@@ -34,8 +32,8 @@ class DepositLineT {
 }
 
 class DepositLineTDB {
-  String rcDocentry ; 
-String rcDocnum    ;
+  String rcDocentry;
+  String rcDocnum;
   String? baselineid;
   String? basedocentry;
   String? basedoctype;
@@ -67,8 +65,8 @@ String rcDocnum    ;
       required this.basedocentry,
       required this.baselineid,
       this.docentry,
-     required this.rcDocentry,
-     required this.rcDocnum,
+      required this.rcDocentry,
+      required this.rcDocnum,
       required this.linenumber,
       required this.transactionRefno,
       required this.instrumentno,
@@ -118,12 +116,14 @@ String rcDocnum    ;
       branch: resp['branch'],
       terminal: resp['terminal'],
       jurnelRemarks: resp['jurnelRemarks'],
-      transactionID: resp['transactionID'], rcDocentry:resp['RcDocentry'], rcDocnum: resp['RcDocnum'],
+      transactionID: resp['transactionID'],
+      rcDocentry: resp['RcDocentry'],
+      rcDocnum: resp['RcDocnum'],
     );
   }
   Map<String, Object?> toMap(int docentry) => {
-    DepositLineT.rcDocentry:rcDocentry,
-    DepositLineT.rcDocnum:rcDocnum,
+        DepositLineT.rcDocentry: rcDocentry,
+        DepositLineT.rcDocnum: rcDocnum,
         DepositLineT.basedocentry: basedocentry,
         DepositLineT.transactionID: transactionID,
         DepositLineT.jurnelRemarks: jurnelRemarks,

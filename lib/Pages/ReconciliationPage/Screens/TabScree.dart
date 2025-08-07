@@ -794,6 +794,10 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                                                           ReconciliationCtrl>()
                                                       .totalRecoAmt ==
                                                   0) {
+                                                context
+                                                    .read<ReconciliationCtrl>()
+                                                    .onDisablebutton = true;
+
                                                 await context
                                                     .read<ReconciliationCtrl>()
                                                     .callpostRecoList(context);
@@ -832,7 +836,7 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                     color: Colors.grey.shade300,
                     alignment: Alignment.centerRight,
                     height: Screens.padingHeight(context) * 0.8,
-                    width: Screens.width(context) * 0.25,
+                    width: Screens.width(context) * 0.3,
                     child: ListView.builder(
                         itemCount: context
                             .watch<ReconciliationCtrl>()
@@ -880,9 +884,21 @@ class _RecoTabScreensState extends State<RecoTabScreens> {
                               },
                               child: Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                    '${context.watch<ReconciliationCtrl>().filterListBoxData[i].cardCode.toString()}'),
+                                padding: EdgeInsets.all(5),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                          '${context.watch<ReconciliationCtrl>().filterListBoxData[i].cardCode.toString()}'),
+                                    ),
+                                    Text(' - '),
+                                    Container(
+                                      width: Screens.width(context) * 0.22,
+                                      child: Text(
+                                          '${context.watch<ReconciliationCtrl>().filterListBoxData[i].cardName.toString()}'),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );

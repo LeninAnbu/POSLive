@@ -10,16 +10,15 @@ class CreaditDaysModal {
   });
   factory CreaditDaysModal.fromJson(Map<String, dynamic> jsons) {
     if (jsons['value'] != null) {
-      final list = jsons['value'] as List; //jsonDecode
-      // print(list);
+      final list = jsons['value'] as List;
+
       List<CreaditDaysValue> dataList = list
           .map((dynamic enquiries) => CreaditDaysValue.fromJson(enquiries))
           .toList();
-      // print(dataList[0]);
+
       return CreaditDaysModal(
         creaditDaysValueValue: dataList,
         odatametadata: jsons['odata.metadata'].toString(),
-        // nextLink:  jsons['odata.nextLink'].toString(),
       );
     } else {
       return CreaditDaysModal(

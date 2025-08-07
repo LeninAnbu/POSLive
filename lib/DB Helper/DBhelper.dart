@@ -69,45 +69,6 @@ class DBHelper {
   }
 
   static void createTable(Database database, int version) async {
-//     await database.execute('''
-//  create table $tableItemMaster(
-//  ${ItemMasterT.autoId} integer ,
-//  ${ItemMasterT.quantity} integer ,
-//  ${ItemMasterT.isselected} integer ,
-//  ${ItemMasterT.itemcode} varchar(100) not null,
-//  ${ItemMasterT.itemnamelong} varchar(300) not null,
-//  ${ItemMasterT.itemnameshort} varchar(50) ,
-//  ${ItemMasterT.skucode} varchar(100) ,
-//  ${ItemMasterT.brand} varchar(100) ,
-//  ${ItemMasterT.category}  varchar(100) ,
-//  ${ItemMasterT.subcategory} varchar(100) ,
-//  ${ItemMasterT.sellprice}  varchar(100) ,
-//  ${ItemMasterT.mrpprice} varchar(100) ,
-//  ${ItemMasterT.hsnsac} varchar(20) ,
-//  ${ItemMasterT.taxrate} NUMERIC ,
-//  ${ItemMasterT.isinventory}  varchar(1) ,
-//  ${ItemMasterT.isfreeby}  varchar(1) ,
-//  ${ItemMasterT.isActive} varchar(1) ,
-//  ${ItemMasterT.isserialBatch} varchar(1) ,
-//  ${ItemMasterT.issellpricebyscrbat} varchar(1) ,
-//  ${ItemMasterT.maxdiscount} NUMERIC ,
-//  ${ItemMasterT.createdateTime}  datetime ,
-//  ${ItemMasterT.updatedDatetime} datetime,
-//  ${ItemMasterT.createdUserID}  integer ,
-//  ${ItemMasterT.updateduserid} integer,
-//  ${ItemMasterT.lastupdateIp} varchar,
-//  ${ItemMasterT.maximumQty} integer ,
-//  ${ItemMasterT.minimumQty} integer ,
-//  ${ItemMasterT.displayQty} integer ,
-//  ${ItemMasterT.weight} NUMERIC ,
-//  ${ItemMasterT.liter} NUMERIC ,
-//  ${ItemMasterT.uPackSizeuom} varchar,
-//  ${ItemMasterT.uPackSize} varchar,
-//  ${ItemMasterT.uTINSPERBOX} NUMERIC,
-//  ${ItemMasterT.uSpecificGravity} varchar,
-//  ${ItemMasterT.searchString} varchar
-//  )  ''');
-
     await database.execute('''
  create table $tableItemMaster(
 ${ItemMasterT.itemname} varchar,
@@ -164,34 +125,6 @@ AutoId integer primary key AUTOINCREMENT
  ${PriceMasterT.lastupdateIp} varchar 
  )''');
 
-//     await database.execute('''
-//  create table $tableCustomerMaster(
-//   ${CustomerMasterT.autoid}  INTEGER primary key AUTOINCREMENT,
-//  ${CustomerMasterT.customerCode} varchar(50) ,
-//  ${CustomerMasterT.customername} varchar(200) ,
-//  ${CustomerMasterT.premiumid} varchar(50) ,
-//  ${CustomerMasterT.customertype}  varchar(50) ,
-//  ${CustomerMasterT.taxno} varchar(15) ,
-//  ${CustomerMasterT.taxCode} varchar(15) ,
-//  ${CustomerMasterT.createdbybranch} varchar(50) ,
-//  ${CustomerMasterT.balance} NUMERIC,
-//  ${CustomerMasterT.points}  NUMERIC ,
-//  ${CustomerMasterT.snapdatetime} datetime ,
-//  ${CustomerMasterT.phoneno1} varchar(50) ,
-//  ${CustomerMasterT.phoneno2}  varchar(50) ,
-//  ${CustomerMasterT.emalid} varchar(100) ,
-//  ${CustomerMasterT.tinNo} varchar(100) ,
-//  ${CustomerMasterT.vatregno} varchar(100) ,
-//  ${CustomerMasterT.terminal} varchar(100) ,
-//  ${CustomerMasterT.createdateTime}  datetime ,
-//  ${CustomerMasterT.updatedDatetime} datetime,
-//  ${CustomerMasterT.createdUserID}  integer ,
-//  ${CustomerMasterT.updateduserid} integer,
-//  ${CustomerMasterT.lastupdateIp} varchar
-//  ) ''');
-
-// customerCode	customername	premiumid	customertype	taxno	createdbybranch	balance	points	snapdatetime	phoneno1
-// 	phoneno2	emalid	createdateTime	updatedDatetime	createdUserID	updateduserid	lastupdateIp	TaxCode	U_CASHCUST
     await database.execute('''
  create table $tableCustomerMaster(
  ${CustomerMasterT.customerCode} varchar,
@@ -215,7 +148,6 @@ AutoId integer primary key AUTOINCREMENT
  ${CustomerMasterT.uCashCust} varchar,
   autoid INTEGER primary key AUTOINCREMENT
  ) ''');
-    //
 
     await database.execute('''
  create table $tableCustomerMasterAdress(
@@ -275,18 +207,7 @@ AutoId integer primary key AUTOINCREMENT
  ${BranchT.companyHeader} varchar(100) ,
  ${BranchT.e_Mail} varchar(500) 
  )''');
-//  ${BranchT.customerAcct} varchar(20) ,
-// ${BranchT.disAcct1} varchar(200) ,
-//  ${BranchT.disAcct2} varchar(100) ,
-//  ${BranchT.creditCard} varchar(200) ,
-//  ${BranchT.stateCode} varchar(50) ,
-//  ${BranchT.gSTNo} varchar(50) ,
 
-//  ${BranchT.pAN}   varchar(50) ,
-//  ${BranchT.address1} varchar(50) ,
-//  ${BranchT.address2}  varchar(50) ,
-//  ${BranchT.pincode}  varchar(50) ,
-// ${BranchT.city} varchar(50)
     await database.execute('''
  create table $tableState(
  ${StateT.stateCode} varchar(5) ,
@@ -532,9 +453,7 @@ AutoId integer primary key AUTOINCREMENT
   ${SalesHeaderT.sapDocNo} integer,
   ${SalesHeaderT.qStatus} varchar
  )''');
-//  ${SalesHeaderT.street} varchar,
-    // ${SalesHeaderT.block} varchar,
-    // ${SalesHeaderT.addressName1} varchar,
+
     await database.execute('''
  create table $tableSalesLine(
   ${SalesLineT.docentry} integer,
@@ -610,8 +529,6 @@ ${SalesLineT.serialbatch}  varchar ,
 ${SalesPayT.lastupdateIp} varchar 
  )''');
 
-    // sales order table
-
     await database.execute('''
  create table $tableSalesOrderHeader(
   ${SalesOrderHeaderT.docentry} integer ,
@@ -683,9 +600,7 @@ ${SalesPayT.lastupdateIp} varchar
   ${SalesOrderHeaderT.sapDocNo} integer,
   ${SalesOrderHeaderT.qStatus} varchar
  )''');
-//  ${SalesOrderHeaderT.street} varchar,uDeviceId
-    // ${SalesOrderHeaderT.block} varchar,
-    // ${SalesOrderHeaderT.addressName1} varchar,
+
     await database.execute('''
  create table $tableSalesOrderLine(
   ${SalesOrderLineT.docentry} integer,
@@ -884,7 +799,7 @@ ${SalesQuotationLineT.serialbatch}  varchar ,
   ${ReceiptHeaderT.updateduserid} integer ,
   ${ReceiptHeaderT.lastupdateIp} varchar 
  )''');
-// transdocentry
+
     await database.execute('''
  create table $tableReceiptLine1(
   ${ReceiptLineT.docentry} integer,
@@ -1380,7 +1295,6 @@ create table $couponDetailsMaster(
  ${CouponDetailT.couponamt} varchar
   )''');
 
-//Refund
     await database.execute('''
  create table $tableRefundHeader(
   ${RefundHeaderT.docentry} integer,
@@ -1410,7 +1324,7 @@ create table $couponDetailsMaster(
   ${RefundHeaderT.updateduserid} integer ,
   ${RefundHeaderT.lastupdateIp} varchar 
  )''');
-// transdocentry
+
     await database.execute('''
  create table $tableRefundLine1(
   ${RefundLineT.docentry} integer,
@@ -1500,7 +1414,7 @@ ${RefundPayT.lastupdateIp} varchar,
              ${Notification.naviScn} varchar not null
              )
         ''');
-    //
+
     await database.execute('''
  CREATE TRIGGER reduceQtyInStockSales 
    AFTER INSERT ON SalesLine

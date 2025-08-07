@@ -9,7 +9,6 @@ class AccountBalanceModel {
   int statuscode;
   AccountBalanceModel(
       {required this.status,
-      //
       required this.message,
       this.accBalanceData,
       required this.statuscode,
@@ -36,13 +35,6 @@ class AccountBalanceModel {
           statuscode: Statuscode);
     }
   }
-  // factory AccountBalanceModel.issue(int statuscode) {
-  //   return AccountBalanceModel(
-  //       status: null,
-  //       message: null,
-  //       accBalanceData: null,
-  //       statuscode: statuscode);
-  // }
 
   factory AccountBalanceModel.exception(String e, int statuscode) {
     return AccountBalanceModel(
@@ -54,8 +46,6 @@ class AccountBalanceModel {
   }
 }
 
-// AccBal Res{status: true, message: Success,
-//data: [{"cardcode":"B1111","CardName":"MOSHI DEPOT","Balance":-25000.000000}]}
 class AccountBalanceModelData {
   String cardcode;
   String cardName;

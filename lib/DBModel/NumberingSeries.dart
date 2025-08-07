@@ -40,7 +40,6 @@ class NumberingSriesTDB {
     required this.toDate,
     required this.wareHouse,
   });
-//   createdUserID:item['createdUserID'] ,
   factory NumberingSriesTDB.fromMap(Map<String, dynamic> item) =>
       NumberingSriesTDB(
         id: item['id'],

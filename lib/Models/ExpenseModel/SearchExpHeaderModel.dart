@@ -60,7 +60,6 @@ class SearchEpenseDataModel {
     required this.docEntry,
     required this.docNum,
   });
-// Address, JrnlMemo
   factory SearchEpenseDataModel.fromJson(Map<String, dynamic> json) =>
       SearchEpenseDataModel(
           status: json['Status'] ?? '',

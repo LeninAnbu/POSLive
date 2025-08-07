@@ -38,7 +38,7 @@ class UserModelDB {
   String? lastupdateIp;
 
   UserModelDB({
-     this.autoId,
+    this.autoId,
     required this.usercode,
     required this.userName,
     required this.branch,
@@ -55,7 +55,7 @@ class UserModelDB {
     required this.userstatus,
     required this.usertype,
   });
-//   createdUserID:item['createdUserID'] ,
+
   factory UserModelDB.fromMap(Map<String, dynamic> item) => UserModelDB(
       autoId: item[''],
       usercode: item[''],

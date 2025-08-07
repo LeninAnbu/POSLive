@@ -3943,51 +3943,85 @@ class StockOutwardController extends ChangeNotifier {
           await getSession();
         }
       } else if (value.stCode! >= 400 && value.stCode! <= 410) {
-        if (value.error!.code != null) {
-          loadingscrn = false;
-          final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              bottom: Screens.bodyheight(context) * 0.3,
-            ),
-            duration: Duration(seconds: 4),
-            backgroundColor: Colors.red,
-            content: Text(
-              "${value.error!.message!.value}\nCheck Your Sap Details !!..",
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          Future.delayed(const Duration(seconds: 5), () {
-            exit(0);
-          });
-        }
+        // if (value.error!.code != null) {
+        loadingscrn = false;
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        //   final snackBar = SnackBar(
+        //     behavior: SnackBarBehavior.floating,
+        //     margin: EdgeInsets.only(
+        //       bottom: Screens.bodyheight(context) * 0.3,
+        //     ),
+        //     duration: Duration(seconds: 4),
+        //     backgroundColor: Colors.red,
+        //     content: Text(
+        //       "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //       style: const TextStyle(color: Colors.white),
+        //     ),
+        //   );
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        //   Future.delayed(const Duration(seconds: 5), () {
+        //     exit(0);
+        //   });
+        // }
       } else if (value.stCode == 500) {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: Text(
-            "Opps Something went wrong !!..",
-            style: const TextStyle(color: Colors.white),
-          ),
-        );
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: Text(
+        //     "Opps Something went wrong !!..",
+        //     style: const TextStyle(color: Colors.white),
+        //   ),
+        // );
       } else {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: Text(
-            "Opps Something went wrong !!..",
-            style: const TextStyle(color: Colors.white),
-          ),
-        );
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: Text(
+        //     "Opps Something went wrong !!..",
+        //     style: const TextStyle(color: Colors.white),
+        //   ),
+        // );
       }
     });
   }

@@ -514,6 +514,8 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                 .textTheme
                                                                 .bodyMedium
                                                                 ?.copyWith(
+                                                                    fontSize:
+                                                                        12.5,
                                                                     color: Colors
                                                                         .black),
                                                           ))),
@@ -573,6 +575,8 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                           style: theme.textTheme
                                                               .bodyMedium
                                                               ?.copyWith(
+                                                                  fontSize:
+                                                                      12.5,
                                                                   color: Colors
                                                                       .black),
                                                           cursorColor:
@@ -721,6 +725,8 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                   .textTheme
                                                                   .bodyMedium
                                                                   ?.copyWith(
+                                                                      fontSize:
+                                                                          12.5,
                                                                       color: Colors
                                                                           .black),
                                                               cursorColor:
@@ -801,33 +807,30 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                   .textTheme
                                                                   .bodyMedium
                                                                   ?.copyWith(
+                                                                      fontSize:
+                                                                          12.5,
                                                                       color: Colors
                                                                           .black),
                                                             ),
                                                           ),
-                                                    context
-                                                                    .watch<
-                                                                        SOCon>()
-                                                                    .userTypes ==
+                                                    context.watch<SOCon>().userTypes ==
                                                                 'corporate' ||
                                                             context.watch<SOCon>().userTypes ==
                                                                 'retail'
                                                         ? Container(
-                                                            width:
-                                                                widget.searchWidth *
-                                                                    0.13,
-                                                            height:
-                                                                widget
-                                                                        .searchHeight *
-                                                                    0.07,
-                                                            alignment:
-                                                                Alignment
-                                                                    .center,
+                                                            width: widget
+                                                                    .searchWidth *
+                                                                0.13,
+                                                            height: widget
+                                                                    .searchHeight *
+                                                                0.07,
+                                                            alignment: Alignment
+                                                                .center,
                                                             padding: EdgeInsets
                                                                 .symmetric(
-                                                                    horizontal: widget
-                                                                            .searchWidth *
-                                                                        0.005),
+                                                                    horizontal:
+                                                                        widget.searchWidth *
+                                                                            0.005),
                                                             child:
                                                                 TextFormField(
                                                               textAlign:
@@ -875,6 +878,8 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                   .textTheme
                                                                   .bodyMedium
                                                                   ?.copyWith(
+                                                                      fontSize:
+                                                                          12.5,
                                                                       color: Colors
                                                                           .black),
                                                               cursorColor:
@@ -940,16 +945,25 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                               ),
                                                             ))
                                                         : Container(
-                                                            width:
-                                                                widget.searchWidth *
-                                                                    0.08,
+                                                            width: widget
+                                                                    .searchWidth *
+                                                                0.08,
                                                             height: widget
                                                                     .searchHeight *
                                                                 0.07,
                                                             alignment: Alignment
                                                                 .centerRight,
                                                             child: Text(
-                                                                "${context.watch<SOCon>().getScanneditemData[index].discountper!.toStringAsFixed(2)}")),
+                                                              "${context.watch<SOCon>().getScanneditemData[index].discountper!.toStringAsFixed(2)}",
+                                                              style: theme
+                                                                  .textTheme
+                                                                  .bodyMedium
+                                                                  ?.copyWith(
+                                                                      fontSize:
+                                                                          12.5,
+                                                                      color: Colors
+                                                                          .black),
+                                                            )),
                                                     Container(
                                                         width:
                                                             widget.searchWidth *
@@ -959,19 +973,28 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                             0.07,
                                                         alignment: Alignment
                                                             .centerRight,
-                                                        child: Text(context
-                                                                    .watch<
-                                                                        SOCon>()
-                                                                    .getScanneditemData[
-                                                                        index]
-                                                                    .priceAftDiscVal !=
-                                                                null
-                                                            ? context
-                                                                .read<SOCon>()
-                                                                .config
-                                                                .splitValues(
-                                                                    "${context.watch<SOCon>().getScanneditemData[index].priceAftDiscVal}")
-                                                            : '')),
+                                                        child: Text(
+                                                          context
+                                                                      .watch<
+                                                                          SOCon>()
+                                                                      .getScanneditemData[
+                                                                          index]
+                                                                      .priceAftDiscVal !=
+                                                                  null
+                                                              ? context
+                                                                  .read<SOCon>()
+                                                                  .config
+                                                                  .splitValues(
+                                                                      "${context.watch<SOCon>().getScanneditemData[index].priceAftDiscVal}")
+                                                              : '',
+                                                          style: theme.textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontSize:
+                                                                      12.5,
+                                                                  color: Colors
+                                                                      .black),
+                                                        )),
                                                     Container(
                                                       width:
                                                           widget.searchWidth *
@@ -995,6 +1018,7 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                         style: theme.textTheme
                                                             .bodyMedium
                                                             ?.copyWith(
+                                                                fontSize: 12.5,
                                                                 color: Colors
                                                                     .black),
                                                       ),
@@ -1015,23 +1039,26 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Container(
+                                                  // color: Colors.green,
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   width:
-                                                      widget.searchWidth * 0.4,
+                                                      widget.searchWidth * 0.36,
                                                   child: Text(
                                                     " ${context.watch<SOCon>().getScanneditemData[index].itemName}",
                                                     style: theme
                                                         .textTheme.bodyMedium
-                                                        ?.copyWith(),
+                                                        ?.copyWith(
+                                                            fontSize: 12.5),
                                                   ),
                                                 ),
                                                 Container(
+                                                  alignment: Alignment.center,
                                                   height: Screens.padingHeight(
                                                           context) *
                                                       0.05,
                                                   width:
-                                                      widget.searchWidth * 0.22,
+                                                      widget.searchWidth * 0.2,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(
                                                         color: const Color
@@ -1044,6 +1071,9 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                         .withOpacity(0.001),
                                                   ),
                                                   child: TextFormField(
+                                                    style: TextStyle(
+                                                      fontSize: 12.5,
+                                                    ),
                                                     readOnly: true,
                                                     controller: context
                                                             .read<SOCon>()
@@ -1092,13 +1122,14 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                       contentPadding:
                                                           const EdgeInsets
                                                               .symmetric(
-                                                        vertical: 4,
-                                                        horizontal: 5,
+                                                        vertical: 2,
+                                                        horizontal: 2,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Container(
+                                                  // color: Colors.red,
                                                   width:
                                                       widget.searchWidth * 0.14,
                                                   alignment:
@@ -1115,12 +1146,14 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                       style: theme
                                                           .textTheme.bodyMedium
                                                           ?.copyWith(
+                                                              fontSize: 12.5,
                                                               color: Colors
                                                                   .black)),
                                                 ),
                                                 Container(
+                                                  // color: Colors.red,
                                                   width:
-                                                      widget.searchWidth * 0.18,
+                                                      widget.searchWidth * 0.12,
                                                   alignment:
                                                       Alignment.centerRight,
                                                   child: Text(
@@ -1131,14 +1164,38 @@ class _SOSearchWidgetState extends State<SOSearchWidget> {
                                                                       index]
                                                                   .inStockQty ==
                                                               null
-                                                          ? 'Instock : 00'
-                                                          : 'Instock :  ${context.read<SOCon>().getScanneditemData[index].inStockQty}',
+                                                          ? 'IS : 00'
+                                                          : 'IS :  ${context.read<SOCon>().getScanneditemData[index].inStockQty}',
                                                       style: theme
                                                           .textTheme.bodyMedium
                                                           ?.copyWith(
+                                                              fontSize: 12.5,
                                                               color: Colors
                                                                   .black)),
                                                 ),
+                                                // Container(
+                                                //   // color: Colors.green,
+                                                //   width:
+                                                //       widget.searchWidth * 0.14,
+                                                //   alignment:
+                                                //       Alignment.centerRight,
+                                                //   child: Text(
+                                                //       context
+                                                //                   .watch<
+                                                //                       SOCon>()
+                                                //                   .getScanneditemData[
+                                                //                       index]
+                                                //                   .availableStk ==
+                                                //               null
+                                                //           ? 'AS : 00'
+                                                //           : 'AS : ${context.read<SOCon>().getScanneditemData[index].availableStk}',
+                                                //       style: theme
+                                                //           .textTheme.bodyMedium
+                                                //           ?.copyWith(
+                                                //               fontSize: 12.5,
+                                                //               color: Colors
+                                                //                   .black)),
+                                                // ),
                                               ],
                                             ),
                                           )

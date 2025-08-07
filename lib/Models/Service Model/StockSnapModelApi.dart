@@ -17,13 +17,11 @@ class StocksnapModel {
   factory StocksnapModel.fromJson(Map<String, dynamic> jsons, int stcode) {
     if (jsons["data"] != null) {
       var list = jsonDecode(jsons["data"]) as List;
-      // log("LL::$list");
 
       List<StocksnapModelData> dataList =
           list.map((data) => StocksnapModelData.fromJson(data)).toList();
       return StocksnapModel(
           stocksnapitemdata: dataList,
-          //
           message: jsons["message"],
           status: jsons["status"],
           stcode: stcode,
@@ -31,7 +29,6 @@ class StocksnapModel {
     } else {
       return StocksnapModel(
           stocksnapitemdata: null,
-          //
           message: jsons["message"],
           status: jsons["status"],
           stcode: stcode,
@@ -41,7 +38,6 @@ class StocksnapModel {
 
   factory StocksnapModel.error(String jsons, int stcode) {
     return StocksnapModel(
-        //
         stocksnapitemdata: null,
         message: null,
         status: null,
@@ -100,6 +96,7 @@ class StocksnapModelData {
       this.inDate,
       this.inType,
       this.displayQty,
+      this.availableStk,
       this.maximumQty,
       required this.mrp,
       required this.sellPrice,
@@ -131,6 +128,7 @@ class StocksnapModelData {
   int? cartons;
   double? looseTins;
   double? inStockQty;
+  double? availableStk;
 
   double? tonnage;
   double? totalPack;
@@ -154,7 +152,7 @@ class StocksnapModelData {
 
   String? baselineid;
   int? transID;
-  // {\"itemname\":\"RED OXIDE PRIMER - 5LTR\",\"itemcode\":\"1000002C\",\"WhsCode\":\"HOFG\",\"serialbatch\":\"OB\",\"quantity\":23,\"maximumQty\":\"10\",\"minimumQty\":\"0\",\"displayQty\":\"10\",\"searchString\":\"1000002C,RED OXIDE PRIMER - 5LTR,RED OXIDE PRIMER - 5LTR,CORAL\",\"category\":\"\",\"liter\":5.000000,\"category1\":\"\",\"weight\":0.000000,\"hsnsac\":\"\",\"isActive\":\"N\",\"isfreeby\":\"FALSE\",\"isinventory\":\"TRUE\",\"issellpricebyscrbat\":\"FALSE\",\"itemnamelong\":\"1000002C,RED OXIDE PRIMER - 5LTR,RED OXIDE PRIMER - 5LTR,CORAL\",\"itemnameshort\":\"RED OXIDE PRIMER - 5LTR\",\"skucode\":\"1000002C\",\"subcategory\":\"\",\"sellprice\":23500.000000,\"mrpprice\":23500.000000,\"specialprice\":23500.000000,\"maxdiscount\":\"50\",\"taxrate\":18.000000,\"snapdatetime\":\"2024-09-16T13:35:10.597\",\"purchasedate\":\"2024-09-16T13:35:10.597\",\"createdateTime\":\"2024-09-16T13:35:10.597\",\"updatedDatetime\":\"2024-09-16T13:35:10.597\",\"createdUserID\":\"1\",\"updateduserid\":\"1\",\"lastupdateIp\":\"\",\"U_Pack_Size\":5.000000,\"U_TINS_PER_BOX\":4,\"U_Specific_Gravity\":1.252600,\"U_Pack_Size_uom\":\"L\"}
+
   String? hsnsac;
   String? category;
   String? isActive;
@@ -498,8 +496,6 @@ class AddItem2 {
   int? lineNoo;
   double? U_Pack_Size;
   int? U_Tins_Per_Box;
-  // List<dynamic> lineTaxJurisdictions;
-  // List<dynamic> documentLineAdditionalExpenses;
 
   AddItem2(
       {this.lineNumm,
@@ -741,10 +737,7 @@ class AddItem2 {
       this.lineNoo,
       this.carton,
       this.U_Pack_Size,
-      this.U_Tins_Per_Box
-      //  this.lineTaxJurisdictions,
-      //  this.documentLineAdditionalExpenses,
-      });
+      this.U_Tins_Per_Box});
 
   Map<String, dynamic> toJson() => {
         'LineNum': lineNumm,
@@ -973,7 +966,5 @@ class AddItem2 {
         'U_RVC': uRvc,
         'U_VRN': uVrn,
         'U_Identifier': uIdentifier,
-        // 'LineTaxJurisdictions': List<dynamic>.from(lineTaxJurisdictions.map((x) => x)),
-        // 'DocumentLineAdditionalExpenses': List<dynamic>.from(documentLineAdditionalExpenses.map((x) => x)),
       };
 }

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:posproject/Pages/LoginScreen/LoginScreen.dart';
 import 'package:provider/provider.dart';
-// import 'package:sellerkit/Controller/ForgotPasswordController/ForgotPasswordController.dart';
-// import 'package:sellerkit/Controller/LoginController/LoginController.dart';
-// import 'package:sellerkit/Pages/Splash/Widgets/custom_elevatedBtn.dart';
 
 import '../../../Constant/ConstantRoutes.dart';
 import '../../../Constant/Screen.dart';
@@ -12,7 +9,6 @@ import '../../../Constant/padings.dart';
 import '../../../Controller/ForgotPasswordController/ForgotPasswordController.dart';
 import '../../../Widgets/custom_elevatedBtn.dart';
 import 'custom_shake_transtition.dart';
-// import '../../../Widgets/custom_shake_transtition.dart';
 
 class ConfirmPasswordPage extends StatefulWidget {
   const ConfirmPasswordPage({super.key});

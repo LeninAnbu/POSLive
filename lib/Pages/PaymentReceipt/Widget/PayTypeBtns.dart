@@ -49,6 +49,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
               GestureDetector(
                 onTap: () {
                   context.read<PayreceiptController>().nullErrorMsg();
+                  context.read<PayreceiptController>().bankhintcolor = false;
                   context.read<PayreceiptController>().selectedcust == null
                       ? showDialog(
                           context: context,
@@ -127,18 +128,34 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                                             widget: forCashDialog(context),
                                             buttonName: 'OK',
                                             callback: () {
-                                              st(
-                                                () {
-                                                  context
+                                              log('message hiii');
+                                              if (context
                                                       .read<
                                                           PayreceiptController>()
-                                                      .addEnteredAmtType(
-                                                          'Cash',
-                                                          context,
-                                                          1,
-                                                          widget.theme);
-                                                },
-                                              );
+                                                      .cashAccCode !=
+                                                  null) {
+                                                st(
+                                                  () {
+                                                    context
+                                                        .read<
+                                                            PayreceiptController>()
+                                                        .addEnteredAmtType(
+                                                            'Cash',
+                                                            context,
+                                                            1,
+                                                            widget.theme);
+                                                  },
+                                                );
+                                              } else {
+                                                context
+                                                    .read<
+                                                        PayreceiptController>()
+                                                    .bankhintcolor = true;
+                                                context
+                                                    .read<
+                                                        PayreceiptController>()
+                                                    .cashAccCode = null;
+                                              }
                                             },
                                           ));
                                     });
@@ -163,14 +180,26 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                                                 callback: () {
                                                   st(
                                                     () {
-                                                      context
-                                                          .read<
-                                                              PayreceiptController>()
-                                                          .addEnteredAmtType(
-                                                              'Cash',
-                                                              context,
-                                                              1,
-                                                              widget.theme);
+                                                      log('message111::${context.read<PayreceiptController>().cashAccCode}');
+                                                      if (context
+                                                              .read<
+                                                                  PayreceiptController>()
+                                                              .cashAccCode !=
+                                                          null) {
+                                                        context
+                                                            .read<
+                                                                PayreceiptController>()
+                                                            .addEnteredAmtType(
+                                                                'Cash',
+                                                                context,
+                                                                1,
+                                                                widget.theme);
+                                                      } else {
+                                                        context
+                                                            .read<
+                                                                PayreceiptController>()
+                                                            .bankhintcolor = true;
+                                                      }
                                                     },
                                                   );
                                                 },
@@ -1636,7 +1665,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
                           alignment: Alignment.centerLeft,
                           child: Text("Account Name"),
                         ),
-                        SizedBox(width: widget.cashWidth * 0.175),
+                        SizedBox(width: widget.cashWidth * 0.17),
                         Container(
                           width: widget.cashWidth * 0.7,
                           padding: EdgeInsets.only(),

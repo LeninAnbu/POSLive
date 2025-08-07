@@ -18,7 +18,7 @@ class SettingScreens extends StatefulWidget {
 }
 
 class SettingScreensState extends State<SettingScreens> {
-  Locale? _selectedLocale; //= L10n.all.first;
+  Locale? _selectedLocale;
 
   @override
   void initState() {

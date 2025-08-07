@@ -5,7 +5,7 @@ import 'package:posproject/Pages/Expenses/ExpenseScreen.dart';
 import 'package:posproject/Pages/PaymentReceipt/Screens/Screens.dart';
 import 'package:posproject/Pages/Sales%20Screen/Screens/Screens.dart';
 import 'package:posproject/Pages/SalesReturn/Screens.dart';
-import 'package:posproject/Pages/Settlement/Screens/SettlementScreen.dart';
+import 'package:posproject/Pages/Deposits/Screens/SettlementScreen.dart';
 import 'package:posproject/Pages/StockInward/Screens/Screens.dart';
 import 'package:posproject/Pages/StockRequest/Screens/Screens.dart';
 import '../../StockOutward/Screens/Screens.dart';

@@ -63,7 +63,7 @@ class CustomerAddressModelDB {
       required this.geolocation1,
       required this.geolocation2,
       required this.statecode});
-//   createdUserID:item['createdUserID'] ,
+
   factory CustomerAddressModelDB.fromMap(Map<String, dynamic> item) =>
       CustomerAddressModelDB(
           createdUserID: item['createdUserID'],
@@ -91,7 +91,7 @@ class CustomerAddressModelDB {
         CustomerMasterAddressT.address2: address2,
         CustomerMasterAddressT.address3: address3,
         CustomerMasterAddressT.autoid: autoid,
-        CustomerMasterAddressT.city: city, //addresstype
+        CustomerMasterAddressT.city: city,
         CustomerMasterAddressT.addresstype: addresstype,
         CustomerMasterAddressT.branch: branch,
         CustomerMasterAddressT.terminal: terminal,
@@ -102,8 +102,8 @@ class CustomerAddressModelDB {
         CustomerMasterAddressT.geolocation1: geolocation1,
         CustomerMasterAddressT.geolocation2: geolocation2,
         CustomerMasterAddressT.lastupdateIp: lastupdateIp,
-        CustomerMasterAddressT.statecode: statecode, //pincode
-        CustomerMasterAddressT.pincode: pincode, //pincode
+        CustomerMasterAddressT.statecode: statecode,
+        CustomerMasterAddressT.pincode: pincode,
         CustomerMasterAddressT.updatedDatetime: updatedDatetime,
         CustomerMasterAddressT.updateduserid: updateduserid,
       };

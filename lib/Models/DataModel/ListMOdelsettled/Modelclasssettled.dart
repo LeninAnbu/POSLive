@@ -68,7 +68,6 @@ class CardList {
       this.cardterminal});
 }
 
-//cheque List
 class Chequelist {
   String? docentry;
   String name;
@@ -117,7 +116,6 @@ class Cashlist {
       this.cardterminal});
 }
 
-//wallet List
 class Walletlist {
   String? docentry;
   String walletname;
@@ -143,7 +141,6 @@ class Walletlist {
   });
 }
 
-//Coupon List
 class CouponCodeList {
   String? docentry;
   String couponname;

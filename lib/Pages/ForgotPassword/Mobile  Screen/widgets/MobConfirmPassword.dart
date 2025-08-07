@@ -167,13 +167,6 @@ class _MobileConfirmPasswordState extends State<MobileConfirmPassword> {
                               ),
                               CustomSpinkitdButton(
                                 onTap: () {
-// if (prdconf.formkey[2].currentState!.validate()) {
-//   if(prdconf.mycontroller[4].text==prdconf.mycontroller[5].text){
-// prdconf.confirmpwd();
-
-//   }
-
-//   }
                                   prdconf.valdationconfirmpwd(context);
                                 },
                                 isLoading: prdconf.isLoadingRest,

@@ -27,7 +27,7 @@ class WhsListDetails extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 3,
                 blurRadius: 7,
-                offset: const Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3),
               ),
             ],
           ),
@@ -45,7 +45,7 @@ class WhsListDetails extends StatelessWidget {
                       color: Colors.white.withOpacity(0.3), //color of shadow
                       spreadRadius: 3, //spread radius
                       blurRadius: 2, // blur radius
-                      offset: const Offset(0, 2), // changes position of shadow
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
@@ -324,7 +324,7 @@ class WhsListDetails extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 3,
                   blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -400,7 +400,7 @@ ForWhsList(BuildContext context, StockReqController srCon) {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 3,
                   blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3),
                 ),
               ],
               border:
@@ -445,8 +445,7 @@ ForWhsList(BuildContext context, StockReqController srCon) {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 3,
                               blurRadius: 7,
-                              offset: const Offset(
-                                  0, 3), // changes position of shadow
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
@@ -534,7 +533,7 @@ ForbranchList(BuildContext context, StockReqController srCon) {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 3,
                   blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3),
                 ),
               ],
               border:
@@ -587,8 +586,7 @@ ForbranchList(BuildContext context, StockReqController srCon) {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 3,
                                 blurRadius: 7,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
+                                offset: const Offset(0, 3),
                               ),
                             ],
                           ),

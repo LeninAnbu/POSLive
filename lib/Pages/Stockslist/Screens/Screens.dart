@@ -26,7 +26,7 @@ class _StockMainScreensState extends State<StockMainScreens> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        context.read<StockController>().init();
+        context.read<StockController>().init(context);
       });
     });
   }

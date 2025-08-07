@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
-
 import 'package:flutter/material.dart';
 import 'package:posproject/main.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +61,7 @@ class TabApiSettingsScreenState extends State<TabApiSettingsScreen> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 10,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),

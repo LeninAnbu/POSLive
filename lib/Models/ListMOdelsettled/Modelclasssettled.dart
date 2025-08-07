@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 class Paylist {
   String? ApprovelNo;
   String? Cardref;
@@ -109,7 +108,6 @@ class CardList {
       this.cardterminal});
 }
 
-//cheque List
 class ChequeList {
   String rcdocentry;
   String rcdoctno;
@@ -146,7 +144,6 @@ class ChequeList {
   });
 }
 
-//wallet List
 class Walletlist {
   String? basedoctype;
   String? basedocentry;
@@ -178,7 +175,6 @@ class Walletlist {
   });
 }
 
-//Coupon List
 class couponcodelist {
   String? basedoctype;
   String? docentry;

@@ -1,11 +1,15 @@
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:posproject/Constant/Configuration.dart';
 import '../../Models/ReportsModel/SaelsRegisterModel.dart';
 import '../../Service/ReportsApi/SalesRegisterApi.dart';
 
 class StRegCon extends ChangeNotifier {
   init() async {
     clearalldata();
+    await getCurrentDate();
+    await callSalesRegApi();
   }
 
   List<GlobalKey<FormState>> formkey =
@@ -52,15 +56,26 @@ class StRegCon extends ChangeNotifier {
     notifyListeners();
   }
 
+  Configure config = Configure();
   String? fromDate;
   String? toDate;
 
+  getCurrentDate() {
+    searchcontroller[2].text = config.alignDateT(config.currentDate2());
+    searchcontroller[3].text = config.alignDateT(config.currentDate2());
+    notifyListeners();
+  }
+
   callSalesRegApi() async {
+    fromDate = config.alignDate1(searchcontroller[2].text);
+    toDate = config.alignDate1(searchcontroller[3].text);
+
     await Salesregisterapi.getGlobalData(fromDate!, toDate!).then((value) {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
-        salesReg = value.salesRegData;
-        filtersalesReg = salesReg;
-        notifyListeners();
+        if (value.salesRegData.isNotEmpty) {
+          salesReg = value.salesRegData;
+          filtersalesReg = salesReg;
+        }
 
         notifyListeners();
       } else if (value.stcode! >= 400 && value.stcode! <= 410) {}

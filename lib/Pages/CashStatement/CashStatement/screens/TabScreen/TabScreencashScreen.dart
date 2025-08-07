@@ -29,14 +29,53 @@ class _TabCashSattementState extends State<TabCashSattement> {
       padding: const EdgeInsets.all(10),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: Screens.padingHeight(context) * 0.08,
-              width: Screens.width(context) * 0.55,
+              width: Screens.width(context),
               child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Container(
+                      width: Screens.width(context) * 0.45,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 240, 235, 235)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                      ),
+                      child: TextField(
+                        style: widget.theme.textTheme.bodyLarge!
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        onChanged: (val) {
+                          context.read<CashStateCon>().filterListSearched(val);
+                        },
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.all(8),
+                          hintText: "Search here..!!",
+                          hintStyle:
+                              widget.theme.textTheme.bodyMedium!.copyWith(),
+                          suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.search,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                     Form(
                         key: context.read<CashStateCon>().formkey[0],
                         child: Row(
@@ -161,42 +200,6 @@ class _TabCashSattementState extends State<TabCashSattement> {
                         )),
                   ]),
             ),
-            Container(
-              width: Screens.width(context),
-              decoration: BoxDecoration(
-                border:
-                    Border.all(color: const Color.fromARGB(255, 240, 235, 235)),
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-              ),
-              child: TextField(
-                style: widget.theme.textTheme.bodyLarge!
-                    .copyWith(color: Colors.black),
-                keyboardType: TextInputType.text,
-                onChanged: (val) {
-                  context.read<CashStateCon>().filterListSearched(val);
-                },
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(8),
-                  hintText: "Search here..!!",
-                  hintStyle: widget.theme.textTheme.bodyMedium!.copyWith(),
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.search,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
             SizedBox(
               height: Screens.bodyheight(context) * 0.01,
             ),
@@ -210,8 +213,9 @@ class _TabCashSattementState extends State<TabCashSattement> {
                         context.watch<CashStateCon>().expMsg.isNotEmpty
                     ? SizedBox(
                         height: Screens.padingHeight(context) * 0.5,
-                        child:
-                            const Center(child: Text("Does Not Have data..!!")))
+                        child: Center(
+                            child: Text(
+                                "${context.watch<CashStateCon>().expMsg}")))
                     : createTable(widget.theme, context)
           ],
         ),

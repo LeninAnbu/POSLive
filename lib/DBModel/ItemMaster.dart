@@ -1,43 +1,5 @@
 const String tableItemMaster = "ItemMaster";
 
-// class ItemMasterT {
-//   static String autoId = "AutoId";
-//   static String itemcode = "Itemcode";
-//   static String itemnamelong = "itemname_long";
-//   static String itemnameshort = "itemname_short";
-//   static String skucode = "skucode";
-//   static String brand = "brand";
-//   static String category = "category";
-//   static String subcategory = "subcategory";
-//   static String hsnsac = "hsn_sac";
-//   static String taxrate = "taxrate";
-//   static String isinventory = "is_inventory";
-//   static String isfreeby = "is_freeby";
-//   static String isActive = "is_Active";
-//   static String createdateTime = 'createdateTime';
-//   static String updatedDatetime = "UpdatedDatetime";
-//   static String createdUserID = "createdUserID";
-//   static String updateduserid = "updateduserid";
-//   static String lastupdateIp = "lastupdateIp";
-//   static String isserialBatch = 'is_serialBatch';
-//   static String issellpricebyscrbat = "is_sellpricebyscrbat";
-//   static String maxdiscount = "maxdiscount";
-//   static String quantity = "quantity";
-//   static String minimumQty = "minimumQty";
-//   static String maximumQty = "maximumQty";
-//   static String weight = "weight";
-//   static String liter = "liter";
-//   static String displayQty = "displayQty";
-//   static String searchString = "searchString";
-//   static String sellprice = "sellprice";
-//   static String mrpprice = "mrpprice";
-//   static String isselected = "IsSelected";
-//   static String uPackSize = "UPackSize";
-//   static String uTINSPERBOX = "UTINSPERBOX";
-//   static String uSpecificGravity = "USpecificGravity";
-//   static String uPackSizeuom = "UPackSizeUom";
-// }
-
 class ItemMasterT {
   static String itemname = 'itemname';
   static String itemcode = 'itemcode';
@@ -197,7 +159,6 @@ class ItemMasterModelDB {
       );
 
   Map<String, Object?> toMap() => {
-        // ItemMasterT.autoId: autoId,
         ItemMasterT.BRAND: brand,
         ItemMasterT.displayQty: quantity,
         ItemMasterT.category: category,
@@ -208,7 +169,6 @@ class ItemMasterModelDB {
         ItemMasterT.isfreeby: isfreeby,
         ItemMasterT.isinventory: isinventory,
         ItemMasterT.issellpricebyscrbat: issellpricebyscrbat,
-        // ItemMasterT.isserialBatch: isserialBatch,
         ItemMasterT.itemcode: itemcode,
         ItemMasterT.itemnamelong: itemnamelong,
         ItemMasterT.itemnameshort: itemnameshort,
@@ -227,7 +187,6 @@ class ItemMasterModelDB {
         ItemMasterT.searchString: searchString,
         ItemMasterT.weight: weight,
         ItemMasterT.liter: liter,
-        // ItemMasterT.isselected: isselected,
         ItemMasterT.U_Pack_Size_uom: uPackSizeuom,
         ItemMasterT.U_Pack_Size: uPackSize,
         ItemMasterT.U_TINS_PER_BOX: uTINSPERBOX,

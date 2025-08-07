@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 class StockInwardList {
   String? docentry;
   String? baceDocentry;
@@ -8,75 +6,30 @@ class StockInwardList {
   String? branch;
   String? remarks;
   String? reqdocumentno;
-  // int? reqdocno;
-  // String? reqdocseries;
-  // int? reqdocseriesno;
+
   String? reqtransdate;
-  // String? reqdoctime;
-  // String? reqsystime;
+
   String? documentno;
-  // int? seresid;
-  // int? seriesnum;
-  // String? transactiondate;
-  // String? transtime;
-  // String? sysdatetime;
+
   String? reqfromWhs;
   String? reqtoWhs;
-  // int? totalitems;
-  // double? totalweight;
-  // double? totalqty;
-  // double? totalltr;
-  // String? isagainstorder;
-  // String? isagainststock;
+
   String? docstatus;
-  // String? salesexec;
-  // String? createdateTime;
-  // String? updatedDatetime;
-  // int? createdUserID;
-  // int? updateduserid;
-  // String? lastupdateIp;
-  // int?scanToatal;
-  // int? transTotal;
+
   List<StockInwardDetails>? data;
 
   StockInwardList(
       {this.branch,
       this.remarks,
-      // required this.createdUserID,
-      // required this.createdateTime,
       this.docentry,
       this.cardCode,
       this.docstatus,
       this.documentno,
       this.reqdocumentno,
-
-      // required this.isagainstorder,
-      // required this.isagainststock,
-      // required this.lastupdateIp,
-      // required this.reqdocno,
-      // required this.reqdocseries,
-      // required this.reqdocseriesno,
-      // required this.reqdoctime,
       this.reqfromWhs,
-      // red this.reqsystime,
       this.reqtoWhs,
       this.baceDocentry,
       this.reqtransdate,
-      // required this.salesexec,
-      // required this.seresid,
-      // required this.seriesnum,
-      // required this.sysdatetime,
-      // required this.totalitems,
-      // required this.totalltr,
-      // required this.totalqty,
-      // required this.totalweight,
-      // required this.transactiondate,
-      // required this.transtime,
-      // required this.updatedDatetime,
-      // required this.updateduserid,
-      // this.scanToatal,
-      // this.transTotal,
-      // r,
       this.data});
 }
 
@@ -107,7 +60,6 @@ class StockInwardDetails {
 
   List<StOutSerialbatch>? StOutSerialbatchList;
 
-  // String? serialbatch;
   List<StockInSerialbatch>? serialbatchList;
 
   StockInwardDetails(
@@ -161,7 +113,6 @@ class StockInSerialbatch {
       required this.qty,
       this.scanbool,
       this.docstatus,
-      // required this.scannedQty,
       required this.serialbatch});
 }
 
@@ -184,6 +135,5 @@ class StOutSerialbatch {
       required this.qty,
       this.scanbool,
       this.docstatus,
-      // required this.scannedQty,
       required this.serialbatch});
 }

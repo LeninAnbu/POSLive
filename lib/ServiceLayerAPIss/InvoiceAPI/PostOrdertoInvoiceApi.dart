@@ -114,8 +114,7 @@ class OrderToInvoicesPostAPI {
     } catch (e) {
       log(e.toString());
 
-      return SapSalesinvoiceModel.exceptionn(
-          'Restart the app or contact the admin!!..\n', 500);
+      return SapSalesinvoiceModel.exceptionn('$e', 500);
     }
   }
 }

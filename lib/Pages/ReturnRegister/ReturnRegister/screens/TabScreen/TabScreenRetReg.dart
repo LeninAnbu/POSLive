@@ -27,15 +27,53 @@ class _TabReturnRegState extends State<TabReturnReg> {
       padding: const EdgeInsets.all(10),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               alignment: Alignment.center,
               height: Screens.padingHeight(context) * 0.08,
-              width: Screens.width(context) * 0.55,
               child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Container(
+                      width: Screens.width(context) * 0.43,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 240, 235, 235)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                      ),
+                      child: TextField(
+                        style: widget.theme.textTheme.bodyLarge!
+                            .copyWith(color: Colors.black),
+                        keyboardType: TextInputType.text,
+                        onChanged: (val) {
+                          context.read<RetnRegCon>().filterListSearched(val);
+                        },
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.all(8),
+                          hintText: "Search",
+                          hintStyle:
+                              widget.theme.textTheme.bodyMedium!.copyWith(),
+                          suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.search,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                     Form(
                       key: context.read<RetnRegCon>().formkey[0],
                       child: Row(
@@ -157,46 +195,14 @@ class _TabReturnRegState extends State<TabReturnReg> {
                     ),
                   ]),
             ),
-            Container(
-              width: Screens.width(context),
-              decoration: BoxDecoration(
-                border:
-                    Border.all(color: const Color.fromARGB(255, 240, 235, 235)),
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-              ),
-              child: TextField(
-                style: widget.theme.textTheme.bodyLarge!
-                    .copyWith(color: Colors.black),
-                keyboardType: TextInputType.text,
-                onChanged: (val) {
-                  context.read<RetnRegCon>().filterListSearched(val);
-                },
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(8),
-                  hintText: "Inventories",
-                  hintStyle: widget.theme.textTheme.bodyMedium!.copyWith(),
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.search,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
             SizedBox(
               height: Screens.bodyheight(context) * 0.01,
             ),
-            createTable(widget.theme, context)
+            context.watch<RetnRegCon>().getfiltersalesReg.isEmpty
+                ? Container(
+                    height: Screens.padingHeight(context) * 0.7,
+                    child: Center(child: Text('No Data Found')))
+                : createTable(widget.theme, context)
           ],
         ),
       ),
@@ -213,7 +219,7 @@ class _TabReturnRegState extends State<TabReturnReg> {
           "Document No",
           style: theme.textTheme.bodyLarge
               ?.copyWith(fontWeight: FontWeight.normal, color: Colors.white),
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.start,
         ),
       ),
       Container(

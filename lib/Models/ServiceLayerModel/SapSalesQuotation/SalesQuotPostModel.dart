@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_single_quotes, omit_local_variable_types, prefer_final_locals, prefer_interpolation_to_compose_Strings
-
 import '../../DataModel/SeriesMode/SeriesModels.dart';
 
 class SalesQuotStatus {
@@ -89,15 +87,13 @@ class QuatationLines {
   String? price;
   String? discPrcnt;
   String? whsCode;
-  String? currency; //"TZS";
+  String? currency;
   int? basedocentry;
   int? baseline;
   int? lineNo;
   String? acctCode;
   String? cogsAcct;
   int? baseType;
-  // String? fromWarehouse;
-  // String? toWarehouse;
 
   QuatationLines(
       {required this.itemName,
@@ -234,16 +230,8 @@ class AddItem {
       "Quantity": qty.toString(),
       "UnitPrice": price.toString(),
       "Currency": "TZS",
-      // "ShipToCode": LogisticPageState.shipto.toString(),
       "valueAF": valueAF.toString(),
-      // "WarehouseCode": GetValues.branch.toString(),
     };
     return map;
   }
 }
-
-// class postData{
-//   String docDate;
-//   String dueDate;
-
-// }

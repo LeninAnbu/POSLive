@@ -43,56 +43,58 @@ class _POCashWidgetState extends State<POCashWidget> {
                 height: widget.cashHeight * 0.29,
                 width: widget.cashWidth * 0.25,
                 child: GestureDetector(
-                    onTap: context.read<SOCon>().userTypes == 'corporate'
-                        ? null
-                        : () async {
-                            context.read<SOCon>().nullErrorMsg();
+                    onTap:
+                        // context.read<SOCon>().userTypes == 'corporate'
+                        //     ? null
+                        //     :
+                        () async {
+                      context.read<SOCon>().nullErrorMsg();
 
-                            if (context.read<SOCon>().selectedcust == null) {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: true,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                        contentPadding: const EdgeInsets.all(0),
-                                        content: AlertBox(
-                                            payMent: 'Alert',
-                                            errormsg: true,
-                                            widget: Center(
-                                                child: ContentContainer(
-                                              content: 'Choose cusotmer..!!',
-                                              theme: widget.theme,
-                                            )),
-                                            buttonName: null));
-                                  });
-                            } else if (context
-                                .read<SOCon>()
-                                .getScanneditemData
-                                .isEmpty) {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: true,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                        contentPadding: const EdgeInsets.all(0),
-                                        content: AlertBox(
-                                            payMent: 'Alert',
-                                            errormsg: true,
-                                            widget: Center(
-                                                child: ContentContainer(
-                                              content: 'Choose Product..!!',
-                                              theme: widget.theme,
-                                            )),
-                                            buttonName: null));
-                                  });
-                            } else {
-                              context.read<SOCon>().schemebtnclk = true;
-                              await context
-                                  .read<SOCon>()
-                                  .scehmeapiforckout(context, widget.theme);
-                            }
-                            context.read<SOCon>().disableKeyBoard(context);
-                          },
+                      if (context.read<SOCon>().selectedcust == null) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                  contentPadding: const EdgeInsets.all(0),
+                                  content: AlertBox(
+                                      payMent: 'Alert',
+                                      errormsg: true,
+                                      widget: Center(
+                                          child: ContentContainer(
+                                        content: 'Choose cusotmer..!!',
+                                        theme: widget.theme,
+                                      )),
+                                      buttonName: null));
+                            });
+                      } else if (context
+                          .read<SOCon>()
+                          .getScanneditemData
+                          .isEmpty) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                  contentPadding: const EdgeInsets.all(0),
+                                  content: AlertBox(
+                                      payMent: 'Alert',
+                                      errormsg: true,
+                                      widget: Center(
+                                          child: ContentContainer(
+                                        content: 'Choose Product..!!',
+                                        theme: widget.theme,
+                                      )),
+                                      buttonName: null));
+                            });
+                      } else {
+                        context.read<SOCon>().schemebtnclk = true;
+                        await context
+                            .read<SOCon>()
+                            .scehmeapiforckout(context, widget.theme);
+                      }
+                      context.read<SOCon>().disableKeyBoard(context);
+                    },
                     child: Container(
                         alignment: Alignment.center,
                         padding: EdgeInsets.only(
@@ -101,9 +103,11 @@ class _POCashWidgetState extends State<POCashWidget> {
                         height: widget.cashHeight * 0.29,
                         width: widget.cashWidth * 0.25,
                         decoration: BoxDecoration(
-                          color: context.read<SOCon>().userTypes == 'corporate'
-                              ? Colors.grey[300]
-                              : widget.theme.primaryColor.withOpacity(0.2),
+                          color:
+                              // context.read<SOCon>().userTypes == 'corporate'
+                              //     ? Colors.grey[300]
+                              //     :
+                              widget.theme.primaryColor.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Row(
@@ -733,60 +737,58 @@ class _POCashWidgetState extends State<POCashWidget> {
                                   ),
                                 ]))),
                     GestureDetector(
-                        onTap: context.read<SOCon>().userTypes == 'corporate'
-                            ? null
-                            : () async {
-                                context.read<SOCon>().nullErrorMsg();
+                        onTap:
+                            // context.read<SOCon>().userTypes == 'corporate'
+                            //     ? null
+                            //     :
+                            () async {
+                          context.read<SOCon>().nullErrorMsg();
 
-                                if (context.read<SOCon>().selectedcust ==
-                                    null) {
-                                  showDialog(
-                                      context: context,
-                                      barrierDismissible: true,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                            contentPadding:
-                                                const EdgeInsets.all(0),
-                                            content: AlertBox(
-                                                payMent: 'Alert',
-                                                errormsg: true,
-                                                widget: Center(
-                                                    child: ContentContainer(
-                                                  content:
-                                                      'Choose cusotmer..!!',
-                                                  theme: widget.theme,
-                                                )),
-                                                buttonName: null));
-                                      });
-                                } else if (context
-                                    .read<SOCon>()
-                                    .getScanneditemData
-                                    .isEmpty) {
-                                  showDialog(
-                                      context: context,
-                                      barrierDismissible: true,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                            contentPadding:
-                                                const EdgeInsets.all(0),
-                                            content: AlertBox(
-                                                payMent: 'Alert',
-                                                errormsg: true,
-                                                widget: Center(
-                                                    child: ContentContainer(
-                                                  content: 'Choose Product..!!',
-                                                  theme: widget.theme,
-                                                )),
-                                                buttonName: null));
-                                      });
-                                } else {
-                                  context.read<SOCon>().schemebtnclk = true;
-                                  await context
-                                      .read<SOCon>()
-                                      .scehmeapiforckout(context, widget.theme);
-                                }
-                                context.read<SOCon>().disableKeyBoard(context);
-                              },
+                          if (context.read<SOCon>().selectedcust == null) {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                      contentPadding: const EdgeInsets.all(0),
+                                      content: AlertBox(
+                                          payMent: 'Alert',
+                                          errormsg: true,
+                                          widget: Center(
+                                              child: ContentContainer(
+                                            content: 'Choose cusotmer..!!',
+                                            theme: widget.theme,
+                                          )),
+                                          buttonName: null));
+                                });
+                          } else if (context
+                              .read<SOCon>()
+                              .getScanneditemData
+                              .isEmpty) {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                      contentPadding: const EdgeInsets.all(0),
+                                      content: AlertBox(
+                                          payMent: 'Alert',
+                                          errormsg: true,
+                                          widget: Center(
+                                              child: ContentContainer(
+                                            content: 'Choose Product..!!',
+                                            theme: widget.theme,
+                                          )),
+                                          buttonName: null));
+                                });
+                          } else {
+                            context.read<SOCon>().schemebtnclk = true;
+                            await context
+                                .read<SOCon>()
+                                .scehmeapiforckout(context, widget.theme);
+                          }
+                          context.read<SOCon>().disableKeyBoard(context);
+                        },
                         child: Container(
                             alignment: Alignment.center,
                             padding: EdgeInsets.only(
@@ -795,10 +797,12 @@ class _POCashWidgetState extends State<POCashWidget> {
                             height: widget.cashHeight * 0.29,
                             width: widget.cashWidth * 0.25,
                             decoration: BoxDecoration(
-                              color: context.read<SOCon>().userTypes ==
-                                      'corporate'
-                                  ? Colors.grey[300]
-                                  : widget.theme.primaryColor.withOpacity(0.2),
+                              color:
+                                  // context.read<SOCon>().userTypes ==
+                                  //         'corporate'
+                                  //     ? Colors.grey[300]
+                                  //     :
+                                  widget.theme.primaryColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Row(

@@ -1,12 +1,3 @@
-// import 'package:flutter/material.dart';
-// class StockReqPos extends StatelessWidget {
-//   const StockReqPos({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
 import 'package:flutter/material.dart';
 import 'package:posproject/Pages/Refunds/widgets/RefundInventoriesList.dart';
 import 'package:posproject/Pages/Refunds/widgets/RefundBtmBtn.dart';

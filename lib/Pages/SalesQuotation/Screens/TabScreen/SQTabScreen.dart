@@ -43,24 +43,24 @@ class _SQuotationbillingTabScreenState
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                      width: Screens.width(context) * 0.54,
+                      width: Screens.width(context) * 0.56,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SQuotationSearchWidget(
                               searchHeight: Screens.bodyheight(context) * 0.69,
-                              searchWidth: Screens.width(context) * 0.54,
+                              searchWidth: Screens.width(context) * 0.56,
                               theme: widget.theme,
                             ),
                             SQuotationPayDetails(
                               theme: widget.theme,
-                              paymentWidth: Screens.width(context) * 0.54,
+                              paymentWidth: Screens.width(context) * 0.56,
                               paymentHeight: Screens.bodyheight(context) * 0.22,
                             )
                           ])),
                   SizedBox(
-                      width: Screens.width(context) * 0.44,
+                      width: Screens.width(context) * 0.42,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

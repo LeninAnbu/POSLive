@@ -56,19 +56,16 @@ class StockInbatch {
   String batchNumberProperty;
 
   StockInbatch({
-    // required this.baseLineNumber,
     required this.quantity,
     required this.batchNumberProperty,
   });
 
   factory StockInbatch.fromJson(Map<String, dynamic> json) => StockInbatch(
-        // baseLineNumber: json["BaseLineNumber"],
         quantity: json["Quantity"],
         batchNumberProperty: json["BatchNumbers"],
       );
 
   Map<String, dynamic> toJson3() => {
-        // "BaseLineNumber": baseLineNumber,
         "Quantity": quantity,
         "BatchNumber": batchNumberProperty,
       };

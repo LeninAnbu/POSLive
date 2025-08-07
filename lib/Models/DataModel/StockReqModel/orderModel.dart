@@ -17,17 +17,3 @@ class Orderdetails {
       required this.orderType,
       required this.scannData});
 }
-
-// class orderdetails {
-//   // ShipAddress? shipAdd;
-//   WhsDetails? whsAdd;
-//   TotalPayment? totalPayment;
-//   String orderType;
-//   List<ItemMasterModelData>scannData;
-//   orderdetails({
-//     // required this.shipAdd,
-//     required this.whsAdd,
-//     required this.totalPayment,
-//     required this.orderType,required this.scannData
-//   });
-// }

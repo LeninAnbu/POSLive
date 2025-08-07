@@ -11,7 +11,7 @@ class CustomerMainScreens extends StatefulWidget {
   const CustomerMainScreens({
     super.key,
   });
-// CustomerController custCon;
+
   @override
   State<CustomerMainScreens> createState() => _CustomerMainScreensState();
 }

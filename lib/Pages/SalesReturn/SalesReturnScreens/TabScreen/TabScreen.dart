@@ -28,8 +28,6 @@ class _SalesReturnTabScreenState extends State<SalesReturnTabScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
   }
 
-//return Stack(
-// SalesReturnController prdSR;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

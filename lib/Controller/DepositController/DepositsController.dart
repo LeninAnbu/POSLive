@@ -6,7 +6,13 @@ import 'package:dart_amqp/dart_amqp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:posproject/Models/QueryUrlModel/DepositsQueryModel/depositsaccmodel.dart';
 import 'package:posproject/Models/QueryUrlModel/DepositsQueryModel/depositsdetModel.dart';
+import 'package:posproject/Models/QueryUrlModel/NewCashAccount.dart';
+import 'package:posproject/Models/QueryUrlModel/cashinhandmodel.dart';
+import 'package:posproject/Service/NewCashAccountApi.dart';
+import 'package:posproject/Service/QueryURL/DepositsQuery/cashinhandapi.dart';
+import 'package:posproject/Service/QueryURL/DepositsQuery/depositsAccApi.dart';
 import 'package:posproject/Service/QueryURL/DepositsQuery/depositsDetailsQuery.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -44,7 +50,64 @@ class DepositsController extends ChangeNotifier {
     // await callDepositsApi();
     await callBankmasterApi(context);
     await callCashCardAccApi();
+    await callDepositsAccApi();
+    await callNewCashAccountApi();
+    notifyListeners();
+  }
 
+  List<NewCashCardAccDetailData> newCashAcc = [];
+  callNewCashAccountApi() async {
+    newCashAcc = [];
+    await NewCashCardAccountAPi.getGlobalData(AppConstant.branch).then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        if (value.activitiesData != null) {
+          newCashAcc = value.activitiesData!;
+        }
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {}
+    });
+    notifyListeners();
+  }
+
+  String? cashAcctype;
+  String? cashAccCode;
+  String? cardAcctype;
+  String? cardAccCode;
+
+  String? chequeAcctype;
+  String? chequeAccCode;
+
+  String? transAcctype;
+  String? transAccCode;
+
+  String? walletAcctype;
+  String? walletAccCode;
+  NewCashAccSelect(value) async {
+    log('value:::${value}');
+    for (var i = 0; i < newCashAcc.length; i++) {
+      if (newCashAcc[i].uAcctName == value) {
+        if (newCashAcc[i].uMode == 'CASH') {
+          cashAccCode = newCashAcc[i].uAcctCode.toString();
+          await callCashInHandApi(cashAccCode.toString());
+          log('step1::${cashAccCode}');
+        } else if (newCashAcc[i].uMode == 'CARD') {
+          cardAccCode = newCashAcc[i].uAcctCode.toString();
+          log('step12');
+        } else if (newCashAcc[i].uMode == 'CHEQUE') {
+          log('step13');
+
+          chequeAccCode = newCashAcc[i].uAcctCode.toString();
+        } else if (newCashAcc[i].uMode == 'WALLET') {
+          walletAccCode = newCashAcc[i].uAcctCode.toString();
+          log('step14:::$walletAccCode');
+        } else if (newCashAcc[i].uMode == 'TRANSFER') {
+          log('step15');
+
+          transAccCode = newCashAcc[i].uAcctCode.toString();
+        }
+      }
+      notifyListeners();
+    }
     notifyListeners();
   }
 
@@ -77,6 +140,33 @@ class DepositsController extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<DepositAccountQueryData> acountData = [];
+  callDepositsAccApi() async {
+    acountData = [];
+    await DepositsAccQueryAPi.getGlobalData(AppConstant.branch).then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        acountData = value.data;
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {}
+    });
+    notifyListeners();
+  }
+
+  List<CashInHandModelData> cashInHandData = [];
+  callCashInHandApi(String accCode) async {
+    mycontroller[4].text = '';
+    cashInHandData = [];
+    await CashInHandQueryAPi.getGlobalData(accCode).then((value) {
+      if (value.statusCode! >= 200 && value.statusCode! <= 210) {
+        cashInHandData = value.activitiesData!;
+
+        mycontroller[4].text = cashInHandData[0].currentTotal.toString();
+        log(' mycontroller[0].text::${mycontroller[0].text}');
+        notifyListeners();
+      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {}
+    });
+    notifyListeners();
+  }
+
   var preff = SharedPreferences.getInstance();
 
   sapLoginApi(BuildContext context) async {
@@ -89,52 +179,86 @@ class DepositsController extends ChangeNotifier {
           await getSession();
         }
       } else if (value.stCode! >= 400 && value.stCode! <= 410) {
-        if (value.error!.code != null) {
-          final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              bottom: Screens.bodyheight(context) * 0.3,
-            ),
-            duration: const Duration(seconds: 4),
-            backgroundColor: Colors.red,
-            content: Text(
-              "${value.error!.message!.value}\nCheck Your Sap Details !!..",
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          Future.delayed(const Duration(seconds: 5), () {
-            exit(0);
-          });
-        }
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // if (value.error!.code != null) {
+        //   final snackBar = SnackBar(
+        //     behavior: SnackBarBehavior.floating,
+        //     margin: EdgeInsets.only(
+        //       bottom: Screens.bodyheight(context) * 0.3,
+        //     ),
+        //     duration: const Duration(seconds: 4),
+        //     backgroundColor: Colors.red,
+        //     content: Text(
+        //       "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //       style: const TextStyle(color: Colors.white),
+        //     ),
+        //   );
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        //   Future.delayed(const Duration(seconds: 5), () {
+        //     exit(0);
+        //   });
+        // }
       } else if (value.stCode == 500) {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Opps Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Opps Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     });
   }
@@ -183,11 +307,11 @@ class DepositsController extends ChangeNotifier {
         depositDetData = value.data;
 
         for (var i = 0; i < depositDetData.length; i++) {
-          if (depositDetData[i].acctName.toString() == "Cash in Hand (UB)") {
-            mycontroller[7].text = depositDetData[i].collected.toString();
-            mycontroller[8].text = depositDetData[i].setteled.toString();
-            mycontroller[4].text = depositDetData[i].unSettled.toString();
-          }
+          // if (depositDetData[i].acctName.toString() == "Cash in Hand (UB)") {
+          mycontroller[7].text = depositDetData[i].collected.toString();
+          mycontroller[8].text = depositDetData[i].setteled.toString();
+          // mycontroller[4].text = depositDetData[i].unSettled.toString();
+          // }
           unsettle = unsettle + (depositDetData[i].unSettled);
           collection = collection + (depositDetData[i].collected);
           settle = settle + (depositDetData[i].setteled);
@@ -244,9 +368,7 @@ class DepositsController extends ChangeNotifier {
 
         notifyListeners();
       } else {
-        Get.defaultDialog(
-            title: 'Alert',
-            content: const Text('Something went wrong. Try again.'));
+        Get.defaultDialog(title: 'Alert', content: Text('${value.error}'));
 
         loadigChequeBtn = false;
       }
@@ -400,6 +522,8 @@ class DepositsController extends ChangeNotifier {
   bool iscouponload = false;
   String? nowaday;
   String? valuechoose;
+  String? valuechooseAccNum;
+
   String? couponvaluechoose;
   String? walletvaluechoose;
   String? paytermvaluechoose;
@@ -410,7 +534,8 @@ class DepositsController extends ChangeNotifier {
 
   clearAllData() {
     depositDetData = [];
-
+    cashAcctype = null;
+    cashAccCode = null;
     mycontroller[1].text = "";
     mycontroller[2].text = "";
     mycontroller[3].text = "";
@@ -1119,18 +1244,24 @@ class DepositsController extends ChangeNotifier {
     PostDepositAPi.totAmount =
         dtType == 'dtCash' ? double.parse(mycontroller[5].text) : 0;
 
-    PostDepositAPi.depAccount = cardAccDetailaData![0].uDepAcct;
-    PostDepositAPi.allocationAcc = dtType == 'dtCash'
-        ? cardAccDetailaData![0].uCashAcct
-        : dtType == 'dtCheque'
-            ? cardAccDetailaData![0].uChequeAcct
-            : '';
+    PostDepositAPi.depAccount = valuechooseAccNum;
+
+    PostDepositAPi.bankAccNum = valuechooseAccNum;
+
+    PostDepositAPi.allocationAcc = cashAccCode.toString();
+
+    // dtType == 'dtCash'
+    //     ? cardAccDetailaData![0].uCashAcct
+    //     : dtType == 'dtCheque'
+    //         ? cardAccDetailaData![0].uChequeAcct
+    //         : '';
     PostDepositAPi.remarks =
         dtType == 'dtCash' ? mycontroller[6].text : jurnelRemarks.text;
-    PostDepositAPi.depDate = config.currentDate();
+    PostDepositAPi.depDate = config.alignDate2(mycontroller[0].text);
+    // config.currentDate();
 
     await PostDepositAPi.getGlobalData().then((value) async {
-      if (value.statusCode! >= 200 && value.statusCode! <= 204) {
+      if (value.statusCode >= 200 && value.statusCode <= 204) {
         // sapDocentry = value.absEntry.toString();
         // sapDocuNumber = value.depositNumber.toString();
         notifyListeners();
@@ -1159,13 +1290,12 @@ class DepositsController extends ChangeNotifier {
           bankhintcolor = false;
           mycontroller[5].text = '';
 
-          // Get.offAllNamed(ConstantRoutes.dashboard);
           onDisablebutton = false;
           init(context);
           Get.back();
           notifyListeners();
         });
-      } else if (value.statusCode! >= 400 && value.statusCode! <= 410) {
+      } else if (value.statusCode >= 400 && value.statusCode <= 410) {
         await Get.defaultDialog(
                 title: "Alert",
                 middleText: "${value.erorrs!.message!.value}",
@@ -1776,6 +1906,23 @@ class DepositsController extends ChangeNotifier {
     return currentDateTime;
   }
 
+  getDocDate(
+    BuildContext context,
+  ) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100));
+    // DateTime.now());
+
+    String datetype = DateFormat('dd-MM-yyyy').format(pickedDate!);
+
+    mycontroller[0].text = datetype!;
+    final Database db = (await DBHelper.getInstance())!;
+    notifyListeners();
+  }
+
   getDate(BuildContext context, datetype) async {
     DateTime? pickedDate = await showDatePicker(
         context: context,
@@ -1922,7 +2069,11 @@ class DepositsController extends ChangeNotifier {
 
   List listitems = ["CASH", "CARD", "COUPON"];
   dropdownchoose(newvalue) {
-    valuechoose = newvalue;
+    for (var i = 0; i < acountData.length; i++) {
+      if (acountData[i].acctName.toString() == newvalue.toString()) {
+        valuechooseAccNum = acountData[i].depEntry;
+      }
+    }
     notifyListeners();
   }
 

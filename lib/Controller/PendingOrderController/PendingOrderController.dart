@@ -14,9 +14,10 @@ import '../../Models/Service Model/StockSnapModelApi.dart';
 import '../../Service/ReportsApi/PendingOrderApi.dart';
 
 class PendingOrderController extends ChangeNotifier {
-  init() {
+  init() async {
     clearAllData();
-
+    await getCurrentDate();
+    await callpendingOrderApi();
     notifyListeners();
   }
 
@@ -57,6 +58,7 @@ class PendingOrderController extends ChangeNotifier {
 
   List<PendingOrdersList>? pendingOrderListdatas = [];
   List<PendingOrdersList>? filterOrderdatas = [];
+
   callpendingOrderApi() async {
     pendingOrderdatas = [];
     filterOrderdatas = [];
@@ -64,12 +66,20 @@ class PendingOrderController extends ChangeNotifier {
     pendingOrderListdatas = [];
     isloading = true;
     expMsg = '';
+    fromDate = config.alignDate1(searchcontroller[2].text);
+    toDate = config.alignDate1(searchcontroller[3].text);
     await PendingOrderAPi.getGlobalData(fromDate!, toDate!).then((value) {
       if (value.stcode! >= 200 && value.stcode! <= 210) {
-        pendingOrderdatas = value.pendingOrderdata;
-        filterHeaderOrderdatas = pendingOrderdatas;
+        if (value.pendingOrderdata != null) {
+          pendingOrderdatas = value.pendingOrderdata;
+          filterHeaderOrderdatas = pendingOrderdatas;
+        }
+
+        if (filterHeaderOrderdatas!.isEmpty) {
+          expMsg = 'No Pending Order Here..!!';
+        }
+
         isloading = false;
-        log('message length::${value.pendingOrderdata!.length}');
         notifyListeners();
       } else if (value.stcode! >= 400 && value.stcode! <= 410) {
         isloading = false;
@@ -123,6 +133,13 @@ class PendingOrderController extends ChangeNotifier {
 
       notifyListeners();
     }
+  }
+
+  getCurrentDate() {
+    searchcontroller[2].text = config.alignDateT(config.currentDate2());
+    searchcontroller[3].text = config.alignDateT(config.currentDate2());
+
+    notifyListeners();
   }
 
   filterHeaderListItem(String v) {

@@ -68,9 +68,3 @@ class _NumberingScreensState extends State<NumberingScreens> {
     });
   }
 }
-
-//     return  Placeholder(
-//       child: NumberingSeriesPage(),
-//     );
-//   }
-// }

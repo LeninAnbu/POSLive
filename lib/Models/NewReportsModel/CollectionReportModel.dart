@@ -20,7 +20,7 @@ class CollectionReport {
     if (stcode >= 200 && stcode <= 210) {
       if (jsons['data'].toString() != 'No data found') {
         log('dddddddd');
-        var list = jsonDecode(jsons['data']) as List; //jsonDecode
+        var list = jsonDecode(jsons['data']) as List;
         List<CollectionReportData> dataList = list
             .map(
                 (dynamic enquiries) => CollectionReportData.fromJson(enquiries))
@@ -92,9 +92,7 @@ class CollectionReportData {
     required this.acctName,
     required this.seriesName,
   });
-// {"DocNum":3010191,"CardCode":"D4418","CardName":"3D DISTRIBUTORS (TZ) LIMITED","JrnlMemo":"Incoming Payments - D4418",
-//"CASH IN HAND":142461.400000,"CHEQUE DEPOSITS":0.000000,"BANK NAME":" ","CASH IN BANK DEPOSIT":0.000000,"DocDate"
-//:"2024-12-14T00:00:00","AcctName":"Cash in Hand (AR)","SeriesName":"ARUSHA24","TOTAL":142461.400000,"Branch":"ARSFG"},
+
   factory CollectionReportData.fromJson(Map<String, dynamic> json) {
     return CollectionReportData(
       docDate: json['DocDate'] ?? '',

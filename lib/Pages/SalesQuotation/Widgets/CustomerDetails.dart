@@ -46,7 +46,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: widget.custWidth * 0.55,
+                      width: widget.custWidth * 0.53,
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: const Color.fromARGB(255, 240, 235, 235)),
@@ -105,7 +105,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                         ? Container()
                         : Container(
                             height: Screens.padingHeight(context) * 0.06,
-                            width: widget.custWidth * 0.4,
+                            width: widget.custWidth * 0.36,
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color:
@@ -187,7 +187,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
-                                        width: widget.custWidth * 0.55,
+                                        width: widget.custWidth * 0.53,
                                         height: widget.custHeight * 0.16,
                                         child: context
                                                         .read<
@@ -528,7 +528,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: widget.custWidth * 0.46,
+                              width: widget.custWidth * 0.45,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -556,7 +556,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                             ),
                             Container(
                               alignment: Alignment.centerRight,
-                              width: widget.custWidth * 0.46,
+                              width: widget.custWidth * 0.44,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -603,7 +603,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: widget.custWidth * 0.465,
+                              width: widget.custWidth * 0.45,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -625,7 +625,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                             ),
                             Container(
                               alignment: Alignment.centerRight,
-                              width: widget.custWidth * 0.465,
+                              width: widget.custWidth * 0.44,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -657,13 +657,13 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                         children: [
                           InkWell(
                             onTap: () {},
-                            child: SizedBox(
-                              width: widget.custWidth * 0.465,
+                            child: Container(
+                              width: widget.custWidth * 0.45,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.45,
                                     padding: EdgeInsets.only(
                                         right: widget.custWidth * 0.02),
                                     child: Row(
@@ -813,12 +813,12 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                           InkWell(
                             onTap: () {},
                             child: SizedBox(
-                              width: widget.custWidth * 0.465,
+                              width: widget.custWidth * 0.44,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: widget.custWidth * 0.465,
+                                    width: widget.custWidth * 0.44,
                                     padding: EdgeInsets.only(
                                         right: widget.custWidth * 0.02),
                                     child: Row(
@@ -1016,143 +1016,14 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SizedBox(
-                                            height: widget.custHeight * 0.16,
-                                            width: widget.custWidth * 0.55,
-                                            child: context
-                                                            .read<
-                                                                SalesQuotationCon>()
-                                                            .selectedcust !=
-                                                        null &&
-                                                    context
-                                                            .read<
-                                                                SalesQuotationCon>()
-                                                            .selectedcust!
-                                                            .paymentGroup !=
-                                                        null &&
-                                                    context
-                                                            .read<
-                                                                SalesQuotationCon>()
-                                                            .selectedcust!
-                                                            .U_CashCust ==
-                                                        'YES'
-                                                ? TextFormField(
-                                                    validator: (value) {
-                                                      if (value!.isEmpty) {
-                                                        return '';
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                    onEditingComplete: () {
-                                                      context
-                                                              .read<
-                                                                  SalesQuotationCon>()
-                                                              .selectedcust!
-                                                              .name =
-                                                          context
-                                                              .read<
-                                                                  SalesQuotationCon>()
-                                                              .custNameController
-                                                              .text;
-                                                      context
-                                                          .read<
-                                                              SalesQuotationCon>()
-                                                          .disableKeyBoard(
-                                                              context);
-                                                    },
-                                                    controller: context
-                                                        .read<
-                                                            SalesQuotationCon>()
-                                                        .custNameController,
-                                                    decoration: InputDecoration(
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color:
-                                                                    Colors.red),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color:
-                                                                    Colors.red),
-                                                      ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color: Colors
-                                                                    .grey),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        borderSide:
-                                                            const BorderSide(
-                                                                color: Colors
-                                                                    .grey),
-                                                      ),
-                                                      hintText: 'Name',
-                                                      hintStyle: widget.theme
-                                                          .textTheme.bodyMedium
-                                                          ?.copyWith(
-                                                              color:
-                                                                  Colors.grey),
-                                                      filled: false,
-                                                      contentPadding:
-                                                          const EdgeInsets
-                                                              .symmetric(
-                                                        horizontal: 10,
-                                                      ),
-                                                    ),
-                                                  )
-                                                : Text(
-                                                    context
-                                                                .watch<
-                                                                    SalesQuotationCon>()
-                                                                .getselectedcust!
-                                                                .name ==
-                                                            null
-                                                        ? ""
-                                                        : context
-                                                            .watch<
-                                                                SalesQuotationCon>()
-                                                            .getselectedcust!
-                                                            .name
-                                                            .toString(),
-                                                    maxLines: 1,
-                                                    style: theme
-                                                        .textTheme.bodyLarge
-                                                        ?.copyWith(
-                                                            color: Colors.black,
-                                                            fontSize: 20),
-                                                  ),
-                                          ),
-                                          SizedBox(
-                                            width:
-                                                Screens.width(context) * 0.01,
-                                          ),
-                                          SizedBox(
+                                      Container(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
                                               height: widget.custHeight * 0.16,
-                                              width: widget.custWidth * 0.3,
+                                              width: widget.custWidth * 0.53,
                                               child: context
                                                               .read<
                                                                   SalesQuotationCon>()
@@ -1180,6 +1051,16 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                       },
                                                       onEditingComplete: () {
                                                         context
+                                                                .read<
+                                                                    SalesQuotationCon>()
+                                                                .selectedcust!
+                                                                .name =
+                                                            context
+                                                                .read<
+                                                                    SalesQuotationCon>()
+                                                                .custNameController
+                                                                .text;
+                                                        context
                                                             .read<
                                                                 SalesQuotationCon>()
                                                             .disableKeyBoard(
@@ -1188,7 +1069,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                       controller: context
                                                           .read<
                                                               SalesQuotationCon>()
-                                                          .tinNoController,
+                                                          .custNameController,
                                                       decoration:
                                                           InputDecoration(
                                                         errorBorder:
@@ -1231,7 +1112,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                                   color: Colors
                                                                       .grey),
                                                         ),
-                                                        hintText: 'Tin no',
+                                                        hintText: 'Name',
                                                         hintStyle: widget
                                                             .theme
                                                             .textTheme
@@ -1247,16 +1128,146 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                                         ),
                                                       ),
                                                     )
-                                                  : Container())
-                                        ],
+                                                  : Text(
+                                                      context
+                                                                  .watch<
+                                                                      SalesQuotationCon>()
+                                                                  .getselectedcust!
+                                                                  .name ==
+                                                              null
+                                                          ? ""
+                                                          : context
+                                                              .watch<
+                                                                  SalesQuotationCon>()
+                                                              .getselectedcust!
+                                                              .name
+                                                              .toString(),
+                                                      maxLines: 1,
+                                                      style: theme
+                                                          .textTheme.bodyLarge
+                                                          ?.copyWith(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 20),
+                                                    ),
+                                            ),
+                                            SizedBox(
+                                              width:
+                                                  Screens.width(context) * 0.01,
+                                            ),
+                                            SizedBox(
+                                                height:
+                                                    widget.custHeight * 0.16,
+                                                width: widget.custWidth * 0.28,
+                                                child: context
+                                                                .read<
+                                                                    SalesQuotationCon>()
+                                                                .selectedcust !=
+                                                            null &&
+                                                        context
+                                                                .read<
+                                                                    SalesQuotationCon>()
+                                                                .selectedcust!
+                                                                .paymentGroup !=
+                                                            null &&
+                                                        context
+                                                                .read<
+                                                                    SalesQuotationCon>()
+                                                                .selectedcust!
+                                                                .U_CashCust ==
+                                                            'YES'
+                                                    ? TextFormField(
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return '';
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                        onEditingComplete: () {
+                                                          context
+                                                              .read<
+                                                                  SalesQuotationCon>()
+                                                              .disableKeyBoard(
+                                                                  context);
+                                                        },
+                                                        controller: context
+                                                            .read<
+                                                                SalesQuotationCon>()
+                                                            .tinNoController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .red),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .red),
+                                                          ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
+                                                          hintText: 'Tin no',
+                                                          hintStyle: widget
+                                                              .theme
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  color: Colors
+                                                                      .grey),
+                                                          filled: false,
+                                                          contentPadding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                            horizontal: 10,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Container())
+                                          ],
+                                        ),
                                       ),
                                       SizedBox(
                                           height:
                                               Screens.padingHeight(context) *
                                                   0.01),
-                                      SizedBox(
+                                      Container(
                                           height: widget.custHeight * 0.16,
-                                          width: widget.custWidth * 0.3,
+                                          width: widget.custWidth * 0.28,
                                           child: context
                                                           .read<
                                                               SalesQuotationCon>()
@@ -1383,7 +1394,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                           SizedBox(
                             height: widget.custHeight * 0.01,
                           ),
-                          SizedBox(
+                          Container(
                             width: widget.custWidth,
                             child: Row(
                               children: [
@@ -1446,8 +1457,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(
-                                  width: widget.custWidth * 0.465,
+                                Container(
+                                  width: widget.custWidth * 0.44,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1490,7 +1501,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                 ),
                                 Container(
                                   alignment: Alignment.centerRight,
-                                  width: widget.custWidth * 0.465,
+                                  width: widget.custWidth * 0.45,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1539,8 +1550,8 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(
-                                  width: widget.custWidth * 0.465,
+                                Container(
+                                  width: widget.custWidth * 0.44,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1564,7 +1575,7 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                                 ),
                                 Container(
                                   alignment: Alignment.centerRight,
-                                  width: widget.custWidth * 0.465,
+                                  width: widget.custWidth * 0.45,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1598,14 +1609,14 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                             children: [
                               InkWell(
                                 onTap: () async {},
-                                child: SizedBox(
-                                  width: widget.custWidth * 0.465,
+                                child: Container(
+                                  width: widget.custWidth * 0.46,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: widget.custWidth * 0.465,
+                                        width: widget.custWidth * 0.46,
                                         padding: EdgeInsets.only(
                                             right: widget.custWidth * 0.02),
                                         child: Row(
@@ -1766,14 +1777,14 @@ class _SQCustomerDetailsState extends State<SQCustomerDetails> {
                               ),
                               InkWell(
                                 onTap: () async {},
-                                child: SizedBox(
-                                  width: widget.custWidth * 0.465,
+                                child: Container(
+                                  width: widget.custWidth * 0.44,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: widget.custWidth * 0.465,
+                                        width: widget.custWidth * 0.44,
                                         padding: EdgeInsets.only(
                                             right: widget.custWidth * 0.02),
                                         child: Row(

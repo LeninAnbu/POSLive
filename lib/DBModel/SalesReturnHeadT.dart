@@ -22,9 +22,8 @@ class SalesReturnHeaderT {
   static String transtime = "transtime";
   static String sysdatetime = "sysdatetime";
   static String customercode = "customercode";
-  static String customername =
-      'customername'; //T1.customerphono,T1.customeremail,T1.customeraccbal,T1.customerpoint,T1.taxno,T1.billaddressid,T1.transactiondate,T1.city,T1.state,T1.pinno,T1.country,T1.shipaddresid,T1.docbasic,T1.doctotal,
-  static String customerphono = 'customerphono'; //
+  static String customername = 'customername';
+  static String customerphono = 'customerphono';
   static String customeremail = 'customeremail';
   static String customeraccbal = 'customeraccbal';
   static String customerpoint = 'customerpoint';
@@ -32,7 +31,7 @@ class SalesReturnHeaderT {
   static String customertype = "customertype";
   static String taxno = "taxno";
   static String billaddressid = "billaddressid";
-  static String city = "city"; //
+  static String city = "city";
   static String state = "state";
   static String pinno = "pinno";
   static String gst = "gst";
@@ -197,7 +196,7 @@ class SalesReturnTModelDB {
   });
   factory SalesReturnTModelDB.fromjson(Map<String, dynamic> resp) {
     return SalesReturnTModelDB(
-      docentry: resp['docentry'].toString(), //documentno doctype
+      docentry: resp['docentry'].toString(),
       doctype: resp['doctype'],
       objtype: resp['objtype'],
       objname: resp['objname'],
@@ -263,7 +262,6 @@ class SalesReturnTModelDB {
   }
 
   Map<String, dynamic> toJson() => {
-        ///documentno doctype
         'docentry': docentry,
         'documentno': documentno,
         'doctype': doctype,

@@ -1,13 +1,4 @@
-// To parse this JSON data, do
-//
-//     final sapReceiptModel = sapReceiptModelFromJson(jsonString);
-
-
 import '../ErrorModell/ErrorModelSl.dart';
-
-// SapReceiptModel sapReceiptModelFromJson(String str) => SapReceiptModel.fromJson(json.decode(str));
-
-// String sapReceiptModelToJson(SapReceiptModel data) => json.encode(data.toJson());
 
 class SapReceiptModel {
   ErrorModel? error;

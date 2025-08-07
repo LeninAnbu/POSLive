@@ -52,8 +52,9 @@ class _InventoriesState extends State<Inventories> {
                   onChanged: (v) {
                     context.read<PayreceiptController>().filterInvoiceList(v);
                   },
-                  controller:
-                      context.read<PayreceiptController>().invMycontroller[80],
+                  controller: context
+                      .read<PayreceiptController>()
+                      .invMySearchcontroller[0],
                   onEditingComplete: () {
                     context
                         .read<PayreceiptController>()
@@ -223,8 +224,6 @@ class _InventoriesState extends State<Inventories> {
                                 child: Container(
                                   padding: EdgeInsets.only(
                                     top: widget.searchHeight * 0.01,
-                                    left: widget.searchHeight * 0.01,
-                                    right: widget.searchHeight * 0.01,
                                   ),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
@@ -293,13 +292,13 @@ class _InventoriesState extends State<Inventories> {
                                                       .read<
                                                           PayreceiptController>()
                                                       .config
-                                                      .splitValues(context
+                                                      .splitValues22(context
                                                           .read<
                                                               PayreceiptController>()
                                                           .getScanneditemData[
                                                               index]
                                                           .amount!
-                                                          .toStringAsFixed(2)),
+                                                          .toString()),
                                                   style: theme
                                                       .textTheme.bodyMedium
                                                       ?.copyWith(
@@ -312,14 +311,14 @@ class _InventoriesState extends State<Inventories> {
                                             ),
                                             Container(
                                                 width:
-                                                    widget.searchWidth * 0.15,
+                                                    widget.searchWidth * 0.19,
                                                 height:
                                                     widget.searchHeight * 0.08,
                                                 alignment: Alignment.center,
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal:
                                                         widget.searchWidth *
-                                                            0.005),
+                                                            0.000),
                                                 child: TextFormField(
                                                   readOnly: context
                                                               .watch<
@@ -449,8 +448,6 @@ class _InventoriesState extends State<Inventories> {
                                     },
                                     child: Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.all(
-                                          widget.searchHeight * 0.01),
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: theme.primaryColor),
@@ -472,13 +469,15 @@ class _InventoriesState extends State<Inventories> {
                                       setState(() {
                                         context
                                             .read<PayreceiptController>()
+                                            .totalduepay = 0;
+
+                                        context
+                                            .read<PayreceiptController>()
                                             .deSelectall();
                                       });
                                     },
                                     child: Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.all(
-                                          widget.searchHeight * 0.01),
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: theme.primaryColor),
@@ -496,6 +495,37 @@ class _InventoriesState extends State<Inventories> {
                                     ),
                                   )
                                 ],
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: widget.searchHeight * 0.09,
+                              width: widget.searchWidth * 0.25,
+                              padding: const EdgeInsets.all(6),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: widget.theme.primaryColor,
+                                    side: BorderSide(
+                                      color: widget.theme.primaryColor,
+                                    )),
+                                onPressed: context
+                                            .read<PayreceiptController>()
+                                            .getpaymentWay
+                                            .length <
+                                        1
+                                    ? null
+                                    : () {
+                                        setState(() {
+                                          context
+                                              .read<PayreceiptController>()
+                                              .callFifoItems();
+                                        });
+                                      },
+                                child: Text(
+                                  "Add sequence",
+                                  style: theme.textTheme.bodyMedium
+                                      ?.copyWith(color: Colors.white),
+                                ),
                               ),
                             ),
                             Container(

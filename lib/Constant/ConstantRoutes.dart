@@ -29,4 +29,6 @@ class ConstantRoutes {
   static String notification = "/Notification";
   static String logout = "/Logout";
   static String login = "/login";
+  static String incomingReport = "/incomingReport";
+  static String deposiReport = "/depositReport";
 }

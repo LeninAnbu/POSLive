@@ -20,8 +20,6 @@ class CustomerMasterT {
   static String lastupdateIp = "lastupdateIp";
   static String TaxCode = "TaxCode";
   static String uCashCust = "U_CASHCUST";
-// customerCode	customername	premiumid	customertype	taxno	createdbybranch	balance	points	snapdatetime	phoneno1
-// 	phoneno2	emalid	createdateTime	updatedDatetime	createdUserID	updateduserid	lastupdateIp	TaxCode	U_CASHCUST
 }
 
 class CustomerModelDB {

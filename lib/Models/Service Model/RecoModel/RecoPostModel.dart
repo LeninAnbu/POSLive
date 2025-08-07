@@ -2,62 +2,6 @@ import 'dart:developer';
 
 import '../../DataModel/SeriesMode/SeriesModels.dart';
 
-// {
-//     "odata.metadata": "http://102.69.167.106:50001/b1s/v1/$metadata#InternalReconciliations/@Element",
-//     "ReconNum": 971706,
-//     "ReconDate": "2025-01-01T00:00:00Z",
-//     "CardOrAccount": "coaCard",
-//     "ReconType": "rtManual",
-//     "Total": 280.0,
-//     "CancelAbs": 0,
-//     "InternalReconciliationRows": [
-//         {
-//             "LineSeq": 0,
-//             "ShortName": "D1999",
-//             "TransId": 4273422,
-//             "TransRowId": 0,
-//             "SrcObjTyp": "13",
-//             "SrcObjAbs": 574507,
-//             "CreditOrDebit": "codDebit",
-//             "ReconcileAmount": 280.0,
-//             "CashDiscount": 0.0
-//         },
-//         {
-//             "LineSeq": 1,
-//             "ShortName": "D1999",
-//             "TransId": 4273768,
-//             "TransRowId": 1,
-//             "SrcObjTyp": "24",
-//             "SrcObjAbs": 40369906,
-//             "CreditOrDebit": "codCredit",
-//             "ReconcileAmount": 100.0,
-//             "CashDiscount": 0.0
-//         },
-//         {
-//             "LineSeq": 2,
-//             "ShortName": "D1999",
-//             "TransId": 4273781,
-//             "TransRowId": 1,
-//             "SrcObjTyp": "24",
-//             "SrcObjAbs": 40369907,
-//             "CreditOrDebit": "codCredit",
-//             "ReconcileAmount": 180.0,
-//             "CashDiscount": 0.0
-//         },
-//         {
-//             "LineSeq": 3,
-//             "ShortName": "D1999",
-//             "TransId": 4274154,
-//             "TransRowId": 0,
-//             "SrcObjTyp": "321",
-//             "SrcObjAbs": 971706,
-//             "CreditOrDebit": "codDebit",
-//             "ReconcileAmount": 0.0,
-//             "CashDiscount": 0.0
-//         }
-//     ],
-//     "ElectronicProtocols": []
-// }
 class RecoPostModel {
   String? cardCode;
   Errors? error;
@@ -76,16 +20,7 @@ class RecoPostModel {
 
   factory RecoPostModel.fromJson(Map<String, dynamic> jsons, int Statuscode) {
     if (Statuscode >= 200 || Statuscode <= 210) {
-      // log('InternalReconciliationRows::${jsonDecode(jsons['InternalReconciliationRows'].toString())}');
-      // if (jsons['InternalReconciliationOpenTransRows'].toString() != 'No data found') {
       log('message1');
-      // var list =
-      //     jsonDecode(jsons['InternalReconciliationRows'].toString()) as List;
-
-      // log('message2::$list');
-
-      // List<RecoPostModelData> dataList =
-      //     list.map((data) => RecoPostModelData.fromJson(data)).toList();
 
       return RecoPostModel(
           recoListData: [],
@@ -145,34 +80,12 @@ class RecoPostModelData {
     required this.transId,
     required this.transRowId,
   });
-//  {
-//             "CashDiscount": null,
-//             "CreditOrDebit": "codCredit",
-//             "ReconcileAmount": 10,
-//             "Selected": "tYES",
-//             "ShortName": "v01",
-//             "SrcObjAbs": 11,
-//             "SrcObjTyp": "18",
-//             "TransId": 43,
-//             "TransRowId": 0
-//         }
 
-//  "LineSeq": 1,
-//             "ShortName": "D1999",
-//             "TransId": 4273768,
-//             "TransRowId": 1,
-//             "SrcObjTyp": "24",
-//             "SrcObjAbs": 40369906,
-//             "CreditOrDebit": "codCredit",
-//             "ReconcileAmount": 100.0,
-//             "CashDiscount": 0.0
   factory RecoPostModelData.fromJson(Map<String, dynamic> jsons) {
     return RecoPostModelData(
       cashDiscount: jsons['CashDiscount'] ?? 0,
       LineSeq: jsons['LineSeq'] ?? 0,
-
       creditOrDebit: jsons['CreditOrDebit'].toString(),
-      // selected: jsons['Selected'].toString(),
       transRowId: jsons['TransRowId'] ?? 0,
       shortName: jsons['ShortName'] ?? '',
       srcObjAbs: jsons['SrcObjAbs'] ?? 0,

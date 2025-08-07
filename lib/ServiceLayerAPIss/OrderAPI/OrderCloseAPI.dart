@@ -4,11 +4,12 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:posproject/Constant/AppConstant.dart';
+import 'package:posproject/ServiceLayerAPIss/QuotationAPI/QuotationCancelAPI.dart';
 // import '../../Models/ServiceLayerModel/SapSalesQuotation/GetQuotStatusModel.dart';
 import '../../url/url.dart';
 
 class SerlayOrderCloseAPI {
-  static Future getData(String sapDocEntry) async {
+  static Future<Cancelmodel> getData(String sapDocEntry) async {
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
@@ -21,10 +22,12 @@ class SerlayOrderCloseAPI {
       );
 
       log("SalesQuoclose stscode::${response.statusCode}");
-      log("SalesQuoclose::${json.decode(response.body)}");
+      // log("SalesQuoclose::${json.decode(response.body)}");
 
       if (response.statusCode == 204) {
         log("Successfully closed");
+
+        return Cancelmodel.fromJson(response.body, response.statusCode);
       } else {
         log("SalesQuoclose Exception: Error");
         throw Exception("Error");

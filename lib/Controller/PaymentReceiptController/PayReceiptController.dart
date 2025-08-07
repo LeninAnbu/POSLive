@@ -49,8 +49,8 @@ import '../../Models/ServiceLayerModel/BankListModel/BankListsModels.dart';
 import '../../Models/ServiceLayerModel/ReceiptModel/PostReceiptLineMode.dart';
 import '../../Service/NewCashAccountApi.dart';
 import '../../Service/NewCustCodeCreate/NewAddCreatePatchApi.dart';
-import '../../Service/QueryURL/IncomingPaymentCardCodeQuery.dart';
-import '../../Service/QueryURL/IncomingPaymentDocNumApi.dart';
+import '../../Service/QueryURL/IncomingApis/IncomingPaymentCardCodeQuery.dart';
+import '../../Service/QueryURL/IncomingApis/IncomingPaymentDocNumApi.dart';
 import '../../Service/SearchQuery/SearchReceiptHeadApi.dart';
 import '../../Service/SeriesApi.dart';
 import '../../ServiceLayerAPIss/BankListApi/BankListsApi.dart';
@@ -92,6 +92,8 @@ class PayreceiptController extends ChangeNotifier {
   TextEditingController postingDatecontroller = TextEditingController();
   List<TextEditingController> invMycontroller =
       List.generate(500, (i) => TextEditingController());
+  List<TextEditingController> invMySearchcontroller =
+      List.generate(10, (i) => TextEditingController());
   bool ondDisablebutton = false;
   List<CustomerAddressModelDB> createNewAddress = [];
   bool hintcolor = false;
@@ -217,6 +219,7 @@ class PayreceiptController extends ChangeNotifier {
     walletAcctype = null;
     walletAccCode = null;
     formkey = List.generate(50, (i) => GlobalKey<FormState>());
+    invMySearchcontroller = List.generate(10, (i) => TextEditingController());
     formkeyAd = GlobalKey<FormState>();
     mycontroller2 = List.generate(500, (i) => TextEditingController());
     mycontroller = List.generate(500, (i) => TextEditingController());
@@ -234,7 +237,6 @@ class PayreceiptController extends ChangeNotifier {
     newCustValues = [];
     selectedCustomer = 0;
     filtersearchData.clear();
-
     searchData.clear();
     selectedBillAdress = 0;
     checkboxx = false;
@@ -277,6 +279,8 @@ class PayreceiptController extends ChangeNotifier {
     holdInvoiceItem = [];
     cpndata = CouponDetModel();
     paymentWay2 = [];
+    paymentWay = [];
+    totalduepay = 0;
     paymentWay = [];
     totalPayment2 = null;
     sameInvNum = null;
@@ -597,53 +601,87 @@ class PayreceiptController extends ChangeNotifier {
           await getSession();
         }
       } else if (value.stCode! >= 400 && value.stCode! <= 410) {
-        if (value.error!.code != null) {
-          loadingscrn = false;
-          final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              bottom: Screens.bodyheight(context) * 0.3,
-            ),
-            duration: const Duration(seconds: 4),
-            backgroundColor: Colors.red,
-            content: Text(
-              "${value.error!.message!.value}\nCheck Your Sap Details !!..",
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          Future.delayed(const Duration(seconds: 5), () {
-            exit(0);
-          });
-        }
+        // if (value.error!.code != null) {
+        loadingscrn = false;
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        //   final snackBar = SnackBar(
+        //     behavior: SnackBarBehavior.floating,
+        //     margin: EdgeInsets.only(
+        //       bottom: Screens.bodyheight(context) * 0.3,
+        //     ),
+        //     duration: const Duration(seconds: 4),
+        //     backgroundColor: Colors.red,
+        //     content: Text(
+        //       "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //       style: const TextStyle(color: Colors.white),
+        //     ),
+        //   );
+        //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        //   Future.delayed(const Duration(seconds: 5), () {
+        //     exit(0);
+        //   });
+        // }
       } else if (value.stCode == 500) {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Opps Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        //   content: const Text(
+        //     "Opps Something went wrong !!..",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     });
   }
@@ -1527,6 +1565,9 @@ class PayreceiptController extends ChangeNotifier {
   nullErrorMsg() {
     msgforAmount = null;
     paymentterm = null;
+    cashAcctype = null;
+    cashAccCode = null;
+    bankhintcolor = false;
     wallet = null;
     selectedType = null;
     coupon = null;
@@ -2423,12 +2464,13 @@ class PayreceiptController extends ChangeNotifier {
 
   double getSumTotalPaid() {
     double toalPaid = 0;
+    toalPaid = 0;
     if (paymentWay.isNotEmpty) {
       var getTotalPaid = paymentWay.map((itemdet) => itemdet.amt.toString());
       var getTotalPaidSum = getTotalPaid.map(double.parse).toList();
       toalPaid = getTotalPaidSum.reduce((a, b) => a + b);
 
-      return toalPaid;
+      return double.parse(toalPaid.toStringAsFixed(5));
     } else {
       return 0.00;
     }
@@ -2457,10 +2499,11 @@ class PayreceiptController extends ChangeNotifier {
   }
 
   double getBalancePaid() {
+    totpaidamt = 0;
     if (paymentWay.isNotEmpty) {
       return totpaidamt != 0
-          ? (totpaidamt! - double.parse(getSumTotalPaid().toStringAsFixed(2)))
-          : totalduepay! - double.parse(getSumTotalPaid().toStringAsFixed(2));
+          ? (totpaidamt! - double.parse(getSumTotalPaid().toStringAsFixed(5)))
+          : totalduepay! - double.parse(getSumTotalPaid().toStringAsFixed(5));
     } else if (totalduepay != null) {
       return totpaidamt != 0 ? totpaidamt! : totalduepay!;
     } else {
@@ -2489,6 +2532,7 @@ class PayreceiptController extends ChangeNotifier {
         scanneditemData[i].checkClr == false) {
       scanneditemData[i].checkbx = 1;
       scanneditemData[i].checkClr = true;
+
       totalduepayx = totalduepay! + scanneditemData[i].amount!;
       totalduepay = double.parse(totalduepayx.toStringAsFixed(2));
       notifyListeners();
@@ -2665,7 +2709,7 @@ class PayreceiptController extends ChangeNotifier {
           }
           notifyListeners();
         } else if (totalduepay! > getSumTotalPaid() &&
-            getBalancePaid() >= double.parse(paymt.amt!.toStringAsFixed(2))) {
+            getBalancePaid() >= double.parse(paymt.amt!.toStringAsFixed(5))) {
           addToPaymentWay(paymt, context);
         } else {
           msgforAmount = 'Enter Correct amount..!!';
@@ -2673,8 +2717,8 @@ class PayreceiptController extends ChangeNotifier {
         }
       } else {
         if (totalduepay! > getSumTotalPaid() &&
-            double.parse(getBalancePaid().toStringAsFixed(2)) >=
-                double.parse(paymt.amt!.toStringAsFixed(2))) {
+            double.parse(getBalancePaid().toStringAsFixed(5)) >=
+                double.parse(paymt.amt!.toStringAsFixed(5))) {
           addToPaymentWay(paymt, context);
         } else {
           msgforAmount = 'Enter Correct amount..!!';
@@ -2740,7 +2784,7 @@ class PayreceiptController extends ChangeNotifier {
 
   cpyBtnclik(int i) {
     if (double.parse(getBalancePaid().toStringAsFixed(2)) > 0) {
-      mycontroller[i].text = getBalancePaid().toStringAsFixed(2);
+      mycontroller[i].text = getBalancePaid().toStringAsFixed(5);
       notifyListeners();
     } else {
       mycontroller[i].text = '';
@@ -2951,29 +2995,33 @@ class PayreceiptController extends ChangeNotifier {
   }
 
   selectall() {
+    log('message totaldue::${totalduepay}');
+    totalduepay = 0;
+
     double totalduepayx = 0;
     advancetype = '';
     advancests = false;
     for (int i = 0; i < scanneditemData.length; i++) {
-      log("mycontroller[i]2222:::${invMycontroller[i].text}");
+      scanneditemData[i].checkbx = 1;
+      scanneditemData[i].checkClr = true;
 
-      if (scanneditemData[i].checkbx == 0 &&
-          scanneditemData[i].checkClr == false) {
-        scanneditemData[i].checkbx = 1;
-        scanneditemData[i].checkClr = true;
-        totalduepayx = totalduepay! + scanneditemData[i].amount!;
-        totalduepay = double.parse(totalduepayx.toStringAsFixed(2));
-        notifyListeners();
-      }
+      invMycontroller[i].text = scanneditemData[i].amount!.toString();
+      totalduepayx = totalduepay! + scanneditemData[i].amount!;
+      totalduepay = double.parse(totalduepayx.toStringAsFixed(2));
       notifyListeners();
     }
   }
 
   deSelectall() {
+    log('message totaldue22::${totalduepay}');
+
+    totalduepay = 0;
+
     for (int i = 0; i < scanneditemData.length; i++) {
       scanneditemData[i].checkbx = 0;
       scanneditemData[i].checkClr = false;
       totalduepay = 0;
+
       notifyListeners();
     }
   }
@@ -3572,7 +3620,7 @@ class PayreceiptController extends ChangeNotifier {
     }
 
     totalduepayx = totalduepay! + myctrlval;
-    totalduepay = double.parse(totalduepayx.toStringAsFixed(2));
+    totalduepay = double.parse(totalduepayx.toStringAsFixed(5));
     notifyListeners();
     return totalduepay;
   }
@@ -3600,7 +3648,7 @@ class PayreceiptController extends ChangeNotifier {
     }
     for (int ij = 0; ij < scanneditemData.length; ij++) {
       invMycontroller[ij].text =
-          scanneditemData[ij].amount!.toStringAsFixed(2).toString();
+          scanneditemData[ij].amount!.toStringAsFixed(5).toString();
 
       if (scanneditemData[ij].checkbx == 1) {
         totalduepay =
@@ -3615,7 +3663,7 @@ class PayreceiptController extends ChangeNotifier {
   addCustomer() async {
     final Database db = (await DBHelper.getInstance())!;
     for (int ik = 0; ik < salesPayModell5.length; ik++) {
-      log('salesPayModell5 card code::${salesPayModell5[ik].cardCode}');
+      // log('salesPayModell5 card code::${salesPayModell5[ik].cardCode}');
       List<Map<String, Object?>> getcustaddd =
           await DBOperation.addgetCstmMasAddDB(
               db, salesPayModell5[ik].cardCode.toString());
@@ -3707,7 +3755,7 @@ class PayreceiptController extends ChangeNotifier {
     salesPayModell5 = [];
     scanneditemData = [];
     await callopenReceiptApiDocNum(
-        invMycontroller[80].text.toString().trim(), theme, context);
+        invMySearchcontroller[0].text.toString().trim(), theme, context);
 
     if (scanneditemData.isEmpty) {
       addProductValue();
@@ -4329,7 +4377,7 @@ class PayreceiptController extends ChangeNotifier {
         itemcardPayment.add(PostPaymentCard(
             creditAcc: creditAcc,
             cardValidity: config.currentDate2(),
-            creditSum: paymentWay[i].amt,
+            creditSum: double.parse(paymentWay[i].amt!.toStringAsFixed(5)),
             creditCardNum: paymentWay[i].cardApprno.toString(),
             creditcardCode: 1,
             voucherNum: paymentWay[i].reference.toString()));
@@ -4372,7 +4420,6 @@ class PayreceiptController extends ChangeNotifier {
       if (newCashAcc[i].uAcctName == value) {
         if (newCashAcc[i].uMode == 'CASH') {
           cashAccCode = newCashAcc[i].uAcctCode.toString();
-          log('step1::${cashAccCode}');
         } else if (newCashAcc[i].uMode == 'CARD') {
           cardAccCode = newCashAcc[i].uAcctCode.toString();
           log('step12');
@@ -4404,7 +4451,7 @@ class PayreceiptController extends ChangeNotifier {
             bankCode: selectbankCode,
             accounttNum: '',
             details: referencemycontroller[3].text,
-            checkSum: paymentWay[i].amt!));
+            checkSum: double.parse(paymentWay[i].amt!.toStringAsFixed(5))));
       }
       notifyListeners();
     }
@@ -4417,10 +4464,12 @@ class PayreceiptController extends ChangeNotifier {
       for (int i = 0; i < scanneditemData.length; i++) {
         if (scanneditemData[i].checkbx == 1 &&
             scanneditemData[i].checkClr == true) {
+          double invAmount = double.parse(invMycontroller[i].text.toString());
+
           itemsPaymentInvDet.add(PostPaymentInvoice(
               docEntry: scanneditemData[i].sapbasedocentry,
               docNum: int.parse(scanneditemData[i].docNum.toString()),
-              sumApplied: scanneditemData[i].amount,
+              sumApplied: double.parse(invAmount.toStringAsFixed(5)),
               invoiceType: 'it_Invoice'));
           notifyListeners();
         }
@@ -4441,6 +4490,11 @@ class PayreceiptController extends ChangeNotifier {
 
     ReceiptPostAPi.transferSum = null;
     ReceiptPostAPi.cashSum = null;
+    ReceiptPostAPi.paymentType = advancetype == "Advance"
+        ? "Advance"
+        : advancetype == 'Fifo'
+            ? 'Fifo'
+            : 'Normal';
     ReceiptPostAPi.docType = "rCustomer";
     ReceiptPostAPi.seriesType = seriesType.toString();
     ReceiptPostAPi.checkAccount = chequeAccCode;
@@ -4528,6 +4582,7 @@ class PayreceiptController extends ChangeNotifier {
               mycontroller = List.generate(500, (i) => TextEditingController());
               selectedcust = null;
               paymentWay.clear();
+              advancetype = '';
               postingDatecontroller.text = '';
               referencemycontroller =
                   List.generate(500, (i) => TextEditingController());
@@ -4882,6 +4937,97 @@ class PayreceiptController extends ChangeNotifier {
       getdraft(i);
 
       notifyListeners();
+    }
+    notifyListeners();
+  }
+
+  callFiFoBtn() {
+    totalduepay = 0;
+    double paymentVal = 0;
+    double docVal = 0;
+    double bal = 0;
+
+    for (var ix = 0; ix < scanneditemData.length; ix++) {
+      scanneditemData[ix].checkClr = false;
+      scanneditemData[ix].checkbx = 0;
+    }
+    for (var i = 0; i < paymentWay.length; i++) {
+      paymentVal = paymentVal + paymentWay[i].amt!;
+    }
+
+    for (var ix = 0; ix < scanneditemData.length; ix++) {
+      docVal = double.parse(invMycontroller[ix].text);
+      log('paymentVal:::${paymentVal}:::docVal::${docVal}');
+      if (paymentVal == docVal) {
+        log('message1');
+        scanneditemData[ix].checkClr = true;
+        scanneditemData[ix].checkbx = 1;
+        break;
+      } else if (paymentVal > docVal && bal >= 0) {
+        log('message2');
+
+        scanneditemData[ix].checkClr = true;
+        scanneditemData[ix].checkbx = 1;
+        bal = paymentVal - docVal;
+        invMycontroller[ix].text = docVal.toString();
+      } else if (paymentVal < docVal && bal <= 0) {
+        log('message3');
+
+        scanneditemData[ix].checkClr = true;
+        scanneditemData[ix].checkbx = 1;
+        invMycontroller[ix].text = paymentVal.toString();
+      }
+    }
+    notifyListeners();
+  }
+
+  callFifoItems() {
+    totalduepay = 0;
+    double paymentVal = 0;
+    double balval = 0;
+    advancetype = 'Fifo';
+    for (var ix = 0; ix < scanneditemData.length; ix++) {
+      scanneditemData[ix].checkClr = false;
+      scanneditemData[ix].checkbx = 0;
+    }
+    for (var i = 0; i < paymentWay.length; i++) {
+      paymentVal = paymentVal + paymentWay[i].amt!;
+    }
+
+    log('paymentVal::${paymentVal}');
+    balval = paymentVal;
+
+    for (var ix = 0; ix < scanneditemData.length; ix++) {
+      if (balval >= double.parse(invMycontroller[ix].text)) {
+        log('balvalbalval22::$balval');
+
+        scanneditemData[ix].checkClr = true;
+        scanneditemData[ix].checkbx = 1;
+        balval = double.parse((balval - double.parse(invMycontroller[ix].text))
+            .toStringAsFixed(5));
+
+        log('balvalbalval11::${balval.toStringAsFixed(5)}');
+      } else {
+        if (balval != 0) {
+          log('step2');
+
+          invMycontroller[ix].text = balval.toString();
+
+          scanneditemData[ix].checkClr = true;
+          scanneditemData[ix].checkbx = 1;
+          log('balvalbalval333::${balval.toStringAsFixed(2)}');
+
+          balval = 0;
+          break;
+        }
+      }
+    }
+
+    for (var ix = 0; ix < scanneditemData.length; ix++) {
+      if (scanneditemData[ix].checkClr == true &&
+          scanneditemData[ix].checkbx == 1) {
+        totalduepay = totalduepay! + double.parse(invMycontroller[ix].text);
+      }
     }
     notifyListeners();
   }

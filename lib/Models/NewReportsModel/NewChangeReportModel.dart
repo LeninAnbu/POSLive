@@ -20,7 +20,7 @@ class NewReportMdl {
     if (stcode >= 200 && stcode <= 210) {
       if (jsons['data'].toString() != 'No data found') {
         log('dddddddd');
-        var list = jsonDecode(jsons['data']) as List; //jsonDecode
+        var list = jsonDecode(jsons['data']) as List;
         List<NewReportMdlData> dataList = list
             .map((dynamic enquiries) => NewReportMdlData.fromJson(enquiries))
             .toList();
@@ -95,10 +95,6 @@ class NewReportMdlData {
     required this.userSign,
     required this.object,
   });
-// {status: true, msg: Success, data: [
-//{"Code":"01","Name":"Daily Collection Report","DocEntry":1,"Canceled":"N","Object":"POSRPT","LogInst":null,
-//"UserSign":72,"Transfered":"N","CreateDate":"2024-12-17T00:00:00","CreateTime":1350,"UpdateDate":"2024-12-17T00:00:00",
-//"UpdateTime":1359,"DataSource":"I","U_Query":"BZ_POS_CONSOLIDATED SALES IN DAY_R1"}]}
 
   factory NewReportMdlData.fromJson(Map<String, dynamic> json) {
     return NewReportMdlData(

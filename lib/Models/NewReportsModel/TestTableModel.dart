@@ -18,13 +18,9 @@ class TestModel {
 
   factory TestModel.fromJson(Map<String, dynamic> jsons, int stcode) {
     if (stcode >= 200 && stcode <= 210) {
-      // log('resprespresp::${jsons['data'].toString()}');
-
-      // var jsons = json.decode(resp) as Map<String, dynamic>;
-
       if (jsons['data'].toString() != 'No data found') {
         log('dddddddd');
-        var list = jsonDecode(jsons['data']) as List; //jsonDecode
+        var list = jsonDecode(jsons['data']) as List;
         List<TestModelData> dataList = list
             .map((dynamic enquiries) => TestModelData.fromJson(enquiries))
             .toList();
@@ -100,10 +96,6 @@ class TestModelData {
     required this.U_Zno,
     required this.U_rctCde,
   });
-// {\"DocNum\":3030681,\"DocDate\":\"2024-11-01T00:00:00\",\"CardCode\":\"D5225\",\"CardName\":\"BISIXITEN JUSTINE MASSAWE\",
-//\"Tin Number\":\"116581469\",\"Total Before Tax\":191884.000000,\"Tax\":34539.120000,\"DocTotal\":226423.120000,
-//\"U_rctCde\":\"B06A9F139305\",\"U_Zno\":\"7/20241101\",\"U_VfdIn\":\"139305\",\"U_NAME\":\"ARUSHA DEPOT\",
-//\"canceled\":\"N\",\"Name\":\"Arusha\"},
 
   factory TestModelData.fromJson(dynamic jsons) {
     return TestModelData(

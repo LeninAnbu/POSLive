@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:posproject/Constant/Screen.dart';
 import 'Widget/BodyContainer.dart';
@@ -8,11 +6,11 @@ import 'Widget/HeadingContainer.dart';
 
 class MobileLoginScreen extends StatelessWidget {
   MobileLoginScreen({
-    super.key, //required this.logCon,
+    super.key,
     this.height,
     this.width,
   });
-//final LoginController logCon;
+
   double? height;
   double? width;
   @override
@@ -31,8 +29,7 @@ class MobileLoginScreen extends StatelessWidget {
           SizedBox(
             height: Screens.bodyheight(context) * 0.01,
           ),
-          BodyContainerMob(//logCon: logCon,
-              ),
+          BodyContainerMob(),
           FooterContainerMob(
             height: Screens.bodyheight(context) * 0.20,
           ),

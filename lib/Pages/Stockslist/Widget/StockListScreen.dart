@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:posproject/Constant/padings.dart';
 import 'package:posproject/DBModel/ItemMaster.dart';
 import 'package:provider/provider.dart';
 import '../../../../Controller/StockListsController/StockListsController.dart';
@@ -22,8 +21,6 @@ class StockListScreen extends StatefulWidget {
 class _StockListScreenState extends State<StockListScreen> {
   int? color = 0;
 
-  Paddings paddings = Paddings();
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -37,183 +34,128 @@ class _StockListScreenState extends State<StockListScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Card(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            child: Container(
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: theme.primaryColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(8)),
-                width: widget.stkWidth,
-                padding: EdgeInsets.symmetric(
-                    horizontal: widget.stkWidth * 0.015,
-                    vertical: widget.stkHeight * 0.005),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Brand",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.primaryColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: Screens.width(context),
-                        child: Wrap(
-                            spacing: 10.0, // gap between adjacent chips
-                            runSpacing: 10.0, // gap between lines
-                            children: listContainers(
-                                theme,
-                                context.watch<StockController>().getbrandList,
-                                context)),
-                      ),
-                      SizedBox(
-                        height: widget.stkHeight * 0.005,
-                      ),
-                      InkWell(
-                        onTap: () {
+          Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+              width: widget.stkWidth,
+              padding: EdgeInsets.symmetric(
+                  horizontal: widget.stkWidth * 0.015,
+                  vertical: widget.stkHeight * 0.005),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: Screens.width(context),
+                      padding: EdgeInsets.only(top: 1, left: 10, right: 10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: DropdownButton(
+                        dropdownColor: Colors.white,
+                        hint: Text(
+                          "Select Main Group: ",
+                        ),
+                        value:
+                            context.read<StockController>().valueSelectedMain,
+                        icon: Icon(Icons.arrow_drop_down),
+                        iconSize: 30,
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                        isExpanded: true,
+                        onChanged: (val) {
                           setState(() {
+                            context.read<StockController>().valueSelectedMain =
+                                val.toString();
                             context
                                 .read<StockController>()
-                                .isSelectedBrandViewAll2();
-                            context
-                                .read<StockController>()
-                                .isselectedbrandViewAllPage();
+                                .selectedMainGroup(val!);
                           });
                         },
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          width: widget.stkWidth,
-                          child: Text(
-                            "View All",
-                            style: theme.textTheme.bodyMedium
-                                ?.copyWith(fontSize: 16, color: Colors.grey),
-                          ),
+                        items: context
+                            .read<StockController>()
+                            .mainValueValue
+                            .map((e) {
+                          return DropdownMenuItem(
+                              value: "${e.code}",
+                              child: Text(
+                                '${e.name}',
+                              ));
+                        }).toList(),
+                      ),
+                    ),
+                  ])),
+          Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+              width: widget.stkWidth,
+              padding: EdgeInsets.symmetric(
+                  horizontal: widget.stkWidth * 0.015,
+                  vertical: widget.stkHeight * 0.005),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: Screens.width(context),
+                      padding: EdgeInsets.only(top: 1, left: 10, right: 10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: DropdownButton(
+                        dropdownColor: Colors.white,
+                        hint: Text(
+                          "Select Sub Group: ",
                         ),
-                      )
-                    ])),
-          ),
-          Card(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            child: Container(
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: theme.primaryColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(8)),
-                width: widget.stkWidth,
-                padding: EdgeInsets.symmetric(
-                    horizontal: widget.stkWidth * 0.015,
-                    vertical: widget.stkHeight * 0.005),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Product",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.primaryColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: Screens.width(context),
-                        child: Wrap(
-                            spacing: 10.0, // gap between adjacent chips
-                            runSpacing: 10.0, // gap between lines
-                            children: listContainersProduct(
-                                theme,
-                                context.watch<StockController>().getproductList,
-                                context)),
-                      ),
-                      SizedBox(
-                        height: widget.stkHeight * 0.01,
-                      ),
-                      InkWell(
-                        onTap: () {
+                        value: context.read<StockController>().valueSelectedSub,
+                        icon: Icon(Icons.arrow_drop_down),
+                        iconSize: 30,
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                        isExpanded: true,
+                        onChanged: (val) {
                           setState(() {
+                            context.read<StockController>().valueSelectedSub =
+                                val.toString();
+
                             context
                                 .read<StockController>()
-                                .isSelectedProductViewAll2();
-                            context
-                                .read<StockController>()
-                                .isselectedProductViewAllPage();
+                                .selectedSubGroup(val!);
                           });
                         },
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          width: widget.stkWidth,
-                          child: Text(
-                            "View All",
-                            style: theme.textTheme.bodyMedium
-                                ?.copyWith(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
+                        items: context
+                            .read<StockController>()
+                            .subValueValue
+                            .map((e) {
+                          return DropdownMenuItem(
+                              value: "${e.code}",
+                              child: Text(
+                                '${e.name}',
+                              ));
+                        }).toList(),
                       ),
-                    ])),
-          ),
-          Card(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            child: Container(
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: theme.primaryColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(8)),
-                width: widget.stkWidth,
-                padding: EdgeInsets.symmetric(
-                    horizontal: widget.stkWidth * 0.015,
-                    vertical: widget.stkHeight * 0.005),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Segment",
-                        style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.primaryColor,
-                            fontWeight: FontWeight.bold),
+                    ),
+                  ])),
+          Container(
+              decoration: BoxDecoration(),
+              width: widget.stkWidth,
+              padding: EdgeInsets.symmetric(
+                  horizontal: widget.stkWidth * 0.015,
+                  vertical: widget.stkHeight * 0.005),
+              child: SizedBox(
+                child: TextFormField(
+                  controller:
+                      context.read<StockController>().groupmycontroller[0],
+                  onChanged: (val) {},
+                  style: TextStyle(fontSize: 15),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(05),
                       ),
-                      SizedBox(
-                        width: Screens.width(context),
-                        child: Wrap(
-                            spacing: 10.0, // gap between adjacent chips
-                            runSpacing: 10.0, // gap between lines
-                            children: listContainersSegment(
-                                theme,
-                                context.watch<StockController>().getsegmentList,
-                                context)),
-                      ),
-                      SizedBox(
-                        height: widget.stkHeight * 0.005,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            context
-                                .read<StockController>()
-                                .isSelectedSegmentViewAll2();
-                            context
-                                .read<StockController>()
-                                .isselectedSegmentViewAllPage();
-                          });
-                        },
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          width: widget.stkWidth,
-                          child: Text(
-                            "View All",
-                            style: theme.textTheme.bodyMedium
-                                ?.copyWith(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
-                      )
-                    ])),
-          ),
+                    ),
+                    hintText: "Enter pack",
+                  ),
+                ),
+              )),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -222,10 +164,7 @@ class _StockListScreenState extends State<StockListScreen> {
                 height: widget.stkHeight * 0.055,
                 child: ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        context.read<StockController>().listshow = false;
-                        widget.stkCtrl.showSearchDialogBox(context);
-                      });
+                      setState(() {});
                     },
                     onLongPress: () {},
                     style: ElevatedButton.styleFrom(
@@ -234,8 +173,7 @@ class _StockListScreenState extends State<StockListScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Icon(Icons.search) //const Text('Search')
-                    ),
+                    child: const Icon(Icons.search)),
               ),
               SizedBox(
                 width: widget.stkWidth * 0.5,
@@ -243,7 +181,22 @@ class _StockListScreenState extends State<StockListScreen> {
                 child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        context.read<StockController>().setList();
+                        context
+                            .read<StockController>()
+                            .groupmycontroller[1]
+                            .text = '';
+                        context.read<StockController>().visibleItemList = true;
+
+                        context.read<StockController>().getAllListItem22(
+                              context
+                                      .read<StockController>()
+                                      .valueSelectedMainName ??
+                                  '_',
+                              context
+                                      .read<StockController>()
+                                      .valueSelectedSubName ??
+                                  '_',
+                            );
                       });
                     },
                     style: ElevatedButton.styleFrom(
@@ -260,7 +213,7 @@ class _StockListScreenState extends State<StockListScreen> {
                 child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        context.read<StockController>().clearAllData();
+                        context.read<StockController>().clearData();
                       });
                     },
                     style: ElevatedButton.styleFrom(

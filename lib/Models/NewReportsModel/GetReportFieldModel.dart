@@ -20,7 +20,7 @@ class NewReportFieldMdl {
     if (stcode >= 200 && stcode <= 210) {
       if (jsons['data'].toString() != 'No data found') {
         log('dddddddd');
-        var list = jsonDecode(jsons['data']) as List; //jsonDecode
+        var list = jsonDecode(jsons['data']) as List;
         List<NewReportFieldMdlData> dataList = list
             .map((dynamic enquiries) =>
                 NewReportFieldMdlData.fromJson(enquiries))
@@ -84,7 +84,6 @@ class NewReportFieldMdlData {
     required this.loginst,
     required this.object,
   });
-// {\"Code\":\"01\",\"LineId\":1,\"Object\":\"POSRPT\",\"LogInst\":null,\"U_ParamName\":\"FD\",\"U_ParamType\":\"D\",\"U_ParamDesc\":\"From Date\",\"U_ParamQry\":null,\"U_Default\":null},
 
   factory NewReportFieldMdlData.fromJson(Map<String, dynamic> json) {
     return NewReportFieldMdlData(

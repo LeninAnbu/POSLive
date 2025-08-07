@@ -146,7 +146,6 @@ class SalesQuotationCon extends ChangeNotifier {
     List<Map<String, Object?>> branchData = await DBOperation.getBranch(db);
     if (branchData.isNotEmpty) {
       for (int i = 0; i < branchData.length; i++) {
-        log(' branchData WhsCode:${branchData[i]['WhsCode'].toString()}');
         whsLists.add(WhsDetails(
             whsName: branchData[i]['WhsName'].toString(),
             companyName: branchData[i]['CompanyName'].toString(),
@@ -330,13 +329,12 @@ class SalesQuotationCon extends ChangeNotifier {
     clearAll(context, theme);
     await callGetUserType();
     await callNewDocSeriesApi();
-
     await injectToDb();
     await getCustDetFDB();
     await getBrachDetails();
     await getdraftindex();
+    await sapLoginApi(context);
     await custSeriesApi();
-
     await callSeriesApi(context);
     notifyListeners();
   }
@@ -501,6 +499,8 @@ class SalesQuotationCon extends ChangeNotifier {
       scanneditemData.removeAt(indx);
       discountcontroller.removeAt(indx);
       qtymycontroller.removeAt(indx);
+      pricemycontroller.removeAt(indx);
+
       calCulateDocVal(context, theme);
       notifyListeners();
     } else {
@@ -557,6 +557,8 @@ class SalesQuotationCon extends ChangeNotifier {
 
   callClearBtn() {
     selectedcust2 = null;
+    selectedcust = null;
+
     custNameController.text = '';
     tinNoController.text = '';
     vatNoController.text = '';
@@ -725,7 +727,6 @@ class SalesQuotationCon extends ChangeNotifier {
     seriesVal = [];
     seriesType = '';
 
-    await sapLoginApi(context);
     log('sessionid::${AppConstant.sapSessionID}');
     await SeriesAPi.getGlobalData('23').then((value) async {
       if (value.stsCode! >= 200 && value.stsCode! <= 210) {
@@ -1164,53 +1165,61 @@ class SalesQuotationCon extends ChangeNotifier {
           await getSession();
         }
       } else if (value.stCode! >= 400 && value.stCode! <= 410) {
-        if (value.error!.code != null) {
-          loadingscrn = false;
-          final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.only(
-              bottom: Screens.bodyheight(context) * 0.3,
-            ),
-            duration: const Duration(seconds: 4),
-            backgroundColor: Colors.red,
-            content: Text(
-              "${value.error!.message!.value}\nCheck Your Sap Details !!..",
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          Future.delayed(const Duration(seconds: 5), () {
-            exit(0);
-          });
-        }
+        log('message error');
+        // if (value.error!.code != null) {
+        loadingscrn = false;
+
+        Get.defaultDialog(
+            title: 'Alert',
+            titleStyle: TextStyle(color: Colors.red),
+            middleText:
+                "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
+        // final snackBar = SnackBar(
+        //   behavior: SnackBarBehavior.floating,
+        //   margin: EdgeInsets.only(
+        //     bottom: Screens.bodyheight(context) * 0.3,
+        //   ),
+        //   duration: const Duration(seconds: 4),
+        //   backgroundColor: Colors.red,
+        // content: Text(
+        //   "${value.error!.message!.value}\nCheck Your Sap Details !!..",
+        //   style: const TextStyle(color: Colors.white),
+        // ),
+        // );
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        // Future.delayed(const Duration(seconds: 5), () {
+        //   exit(0);
+        // });
+        // }
       } else if (value.stCode == 500) {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            middleText: "${value.exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
       } else {
-        final snackBar = SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-            bottom: Screens.bodyheight(context) * 0.3,
-          ),
-          duration: const Duration(seconds: 4),
-          backgroundColor: Colors.red,
-          content: const Text(
-            "Opps Something went wrong !!..",
-            style: TextStyle(color: Colors.white),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Get.defaultDialog(
+            title: 'Alert',
+            middleText: "${exception}\nCheck Your Sap Details !!..",
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('Close'))
+            ]);
       }
     });
   }
@@ -4136,6 +4145,7 @@ class SalesQuotationCon extends ChangeNotifier {
             onhandData.add(OnHandModelsData(
                 onHand: value.onHandData![i].onHand,
                 itemCode: value.onHandData![i].itemCode,
+                availableStock: value.onHandData![i].availableStock,
                 whsCode: value.onHandData![i].whsCode));
             notifyListeners();
           }
@@ -4143,6 +4153,9 @@ class SalesQuotationCon extends ChangeNotifier {
           for (var ik = 0; ik < onhandData.length; ik++) {
             if (scanneditemData[index].itemCode.toString() ==
                 onhandData[ik].itemCode.toString()) {
+              scanneditemData[index].availableStk =
+                  double.parse(onhandData[ik].availableStock.toString());
+
               scanneditemData[index].inStockQty =
                   double.parse(onhandData[ik].onHand.toString());
             }
@@ -7423,7 +7436,6 @@ class SalesQuotationCon extends ChangeNotifier {
     vatNoController.text = '';
     notifyListeners();
   }
-//payment func
 
   calCulateDocVal(BuildContext context, ThemeData theme) {
     totalPayment = null;
@@ -7481,6 +7493,7 @@ class SalesQuotationCon extends ChangeNotifier {
       totalPay.totalDue = totalPay.totalDue! + scanneditemData[iss].netvalue!;
       totalPay.taxable = totalPay.subtotal! - totalPay.discount!;
       totalPayment = totalPay;
+
       totalPay.total =
           totalPay.total! + double.parse(scanneditemData[iss].qty.toString());
       notifyListeners();
@@ -7645,7 +7658,6 @@ class SalesQuotationCon extends ChangeNotifier {
     notifyListeners();
   }
 
-//checkout
   changecheckout(BuildContext context, ThemeData theme) async {
     log('checkout userTypesuserTypes::${userTypes}');
     if (userTypes == 'user') {

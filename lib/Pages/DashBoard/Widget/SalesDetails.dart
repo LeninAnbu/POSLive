@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:posproject/Controller/DashBoardController/DashboardController.dart';
 import 'package:posproject/main.dart';
-// import 'package:charts_flutter/flutter.dart' as charts;
+
 import 'package:provider/provider.dart';
 
 class SalesDetails extends StatelessWidget {

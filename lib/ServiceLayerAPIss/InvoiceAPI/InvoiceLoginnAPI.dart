@@ -29,7 +29,7 @@ class PostInvoiceLoginAPi {
       }));
       log("saplogin stcode11 ::${response.statusCode}");
 
-      log("// saplogin: ${json.decode(response.body)}");
+      log("saplogin: ${json.decode(response.body)}");
 
       if (response.statusCode == 200) {
         log("Step22");
@@ -40,12 +40,15 @@ class PostInvoiceLoginAPi {
       } else {
         log("// saplogin: ${json.decode(response.body)}");
         log("saplogin stcode22 ::${response.statusCode}");
-        throw Exception("Error");
+        return Logindata.error(
+            json.decode(response.body) as Map<String, dynamic>,
+            response.statusCode);
+        // throw Exception("Error");
       }
     } catch (e) {
       log('Exception saplogin: $e');
 
-      return Logindata.issue('Restart the app or contact the admin!!..', 500);
+      return Logindata.issue('$e', 500);
     }
   }
 }
