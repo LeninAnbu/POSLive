@@ -693,7 +693,6 @@ class DashBoardController extends ChangeNotifier {
 
   clearData(BuildContext context) async {
     final Database db = (await DBHelper.getInstance())!;
-
     await DBOperation.truncateItemMaster(db);
     await DBOperation.truncateStockSnap(db);
     await DBOperation.truncateBranchMaster(db);

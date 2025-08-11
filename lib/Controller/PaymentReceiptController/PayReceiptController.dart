@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:posproject/Constant/Configuration.dart';
-import 'package:posproject/Constant/Screen.dart';
 import 'package:posproject/Controller/SalesQuotationController/SalesQuotationController.dart';
 import 'package:posproject/DBModel/ReceiptHeader.dart';
 import 'package:posproject/DBModel/ReceiptLine2.dart';

@@ -279,7 +279,11 @@ class _TabReturnRegState extends State<TabReturnReg> {
       rows.add(TableRow(children: [
         InkWell(
           onTap: () {
-            log(context.watch<RetnRegCon>().getfiltersalesReg[i].docno!);
+            log(context
+                .watch<RetnRegCon>()
+                .getfiltersalesReg[i]
+                .docno!
+                .toString());
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),

@@ -55,7 +55,7 @@ class ReturnRegtModel {
 }
 
 class ReturnRegisterList {
-  String? docno;
+  int? docno;
   int? docEntry;
   String? branch;
   String? terminal;
@@ -70,7 +70,7 @@ class ReturnRegisterList {
       required this.cardcode,
       required this.cardname,
       required this.date,
-      required this.docEntry,
+      this.docEntry,
       required this.docno,
       required this.itemcode,
       required this.itemname,
@@ -82,9 +82,9 @@ class ReturnRegisterList {
         cardcode: json['Customer Code'] ?? '',
         cardname: json['Customer Name'] ?? '',
         date: json['State code'] ?? '',
-        docEntry: json['Pincode'] ?? '',
-        docno: json['Document number'] ?? '',
-        itemcode: json['Item Code'] ?? 0.0,
+        // docEntry: json['Pincode'] ?? '',
+        docno: json['Document number'] ?? 0,
+        itemcode: json['Item Code'] ?? '',
         itemname: json['Item Name'] ?? '',
         terminal: json['Terminal'] ?? '',
       );

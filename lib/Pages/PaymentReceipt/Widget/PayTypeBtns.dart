@@ -1170,7 +1170,7 @@ class _PayTypeBtnsState extends State<PayTypeBtns> {
         .newCashAcc
         .where((item) => item.uMode == "CHEQUE")
         .toList();
-    log('cashItems::${cashItems[0].uMode}');
+    // log('cashItems::${cashItems[0].uMode}');
     return StatefulBuilder(builder: (context, st) {
       return Container(
         padding: EdgeInsets.only(

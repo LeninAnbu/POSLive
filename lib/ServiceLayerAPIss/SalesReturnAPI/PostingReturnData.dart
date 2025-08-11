@@ -14,9 +14,7 @@ class SalesReurnPostAPi {
   static String? docDate;
   static String? dueDate;
   static String? seriesType;
-
   static String? remarks;
-
   static String? cnType;
   static void method(String? deviceTransID) {
     final data = json.encode({

@@ -128,7 +128,10 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                         readOnly: true,
                         onTap: () {
                           context.read<StockReqController>().refresCufstList();
-
+                          context
+                              .read<StockReqController>()
+                              .searchcontroller
+                              .text = '';
                           setState(() {
                             showDialog(
                                 context: context,
@@ -155,6 +158,13 @@ class _StockReqCustomerState extends State<StockReqCustomer> {
                               color: Colors.grey,
                             ),
                             onPressed: () {
+                              context
+                                  .read<StockReqController>()
+                                  .refresCufstList();
+                              context
+                                  .read<StockReqController>()
+                                  .searchcontroller
+                                  .text = '';
                               showDialog(
                                   context: context,
                                   barrierDismissible: false,

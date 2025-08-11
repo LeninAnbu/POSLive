@@ -23,7 +23,6 @@ class IncomingPaymentReportApi {
               }));
 
       log("IncomingPayment_report sts: ${response.statusCode}");
-
       log("IncomingPayment_report Res: ${json.decode(response.body)}");
 
       if (response.statusCode == 200) {

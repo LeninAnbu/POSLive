@@ -105,7 +105,7 @@ class RetnRegCon extends ChangeNotifier {
           cardname: data[i]['customername'].toString(),
           date: data[i]['transtime'].toString(),
           docEntry: int.parse(data[i]['docentry'].toString()),
-          docno: data[i]['documentno'].toString(),
+          docno: int.parse(data[i]['documentno'].toString()),
           itemcode: data[i]['itemcode'].toString(),
           itemname: data[i]['itemname'].toString(),
           terminal: data[i]['terminal'].toString()));
@@ -122,7 +122,7 @@ class RetnRegCon extends ChangeNotifier {
               e.itemname!.toLowerCase().contains(v.toLowerCase()) ||
               e.cardcode!.toLowerCase().contains(v.toLowerCase()) ||
               e.cardname!.toLowerCase().contains(v.toLowerCase()) ||
-              e.docno!.toLowerCase().contains(v.toLowerCase()))
+              e.docno!.toString().toLowerCase().contains(v.toLowerCase()))
           .toList();
       notifyListeners();
     } else if (v.isEmpty) {

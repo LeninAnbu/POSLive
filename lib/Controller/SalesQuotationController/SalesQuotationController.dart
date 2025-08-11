@@ -4662,7 +4662,7 @@ class SalesQuotationCon extends ChangeNotifier {
     scanneditemData = scanneditemData2;
     log('scanneditemCheckUpdateDataxxx::${scanneditemCheckUpdateData.length}');
     selectedcust = selectedcust2;
-    selectedcust2 = selectedcust25;
+    selectedcust55 = selectedcust25;
     await callGetUserType();
 
     for (var i = 0; i < scanneditemData.length; i++) {
