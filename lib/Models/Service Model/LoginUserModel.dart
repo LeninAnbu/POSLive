@@ -68,6 +68,7 @@ class LoginUserData {
   String? createdUserID;
   int? updateduserid;
   String? lastupdateIp;
+  String? sapUrl;
 
   LoginUserData({
     this.autoId,
@@ -75,6 +76,7 @@ class LoginUserData {
     required this.userName,
     this.sapUserName,
     this.sapPassword,
+    this.sapUrl,
     required this.branch,
     this.slpCode,
     this.sapDB,
@@ -98,6 +100,7 @@ class LoginUserData {
       userName: jsons['UserName'].toString(),
       sapPassword: jsons['SAPPassword'].toString(),
       sapUserName: jsons['SAPUserName'].toString(),
+      sapUrl: jsons['SAPUrl'].toString(),
       branch: jsons['Branch'].toString(),
       sapDB: jsons['SAPDB'] ?? '',
       slpCode: jsons['SlpCode'] ?? 0,

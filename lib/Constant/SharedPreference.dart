@@ -19,6 +19,8 @@ class SharedPref {
   static String consumercount = "isConsumerCount";
   static String sapusername = "sapusername";
   static String sappassword = "sapassword";
+  static String sapUrl = "sapUrl";
+
   static Future<bool> saveQeueName(String isDatad) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return await preferences.setString(queueName, isDatad);
@@ -87,6 +89,21 @@ class SharedPref {
   static clearHost() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.remove(spHost);
+  }
+
+  static Future<bool> saveSapUrl(String sapurl) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setString(sapUrl, sapurl);
+  }
+
+  static Future<String?> getSapUrl() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(sapUrl);
+  }
+
+  static clearSapUrl() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.remove(sapUrl);
   }
 
   static Future<bool> saveDeviceIDSP(String spDeviceID1) async {

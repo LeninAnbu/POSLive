@@ -115,7 +115,7 @@ class SalesOrderPostAPi {
 
       final response = await http.post(
         Uri.parse(
-          "${URL.sapUrl}/Orders",
+          "${URL.sapUrl}Orders",
         ),
         headers: {
           "content-type": "application/json",

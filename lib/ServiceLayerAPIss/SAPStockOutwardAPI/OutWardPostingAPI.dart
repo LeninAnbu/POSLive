@@ -38,28 +38,27 @@ class PostStkOutwardAPi {
 
   static Future<SapOutwardModel> getGlobalData(String? deviceTransID) async {
     try {
-      log("e::${URL.sapUrl}/StockTransfers");
-      final response =
-          await http.post(Uri.parse("${URL.sapUrl}/StockTransfers"),
-              headers: {
-                "content-type": "application/json",
-                "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-              },
-              body: json.encode({
-                "DocumentStatus": "bost_Open",
-                "CardCode": "$cardCodePost",
-                "DocDate": "$docDate",
-                "DueDate": "$dueDate",
-                "FromWarehouse": "$fromWarehouse",
-                "ToWarehouse": "$toWarehouse",
-                "Comments": "$comments",
-                "U_DeviceTransID": deviceTransID,
-                'U_ReqWhs': "$ureqWarehouse",
-                "U_PosUserCode": UserValues.userCode,
-                "U_PosTerminal": AppConstant.terminal,
-                "StockTransferLines":
-                    stockTransferLines!.map((e) => e.toJson()).toList(),
-              }));
+      log("e::${URL.sapUrl}StockTransfers");
+      final response = await http.post(Uri.parse("${URL.sapUrl}StockTransfers"),
+          headers: {
+            "content-type": "application/json",
+            "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
+          },
+          body: json.encode({
+            "DocumentStatus": "bost_Open",
+            "CardCode": "$cardCodePost",
+            "DocDate": "$docDate",
+            "DueDate": "$dueDate",
+            "FromWarehouse": "$fromWarehouse",
+            "ToWarehouse": "$toWarehouse",
+            "Comments": "$comments",
+            "U_DeviceTransID": deviceTransID,
+            'U_ReqWhs': "$ureqWarehouse",
+            "U_PosUserCode": UserValues.userCode,
+            "U_PosTerminal": AppConstant.terminal,
+            "StockTransferLines":
+                stockTransferLines!.map((e) => e.toJson()).toList(),
+          }));
       log(json.encode({
         "CardCode": "$cardCodePost",
         "DocumentStatus": "bost_Open",

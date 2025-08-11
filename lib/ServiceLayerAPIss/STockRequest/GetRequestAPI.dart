@@ -11,11 +11,11 @@ import '../../url/url.dart';
 
 class SerlayStkRequestAPI {
   static Future<SapStkrequestModel> getData(String sapDocEntry) async {
-    log('${URL.sapUrl}/InventoryTransferRequests($sapDocEntry)');
+    log('${URL.sapUrl}InventoryTransferRequests($sapDocEntry)');
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/InventoryTransferRequests($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}InventoryTransferRequests($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

@@ -10,6 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:posproject/Constant/Screen.dart';
+import 'package:posproject/url/url.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -885,7 +886,7 @@ class DashBoardController extends ChangeNotifier {
     AppConstant.branch = (await SharedPref.getBranchSSP())!;
     AppConstant.terminal = (await SharedPref.getTerminal())!;
     AppConstant.sapDB = (await SharedPref.getSapDB())!;
-
+    URL.sapUrl = (await SharedPref.getSapUrl())!;
     AppConstant.slpCode = (await SharedPref.getslpCode())!;
     AppConstant.sapPassword = await SharedPref.getSapPassword();
     AppConstant.sapUserName = await SharedPref.getSapUserName();

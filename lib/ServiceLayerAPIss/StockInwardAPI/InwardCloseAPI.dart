@@ -11,7 +11,7 @@ class SerlayInwardCloseAPI {
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.post(
-        Uri.parse('${URL.sapUrl}/StockTransfers($sapDocEntry)/Close'),
+        Uri.parse('${URL.sapUrl}StockTransfers($sapDocEntry)/Close'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

@@ -9,11 +9,11 @@ import '../../../url/url.dart';
 class GetBalanceCreditAPi {
   static String? cardCode;
   static Future<BalanceCreaditModal> getGlobalData() async {
-    log(" ${URL.sapUrl}/SQLQueries('CreditLimit')/List?CardCode='$cardCode'");
+    log(" ${URL.sapUrl}SQLQueries('CreditLimit')/List?CardCode='$cardCode'");
     try {
       final response = await http.get(
         Uri.parse(
-          "${URL.sapUrl}/SQLQueries('CreditLimit')/List?CardCode='$cardCode'", //&\$filter= DocumentStatus eq 'bost_Open'
+          "${URL.sapUrl}SQLQueries('CreditLimit')/List?CardCode='$cardCode'", //&\$filter= DocumentStatus eq 'bost_Open'
         ),
         headers: {
           "content-type": "application/json",

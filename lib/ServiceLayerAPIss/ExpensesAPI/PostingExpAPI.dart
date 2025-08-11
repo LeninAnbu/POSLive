@@ -51,29 +51,27 @@ class PostExpenseAPi {
 
     try {
       log("Step11");
-      final response =
-          await http.post(Uri.parse("${URL.sapUrl}/VendorPayments"),
-              headers: {
-                "content-type": "application/json",
-                "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-              },
-              body: json.encode({
-                "DocDate": "$docDate",
-                "DocType": "$docType",
-                "CashAccount": "$cashAccount",
-                "JournalRemarks": "$remarks",
-                "Address": "$payTo",
-                "Remarks": "$remarks",
-                "CounterReference": "$reference",
-                "Reference2": "$reference",
-                "CashSum": "$cashSum",
-                "U_RVC": '$uRvc',
-                'U_DeviceTransID': deviceTransID,
-                "U_PosUserCode": UserValues.userCode,
-                "U_PosTerminal": AppConstant.terminal,
-                "PaymentAccounts":
-                    paymentAccounts!.map((e) => e.tojson()).toList(),
-              }));
+      final response = await http.post(Uri.parse("${URL.sapUrl}VendorPayments"),
+          headers: {
+            "content-type": "application/json",
+            "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
+          },
+          body: json.encode({
+            "DocDate": "$docDate",
+            "DocType": "$docType",
+            "CashAccount": "$cashAccount",
+            "JournalRemarks": "$remarks",
+            "Address": "$payTo",
+            "Remarks": "$remarks",
+            "CounterReference": "$reference",
+            "Reference2": "$reference",
+            "CashSum": "$cashSum",
+            "U_RVC": '$uRvc',
+            'U_DeviceTransID': deviceTransID,
+            "U_PosUserCode": UserValues.userCode,
+            "U_PosTerminal": AppConstant.terminal,
+            "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList(),
+          }));
       log('Exp resp::${json.decode(response.body)}');
       log(json.encode({
         "DocDate": "$docDate",

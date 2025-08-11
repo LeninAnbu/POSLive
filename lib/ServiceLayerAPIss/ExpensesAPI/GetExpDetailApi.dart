@@ -7,10 +7,10 @@ import '../../url/url.dart';
 
 class SerlayExpensesAPI {
   static Future<GetExpnseDetModel> getData(String sapDocEntry) async {
-    log("Expenses sapSessionID:::${AppConstant.sapSessionID}:::::${URL.sapUrl}/VendorPayments($sapDocEntry)");
+    log("Expenses sapSessionID:::${AppConstant.sapSessionID}:::::${URL.sapUrl}VendorPayments($sapDocEntry)");
     try {
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/VendorPayments($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}VendorPayments($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

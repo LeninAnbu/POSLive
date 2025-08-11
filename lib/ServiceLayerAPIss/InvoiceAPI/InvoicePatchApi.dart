@@ -29,10 +29,10 @@ class InvoicePatchAPI {
 
   static Future<ApprovalstoDocModal> getGlobalData(String? docEntry) async {
     try {
-      log("${URL.sapUrl}/Invoices($docEntry)");
+      log("${URL.sapUrl}Invoices($docEntry)");
       final response = await http.put(
         Uri.parse(
-          "${URL.sapUrl}/Invoices($docEntry)",
+          "${URL.sapUrl}Invoices($docEntry)",
         ),
         headers: {
           "content-type": "application/json",

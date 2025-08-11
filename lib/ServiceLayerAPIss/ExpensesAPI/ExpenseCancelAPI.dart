@@ -10,7 +10,7 @@ class SerlayExpensesCancelAPI {
     log("Expenses sapSessionID:::${AppConstant.sapSessionID}");
     try {
       final response = await http.post(
-        Uri.parse('${URL.sapUrl}/VendorPayments($sapDocEntry)/Cancel'),
+        Uri.parse('${URL.sapUrl}VendorPayments($sapDocEntry)/Cancel'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

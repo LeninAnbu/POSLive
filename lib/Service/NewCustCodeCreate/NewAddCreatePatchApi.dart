@@ -12,9 +12,9 @@ class PostAddressCreateAPi {
   static NewAddressModel? newCutomerAddModel;
   static Future<CreatePatchModel> getGlobalData(String? cardCode) async {
     try {
-      log("${URL.sapUrl}/BusinessPartners('$cardCode')");
+      log("${URL.sapUrl}BusinessPartners('$cardCode')");
       final response = await http.patch(
-          Uri.parse("${URL.sapUrl}/BusinessPartners('$cardCode')"),
+          Uri.parse("${URL.sapUrl}BusinessPartners('$cardCode')"),
           headers: {
             'content-type': 'application/json',
             "cookie": 'B1SESSION=${AppConstant.sapSessionID}'

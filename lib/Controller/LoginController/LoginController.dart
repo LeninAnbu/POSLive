@@ -9,6 +9,7 @@ import 'package:posproject/Constant/VersionConfiguration.dart';
 import 'package:posproject/DBModel/UserDBModel.dart';
 import 'package:posproject/Service/loginUserApi.dart';
 import 'package:posproject/Service/UsersAPI.dart';
+import 'package:posproject/url/url.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -355,6 +356,10 @@ class LoginController extends ChangeNotifier {
                       value.loginuserList![i].autoId.toString());
                   await SharedPref.saveUserSP(
                       value.loginuserList![i].usercode.toString());
+                  await SharedPref.saveSapUrl(
+                      value.loginuserList![i].sapUrl.toString());
+                  URL.sapUrl = (await SharedPref.getSapUrl())!;
+                  log('Message SapUrl::${URL.sapUrl}');
                   Get.offNamed(ConstantRoutes.downloadPage);
                   notifyListeners();
                 } else {

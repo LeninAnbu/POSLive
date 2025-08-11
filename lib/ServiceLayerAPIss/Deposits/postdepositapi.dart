@@ -34,8 +34,8 @@ class PostDepositAPi {
   static Future<ApprovalstoDocModal> getGlobalData() async {
     try {
       log("Step11");
-      log("${URL.sapUrl}/Deposits");
-      final response = await http.post(Uri.parse("${URL.sapUrl}/Deposits"),
+      log("${URL.sapUrl}Deposits");
+      final response = await http.post(Uri.parse("${URL.sapUrl}Deposits"),
           headers: {
             "content-type": "application/json",
             "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

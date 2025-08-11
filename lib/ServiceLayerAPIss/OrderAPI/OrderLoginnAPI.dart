@@ -13,7 +13,7 @@ class PostOrderLoginAPi {
   static Future<Logindata> getGlobalData() async {
     try {
       log("Step11:::$password");
-      final response = await http.post(Uri.parse("${URL.sapUrl}/Login"),
+      final response = await http.post(Uri.parse("${URL.sapUrl}Login"),
           headers: {'Content-Type': 'application/json'},
           body: json.encode({
             "CompanyDB": "${AppConstant.sapDB}",

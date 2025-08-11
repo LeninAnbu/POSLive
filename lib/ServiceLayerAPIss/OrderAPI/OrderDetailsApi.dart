@@ -11,7 +11,7 @@ class GetOrderDetailsAPI {
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/Orders($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}Orders($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

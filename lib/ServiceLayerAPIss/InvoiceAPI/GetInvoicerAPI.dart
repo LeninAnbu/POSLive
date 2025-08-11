@@ -10,10 +10,10 @@ class SerlaySalesInvoiceAPI {
   static Future<SapSalesinvoiceModel> getData(String sapDocEntry) async {
     log("AppConstant.sapSessionID:::${AppConstant.sapSessionID}");
     try {
-      log("${URL.sapUrl}/Invoices($sapDocEntry)");
+      log("${URL.sapUrl}Invoices($sapDocEntry)");
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/Invoices($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}Invoices($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

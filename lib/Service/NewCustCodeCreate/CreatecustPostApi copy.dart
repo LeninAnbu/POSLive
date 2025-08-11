@@ -13,7 +13,7 @@ class PostCustCreateAPi {
     try {
       log("http://102.69.167.106:50001/b1s/v1/BusinessPartners");
       final response = await http.post(
-        Uri.parse("${URL.sapUrl}/BusinessPartners"),
+        Uri.parse("${URL.sapUrl}BusinessPartners"),
         headers: {
           'content-type': 'application/json',
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}'

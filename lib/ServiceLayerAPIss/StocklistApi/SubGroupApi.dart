@@ -11,10 +11,10 @@ import 'package:posproject/url/url.dart';
 class SubGroupAPi {
   static Future<SubModal> getGlobalData() async {
     try {
-      log('${URL.sapUrl}/U_PRDSUBGRP ::${AppConstant.sapSessionID}');
+      log('${URL.sapUrl}U_PRDSUBGRP ::${AppConstant.sapSessionID}');
       final response = await http.get(
         Uri.parse(
-          "${URL.sapUrl}/U_PRDSUBGRP?\$orderby=Name",
+          "${URL.sapUrl}U_PRDSUBGRP?\$orderby=Name",
         ),
         headers: {
           "content-type": "application/json",

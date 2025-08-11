@@ -56,9 +56,9 @@ class SalesOrdPatchAPI {
             : docLineQout!.map((e) => e.tojson3()).toList(),
       });
       log("sapDocEntry patch::$data");
-      log("Order patch url::::${'${URL.sapUrl}/Orders($sapDocEntry)'}");
+      log("Order patch url::::${'${URL.sapUrl}Orders($sapDocEntry)'}");
       final response = await http.patch(
-        Uri.parse('${URL.sapUrl}/Orders($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}Orders($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

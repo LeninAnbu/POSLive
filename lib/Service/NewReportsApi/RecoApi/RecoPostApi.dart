@@ -26,7 +26,7 @@ class RecoPostAPi {
     try {
       final response = await http.post(
         Uri.parse(
-          "${URL.sapUrl}/InternalReconciliations",
+          "${URL.sapUrl}InternalReconciliations",
         ),
         headers: {
           "content-type": "application/json",

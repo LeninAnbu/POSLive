@@ -15,7 +15,7 @@ class SerlayPayReceiptAPI {
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/IncomingPayments($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}IncomingPayments($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

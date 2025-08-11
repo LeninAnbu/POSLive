@@ -14,7 +14,7 @@ class SerlayInvoiceCancelAPI {
     try {
       log("http://102.69.167.106:50001/b1s/v1/Invoices($sapDocEntry)/Cancel");
       final response = await http.post(
-        Uri.parse('${URL.sapUrl}/Invoices($sapDocEntry)/Cancel'),
+        Uri.parse('${URL.sapUrl}Invoices($sapDocEntry)/Cancel'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

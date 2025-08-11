@@ -12,7 +12,7 @@ class SerlayReturnCancelAPI {
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.post(
-        Uri.parse('${URL.sapUrl}/CreditNotes($sapDocEntry)/Close'),
+        Uri.parse('${URL.sapUrl}CreditNotes($sapDocEntry)/Close'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

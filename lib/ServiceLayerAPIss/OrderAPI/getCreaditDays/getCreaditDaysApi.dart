@@ -10,7 +10,7 @@ class GettCreditDaysAPi {
   static String? cardCode;
   static String? date;
   static Future<CreaditDaysModal> getGlobalData() async {
-    log("${URL.sapUrl}/SQLQueries('CreditDays')/List?CardCode='$cardCode'&TodayDt='$date'");
+    log("${URL.sapUrl}SQLQueries('CreditDays')/List?CardCode='$cardCode'&TodayDt='$date'");
     try {
       final response = await http.get(
         Uri.parse(

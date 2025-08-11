@@ -44,10 +44,10 @@ class DirectInvoicePostAPI {
   static Future<SapSalesinvoiceModel> getGlobalData(
       String? deviceTransID) async {
     try {
-      log("${URL.sapUrl}/Invoices");
+      log("${URL.sapUrl}Invoices");
       final response = await http.post(
         Uri.parse(
-          "${URL.sapUrl}/Invoices",
+          "${URL.sapUrl}Invoices",
         ),
         headers: {
           "content-type": "application/json",

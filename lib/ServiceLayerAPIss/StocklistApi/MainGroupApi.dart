@@ -9,10 +9,10 @@ import 'package:posproject/url/url.dart';
 class MainGroupAPi {
   static Future<MainModal> getGlobalData() async {
     try {
-      log('MainGroup Url::${"${URL.sapUrl}/U_PRDMAINGRP?\$orderby=Name"}');
+      log('MainGroup Url::${"${URL.sapUrl}U_PRDMAINGRP?\$orderby=Name"}');
       final response = await http.get(
         Uri.parse(
-          "${URL.sapUrl}/U_PRDMAINGRP?\$orderby=Name",
+          "${URL.sapUrl}U_PRDMAINGRP?\$orderby=Name",
         ),
         headers: {
           "content-type": "application/json",

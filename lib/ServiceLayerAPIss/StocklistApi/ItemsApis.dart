@@ -16,13 +16,13 @@ class ItemsAPi {
   static String? subGroup;
   static String maximumfetchValue = '70';
   static Future<ItemModal> getGlobalData(String pack) async {
-    log("${URL.sapUrl}/Items?\$select=ItemCode,ItemName,SalesUnit,ItemPrices,U_Pack_Size,U_Tins_Per_Box,U_Prd_MainGrp,U_Prd_SubGrp&\$filter=(((contains(ItemCode,'$searchData') or contains(ItemName,'$searchData') or contains(U_Pack_Size,'-') or contains(U_Prd_MainGrp,'$mainGroup')  or contains(U_Prd_SubGrp,'$subGroup'))) and Valid eq 'tYES' )");
+    log("${URL.sapUrl}Items?\$select=ItemCode,ItemName,SalesUnit,ItemPrices,U_Pack_Size,U_Tins_Per_Box,U_Prd_MainGrp,U_Prd_SubGrp&\$filter=(((contains(ItemCode,'$searchData') or contains(ItemName,'$searchData') or contains(U_Pack_Size,'-') or contains(U_Prd_MainGrp,'$mainGroup')  or contains(U_Prd_SubGrp,'$subGroup'))) and Valid eq 'tYES' )");
     try {
       final response = await http.get(
         Uri.parse(
-            "${URL.sapUrl}/Items?\$select=ItemCode,ItemName,SalesUnit,ItemPrices,U_Pack_Size,U_Tins_Per_Box,U_Prd_MainGrp,U_Prd_SubGrp&\$filter=(((contains(ItemCode,'$searchData') or contains(ItemName,'$searchData') or contains(U_Pack_Size,'-') or contains(U_Prd_MainGrp,'$mainGroup')  or contains(U_Prd_SubGrp,'$subGroup'))) and Valid eq 'tYES' )"),
+            "${URL.sapUrl}Items?\$select=ItemCode,ItemName,SalesUnit,ItemPrices,U_Pack_Size,U_Tins_Per_Box,U_Prd_MainGrp,U_Prd_SubGrp&\$filter=(((contains(ItemCode,'$searchData') or contains(ItemName,'$searchData') or contains(U_Pack_Size,'-') or contains(U_Prd_MainGrp,'$mainGroup')  or contains(U_Prd_SubGrp,'$subGroup'))) and Valid eq 'tYES' )"),
 
-        // "${URL.sapUrl}/Items?\$select=ItemCode,ItemName,SalesUnit,ItemPrices,U_Pack_Size,U_Tins_Per_Box&\$filter=((contains(ItemCode,'$searchData') or contains(ItemName,'$searchData')) or contains(U_Pack_Size,'$pack.') or contains(U_Prd_MainGrp,'$mainGroup') or contains(U_Prd_SubGrp,'$subGroup') or Valid eq 'tYES' )"),
+        // "${URL.sapUrl}Items?\$select=ItemCode,ItemName,SalesUnit,ItemPrices,U_Pack_Size,U_Tins_Per_Box&\$filter=((contains(ItemCode,'$searchData') or contains(ItemName,'$searchData')) or contains(U_Pack_Size,'$pack.') or contains(U_Prd_MainGrp,'$mainGroup') or contains(U_Prd_SubGrp,'$subGroup') or Valid eq 'tYES' )"),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),

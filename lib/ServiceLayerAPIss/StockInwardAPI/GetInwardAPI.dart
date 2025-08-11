@@ -14,7 +14,7 @@ class SerlayInwardAPI {
     try {
       log("sapDocNum sapDocNum::$sapDocEntry");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/StockTransfers($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}StockTransfers($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

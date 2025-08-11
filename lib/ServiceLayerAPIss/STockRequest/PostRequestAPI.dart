@@ -39,7 +39,7 @@ class PostRequestAPi {
     try {
       log("Step11");
       final response =
-          await http.post(Uri.parse("${URL.sapUrl}/InventoryTransferRequests"),
+          await http.post(Uri.parse("${URL.sapUrl}InventoryTransferRequests"),
               headers: {
                 "content-type": "application/json",
                 "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

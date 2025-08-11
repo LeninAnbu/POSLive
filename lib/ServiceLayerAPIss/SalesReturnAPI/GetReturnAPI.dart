@@ -12,7 +12,7 @@ class SerlaySalesReturnAPI {
     try {
       log("sapDocEntry sapDocEntry::$sapDocEntry");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/CreditNotes($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}CreditNotes($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',

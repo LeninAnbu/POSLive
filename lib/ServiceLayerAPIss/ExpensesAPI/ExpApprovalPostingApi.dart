@@ -47,30 +47,28 @@ class PostApprovalExpenseAPi {
   static Future<SalesQuotStatus> getGlobalData(String? deviceTransID) async {
     try {
       log("Step11");
-      log("${URL.sapUrl}/VendorPayments");
-      final response =
-          await http.post(Uri.parse("${URL.sapUrl}/VendorPayments"),
-              headers: {
-                "content-type": "application/json",
-                "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-                "Prefer": "return-no-content"
-              },
-              body: json.encode({
-                "DocDate": "$docDate",
-                "DocType": "$docType",
-                "CashAccount": "$cashAccount",
-                "Remarks": "$remarks",
-                "JournalRemarks": "$remarks",
-                "Address": "$payTo",
-                'U_DeviceTransID': deviceTransID,
-                "CashSum": "$cashSum",
-                "U_PosUserCode": UserValues.userCode,
-                "U_PosTerminal": AppConstant.terminal,
-                "CounterReference": "$reference",
-                "U_RVC": '$uRvc',
-                "PaymentAccounts":
-                    paymentAccounts!.map((e) => e.tojson()).toList(),
-              }));
+      log("${URL.sapUrl}VendorPayments");
+      final response = await http.post(Uri.parse("${URL.sapUrl}VendorPayments"),
+          headers: {
+            "content-type": "application/json",
+            "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
+            "Prefer": "return-no-content"
+          },
+          body: json.encode({
+            "DocDate": "$docDate",
+            "DocType": "$docType",
+            "CashAccount": "$cashAccount",
+            "Remarks": "$remarks",
+            "JournalRemarks": "$remarks",
+            "Address": "$payTo",
+            'U_DeviceTransID': deviceTransID,
+            "CashSum": "$cashSum",
+            "U_PosUserCode": UserValues.userCode,
+            "U_PosTerminal": AppConstant.terminal,
+            "CounterReference": "$reference",
+            "U_RVC": '$uRvc',
+            "PaymentAccounts": paymentAccounts!.map((e) => e.tojson()).toList(),
+          }));
 
       log(json.encode({
         "DocDate": "$docDate",

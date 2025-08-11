@@ -34,10 +34,10 @@ class SalesReurnPostAPi {
 
   static Future<SalesQuotStatus> getGlobalData(String? deviceTransID) async {
     try {
-      log("${URL.sapUrl}/CreditNotes");
+      log("${URL.sapUrl}CreditNotes");
       final response = await http.post(
         Uri.parse(
-          "${URL.sapUrl}/CreditNotes",
+          "${URL.sapUrl}CreditNotes",
         ),
         headers: {
           "content-type": "application/json",

@@ -73,10 +73,10 @@ class ReceiptPostAPi {
         "PaymentCreditCards": docPaymentCards!.map((e) => e.toJson3()).toList(),
         "PaymentInvoices": docPaymentInvoices!.map((e) => e.toJson3()).toList(),
       });
-      log("${URL.sapUrl}/IncomingPayments");
+      log("${URL.sapUrl}IncomingPayments");
       final response = await http.post(
         Uri.parse(
-          "${URL.sapUrl}/IncomingPayments",
+          "${URL.sapUrl}IncomingPayments",
         ),
         headers: {
           "content-type": "application/json",

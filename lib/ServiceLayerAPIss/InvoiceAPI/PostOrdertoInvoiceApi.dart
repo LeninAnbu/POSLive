@@ -58,10 +58,10 @@ class OrderToInvoicesPostAPI {
         "U_PosTerminal": AppConstant.terminal,
         "DocumentLines": docLineQout!.map((e) => e.tojson()).toList(),
       });
-      log("${URL.sapUrl}/Invoices");
+      log("${URL.sapUrl}Invoices");
       final response = await http.post(
         Uri.parse(
-          "${URL.sapUrl}/Invoices",
+          "${URL.sapUrl}Invoices",
         ),
         headers: {
           "content-type": "application/json",

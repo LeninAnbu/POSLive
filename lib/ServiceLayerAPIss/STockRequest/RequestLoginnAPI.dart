@@ -12,8 +12,8 @@ class PostRequestLoginAPi {
 
   static Future<Logindata> getGlobalData() async {
     try {
-      log("Step11:::${"${URL.sapUrl}/Login"}");
-      final response = await http.post(Uri.parse("${URL.sapUrl}/Login"),
+      log("Step11:::${"${URL.sapUrl}Login"}");
+      final response = await http.post(Uri.parse("${URL.sapUrl}Login"),
           headers: {
             'Content-Type': 'application/json'
           }, //{"CompanyDB":"MRP T1","UserName":"mwanza","Password":"8765"}

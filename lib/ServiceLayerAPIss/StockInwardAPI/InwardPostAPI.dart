@@ -36,24 +36,23 @@ class PostStkInwardAPi {
   static Future<SapInwardModel> getGlobalData() async {
     try {
       log("Step11");
-      final response =
-          await http.post(Uri.parse("${URL.sapUrl}/StockTransfers"),
-              headers: {
-                "content-type": "application/json",
-                "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
-              },
-              body: json.encode({
-                "CardCode": "$cardCodePost",
-                "DocDate": "$docDate",
-                "DueDate": "$dueDate",
-                "FromWarehouse": "$fromWarehouse",
-                "ToWarehouse": "$toWarehouse",
-                "Comments": "$comments",
-                "U_PosUserCode": UserValues.userCode,
-                "U_PosTerminal": AppConstant.terminal,
-                "StockTransferLines":
-                    stockTransferLines!.map((e) => e.toJson()).toList(),
-              }));
+      final response = await http.post(Uri.parse("${URL.sapUrl}StockTransfers"),
+          headers: {
+            "content-type": "application/json",
+            "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
+          },
+          body: json.encode({
+            "CardCode": "$cardCodePost",
+            "DocDate": "$docDate",
+            "DueDate": "$dueDate",
+            "FromWarehouse": "$fromWarehouse",
+            "ToWarehouse": "$toWarehouse",
+            "Comments": "$comments",
+            "U_PosUserCode": UserValues.userCode,
+            "U_PosTerminal": AppConstant.terminal,
+            "StockTransferLines":
+                stockTransferLines!.map((e) => e.toJson()).toList(),
+          }));
       log(json.encode({
         "DocDate": "$docDate",
         "DueDate": "$dueDate",

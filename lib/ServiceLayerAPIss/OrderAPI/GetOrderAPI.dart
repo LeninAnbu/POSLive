@@ -13,9 +13,9 @@ class SerlaySalesOrderAPI {
   static Future<SapSalesOrderModel> getData(String sapDocEntry) async {
     log("AppConstant.sapSessionIDxx:::${AppConstant.sapSessionID}");
     try {
-      log("sapDocNum sapDocNum::${URL.sapUrl}/Orders($sapDocEntry)");
+      log("sapDocNum sapDocNum::${URL.sapUrl}Orders($sapDocEntry)");
       final response = await http.get(
-        Uri.parse('${URL.sapUrl}/Orders($sapDocEntry)'),
+        Uri.parse('${URL.sapUrl}Orders($sapDocEntry)'),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=${AppConstant.sapSessionID}',
