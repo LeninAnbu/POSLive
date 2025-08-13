@@ -16,7 +16,7 @@ class PostMaxCommitAPi {
     try {
       final response = await http.patch(
         Uri.parse(
-          URL.sapUrl + "/BusinessPartners('$cardCodePost')",
+          URL.sapUrl + "BusinessPartners('$cardCodePost')",
         ),
         headers: {
           "content-type": "application/json",

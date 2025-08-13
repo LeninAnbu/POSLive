@@ -144,7 +144,7 @@ class OrderPostAPi2 {
       }));
 
       log("statucCode: ${response.statusCode}");
-      log("bodyyy post order222: ${response.body}");
+      // log("bodyyy post order222: ${response.body}");
       if (response.statusCode >= 200 && response.statusCode <= 210) {
         return SalesQuotStatus.fromJson(response.statusCode);
       } else {

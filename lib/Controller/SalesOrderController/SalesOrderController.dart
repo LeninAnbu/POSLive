@@ -10529,7 +10529,7 @@ class SOCon extends ChangeNotifier {
     );
 
     notifyListeners();
-
+//d1225
     OrderprintLayout.subtotal = 0;
     OrderprintLayout.discountval = 0;
     OrderprintLayout.exclTxTotal = 0;

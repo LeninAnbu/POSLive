@@ -16,7 +16,7 @@ class SalesDetailsQtAPi {
 
       final response = await http.get(
         Uri.parse(
-          URL.sapUrl + "/Quotations($draftEntry)",
+          URL.sapUrl + "Quotations($draftEntry)",
         ),
         headers: {
           "content-type": "application/json",

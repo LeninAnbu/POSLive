@@ -16,11 +16,11 @@ class ApprovalsRetAPi {
       log(
         "Ret api:::" +
             URL.sapUrl +
-            "/CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'",
+            "CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'",
       );
       final response = await http.get(
         Uri.parse(
-            "http://102.69.167.106:50001/b1s/v1/CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'"),
+            "${URL.sapUrl}CreditNotes?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'"),
         headers: {
           "content-type": "application/json",
           "cookie": 'B1SESSION=' + AppConstant.sapSessionID.toString(),

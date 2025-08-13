@@ -34,12 +34,12 @@ class ApprovalsQuotPostAPi {
     log("Body Aproval request:" + data);
     try {
       log(
-        "api:::" + URL.sapUrl + "/DraftsService_SaveDraftToDocument",
+        "api:::" + URL.sapUrl + "DraftsService_SaveDraftToDocument",
       );
       final response = await http.post(
         Uri.parse(
           URL.sapUrl +
-              "/DraftsService_SaveDraftToDocument", //&\$filter= DocumentStatus eq 'bost_Open'
+              "DraftsService_SaveDraftToDocument", //&\$filter= DocumentStatus eq 'bost_Open'
         ),
         headers: {
           "content-type": "application/json",

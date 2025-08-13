@@ -16,7 +16,7 @@ class ApprovalsDetailsAPi {
     try {
       final response = await http.get(
         Uri.parse(
-          URL.sapUrl + "/Drafts($draftEntry)",
+          URL.sapUrl + "Drafts($draftEntry)",
         ),
         headers: {
           "content-type": "application/json",

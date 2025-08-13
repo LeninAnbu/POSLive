@@ -16,12 +16,12 @@ class ApprovalsQuotAPi {
       log(
         "api:::" +
             URL.sapUrl +
-            "/Orders?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'",
+            "Orders?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'",
       ); //fa2f2550-80c0-1e3f-a62d-d7bc54c54083
       final response = await http.get(
         Uri.parse(
           URL.sapUrl +
-              "/Orders?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID' ", //&\$filter= DocumentStatus eq 'bost_Open'
+              "Orders?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID' ", //&\$filter= DocumentStatus eq 'bost_Open'
         ), //fa2f2550-80c0-1e3f-a62d-d7bc54c54083
         headers: {
           "content-type": "application/json",

@@ -14,12 +14,12 @@ class ApprovalsExpAPi {
       log(
         "Ret api:::" +
             URL.sapUrl +
-            "/VendorPayments?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'",
+            "VendorPayments?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID'",
       );
       final response = await http.get(
         Uri.parse(
           URL.sapUrl +
-              "/VendorPayments?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID' ", //&\$filter= DocumentStatus eq 'bost_Open'
+              "VendorPayments?\$select=DocEntry,DocNum&\$filter=U_DeviceTransID eq '$uDeviceID' ", //&\$filter= DocumentStatus eq 'bost_Open'
         ),
         headers: {
           "content-type": "application/json",

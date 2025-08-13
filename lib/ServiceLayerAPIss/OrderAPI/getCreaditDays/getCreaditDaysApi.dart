@@ -15,7 +15,7 @@ class GettCreditDaysAPi {
       final response = await http.get(
         Uri.parse(
           URL.sapUrl +
-              "/SQLQueries('CreditDays')/List?CardCode='$cardCode'&TodayDt='$date'",
+              "SQLQueries('CreditDays')/List?CardCode='$cardCode'&TodayDt='$date'",
         ),
         headers: {
           "content-type": "application/json",
